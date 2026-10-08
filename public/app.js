@@ -117,11 +117,11 @@ function setBusy(value) {
 }
 function readSettings() {
   const optionalNumber = selector => $(selector).value === '' ? undefined : Number($(selector).value);
-  return {query: $('#query').value.trim(), filters: {brand: $('#brand').value, maxPrice: optionalNumber('#budget'), milk: $('#milk').value, tea: $('#tea-filter').value, topping: $('#topping-filter').value, maxCalories: optionalNumber('#calories'), maxCaffeine: optionalNumber('#caffeine')}};
+  return {query: $('#query').value.trim(), filters: {brand: $('#brand').value, excludedBrands:[...$('#excluded-brands').querySelectorAll('input:checked')].map(n=>n.value), maxPrice: optionalNumber('#budget'), milk: $('#milk').value, tea: $('#tea-filter').value, topping: $('#topping-filter').value, maxCalories: optionalNumber('#calories'), maxCaffeine: optionalNumber('#caffeine')}};
 }
 function tags(filters) {
   $('#active-filters').replaceChildren();
-  const labels = {brand: v => v, maxPrice: v => `價格 ≤ ${v} 元`, maxCalories: v => `熱量 ≤ ${v} kcal`, maxCaffeine: v => `咖啡因上界 ≤ ${v} mg`, milk: v => ({none:'無奶標記', fresh:'鮮奶', plant:'植物奶'})[v], tea: v => v, topping: v => v};
+  const labels = {brand: v => v, excludedBrands:v=>v?.length?`不推薦：${v.join('、')}`:null, maxPrice: v => `價格 ≤ ${v} 元`, maxCalories: v => `熱量 ≤ ${v} kcal`, maxCaffeine: v => `咖啡因上界 ≤ ${v} mg`, milk: v => ({none:'無奶標記', fresh:'鮮奶', plant:'植物奶'})[v], tea: v => v, topping: v => v};
   for (const [key, value] of Object.entries(filters)) {const label = labels[key]?.(value); if (label) $('#active-filters').append(el('span', label));}
 }
 async function recommend(settings, next = false) {
@@ -155,11 +155,13 @@ async function recommend(settings, next = false) {
   finally {setBusy(false);}
 }
 $('#recommend-form').onsubmit = event => {event.preventDefault(); recommend(readSettings());};
-$('#recommend-form').oninput = () => {if (lastSettings) {$('#batch-actions').hidden = true; $('#result-status').textContent = '條件已變更，按「幫我找一杯」套用新設定。';}};
+function updateExcludedBrandCount(){const count=$('#excluded-brands').querySelectorAll('input:checked').length;$('#excluded-brand-count').textContent=count?`已排除 ${count} 個`:'未排除';}
+$('#clear-excluded-brands').onclick=()=>{$('#excluded-brands').querySelectorAll('input').forEach(n=>n.checked=false);$('#recommend-form').dispatchEvent(new Event('input'));};
+$('#recommend-form').oninput = () => {updateExcludedBrandCount();if (lastSettings) {$('#batch-actions').hidden = true; $('#result-status').textContent = '條件已變更，按「幫我找一杯」套用新設定。';}};
 $('#recommend-form').onchange = $('#recommend-form').oninput;
 $('#next-batch').onclick = () => {if (lastSettings) recommend(lastSettings, true);};
 $('#restart-batch').onclick = () => {if (lastSettings) recommend(lastSettings);};
-$('#reset-filters').onclick = () => {$('#recommend-form').reset(); $('#batch-actions').hidden = true; lastSettings = null; seen = []; $('#result-status').textContent = '偏好條件已重設。';};
+$('#reset-filters').onclick = () => {$('#recommend-form').reset();updateExcludedBrandCount(); $('#batch-actions').hidden = true; lastSettings = null; seen = []; $('#result-status').textContent = '偏好條件已重設。';};
 document.querySelectorAll('[data-query]').forEach(n => n.onclick = () => {$('#query').value = n.dataset.query; $('#batch-actions').hidden = true; $('#query').focus();});
 $('#inspiration').onclick = () => {$('#query').value = '想喝清爽、回甘的茶'; recommend(readSettings());};
 
@@ -247,6 +249,7 @@ try {
   meta = await api('/api/meta');
   $('#catalog-summary').textContent = `${meta.total.toLocaleString()} 款飲料 · ${Object.keys(meta.brands).length} 個品牌`;
   for (const brand of Object.keys(meta.brands)) for (const selector of ['#brand','#catalog-brand','#graph-brand']) {const option=el('option',brand); option.value=brand; $(selector).append(option);}
+  for (const brand of Object.keys(meta.brands)){const label=el('label'),checkbox=el('input');checkbox.type='checkbox';checkbox.value=brand;checkbox.name='excludedBrand';label.append(checkbox,el('span',brand));$('#excluded-brands').append(label);}
   for (const [values,selector] of [[meta.tea,'#tea-filter'],[meta.toppings,'#topping-filter']]) for (const v of values) {const option=el('option',v); option.value=v; $(selector).append(option);}
 } catch(error) {$('#catalog-summary').textContent='資料讀取失敗，請重新整理。'; $('#result-status').textContent=error.message;}
 showView();

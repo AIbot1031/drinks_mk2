@@ -16,6 +16,8 @@ export function validateInput(value: unknown): RecommendInput {
     if (typeof f[key] !== 'string' || f[key].length > 60) throw new Error('篩選欄位格式有誤');
     return f[key];
   };
+  const excludedBrands = f.excludedBrands ?? [];
+  if(!Array.isArray(excludedBrands)||excludedBrands.length>50||excludedBrands.some(b=>typeof b!=='string'||!b.trim()||b.length>60))throw new Error('排除品牌須為品牌名稱清單，最多 50 個');
   const milk = str('milk');
   if (milk && !['any', 'none', 'fresh', 'plant'].includes(milk)) throw new Error('奶類選項無效');
   const ids = (key: string, max = 200): string[] => {
@@ -25,13 +27,14 @@ export function validateInput(value: unknown): RecommendInput {
   };
   const limit = v.limit ?? 6;
   if (typeof limit !== 'number' || !Number.isInteger(limit) || limit < 1 || limit > 20) throw new Error('推薦數量須介於 1 至 20');
-  return {query: v.query.trim(), filters: {brand: str('brand'), maxPrice: bounded(f.maxPrice, '預算', 10000), maxCalories: bounded(f.maxCalories, '熱量', 10000), maxCaffeine: bounded(f.maxCaffeine, '咖啡因', 10000), milk: milk as Filters['milk'], tea: str('tea'), topping: str('topping')}, likedIds: ids('likedIds'), dislikedIds: ids('dislikedIds'), excludedIds: ids('excludedIds', 2000), limit};
+  return {query: v.query.trim(), filters: {brand: str('brand'), excludedBrands: [...new Set(excludedBrands.map(b=>b.trim()))], maxPrice: bounded(f.maxPrice, '預算', 10000), maxCalories: bounded(f.maxCalories, '熱量', 10000), maxCaffeine: bounded(f.maxCaffeine, '咖啡因', 10000), milk: milk as Filters['milk'], tea: str('tea'), topping: str('topping')}, likedIds: ids('likedIds'), dislikedIds: ids('dislikedIds'), excludedIds: ids('excludedIds', 2000), limit};
 }
 
 export function understand(input: RecommendInput, brands: string[]): Understanding {
   const q = input.query;
   const filters = {...input.filters};
   const warnings: string[] = [];
+  if(filters.excludedBrands?.some(b=>!brands.includes(b))){warnings.push('排除品牌中有不支援的名稱，請從品牌選單重新選擇。');return {filters,warnings,blocked:true,preferences:[]};}
   const cap = (key: 'maxPrice' | 'maxCalories' | 'maxCaffeine', n: number) => filters[key] = Math.min(filters[key] ?? Infinity, n);
   const price = q.match(/(?:預算|價格|價錢)\s*(?:不超過|最多|上限)?\s*(\d+(?:\.\d+)?)/) ?? q.match(/(?:不超過|最多|上限)\s*(\d+(?:\.\d+)?)\s*(?:元|塊)/);
   const price2 = q.match(/(\d+(?:\.\d+)?)\s*(?:元|塊)\s*(?:以下|內|以內)/);
@@ -54,6 +57,10 @@ export function understand(input: RecommendInput, brands: string[]): Understandi
   else if (/植物奶|燕麥奶|豆奶/.test(q) && (!filters.milk || filters.milk === 'any')) filters.milk = 'plant';
   const mentionedBrands = brands.filter(b => q.includes(b));
   if (!filters.brand && mentionedBrands.length === 1 && !new RegExp(`(?:不要|排除|不喝)${mentionedBrands[0]}`).test(q)) filters.brand = mentionedBrands[0];
+  if(filters.brand&&filters.excludedBrands?.includes(filters.brand)){
+    warnings.push(`「${filters.brand}」同時被指定與排除，請調整品牌設定後再推薦。`);
+    return {filters,warnings,blocked:true,preferences:[]};
+  }
   if (/過敏|花生|堅果|乳糖不耐|麩質|忌口/.test(q)) {
     warnings.push('目前過敏原欄位尚未核對，無法提供符合過敏或忌口限制的推薦。請先向店家確認成分。');
     return {filters, warnings, blocked: true, preferences: []};

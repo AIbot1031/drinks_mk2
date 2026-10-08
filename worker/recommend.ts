@@ -5,6 +5,7 @@ export const RANKING_CONFIG = {weightA: 0.65, weightB: 0.35, rrfK: 60, candidate
 
 export function eligible(d: Drink, f: Filters): boolean {
   return (!f.brand || d.brand === f.brand)
+    && !f.excludedBrands?.includes(d.brand)
     && (f.maxPrice === undefined || (d.price !== null && d.price <= f.maxPrice))
     && (f.maxCalories === undefined || (d.calories !== null && d.calories <= f.maxCalories))
     && (f.maxCaffeine === undefined || (d.caffeineMax !== null && d.caffeineMax <= f.maxCaffeine))
@@ -87,7 +88,7 @@ export function makeEngine(drinks: Drink[]) {
     const pool = likedPool.filter(d => !excluded.has(d.id));
     const lexicalA = lexical(input.query, pool);
     const a = lexicalA;
-    const liked = input.likedIds.filter(id => byId.has(id) && !disliked.has(id));
+    const liked = input.likedIds.filter(id => byId.has(id) && !disliked.has(id) && !parsed.filters.excludedBrands?.includes(byId.get(id)!.brand));
     const seeds = liked.length ? liked : lexicalA.filter(d => d.score > 0).slice(0, 5).map(d => d.drink.id);
     const b = graph(seeds, pool);
     const fused = new Map<string, {drink: Drink; score: number; aRank: number | null; bRank: number | null}>();

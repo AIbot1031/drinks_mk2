@@ -14,6 +14,10 @@ test('Worker runtime serves the site, catalogue, constrained recommendations and
   const first = await post({query:'清爽',filters:{maxPrice:60,maxCalories:200,maxCaffeine:100,milk:'none'}}).then(r=>r.json()) as {results:Array<{id:string;drink:{price:number;calories:number;caffeineMax:number;noMilk:boolean}}>};
   assert.ok(first.results.length > 0);
   assert.ok(first.results.every(r=>r.drink.price<=60&&r.drink.calories<=200&&r.drink.caffeineMax<=100&&r.drink.noMilk));
+  const excluded=await post({query:'清爽',filters:{excludedBrands:['得正']}}).then(r=>r.json()) as {filters:{excludedBrands:string[]};results:Array<{brand:string}>};
+  assert.ok(excluded.results.length>0);assert.ok(excluded.results.every(r=>r.brand!=='得正'));assert.deepEqual(excluded.filters.excludedBrands,['得正']);
+  assert.equal((await post({query:'',filters:{excludedBrands:'得正'}})).status,400);
+  const conflict=await post({query:'',filters:{brand:'得正',excludedBrands:['得正']}}).then(r=>r.json()) as {blocked:boolean;results:unknown[]};assert.equal(conflict.blocked,true);assert.equal(conflict.results.length,0);
   const second = await post({query:'清爽',excludedIds:first.results.map(r=>r.id)}).then(r=>r.json()) as {results:Array<{id:string}>};
   assert.ok(second.results.every(r=>!first.results.some(x=>x.id===r.id)));
   assert.equal((await post({query:12})).status, 400);

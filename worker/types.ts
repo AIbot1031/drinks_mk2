@@ -6,7 +6,7 @@ export type Drink = {
   noMilk: boolean; richness: number | null; status: string; allergensVerified: boolean;
 };
 export type Filters = {
-  brand?: string; maxPrice?: number; maxCalories?: number; maxCaffeine?: number;
+  brand?: string; excludedBrands?: string[]; maxPrice?: number; maxCalories?: number; maxCaffeine?: number;
   milk?: 'any' | 'none' | 'fresh' | 'plant'; tea?: string; topping?: string;
 };
 export type RecommendInput = { query: string; filters: Filters; likedIds: string[]; dislikedIds: string[]; excludedIds: string[]; limit: number };

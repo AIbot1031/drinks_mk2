@@ -91,3 +91,26 @@ test('internal trace reconciles A/B ranks, individual contributions and consumer
   assert.equal(trace.rendering.explanationAgentUsed,false);
   assert.equal(trace.selection.relaxHardFilters,false);
 });
+
+
+test('excluded brands stay out of both paths, favourites, fusion and every batch',()=>{
+  const excludedBrands=['得正','可不可熟成紅茶'];
+  const actualBrands=[...new Set(drinks.map(d=>d.brand))];
+  const exclusions=excludedBrands.filter(b=>actualBrands.includes(b));
+  assert.equal(exclusions.length,2);
+  const excludedFavorite=drinks.find(d=>exclusions.includes(d.brand))!;
+  const request={...input('清爽', {excludedBrands:exclusions}),likedIds:[excludedFavorite.id]};
+  const {response,trace}=engine.recommendWithTrace(request);
+  assert.ok(response.results.length>0);
+  assert.ok(response.results.every(d=>!exclusions.includes(d.brand)));
+  for(const list of [trace.routeA.ranked,trace.routeB.ranked,trace.fusion.ranked,trace.routeB.seeds])assert.ok(list.every(d=>!exclusions.includes(d.brand)));
+  assert.equal(response.mode.personalized,false);
+  assert.deepEqual(trace.understanding.filters.excludedBrands,exclusions);
+  const next=engine.recommend({...request,excludedIds:response.results.map(d=>d.id)});
+  assert.ok(next.results.length>0);assert.ok(next.results.every(d=>!exclusions.includes(d.brand)));
+  const conflict=engine.recommend(input('',{brand:exclusions[0],excludedBrands:exclusions}));
+  assert.equal(conflict.blocked,true);assert.equal(conflict.results.length,0);assert.ok(conflict.warnings.some(w=>w.includes('同時被指定與排除')));
+  const all=engine.recommend(input('',{excludedBrands:actualBrands}));assert.equal(all.results.length,0);assert.equal(all.eligibleCount,0);assert.equal(all.blocked,false);
+  assert.equal(engine.recommend(input('',{excludedBrands:['不存在的品牌']})).blocked,true);
+  for(const invalid of ['得正',[12],[''],new Array(51).fill('得正')])assert.throws(()=>validateInput({query:'',filters:{excludedBrands:invalid}}));
+});

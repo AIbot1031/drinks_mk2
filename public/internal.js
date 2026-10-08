@@ -10,6 +10,7 @@ function render(trace){
  target.append(el('h2',trace.input.query||'未輸入需求文字'),el('p',`紀錄 ID：${trace.traceId} · ${new Date(trace.createdAt).toLocaleString('zh-TW',{timeZone:'Asia/Taipei'})}`));
  const download=el('button','下載完整 JSON 檔','secondary download');download.type='button';download.onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(currentTrace,null,2)],{type:'application/json'}));const a=el('a');a.href=url;a.download=`recommendation-${trace.traceId}.json`;a.click();URL.revokeObjectURL(url);};target.append(download);
  target.append(el('h3','01 · Agent A 理解與硬篩選'));
+ target.append(el('p',`不要推薦的品牌：${trace.understanding.filters.excludedBrands?.join('、')||'未排除'}`));
  const badges=el('div','','badge-line');for(const [key,value]of Object.entries(trace.filtering))badges.append(el('span',`${key}：${value}`));target.append(badges);
  target.append(el('p',`解析器：${trace.understanding.parser}；大模型：${trace.understanding.llmUsed?'有':'未使用'}；是否阻擋：${trace.understanding.blocked?'是':'否'}`),jsonDetails('查看輸入、條件與解析提醒',{input:trace.input,understanding:trace.understanding}));
  target.append(el('h3',`02 · A 榜單（前 ${trace.routeA.ranked.length} / ${trace.routeA.totalCandidates}）`),el('p',trace.routeA.method),table(['A 名次','品牌','品項','原始分數','來源列'],trace.routeA.ranked.map(r=>[r.rank,r.brand,r.name,number(r.rawScore),r.sourceRow])));
