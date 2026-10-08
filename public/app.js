@@ -48,7 +48,7 @@ function updateAccountButtons(){
 }
 async function switchAccount(user){
   const prefs=user?await api('/api/account/preferences'):guestFeedback();
-  accountUser=user;feedback=validateFeedback(prefs);confirmedFeedback=structuredClone(feedback);
+  accountUser=user;if(user&&$('#account-dialog').open)$('#account-dialog').close();feedback=validateFeedback(prefs);confirmedFeedback=structuredClone(feedback);
   lastSettings=null;seen=[];$('#batch-actions').hidden=true;
   // A previous user's recommendations must not remain visible after switching accounts.
   $('#results').replaceChildren();$('#result-count').textContent='等你說說偏好';$('#result-status').textContent='';$('#result-warnings').hidden=true;$('#active-filters').replaceChildren();
@@ -235,6 +235,7 @@ async function loadGraph() {
 $('#graph-form').onsubmit = event => {event.preventDefault(); loadGraph();};
 function showView() {
   const requested = location.hash.slice(1) || 'recommend';
+  if(requested==='login'&&!accountUser&&!$('#account-dialog').open)$('#account-dialog').showModal();
   const view = ['recommend','catalog','favorites','graph'].includes(requested) ? requested : 'recommend';
   document.querySelectorAll('.view').forEach(n => n.hidden = n.id !== `${view}-view`);
   document.querySelectorAll('.header nav a').forEach(n => {const active=n.hash===`#${view}`; n.classList.toggle('active',active); if(active)n.setAttribute('aria-current','page'); else n.removeAttribute('aria-current');});
