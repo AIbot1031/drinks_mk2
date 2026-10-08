@@ -116,7 +116,7 @@ python scripts/import_data.py
 
 ## 收藏怎麼保留
 
-這一版收藏保存在使用的瀏覽器，不是雲端帳號。可以在「我的收藏」按「匯出我的偏好」，保存 JSON；換電腦或瀏覽器後再「匯入偏好」。不同網址與本機預覽的收藏分開保存。匯入會合併，不覆蓋所有原本收藏。
+訪客收藏保存在使用的瀏覽器；登入後收藏保存到自己的雲端帳號。可以在「我的收藏」按「匯出我的偏好」，保存 JSON；換電腦或瀏覽器後再「匯入偏好」。不同網址與本機預覽的收藏分開保存。匯入會合併，不覆蓋所有原本收藏。
 
 ## 發生問題時
 
@@ -131,3 +131,7 @@ python scripts/import_data.py
 | 沒有推薦 | 看條件是否太嚴格，或是否要求尚未核對的過敏／忌口條件。 |
 
 Cloudflare 和 GitHub 的用量與方案限制可能更新；查看 [Cloudflare Workers 價格](https://developers.cloudflare.com/workers/platform/pricing/)及 [GitHub Actions 計費](https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-actions/about-billing-for-github-actions)。本次沒有替你升級付費方案。
+
+## 用戶註冊與登入
+
+消費者網站導覽列有「登入 / 註冊」，首次使用自行填 ID 與密碼再按「建立帳號」。這與團隊後台不同。登入後收藏保存到帳號，詳細步驟見[用戶登入與收藏](用戶登入與收藏.md)。新增帳號資料表已部署；新環境需執行 db:local／db:remote 套用第二份 migration。

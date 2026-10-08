@@ -3,6 +3,7 @@ import { makeEngine } from './recommend';
 import { validateInput } from './understand';
 import type { Drink } from './types';
 import { internalApi } from './internal';
+import { accountApi, currentUser, storedPreferences } from './accounts';
 
 const drinks: Drink[] = catalog.drinks;
 const engine = makeEngine(drinks);
@@ -30,6 +31,7 @@ export default {
     const url = new URL(request.url);
     if (!url.pathname.startsWith('/api/')) return env.ASSETS.fetch(request);
     try {
+      if(url.pathname.startsWith('/api/account/'))return await accountApi(request,env,readBody,drinks);
       if(url.pathname.startsWith('/api/internal/'))return await internalApi(request,env,readBody);
       if (url.pathname === '/api/health' && request.method === 'GET') return json({ok: true, total: catalog.total, version: '0.1.0'});
       if (url.pathname === '/api/meta' && request.method === 'GET') return json({total: catalog.total, brands: catalog.brands, missing: catalog.missing, tea: ['紅茶', '綠茶', '青茶', '烏龍茶', '金萱茶', '普洱茶', '蕎麥茶'], toppings: ['珍珠', '椰果', '布丁', '仙草', '燕麥', '粉粿']});
@@ -45,6 +47,8 @@ export default {
         const origin = request.headers.get('origin');
         if (origin && origin !== url.origin) return json({error: '請從本站送出查詢'}, 403);
         const input = validateInput(await readBody(request));
+        const user=await currentUser(request,env.TRACE_DB);
+        if(user){const prefs=storedPreferences(user.preferences);input.likedIds=prefs.likedIds;input.dislikedIds=prefs.dislikedIds;}
         const {response,trace}=engine.recommendWithTrace(input);
         const traceId=crypto.randomUUID();
         const createdAt=new Date().toISOString();

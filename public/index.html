@@ -19,8 +19,18 @@
       <a href="#catalog">飲料圖鑑</a>
       <a href="#graph">關係圖</a>
       <a href="#favorites">我的收藏 <span id="favorite-count">0</span></a>
+      <button id="account-open" class="secondary" type="button">登入 / 註冊</button>
+      <button id="account-logout" class="text-button" type="button" hidden>登出</button>
     </nav>
   </header>
+  <dialog id="account-dialog" class="account-dialog">
+    <form id="account-form"><div class="panel-heading"><h2>留下你的好喝清單</h2><button type="button" id="account-close" class="text-button" aria-label="關閉登入視窗">關閉 ✕</button></div>
+    <p class="account-intro">登入或建立帳號，讓收藏跟著你。</p>
+    <label for="user-id">用戶 ID</label><input id="user-id" type="text" autocomplete="username" required minlength="3" maxlength="200" pattern="[A-Za-z0-9]{3,200}" title="至少 3 個英文字母或數字" autocapitalize="none" spellcheck="false"><p class="field-help">至少 3 個英文字母或數字，區分大小寫。</p>
+    <label for="user-password">密碼</label><input id="user-password" type="password" autocomplete="current-password" required minlength="6" maxlength="200" pattern="[A-Za-z0-9]{6,200}" title="至少 6 位，只能使用英文大小寫或數字"><p class="field-help">至少 6 位，只接受英文大小寫或數字。</p>
+    <div class="account-actions"><button class="primary" type="submit" value="login">登入 →</button><button class="secondary" type="submit" value="register">建立帳號</button></div><p id="account-status" class="status" role="status"></p>
+    <p class="field-help">首次使用請自行設定 ID 與密碼，按「建立帳號」。目前未提供忘記密碼功能，請妥善保存。</p></form>
+  </dialog>
   <main id="main">
     <section id="recommend-view" class="view">
       <div class="hero">
@@ -49,7 +59,7 @@
       <div class="little-notes"><span>01 <strong>說說你的口味</strong><small>一句話，也可以很簡單。</small></span><span>02 <strong>看看適合的飲料</strong><small>風味、價格與營養，一起看。</small></span><span>03 <strong>留下喜歡的一杯</strong><small>下一次，更懂你的偏好。</small></span></div>
     </section>
     <section id="catalog-view" class="view" hidden><div class="page-heading"><p class="eyebrow">THE DRINK LIBRARY</p><h1>慢慢挑，<span>總有喜歡的。</span></h1><p>查看原始飲料資料，也為下次喝什麼存一點靈感。</p></div><form id="catalog-form" class="library-search"><label for="catalog-query" class="sr-only">搜尋飲料</label><input id="catalog-query" placeholder="搜尋飲料名稱、品牌或風味"><label for="catalog-brand" class="sr-only">篩選品牌</label><select id="catalog-brand"><option value="">所有品牌</option></select><button class="primary" type="submit">搜尋</button></form><p id="catalog-status" role="status" class="status"></p><div id="catalog-results" class="card-grid"></div><div class="pagination"><button id="prev-page" class="secondary" type="button">← 上一頁</button><span id="page-info"></span><button id="next-page" class="secondary" type="button">下一頁 →</button></div></section>
-    <section id="favorites-view" class="view" hidden><div class="page-heading"><p class="eyebrow">YOUR LITTLE COLLECTION</p><h1>留給下次的<span>好喝清單。</span></h1><p>收藏與不喜歡的紀錄保存在這個瀏覽器，推薦時會參考。</p></div><div class="collection-actions"><button id="export-feedback" class="secondary" type="button">匯出我的偏好</button><label class="secondary import-label" for="import-feedback">匯入偏好<input id="import-feedback" type="file" accept="application/json,.json" class="sr-only"></label></div><p id="collection-status" class="status" role="status"></p><div id="favorites-results" class="card-grid"></div></section>
+    <section id="favorites-view" class="view" hidden><div class="page-heading"><p class="eyebrow">YOUR LITTLE COLLECTION</p><h1>留給下次的<span>好喝清單。</span></h1><p><span id="collection-description">訪客偏好保存在這個瀏覽器；登入後可保存到自己的帳號，推薦時會參考。</span></p></div><div class="collection-actions"><button id="save-guest-feedback" class="secondary" type="button" hidden>把此瀏覽器偏好加入帳號</button><button id="export-feedback" class="secondary" type="button">匯出我的偏好</button><label class="secondary import-label" for="import-feedback">匯入偏好<input id="import-feedback" type="file" accept="application/json,.json" class="sr-only"></label></div><p id="collection-status" class="status" role="status"></p><div id="favorites-results" class="card-grid"></div></section>
     <section id="graph-view" class="view" hidden><div class="page-heading"><p class="eyebrow">CONNECTED BY TASTE</p><h1>看看飲料之間的<span>小小連結。</span></h1><p>以品牌、茶種、奶類與配料連結飲料。點選節點，探索相關特徵。</p></div><p class="field-help">此版為飲料特徵關係圖；尚未訓練 RelGT／LightGCN／Two-Tower。</p><form id="graph-form" class="library-search"><label for="graph-query" class="sr-only">搜尋圖中飲料</label><input id="graph-query" placeholder="搜尋飲料，例如：紅茶拿鐵"><label for="graph-brand" class="sr-only">篩選圖中品牌</label><select id="graph-brand"><option value="">所有品牌</option></select><button class="primary" type="submit">更新關係圖</button></form><p id="graph-status" role="status" class="status"></p><div class="graph-legend"><span><i class="brand-dot"></i>品牌</span><span><i class="drink-dot"></i>飲料</span><span><i class="feature-dot"></i>茶種／奶類／配料</span></div><div class="graph-wrap"><svg id="graph" role="img" aria-label="飲料與特徵關係圖"></svg></div><p id="graph-detail" class="panel graph-detail" role="status">點選節點查看它的關係與來源。</p></section>
   </main>
   <footer><div><a class="logo" href="#recommend">◒ 喝點剛好的</a><p>用一杯飲料，為日常留一點剛好。</p></div><p>資料來源：提供的飲料 Excel。風味為原表推論。<br>價格、營養與成分依容量、甜度、冷熱及店家實際供應為準。</p><span>MADE FOR YOUR EVERYDAY SIP.</span></footer>

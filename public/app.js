@@ -4,7 +4,10 @@ const storageKey = 'drinks-mk2-feedback-v1';
 let feedback = {version: 1, liked: {}, disliked: []};
 let meta, busy = false, exhausted = false, lastSettings = null, seen = [], page = 1, pages = 1;
 let catalogRequest = 0, graphRequest = 0;
+let accountUser = null, preferenceBusy = false, accountBusy = true, preferenceSync = Promise.resolve();
 try {const saved = localStorage.getItem(storageKey); if (saved) feedback = validateFeedback(JSON.parse(saved));} catch {$('#feedback-note').textContent = '本機偏好讀取失敗，這次會使用空白偏好。';}
+
+let confirmedFeedback = structuredClone(feedback);
 
 function validateFeedback(value) {
   if (!value || value.version !== 1 || !value.liked || typeof value.liked !== 'object' || Array.isArray(value.liked) || !Array.isArray(value.disliked)) throw new Error('偏好檔案格式有誤');
@@ -13,18 +16,64 @@ function validateFeedback(value) {
   if (value.disliked.some(id => typeof id !== 'string' || id.length > 80)) throw new Error('不喜歡的紀錄格式有誤');
   return {version: 1, liked: value.liked, disliked: [...new Set(value.disliked)]};
 }
-function saveFeedback() {
-  let message = '偏好已保存在這個瀏覽器，下次推薦會參考。';
-  try {localStorage.setItem(storageKey, JSON.stringify(feedback));} catch {message = '瀏覽器無法儲存，偏好只會保留到本頁關閉。';}
+function updateFeedbackDisplay(message = '') {
   $('#favorite-count').textContent = Object.keys(feedback.liked).length;
   $('#feedback-note').textContent = message;
   $('#collection-status').textContent = message;
   refreshFeedbackButtons();
   if (location.hash === '#favorites') renderFavorites();
 }
+function saveFeedback() {
+  const snapshot=structuredClone(feedback), owner=accountUser?.id;
+  preferenceBusy=true;refreshFeedbackButtons();updateAccountButtons();
+  preferenceSync=(async()=>{
+    let message;
+    try {
+      if(owner){feedback=await api('/api/account/preferences',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({likedIds:Object.keys(snapshot.liked),dislikedIds:snapshot.disliked})});message='偏好已保存到你的帳號，其他裝置登入後也能查看。';}
+      else {localStorage.setItem(storageKey,JSON.stringify(snapshot));message='訪客偏好已保存在這個瀏覽器。登入可保存到自己的帳號。';}
+      confirmedFeedback=structuredClone(feedback);
+    }catch(error){feedback=structuredClone(confirmedFeedback);message=`未能保存這次變更：${error.message}`;}
+    finally {preferenceBusy=false;updateAccountButtons();updateFeedbackDisplay(message);}
+  })();
+  return preferenceSync;
+}
+function guestFeedback(){try {const raw=localStorage.getItem(storageKey);return raw?validateFeedback(JSON.parse(raw)):{version:1,liked:{},disliked:[]};}catch{return {version:1,liked:{},disliked:[]};}}
+function updateAccountButtons(){
+  $('#account-open').textContent=accountUser?`帳號：${accountUser.id}`:'登入 / 註冊';
+  $('#account-open').disabled=accountBusy||preferenceBusy||busy;
+  $('#account-logout').hidden=!accountUser;$('#account-logout').disabled=accountBusy||preferenceBusy||busy;
+  $('#save-guest-feedback').hidden=!accountUser;
+  $('#save-guest-feedback').disabled=accountBusy||preferenceBusy;
+  $('#collection-description').textContent=accountUser?'收藏與不喜歡清單保存在你的帳號，其他裝置登入後也能查看。':'訪客偏好保存在這個瀏覽器；登入後可保存到自己的帳號。';
+}
+async function switchAccount(user){
+  const prefs=user?await api('/api/account/preferences'):guestFeedback();
+  accountUser=user;feedback=validateFeedback(prefs);confirmedFeedback=structuredClone(feedback);
+  lastSettings=null;seen=[];$('#batch-actions').hidden=true;
+  // A previous user's recommendations must not remain visible after switching accounts.
+  $('#results').replaceChildren();$('#result-count').textContent='等你說說偏好';$('#result-status').textContent='';$('#result-warnings').hidden=true;$('#active-filters').replaceChildren();
+  updateAccountButtons();updateFeedbackDisplay(user?`已登入 ${user.id}，已載入帳號偏好。`:'已切回這個瀏覽器的訪客偏好。');
+}
+$('#account-open').onclick=()=>{if(accountUser){location.hash='#favorites';return;}$('#account-status').textContent='';$('#account-dialog').showModal();};
+$('#account-close').onclick=()=>$('#account-dialog').close();
+$('#account-form').onsubmit=async event=>{
+  event.preventDefault();if(accountBusy||preferenceBusy||busy)return;
+  accountBusy=true;updateAccountButtons();$('#account-form').querySelectorAll('button').forEach(b=>b.disabled=true);
+  const action=event.submitter?.value==='register'?'register':'login';
+  $('#account-status').textContent=action==='register'?'正在建立帳號…':'正在登入…';
+  try {const result=await api(`/api/account/${action}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:$('#user-id').value,password:$('#user-password').value})});await switchAccount(result.user);$('#user-password').value='';$('#account-dialog').close();}
+  catch(error){$('#account-status').textContent=error.message;}
+  finally{accountBusy=false;updateAccountButtons();refreshFeedbackButtons();$('#account-form').querySelectorAll('button').forEach(b=>b.disabled=false);}
+};
+$('#account-logout').onclick=async()=>{
+  if(accountBusy||preferenceBusy||busy)return;accountBusy=true;updateAccountButtons();
+  try{await api('/api/account/logout',{method:'POST'});await switchAccount(null);}catch(error){$('#feedback-note').textContent=error.message;}
+  finally{accountBusy=false;updateAccountButtons();refreshFeedbackButtons();}
+};
+$('#save-guest-feedback').onclick=()=>{if(!accountUser||preferenceBusy||accountBusy)return;try{const local=guestFeedback();const merged={version:1,liked:{...feedback.liked,...local.liked},disliked:[...new Set([...feedback.disliked,...local.disliked])]};merged.disliked=merged.disliked.filter(id=>!merged.liked[id]);feedback=validateFeedback(merged);saveFeedback();}catch(error){$('#collection-status').textContent=error.message;}};
 function refreshFeedbackButtons() {
-  document.querySelectorAll('[data-like]').forEach(n => {const liked = !!feedback.liked[n.dataset.like]; n.setAttribute('aria-pressed', String(liked)); n.textContent = liked ? '♥ 已收藏' : '♡ 喜歡這杯';});
-  document.querySelectorAll('[data-dislike]').forEach(n => {const disliked = feedback.disliked.includes(n.dataset.dislike); n.setAttribute('aria-pressed', String(disliked)); n.textContent = disliked ? '已標記不喜歡' : '不太喜歡';});
+  document.querySelectorAll('[data-like]').forEach(n => {n.disabled=preferenceBusy||accountBusy;const liked = !!feedback.liked[n.dataset.like]; n.setAttribute('aria-pressed', String(liked)); n.textContent = liked ? '♥ 已收藏' : '♡ 喜歡這杯';});
+  document.querySelectorAll('[data-dislike]').forEach(n => {n.disabled=preferenceBusy||accountBusy;const disliked = feedback.disliked.includes(n.dataset.dislike); n.setAttribute('aria-pressed', String(disliked)); n.textContent = disliked ? '已標記不喜歡' : '不太喜歡';});
 }
 async function api(path, options) {
   const response = await fetch(path, options);
@@ -46,9 +95,9 @@ function card(d, index, rec) {
   content.append(nutrition);
   const actions = el('div', '', 'card-actions');
   const like = el('button', '', ''); like.type = 'button'; like.dataset.like = d.id; like.setAttribute('aria-label', `收藏${d.brand}的${d.name}`);
-  like.onclick = () => {if (feedback.liked[d.id]) delete feedback.liked[d.id]; else {if (Object.keys(feedback.liked).length >= 200) {$('#feedback-note').textContent = '最多收藏 200 杯，請先取消部分收藏。'; return;} feedback.liked[d.id] = d; feedback.disliked = feedback.disliked.filter(id => id !== d.id);} saveFeedback();};
+  like.onclick = () => {if(preferenceBusy||accountBusy)return;if (feedback.liked[d.id]) delete feedback.liked[d.id]; else {if (Object.keys(feedback.liked).length >= 200) {$('#feedback-note').textContent = '最多收藏 200 杯，請先取消部分收藏。'; return;} feedback.liked[d.id] = d; feedback.disliked = feedback.disliked.filter(id => id !== d.id);} saveFeedback();};
   const dislike = el('button'); dislike.type = 'button'; dislike.dataset.dislike = d.id; dislike.setAttribute('aria-label', `標記不喜歡${d.name}`);
-  dislike.onclick = () => {if (feedback.disliked.includes(d.id)) feedback.disliked = feedback.disliked.filter(id => id !== d.id); else {if (feedback.disliked.length >= 200) {$('#feedback-note').textContent = '最多記錄 200 款不喜歡的飲料。'; return;} feedback.disliked.push(d.id); delete feedback.liked[d.id];} saveFeedback();};
+  dislike.onclick = () => {if(preferenceBusy||accountBusy)return;if(preferenceBusy||accountBusy)return;if (feedback.disliked.includes(d.id)) feedback.disliked = feedback.disliked.filter(id => id !== d.id); else {if (feedback.disliked.length >= 200) {$('#feedback-note').textContent = '最多記錄 200 款不喜歡的飲料。'; return;} feedback.disliked.push(d.id); delete feedback.liked[d.id];} saveFeedback();};
   actions.append(like, dislike); content.append(actions);
   const details = el('details', '', 'card-details'); details.append(el('summary', '查看資料來源與備註'));
   details.append(el('p', `Excel「綜合飲料特徵」第 ${d.sourceRow} 列。${d.status || ''}`));
@@ -60,7 +109,7 @@ function card(d, index, rec) {
 }
 
 function setBusy(value) {
-  busy = value;
+  busy = value;updateAccountButtons();
   $('#recommend-form').querySelectorAll('input,select,textarea,button').forEach(n => n.disabled = value);
   $('#submit-button').textContent = value ? '正在幫你挑選…' : '幫我找一杯 ↗';
   $('#next-batch').disabled = value || exhausted;
@@ -76,7 +125,9 @@ function tags(filters) {
   for (const [key, value] of Object.entries(filters)) {const label = labels[key]?.(value); if (label) $('#active-filters').append(el('span', label));}
 }
 async function recommend(settings, next = false) {
-  if (busy) return;
+  if (busy||accountBusy) return;
+  await preferenceSync;
+  if(busy||accountBusy)return;
   if (!next) exhausted = false;
   setBusy(true);
   // Batched exclusions are independent of personal dislikes and do not affect learned preferences.
@@ -143,7 +194,8 @@ $('#export-feedback').onclick = () => {
 };
 $('#import-feedback').onchange = async event => {
   const file = event.target.files[0]; if (!file) return;
-  try {if (file.size > 1024 * 1024) throw new Error('偏好檔案不可超過 1 MB'); const imported = validateFeedback(JSON.parse(await file.text())); const merged = {version:1, liked:{...feedback.liked,...imported.liked}, disliked:[...new Set([...feedback.disliked,...imported.disliked])]}; merged.disliked = merged.disliked.filter(id => !merged.liked[id]); feedback = validateFeedback(merged); saveFeedback(); renderFavorites(); $('#collection-status').textContent = '已合併匯入的偏好。';} catch(error) {$('#collection-status').textContent = error.message || '無法匯入偏好檔案。';} finally {event.target.value = '';}
+  if(preferenceBusy||accountBusy){event.target.value='';return;}
+  try {if (file.size > 1024 * 1024) throw new Error('偏好檔案不可超過 1 MB'); const imported = validateFeedback(JSON.parse(await file.text())); const merged = {version:1, liked:{...feedback.liked,...imported.liked}, disliked:[...new Set([...feedback.disliked,...imported.disliked])]}; merged.disliked = merged.disliked.filter(id => !merged.liked[id]); feedback = validateFeedback(merged); await saveFeedback(); renderFavorites();} catch(error) {$('#collection-status').textContent = error.message || '無法匯入偏好檔案。';} finally {event.target.value = '';}
 };
 
 async function loadGraph() {
@@ -197,3 +249,4 @@ try {
   for (const [values,selector] of [[meta.tea,'#tea-filter'],[meta.toppings,'#topping-filter']]) for (const v of values) {const option=el('option',v); option.value=v; $(selector).append(option);}
 } catch(error) {$('#catalog-summary').textContent='資料讀取失敗，請重新整理。'; $('#result-status').textContent=error.message;}
 showView();
+try {const result=await api('/api/account/me');await switchAccount(result.user);}catch(error){$('#feedback-note').textContent=`帳號暫時無法讀取：${error.message}`;}finally{accountBusy=false;updateAccountButtons();refreshFeedbackButtons();}

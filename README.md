@@ -27,7 +27,7 @@ npm run db:local
 npm run dev
 ```
 
-打開終端機顯示的本機網址（預設 `http://localhost:8787`）。收藏儲存在瀏覽器 localStorage，可在「我的收藏」匯出／匯入 JSON；尚未提供帳號或雲端同步。
+打開終端機顯示的本機網址（預設 `http://localhost:8787`）。訪客收藏儲存在瀏覽器 localStorage；登入後偏好保存到自己的 D1 帳號，可在「我的收藏」匯出／匯入 JSON。
 
 團隊登入 ID 為 `team001`（wrangler.jsonc 的 REVIEW_ID），ID 至少 3 個英文字母或數字；密碼至少 6 位，只接受英文大小寫或數字。前後端皆驗證。團隊檢查密碼在本機 `.dev.vars`（不提交）及 Cloudflare secret `REVIEW_KEY`；團隊頁需先登入。每次有效推薦的過程存入 D1。線上部署前，新環境須執行 `npm run db:remote` 並設定 secret。
 
@@ -75,3 +75,5 @@ I 至 O 欄的七個過敏原表頭都叫 `allergen_egg`，需核對原始來源
 - [原始架構圖](references/architecture.png)：作為整體架構參考，路徑 C 暫不實作。
 
 後續新增或修改檔案時，同步更新用途說明書。
+
+用戶可在消費者網站自行註冊與登入，ID 至少 3 個英文字母或數字，密碼至少 6 位英文大小寫或數字。登入後偏好保存到帳號；操作及限制見[用戶登入與收藏](docs/用戶登入與收藏.md)。
