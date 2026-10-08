@@ -7,6 +7,7 @@
 	"compatibility_flags": [
 		"nodejs_compat"
 	],
+	"vars": {"REVIEW_ID": "team001"},
 	"secrets": {"required": ["REVIEW_KEY"]},
 	"assets": {
 		"directory": "./public",

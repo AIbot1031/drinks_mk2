@@ -88,7 +88,7 @@ npm run deploy
 
 部署成功時終端機會顯示網址與版本 ID。打開網址，試一次推薦，確認頁面與功能真的正常。此版不使用 AI；D1 保存每次推薦過程，Static Assets 保存網站檔案。資料表已完成初始化；新部署環境需先執行 `npm run db:remote` 並用 `npx wrangler secret put REVIEW_KEY` 設定團隊密碼。
 
-團隊可以打開 [線上推薦過程檢查](https://drinks-mk2.rtx941031.workers.dev/internal)，使用負責人提供的檢查密碼，查看榜單與下載每次推薦 JSON。負責人本機的 `.review-access.txt` 保存密碼，不提交 GitHub。
+團隊可以打開 [線上推薦過程檢查](https://drinks-mk2.rtx941031.workers.dev/internal)，使用負責人提供的 ID 與密碼，查看榜單與下載每次推薦 JSON。負責人本機的 `.review-access.txt` 保存密碼，不提交 GitHub。
 
 ## 如果你希望推送 GitHub 後自動部署
 

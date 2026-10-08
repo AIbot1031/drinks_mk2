@@ -1,2 +1,2 @@
-# Only for a new local checkout. Use your own password in .dev.vars; do not commit it.
-REVIEW_KEY=replace-with-your-local-review-password
+# Local password: at least 6 ASCII letters or digits. Never commit .dev.vars.
+REVIEW_KEY=ChangeMe123

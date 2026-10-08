@@ -26,15 +26,22 @@ test('Worker runtime serves the site, catalogue, constrained recommendations and
 test('team trace data requires login, records exact recommendations and rejects tampered sessions',{skip:!base||!existsSync('.dev.vars')},async()=>{
   const password=readFileSync('.dev.vars','utf8').match(/^REVIEW_KEY=(.+)$/m)?.[1];
   assert.ok(password);
+  const id=JSON.parse(readFileSync('wrangler.jsonc','utf8')).vars.REVIEW_ID as string;
+  const loginRequest=(body:unknown)=>fetch(`${base}/api/internal/login`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+  for(const invalid of [{id:'ab',password:'Valid123'},{id:'team_001',password:'Valid123'},{id:'團隊001',password:'Valid123'},{id:'team001\n',password:'Valid123'},{id,password:'12345'},{id,password:'Secret!123'},{id,password:'密碼123456'},{id,password:'Valid123\n'},{password:'Valid123'}])assert.equal((await loginRequest(invalid)).status,400);
+  assert.equal((await loginRequest({id:'abc',password:'Abc123'})).status,401);
+  assert.equal((await loginRequest({id:'wrong001',password})).status,401);
+  assert.equal((await loginRequest({id:id.toUpperCase(),password})).status,401);
+  assert.equal((await loginRequest({id,password:password.toLowerCase()})).status,401);
   const unauth=await fetch(`${base}/api/internal/traces`);
   assert.equal(unauth.status,401);
-  const wrong=await fetch(`${base}/api/internal/login`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:'invalid'})});
+  const wrong=await fetch(`${base}/api/internal/login`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id,password:'invalid'})});
   assert.equal(wrong.status,401);
   const response=await fetch(`${base}/api/recommend`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query:'團隊測試：想喝清爽茶'})});
   assert.equal(response.status,200);
   const rec=await response.json() as {traceId:string;results:Array<{id:string}>};
   assert.ok(rec.traceId);
-  const login=await fetch(`${base}/api/internal/login`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password})});
+  const login=await fetch(`${base}/api/internal/login`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id,password})});
   assert.equal(login.status,200);
   const cookie=login.headers.get('set-cookie')!.split(';')[0];
   assert.ok(login.headers.get('set-cookie')!.includes('HttpOnly'));

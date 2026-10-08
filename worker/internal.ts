@@ -19,12 +19,15 @@ async function authorized(request:Request,key:string):Promise<boolean> {
 }
 export async function internalApi(request:Request,env:Env,bodyReader:(r:Request)=>Promise<unknown>):Promise<Response> {
   const url=new URL(request.url);
-  if(!env.REVIEW_KEY)return json({error:'團隊檢查密碼尚未設定'},503);
+  if(!env.REVIEW_KEY||!env.REVIEW_ID)return json({error:'團隊檢查密碼尚未設定'},503);
   const origin=request.headers.get('origin');
   if(origin&&origin!==url.origin)return json({error:'請從本站操作'},403);
   if(url.pathname==='/api/internal/login'&&request.method==='POST'){
-    const body=await bodyReader(request) as {password?:unknown};
-    if(!body||typeof body.password!=='string'||body.password.length>200 || !(await constantEqual(body.password,env.REVIEW_KEY)))return json({error:'檢查密碼不正確'},401);
+    const body=await bodyReader(request) as {id?:unknown;password?:unknown};
+    if(!body||typeof body.id!=='string'||body.id.length<3||body.id.length>200||/[^A-Za-z0-9]/.test(body.id))return json({error:'ID 至少 3 個字元，只能使用英文字母或數字'},400);
+    if(typeof body.password!=='string'||body.password.length<6||body.password.length>200||/[^A-Za-z0-9]/.test(body.password))return json({error:'密碼至少 6 位，只能使用英文大小寫或數字'},400);
+    const [idMatches,passwordMatches]=await Promise.all([constantEqual(body.id,env.REVIEW_ID),constantEqual(body.password,env.REVIEW_KEY)]);
+    if(!idMatches||!passwordMatches)return json({error:'ID 或密碼不正確'},401);
     const data=`${Date.now()+8*60*60*1000}.${crypto.randomUUID()}`;
     const token=`${data}.${await sign(data,env.REVIEW_KEY)}`;
     return json({ok:true},200,{'Set-Cookie':`${cookieName}=${token}; Path=/api/internal; HttpOnly; Secure; SameSite=Strict; Max-Age=28800`});
