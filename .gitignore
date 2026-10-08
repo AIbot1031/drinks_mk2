@@ -7,3 +7,12 @@ __pycache__/
 !.env.example
 chroma_db/
 .pytest_cache/
+node_modules/
+.wrangler/
+dist/
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+coverage/
+internal_exports/
+.review-access.txt

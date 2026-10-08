@@ -1,0 +1,51 @@
+import assert from 'node:assert/strict';
+import { test } from 'node:test';
+import {readFileSync,existsSync} from 'node:fs';
+
+const base = process.env.TEST_BASE_URL;
+test('Worker runtime serves the site, catalogue, constrained recommendations and validation errors', {skip: !base}, async () => {
+  const health = await fetch(`${base}/api/health`).then(r => r.json()) as {ok:boolean;total:number};
+  assert.equal(health.ok, true); assert.equal(health.total, 1178);
+  const html = await fetch(`${base}/`);
+  assert.equal(html.status, 200); assert.ok((await html.text()).includes('喝點剛好的'));
+  const catalog = await fetch(`${base}/api/catalog?brand=${encodeURIComponent('得正')}&page=1`).then(r => r.json()) as {results:Array<{brand:string}>;total:number};
+  assert.equal(catalog.total, 31); assert.ok(catalog.results.every(d => d.brand === '得正'));
+  const post = (body:unknown, origin?:string) => fetch(`${base}/api/recommend`, {method:'POST',headers:{'Content-Type':'application/json',...(origin?{Origin:origin}:{})},body:JSON.stringify(body)});
+  const first = await post({query:'清爽',filters:{maxPrice:60,maxCalories:200,maxCaffeine:100,milk:'none'}}).then(r=>r.json()) as {results:Array<{id:string;drink:{price:number;calories:number;caffeineMax:number;noMilk:boolean}}>};
+  assert.ok(first.results.length > 0);
+  assert.ok(first.results.every(r=>r.drink.price<=60&&r.drink.calories<=200&&r.drink.caffeineMax<=100&&r.drink.noMilk));
+  const second = await post({query:'清爽',excludedIds:first.results.map(r=>r.id)}).then(r=>r.json()) as {results:Array<{id:string}>};
+  assert.ok(second.results.every(r=>!first.results.some(x=>x.id===r.id)));
+  assert.equal((await post({query:12})).status, 400);
+  assert.equal((await post({query:''},'https://unrelated.example')).status, 403);
+  assert.equal((await fetch(`${base}/api/catalog?page=nan`)).status,400);
+  assert.equal((await post({query:'x'.repeat(70000)})).status,400);
+  assert.equal((await fetch(`${base}/api/no-such-endpoint`)).status,404);
+});
+
+test('team trace data requires login, records exact recommendations and rejects tampered sessions',{skip:!base||!existsSync('.dev.vars')},async()=>{
+  const password=readFileSync('.dev.vars','utf8').match(/^REVIEW_KEY=(.+)$/m)?.[1];
+  assert.ok(password);
+  const unauth=await fetch(`${base}/api/internal/traces`);
+  assert.equal(unauth.status,401);
+  const wrong=await fetch(`${base}/api/internal/login`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:'invalid'})});
+  assert.equal(wrong.status,401);
+  const response=await fetch(`${base}/api/recommend`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query:'團隊測試：想喝清爽茶'})});
+  assert.equal(response.status,200);
+  const rec=await response.json() as {traceId:string;results:Array<{id:string}>};
+  assert.ok(rec.traceId);
+  const login=await fetch(`${base}/api/internal/login`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password})});
+  assert.equal(login.status,200);
+  const cookie=login.headers.get('set-cookie')!.split(';')[0];
+  assert.ok(login.headers.get('set-cookie')!.includes('HttpOnly'));
+  const list=await fetch(`${base}/api/internal/traces`,{headers:{Cookie:cookie}});
+  assert.equal(list.status,200);
+  const trace=await fetch(`${base}/api/internal/traces/${rec.traceId}`,{headers:{Cookie:cookie}}).then(r=>r.json()) as {traceId:string;consumerOutput:{results:Array<{id:string}>};routeA:{ranked:unknown[]}};
+  assert.equal(trace.traceId,rec.traceId);
+  assert.deepEqual(trace.consumerOutput.results.map(r=>r.id),rec.results.map(r=>r.id));
+  assert.ok(trace.routeA.ranked.length>0);
+  assert.equal((await fetch(`${base}/api/internal/traces`,{headers:{Cookie:cookie+'bad'}})).status,401);
+  const logout=await fetch(`${base}/api/internal/logout`,{method:'POST',headers:{Cookie:cookie}});
+  assert.equal(logout.status,200);
+  assert.ok(logout.headers.get('set-cookie')!.includes('Max-Age=0'));
+});

@@ -1,0 +1,13 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import catalog from '../data/catalog.json';
+import {makeEngine} from '../worker/recommend';
+import {validateInput} from '../worker/understand';
+const query=process.argv.slice(2).join(' ')||'想喝清爽、回甘的茶，預算 60 元';
+const {trace}=makeEngine(catalog.drinks).recommendWithTrace(validateInput({query,limit:6}));
+const traceId=crypto.randomUUID();
+const record={traceId,createdAt:new Date().toISOString(),...trace};
+const output=path.resolve('internal_exports',`recommendation-${traceId}.json`);
+await fs.mkdir(path.dirname(output),{recursive:true});
+await fs.writeFile(output,JSON.stringify(record,null,2)+'\n');
+console.log(`已輸出推薦完整過程：${output}`);

@@ -1,0 +1,36 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "drinks-mk2",
+	"account_id": "08704241cb5ae85e6c85ea2be589f221",
+	"main": "worker/index.ts",
+	"compatibility_date": "2026-10-08",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"secrets": {"required": ["REVIEW_KEY"]},
+	"assets": {
+		"directory": "./public",
+		"binding": "ASSETS",
+		"run_worker_first": [
+			"/api/*"
+		]
+	},
+	"observability": {
+		"enabled": true,
+		"logs": {
+			"enabled": true,
+			"head_sampling_rate": 1
+		},
+		"traces": {
+			"enabled": true,
+			"head_sampling_rate": 0.01
+		}
+	},
+	"d1_databases": [
+		{
+			"binding": "TRACE_DB",
+			"database_name": "drinks-mk2-traces",
+			"database_id": "4d62b0bb-f049-41cc-b65a-cddab1cf8001"
+		}
+	]
+}

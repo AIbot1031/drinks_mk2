@@ -1,0 +1,3912 @@
+{
+  "traceId": "2dcaacd7-7118-4ba1-9cb8-39074222b3d6",
+  "createdAt": "2026-10-08T07:03:19.533Z",
+  "schemaVersion": 1,
+  "engineVersion": "0.1.0",
+  "input": {
+    "query": "想喝清爽、回甘的茶，預算 60 元",
+    "filters": {},
+    "likedIds": [],
+    "dislikedIds": [],
+    "excludedIds": [],
+    "limit": 6
+  },
+  "understanding": {
+    "filters": {
+      "maxPrice": 60
+    },
+    "warnings": [],
+    "blocked": false,
+    "preferences": [
+      "清爽",
+      "回甘"
+    ],
+    "parser": "rules",
+    "llmUsed": false
+  },
+  "filtering": {
+    "sourceTotal": 1178,
+    "afterHardFilters": 570,
+    "afterDislikes": 570,
+    "afterSeenExclusions": 570,
+    "unknownNutrientsPassCaps": false
+  },
+  "config": {
+    "weightA": 0.65,
+    "weightB": 0.35,
+    "rrfK": 60,
+    "candidatesPerPath": 100,
+    "graphRounds": 3,
+    "graphRestart": 0.3,
+    "brandLimitFirstPass": 2
+  },
+  "routeA": {
+    "method": "TF-IDF cosine / 中文二元片段與風味同義概念",
+    "totalCandidates": 570,
+    "ranked": [
+      {
+        "rank": 1,
+        "id": "d_0f7b613df7b0aa7b_1",
+        "name": "沐野金萱",
+        "brand": "特好喝",
+        "sourceRow": 1139,
+        "rawScore": 0.15367692178867298
+      },
+      {
+        "rank": 2,
+        "id": "d_ddffe49f2442271d_1",
+        "name": "綠茶",
+        "brand": "得正",
+        "sourceRow": 783,
+        "rawScore": 0.08582685006987983
+      },
+      {
+        "rank": 3,
+        "id": "d_049de9b8bb849822_1",
+        "name": "蜂蜜綠茶",
+        "brand": "50嵐",
+        "sourceRow": 11,
+        "rawScore": 0.08344923434541132
+      },
+      {
+        "rank": 4,
+        "id": "d_c8bbbeb528cbd327_1",
+        "name": "蜂蜜綠茶",
+        "brand": "茶之魔手",
+        "sourceRow": 341,
+        "rawScore": 0.08222183600926791
+      },
+      {
+        "rank": 5,
+        "id": "d_f810465dff66d4d9_1",
+        "name": "蜂蜜綠茶",
+        "brand": "白巷子",
+        "sourceRow": 1067,
+        "rawScore": 0.08056333808937835
+      },
+      {
+        "rank": 6,
+        "id": "d_08894b4fdb07cc9e_1",
+        "name": "蜂蜜青茶",
+        "brand": "50嵐",
+        "sourceRow": 55,
+        "rawScore": 0.07808090337299806
+      },
+      {
+        "rank": 7,
+        "id": "d_878173c168efa051_1",
+        "name": "蜂蜜青茶",
+        "brand": "茶之魔手",
+        "sourceRow": 359,
+        "rawScore": 0.07707271377831548
+      },
+      {
+        "rank": 8,
+        "id": "d_b3fc7596707692ec_1",
+        "name": "蘭香綠茶",
+        "brand": "鶴茶樓",
+        "sourceRow": 851,
+        "rawScore": 0.07556056061598572
+      },
+      {
+        "rank": 9,
+        "id": "d_53004dc8db776784_1",
+        "name": "石榴綠茶",
+        "brand": "茶之魔手",
+        "sourceRow": 346,
+        "rawScore": 0.07550170242843322
+      },
+      {
+        "rank": 10,
+        "id": "d_da53d1c4113210c3_1",
+        "name": "玫瑰綠茶",
+        "brand": "茶之魔手",
+        "sourceRow": 347,
+        "rawScore": 0.07508385667431748
+      },
+      {
+        "rank": 11,
+        "id": "d_d3e285ae974ba1ea_1",
+        "name": "燕麥綠茶",
+        "brand": "50嵐",
+        "sourceRow": 28,
+        "rawScore": 0.0749003187192625
+      },
+      {
+        "rank": 12,
+        "id": "d_5b5c82bc5065f3fc_1",
+        "name": "烏龍綠茶",
+        "brand": "清心福全",
+        "sourceRow": 536,
+        "rawScore": 0.07384939938734597
+      },
+      {
+        "rank": 13,
+        "id": "d_ea4d3274cf023bf9_1",
+        "name": "台灣青茶",
+        "brand": "茶之魔手",
+        "sourceRow": 297,
+        "rawScore": 0.07383999018486732
+      },
+      {
+        "rank": 14,
+        "id": "d_90d0025c5c79b43c_1",
+        "name": "四季春青茶",
+        "brand": "50嵐",
+        "sourceRow": 2,
+        "rawScore": 0.07363014001995094
+      },
+      {
+        "rank": 15,
+        "id": "d_520c4e7b9b59f129_1",
+        "name": "蘆薈青茶",
+        "brand": "茶之魔手",
+        "sourceRow": 370,
+        "rawScore": 0.07332258091761937
+      },
+      {
+        "rank": 16,
+        "id": "d_ec006d9e63c805d1_1",
+        "name": "翡翠綠茶",
+        "brand": "龜記茗品",
+        "sourceRow": 801,
+        "rawScore": 0.07222907748100114
+      },
+      {
+        "rank": 17,
+        "id": "d_47976b64d4721571_1",
+        "name": "玫瑰青茶",
+        "brand": "茶之魔手",
+        "sourceRow": 365,
+        "rawScore": 0.07213649671529113
+      },
+      {
+        "rank": 18,
+        "id": "d_a2c65eae30a02a6b_1",
+        "name": "金鑽青茶",
+        "brand": "茶之魔手",
+        "sourceRow": 367,
+        "rawScore": 0.07183605307699124
+      },
+      {
+        "rank": 19,
+        "id": "d_2fa70cafd7b703d4_1",
+        "name": "特級綠茶",
+        "brand": "清心福全",
+        "sourceRow": 541,
+        "rawScore": 0.07173476343665396
+      },
+      {
+        "rank": 20,
+        "id": "d_7e3d145a174efed6_1",
+        "name": "四季春青茶",
+        "brand": "白巷子",
+        "sourceRow": 1056,
+        "rawScore": 0.07162498872341796
+      },
+      {
+        "rank": 21,
+        "id": "d_61cae8d7dbdb0335_1",
+        "name": "燕麥青茶",
+        "brand": "50嵐",
+        "sourceRow": 4,
+        "rawScore": 0.07088441567897333
+      },
+      {
+        "rank": 22,
+        "id": "d_fd8f6f2842e0e9da_1",
+        "name": "麥香綠茶",
+        "brand": "五桐號/紅茶冰資料",
+        "sourceRow": 754,
+        "rawScore": 0.0705192415130056
+      },
+      {
+        "rank": 23,
+        "id": "d_f4a3dbe6c909f855_1",
+        "name": "柏嶺青茶",
+        "brand": "藍衫茶所",
+        "sourceRow": 894,
+        "rawScore": 0.06945237213607895
+      },
+      {
+        "rank": 24,
+        "id": "d_532e7cf35791f638_1",
+        "name": "高纖綠茶",
+        "brand": "TEA'S 原味",
+        "sourceRow": 942,
+        "rawScore": 0.06936334310900076
+      },
+      {
+        "rank": 25,
+        "id": "d_8ce3c79cd28fae97_1",
+        "name": "烏龍綠茶",
+        "brand": "五桐號/紅茶冰資料",
+        "sourceRow": 737,
+        "rawScore": 0.06909673037801156
+      },
+      {
+        "rank": 26,
+        "id": "d_16c98733a72a74ea_1",
+        "name": "文山青茶",
+        "brand": "TEA'S 原味",
+        "sourceRow": 943,
+        "rawScore": 0.06850456819151804
+      },
+      {
+        "rank": 27,
+        "id": "d_5e90e14154422838_1",
+        "name": "極品菁茶",
+        "brand": "清心福全",
+        "sourceRow": 543,
+        "rawScore": 0.0680170379063199
+      },
+      {
+        "rank": 28,
+        "id": "d_7718464e03efbea8_1",
+        "name": "春芽綠茶",
+        "brand": "可不可熟成紅茶",
+        "sourceRow": 511,
+        "rawScore": 0.06782360433640665
+      },
+      {
+        "rank": 29,
+        "id": "d_e9fe8919ac9ac6a0_1",
+        "name": "四季春雙",
+        "brand": "白巷子",
+        "sourceRow": 1059,
+        "rawScore": 0.06758222226889482
+      },
+      {
+        "rank": 30,
+        "id": "d_1495f999ad1e4761_1",
+        "name": "四季春青茶",
+        "brand": "CoCo都可",
+        "sourceRow": 641,
+        "rawScore": 0.06652037646965489
+      },
+      {
+        "rank": 31,
+        "id": "d_90123991e7204cd1_1",
+        "name": "原鄉四季",
+        "brand": "清心福全",
+        "sourceRow": 544,
+        "rawScore": 0.0665086841254773
+      },
+      {
+        "rank": 32,
+        "id": "d_cfac15dc5e497c03_1",
+        "name": "春檸綠茶",
+        "brand": "可不可熟成紅茶",
+        "sourceRow": 505,
+        "rawScore": 0.06626081304788432
+      },
+      {
+        "rank": 33,
+        "id": "d_9e5e98a3048d64d2_1",
+        "name": "青四季春",
+        "brand": "龜記茗品",
+        "sourceRow": 805,
+        "rawScore": 0.06558418151871799
+      },
+      {
+        "rank": 34,
+        "id": "d_94d30f20f34c77f5_1",
+        "name": "金萱青茶",
+        "brand": "鶴茶樓",
+        "sourceRow": 853,
+        "rawScore": 0.06469353229455549
+      },
+      {
+        "rank": 35,
+        "id": "d_2165a601862eb5d6_1",
+        "name": "金萱綠茶",
+        "brand": "五桐號/紅茶冰資料",
+        "sourceRow": 708,
+        "rawScore": 0.06323534735083075
+      },
+      {
+        "rank": 36,
+        "id": "d_ae44c23fae822e60_1",
+        "name": "超級青茶(瓶)",
+        "brand": "茶之魔手",
+        "sourceRow": 301,
+        "rawScore": 0.06298890000488826
+      },
+      {
+        "rank": 37,
+        "id": "d_e09a2be731b04d26_1",
+        "name": "冰糖桂花釀綠茶",
+        "brand": "茶之魔手",
+        "sourceRow": 348,
+        "rawScore": 0.06281099296719714
+      },
+      {
+        "rank": 38,
+        "id": "d_a096923b855266a7_1",
+        "name": "冰糖桂花釀青茶",
+        "brand": "茶之魔手",
+        "sourceRow": 366,
+        "rawScore": 0.0610548576705148
+      },
+      {
+        "rank": 39,
+        "id": "d_1e2db9c8b1586a2c_1",
+        "name": "原片初露青茶",
+        "brand": "迷客夏",
+        "sourceRow": 236,
+        "rawScore": 0.060641871334263256
+      },
+      {
+        "rank": 40,
+        "id": "d_191b6ed62e143978_1",
+        "name": "珍波椰青茶",
+        "brand": "50嵐",
+        "sourceRow": 3,
+        "rawScore": 0.05940561422733459
+      },
+      {
+        "rank": 41,
+        "id": "d_a67b6c76a903a12c_1",
+        "name": "雲霧青茶花凍",
+        "brand": "五桐號/紅茶冰資料",
+        "sourceRow": 691,
+        "rawScore": 0.05915643083507749
+      },
+      {
+        "rank": 42,
+        "id": "d_bd7ab340b0d6c284_1",
+        "name": "金萱水果茶",
+        "brand": "五桐號/紅茶冰資料",
+        "sourceRow": 714,
+        "rawScore": 0.05675691501462779
+      },
+      {
+        "rank": 43,
+        "id": "d_db0ec175372a95ee_1",
+        "name": "珍波椰四季春",
+        "brand": "白巷子",
+        "sourceRow": 1060,
+        "rawScore": 0.05346702624322203
+      },
+      {
+        "rank": 44,
+        "id": "d_19375ed7f477e9c1_1",
+        "name": "檸檬青茶",
+        "brand": "50嵐",
+        "sourceRow": 10,
+        "rawScore": 0.032478275910022815
+      },
+      {
+        "rank": 45,
+        "id": "d_62a36da7aeaa3a08_1",
+        "name": "檸檬烏龍",
+        "brand": "50嵐",
+        "sourceRow": 36,
+        "rawScore": 0.03137325033474572
+      },
+      {
+        "rank": 46,
+        "id": "d_a06410ce218fff4b_1",
+        "name": "檸檬青茶",
+        "brand": "茶之魔手",
+        "sourceRow": 360,
+        "rawScore": 0.030848231975975113
+      },
+      {
+        "rank": 47,
+        "id": "d_a550bb71fb8c6a81_1",
+        "name": "微檸檬青茶",
+        "brand": "50嵐",
+        "sourceRow": 30,
+        "rawScore": 0.03078892308833355
+      },
+      {
+        "rank": 48,
+        "id": "d_5484c9e2126dc715_1",
+        "name": "柚子茶",
+        "brand": "50嵐",
+        "sourceRow": 174,
+        "rawScore": 0.030771610755324835
+      },
+      {
+        "rank": 49,
+        "id": "d_ad3c8b78c8a75003_1",
+        "name": "柚子綠",
+        "brand": "50嵐",
+        "sourceRow": 52,
+        "rawScore": 0.030452620067093792
+      },
+      {
+        "rank": 50,
+        "id": "d_37fcdc2f0fe87515_1",
+        "name": "柚子紅",
+        "brand": "50嵐",
+        "sourceRow": 51,
+        "rawScore": 0.03024120348729375
+      },
+      {
+        "rank": 51,
+        "id": "d_d4ef834836201841_1",
+        "name": "柚子青",
+        "brand": "50嵐",
+        "sourceRow": 53,
+        "rawScore": 0.030016831275252058
+      },
+      {
+        "rank": 52,
+        "id": "d_0fd97075003530a5_1",
+        "name": "微檸檬烏龍",
+        "brand": "50嵐",
+        "sourceRow": 33,
+        "rawScore": 0.029842676841279378
+      },
+      {
+        "rank": 53,
+        "id": "d_d22c678a68048fe2_1",
+        "name": "柚子烏龍",
+        "brand": "50嵐",
+        "sourceRow": 54,
+        "rawScore": 0.028798156906911843
+      },
+      {
+        "rank": 54,
+        "id": "d_831d27954020c7bb_1",
+        "name": "蜂蜜檸檬烏龍",
+        "brand": "50嵐",
+        "sourceRow": 61,
+        "rawScore": 0.028122507466669163
+      },
+      {
+        "rank": 55,
+        "id": "d_219c597efb8e6430_1",
+        "name": "多多青茶",
+        "brand": "50嵐",
+        "sourceRow": 40,
+        "rawScore": 0.028085289913067274
+      },
+      {
+        "rank": 56,
+        "id": "d_82a302aa04ba78f7_1",
+        "name": "珍珠紅茶",
+        "brand": "50嵐",
+        "sourceRow": 20,
+        "rawScore": 0.027471393092972463
+      },
+      {
+        "rank": 57,
+        "id": "d_cc7e8f3e9acad353_1",
+        "name": "珍珠綠茶",
+        "brand": "50嵐",
+        "sourceRow": 21,
+        "rawScore": 0.027384945509437843
+      },
+      {
+        "rank": 58,
+        "id": "d_349e76ac3a3def4c_1",
+        "name": "多多青茶",
+        "brand": "茶之魔手",
+        "sourceRow": 363,
+        "rawScore": 0.02729585465558403
+      },
+      {
+        "rank": 59,
+        "id": "d_e910731977b36ae7_1",
+        "name": "百香青茶",
+        "brand": "茶之魔手",
+        "sourceRow": 364,
+        "rawScore": 0.027218311033671592
+      },
+      {
+        "rank": 60,
+        "id": "d_b83f3c208a7f69d0_1",
+        "name": "椰果綠茶",
+        "brand": "50嵐",
+        "sourceRow": 17,
+        "rawScore": 0.02717431378280817
+      },
+      {
+        "rank": 61,
+        "id": "d_2419551728ab62c8_1",
+        "name": "椰果紅茶",
+        "brand": "50嵐",
+        "sourceRow": 16,
+        "rawScore": 0.026939215954097855
+      },
+      {
+        "rank": 62,
+        "id": "d_a2716e599829fa6e_1",
+        "name": "珍珠青茶",
+        "brand": "50嵐",
+        "sourceRow": 19,
+        "rawScore": 0.026703589658685332
+      },
+      {
+        "rank": 63,
+        "id": "d_4db06c973b30eb22_1",
+        "name": "珍珠烏龍",
+        "brand": "茶之魔手",
+        "sourceRow": 379,
+        "rawScore": 0.026674456794753023
+      },
+      {
+        "rank": 64,
+        "id": "d_565174cb0772f0b4_1",
+        "name": "珍珠紅茶",
+        "brand": "茶之魔手",
+        "sourceRow": 326,
+        "rawScore": 0.02658863078186887
+      },
+      {
+        "rank": 65,
+        "id": "d_e3def8e88d9ac1ef_1",
+        "name": "珍珠綠茶",
+        "brand": "茶之魔手",
+        "sourceRow": 349,
+        "rawScore": 0.026510228582518697
+      },
+      {
+        "rank": 66,
+        "id": "d_afb4f5e4689188b7_1",
+        "name": "檸檬多酚烏龍",
+        "brand": "茶之魔手",
+        "sourceRow": 376,
+        "rawScore": 0.0264578898960699
+      },
+      {
+        "rank": 67,
+        "id": "d_3bad3c06b50fa84b_1",
+        "name": "波霸紅茶",
+        "brand": "50嵐",
+        "sourceRow": 24,
+        "rawScore": 0.026452673210050525
+      },
+      {
+        "rank": 68,
+        "id": "d_8742afc0a05d3b63_1",
+        "name": "芒果微檸檬烏龍",
+        "brand": "50嵐",
+        "sourceRow": 197,
+        "rawScore": 0.026343128468509877
+      },
+      {
+        "rank": 69,
+        "id": "d_e75122f83c6bf732_1",
+        "name": "椰果綠茶",
+        "brand": "茶之魔手",
+        "sourceRow": 350,
+        "rawScore": 0.02631900437414781
+      },
+      {
+        "rank": 70,
+        "id": "d_c0f1cf4669a73714_1",
+        "name": "珍珠烏龍",
+        "brand": "50嵐",
+        "sourceRow": 22,
+        "rawScore": 0.026298216543142582
+      },
+      {
+        "rank": 71,
+        "id": "d_a4dfd0bbe9277e47_1",
+        "name": "椰果青茶",
+        "brand": "50嵐",
+        "sourceRow": 15,
+        "rawScore": 0.026286190688871655
+      },
+      {
+        "rank": 72,
+        "id": "d_42a1e87932d68776_1",
+        "name": "波霸綠茶",
+        "brand": "50嵐",
+        "sourceRow": 25,
+        "rawScore": 0.02619816089922981
+      },
+      {
+        "rank": 73,
+        "id": "d_9f4c0576e3f90469_1",
+        "name": "椰果紅茶",
+        "brand": "茶之魔手",
+        "sourceRow": 327,
+        "rawScore": 0.026105242823996386
+      },
+      {
+        "rank": 74,
+        "id": "d_6a02fe21e0ef0d85_1",
+        "name": "椰果烏龍",
+        "brand": "茶之魔手",
+        "sourceRow": 380,
+        "rawScore": 0.026083432825655842
+      },
+      {
+        "rank": 75,
+        "id": "d_e0d439504b3a0e11_1",
+        "name": "荔枝微檸檬烏龍",
+        "brand": "50嵐",
+        "sourceRow": 201,
+        "rawScore": 0.026052513790979653
+      },
+      {
+        "rank": 76,
+        "id": "d_6cd9e1db21ef9abd_1",
+        "name": "蜜茶",
+        "brand": "50嵐",
+        "sourceRow": 164,
+        "rawScore": 0.02596596475956189
+      },
+      {
+        "rank": 77,
+        "id": "d_930439a4216f3dd8_1",
+        "name": "珍珠青茶",
+        "brand": "茶之魔手",
+        "sourceRow": 368,
+        "rawScore": 0.02589065820314348
+      },
+      {
+        "rank": 78,
+        "id": "d_1f9c9b2e4cec04bc_1",
+        "name": "檸檬多酚青茶",
+        "brand": "茶之魔手",
+        "sourceRow": 361,
+        "rawScore": 0.025859655386100116
+      },
+      {
+        "rank": 79,
+        "id": "d_003b86f93d9dc13d_1",
+        "name": "檸檬烏龍",
+        "brand": "五桐號/紅茶冰資料",
+        "sourceRow": 731,
+        "rawScore": 0.025815948258683195
+      },
+      {
+        "rank": 80,
+        "id": "d_b0535b7cbfe6e9ef_1",
+        "name": "椰果烏龍",
+        "brand": "50嵐",
+        "sourceRow": 18,
+        "rawScore": 0.025731326564245992
+      },
+      {
+        "rank": 81,
+        "id": "d_359441772e1cefbd_1",
+        "name": "烏龍茶",
+        "brand": "TEA'S 原味",
+        "sourceRow": 944,
+        "rawScore": 0.0255481371854091
+      },
+      {
+        "rank": 82,
+        "id": "d_dd20a83a21e314f2_1",
+        "name": "波霸青茶",
+        "brand": "50嵐",
+        "sourceRow": 23,
+        "rawScore": 0.02552132779940438
+      },
+      {
+        "rank": 83,
+        "id": "d_71a9e359b931bfba_1",
+        "name": "椰果青茶",
+        "brand": "茶之魔手",
+        "sourceRow": 369,
+        "rawScore": 0.02550969802468841
+      },
+      {
+        "rank": 84,
+        "id": "d_f70f3a879066e429_1",
+        "name": "紅茶",
+        "brand": "得正",
+        "sourceRow": 777,
+        "rawScore": 0.025495628385811098
+      },
+      {
+        "rank": 85,
+        "id": "d_793109a17b7c33c1_1",
+        "name": "波霸烏龍",
+        "brand": "50嵐",
+        "sourceRow": 26,
+        "rawScore": 0.025241919167239852
+      },
+      {
+        "rank": 86,
+        "id": "d_fe64c9898b7d6540_1",
+        "name": "珍珠麵茶紅茶",
+        "brand": "50嵐",
+        "sourceRow": 84,
+        "rawScore": 0.025108520730424674
+      },
+      {
+        "rank": 87,
+        "id": "d_4b70be2c64389e90_1",
+        "name": "蜂蜜烏龍",
+        "brand": "茶之魔手",
+        "sourceRow": 375,
+        "rawScore": 0.025057630181799188
+      },
+      {
+        "rank": 88,
+        "id": "d_8127fcd2f15615d2_1",
+        "name": "輕烏龍",
+        "brand": "得正",
+        "sourceRow": 781,
+        "rawScore": 0.024891976446817256
+      },
+      {
+        "rank": 89,
+        "id": "d_af63835264fb36bf_1",
+        "name": "蜜茶",
+        "brand": "茶之魔手",
+        "sourceRow": 397,
+        "rawScore": 0.024878248408983384
+      },
+      {
+        "rank": 90,
+        "id": "d_2366ae97aaa17a68_1",
+        "name": "旺來青茶",
+        "brand": "50嵐",
+        "sourceRow": 43,
+        "rawScore": 0.024830029036541437
+      },
+      {
+        "rank": 91,
+        "id": "d_58209fc85ed6566b_1",
+        "name": "春烏龍",
+        "brand": "得正",
+        "sourceRow": 780,
+        "rawScore": 0.024813005477031313
+      },
+      {
+        "rank": 92,
+        "id": "d_c586635ffabe04c6_1",
+        "name": "麵茶紅茶",
+        "brand": "50嵐",
+        "sourceRow": 66,
+        "rawScore": 0.02475412016686182
+      },
+      {
+        "rank": 93,
+        "id": "d_7920b0d80ad164a3_1",
+        "name": "烏龍奶",
+        "brand": "50嵐",
+        "sourceRow": 91,
+        "rawScore": 0.02465321001131388
+      },
+      {
+        "rank": 94,
+        "id": "d_99412c6312aa7c37_1",
+        "name": "芒果青茶",
+        "brand": "50嵐",
+        "sourceRow": 182,
+        "rawScore": 0.024645766228753706
+      },
+      {
+        "rank": 95,
+        "id": "d_56371943155ccaea_1",
+        "name": "椰果麵茶紅茶",
+        "brand": "50嵐",
+        "sourceRow": 86,
+        "rawScore": 0.02461373372750395
+      },
+      {
+        "rank": 96,
+        "id": "d_0059c8410d60155e_1",
+        "name": "珍珠伯爵",
+        "brand": "茶之魔手",
+        "sourceRow": 307,
+        "rawScore": 0.024611395808111135
+      },
+      {
+        "rank": 97,
+        "id": "d_0c2343de8f9996a9_1",
+        "name": "珍珠阿華田",
+        "brand": "50嵐",
+        "sourceRow": 120,
+        "rawScore": 0.024551138951750543
+      },
+      {
+        "rank": 98,
+        "id": "d_36a4a4a64ece3e76_1",
+        "name": "荔枝烏龍",
+        "brand": "50嵐",
+        "sourceRow": 183,
+        "rawScore": 0.02454316502639862
+      },
+      {
+        "rank": 99,
+        "id": "d_392a31da0f2ef990_1",
+        "name": "緋烏龍",
+        "brand": "得正",
+        "sourceRow": 769,
+        "rawScore": 0.02449025172466752
+      },
+      {
+        "rank": 100,
+        "id": "d_911ad63adae8121b_1",
+        "name": "珍珠烏龍奶",
+        "brand": "50嵐",
+        "sourceRow": 98,
+        "rawScore": 0.024385435798914112
+      }
+    ]
+  },
+  "routeB": {
+    "method": "飲料↔特徵圖的個人化隨機遊走，尚非 RelGT",
+    "seedSource": "query_top5",
+    "seeds": [
+      {
+        "id": "d_0f7b613df7b0aa7b_1",
+        "name": "沐野金萱",
+        "brand": "特好喝"
+      },
+      {
+        "id": "d_ddffe49f2442271d_1",
+        "name": "綠茶",
+        "brand": "得正"
+      },
+      {
+        "id": "d_049de9b8bb849822_1",
+        "name": "蜂蜜綠茶",
+        "brand": "50嵐"
+      },
+      {
+        "id": "d_c8bbbeb528cbd327_1",
+        "name": "蜂蜜綠茶",
+        "brand": "茶之魔手"
+      },
+      {
+        "id": "d_f810465dff66d4d9_1",
+        "name": "蜂蜜綠茶",
+        "brand": "白巷子"
+      }
+    ],
+    "totalCandidates": 570,
+    "ranked": [
+      {
+        "rank": 1,
+        "id": "d_0f7b613df7b0aa7b_1",
+        "name": "沐野金萱",
+        "brand": "特好喝",
+        "sourceRow": 1139,
+        "rawScore": 0.061834804357120354
+      },
+      {
+        "rank": 2,
+        "id": "d_ddffe49f2442271d_1",
+        "name": "綠茶",
+        "brand": "得正",
+        "sourceRow": 783,
+        "rawScore": 0.061381442376058394
+      },
+      {
+        "rank": 3,
+        "id": "d_f810465dff66d4d9_1",
+        "name": "蜂蜜綠茶",
+        "brand": "白巷子",
+        "sourceRow": 1067,
+        "rawScore": 0.06110155553854725
+      },
+      {
+        "rank": 4,
+        "id": "d_c8bbbeb528cbd327_1",
+        "name": "蜂蜜綠茶",
+        "brand": "茶之魔手",
+        "sourceRow": 341,
+        "rawScore": 0.06102727555513579
+      },
+      {
+        "rank": 5,
+        "id": "d_049de9b8bb849822_1",
+        "name": "蜂蜜綠茶",
+        "brand": "50嵐",
+        "sourceRow": 11,
+        "rawScore": 0.06099886027198302
+      },
+      {
+        "rank": 6,
+        "id": "d_2165a601862eb5d6_1",
+        "name": "金萱綠茶",
+        "brand": "五桐號/紅茶冰資料",
+        "sourceRow": 708,
+        "rawScore": 0.0018064332030930043
+      },
+      {
+        "rank": 7,
+        "id": "d_bd7ab340b0d6c284_1",
+        "name": "金萱水果茶",
+        "brand": "五桐號/紅茶冰資料",
+        "sourceRow": 714,
+        "rawScore": 0.0018064332030930043
+      },
+      {
+        "rank": 8,
+        "id": "d_dfe8b50b5c306b63_1",
+        "name": "綠野金萱奶茶",
+        "brand": "五桐號/紅茶冰資料",
+        "sourceRow": 686,
+        "rawScore": 0.0017273261130834035
+      },
+      {
+        "rank": 9,
+        "id": "d_94d30f20f34c77f5_1",
+        "name": "金萱青茶",
+        "brand": "鶴茶樓",
+        "sourceRow": 853,
+        "rawScore": 0.0015276552856671405
+      },
+      {
+        "rank": 10,
+        "id": "d_982553d7ae81d6f2_1",
+        "name": "極電解柚沁蘇打（含三茉花凍）",
+        "brand": "特好喝",
+        "sourceRow": 1157,
+        "rawScore": 0.0013950347025590976
+      },
+      {
+        "rank": 11,
+        "id": "d_4856351acb9d1b40_1",
+        "name": "荔枝金萱",
+        "brand": "五桐號/紅茶冰資料",
+        "sourceRow": 696,
+        "rawScore": 0.0012899483767530417
+      },
+      {
+        "rank": 12,
+        "id": "d_11005da6873a0543_1",
+        "name": "麻豆柚子綠",
+        "brand": "五桐號/紅茶冰資料",
+        "sourceRow": 687,
+        "rawScore": 0.0011627073758709932
+      },
+      {
+        "rank": 13,
+        "id": "d_5b5c82bc5065f3fc_1",
+        "name": "烏龍綠茶",
+        "brand": "清心福全",
+        "sourceRow": 536,
+        "rawScore": 0.0011249546445395654
+      },
+      {
+        "rank": 14,
+        "id": "d_8ce3c79cd28fae97_1",
+        "name": "烏龍綠茶",
+        "brand": "五桐號/紅茶冰資料",
+        "sourceRow": 737,
+        "rawScore": 0.0011227174193996464
+      },
+      {
+        "rank": 15,
+        "id": "d_d31db390004aabd0_1",
+        "name": "燕麥綠茶拿鐵",
+        "brand": "50嵐",
+        "sourceRow": 146,
+        "rawScore": 0.001122078630455656
+      },
+      {
+        "rank": 16,
+        "id": "d_e75122f83c6bf732_1",
+        "name": "椰果綠茶",
+        "brand": "茶之魔手",
+        "sourceRow": 350,
+        "rawScore": 0.0011173803848217399
+      },
+      {
+        "rank": 17,
+        "id": "d_e3def8e88d9ac1ef_1",
+        "name": "珍珠綠茶",
+        "brand": "茶之魔手",
+        "sourceRow": 349,
+        "rawScore": 0.0011049270533071843
+      },
+      {
+        "rank": 18,
+        "id": "d_62f08fef3df972e7_1",
+        "name": "緋烏龍奶茶",
+        "brand": "得正",
+        "sourceRow": 792,
+        "rawScore": 0.001098379113388039
+      },
+      {
+        "rank": 19,
+        "id": "d_e502bcb58912f269_1",
+        "name": "焙烏龍奶茶",
+        "brand": "得正",
+        "sourceRow": 768,
+        "rawScore": 0.001098379113388039
+      },
+      {
+        "rank": 20,
+        "id": "d_b83f3c208a7f69d0_1",
+        "name": "椰果綠茶",
+        "brand": "50嵐",
+        "sourceRow": 17,
+        "rawScore": 0.001088965101668968
+      },
+      {
+        "rank": 21,
+        "id": "d_d3e285ae974ba1ea_1",
+        "name": "燕麥綠茶",
+        "brand": "50嵐",
+        "sourceRow": 28,
+        "rawScore": 0.0010826078326217784
+      },
+      {
+        "rank": 22,
+        "id": "d_42a1e87932d68776_1",
+        "name": "波霸綠茶",
+        "brand": "50嵐",
+        "sourceRow": 25,
+        "rawScore": 0.0010765117701544125
+      },
+      {
+        "rank": 23,
+        "id": "d_cc7e8f3e9acad353_1",
+        "name": "珍珠綠茶",
+        "brand": "50嵐",
+        "sourceRow": 21,
+        "rawScore": 0.0010765117701544125
+      },
+      {
+        "rank": 24,
+        "id": "d_457bc0bd535856a7_1",
+        "name": "奶香綠茶",
+        "brand": "茶之魔手",
+        "sourceRow": 351,
+        "rawScore": 0.0010594133616719684
+      },
+      {
+        "rank": 25,
+        "id": "d_29e82a447b3247e0_1",
+        "name": "綠茶拿鐵",
+        "brand": "50嵐",
+        "sourceRow": 131,
+        "rawScore": 0.0010383310698168996
+      },
+      {
+        "rank": 26,
+        "id": "d_64aca5eb077766d5_1",
+        "name": "芝士奶蓋焙烏龍",
+        "brand": "得正",
+        "sourceRow": 766,
+        "rawScore": 0.0010285423065552334
+      },
+      {
+        "rank": 27,
+        "id": "d_9373a9610540c3f8_1",
+        "name": "芝士奶蓋春烏龍",
+        "brand": "得正",
+        "sourceRow": 765,
+        "rawScore": 0.0010285423065552334
+      },
+      {
+        "rank": 28,
+        "id": "d_53004dc8db776784_1",
+        "name": "石榴綠茶",
+        "brand": "茶之魔手",
+        "sourceRow": 346,
+        "rawScore": 0.0010272755551357937
+      },
+      {
+        "rank": 29,
+        "id": "d_da53d1c4113210c3_1",
+        "name": "玫瑰綠茶",
+        "brand": "茶之魔手",
+        "sourceRow": 347,
+        "rawScore": 0.0010272755551357937
+      },
+      {
+        "rank": 30,
+        "id": "d_e09a2be731b04d26_1",
+        "name": "冰糖桂花釀綠茶",
+        "brand": "茶之魔手",
+        "sourceRow": 348,
+        "rawScore": 0.0010272755551357937
+      },
+      {
+        "rank": 31,
+        "id": "d_1c938a9f50b4afe3_1",
+        "name": "鮮柚烏龍(季節限定)",
+        "brand": "50嵐",
+        "sourceRow": 65,
+        "rawScore": 0.0010114849903645957
+      },
+      {
+        "rank": 32,
+        "id": "d_d22c678a68048fe2_1",
+        "name": "柚子烏龍",
+        "brand": "50嵐",
+        "sourceRow": 54,
+        "rawScore": 0.0010114849903645957
+      },
+      {
+        "rank": 33,
+        "id": "d_7181660ae0aa37a4_1",
+        "name": "抹茉厚潤奶",
+        "brand": "特好喝",
+        "sourceRow": 1129,
+        "rawScore": 0.0010007483303748506
+      },
+      {
+        "rank": 34,
+        "id": "d_db0ec175372a95ee_1",
+        "name": "珍波椰四季春",
+        "brand": "白巷子",
+        "sourceRow": 1060,
+        "rawScore": 0.0010001923830853733
+      },
+      {
+        "rank": 35,
+        "id": "d_30b1be1a9ba8459c_1",
+        "name": "檸檬多酚綠茶",
+        "brand": "茶之魔手",
+        "sourceRow": 343,
+        "rawScore": 0.0009963141582033977
+      },
+      {
+        "rank": 36,
+        "id": "d_4dd44018ed7d1968_1",
+        "name": "檸檬綠茶",
+        "brand": "茶之魔手",
+        "sourceRow": 342,
+        "rawScore": 0.0009963141582033977
+      },
+      {
+        "rank": 37,
+        "id": "d_5a816f75f9545514_1",
+        "name": "百香綠茶",
+        "brand": "茶之魔手",
+        "sourceRow": 345,
+        "rawScore": 0.0009963141582033977
+      },
+      {
+        "rank": 38,
+        "id": "d_16901124d7ed1569_1",
+        "name": "翡翠奶茶",
+        "brand": "龜記茗品",
+        "sourceRow": 828,
+        "rawScore": 0.000988612101788005
+      },
+      {
+        "rank": 39,
+        "id": "d_b72adc0cf99f4dfd_1",
+        "name": "茉香綠茶",
+        "brand": "白巷子",
+        "sourceRow": 1054,
+        "rawScore": 0.0009880910760826818
+      },
+      {
+        "rank": 40,
+        "id": "d_a5df6e9f07089f36_1",
+        "name": "綠茶牛奶",
+        "brand": "五桐號/紅茶冰資料",
+        "sourceRow": 713,
+        "rawScore": 0.0009855972826625426
+      },
+      {
+        "rank": 41,
+        "id": "d_0be6534c525ed4d1_1",
+        "name": "檸檬綠茶",
+        "brand": "50嵐",
+        "sourceRow": 35,
+        "rawScore": 0.000967898875050626
+      },
+      {
+        "rank": 42,
+        "id": "d_68192ab3b8fc5e52_1",
+        "name": "旺來綠茶",
+        "brand": "50嵐",
+        "sourceRow": 45,
+        "rawScore": 0.000967898875050626
+      },
+      {
+        "rank": 43,
+        "id": "d_90d9dcaea6246333_1",
+        "name": "微檸檬綠茶",
+        "brand": "50嵐",
+        "sourceRow": 32,
+        "rawScore": 0.000967898875050626
+      },
+      {
+        "rank": 44,
+        "id": "d_ee822b8734787ec5_1",
+        "name": "茉香奶茶",
+        "brand": "CoCo都可",
+        "sourceRow": 647,
+        "rawScore": 0.0009671847970556194
+      },
+      {
+        "rank": 45,
+        "id": "d_87c9c2e465841f57_1",
+        "name": "多多綠茶",
+        "brand": "茶之魔手",
+        "sourceRow": 291,
+        "rawScore": 0.0009604750515048376
+      },
+      {
+        "rank": 46,
+        "id": "d_ec006d9e63c805d1_1",
+        "name": "翡翠綠茶",
+        "brand": "龜記茗品",
+        "sourceRow": 801,
+        "rawScore": 0.0009564742952518301
+      },
+      {
+        "rank": 47,
+        "id": "d_0110ef80f18a3a2a_1",
+        "name": "椰果烏龍奶",
+        "brand": "50嵐",
+        "sourceRow": 95,
+        "rawScore": 0.0009548457358410191
+      },
+      {
+        "rank": 48,
+        "id": "d_1a8d45963bb3789b_1",
+        "name": "焙烏龍",
+        "brand": "得正",
+        "sourceRow": 782,
+        "rawScore": 0.0009527768443872959
+      },
+      {
+        "rank": 49,
+        "id": "d_392a31da0f2ef990_1",
+        "name": "緋烏龍",
+        "brand": "得正",
+        "sourceRow": 769,
+        "rawScore": 0.0009527768443872959
+      },
+      {
+        "rank": 50,
+        "id": "d_58209fc85ed6566b_1",
+        "name": "春烏龍",
+        "brand": "得正",
+        "sourceRow": 780,
+        "rawScore": 0.0009527768443872959
+      },
+      {
+        "rank": 51,
+        "id": "d_8127fcd2f15615d2_1",
+        "name": "輕烏龍",
+        "brand": "得正",
+        "sourceRow": 781,
+        "rawScore": 0.0009527768443872959
+      },
+      {
+        "rank": 52,
+        "id": "d_2fa70cafd7b703d4_1",
+        "name": "特級綠茶",
+        "brand": "清心福全",
+        "sourceRow": 541,
+        "rawScore": 0.0009483637099685838
+      },
+      {
+        "rank": 53,
+        "id": "d_fd8f6f2842e0e9da_1",
+        "name": "麥香綠茶",
+        "brand": "五桐號/紅茶冰資料",
+        "sourceRow": 754,
+        "rawScore": 0.0009461264848286648
+      },
+      {
+        "rank": 54,
+        "id": "d_7718464e03efbea8_1",
+        "name": "春芽綠茶",
+        "brand": "可不可熟成紅茶",
+        "sourceRow": 511,
+        "rawScore": 0.0009433414774456836
+      },
+      {
+        "rank": 55,
+        "id": "d_cfac15dc5e497c03_1",
+        "name": "春檸綠茶",
+        "brand": "可不可熟成紅茶",
+        "sourceRow": 505,
+        "rawScore": 0.0009433414774456836
+      },
+      {
+        "rank": 56,
+        "id": "d_7a5c483a5942efaa_1",
+        "name": "波霸烏龍奶",
+        "brand": "50嵐",
+        "sourceRow": 102,
+        "rawScore": 0.0009423924043264635
+      },
+      {
+        "rank": 57,
+        "id": "d_911ad63adae8121b_1",
+        "name": "珍珠烏龍奶",
+        "brand": "50嵐",
+        "sourceRow": 98,
+        "rawScore": 0.0009423924043264635
+      },
+      {
+        "rank": 58,
+        "id": "d_b3fc7596707692ec_1",
+        "name": "蘭香綠茶",
+        "brand": "鶴茶樓",
+        "sourceRow": 851,
+        "rawScore": 0.0009364680507220149
+      },
+      {
+        "rank": 59,
+        "id": "d_f70f3a879066e429_1",
+        "name": "紅茶",
+        "brand": "得正",
+        "sourceRow": 777,
+        "rawScore": 0.0009361577087358592
+      },
+      {
+        "rank": 60,
+        "id": "d_532e7cf35791f638_1",
+        "name": "高纖綠茶",
+        "brand": "TEA'S 原味",
+        "sourceRow": 942,
+        "rawScore": 0.000935726641358123
+      },
+      {
+        "rank": 61,
+        "id": "d_b98acdb43d964b9a_1",
+        "name": "多多綠茶",
+        "brand": "50嵐",
+        "sourceRow": 7,
+        "rawScore": 0.0009320597683520658
+      },
+      {
+        "rank": 62,
+        "id": "d_1cb859f4b4678c19_1",
+        "name": "芒夏啵啵沙沙",
+        "brand": "特好喝",
+        "sourceRow": 1134,
+        "rawScore": 0.0009242328826153162
+      },
+      {
+        "rank": 63,
+        "id": "d_0d55e1cdb4aa65a1_1",
+        "name": "鳳梨綠茶",
+        "brand": "五桐號/紅茶冰資料",
+        "sourceRow": 711,
+        "rawScore": 0.0009151650878962689
+      },
+      {
+        "rank": 64,
+        "id": "d_bc3e7a527c747a6d_1",
+        "name": "檸檬綠茶",
+        "brand": "五桐號/紅茶冰資料",
+        "sourceRow": 710,
+        "rawScore": 0.0009151650878962689
+      },
+      {
+        "rank": 65,
+        "id": "d_6a02fe21e0ef0d85_1",
+        "name": "椰果烏龍",
+        "brand": "茶之魔手",
+        "sourceRow": 380,
+        "rawScore": 0.0009134242121609853
+      },
+      {
+        "rank": 66,
+        "id": "d_4db06c973b30eb22_1",
+        "name": "珍珠烏龍",
+        "brand": "茶之魔手",
+        "sourceRow": 379,
+        "rawScore": 0.0009009708806464297
+      },
+      {
+        "rank": 67,
+        "id": "d_191b6ed62e143978_1",
+        "name": "珍波椰青茶",
+        "brand": "50嵐",
+        "sourceRow": 3,
+        "rawScore": 0.0008974971165211449
+      },
+      {
+        "rank": 68,
+        "id": "d_ec2702b8858a5688_1",
+        "name": "茶王厚潤奶",
+        "brand": "特好喝",
+        "sourceRow": 1142,
+        "rawScore": 0.0008953905488464137
+      },
+      {
+        "rank": 69,
+        "id": "d_d94322d6b92b7120_1",
+        "name": "茉莉綠茶",
+        "brand": "50嵐",
+        "sourceRow": 12,
+        "rawScore": 0.0008853958095184533
+      },
+      {
+        "rank": 70,
+        "id": "d_b0535b7cbfe6e9ef_1",
+        "name": "椰果烏龍",
+        "brand": "50嵐",
+        "sourceRow": 18,
+        "rawScore": 0.0008850089290082135
+      },
+      {
+        "rank": 71,
+        "id": "d_ee2a9a38caa31ad4_1",
+        "name": "多多綠茶",
+        "brand": "麻古茶坊",
+        "sourceRow": 598,
+        "rawScore": 0.0008838397650834924
+      },
+      {
+        "rank": 72,
+        "id": "d_207bd50015e6847e_1",
+        "name": "優多綠茶",
+        "brand": "清心福全",
+        "sourceRow": 535,
+        "rawScore": 0.0008815632063376279
+      },
+      {
+        "rank": 73,
+        "id": "d_3eeb5538cfd12038_1",
+        "name": "多多綠茶",
+        "brand": "五桐號/紅茶冰資料",
+        "sourceRow": 678,
+        "rawScore": 0.0008793259811977088
+      },
+      {
+        "rank": 74,
+        "id": "d_793109a17b7c33c1_1",
+        "name": "波霸烏龍",
+        "brand": "50嵐",
+        "sourceRow": 26,
+        "rawScore": 0.0008725555974936579
+      },
+      {
+        "rank": 75,
+        "id": "d_c0f1cf4669a73714_1",
+        "name": "珍珠烏龍",
+        "brand": "50嵐",
+        "sourceRow": 22,
+        "rawScore": 0.0008725555974936579
+      },
+      {
+        "rank": 76,
+        "id": "d_4683599fcc367c59_1",
+        "name": "茉莉原粹綠茶",
+        "brand": "迷客夏",
+        "sourceRow": 233,
+        "rawScore": 0.0008598374247499083
+      },
+      {
+        "rank": 77,
+        "id": "d_d68c94e85eb21224_1",
+        "name": "燕麥麵茶紅茶拿鐵",
+        "brand": "50嵐",
+        "sourceRow": 161,
+        "rawScore": 0.0008553538833828582
+      },
+      {
+        "rank": 78,
+        "id": "d_f8003b5c9cb66e63_1",
+        "name": "燕麥紅茶拿鐵",
+        "brand": "50嵐",
+        "sourceRow": 145,
+        "rawScore": 0.0008553538833828582
+      },
+      {
+        "rank": 79,
+        "id": "d_bbf285ef2e2e3aae_1",
+        "name": "冰淇淋綠茶拿鐵",
+        "brand": "50嵐",
+        "sourceRow": 189,
+        "rawScore": 0.0008513207111031863
+      },
+      {
+        "rank": 80,
+        "id": "d_71a9e359b931bfba_1",
+        "name": "椰果青茶",
+        "brand": "茶之魔手",
+        "sourceRow": 369,
+        "rawScore": 0.000848260901502526
+      },
+      {
+        "rank": 81,
+        "id": "d_822cff38449ecdf3_1",
+        "name": "溫特冬片",
+        "brand": "特好喝",
+        "sourceRow": 1140,
+        "rawScore": 0.0008383829747938127
+      },
+      {
+        "rank": 82,
+        "id": "d_930439a4216f3dd8_1",
+        "name": "珍珠青茶",
+        "brand": "茶之魔手",
+        "sourceRow": 368,
+        "rawScore": 0.0008358075699879704
+      },
+      {
+        "rank": 83,
+        "id": "d_36f4fedb65d54a1b_1",
+        "name": "葡萄柚蜜(季節限定)",
+        "brand": "50嵐",
+        "sourceRow": 177,
+        "rawScore": 0.0008348940557936141
+      },
+      {
+        "rank": 84,
+        "id": "d_37fcdc2f0fe87515_1",
+        "name": "柚子紅",
+        "brand": "50嵐",
+        "sourceRow": 51,
+        "rawScore": 0.0008348940557936141
+      },
+      {
+        "rank": 85,
+        "id": "d_405640378da620e6_1",
+        "name": "鮮柚青(季節限定)",
+        "brand": "50嵐",
+        "sourceRow": 62,
+        "rawScore": 0.0008348940557936141
+      },
+      {
+        "rank": 86,
+        "id": "d_5484c9e2126dc715_1",
+        "name": "柚子茶",
+        "brand": "50嵐",
+        "sourceRow": 174,
+        "rawScore": 0.0008348940557936141
+      },
+      {
+        "rank": 87,
+        "id": "d_614b20aa769ef72c_1",
+        "name": "葡萄柚多多(季節限定)",
+        "brand": "50嵐",
+        "sourceRow": 178,
+        "rawScore": 0.0008348940557936141
+      },
+      {
+        "rank": 88,
+        "id": "d_761f8fd92a52ed43_1",
+        "name": "鮮柚紅(季節限定)",
+        "brand": "50嵐",
+        "sourceRow": 63,
+        "rawScore": 0.0008348940557936141
+      },
+      {
+        "rank": 89,
+        "id": "d_ad3c8b78c8a75003_1",
+        "name": "柚子綠",
+        "brand": "50嵐",
+        "sourceRow": 52,
+        "rawScore": 0.0008348940557936141
+      },
+      {
+        "rank": 90,
+        "id": "d_cf2ca41ba6f012c5_1",
+        "name": "葡萄柚汁(季節限定)",
+        "brand": "50嵐",
+        "sourceRow": 171,
+        "rawScore": 0.0008348940557936141
+      },
+      {
+        "rank": 91,
+        "id": "d_d4ef834836201841_1",
+        "name": "柚子青",
+        "brand": "50嵐",
+        "sourceRow": 53,
+        "rawScore": 0.0008348940557936141
+      },
+      {
+        "rank": 92,
+        "id": "d_eb7f3f827fc65218_1",
+        "name": "鮮柚綠(季節限定)",
+        "brand": "50嵐",
+        "sourceRow": 64,
+        "rawScore": 0.0008348940557936141
+      },
+      {
+        "rank": 93,
+        "id": "d_97bcac010015fb8d_1",
+        "name": "椰果綠茶拿鐵",
+        "brand": "50嵐",
+        "sourceRow": 135,
+        "rawScore": 0.000834744172767515
+      },
+      {
+        "rank": 94,
+        "id": "d_7e3d145a174efed6_1",
+        "name": "四季春青茶",
+        "brand": "白巷子",
+        "sourceRow": 1056,
+        "rawScore": 0.0008324360552280363
+      },
+      {
+        "rank": 95,
+        "id": "d_e9fe8919ac9ac6a0_1",
+        "name": "四季春雙",
+        "brand": "白巷子",
+        "sourceRow": 1059,
+        "rawScore": 0.0008324360552280363
+      },
+      {
+        "rank": 96,
+        "id": "d_e077e01d82904596_1",
+        "name": "米香玉露菁",
+        "brand": "UG",
+        "sourceRow": 454,
+        "rawScore": 0.0008303908477430286
+      },
+      {
+        "rank": 97,
+        "id": "d_3573d197e0ad2cff_1",
+        "name": "綠茶瑪奇朵",
+        "brand": "50嵐",
+        "sourceRow": 108,
+        "rawScore": 0.0008273313748665715
+      },
+      {
+        "rank": 98,
+        "id": "d_8521a8ee32203355_1",
+        "name": "茉香綠茶",
+        "brand": "藍衫茶所",
+        "sourceRow": 895,
+        "rawScore": 0.0008270835560317492
+      },
+      {
+        "rank": 99,
+        "id": "d_73ff4524b63a9c40_1",
+        "name": "雪絨茶后",
+        "brand": "特好喝",
+        "sourceRow": 1159,
+        "rawScore": 0.0008255537420136081
+      },
+      {
+        "rank": 100,
+        "id": "d_bc4b6cf8de7137f9_1",
+        "name": "雪絨茶王",
+        "brand": "特好喝",
+        "sourceRow": 1158,
+        "rawScore": 0.0008255537420136081
+      }
+    ]
+  },
+  "fusion": {
+    "method": "weighted reciprocal rank fusion",
+    "formula": "score = 0.65 / (60 + rankA) + 0.35 / (60 + rankB); absent path contributes 0",
+    "rawScoresDirectlyAdded": false,
+    "ranked": [
+      {
+        "rank": 1,
+        "id": "d_0f7b613df7b0aa7b_1",
+        "name": "沐野金萱",
+        "brand": "特好喝",
+        "rankA": 1,
+        "rankB": 1,
+        "contributionA": 0.010655737704918034,
+        "contributionB": 0.005737704918032787,
+        "totalScore": 0.01639344262295082,
+        "calculation": "0.65 / (60 + 1) + 0.35 / (60 + 1)"
+      },
+      {
+        "rank": 2,
+        "id": "d_ddffe49f2442271d_1",
+        "name": "綠茶",
+        "brand": "得正",
+        "rankA": 2,
+        "rankB": 2,
+        "contributionA": 0.010483870967741936,
+        "contributionB": 0.00564516129032258,
+        "totalScore": 0.016129032258064516,
+        "calculation": "0.65 / (60 + 2) + 0.35 / (60 + 2)"
+      },
+      {
+        "rank": 3,
+        "id": "d_049de9b8bb849822_1",
+        "name": "蜂蜜綠茶",
+        "brand": "50嵐",
+        "rankA": 3,
+        "rankB": 5,
+        "contributionA": 0.010317460317460317,
+        "contributionB": 0.005384615384615384,
+        "totalScore": 0.015702075702075702,
+        "calculation": "0.65 / (60 + 3) + 0.35 / (60 + 5)"
+      },
+      {
+        "rank": 4,
+        "id": "d_c8bbbeb528cbd327_1",
+        "name": "蜂蜜綠茶",
+        "brand": "茶之魔手",
+        "rankA": 4,
+        "rankB": 4,
+        "contributionA": 0.01015625,
+        "contributionB": 0.00546875,
+        "totalScore": 0.015625,
+        "calculation": "0.65 / (60 + 4) + 0.35 / (60 + 4)"
+      },
+      {
+        "rank": 5,
+        "id": "d_f810465dff66d4d9_1",
+        "name": "蜂蜜綠茶",
+        "brand": "白巷子",
+        "rankA": 5,
+        "rankB": 3,
+        "contributionA": 0.01,
+        "contributionB": 0.005555555555555555,
+        "totalScore": 0.015555555555555555,
+        "calculation": "0.65 / (60 + 5) + 0.35 / (60 + 3)"
+      },
+      {
+        "rank": 6,
+        "id": "d_5b5c82bc5065f3fc_1",
+        "name": "烏龍綠茶",
+        "brand": "清心福全",
+        "rankA": 12,
+        "rankB": 13,
+        "contributionA": 0.009027777777777779,
+        "contributionB": 0.004794520547945205,
+        "totalScore": 0.013822298325722984,
+        "calculation": "0.65 / (60 + 12) + 0.35 / (60 + 13)"
+      },
+      {
+        "rank": 7,
+        "id": "d_d3e285ae974ba1ea_1",
+        "name": "燕麥綠茶",
+        "brand": "50嵐",
+        "rankA": 11,
+        "rankB": 21,
+        "contributionA": 0.009154929577464789,
+        "contributionB": 0.004320987654320987,
+        "totalScore": 0.013475917231785775,
+        "calculation": "0.65 / (60 + 11) + 0.35 / (60 + 21)"
+      },
+      {
+        "rank": 8,
+        "id": "d_53004dc8db776784_1",
+        "name": "石榴綠茶",
+        "brand": "茶之魔手",
+        "rankA": 9,
+        "rankB": 28,
+        "contributionA": 0.009420289855072464,
+        "contributionB": 0.003977272727272727,
+        "totalScore": 0.013397562582345191,
+        "calculation": "0.65 / (60 + 9) + 0.35 / (60 + 28)"
+      },
+      {
+        "rank": 9,
+        "id": "d_da53d1c4113210c3_1",
+        "name": "玫瑰綠茶",
+        "brand": "茶之魔手",
+        "rankA": 10,
+        "rankB": 29,
+        "contributionA": 0.009285714285714286,
+        "contributionB": 0.003932584269662921,
+        "totalScore": 0.013218298555377206,
+        "calculation": "0.65 / (60 + 10) + 0.35 / (60 + 29)"
+      },
+      {
+        "rank": 10,
+        "id": "d_b3fc7596707692ec_1",
+        "name": "蘭香綠茶",
+        "brand": "鶴茶樓",
+        "rankA": 8,
+        "rankB": 58,
+        "contributionA": 0.009558823529411765,
+        "contributionB": 0.002966101694915254,
+        "totalScore": 0.01252492522432702,
+        "calculation": "0.65 / (60 + 8) + 0.35 / (60 + 58)"
+      },
+      {
+        "rank": 11,
+        "id": "d_8ce3c79cd28fae97_1",
+        "name": "烏龍綠茶",
+        "brand": "五桐號/紅茶冰資料",
+        "rankA": 25,
+        "rankB": 14,
+        "contributionA": 0.007647058823529412,
+        "contributionB": 0.004729729729729729,
+        "totalScore": 0.012376788553259141,
+        "calculation": "0.65 / (60 + 25) + 0.35 / (60 + 14)"
+      },
+      {
+        "rank": 12,
+        "id": "d_2165a601862eb5d6_1",
+        "name": "金萱綠茶",
+        "brand": "五桐號/紅茶冰資料",
+        "rankA": 35,
+        "rankB": 6,
+        "contributionA": 0.006842105263157895,
+        "contributionB": 0.0053030303030303025,
+        "totalScore": 0.012145135566188198,
+        "calculation": "0.65 / (60 + 35) + 0.35 / (60 + 6)"
+      },
+      {
+        "rank": 13,
+        "id": "d_94d30f20f34c77f5_1",
+        "name": "金萱青茶",
+        "brand": "鶴茶樓",
+        "rankA": 34,
+        "rankB": 9,
+        "contributionA": 0.006914893617021277,
+        "contributionB": 0.005072463768115942,
+        "totalScore": 0.011987357385137218,
+        "calculation": "0.65 / (60 + 34) + 0.35 / (60 + 9)"
+      },
+      {
+        "rank": 14,
+        "id": "d_ec006d9e63c805d1_1",
+        "name": "翡翠綠茶",
+        "brand": "龜記茗品",
+        "rankA": 16,
+        "rankB": 46,
+        "contributionA": 0.008552631578947369,
+        "contributionB": 0.00330188679245283,
+        "totalScore": 0.011854518371400198,
+        "calculation": "0.65 / (60 + 16) + 0.35 / (60 + 46)"
+      },
+      {
+        "rank": 15,
+        "id": "d_bd7ab340b0d6c284_1",
+        "name": "金萱水果茶",
+        "brand": "五桐號/紅茶冰資料",
+        "rankA": 42,
+        "rankB": 7,
+        "contributionA": 0.006372549019607843,
+        "contributionB": 0.005223880597014925,
+        "totalScore": 0.011596429616622769,
+        "calculation": "0.65 / (60 + 42) + 0.35 / (60 + 7)"
+      },
+      {
+        "rank": 16,
+        "id": "d_2fa70cafd7b703d4_1",
+        "name": "特級綠茶",
+        "brand": "清心福全",
+        "rankA": 19,
+        "rankB": 52,
+        "contributionA": 0.008227848101265823,
+        "contributionB": 0.0031249999999999997,
+        "totalScore": 0.011352848101265823,
+        "calculation": "0.65 / (60 + 19) + 0.35 / (60 + 52)"
+      },
+      {
+        "rank": 17,
+        "id": "d_fd8f6f2842e0e9da_1",
+        "name": "麥香綠茶",
+        "brand": "五桐號/紅茶冰資料",
+        "rankA": 22,
+        "rankB": 53,
+        "contributionA": 0.007926829268292683,
+        "contributionB": 0.003097345132743363,
+        "totalScore": 0.011024174401036046,
+        "calculation": "0.65 / (60 + 22) + 0.35 / (60 + 53)"
+      },
+      {
+        "rank": 18,
+        "id": "d_532e7cf35791f638_1",
+        "name": "高纖綠茶",
+        "brand": "TEA'S 原味",
+        "rankA": 24,
+        "rankB": 60,
+        "contributionA": 0.007738095238095238,
+        "contributionB": 0.0029166666666666664,
+        "totalScore": 0.010654761904761905,
+        "calculation": "0.65 / (60 + 24) + 0.35 / (60 + 60)"
+      },
+      {
+        "rank": 19,
+        "id": "d_e09a2be731b04d26_1",
+        "name": "冰糖桂花釀綠茶",
+        "brand": "茶之魔手",
+        "rankA": 37,
+        "rankB": 30,
+        "contributionA": 0.006701030927835052,
+        "contributionB": 0.0038888888888888888,
+        "totalScore": 0.010589919816723942,
+        "calculation": "0.65 / (60 + 37) + 0.35 / (60 + 30)"
+      },
+      {
+        "rank": 20,
+        "id": "d_7718464e03efbea8_1",
+        "name": "春芽綠茶",
+        "brand": "可不可熟成紅茶",
+        "rankA": 28,
+        "rankB": 54,
+        "contributionA": 0.007386363636363636,
+        "contributionB": 0.0030701754385964912,
+        "totalScore": 0.010456539074960127,
+        "calculation": "0.65 / (60 + 28) + 0.35 / (60 + 54)"
+      },
+      {
+        "rank": 21,
+        "id": "d_7e3d145a174efed6_1",
+        "name": "四季春青茶",
+        "brand": "白巷子",
+        "rankA": 20,
+        "rankB": 94,
+        "contributionA": 0.008125,
+        "contributionB": 0.0022727272727272726,
+        "totalScore": 0.010397727272727274,
+        "calculation": "0.65 / (60 + 20) + 0.35 / (60 + 94)"
+      },
+      {
+        "rank": 22,
+        "id": "d_cfac15dc5e497c03_1",
+        "name": "春檸綠茶",
+        "brand": "可不可熟成紅茶",
+        "rankA": 32,
+        "rankB": 55,
+        "contributionA": 0.007065217391304348,
+        "contributionB": 0.003043478260869565,
+        "totalScore": 0.010108695652173913,
+        "calculation": "0.65 / (60 + 32) + 0.35 / (60 + 55)"
+      },
+      {
+        "rank": 23,
+        "id": "d_db0ec175372a95ee_1",
+        "name": "珍波椰四季春",
+        "brand": "白巷子",
+        "rankA": 43,
+        "rankB": 34,
+        "contributionA": 0.006310679611650486,
+        "contributionB": 0.0037234042553191487,
+        "totalScore": 0.010034083866969634,
+        "calculation": "0.65 / (60 + 43) + 0.35 / (60 + 34)"
+      },
+      {
+        "rank": 24,
+        "id": "d_08894b4fdb07cc9e_1",
+        "name": "蜂蜜青茶",
+        "brand": "50嵐",
+        "rankA": 6,
+        "rankB": null,
+        "contributionA": 0.00984848484848485,
+        "contributionB": 0,
+        "totalScore": 0.00984848484848485,
+        "calculation": "0.65 / (60 + 6) + 0"
+      },
+      {
+        "rank": 25,
+        "id": "d_b83f3c208a7f69d0_1",
+        "name": "椰果綠茶",
+        "brand": "50嵐",
+        "rankA": 60,
+        "rankB": 20,
+        "contributionA": 0.005416666666666667,
+        "contributionB": 0.0043749999999999995,
+        "totalScore": 0.009791666666666667,
+        "calculation": "0.65 / (60 + 60) + 0.35 / (60 + 20)"
+      },
+      {
+        "rank": 26,
+        "id": "d_cc7e8f3e9acad353_1",
+        "name": "珍珠綠茶",
+        "brand": "50嵐",
+        "rankA": 57,
+        "rankB": 23,
+        "contributionA": 0.005555555555555556,
+        "contributionB": 0.004216867469879518,
+        "totalScore": 0.009772423025435073,
+        "calculation": "0.65 / (60 + 57) + 0.35 / (60 + 23)"
+      },
+      {
+        "rank": 27,
+        "id": "d_e3def8e88d9ac1ef_1",
+        "name": "珍珠綠茶",
+        "brand": "茶之魔手",
+        "rankA": 65,
+        "rankB": 17,
+        "contributionA": 0.0052,
+        "contributionB": 0.004545454545454545,
+        "totalScore": 0.009745454545454545,
+        "calculation": "0.65 / (60 + 65) + 0.35 / (60 + 17)"
+      },
+      {
+        "rank": 28,
+        "id": "d_878173c168efa051_1",
+        "name": "蜂蜜青茶",
+        "brand": "茶之魔手",
+        "rankA": 7,
+        "rankB": null,
+        "contributionA": 0.009701492537313432,
+        "contributionB": 0,
+        "totalScore": 0.009701492537313432,
+        "calculation": "0.65 / (60 + 7) + 0"
+      },
+      {
+        "rank": 29,
+        "id": "d_e75122f83c6bf732_1",
+        "name": "椰果綠茶",
+        "brand": "茶之魔手",
+        "rankA": 69,
+        "rankB": 16,
+        "contributionA": 0.0050387596899224806,
+        "contributionB": 0.004605263157894736,
+        "totalScore": 0.009644022847817218,
+        "calculation": "0.65 / (60 + 69) + 0.35 / (60 + 16)"
+      },
+      {
+        "rank": 30,
+        "id": "d_e9fe8919ac9ac6a0_1",
+        "name": "四季春雙",
+        "brand": "白巷子",
+        "rankA": 29,
+        "rankB": 95,
+        "contributionA": 0.007303370786516854,
+        "contributionB": 0.002258064516129032,
+        "totalScore": 0.009561435302645886,
+        "calculation": "0.65 / (60 + 29) + 0.35 / (60 + 95)"
+      },
+      {
+        "rank": 31,
+        "id": "d_d22c678a68048fe2_1",
+        "name": "柚子烏龍",
+        "brand": "50嵐",
+        "rankA": 53,
+        "rankB": 32,
+        "contributionA": 0.005752212389380531,
+        "contributionB": 0.0038043478260869562,
+        "totalScore": 0.009556560215467486,
+        "calculation": "0.65 / (60 + 53) + 0.35 / (60 + 32)"
+      },
+      {
+        "rank": 32,
+        "id": "d_191b6ed62e143978_1",
+        "name": "珍波椰青茶",
+        "brand": "50嵐",
+        "rankA": 40,
+        "rankB": 67,
+        "contributionA": 0.006500000000000001,
+        "contributionB": 0.0027559055118110236,
+        "totalScore": 0.009255905511811024,
+        "calculation": "0.65 / (60 + 40) + 0.35 / (60 + 67)"
+      },
+      {
+        "rank": 33,
+        "id": "d_42a1e87932d68776_1",
+        "name": "波霸綠茶",
+        "brand": "50嵐",
+        "rankA": 72,
+        "rankB": 22,
+        "contributionA": 0.004924242424242425,
+        "contributionB": 0.004268292682926829,
+        "totalScore": 0.009192535107169254,
+        "calculation": "0.65 / (60 + 72) + 0.35 / (60 + 22)"
+      },
+      {
+        "rank": 34,
+        "id": "d_ea4d3274cf023bf9_1",
+        "name": "台灣青茶",
+        "brand": "茶之魔手",
+        "rankA": 13,
+        "rankB": null,
+        "contributionA": 0.008904109589041096,
+        "contributionB": 0,
+        "totalScore": 0.008904109589041096,
+        "calculation": "0.65 / (60 + 13) + 0"
+      },
+      {
+        "rank": 35,
+        "id": "d_90d0025c5c79b43c_1",
+        "name": "四季春青茶",
+        "brand": "50嵐",
+        "rankA": 14,
+        "rankB": null,
+        "contributionA": 0.008783783783783784,
+        "contributionB": 0,
+        "totalScore": 0.008783783783783784,
+        "calculation": "0.65 / (60 + 14) + 0"
+      },
+      {
+        "rank": 36,
+        "id": "d_520c4e7b9b59f129_1",
+        "name": "蘆薈青茶",
+        "brand": "茶之魔手",
+        "rankA": 15,
+        "rankB": null,
+        "contributionA": 0.008666666666666666,
+        "contributionB": 0,
+        "totalScore": 0.008666666666666666,
+        "calculation": "0.65 / (60 + 15) + 0"
+      },
+      {
+        "rank": 37,
+        "id": "d_47976b64d4721571_1",
+        "name": "玫瑰青茶",
+        "brand": "茶之魔手",
+        "rankA": 17,
+        "rankB": null,
+        "contributionA": 0.008441558441558443,
+        "contributionB": 0,
+        "totalScore": 0.008441558441558443,
+        "calculation": "0.65 / (60 + 17) + 0"
+      },
+      {
+        "rank": 38,
+        "id": "d_5484c9e2126dc715_1",
+        "name": "柚子茶",
+        "brand": "50嵐",
+        "rankA": 48,
+        "rankB": 86,
+        "contributionA": 0.0060185185185185185,
+        "contributionB": 0.0023972602739726024,
+        "totalScore": 0.00841577879249112,
+        "calculation": "0.65 / (60 + 48) + 0.35 / (60 + 86)"
+      },
+      {
+        "rank": 39,
+        "id": "d_37fcdc2f0fe87515_1",
+        "name": "柚子紅",
+        "brand": "50嵐",
+        "rankA": 50,
+        "rankB": 84,
+        "contributionA": 0.005909090909090909,
+        "contributionB": 0.0024305555555555556,
+        "totalScore": 0.008339646464646465,
+        "calculation": "0.65 / (60 + 50) + 0.35 / (60 + 84)"
+      },
+      {
+        "rank": 40,
+        "id": "d_a2c65eae30a02a6b_1",
+        "name": "金鑽青茶",
+        "brand": "茶之魔手",
+        "rankA": 18,
+        "rankB": null,
+        "contributionA": 0.008333333333333333,
+        "contributionB": 0,
+        "totalScore": 0.008333333333333333,
+        "calculation": "0.65 / (60 + 18) + 0"
+      },
+      {
+        "rank": 41,
+        "id": "d_ad3c8b78c8a75003_1",
+        "name": "柚子綠",
+        "brand": "50嵐",
+        "rankA": 49,
+        "rankB": 89,
+        "contributionA": 0.005963302752293578,
+        "contributionB": 0.002348993288590604,
+        "totalScore": 0.008312296040884182,
+        "calculation": "0.65 / (60 + 49) + 0.35 / (60 + 89)"
+      },
+      {
+        "rank": 42,
+        "id": "d_d4ef834836201841_1",
+        "name": "柚子青",
+        "brand": "50嵐",
+        "rankA": 51,
+        "rankB": 91,
+        "contributionA": 0.005855855855855856,
+        "contributionB": 0.0023178807947019865,
+        "totalScore": 0.008173736650557843,
+        "calculation": "0.65 / (60 + 51) + 0.35 / (60 + 91)"
+      },
+      {
+        "rank": 43,
+        "id": "d_4db06c973b30eb22_1",
+        "name": "珍珠烏龍",
+        "brand": "茶之魔手",
+        "rankA": 63,
+        "rankB": 66,
+        "contributionA": 0.005284552845528455,
+        "contributionB": 0.0027777777777777775,
+        "totalScore": 0.008062330623306233,
+        "calculation": "0.65 / (60 + 63) + 0.35 / (60 + 66)"
+      },
+      {
+        "rank": 44,
+        "id": "d_61cae8d7dbdb0335_1",
+        "name": "燕麥青茶",
+        "brand": "50嵐",
+        "rankA": 21,
+        "rankB": null,
+        "contributionA": 0.008024691358024692,
+        "contributionB": 0,
+        "totalScore": 0.008024691358024692,
+        "calculation": "0.65 / (60 + 21) + 0"
+      },
+      {
+        "rank": 45,
+        "id": "d_f4a3dbe6c909f855_1",
+        "name": "柏嶺青茶",
+        "brand": "藍衫茶所",
+        "rankA": 23,
+        "rankB": null,
+        "contributionA": 0.00783132530120482,
+        "contributionB": 0,
+        "totalScore": 0.00783132530120482,
+        "calculation": "0.65 / (60 + 23) + 0"
+      },
+      {
+        "rank": 46,
+        "id": "d_6a02fe21e0ef0d85_1",
+        "name": "椰果烏龍",
+        "brand": "茶之魔手",
+        "rankA": 74,
+        "rankB": 65,
+        "contributionA": 0.004850746268656716,
+        "contributionB": 0.0028,
+        "totalScore": 0.007650746268656717,
+        "calculation": "0.65 / (60 + 74) + 0.35 / (60 + 65)"
+      },
+      {
+        "rank": 47,
+        "id": "d_c0f1cf4669a73714_1",
+        "name": "珍珠烏龍",
+        "brand": "50嵐",
+        "rankA": 70,
+        "rankB": 75,
+        "contributionA": 0.005,
+        "contributionB": 0.0025925925925925925,
+        "totalScore": 0.007592592592592593,
+        "calculation": "0.65 / (60 + 70) + 0.35 / (60 + 75)"
+      },
+      {
+        "rank": 48,
+        "id": "d_16c98733a72a74ea_1",
+        "name": "文山青茶",
+        "brand": "TEA'S 原味",
+        "rankA": 26,
+        "rankB": null,
+        "contributionA": 0.007558139534883721,
+        "contributionB": 0,
+        "totalScore": 0.007558139534883721,
+        "calculation": "0.65 / (60 + 26) + 0"
+      },
+      {
+        "rank": 49,
+        "id": "d_8127fcd2f15615d2_1",
+        "name": "輕烏龍",
+        "brand": "得正",
+        "rankA": 88,
+        "rankB": 51,
+        "contributionA": 0.004391891891891892,
+        "contributionB": 0.003153153153153153,
+        "totalScore": 0.007545045045045045,
+        "calculation": "0.65 / (60 + 88) + 0.35 / (60 + 51)"
+      },
+      {
+        "rank": 50,
+        "id": "d_58209fc85ed6566b_1",
+        "name": "春烏龍",
+        "brand": "得正",
+        "rankA": 91,
+        "rankB": 50,
+        "contributionA": 0.004304635761589404,
+        "contributionB": 0.0031818181818181815,
+        "totalScore": 0.007486453943407585,
+        "calculation": "0.65 / (60 + 91) + 0.35 / (60 + 50)"
+      },
+      {
+        "rank": 51,
+        "id": "d_5e90e14154422838_1",
+        "name": "極品菁茶",
+        "brand": "清心福全",
+        "rankA": 27,
+        "rankB": null,
+        "contributionA": 0.007471264367816092,
+        "contributionB": 0,
+        "totalScore": 0.007471264367816092,
+        "calculation": "0.65 / (60 + 27) + 0"
+      },
+      {
+        "rank": 52,
+        "id": "d_f70f3a879066e429_1",
+        "name": "紅茶",
+        "brand": "得正",
+        "rankA": 84,
+        "rankB": 59,
+        "contributionA": 0.004513888888888889,
+        "contributionB": 0.0029411764705882353,
+        "totalScore": 0.007455065359477125,
+        "calculation": "0.65 / (60 + 84) + 0.35 / (60 + 59)"
+      },
+      {
+        "rank": 53,
+        "id": "d_b0535b7cbfe6e9ef_1",
+        "name": "椰果烏龍",
+        "brand": "50嵐",
+        "rankA": 80,
+        "rankB": 70,
+        "contributionA": 0.004642857142857143,
+        "contributionB": 0.002692307692307692,
+        "totalScore": 0.007335164835164835,
+        "calculation": "0.65 / (60 + 80) + 0.35 / (60 + 70)"
+      },
+      {
+        "rank": 54,
+        "id": "d_392a31da0f2ef990_1",
+        "name": "緋烏龍",
+        "brand": "得正",
+        "rankA": 99,
+        "rankB": 49,
+        "contributionA": 0.004088050314465409,
+        "contributionB": 0.0032110091743119264,
+        "totalScore": 0.007299059488777335,
+        "calculation": "0.65 / (60 + 99) + 0.35 / (60 + 49)"
+      },
+      {
+        "rank": 55,
+        "id": "d_1495f999ad1e4761_1",
+        "name": "四季春青茶",
+        "brand": "CoCo都可",
+        "rankA": 30,
+        "rankB": null,
+        "contributionA": 0.007222222222222223,
+        "contributionB": 0,
+        "totalScore": 0.007222222222222223,
+        "calculation": "0.65 / (60 + 30) + 0"
+      },
+      {
+        "rank": 56,
+        "id": "d_930439a4216f3dd8_1",
+        "name": "珍珠青茶",
+        "brand": "茶之魔手",
+        "rankA": 77,
+        "rankB": 82,
+        "contributionA": 0.004744525547445255,
+        "contributionB": 0.002464788732394366,
+        "totalScore": 0.007209314279839622,
+        "calculation": "0.65 / (60 + 77) + 0.35 / (60 + 82)"
+      },
+      {
+        "rank": 57,
+        "id": "d_90123991e7204cd1_1",
+        "name": "原鄉四季",
+        "brand": "清心福全",
+        "rankA": 31,
+        "rankB": null,
+        "contributionA": 0.0071428571428571435,
+        "contributionB": 0,
+        "totalScore": 0.0071428571428571435,
+        "calculation": "0.65 / (60 + 31) + 0"
+      },
+      {
+        "rank": 58,
+        "id": "d_793109a17b7c33c1_1",
+        "name": "波霸烏龍",
+        "brand": "50嵐",
+        "rankA": 85,
+        "rankB": 74,
+        "contributionA": 0.004482758620689655,
+        "contributionB": 0.0026119402985074623,
+        "totalScore": 0.007094698919197118,
+        "calculation": "0.65 / (60 + 85) + 0.35 / (60 + 74)"
+      },
+      {
+        "rank": 59,
+        "id": "d_911ad63adae8121b_1",
+        "name": "珍珠烏龍奶",
+        "brand": "50嵐",
+        "rankA": 100,
+        "rankB": 57,
+        "contributionA": 0.0040625,
+        "contributionB": 0.0029914529914529912,
+        "totalScore": 0.007053952991452991,
+        "calculation": "0.65 / (60 + 100) + 0.35 / (60 + 57)"
+      },
+      {
+        "rank": 60,
+        "id": "d_71a9e359b931bfba_1",
+        "name": "椰果青茶",
+        "brand": "茶之魔手",
+        "rankA": 83,
+        "rankB": 80,
+        "contributionA": 0.004545454545454545,
+        "contributionB": 0.0025,
+        "totalScore": 0.007045454545454546,
+        "calculation": "0.65 / (60 + 83) + 0.35 / (60 + 80)"
+      },
+      {
+        "rank": 61,
+        "id": "d_9e5e98a3048d64d2_1",
+        "name": "青四季春",
+        "brand": "龜記茗品",
+        "rankA": 33,
+        "rankB": null,
+        "contributionA": 0.006989247311827957,
+        "contributionB": 0,
+        "totalScore": 0.006989247311827957,
+        "calculation": "0.65 / (60 + 33) + 0"
+      },
+      {
+        "rank": 62,
+        "id": "d_ae44c23fae822e60_1",
+        "name": "超級青茶(瓶)",
+        "brand": "茶之魔手",
+        "rankA": 36,
+        "rankB": null,
+        "contributionA": 0.0067708333333333336,
+        "contributionB": 0,
+        "totalScore": 0.0067708333333333336,
+        "calculation": "0.65 / (60 + 36) + 0"
+      },
+      {
+        "rank": 63,
+        "id": "d_a096923b855266a7_1",
+        "name": "冰糖桂花釀青茶",
+        "brand": "茶之魔手",
+        "rankA": 38,
+        "rankB": null,
+        "contributionA": 0.00663265306122449,
+        "contributionB": 0,
+        "totalScore": 0.00663265306122449,
+        "calculation": "0.65 / (60 + 38) + 0"
+      },
+      {
+        "rank": 64,
+        "id": "d_1e2db9c8b1586a2c_1",
+        "name": "原片初露青茶",
+        "brand": "迷客夏",
+        "rankA": 39,
+        "rankB": null,
+        "contributionA": 0.006565656565656566,
+        "contributionB": 0,
+        "totalScore": 0.006565656565656566,
+        "calculation": "0.65 / (60 + 39) + 0"
+      },
+      {
+        "rank": 65,
+        "id": "d_a67b6c76a903a12c_1",
+        "name": "雲霧青茶花凍",
+        "brand": "五桐號/紅茶冰資料",
+        "rankA": 41,
+        "rankB": null,
+        "contributionA": 0.006435643564356436,
+        "contributionB": 0,
+        "totalScore": 0.006435643564356436,
+        "calculation": "0.65 / (60 + 41) + 0"
+      },
+      {
+        "rank": 66,
+        "id": "d_19375ed7f477e9c1_1",
+        "name": "檸檬青茶",
+        "brand": "50嵐",
+        "rankA": 44,
+        "rankB": null,
+        "contributionA": 0.00625,
+        "contributionB": 0,
+        "totalScore": 0.00625,
+        "calculation": "0.65 / (60 + 44) + 0"
+      },
+      {
+        "rank": 67,
+        "id": "d_62a36da7aeaa3a08_1",
+        "name": "檸檬烏龍",
+        "brand": "50嵐",
+        "rankA": 45,
+        "rankB": null,
+        "contributionA": 0.006190476190476191,
+        "contributionB": 0,
+        "totalScore": 0.006190476190476191,
+        "calculation": "0.65 / (60 + 45) + 0"
+      },
+      {
+        "rank": 68,
+        "id": "d_a06410ce218fff4b_1",
+        "name": "檸檬青茶",
+        "brand": "茶之魔手",
+        "rankA": 46,
+        "rankB": null,
+        "contributionA": 0.006132075471698114,
+        "contributionB": 0,
+        "totalScore": 0.006132075471698114,
+        "calculation": "0.65 / (60 + 46) + 0"
+      },
+      {
+        "rank": 69,
+        "id": "d_a550bb71fb8c6a81_1",
+        "name": "微檸檬青茶",
+        "brand": "50嵐",
+        "rankA": 47,
+        "rankB": null,
+        "contributionA": 0.006074766355140187,
+        "contributionB": 0,
+        "totalScore": 0.006074766355140187,
+        "calculation": "0.65 / (60 + 47) + 0"
+      },
+      {
+        "rank": 70,
+        "id": "d_0fd97075003530a5_1",
+        "name": "微檸檬烏龍",
+        "brand": "50嵐",
+        "rankA": 52,
+        "rankB": null,
+        "contributionA": 0.005803571428571429,
+        "contributionB": 0,
+        "totalScore": 0.005803571428571429,
+        "calculation": "0.65 / (60 + 52) + 0"
+      },
+      {
+        "rank": 71,
+        "id": "d_831d27954020c7bb_1",
+        "name": "蜂蜜檸檬烏龍",
+        "brand": "50嵐",
+        "rankA": 54,
+        "rankB": null,
+        "contributionA": 0.005701754385964913,
+        "contributionB": 0,
+        "totalScore": 0.005701754385964913,
+        "calculation": "0.65 / (60 + 54) + 0"
+      },
+      {
+        "rank": 72,
+        "id": "d_219c597efb8e6430_1",
+        "name": "多多青茶",
+        "brand": "50嵐",
+        "rankA": 55,
+        "rankB": null,
+        "contributionA": 0.005652173913043478,
+        "contributionB": 0,
+        "totalScore": 0.005652173913043478,
+        "calculation": "0.65 / (60 + 55) + 0"
+      },
+      {
+        "rank": 73,
+        "id": "d_82a302aa04ba78f7_1",
+        "name": "珍珠紅茶",
+        "brand": "50嵐",
+        "rankA": 56,
+        "rankB": null,
+        "contributionA": 0.005603448275862069,
+        "contributionB": 0,
+        "totalScore": 0.005603448275862069,
+        "calculation": "0.65 / (60 + 56) + 0"
+      },
+      {
+        "rank": 74,
+        "id": "d_349e76ac3a3def4c_1",
+        "name": "多多青茶",
+        "brand": "茶之魔手",
+        "rankA": 58,
+        "rankB": null,
+        "contributionA": 0.005508474576271186,
+        "contributionB": 0,
+        "totalScore": 0.005508474576271186,
+        "calculation": "0.65 / (60 + 58) + 0"
+      },
+      {
+        "rank": 75,
+        "id": "d_e910731977b36ae7_1",
+        "name": "百香青茶",
+        "brand": "茶之魔手",
+        "rankA": 59,
+        "rankB": null,
+        "contributionA": 0.00546218487394958,
+        "contributionB": 0,
+        "totalScore": 0.00546218487394958,
+        "calculation": "0.65 / (60 + 59) + 0"
+      },
+      {
+        "rank": 76,
+        "id": "d_2419551728ab62c8_1",
+        "name": "椰果紅茶",
+        "brand": "50嵐",
+        "rankA": 61,
+        "rankB": null,
+        "contributionA": 0.005371900826446281,
+        "contributionB": 0,
+        "totalScore": 0.005371900826446281,
+        "calculation": "0.65 / (60 + 61) + 0"
+      },
+      {
+        "rank": 77,
+        "id": "d_a2716e599829fa6e_1",
+        "name": "珍珠青茶",
+        "brand": "50嵐",
+        "rankA": 62,
+        "rankB": null,
+        "contributionA": 0.005327868852459017,
+        "contributionB": 0,
+        "totalScore": 0.005327868852459017,
+        "calculation": "0.65 / (60 + 62) + 0"
+      },
+      {
+        "rank": 78,
+        "id": "d_565174cb0772f0b4_1",
+        "name": "珍珠紅茶",
+        "brand": "茶之魔手",
+        "rankA": 64,
+        "rankB": null,
+        "contributionA": 0.005241935483870968,
+        "contributionB": 0,
+        "totalScore": 0.005241935483870968,
+        "calculation": "0.65 / (60 + 64) + 0"
+      },
+      {
+        "rank": 79,
+        "id": "d_afb4f5e4689188b7_1",
+        "name": "檸檬多酚烏龍",
+        "brand": "茶之魔手",
+        "rankA": 66,
+        "rankB": null,
+        "contributionA": 0.005158730158730159,
+        "contributionB": 0,
+        "totalScore": 0.005158730158730159,
+        "calculation": "0.65 / (60 + 66) + 0"
+      },
+      {
+        "rank": 80,
+        "id": "d_dfe8b50b5c306b63_1",
+        "name": "綠野金萱奶茶",
+        "brand": "五桐號/紅茶冰資料",
+        "rankA": null,
+        "rankB": 8,
+        "contributionA": 0,
+        "contributionB": 0.005147058823529412,
+        "totalScore": 0.005147058823529412,
+        "calculation": "0 + 0.35 / (60 + 8)"
+      },
+      {
+        "rank": 81,
+        "id": "d_3bad3c06b50fa84b_1",
+        "name": "波霸紅茶",
+        "brand": "50嵐",
+        "rankA": 67,
+        "rankB": null,
+        "contributionA": 0.005118110236220472,
+        "contributionB": 0,
+        "totalScore": 0.005118110236220472,
+        "calculation": "0.65 / (60 + 67) + 0"
+      },
+      {
+        "rank": 82,
+        "id": "d_8742afc0a05d3b63_1",
+        "name": "芒果微檸檬烏龍",
+        "brand": "50嵐",
+        "rankA": 68,
+        "rankB": null,
+        "contributionA": 0.005078125,
+        "contributionB": 0,
+        "totalScore": 0.005078125,
+        "calculation": "0.65 / (60 + 68) + 0"
+      },
+      {
+        "rank": 83,
+        "id": "d_982553d7ae81d6f2_1",
+        "name": "極電解柚沁蘇打（含三茉花凍）",
+        "brand": "特好喝",
+        "rankA": null,
+        "rankB": 10,
+        "contributionA": 0,
+        "contributionB": 0.005,
+        "totalScore": 0.005,
+        "calculation": "0 + 0.35 / (60 + 10)"
+      },
+      {
+        "rank": 84,
+        "id": "d_a4dfd0bbe9277e47_1",
+        "name": "椰果青茶",
+        "brand": "50嵐",
+        "rankA": 71,
+        "rankB": null,
+        "contributionA": 0.004961832061068702,
+        "contributionB": 0,
+        "totalScore": 0.004961832061068702,
+        "calculation": "0.65 / (60 + 71) + 0"
+      },
+      {
+        "rank": 85,
+        "id": "d_4856351acb9d1b40_1",
+        "name": "荔枝金萱",
+        "brand": "五桐號/紅茶冰資料",
+        "rankA": null,
+        "rankB": 11,
+        "contributionA": 0,
+        "contributionB": 0.004929577464788732,
+        "totalScore": 0.004929577464788732,
+        "calculation": "0 + 0.35 / (60 + 11)"
+      },
+      {
+        "rank": 86,
+        "id": "d_9f4c0576e3f90469_1",
+        "name": "椰果紅茶",
+        "brand": "茶之魔手",
+        "rankA": 73,
+        "rankB": null,
+        "contributionA": 0.004887218045112782,
+        "contributionB": 0,
+        "totalScore": 0.004887218045112782,
+        "calculation": "0.65 / (60 + 73) + 0"
+      },
+      {
+        "rank": 87,
+        "id": "d_11005da6873a0543_1",
+        "name": "麻豆柚子綠",
+        "brand": "五桐號/紅茶冰資料",
+        "rankA": null,
+        "rankB": 12,
+        "contributionA": 0,
+        "contributionB": 0.004861111111111111,
+        "totalScore": 0.004861111111111111,
+        "calculation": "0 + 0.35 / (60 + 12)"
+      },
+      {
+        "rank": 88,
+        "id": "d_e0d439504b3a0e11_1",
+        "name": "荔枝微檸檬烏龍",
+        "brand": "50嵐",
+        "rankA": 75,
+        "rankB": null,
+        "contributionA": 0.004814814814814815,
+        "contributionB": 0,
+        "totalScore": 0.004814814814814815,
+        "calculation": "0.65 / (60 + 75) + 0"
+      },
+      {
+        "rank": 89,
+        "id": "d_6cd9e1db21ef9abd_1",
+        "name": "蜜茶",
+        "brand": "50嵐",
+        "rankA": 76,
+        "rankB": null,
+        "contributionA": 0.004779411764705883,
+        "contributionB": 0,
+        "totalScore": 0.004779411764705883,
+        "calculation": "0.65 / (60 + 76) + 0"
+      },
+      {
+        "rank": 90,
+        "id": "d_1f9c9b2e4cec04bc_1",
+        "name": "檸檬多酚青茶",
+        "brand": "茶之魔手",
+        "rankA": 78,
+        "rankB": null,
+        "contributionA": 0.004710144927536232,
+        "contributionB": 0,
+        "totalScore": 0.004710144927536232,
+        "calculation": "0.65 / (60 + 78) + 0"
+      },
+      {
+        "rank": 91,
+        "id": "d_003b86f93d9dc13d_1",
+        "name": "檸檬烏龍",
+        "brand": "五桐號/紅茶冰資料",
+        "rankA": 79,
+        "rankB": null,
+        "contributionA": 0.004676258992805756,
+        "contributionB": 0,
+        "totalScore": 0.004676258992805756,
+        "calculation": "0.65 / (60 + 79) + 0"
+      },
+      {
+        "rank": 92,
+        "id": "d_d31db390004aabd0_1",
+        "name": "燕麥綠茶拿鐵",
+        "brand": "50嵐",
+        "rankA": null,
+        "rankB": 15,
+        "contributionA": 0,
+        "contributionB": 0.004666666666666666,
+        "totalScore": 0.004666666666666666,
+        "calculation": "0 + 0.35 / (60 + 15)"
+      },
+      {
+        "rank": 93,
+        "id": "d_359441772e1cefbd_1",
+        "name": "烏龍茶",
+        "brand": "TEA'S 原味",
+        "rankA": 81,
+        "rankB": null,
+        "contributionA": 0.004609929078014185,
+        "contributionB": 0,
+        "totalScore": 0.004609929078014185,
+        "calculation": "0.65 / (60 + 81) + 0"
+      },
+      {
+        "rank": 94,
+        "id": "d_dd20a83a21e314f2_1",
+        "name": "波霸青茶",
+        "brand": "50嵐",
+        "rankA": 82,
+        "rankB": null,
+        "contributionA": 0.004577464788732394,
+        "contributionB": 0,
+        "totalScore": 0.004577464788732394,
+        "calculation": "0.65 / (60 + 82) + 0"
+      },
+      {
+        "rank": 95,
+        "id": "d_62f08fef3df972e7_1",
+        "name": "緋烏龍奶茶",
+        "brand": "得正",
+        "rankA": null,
+        "rankB": 18,
+        "contributionA": 0,
+        "contributionB": 0.004487179487179487,
+        "totalScore": 0.004487179487179487,
+        "calculation": "0 + 0.35 / (60 + 18)"
+      },
+      {
+        "rank": 96,
+        "id": "d_fe64c9898b7d6540_1",
+        "name": "珍珠麵茶紅茶",
+        "brand": "50嵐",
+        "rankA": 86,
+        "rankB": null,
+        "contributionA": 0.004452054794520548,
+        "contributionB": 0,
+        "totalScore": 0.004452054794520548,
+        "calculation": "0.65 / (60 + 86) + 0"
+      },
+      {
+        "rank": 97,
+        "id": "d_e502bcb58912f269_1",
+        "name": "焙烏龍奶茶",
+        "brand": "得正",
+        "rankA": null,
+        "rankB": 19,
+        "contributionA": 0,
+        "contributionB": 0.004430379746835442,
+        "totalScore": 0.004430379746835442,
+        "calculation": "0 + 0.35 / (60 + 19)"
+      },
+      {
+        "rank": 98,
+        "id": "d_4b70be2c64389e90_1",
+        "name": "蜂蜜烏龍",
+        "brand": "茶之魔手",
+        "rankA": 87,
+        "rankB": null,
+        "contributionA": 0.004421768707482994,
+        "contributionB": 0,
+        "totalScore": 0.004421768707482994,
+        "calculation": "0.65 / (60 + 87) + 0"
+      },
+      {
+        "rank": 99,
+        "id": "d_af63835264fb36bf_1",
+        "name": "蜜茶",
+        "brand": "茶之魔手",
+        "rankA": 89,
+        "rankB": null,
+        "contributionA": 0.004362416107382551,
+        "contributionB": 0,
+        "totalScore": 0.004362416107382551,
+        "calculation": "0.65 / (60 + 89) + 0"
+      },
+      {
+        "rank": 100,
+        "id": "d_2366ae97aaa17a68_1",
+        "name": "旺來青茶",
+        "brand": "50嵐",
+        "rankA": 90,
+        "rankB": null,
+        "contributionA": 0.004333333333333333,
+        "contributionB": 0,
+        "totalScore": 0.004333333333333333,
+        "calculation": "0.65 / (60 + 90) + 0"
+      },
+      {
+        "rank": 101,
+        "id": "d_c586635ffabe04c6_1",
+        "name": "麵茶紅茶",
+        "brand": "50嵐",
+        "rankA": 92,
+        "rankB": null,
+        "contributionA": 0.0042763157894736845,
+        "contributionB": 0,
+        "totalScore": 0.0042763157894736845,
+        "calculation": "0.65 / (60 + 92) + 0"
+      },
+      {
+        "rank": 102,
+        "id": "d_7920b0d80ad164a3_1",
+        "name": "烏龍奶",
+        "brand": "50嵐",
+        "rankA": 93,
+        "rankB": null,
+        "contributionA": 0.004248366013071896,
+        "contributionB": 0,
+        "totalScore": 0.004248366013071896,
+        "calculation": "0.65 / (60 + 93) + 0"
+      },
+      {
+        "rank": 103,
+        "id": "d_99412c6312aa7c37_1",
+        "name": "芒果青茶",
+        "brand": "50嵐",
+        "rankA": 94,
+        "rankB": null,
+        "contributionA": 0.004220779220779221,
+        "contributionB": 0,
+        "totalScore": 0.004220779220779221,
+        "calculation": "0.65 / (60 + 94) + 0"
+      },
+      {
+        "rank": 104,
+        "id": "d_56371943155ccaea_1",
+        "name": "椰果麵茶紅茶",
+        "brand": "50嵐",
+        "rankA": 95,
+        "rankB": null,
+        "contributionA": 0.004193548387096774,
+        "contributionB": 0,
+        "totalScore": 0.004193548387096774,
+        "calculation": "0.65 / (60 + 95) + 0"
+      },
+      {
+        "rank": 105,
+        "id": "d_0059c8410d60155e_1",
+        "name": "珍珠伯爵",
+        "brand": "茶之魔手",
+        "rankA": 96,
+        "rankB": null,
+        "contributionA": 0.004166666666666667,
+        "contributionB": 0,
+        "totalScore": 0.004166666666666667,
+        "calculation": "0.65 / (60 + 96) + 0"
+      },
+      {
+        "rank": 106,
+        "id": "d_457bc0bd535856a7_1",
+        "name": "奶香綠茶",
+        "brand": "茶之魔手",
+        "rankA": null,
+        "rankB": 24,
+        "contributionA": 0,
+        "contributionB": 0.004166666666666667,
+        "totalScore": 0.004166666666666667,
+        "calculation": "0 + 0.35 / (60 + 24)"
+      },
+      {
+        "rank": 107,
+        "id": "d_0c2343de8f9996a9_1",
+        "name": "珍珠阿華田",
+        "brand": "50嵐",
+        "rankA": 97,
+        "rankB": null,
+        "contributionA": 0.004140127388535032,
+        "contributionB": 0,
+        "totalScore": 0.004140127388535032,
+        "calculation": "0.65 / (60 + 97) + 0"
+      },
+      {
+        "rank": 108,
+        "id": "d_29e82a447b3247e0_1",
+        "name": "綠茶拿鐵",
+        "brand": "50嵐",
+        "rankA": null,
+        "rankB": 25,
+        "contributionA": 0,
+        "contributionB": 0.004117647058823529,
+        "totalScore": 0.004117647058823529,
+        "calculation": "0 + 0.35 / (60 + 25)"
+      },
+      {
+        "rank": 109,
+        "id": "d_36a4a4a64ece3e76_1",
+        "name": "荔枝烏龍",
+        "brand": "50嵐",
+        "rankA": 98,
+        "rankB": null,
+        "contributionA": 0.004113924050632912,
+        "contributionB": 0,
+        "totalScore": 0.004113924050632912,
+        "calculation": "0.65 / (60 + 98) + 0"
+      },
+      {
+        "rank": 110,
+        "id": "d_64aca5eb077766d5_1",
+        "name": "芝士奶蓋焙烏龍",
+        "brand": "得正",
+        "rankA": null,
+        "rankB": 26,
+        "contributionA": 0,
+        "contributionB": 0.004069767441860465,
+        "totalScore": 0.004069767441860465,
+        "calculation": "0 + 0.35 / (60 + 26)"
+      },
+      {
+        "rank": 111,
+        "id": "d_9373a9610540c3f8_1",
+        "name": "芝士奶蓋春烏龍",
+        "brand": "得正",
+        "rankA": null,
+        "rankB": 27,
+        "contributionA": 0,
+        "contributionB": 0.004022988505747126,
+        "totalScore": 0.004022988505747126,
+        "calculation": "0 + 0.35 / (60 + 27)"
+      },
+      {
+        "rank": 112,
+        "id": "d_1c938a9f50b4afe3_1",
+        "name": "鮮柚烏龍(季節限定)",
+        "brand": "50嵐",
+        "rankA": null,
+        "rankB": 31,
+        "contributionA": 0,
+        "contributionB": 0.003846153846153846,
+        "totalScore": 0.003846153846153846,
+        "calculation": "0 + 0.35 / (60 + 31)"
+      },
+      {
+        "rank": 113,
+        "id": "d_7181660ae0aa37a4_1",
+        "name": "抹茉厚潤奶",
+        "brand": "特好喝",
+        "rankA": null,
+        "rankB": 33,
+        "contributionA": 0,
+        "contributionB": 0.0037634408602150535,
+        "totalScore": 0.0037634408602150535,
+        "calculation": "0 + 0.35 / (60 + 33)"
+      },
+      {
+        "rank": 114,
+        "id": "d_30b1be1a9ba8459c_1",
+        "name": "檸檬多酚綠茶",
+        "brand": "茶之魔手",
+        "rankA": null,
+        "rankB": 35,
+        "contributionA": 0,
+        "contributionB": 0.0036842105263157894,
+        "totalScore": 0.0036842105263157894,
+        "calculation": "0 + 0.35 / (60 + 35)"
+      },
+      {
+        "rank": 115,
+        "id": "d_4dd44018ed7d1968_1",
+        "name": "檸檬綠茶",
+        "brand": "茶之魔手",
+        "rankA": null,
+        "rankB": 36,
+        "contributionA": 0,
+        "contributionB": 0.003645833333333333,
+        "totalScore": 0.003645833333333333,
+        "calculation": "0 + 0.35 / (60 + 36)"
+      },
+      {
+        "rank": 116,
+        "id": "d_5a816f75f9545514_1",
+        "name": "百香綠茶",
+        "brand": "茶之魔手",
+        "rankA": null,
+        "rankB": 37,
+        "contributionA": 0,
+        "contributionB": 0.003608247422680412,
+        "totalScore": 0.003608247422680412,
+        "calculation": "0 + 0.35 / (60 + 37)"
+      },
+      {
+        "rank": 117,
+        "id": "d_16901124d7ed1569_1",
+        "name": "翡翠奶茶",
+        "brand": "龜記茗品",
+        "rankA": null,
+        "rankB": 38,
+        "contributionA": 0,
+        "contributionB": 0.0035714285714285713,
+        "totalScore": 0.0035714285714285713,
+        "calculation": "0 + 0.35 / (60 + 38)"
+      },
+      {
+        "rank": 118,
+        "id": "d_b72adc0cf99f4dfd_1",
+        "name": "茉香綠茶",
+        "brand": "白巷子",
+        "rankA": null,
+        "rankB": 39,
+        "contributionA": 0,
+        "contributionB": 0.003535353535353535,
+        "totalScore": 0.003535353535353535,
+        "calculation": "0 + 0.35 / (60 + 39)"
+      },
+      {
+        "rank": 119,
+        "id": "d_a5df6e9f07089f36_1",
+        "name": "綠茶牛奶",
+        "brand": "五桐號/紅茶冰資料",
+        "rankA": null,
+        "rankB": 40,
+        "contributionA": 0,
+        "contributionB": 0.0034999999999999996,
+        "totalScore": 0.0034999999999999996,
+        "calculation": "0 + 0.35 / (60 + 40)"
+      },
+      {
+        "rank": 120,
+        "id": "d_0be6534c525ed4d1_1",
+        "name": "檸檬綠茶",
+        "brand": "50嵐",
+        "rankA": null,
+        "rankB": 41,
+        "contributionA": 0,
+        "contributionB": 0.003465346534653465,
+        "totalScore": 0.003465346534653465,
+        "calculation": "0 + 0.35 / (60 + 41)"
+      },
+      {
+        "rank": 121,
+        "id": "d_68192ab3b8fc5e52_1",
+        "name": "旺來綠茶",
+        "brand": "50嵐",
+        "rankA": null,
+        "rankB": 42,
+        "contributionA": 0,
+        "contributionB": 0.003431372549019608,
+        "totalScore": 0.003431372549019608,
+        "calculation": "0 + 0.35 / (60 + 42)"
+      },
+      {
+        "rank": 122,
+        "id": "d_90d9dcaea6246333_1",
+        "name": "微檸檬綠茶",
+        "brand": "50嵐",
+        "rankA": null,
+        "rankB": 43,
+        "contributionA": 0,
+        "contributionB": 0.0033980582524271844,
+        "totalScore": 0.0033980582524271844,
+        "calculation": "0 + 0.35 / (60 + 43)"
+      },
+      {
+        "rank": 123,
+        "id": "d_ee822b8734787ec5_1",
+        "name": "茉香奶茶",
+        "brand": "CoCo都可",
+        "rankA": null,
+        "rankB": 44,
+        "contributionA": 0,
+        "contributionB": 0.003365384615384615,
+        "totalScore": 0.003365384615384615,
+        "calculation": "0 + 0.35 / (60 + 44)"
+      },
+      {
+        "rank": 124,
+        "id": "d_87c9c2e465841f57_1",
+        "name": "多多綠茶",
+        "brand": "茶之魔手",
+        "rankA": null,
+        "rankB": 45,
+        "contributionA": 0,
+        "contributionB": 0.003333333333333333,
+        "totalScore": 0.003333333333333333,
+        "calculation": "0 + 0.35 / (60 + 45)"
+      },
+      {
+        "rank": 125,
+        "id": "d_0110ef80f18a3a2a_1",
+        "name": "椰果烏龍奶",
+        "brand": "50嵐",
+        "rankA": null,
+        "rankB": 47,
+        "contributionA": 0,
+        "contributionB": 0.0032710280373831773,
+        "totalScore": 0.0032710280373831773,
+        "calculation": "0 + 0.35 / (60 + 47)"
+      },
+      {
+        "rank": 126,
+        "id": "d_1a8d45963bb3789b_1",
+        "name": "焙烏龍",
+        "brand": "得正",
+        "rankA": null,
+        "rankB": 48,
+        "contributionA": 0,
+        "contributionB": 0.0032407407407407406,
+        "totalScore": 0.0032407407407407406,
+        "calculation": "0 + 0.35 / (60 + 48)"
+      },
+      {
+        "rank": 127,
+        "id": "d_7a5c483a5942efaa_1",
+        "name": "波霸烏龍奶",
+        "brand": "50嵐",
+        "rankA": null,
+        "rankB": 56,
+        "contributionA": 0,
+        "contributionB": 0.003017241379310345,
+        "totalScore": 0.003017241379310345,
+        "calculation": "0 + 0.35 / (60 + 56)"
+      },
+      {
+        "rank": 128,
+        "id": "d_b98acdb43d964b9a_1",
+        "name": "多多綠茶",
+        "brand": "50嵐",
+        "rankA": null,
+        "rankB": 61,
+        "contributionA": 0,
+        "contributionB": 0.002892561983471074,
+        "totalScore": 0.002892561983471074,
+        "calculation": "0 + 0.35 / (60 + 61)"
+      },
+      {
+        "rank": 129,
+        "id": "d_1cb859f4b4678c19_1",
+        "name": "芒夏啵啵沙沙",
+        "brand": "特好喝",
+        "rankA": null,
+        "rankB": 62,
+        "contributionA": 0,
+        "contributionB": 0.0028688524590163933,
+        "totalScore": 0.0028688524590163933,
+        "calculation": "0 + 0.35 / (60 + 62)"
+      },
+      {
+        "rank": 130,
+        "id": "d_0d55e1cdb4aa65a1_1",
+        "name": "鳳梨綠茶",
+        "brand": "五桐號/紅茶冰資料",
+        "rankA": null,
+        "rankB": 63,
+        "contributionA": 0,
+        "contributionB": 0.0028455284552845526,
+        "totalScore": 0.0028455284552845526,
+        "calculation": "0 + 0.35 / (60 + 63)"
+      },
+      {
+        "rank": 131,
+        "id": "d_bc3e7a527c747a6d_1",
+        "name": "檸檬綠茶",
+        "brand": "五桐號/紅茶冰資料",
+        "rankA": null,
+        "rankB": 64,
+        "contributionA": 0,
+        "contributionB": 0.00282258064516129,
+        "totalScore": 0.00282258064516129,
+        "calculation": "0 + 0.35 / (60 + 64)"
+      },
+      {
+        "rank": 132,
+        "id": "d_ec2702b8858a5688_1",
+        "name": "茶王厚潤奶",
+        "brand": "特好喝",
+        "rankA": null,
+        "rankB": 68,
+        "contributionA": 0,
+        "contributionB": 0.002734375,
+        "totalScore": 0.002734375,
+        "calculation": "0 + 0.35 / (60 + 68)"
+      },
+      {
+        "rank": 133,
+        "id": "d_d94322d6b92b7120_1",
+        "name": "茉莉綠茶",
+        "brand": "50嵐",
+        "rankA": null,
+        "rankB": 69,
+        "contributionA": 0,
+        "contributionB": 0.0027131782945736434,
+        "totalScore": 0.0027131782945736434,
+        "calculation": "0 + 0.35 / (60 + 69)"
+      },
+      {
+        "rank": 134,
+        "id": "d_ee2a9a38caa31ad4_1",
+        "name": "多多綠茶",
+        "brand": "麻古茶坊",
+        "rankA": null,
+        "rankB": 71,
+        "contributionA": 0,
+        "contributionB": 0.0026717557251908397,
+        "totalScore": 0.0026717557251908397,
+        "calculation": "0 + 0.35 / (60 + 71)"
+      },
+      {
+        "rank": 135,
+        "id": "d_207bd50015e6847e_1",
+        "name": "優多綠茶",
+        "brand": "清心福全",
+        "rankA": null,
+        "rankB": 72,
+        "contributionA": 0,
+        "contributionB": 0.0026515151515151512,
+        "totalScore": 0.0026515151515151512,
+        "calculation": "0 + 0.35 / (60 + 72)"
+      },
+      {
+        "rank": 136,
+        "id": "d_3eeb5538cfd12038_1",
+        "name": "多多綠茶",
+        "brand": "五桐號/紅茶冰資料",
+        "rankA": null,
+        "rankB": 73,
+        "contributionA": 0,
+        "contributionB": 0.002631578947368421,
+        "totalScore": 0.002631578947368421,
+        "calculation": "0 + 0.35 / (60 + 73)"
+      },
+      {
+        "rank": 137,
+        "id": "d_4683599fcc367c59_1",
+        "name": "茉莉原粹綠茶",
+        "brand": "迷客夏",
+        "rankA": null,
+        "rankB": 76,
+        "contributionA": 0,
+        "contributionB": 0.002573529411764706,
+        "totalScore": 0.002573529411764706,
+        "calculation": "0 + 0.35 / (60 + 76)"
+      },
+      {
+        "rank": 138,
+        "id": "d_d68c94e85eb21224_1",
+        "name": "燕麥麵茶紅茶拿鐵",
+        "brand": "50嵐",
+        "rankA": null,
+        "rankB": 77,
+        "contributionA": 0,
+        "contributionB": 0.0025547445255474453,
+        "totalScore": 0.0025547445255474453,
+        "calculation": "0 + 0.35 / (60 + 77)"
+      },
+      {
+        "rank": 139,
+        "id": "d_f8003b5c9cb66e63_1",
+        "name": "燕麥紅茶拿鐵",
+        "brand": "50嵐",
+        "rankA": null,
+        "rankB": 78,
+        "contributionA": 0,
+        "contributionB": 0.002536231884057971,
+        "totalScore": 0.002536231884057971,
+        "calculation": "0 + 0.35 / (60 + 78)"
+      },
+      {
+        "rank": 140,
+        "id": "d_bbf285ef2e2e3aae_1",
+        "name": "冰淇淋綠茶拿鐵",
+        "brand": "50嵐",
+        "rankA": null,
+        "rankB": 79,
+        "contributionA": 0,
+        "contributionB": 0.002517985611510791,
+        "totalScore": 0.002517985611510791,
+        "calculation": "0 + 0.35 / (60 + 79)"
+      },
+      {
+        "rank": 141,
+        "id": "d_822cff38449ecdf3_1",
+        "name": "溫特冬片",
+        "brand": "特好喝",
+        "rankA": null,
+        "rankB": 81,
+        "contributionA": 0,
+        "contributionB": 0.002482269503546099,
+        "totalScore": 0.002482269503546099,
+        "calculation": "0 + 0.35 / (60 + 81)"
+      },
+      {
+        "rank": 142,
+        "id": "d_36f4fedb65d54a1b_1",
+        "name": "葡萄柚蜜(季節限定)",
+        "brand": "50嵐",
+        "rankA": null,
+        "rankB": 83,
+        "contributionA": 0,
+        "contributionB": 0.0024475524475524473,
+        "totalScore": 0.0024475524475524473,
+        "calculation": "0 + 0.35 / (60 + 83)"
+      },
+      {
+        "rank": 143,
+        "id": "d_405640378da620e6_1",
+        "name": "鮮柚青(季節限定)",
+        "brand": "50嵐",
+        "rankA": null,
+        "rankB": 85,
+        "contributionA": 0,
+        "contributionB": 0.0024137931034482756,
+        "totalScore": 0.0024137931034482756,
+        "calculation": "0 + 0.35 / (60 + 85)"
+      },
+      {
+        "rank": 144,
+        "id": "d_614b20aa769ef72c_1",
+        "name": "葡萄柚多多(季節限定)",
+        "brand": "50嵐",
+        "rankA": null,
+        "rankB": 87,
+        "contributionA": 0,
+        "contributionB": 0.0023809523809523807,
+        "totalScore": 0.0023809523809523807,
+        "calculation": "0 + 0.35 / (60 + 87)"
+      },
+      {
+        "rank": 145,
+        "id": "d_761f8fd92a52ed43_1",
+        "name": "鮮柚紅(季節限定)",
+        "brand": "50嵐",
+        "rankA": null,
+        "rankB": 88,
+        "contributionA": 0,
+        "contributionB": 0.0023648648648648646,
+        "totalScore": 0.0023648648648648646,
+        "calculation": "0 + 0.35 / (60 + 88)"
+      },
+      {
+        "rank": 146,
+        "id": "d_cf2ca41ba6f012c5_1",
+        "name": "葡萄柚汁(季節限定)",
+        "brand": "50嵐",
+        "rankA": null,
+        "rankB": 90,
+        "contributionA": 0,
+        "contributionB": 0.002333333333333333,
+        "totalScore": 0.002333333333333333,
+        "calculation": "0 + 0.35 / (60 + 90)"
+      },
+      {
+        "rank": 147,
+        "id": "d_eb7f3f827fc65218_1",
+        "name": "鮮柚綠(季節限定)",
+        "brand": "50嵐",
+        "rankA": null,
+        "rankB": 92,
+        "contributionA": 0,
+        "contributionB": 0.002302631578947368,
+        "totalScore": 0.002302631578947368,
+        "calculation": "0 + 0.35 / (60 + 92)"
+      },
+      {
+        "rank": 148,
+        "id": "d_97bcac010015fb8d_1",
+        "name": "椰果綠茶拿鐵",
+        "brand": "50嵐",
+        "rankA": null,
+        "rankB": 93,
+        "contributionA": 0,
+        "contributionB": 0.002287581699346405,
+        "totalScore": 0.002287581699346405,
+        "calculation": "0 + 0.35 / (60 + 93)"
+      },
+      {
+        "rank": 149,
+        "id": "d_e077e01d82904596_1",
+        "name": "米香玉露菁",
+        "brand": "UG",
+        "rankA": null,
+        "rankB": 96,
+        "contributionA": 0,
+        "contributionB": 0.0022435897435897434,
+        "totalScore": 0.0022435897435897434,
+        "calculation": "0 + 0.35 / (60 + 96)"
+      },
+      {
+        "rank": 150,
+        "id": "d_3573d197e0ad2cff_1",
+        "name": "綠茶瑪奇朵",
+        "brand": "50嵐",
+        "rankA": null,
+        "rankB": 97,
+        "contributionA": 0,
+        "contributionB": 0.0022292993630573248,
+        "totalScore": 0.0022292993630573248,
+        "calculation": "0 + 0.35 / (60 + 97)"
+      },
+      {
+        "rank": 151,
+        "id": "d_8521a8ee32203355_1",
+        "name": "茉香綠茶",
+        "brand": "藍衫茶所",
+        "rankA": null,
+        "rankB": 98,
+        "contributionA": 0,
+        "contributionB": 0.002215189873417721,
+        "totalScore": 0.002215189873417721,
+        "calculation": "0 + 0.35 / (60 + 98)"
+      },
+      {
+        "rank": 152,
+        "id": "d_73ff4524b63a9c40_1",
+        "name": "雪絨茶后",
+        "brand": "特好喝",
+        "rankA": null,
+        "rankB": 99,
+        "contributionA": 0,
+        "contributionB": 0.00220125786163522,
+        "totalScore": 0.00220125786163522,
+        "calculation": "0 + 0.35 / (60 + 99)"
+      },
+      {
+        "rank": 153,
+        "id": "d_bc4b6cf8de7137f9_1",
+        "name": "雪絨茶王",
+        "brand": "特好喝",
+        "rankA": null,
+        "rankB": 100,
+        "contributionA": 0,
+        "contributionB": 0.0021874999999999998,
+        "totalScore": 0.0021874999999999998,
+        "calculation": "0 + 0.35 / (60 + 100)"
+      }
+    ]
+  },
+  "selection": {
+    "requestedLimit": 6,
+    "uniqueKey": "brand + name",
+    "firstPassBrandLimit": 2,
+    "relaxHardFilters": false,
+    "decisions": [
+      {
+        "id": "d_0f7b613df7b0aa7b_1",
+        "name": "沐野金萱",
+        "pass": "brand_diversity",
+        "decision": "select",
+        "priorBrandCount": 0
+      },
+      {
+        "id": "d_ddffe49f2442271d_1",
+        "name": "綠茶",
+        "pass": "brand_diversity",
+        "decision": "select",
+        "priorBrandCount": 0
+      },
+      {
+        "id": "d_049de9b8bb849822_1",
+        "name": "蜂蜜綠茶",
+        "pass": "brand_diversity",
+        "decision": "select",
+        "priorBrandCount": 0
+      },
+      {
+        "id": "d_c8bbbeb528cbd327_1",
+        "name": "蜂蜜綠茶",
+        "pass": "brand_diversity",
+        "decision": "select",
+        "priorBrandCount": 0
+      },
+      {
+        "id": "d_f810465dff66d4d9_1",
+        "name": "蜂蜜綠茶",
+        "pass": "brand_diversity",
+        "decision": "select",
+        "priorBrandCount": 0
+      },
+      {
+        "id": "d_5b5c82bc5065f3fc_1",
+        "name": "烏龍綠茶",
+        "pass": "brand_diversity",
+        "decision": "select",
+        "priorBrandCount": 0
+      }
+    ],
+    "finalOrder": [
+      {
+        "rank": 1,
+        "id": "d_0f7b613df7b0aa7b_1",
+        "name": "沐野金萱",
+        "brand": "特好喝",
+        "originalFusionRank": 1,
+        "score": 0.01639344262295082
+      },
+      {
+        "rank": 2,
+        "id": "d_ddffe49f2442271d_1",
+        "name": "綠茶",
+        "brand": "得正",
+        "originalFusionRank": 2,
+        "score": 0.016129032258064516
+      },
+      {
+        "rank": 3,
+        "id": "d_049de9b8bb849822_1",
+        "name": "蜂蜜綠茶",
+        "brand": "50嵐",
+        "originalFusionRank": 3,
+        "score": 0.015702075702075702
+      },
+      {
+        "rank": 4,
+        "id": "d_c8bbbeb528cbd327_1",
+        "name": "蜂蜜綠茶",
+        "brand": "茶之魔手",
+        "originalFusionRank": 4,
+        "score": 0.015625
+      },
+      {
+        "rank": 5,
+        "id": "d_f810465dff66d4d9_1",
+        "name": "蜂蜜綠茶",
+        "brand": "白巷子",
+        "originalFusionRank": 5,
+        "score": 0.015555555555555555
+      },
+      {
+        "rank": 6,
+        "id": "d_5b5c82bc5065f3fc_1",
+        "name": "烏龍綠茶",
+        "brand": "清心福全",
+        "originalFusionRank": 6,
+        "score": 0.013822298325722984
+      }
+    ]
+  },
+  "consumerOutput": {
+    "query": "想喝清爽、回甘的茶，預算 60 元",
+    "filters": {
+      "maxPrice": 60
+    },
+    "warnings": [],
+    "blocked": false,
+    "eligibleCount": 570,
+    "total": 1178,
+    "mode": {
+      "routeA": "tf-idf",
+      "routeB": "feature-graph",
+      "personalized": false
+    },
+    "results": [
+      {
+        "id": "d_0f7b613df7b0aa7b_1",
+        "name": "沐野金萱",
+        "brand": "特好喝",
+        "match_score": 0.016393,
+        "reasoning": "風味包含清爽相關特徵；風味包含回甘相關特徵；資料記錄價格 45 元，符合價格篩選",
+        "warning": "過敏原尚未核對，不能用於判斷成分安全。 價格為起價，實際容量與加料可能另計。",
+        "confidence": "資料完整度不等於推薦正確率，未校準機率",
+        "drink": {
+          "id": "d_0f7b613df7b0aa7b_1",
+          "sourceRow": 1139,
+          "brand": "特好喝",
+          "category": "人氣精選✨",
+          "name": "沐野金萱",
+          "price": 45,
+          "priceText": "45起",
+          "calories": 199,
+          "caffeineText": "274",
+          "caffeineMin": 274,
+          "caffeineMax": 274,
+          "taste": "清香淡雅、清爽、回甘",
+          "notes": "M總熱量153大卡，總糖36克，咖啡因205毫克、L總熱量199大卡，總糖47克，咖啡因274毫克。嚴選手採金萱, 茶底澄黃剔透, 全新口感甘香醇厚金萱烏龍。建議無糖微冰。糖量，熱量及咖啡因居以最高值標示。 中杯飲料加仙草，茶湯量會比較少。",
+          "tea": [
+            "烏龍茶",
+            "金萱茶"
+          ],
+          "milk": [],
+          "toppings": [],
+          "noMilk": true,
+          "richness": 0.2,
+          "status": "大杯／最高值熱量與咖啡因已由備註擷取",
+          "allergensVerified": false
+        },
+        "reasons": [
+          "風味包含清爽相關特徵",
+          "風味包含回甘相關特徵",
+          "資料記錄價格 45 元，符合價格篩選"
+        ],
+        "ranks": {
+          "a": 1,
+          "b": 1
+        }
+      },
+      {
+        "id": "d_ddffe49f2442271d_1",
+        "name": "綠茶",
+        "brand": "得正",
+        "match_score": 0.016129,
+        "reasoning": "風味包含清爽相關特徵；風味包含回甘相關特徵；資料記錄價格 40 元，符合價格篩選",
+        "warning": "過敏原尚未核對，不能用於判斷成分安全。 價格為起價，實際容量與加料可能另計。",
+        "confidence": "資料完整度不等於推薦正確率，未校準機率",
+        "drink": {
+          "id": "d_ddffe49f2442271d_1",
+          "sourceRow": 783,
+          "brand": "得正",
+          "category": "人氣精選✨",
+          "name": "綠茶",
+          "price": 40,
+          "priceText": "40起",
+          "calories": 268,
+          "caffeineText": "<100",
+          "caffeineMin": 0,
+          "caffeineMax": 100,
+          "taste": "清新茶香、清爽、回甘",
+          "notes": "#中杯：熱量(206kal) | 總糖量(43.5g) | 咖啡因(100mg以下) #大杯：熱量(268kal) | 總糖量(57.5g) | 咖啡因(100mg以下) #以上數值為全糖去冰(最高值) 綠茶：台灣、越南",
+          "tea": [
+            "綠茶"
+          ],
+          "milk": [],
+          "toppings": [],
+          "noMilk": true,
+          "richness": 0.2,
+          "status": "大杯／最高值熱量與咖啡因已由備註擷取",
+          "allergensVerified": false
+        },
+        "reasons": [
+          "風味包含清爽相關特徵",
+          "風味包含回甘相關特徵",
+          "資料記錄價格 40 元，符合價格篩選"
+        ],
+        "ranks": {
+          "a": 2,
+          "b": 2
+        }
+      },
+      {
+        "id": "d_049de9b8bb849822_1",
+        "name": "蜂蜜綠茶",
+        "brand": "50嵐",
+        "match_score": 0.015702,
+        "reasoning": "風味包含清爽相關特徵；風味包含回甘相關特徵；資料記錄價格 45 元，符合價格篩選",
+        "warning": "過敏原尚未核對，不能用於判斷成分安全。 價格為起價，實際容量與加料可能另計。",
+        "confidence": "資料完整度不等於推薦正確率，未校準機率",
+        "drink": {
+          "id": "d_049de9b8bb849822_1",
+          "sourceRow": 11,
+          "brand": "50嵐",
+          "category": "人氣精選✨",
+          "name": "蜂蜜綠茶",
+          "price": 45,
+          "priceText": "45起",
+          "calories": 213.2,
+          "caffeineText": "101–200",
+          "caffeineMin": 101,
+          "caffeineMax": 200,
+          "taste": "清新茶香、清爽、回甘",
+          "notes": "(冷)總糖量中杯35.3g,大杯50.5g,(冷)總熱量中杯149.2cal,大杯213.2cal(冷)咖啡因中杯低於100毫克mg,大杯101毫克~200毫克mg",
+          "tea": [
+            "綠茶"
+          ],
+          "milk": [],
+          "toppings": [],
+          "noMilk": true,
+          "richness": 0.2,
+          "status": "大杯／最高值熱量與咖啡因已由備註擷取",
+          "allergensVerified": false
+        },
+        "reasons": [
+          "風味包含清爽相關特徵",
+          "風味包含回甘相關特徵",
+          "資料記錄價格 45 元，符合價格篩選"
+        ],
+        "ranks": {
+          "a": 3,
+          "b": 5
+        }
+      },
+      {
+        "id": "d_c8bbbeb528cbd327_1",
+        "name": "蜂蜜綠茶",
+        "brand": "茶之魔手",
+        "match_score": 0.015625,
+        "reasoning": "風味包含清爽相關特徵；風味包含回甘相關特徵；資料記錄價格 55 元，符合價格篩選",
+        "warning": "過敏原尚未核對，不能用於判斷成分安全。 價格為起價，實際容量與加料可能另計。",
+        "confidence": "資料完整度不等於推薦正確率，未校準機率",
+        "drink": {
+          "id": "d_c8bbbeb528cbd327_1",
+          "sourceRow": 341,
+          "brand": "茶之魔手",
+          "category": "人氣精選✨",
+          "name": "蜂蜜綠茶",
+          "price": 55,
+          "priceText": "55起",
+          "calories": 324,
+          "caffeineText": "<100",
+          "caffeineMin": 0,
+          "caffeineMax": 100,
+          "taste": "清新茶香、清爽、回甘",
+          "notes": "(限冰飲，不可做溫熱飲) 甜而不膩的蜂蜜帶點淡淡花香，搭配台灣純綠，茶味沁人心脾。總糖量(最高值)：75克 / 總熱量(最高值)：324大卡 / 咖啡因含量：綠色(100毫克以下) / 茶葉原產地：台灣",
+          "tea": [
+            "綠茶"
+          ],
+          "milk": [],
+          "toppings": [],
+          "noMilk": true,
+          "richness": 0.2,
+          "status": "大杯／最高值熱量與咖啡因已由備註擷取",
+          "allergensVerified": false
+        },
+        "reasons": [
+          "風味包含清爽相關特徵",
+          "風味包含回甘相關特徵",
+          "資料記錄價格 55 元，符合價格篩選"
+        ],
+        "ranks": {
+          "a": 4,
+          "b": 4
+        }
+      },
+      {
+        "id": "d_f810465dff66d4d9_1",
+        "name": "蜂蜜綠茶",
+        "brand": "白巷子",
+        "match_score": 0.015556,
+        "reasoning": "風味包含清爽相關特徵；風味包含回甘相關特徵；資料記錄價格 57 元，符合價格篩選",
+        "warning": "過敏原尚未核對，不能用於判斷成分安全。 部分營養資料未知。 價格為起價，實際容量與加料可能另計。",
+        "confidence": "資料完整度不等於推薦正確率，未校準機率",
+        "drink": {
+          "id": "d_f810465dff66d4d9_1",
+          "sourceRow": 1067,
+          "brand": "白巷子",
+          "category": "人氣精選✨",
+          "name": "蜂蜜綠茶",
+          "price": 57,
+          "priceText": "57起",
+          "calories": null,
+          "caffeineText": "",
+          "caffeineMin": null,
+          "caffeineMax": null,
+          "taste": "清新茶香、清爽、回甘",
+          "notes": "香醇蜂蜜與綠茶搭配，茶韻清香甘甜，不膩口",
+          "tea": [
+            "綠茶"
+          ],
+          "milk": [],
+          "toppings": [],
+          "noMilk": true,
+          "richness": 0.2,
+          "status": "咖啡因/熱量待官方資料補齊",
+          "allergensVerified": false
+        },
+        "reasons": [
+          "風味包含清爽相關特徵",
+          "風味包含回甘相關特徵",
+          "資料記錄價格 57 元，符合價格篩選"
+        ],
+        "ranks": {
+          "a": 5,
+          "b": 3
+        }
+      },
+      {
+        "id": "d_5b5c82bc5065f3fc_1",
+        "name": "烏龍綠茶",
+        "brand": "清心福全",
+        "match_score": 0.013822,
+        "reasoning": "風味包含清爽相關特徵；風味包含回甘相關特徵；資料記錄價格 35 元，符合價格篩選",
+        "warning": "過敏原尚未核對，不能用於判斷成分安全。 價格為起價，實際容量與加料可能另計。",
+        "confidence": "資料完整度不等於推薦正確率，未校準機率",
+        "drink": {
+          "id": "d_5b5c82bc5065f3fc_1",
+          "sourceRow": 536,
+          "brand": "清心福全",
+          "category": "人氣精選✨",
+          "name": "烏龍綠茶",
+          "price": 35,
+          "priceText": "35起",
+          "calories": 226,
+          "caffeineText": "101–200",
+          "caffeineMin": 101,
+          "caffeineMax": 200,
+          "taste": "清新茶香、清爽、回甘",
+          "notes": "總糖量51克(最高量) 總熱量226大卡(最高量) ｜ 咖啡因含量：黃(101mg至200mg) ｜ 澄澈的黃褐色茶湯，入口清新芳香、甘醇渾厚，微有炭燒味，回甘馥郁而綿長。",
+          "tea": [
+            "綠茶",
+            "烏龍茶"
+          ],
+          "milk": [],
+          "toppings": [],
+          "noMilk": true,
+          "richness": 0.2,
+          "status": "大杯／最高值熱量與咖啡因已由備註擷取",
+          "allergensVerified": false
+        },
+        "reasons": [
+          "風味包含清爽相關特徵",
+          "風味包含回甘相關特徵",
+          "資料記錄價格 35 元，符合價格篩選"
+        ],
+        "ranks": {
+          "a": 12,
+          "b": 13
+        }
+      }
+    ]
+  },
+  "rendering": {
+    "source": "public/app.js card()",
+    "displayedFields": [
+      "name",
+      "brand",
+      "priceText",
+      "taste",
+      "calories",
+      "caffeineText",
+      "reasoning",
+      "sourceRow"
+    ],
+    "explanationAgentUsed": false,
+    "note": "消費者只看到推薦卡片與資料依據，不取得內部完整 A/B 榜單。"
+  }
+}

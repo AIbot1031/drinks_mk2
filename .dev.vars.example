@@ -1,0 +1,2 @@
+# Only for a new local checkout. Use your own password in .dev.vars; do not commit it.
+REVIEW_KEY=replace-with-your-local-review-password

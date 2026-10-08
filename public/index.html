@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#214c3e">
+  <meta name="description" content="從 1,178 款飲料裡，依風味、品牌與預算，找到適合此刻的一杯。">
+  <title>喝點剛好的｜飲料推薦</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">跳到主要內容</a>
+  <header class="header">
+    <a class="logo" href="#recommend"><span class="logo-icon" aria-hidden="true">◒</span>喝點剛好的<span class="logo-en">SIP & FIND</span></a>
+    <nav aria-label="主要導覽">
+      <a href="#recommend" class="active">找一杯飲料</a>
+      <a href="#catalog">飲料圖鑑</a>
+      <a href="#graph">關係圖</a>
+      <a href="#favorites">我的收藏 <span id="favorite-count">0</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <section id="recommend-view" class="view">
+      <div class="hero">
+        <div><p class="eyebrow"><span></span> A LITTLE BREAK, A BETTER SIP.</p><h1>今天，想喝<span>點什麼？</span></h1><p class="intro">說說你的口味和偏好，<br class="mobile-br">一起找適合這一刻的飲料。</p><div class="hero-meta"><span id="catalog-summary">正在整理飲料資料…</span><span class="separator">/</span><span>你的偏好，你的一杯</span></div></div>
+        <div class="hero-art" aria-hidden="true"><div class="orb"></div><svg viewBox="0 0 330 250"><defs><linearGradient id="tea" x2="0" y2="1"><stop stop-color="#b8cc88"/><stop offset="1" stop-color="#7d9b50"/></linearGradient><linearGradient id="milk" x2="0" y2="1"><stop stop-color="#d9c69e"/><stop offset="1" stop-color="#ad8856"/></linearGradient></defs><ellipse cx="182" cy="223" rx="114" ry="13" fill="#153b2c" opacity=".07"/><g transform="rotate(-9 115 145)"><path d="M67 89h98l-12 119q-1 12-14 12H93q-12 0-13-12z" fill="#f6f2e2" stroke="#355a43" stroke-width="2"/><path d="M78 126h76l-8 74q-1 10-10 10H99q-9 0-10-10z" fill="url(#tea)"/><path d="M64 88q49-14 104 0v9H64z" fill="#e8ecd9" stroke="#355a43" stroke-width="2"/><path d="M110 43l8 125" stroke="#456f51" stroke-width="8"/><path d="M120 151c28-33 39-6 8 2 3-28-26-28-8-2" fill="#e9efcb"/><path d="M122 149v20" stroke="#f1f2d9" stroke-width="2"/></g><g transform="rotate(8 218 141)"><path d="M176 92h95l-12 116q-1 12-14 12h-43q-12 0-13-12z" fill="#faf5e7" stroke="#355a43" stroke-width="2"/><path d="M185 116h77l-8 87q-1 9-10 9h-37q-9 0-10-9z" fill="url(#milk)"/><path d="M174 90q47-11 98 0v9h-98z" fill="#f8f0d9" stroke="#355a43" stroke-width="2"/><path d="M237 42l-10 127" stroke="#ab8051" stroke-width="8"/><g fill="#4b3d2a"><circle cx="209" cy="197" r="6"/><circle cx="227" cy="199" r="6"/><circle cx="243" cy="196" r="6"/><circle cx="216" cy="182" r="6"/><circle cx="234" cy="184" r="6"/></g><path d="M211 140h28" stroke="#faf5e7" stroke-width="3"/><text x="225" y="160" text-anchor="middle" font-size="9" letter-spacing="3" fill="#faf5e7">SIP</text></g><path d="M38 75l5-10 5 10-5 10zM288 48l4-8 4 8-4 8z" fill="#b49b54"/></svg><span class="art-note">好好喝一杯，也好好休息一下。</span></div>
+      </div>
+      <div class="workspace">
+        <form id="recommend-form" class="panel preference-panel">
+          <div class="panel-heading"><span class="step">01</span><h2>你的飲料偏好</h2><button type="button" id="reset-filters" class="text-button">重設</button></div>
+          <label for="query">這一刻，想喝…</label>
+          <textarea id="query" maxlength="300" placeholder="例如：想喝清爽、有果香的飲料，預算 60 元"></textarea>
+          <div class="presets" aria-label="快速填入偏好"><button type="button" data-query="想喝清爽、回甘的茶">清爽回甘</button><button type="button" data-query="想喝果香、酸甜的飲料">果香酸甜</button><button type="button" data-query="想喝鮮奶調製、奶香濃郁的飲料">濃郁奶香</button><button type="button" data-query="想喝有嚼勁的珍珠飲料">嚼點配料</button></div>
+          <div class="two-fields"><div><label for="brand">想喝哪個品牌</label><select id="brand"><option value="">所有品牌</option></select></div><div><label for="budget">最高預算 <small>NT$</small></label><input id="budget" type="number" min="0" max="10000" placeholder="不限"></div></div>
+          <label for="milk">奶類偏好</label><select id="milk"><option value="any">都可以</option><option value="none">無奶（依資料標記）</option><option value="fresh">鮮奶</option><option value="plant">植物奶</option></select>
+          <details class="advanced"><summary>更多篩選條件 <span>＋</span></summary><div class="two-fields"><div><label for="tea-filter">茶種</label><select id="tea-filter"><option value="">不限茶種</option></select></div><div><label for="topping-filter">配料</label><select id="topping-filter"><option value="">不限配料</option></select></div></div><div class="two-fields"><div><label for="calories">最高熱量 <small>kcal</small></label><input id="calories" type="number" min="0" max="10000" placeholder="不限"></div><div><label for="caffeine">咖啡因上界 <small>mg</small></label><input id="caffeine" type="number" min="0" max="10000" placeholder="不限"></div></div><p class="field-help">設定營養上限時，會排除該欄位未知的飲料。</p></details>
+          <button class="primary" id="submit-button" type="submit">幫我找一杯 <span aria-hidden="true">↗</span></button><p class="field-help">價格可能為起價；「無奶」並非過敏安全保證。</p>
+        </form>
+        <section class="recommendation-area" aria-label="推薦結果">
+          <div class="results-heading"><div><p class="eyebrow">YOUR NEXT FAVORITE</p><h2>為你挑的幾杯</h2></div><span id="result-count" class="muted">等你說說偏好</span></div>
+          <div id="active-filters" class="filter-tags"></div><p id="result-status" class="status" role="status"></p><div id="result-warnings" class="warnings" hidden></div>
+          <div id="results" class="empty-state"><span class="empty-cup" aria-hidden="true">◡</span><h3>好喝的靈感，從這裡開始</h3><p>選一個口味，或告訴我們你想喝什麼。<br>我們會從飲料圖鑑中幫你挑幾杯。</p><button type="button" id="inspiration" class="secondary">先看看清爽的茶 ↗</button></div>
+          <div class="batch-actions" id="batch-actions" hidden><button id="next-batch" class="secondary" type="button">再看一批 ↻</button><button id="restart-batch" class="text-button" type="button">從頭看</button></div>
+          <p id="feedback-note" class="feedback-note" role="status"></p>
+        </section>
+      </div>
+      <div class="little-notes"><span>01 <strong>說說你的口味</strong><small>一句話，也可以很簡單。</small></span><span>02 <strong>看看適合的飲料</strong><small>風味、價格與營養，一起看。</small></span><span>03 <strong>留下喜歡的一杯</strong><small>下一次，更懂你的偏好。</small></span></div>
+    </section>
+    <section id="catalog-view" class="view" hidden><div class="page-heading"><p class="eyebrow">THE DRINK LIBRARY</p><h1>慢慢挑，<span>總有喜歡的。</span></h1><p>查看原始飲料資料，也為下次喝什麼存一點靈感。</p></div><form id="catalog-form" class="library-search"><label for="catalog-query" class="sr-only">搜尋飲料</label><input id="catalog-query" placeholder="搜尋飲料名稱、品牌或風味"><label for="catalog-brand" class="sr-only">篩選品牌</label><select id="catalog-brand"><option value="">所有品牌</option></select><button class="primary" type="submit">搜尋</button></form><p id="catalog-status" role="status" class="status"></p><div id="catalog-results" class="card-grid"></div><div class="pagination"><button id="prev-page" class="secondary" type="button">← 上一頁</button><span id="page-info"></span><button id="next-page" class="secondary" type="button">下一頁 →</button></div></section>
+    <section id="favorites-view" class="view" hidden><div class="page-heading"><p class="eyebrow">YOUR LITTLE COLLECTION</p><h1>留給下次的<span>好喝清單。</span></h1><p>收藏與不喜歡的紀錄保存在這個瀏覽器，推薦時會參考。</p></div><div class="collection-actions"><button id="export-feedback" class="secondary" type="button">匯出我的偏好</button><label class="secondary import-label" for="import-feedback">匯入偏好<input id="import-feedback" type="file" accept="application/json,.json" class="sr-only"></label></div><p id="collection-status" class="status" role="status"></p><div id="favorites-results" class="card-grid"></div></section>
+    <section id="graph-view" class="view" hidden><div class="page-heading"><p class="eyebrow">CONNECTED BY TASTE</p><h1>看看飲料之間的<span>小小連結。</span></h1><p>以品牌、茶種、奶類與配料連結飲料。點選節點，探索相關特徵。</p></div><p class="field-help">此版為飲料特徵關係圖；尚未訓練 RelGT／LightGCN／Two-Tower。</p><form id="graph-form" class="library-search"><label for="graph-query" class="sr-only">搜尋圖中飲料</label><input id="graph-query" placeholder="搜尋飲料，例如：紅茶拿鐵"><label for="graph-brand" class="sr-only">篩選圖中品牌</label><select id="graph-brand"><option value="">所有品牌</option></select><button class="primary" type="submit">更新關係圖</button></form><p id="graph-status" role="status" class="status"></p><div class="graph-legend"><span><i class="brand-dot"></i>品牌</span><span><i class="drink-dot"></i>飲料</span><span><i class="feature-dot"></i>茶種／奶類／配料</span></div><div class="graph-wrap"><svg id="graph" role="img" aria-label="飲料與特徵關係圖"></svg></div><p id="graph-detail" class="panel graph-detail" role="status">點選節點查看它的關係與來源。</p></section>
+  </main>
+  <footer><div><a class="logo" href="#recommend">◒ 喝點剛好的</a><p>用一杯飲料，為日常留一點剛好。</p></div><p>資料來源：提供的飲料 Excel。風味為原表推論。<br>價格、營養與成分依容量、甜度、冷熱及店家實際供應為準。</p><span>MADE FOR YOUR EVERYDAY SIP.</span></footer>
+</body>
+</html>

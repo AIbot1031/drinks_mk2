@@ -1,0 +1,27 @@
+{
+  "name": "drinks-mk2",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "overrides": { "sharp": "^0.35.5" },
+  "scripts": {
+    "dev": "wrangler dev",
+    "build": "node scripts/build.mjs",
+    "check": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts",
+    "types": "wrangler types",
+    "deploy": "npm run build && wrangler deploy",
+    "deploy:check": "npm run build && wrangler deploy --dry-run",
+    "data:import": "python3 scripts/import_data.py",
+    "trace:sample": "tsx scripts/export_trace.ts",
+    "trace:export": "node scripts/export_cloud_traces.mjs",
+    "db:local": "wrangler d1 migrations apply TRACE_DB --local",
+    "db:remote": "wrangler d1 migrations apply TRACE_DB --remote"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "wrangler": "^4.148.0"
+  }
+}

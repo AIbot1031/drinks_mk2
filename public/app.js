@@ -1,0 +1,199 @@
+const $ = selector => document.querySelector(selector);
+const el = (tag, text = '', cls = '') => {const n = document.createElement(tag); n.textContent = text; if (cls) n.className = cls; return n;};
+const storageKey = 'drinks-mk2-feedback-v1';
+let feedback = {version: 1, liked: {}, disliked: []};
+let meta, busy = false, exhausted = false, lastSettings = null, seen = [], page = 1, pages = 1;
+let catalogRequest = 0, graphRequest = 0;
+try {const saved = localStorage.getItem(storageKey); if (saved) feedback = validateFeedback(JSON.parse(saved));} catch {$('#feedback-note').textContent = '本機偏好讀取失敗，這次會使用空白偏好。';}
+
+function validateFeedback(value) {
+  if (!value || value.version !== 1 || !value.liked || typeof value.liked !== 'object' || Array.isArray(value.liked) || !Array.isArray(value.disliked)) throw new Error('偏好檔案格式有誤');
+  if (Object.keys(value.liked).length > 200 || value.disliked.length > 200) throw new Error('每種偏好最多保存 200 款');
+  for (const [id, d] of Object.entries(value.liked)) if (typeof id !== 'string' || id.length > 80 || !d || d.id !== id || typeof d.name !== 'string' || typeof d.brand !== 'string' || !Array.isArray(d.tea) || !Array.isArray(d.milk) || !Array.isArray(d.toppings)) throw new Error('偏好資料內容有誤');
+  if (value.disliked.some(id => typeof id !== 'string' || id.length > 80)) throw new Error('不喜歡的紀錄格式有誤');
+  return {version: 1, liked: value.liked, disliked: [...new Set(value.disliked)]};
+}
+function saveFeedback() {
+  let message = '偏好已保存在這個瀏覽器，下次推薦會參考。';
+  try {localStorage.setItem(storageKey, JSON.stringify(feedback));} catch {message = '瀏覽器無法儲存，偏好只會保留到本頁關閉。';}
+  $('#favorite-count').textContent = Object.keys(feedback.liked).length;
+  $('#feedback-note').textContent = message;
+  $('#collection-status').textContent = message;
+  refreshFeedbackButtons();
+  if (location.hash === '#favorites') renderFavorites();
+}
+function refreshFeedbackButtons() {
+  document.querySelectorAll('[data-like]').forEach(n => {const liked = !!feedback.liked[n.dataset.like]; n.setAttribute('aria-pressed', String(liked)); n.textContent = liked ? '♥ 已收藏' : '♡ 喜歡這杯';});
+  document.querySelectorAll('[data-dislike]').forEach(n => {const disliked = feedback.disliked.includes(n.dataset.dislike); n.setAttribute('aria-pressed', String(disliked)); n.textContent = disliked ? '已標記不喜歡' : '不太喜歡';});
+}
+async function api(path, options) {
+  const response = await fetch(path, options);
+  const value = await response.json();
+  if (!response.ok) throw new Error(value.error || '暫時無法完成，請稍後重試。');
+  return value;
+}
+
+function card(d, index, rec) {
+  const article = el('article', '', 'drink-card');
+  if (index !== undefined) article.append(el('span', String(index + 1).padStart(2, '0'), 'rank'));
+  const content = el('div', '', 'card-content'), top = el('div', '', 'card-top');
+  top.append(el('h3', d.name), el('span', d.priceText ? `NT$ ${d.priceText}` : (d.price === null ? '價格未知' : `NT$ ${d.price}`), 'price'));
+  content.append(top, el('span', `${d.brand} · ${d.category}`, 'brand-label'));
+  content.append(el('p', d.taste || '原表未提供風味描述', 'taste'));
+  if (rec) content.append(el('p', rec.reasoning, 'reason'));
+  const nutrition = el('div', '', 'nutrition');
+  for (const [label, value] of [['熱量', d.calories === null ? '未知' : `${d.calories} kcal`], ['咖啡因', d.caffeineText ? `${d.caffeineText} mg` : '未知']]) {const n = el('span', label); n.append(el('strong', value)); nutrition.append(n);}
+  content.append(nutrition);
+  const actions = el('div', '', 'card-actions');
+  const like = el('button', '', ''); like.type = 'button'; like.dataset.like = d.id; like.setAttribute('aria-label', `收藏${d.brand}的${d.name}`);
+  like.onclick = () => {if (feedback.liked[d.id]) delete feedback.liked[d.id]; else {if (Object.keys(feedback.liked).length >= 200) {$('#feedback-note').textContent = '最多收藏 200 杯，請先取消部分收藏。'; return;} feedback.liked[d.id] = d; feedback.disliked = feedback.disliked.filter(id => id !== d.id);} saveFeedback();};
+  const dislike = el('button'); dislike.type = 'button'; dislike.dataset.dislike = d.id; dislike.setAttribute('aria-label', `標記不喜歡${d.name}`);
+  dislike.onclick = () => {if (feedback.disliked.includes(d.id)) feedback.disliked = feedback.disliked.filter(id => id !== d.id); else {if (feedback.disliked.length >= 200) {$('#feedback-note').textContent = '最多記錄 200 款不喜歡的飲料。'; return;} feedback.disliked.push(d.id); delete feedback.liked[d.id];} saveFeedback();};
+  actions.append(like, dislike); content.append(actions);
+  const details = el('details', '', 'card-details'); details.append(el('summary', '查看資料來源與備註'));
+  details.append(el('p', `Excel「綜合飲料特徵」第 ${d.sourceRow} 列。${d.status || ''}`));
+  details.append(el('p', d.notes || '未提供備註。'));
+  details.append(el('p', `茶種：${d.tea.join('、') || '未標記'}；奶類：${d.milk.join('、') || (d.noMilk ? '無奶標記' : '未標記')}；配料：${d.toppings.join('、') || '未標記'}。`));
+  if (rec) details.append(el('p', `排序依據：路徑 A ${rec.ranks.a === null ? '未列入' : `第 ${rec.ranks.a} 名`}，路徑 B ${rec.ranks.b === null ? '未列入' : `第 ${rec.ranks.b} 名`}。排序分數並非正確率。`));
+  details.append(el('p', rec?.warning || '價格可能為起價；過敏原未核對，成分請向店家確認。', 'card-warning'));
+  content.append(details); article.append(content); return article;
+}
+
+function setBusy(value) {
+  busy = value;
+  $('#recommend-form').querySelectorAll('input,select,textarea,button').forEach(n => n.disabled = value);
+  $('#submit-button').textContent = value ? '正在幫你挑選…' : '幫我找一杯 ↗';
+  $('#next-batch').disabled = value || exhausted;
+  $('#restart-batch').disabled = value;
+}
+function readSettings() {
+  const optionalNumber = selector => $(selector).value === '' ? undefined : Number($(selector).value);
+  return {query: $('#query').value.trim(), filters: {brand: $('#brand').value, maxPrice: optionalNumber('#budget'), milk: $('#milk').value, tea: $('#tea-filter').value, topping: $('#topping-filter').value, maxCalories: optionalNumber('#calories'), maxCaffeine: optionalNumber('#caffeine')}};
+}
+function tags(filters) {
+  $('#active-filters').replaceChildren();
+  const labels = {brand: v => v, maxPrice: v => `價格 ≤ ${v} 元`, maxCalories: v => `熱量 ≤ ${v} kcal`, maxCaffeine: v => `咖啡因上界 ≤ ${v} mg`, milk: v => ({none:'無奶標記', fresh:'鮮奶', plant:'植物奶'})[v], tea: v => v, topping: v => v};
+  for (const [key, value] of Object.entries(filters)) {const label = labels[key]?.(value); if (label) $('#active-filters').append(el('span', label));}
+}
+async function recommend(settings, next = false) {
+  if (busy) return;
+  if (!next) exhausted = false;
+  setBusy(true);
+  // Batched exclusions are independent of personal dislikes and do not affect learned preferences.
+  $('#result-status').textContent = '正在比對你的偏好與飲料資料…';
+  try {
+    const value = await api('/api/recommend', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({...settings, limit:6, likedIds:Object.keys(feedback.liked), dislikedIds:feedback.disliked, excludedIds:next ? seen : []})});
+    tags(value.filters);
+    $('#result-warnings').replaceChildren(...value.warnings.map(w => el('p', w)));
+    $('#result-warnings').hidden = !value.warnings.length;
+    if (next && !value.results.length) {exhausted = true; $('#result-status').textContent = '這組設定的候選已看完。可以從頭看，或調整條件。'; return;}
+    lastSettings = settings;
+    if (!next) seen = [];
+    seen.push(...value.results.map(r => r.id));
+    $('#result-count').textContent = `${value.results.length} 杯推薦 / ${value.eligibleCount.toLocaleString()} 杯符合篩選`;
+    $('#results').className = '';
+    $('#results').replaceChildren();
+    if (!value.results.length) {
+      $('#results').className = 'empty-state';
+      $('#results').append(el('span', '◡', 'empty-cup'), el('h3', value.blocked ? '先釐清條件，再幫你挑。' : '這次沒有符合的飲料'), el('p', value.blocked ? '請查看上方說明，調整需求後再查詢。' : '試著調整品牌、預算或營養上限。篩選條件不會自動放寬。'));
+    } else value.results.forEach((r, i) => $('#results').append(card(r.drink, i, r)));
+    $('#batch-actions').hidden = !value.results.length;
+    $('#result-status').textContent = `${value.mode.personalized ? '已參考你的收藏偏好。' : '收藏喜歡的飲料，讓下次更貼近你的口味。'} ${next ? `已看過 ${seen.length} 杯。` : ''}`;
+    refreshFeedbackButtons();
+  } catch (error) {$('#result-status').textContent = `${error.message} ${$('#results .drink-card') ? '已保留上一份結果。' : ''}`;}
+  finally {setBusy(false);}
+}
+$('#recommend-form').onsubmit = event => {event.preventDefault(); recommend(readSettings());};
+$('#recommend-form').oninput = () => {if (lastSettings) {$('#batch-actions').hidden = true; $('#result-status').textContent = '條件已變更，按「幫我找一杯」套用新設定。';}};
+$('#recommend-form').onchange = $('#recommend-form').oninput;
+$('#next-batch').onclick = () => {if (lastSettings) recommend(lastSettings, true);};
+$('#restart-batch').onclick = () => {if (lastSettings) recommend(lastSettings);};
+$('#reset-filters').onclick = () => {$('#recommend-form').reset(); $('#batch-actions').hidden = true; lastSettings = null; seen = []; $('#result-status').textContent = '偏好條件已重設。';};
+document.querySelectorAll('[data-query]').forEach(n => n.onclick = () => {$('#query').value = n.dataset.query; $('#batch-actions').hidden = true; $('#query').focus();});
+$('#inspiration').onclick = () => {$('#query').value = '想喝清爽、回甘的茶'; recommend(readSettings());};
+
+async function loadCatalog() {
+  const id = ++catalogRequest;
+  $('#catalog-status').textContent = '正在讀取飲料圖鑑…';
+  try {
+    const params = new URLSearchParams({q:$('#catalog-query').value, brand:$('#catalog-brand').value, page:String(page)});
+    const value = await api(`/api/catalog?${params}`);
+    if (id !== catalogRequest) return;
+    pages = value.pages;
+    $('#catalog-results').replaceChildren(...value.results.map(d => card(d)));
+    $('#catalog-status').textContent = `${value.total.toLocaleString()} 款飲料符合搜尋${value.total ? '' : '，請調整名稱或品牌'}。`;
+    $('#page-info').textContent = `第 ${page} / ${Math.max(1, pages)} 頁`;
+    $('#prev-page').disabled = page <= 1; $('#next-page').disabled = page >= pages;
+    refreshFeedbackButtons();
+  } catch (error) {if (id === catalogRequest) $('#catalog-status').textContent = error.message;}
+}
+$('#catalog-form').onsubmit = event => {event.preventDefault(); page = 1; loadCatalog();};
+$('#prev-page').onclick = () => {if (page > 1) {page--; loadCatalog();}};
+$('#next-page').onclick = () => {if (page < pages) {page++; loadCatalog();}};
+function renderFavorites() {
+  const list = Object.values(feedback.liked);
+  $('#favorites-results').replaceChildren(...list.map(d => card(d)));
+  if (!list.length) $('#favorites-results').append(el('p', '還沒有收藏。遇到喜歡的一杯，按「♡ 喜歡這杯」就能留下來。', 'status'));
+  refreshFeedbackButtons();
+}
+$('#export-feedback').onclick = () => {
+  const url = URL.createObjectURL(new Blob([JSON.stringify(feedback, null, 2)], {type:'application/json'}));
+  const a = el('a'); a.href = url; a.download = '我的飲料偏好.json'; a.click(); URL.revokeObjectURL(url);
+  $('#collection-status').textContent = '偏好已匯出。另一個瀏覽器可以用「匯入偏好」接續收藏。';
+};
+$('#import-feedback').onchange = async event => {
+  const file = event.target.files[0]; if (!file) return;
+  try {if (file.size > 1024 * 1024) throw new Error('偏好檔案不可超過 1 MB'); const imported = validateFeedback(JSON.parse(await file.text())); const merged = {version:1, liked:{...feedback.liked,...imported.liked}, disliked:[...new Set([...feedback.disliked,...imported.disliked])]}; merged.disliked = merged.disliked.filter(id => !merged.liked[id]); feedback = validateFeedback(merged); saveFeedback(); renderFavorites(); $('#collection-status').textContent = '已合併匯入的偏好。';} catch(error) {$('#collection-status').textContent = error.message || '無法匯入偏好檔案。';} finally {event.target.value = '';}
+};
+
+async function loadGraph() {
+  const request = ++graphRequest;
+  $('#graph-status').textContent = '正在整理飲料關係…';
+  try {
+    const params = new URLSearchParams({q:$('#graph-query').value, brand:$('#graph-brand').value});
+    const value = await api(`/api/catalog?${params}`);
+    if (request !== graphRequest) return;
+    const list = value.results.slice(0, 12);
+    const svg = $('#graph'); svg.replaceChildren();
+    const ns = 'http://www.w3.org/2000/svg';
+    const shape = (tag, attrs, text) => {const n = document.createElementNS(ns, tag); for (const [k,v] of Object.entries(attrs)) n.setAttribute(k,String(v)); if (text !== undefined) n.textContent = text; return n;};
+    const brands = [...new Set(list.map(d => d.brand))];
+    const featureNames = d => [...d.tea.map(t => `茶：${t}`), ...d.milk.map(t => `奶：${t}`), ...d.toppings.map(t => `料：${t}`)];
+    const features = [...new Set(list.flatMap(featureNames))];
+    const height = Math.max(480, list.length * 48 + 100, features.length * 43 + 100);
+    svg.setAttribute('viewBox', `0 0 1000 ${height}`);
+    const positions = new Map();
+    const groups = [brands.map(b => ({id:`brand:${b}`,label:b,type:'brand'})), list.map(d => ({id:d.id,label:d.name,type:'drink',drink:d})), features.map(f => ({id:`feature:${f}`,label:f,type:'feature'}))];
+    const all = groups.flat();
+    groups.forEach((group, col) => {svg.append(shape('text',{x:[150,500,840][col],y:30,'text-anchor':'middle',fill:'#809171','font-size':12}, ['品牌','飲料','茶種／奶類／配料'][col])); group.forEach((n,i) => positions.set(n.id, {x:[150,500,840][col],y:65+(height-110)*(i+.5)/Math.max(1,group.length)}));});
+    const edges = list.flatMap(d => [{from:`brand:${d.brand}`,to:d.id}, ...featureNames(d).map(f => ({from:d.id,to:`feature:${f}`}))]);
+    const lines = edges.map(edge => {const a = positions.get(edge.from), b = positions.get(edge.to); const n = shape('line',{x1:a.x,y1:a.y,x2:b.x,y2:b.y,class:'graph-edge'}); svg.append(n); return {edge,n};});
+    for (const n of all) {
+      const p = positions.get(n.id), width = n.type === 'drink' ? 235 : 170;
+      const colors = {brand:['#e8efdf','#648b57'],drink:['#edf3f4','#8daabc'],feature:['#f5efde','#c3a76c']};
+      const group = shape('g',{transform:`translate(${p.x},${p.y})`,class:'graph-node',tabindex:0,role:'button','aria-label':n.label});
+      group.append(shape('rect',{x:-width/2,y:-17,width,height:34,rx:8,fill:colors[n.type][0],stroke:colors[n.type][1]}),shape('text',{'text-anchor':'middle',y:4},n.label.length>15 ? `${n.label.slice(0,14)}…` : n.label),shape('title',{},n.label));
+      const select = () => {lines.forEach(({edge,n:line}) => line.setAttribute('class',`graph-edge${edge.from === n.id || edge.to === n.id ? ' highlight' : ''}`)); const related = edges.filter(e => e.from===n.id || e.to===n.id).map(e => all.find(other => other.id === (e.from===n.id?e.to:e.from)).label); $('#graph-detail').textContent = `${n.label}：連結 ${related.join('、') || '無已標記特徵'}。${n.drink ? `來源：Excel 第 ${n.drink.sourceRow} 列。` : ''}`;};
+      group.onclick = select; group.onkeydown = event => {if (event.key==='Enter'||event.key===' ') {event.preventDefault(); select();}}; svg.append(group);
+    }
+    $('#graph-status').textContent = `顯示 ${list.length} 款飲料、${all.length} 個節點、${edges.length} 條關係（共 ${value.total} 款符合搜尋）。`;
+    if (!list.length) $('#graph-detail').textContent = '沒有符合的飲料，請調整搜尋條件。';
+  } catch(error) {if (request === graphRequest) $('#graph-status').textContent = error.message;}
+}
+$('#graph-form').onsubmit = event => {event.preventDefault(); loadGraph();};
+function showView() {
+  const requested = location.hash.slice(1) || 'recommend';
+  const view = ['recommend','catalog','favorites','graph'].includes(requested) ? requested : 'recommend';
+  document.querySelectorAll('.view').forEach(n => n.hidden = n.id !== `${view}-view`);
+  document.querySelectorAll('.header nav a').forEach(n => {const active=n.hash===`#${view}`; n.classList.toggle('active',active); if(active)n.setAttribute('aria-current','page'); else n.removeAttribute('aria-current');});
+  if (view==='catalog') loadCatalog(); else if (view==='favorites') renderFavorites(); else if (view==='graph') loadGraph();
+}
+window.addEventListener('hashchange', showView);
+$('#favorite-count').textContent = Object.keys(feedback.liked).length;
+try {
+  meta = await api('/api/meta');
+  $('#catalog-summary').textContent = `${meta.total.toLocaleString()} 款飲料 · ${Object.keys(meta.brands).length} 個品牌`;
+  for (const brand of Object.keys(meta.brands)) for (const selector of ['#brand','#catalog-brand','#graph-brand']) {const option=el('option',brand); option.value=brand; $(selector).append(option);}
+  for (const [values,selector] of [[meta.tea,'#tea-filter'],[meta.toppings,'#topping-filter']]) for (const v of values) {const option=el('option',v); option.value=v; $(selector).append(option);}
+} catch(error) {$('#catalog-summary').textContent='資料讀取失敗，請重新整理。'; $('#result-status').textContent=error.message;}
+showView();
