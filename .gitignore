@@ -16,3 +16,6 @@ dist/
 coverage/
 internal_exports/
 .review-access.txt
+
+.venv-training/
+training_artifacts/

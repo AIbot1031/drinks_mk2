@@ -1,0 +1,185 @@
+{
+  "run_id": "20261010T000256-catalog-smoke",
+  "started_at": "2026-10-10T00:02:56+08:00",
+  "status": "success",
+  "task": "catalog masked-price regression; NOT user recommendation",
+  "upstream_commit": "19e423ca3e7cac761130aba790857f2dc3a46ef7",
+  "git_commit": "44fc0ccd330769534fac003409115793f7d1193d",
+  "working_tree_dirty": true,
+  "training_script_sha256": "0a2bed894a275af0d18d3bfbb0ac73e5d9d8b510e091ee9d6fe82d72d2e89a0d",
+  "published": false,
+  "updated_users": 0,
+  "changes": [
+    "first official RelGT Mac CPU compatibility experiment",
+    "static typed catalog graph adapter",
+    "train-only statistics and group holdout",
+    "checkpoint and per-run report"
+  ],
+  "limitations": [
+    "no real user events",
+    "no time-based recommendation evaluation",
+    "no production ranking integration",
+    "MPS is unverified",
+    "no nightly scheduler",
+    "no checkpoint resume CLI yet"
+  ],
+  "environment": {
+    "python": "3.12.14",
+    "machine": "arm64",
+    "device": "cpu",
+    "mps_available": true,
+    "packages": {
+      "torch": "2.14.1",
+      "torch-geometric": "2.8.0.post1",
+      "pytorch-frame": "0.3.0",
+      "einops": "0.8.2"
+    }
+  },
+  "data": {
+    "catalog_sha256": "d316458081667a0b219f031934ab3744fc41ee2555260aebfebce8e94807153e",
+    "drinks": 1178,
+    "split_rows": {
+      "train": 829,
+      "validation": 180,
+      "test": 169
+    },
+    "split_method": "seeded SHA256 of brand + whitespace-normalized name; 70/15/15",
+    "user_events": 0,
+    "price_missing": 0,
+    "excluded_inputs": [
+      "price",
+      "priceText",
+      "name",
+      "notes",
+      "taste",
+      "category",
+      "user data"
+    ]
+  },
+  "parameters": {
+    "epochs": 10,
+    "batch_size": 64,
+    "seed": 42,
+    "learning_rate": 0.001,
+    "optimizer": "Adam",
+    "loss": "MSE of training-standardized price",
+    "channels": 32,
+    "heads": 4,
+    "local_layers": 1,
+    "centroids": 8,
+    "conv_type": "full",
+    "sample_tokens": 5,
+    "trainable_parameters": 787094,
+    "starting_checkpoint": null
+  },
+  "baseline_train_mean": {
+    "validation": {
+      "mae_ntd": 14.125680923461914,
+      "rmse_ntd": 19.03124237060547
+    },
+    "test": {
+      "mae_ntd": 14.83080768585205,
+      "rmse_ntd": 18.79949378967285
+    }
+  },
+  "before_training_validation": {
+    "mae_ntd": 14.297070503234863,
+    "rmse_ntd": 19.387142181396484
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_mse_standardized": 1.09371548955777,
+      "validation": {
+        "mae_ntd": 13.913533210754395,
+        "rmse_ntd": 18.879487991333008
+      }
+    },
+    {
+      "epoch": 2,
+      "train_mse_standardized": 0.6559158992853613,
+      "validation": {
+        "mae_ntd": 11.6116943359375,
+        "rmse_ntd": 16.359586715698242
+      }
+    },
+    {
+      "epoch": 3,
+      "train_mse_standardized": 0.5034774961028657,
+      "validation": {
+        "mae_ntd": 9.847238540649414,
+        "rmse_ntd": 13.871899604797363
+      }
+    },
+    {
+      "epoch": 4,
+      "train_mse_standardized": 0.49875054694487475,
+      "validation": {
+        "mae_ntd": 11.517953872680664,
+        "rmse_ntd": 15.253636360168457
+      }
+    },
+    {
+      "epoch": 5,
+      "train_mse_standardized": 0.45391700850896294,
+      "validation": {
+        "mae_ntd": 9.972542762756348,
+        "rmse_ntd": 14.336228370666504
+      }
+    },
+    {
+      "epoch": 6,
+      "train_mse_standardized": 0.4469885928927055,
+      "validation": {
+        "mae_ntd": 16.307418823242188,
+        "rmse_ntd": 20.712135314941406
+      }
+    },
+    {
+      "epoch": 7,
+      "train_mse_standardized": 0.43121170817871,
+      "validation": {
+        "mae_ntd": 49.834224700927734,
+        "rmse_ntd": 51.81642150878906
+      }
+    },
+    {
+      "epoch": 8,
+      "train_mse_standardized": 0.4384151046109286,
+      "validation": {
+        "mae_ntd": 86.77035522460938,
+        "rmse_ntd": 88.2533950805664
+      }
+    },
+    {
+      "epoch": 9,
+      "train_mse_standardized": 0.4100579181539998,
+      "validation": {
+        "mae_ntd": 40.32131576538086,
+        "rmse_ntd": 43.217010498046875
+      }
+    },
+    {
+      "epoch": 10,
+      "train_mse_standardized": 0.40483746029643297,
+      "validation": {
+        "mae_ntd": 31.463796615600586,
+        "rmse_ntd": 34.02558898925781
+      }
+    }
+  ],
+  "best_epoch": 3,
+  "best_validation": {
+    "mae_ntd": 9.847238540649414,
+    "rmse_ntd": 13.871899604797363
+  },
+  "heldout_test": {
+    "mae_ntd": 10.243308067321777,
+    "rmse_ntd": 13.93016242980957
+  },
+  "checkpoint_reload_verified": true,
+  "checkpoint": "training_artifacts/20261010T000256-catalog-smoke/best.pt",
+  "checkpoint_sha256": "92067ac8cce5dfd01c6eeda18555cc279ccdd12dbcb7d29a9048fc1da9070880",
+  "ended_at": "2026-10-10T00:03:02+08:00",
+  "duration_seconds": 6.415
+}
