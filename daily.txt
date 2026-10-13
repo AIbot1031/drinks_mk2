@@ -615,3 +615,10 @@ Git 同步：main commit 50003b3455595eacdf4e264f9da59eebde1dda19 已推送；v2
 - 驗證：新增真實本機 WebSocket 旧版→新版接替測試，40 HTTP 全通過；新增後 typecheck／dry-run 通過，最後延遲訊息 guard 又經 4 項語意連線測試通過；重新產生 Worker types 並 typecheck。
 - 部署：Worker 最終版本 142db821-0614-4388-a4b6-f7363392f352，MacBERT 候選 agent 重新連線；線上完整抽查仍進行中，結果後續記錄。
 - Git：本次修正及方法文件納入 2.4，尚未推送；沒有新訓練或切換 Qwen／RelGT 候選。
+
+[2026-10-14T01:06:54+08:00｜2.4 發布與線上最終確認]
+- 線上：health 2.4.0，三模型 ready／同一目錄；實際推薦 MacBERT 為 macbert-8e08de527639956d。品牌排除、解除不指定、保留其他限制、換批不重複、模糊需求由 Qwen 追問與新版 MacBERT 推薦六項全部通過。
+- 發布：Cloudflare 最終版本 142db821-0614-4388-a4b6-f7363392f352。Qwen／RelGT 新候選未發布，維持原版。角色 agent 已重新連線，舊 socket 接替問題不再影響本輪抽查。第一次抽查在舊連線撤銷前讀舊 MacBERT，後一次 Qwen 原請求在重啟時回到規則備援；重連完成後重新發出請求確認真實 Qwen 正常，未把 fallback 算成模型成功。
+- Git：80 個累積來源／資料／文件／測試以 61a1e59 提交並推送 main；GitHub CI 38435333337 success。v2.4.0 Release 已公開，指向 61a1e593f56f2edd2453ee890b04cc5a1deae886；連結 https://github.com/AIbot1031/drinks_mk2/releases/tag/v2.4.0。
+- 最後文件：安全 JSON 增加真實線上結果、Qwen adapter checksum；方法文件與 2.4 說明追加最終驗證。本次文件同步另提交並推送，結果以 Git／CI 末次核對為準。
+- 限制：目前測試仍是合成網站情境／目錄欄位代理，不宣稱全球推薦改善。沒有新訓練、原始互動或金鑰上 Git。提交後出現使用者文件複本資料夾 docs拷貝，保留本機，未納入這次版本。
