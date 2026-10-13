@@ -102,3 +102,5 @@ python src/route_a.py
 ## MacBERT 本機訓練
 
 2026-10-13 完成第一次飲料文字對比微調：1 輪、75 步；沒有價格目標或用戶資料。來源、設定、驗證與權重位置見 [實測報告](docs/training-runs/20261013T143230-macbert-contrastive.md) 與 [操作說明](docs/MacBERT訓練操作.md)。尚未完成查詢相關性評估與線上服務，網站仍使用原推薦路徑。RelGT 長期意圖預訓練仍需時間事件資料與實作。
+
+所有模型每次執行（成功、失敗或略過）都附 [訓練前後比較](docs/訓練前後比較規範.md)。登入用戶的收藏／不喜歡四種變更已開始保存時間事件；[本次 RelGT 長期意圖檢查](docs/training-runs/20261013T145548-relgt-long-intent-preflight.md) 因真實事件 0 而略過，正式時間圖訓練程式仍待完成。
