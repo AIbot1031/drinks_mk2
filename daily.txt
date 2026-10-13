@@ -258,3 +258,12 @@ RelGT 夜間訓練流程：
 - 依最新要求，將更新前完整提交 1958e4569884924d365fd773683e8ecb2bc90b7a 保存為 GitHub v1.0.0，已推送且確認標籤中有舊 Excel；未重寫或刪除舊提交。該快照原 package 設定為 0.1.0，v1.0.0 是舊版保存標籤。
 - 新版 package、lockfile 與 health 版本改為 2.0.0，Cloudflare 再部署為 bca42ca9-085b-40cd-a37f-388916898238。最終版本線上驗證與 GitHub v2.0.0 發布結果於完成後補記。
 - 本次沒有 RelGT 訓練、沒有模型更新或排程。舊測試 checkpoint 對應舊資料快照，不能視為新版模型；附近門市篩選仍未實作。
+
+[2026-10-13 13:38:02｜2.0 最終驗證與 GitHub 發布]
+- 最終 Cloudflare health 已確認 2.0.0，15 項線上測試全部通過；67 個版本控制檔案都有用途說明，Git diff 格式檢查通過。
+- 新版主提交 6d76bcef90c82737fa08ba3180af24259bb3e488 已推送 main，並建立／推送 v2.0.0。
+- GitHub Release 已發布：新版 https://github.com/AIbot1031/drinks_mk2/releases/tag/v2.0.0；舊版完整保存 https://github.com/AIbot1031/drinks_mk2/releases/tag/v1.0.0。
+- 舊標籤已核對包含舊 Excel；本次未重寫歷史，不刪除舊版 Release。
+- v2.0.0 自動檢查 38352331223 成功，包含 npm ci、TypeScript、推薦單元測試及部署 dry-run；CI 未設定遠端 URL，所以三項 HTTP 整合在 CI 略過，已另外在線上全部執行通過。
+- GitHub Actions 提示舊 Node action 與未來 runner 遷移，未造成這次失敗，未為資料更新額外變更 CI 套件。
+- 網站版本 bca42ca9-085b-40cd-a37f-388916898238 使用新版目錄；沒有任何本次模型訓練或排程變更。
