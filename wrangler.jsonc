@@ -13,7 +13,8 @@
   "secrets": {
     "required": [
       "REVIEW_KEY",
-      "SEMANTIC_KEY"
+      "SEMANTIC_KEY",
+      "LLM_KEY"
     ]
   },
   "assets": {

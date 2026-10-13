@@ -36,7 +36,7 @@ test('chat carries unresolved safety constraints until explicit reset; states ar
   assert.equal(engine.recommend(a.input).blocked,true);
   const b=turn('預算改成60元',a.state);
   assert.equal(engine.recommend(b.input).blocked,true);
-  assert.equal(engine.recommend(turn('不要奶蓋').input).blocked,true);
+  assert.equal(engine.recommend(turn('不要奶蓋').input).blocked,false);
   const reset=turn('重新開始',b.state);
   assert.equal(reset.state.guard,'');assert.deepEqual(reset.state.filters,{});
   assert.equal(turn('想喝清爽茶').state.guard,'');
@@ -72,4 +72,22 @@ test('no pearl is a persistent topping preference and repairs legacy preference 
   const legacy=turn('不要珍珠',{query:'',filters:{},guard:'忌口：我想要喝奶茶不要珍珠'});
   assert.equal(legacy.state.guard,'');assert.equal(legacy.state.filters.milkTea,true);
   assert.equal(engine.recommend(turn('不要珍珠',turn('花生過敏').state).input).blocked,true);
+});
+
+test('pearl milk tea shorthand follows the final exclusion and repairs prior blocked turns',()=>{
+  for(const message of ['我想要珍奶但是不要珍','珍奶不要珍珠','珍奶但別加珍珠','奶茶不想要珍珠']){
+    const a=turn(message);const b=turn('不要珍珠',a.state);
+    assert.equal(a.state.guard,'');assert.equal(a.state.filters.milkTea,true);assert.equal(a.state.filters.topping,undefined);
+    for(const step of [a,b]){
+      const response=engine.recommend(step.input);assert.equal(response.blocked,false);assert.ok(response.results.length);
+      for(const r of response.results)for(const variant of r.variants)assert.ok(!/珍珠|波霸/.test(variant.name+' '+variant.toppings.join(' ')));
+    }
+  }
+  const legacy=turn('不要珍珠',{query:'',filters:{topping:'珍珠'},guard:'忌口：我想要珍奶但是不要珍'});
+  assert.equal(legacy.state.guard,'');assert.equal(legacy.state.filters.topping,undefined);
+  assert.equal(engine.recommend(legacy.input).blocked,false);
+  const unknown=engine.recommend(turn('不要神秘配料').input);
+  assert.equal(unknown.blocked,true);assert.ok(unknown.warnings.some(w=>w.includes('還沒理解')));assert.ok(!unknown.warnings.some(w=>w.includes('過敏原')));
+  const clinical=turn('不要珍珠',{query:'',filters:{},guard:'忌口：我花生過敏，珍奶不要珍'});
+  assert.equal(engine.recommend(clinical.input).blocked,true);
 });

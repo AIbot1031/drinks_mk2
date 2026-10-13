@@ -56,6 +56,7 @@ async function switchAccount(user){
   const prefs=user?await api('/api/account/preferences'):guestFeedback();
   chatController?.reset();
   accountUser=user;if(user&&$('#account-dialog').open)$('#account-dialog').close();feedback=validateFeedback(prefs);confirmedFeedback=structuredClone(feedback);
+  await chatController?.setAccount(user);
   lastSettings=null;seen=[];$('#batch-actions').hidden=true;
   // A previous user's recommendations must not remain visible after switching accounts.
   $('#results').replaceChildren();$('#result-count').textContent='等你說說偏好';$('#result-status').textContent='';$('#result-warnings').hidden=true;$('#active-filters').replaceChildren();

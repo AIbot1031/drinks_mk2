@@ -14,6 +14,7 @@ runtime.mkdir(parents=True,exist_ok=True,mode=0o700)
 (runtime/'data').mkdir(exist_ok=True)
 (runtime/'training_artifacts').mkdir(exist_ok=True)
 shutil.copy2(ROOT/'scripts/macbert_agent.py',runtime/'scripts/macbert_agent.py')
+shutil.copy2(ROOT/'scripts/inference_audit.py',runtime/'scripts/inference_audit.py')
 shutil.copy2(ROOT/'data/catalog.json',runtime/'data/catalog.json')
 shutil.copy2(ROOT/'.semantic-key',runtime/'.semantic-key');(runtime/'.semantic-key').chmod(0o600)
 if not (runtime/'.venv-training').exists():

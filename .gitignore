@@ -21,3 +21,5 @@ internal_exports/
 training_artifacts/
 .semantic-key
 .venv-llm/
+
+.llm-key

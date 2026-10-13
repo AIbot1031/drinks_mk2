@@ -43,8 +43,11 @@
         <p class="chat-intro">一句話開始，也可以接著改預算、排除品牌或再看一批。由 Mac 上的 Qwen3-8B 理解對話與條件；飲料資料仍由資料庫篩選。</p>
         <div id="chat-filters" class="filter-tags" aria-label="目前對話條件"></div>
         <div id="chat-log" class="chat-log" role="log" aria-label="飲料推薦對話" aria-live="polite" aria-relevant="additions"></div>
-        <div class="presets"><button type="button" data-chat="清爽回甘，預算 60 元">清爽、60 元內</button><button type="button" data-chat="不要星巴克">不要星巴克</button><button type="button" data-chat="再推薦幾杯">再推薦幾杯</button></div>
+        <div id="chat-shortcuts" class="presets"><button type="button" data-chat="清爽回甘，預算 60 元">清爽、60 元內</button><button type="button" data-chat="不要星巴克">不要星巴克</button><button type="button" data-chat="再推薦幾杯">再推薦幾杯</button></div>
+        <button id="chat-shortcuts-edit" class="text-button" type="button" hidden>自訂快捷標籤</button><p id="chat-shortcuts-note" class="status" role="status"></p>
+        <dialog id="chat-shortcuts-dialog" class="account-dialog"><form id="chat-shortcuts-form"><div class="panel-heading"><h2>我的快捷標籤</h2><button id="chat-shortcuts-close" class="text-button" type="button" aria-label="關閉快捷標籤設定">關閉 ✕</button></div><p class="account-intro">設定按鈕名稱與點擊時送出的需求，最多 8 個，儲存後其他裝置登入也能使用。</p><div id="chat-shortcuts-rows"></div><button id="chat-shortcuts-add" class="secondary" type="button">＋ 新增標籤</button><div class="account-actions"><button id="chat-shortcuts-save" class="primary" type="submit">儲存設定</button></div><p id="chat-shortcuts-status" class="status" role="status"></p></form></dialog>
         <form id="chat-form" class="chat-composer"><label for="chat-message" class="sr-only">輸入你的飲料需求</label><textarea id="chat-message" maxlength="300" rows="2" required placeholder="例如：預算改成 80 元，想喝鮮奶茶"></textarea><button id="chat-send" class="primary" type="submit">送出 ↗</button></form>
+        <div id="chat-recovery" hidden><p>可以補充或修改條件，也可以清除本輪對話再試一次。</p><button id="chat-reset-bottom" class="text-button" type="button">重新開始</button></div>
         <p id="chat-status" class="status" role="status"></p>
       </section>
       <div class="workspace" id="manual-panel">

@@ -149,7 +149,7 @@ export function makeEngine(drinks: Drink[]) {
       }),
     };
     const trace = {
-      schemaVersion: 1, engineVersion: '2.3.0', input,
+      schemaVersion: 1, engineVersion: '2.3.1', input,
       understanding: {...parsed, parser:'rules', llmUsed:false},
       filtering: {sourceTotal:drinks.length, afterHardFilters:hardPool.length, afterDislikes:likedPool.length, afterSeenExclusions:pool.length, unknownNutrientsPassCaps:false},
       config: RANKING_CONFIG,

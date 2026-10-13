@@ -447,3 +447,33 @@ RelGT 夜間訓練流程：
 驗證：正式網站對話顯示 Qwen3-8B／MacBERT，「奶茶不要珍珠」正常出 6 張卡片，口味標籤不再留錯誤「不要」；截圖 /tmp/drinks-mk2-2.3-qwen.png。關係圖之前本機驗證截圖 /tmp/drinks-mk2-2.3-graph.png。最後本機 HTTP 測試 26/26；正式 HTTP 測試 26/26；Python 時序單元 5/5。
 Git 同步：實作 commit d4542ca6287b34eb9fda3ec6e04681e6c318062d 已推 main；v2.3.0 tag 與正式 Release 已發布 https://github.com/AIbot1031/drinks_mk2/releases/tag/v2.3.0 ，舊版 tags/releases 保留。GitHub Actions 38371683162 全部成功（型別、單元、時序資料、部署 dry-run）。檔案用途說明涵蓋 111 個追蹤檔，未追蹤密鑰、模型權重、原始互動或 Python 環境。
 限制與後續：RelGT 本輪真實 7 個目標的訓練完成並附前後報告，但未部署 B 權重，尚無跨日驗證或 04:00 自動訓練排程；Qwen 本次僅預訓練模型推論。Mac 離線則依既有雙層備援運作。
+
+[2026-10-13 17:15:17 Asia/Taipei] 2.3 追加：多輪 Qwen 主入口、簡稱理解與帳號快捷標籤
+規劃：使用者要求理解「珍奶但是不要珍」、卡住時下方重新開始、自訂帳號快捷標籤，並讓 Qwen 理解資料庫特徵與用戶偏好後交給 MacBERT。
+實作：共用簡稱與配料排除解析，否定配料優先、修復舊錯誤 guard；新增實際奶蓋／果肉／冰淇淋／茶凍／芋圓／芋泥排除。未知配料改追問，真正過敏限制保留。
+實作：Qwen 接收 drink-catalog-v1 特徵契約、最近 8 則對話與各最多 10 筆收藏／不喜歡特徵摘要，無帳號 ID 或憑證。action clarify 先追問，recommend 才交 MacBERT；未知排除強制先釐清，不採用模型猜測的配料；追問沒有 A／B 榜單。Qwen 提示詞版本 intent-v2，未訓練、未變更模型權重。
+實作：帳號可自訂最多 8 個快捷標籤（名稱 20 字／需求 300 字）；D1 0004 新欄位與按讚分開儲存，登入／登出切換且跨裝置保留。下方恢復按鈕在卡住、無結果或錯誤時顯示，清除對話與批次、保留收藏和快捷標籤。
+驗證：本機 HTTP 29/29，正式 HTTP 29/29；型別与 JS/Python 語法通過。初期新增測試取錯結果配料層級，修正為逐杯型驗證後通過。實測 Qwen 對「想喝飲料」先追問、補充「濃郁奶茶不要珍珠」後 MacBERT 回 6 張卡片；未知配料先問完整名稱，回答珍珠後正常 6 張卡片，各杯型無珍珠／波霸。
+驗證：新註冊隔離測試帳號完成標籤新增／修改／刪除及雲端保存，不使用真實用戶帳號。跨帳號不可讀取對方標籤，同源、數量與字數驗證通過，按讚欄位未被覆蓋。最終 UI 恢復與重新載入仍待最後檢查。
+部署：D1 0004 本地／遠端已套用；Worker 8a8d9140-3bb0-49a4-a412-f7c0772a956a 上線；Qwen Mac 常駐脚本已更新並重啟。Git 同步待完成。說明 docs/Qwen對話服務與條件安全.md，檔案用途說明同步新增。
+限制：小模型輸出仍可能不合法，後端驗證與规则／TF-IDF 備援保持；未實作糖度、冰量或過敏安全保證。此次沒有模型訓練，不產生虛構訓練比較報告。
+
+[2026-10-13 17:40:08 Asia/Taipei] Qwen 本機部署位置與風險控制
+規劃：使用者要求查看 Qwen 所在位置，並限制電腦資料外洩風險。執行目錄 Library/Application Support/DrinksMk2LLM、模型 training_artifacts/qwen3-8b-4bit、登入後常駐 LaunchAgent 已列入文件，執行程式以 Codex 檔案頁排入開啟。
+實作：Qwen 新增獨立 LLM_KEY，僅允許 llm 角色連線；不能使用 MacBERT 角色或訓練事件匯出。舊 SEMANTIC_KEY 副本從 Qwen 執行目錄移除，其他服務金鑰保持。金鑰忽略 Git、權限 600。
+實作：Qwen 與固定目的地 relay 都透過 macOS sandbox-exec 啟動。Qwen 禁止讀取其他 /Users 檔案、不能寫入模型／程式／隔離設定／金鑰、不能啟動 shell／子程序或開放監聽。只能寫自己 logs/cache/tmp；Python 必要基礎環境可讀。
+實作：Qwen 只允許連 localhost:52791；loopback relay 檢查 TLS ClientHello 的 SNI 為本站後，才轉送到固定 Worker:443，保留端到端 TLS 與憑證驗證。relay 只允許必要 HTTPS 與本機系統 DNS socket，不接收任意目的地。HF offline／停用 telemetry 已設定，模型不提供檔案、執行指令、瀏覽器或任意 HTTP 工具。
+驗證：5 個 OS 實測（私人文件讀取、程式覆寫、shell、直接其他外連、監聽）全部遭拒；其他 TLS hostname 被拒；TLS parser 3 個 OpenSSL／錯誤格式單元通過。Node 正式角色授權測試為 401／401／426，完整正式 HTTP 30/30，本機 HTTP 30/30；Python 時序 5/5。
+驗證：限制實作初期，全檔案白名單阻止 Python 啟動，改為禁止其他使用者目錄資料並保持系統既有權限。早期轉接名稱與 socket 變數衝突、DNS socket 被阻擋造成規則備援，修正後實際 Qwen 接通、兩組追問與補充各正常輸出 6 張卡片。TLS relay 重啟時短暫備援，恢復 ready 後重測通過。Python urllib 遠端檢查遇 403，不當成 Worker 授權成功；改由 Node 整合測試確認精確狀態。本機密鑰環境初次未載入導致一项 401，重啟開發服務後 30 項皆通過。
+部署：Cloudflare fa01b764-8989-4a8d-b210-12fc34a50aa2；Qwen 與 MacBERT 同時 ready。relay 僅 127.0.0.1:52791，未開放外網埠。隔離規則沒有無隔離自動備援；故障仍由網站規則與 TF-IDF 接手。
+限制：不是虛擬機與零風險保證，系統檔案仍依 macOS 原權限；sandbox-exec 已 deprecated，需留意 OS 相容性。推薦對話既有紀錄仍在自己的 Cloudflare D1，Mac 收到對話與飲料偏好摘要。未做新訓練、未改模型權重。說明 docs/Qwen本機安全與部署位置.md；可執行 scripts/verify_qwen_security.py 重驗。
+
+[2026-10-13 18:13:34 Asia/Taipei] 本機資源與動作監控完成、2.3.1 修正版準備發布
+規劃：依使用者要求建立推論 Mac 的小型資源監控程式，預設只在本機，不新增公開雲端遙控入口。
+實作：本機 127.0.0.1:8792、local.drinks-mk2.monitor LaunchAgent、Application Support/DrinksMk2Monitor；每 3 秒查看 Qwen、MacBERT、relay 與監控本身的 PID／CPU／RSS／執行時間。模型回報 MLX／MPS GPU 配置記憶體，與 RSS 不重複加總，沒有假造 GPU 使用率。
+實作：安全動作白名單僅記模型載入、預熱、連線、推論、排序候選數與耗時；丟棄 prompt／key／userId 等欄位。前端讀取最近 40 筆安全動作，不顯示真實用戶對話或帳號；不把監控資料送往雲端。Host／Origin／固定路徑檢查，不提供檔案或命令操作 API。
+驗證：實際推論後出現 Qwen 與 MacBERT inference_done，監控 JSON 不含原始測試文字。異常 Origin 403；Host 初次以 Node fetch 指定時被客戶端忽略，改用 curl 與 Python HTTP 實測正確為 403；任意金鑰檔案路徑 404。Python 安全／監控單元 5/5、時序單元 5/5、JS 與 Python 語法檢查通過。
+驗證：正式网站最終 2.3.1 整合／單元 30/30 通過，型別通過；Qwen 隔離 5 項 OS 測試與拒絕其他 TLS 網域仍通過。UI 新增／修改／刪除標籤、儲存、重新載入後保留、下方重新開始清條件但保留標籤、登出恢復預設皆已驗證；測試帳號已登出。
+驗證：本機監控 UI 真實顯示 32 GB／12 核心、各服務約 5 GB RSS 加總（單次快照可能重疊，不是負载基準）；截圖 /tmp/drinks-mk2-project-monitor.png。
+部署：Cloudflare 最新 918422fd-4587-4363-8416-30f8ff466719，health／engine 改為 2.3.1，網頁仍顯示 2.3；Mac 三個推論相關服務與監控常駐。為保留原 v2.3.0，不移動舊 tag，後續完整程式將發布為 v2.3.1。Git 同步待完成。
+限制：只監控這幾個本機服務，不含 Cloudflare、開發工具、其他程式或尚未接入的訓練；不是完整系統檔案鑑識，不保證零外洩。監控頁只能從推論 Mac 的 localhost 存取；GPU 數值為最近模型回報而非即時使用率。標準輸出日誌尚未自動輪替。文件 docs/本機專題監控使用說明.md，所有 127 個追蹤檔已有用途說明，金鑰／權重／個資未入 Git。

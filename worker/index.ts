@@ -1,3 +1,4 @@
+import {catalogFeatures,featureSchemaVersion,preferenceProfile,chatHistory} from './catalog-features';
 import catalog from '../data/catalog.json';
 import {groupProducts,favoriteProducts} from './products';
 import { makeEngine } from './recommend';
@@ -39,9 +40,10 @@ export default {
     try {
       if(['/api/semantic/connect','/api/training/events'].includes(url.pathname)){
         const supplied=request.headers.get('Authorization')?.replace(/^Bearer /,'')??'';
-        if(!env.SEMANTIC_KEY||supplied.length>200)return json({error:'未授權'},401);
+        const expected=url.pathname==='/api/semantic/connect'&&url.searchParams.get('role')==='llm'?env.LLM_KEY:env.SEMANTIC_KEY;
+        if(!expected||supplied.length>200)return json({error:'未授權'},401);
         const encoder=new TextEncoder();
-        const [a,b]=await Promise.all([crypto.subtle.digest('SHA-256',encoder.encode(supplied)),crypto.subtle.digest('SHA-256',encoder.encode(env.SEMANTIC_KEY))]);
+        const [a,b]=await Promise.all([crypto.subtle.digest('SHA-256',encoder.encode(supplied)),crypto.subtle.digest('SHA-256',encoder.encode(expected))]);
         if(!crypto.subtle.timingSafeEqual(a,b))return json({error:'未授權'},401);
         if(url.pathname==='/api/training/events'){
           if(request.method!=='GET')return json({error:'請求方法不支援'},405);
@@ -57,7 +59,7 @@ export default {
       if(url.pathname==='/api/semantic/status'&&request.method==='GET')return json(await env.SEMANTIC_BRIDGE.getByName('inference-v2').status());
       if(url.pathname.startsWith('/api/account/'))return await accountApi(request,env,readBody,drinks);
       if(url.pathname.startsWith('/api/internal/'))return await internalApi(request,env,readBody);
-      if (url.pathname === '/api/health' && request.method === 'GET') return json({ok: true, total: catalog.total, version: '2.3.0'});
+      if (url.pathname === '/api/health' && request.method === 'GET') return json({ok: true, total: catalog.total, version: '2.3.1'});
       if (url.pathname === '/api/meta' && request.method === 'GET') return json({total: catalog.total, brands: catalog.brands, missing: catalog.missing, tea: [...new Set(drinks.flatMap(d=>d.tea))].sort(), toppings: [...new Set(drinks.flatMap(d=>d.toppings))].sort()});
       if (url.pathname === '/api/catalog/favorites' && request.method === 'POST') {
         const origin=request.headers.get('origin');
@@ -80,18 +82,21 @@ export default {
         if (origin && origin !== url.origin) return json({error: '請從本站送出查詢'}, 403);
         const body = await readBody(request);
         let conversation = url.pathname === '/api/chat/recommend' ? conversationTurn(body,Object.keys(catalog.brands)) : null;
-        let llm:{modelVersion:string;durationMs:number;ack:string}|null=null;
-        if(conversation&&!conversation.next&&!conversation.reset&&!conversation.state.guard){
+        const user=await currentUser(request,env.TRACE_DB);
+        const userPrefs=user?storedPreferences(user.preferences):{likedIds:validateInput({query:'',likedIds:(body as Record<string,unknown>).likedIds,dislikedIds:(body as Record<string,unknown>).dislikedIds}).likedIds,dislikedIds:validateInput({query:'',dislikedIds:(body as Record<string,unknown>).dislikedIds}).dislikedIds};
+        const history=conversation?chatHistory((body as Record<string,unknown>).history):[];
+        let llm:{modelVersion:string;durationMs:number;ack:string;clarify:boolean}|null=null;
+        if(conversation&&!conversation.reset&&!(/過敏|花生|堅果|乳糖不耐|麩質/.test(conversation.state.guard)||(/忌口/.test(conversation.state.guard)&&!conversation.state.guard.startsWith('忌口：')))){
           try{
             const result=await env.SEMANTIC_BRIDGE.getByName('inference-v2').conversation({message:conversation.message,state:conversation.state,
-              brands:Object.keys(catalog.brands),tea:[...new Set(drinks.flatMap(d=>d.tea))],toppings:[...new Set(drinks.flatMap(d=>d.toppings))]});
+              history,preferenceProfile:preferenceProfile(drinks,userPrefs.likedIds,userPrefs.dislikedIds),catalogFeatures:catalogFeatures(drinks),brands:Object.keys(catalog.brands),tea:[...new Set(drinks.flatMap(d=>d.tea))],toppings:[...new Set(drinks.flatMap(d=>d.toppings))]});
             const parsed=applyLlmUnderstanding(conversation,result,Object.keys(catalog.brands),[...new Set(drinks.flatMap(d=>d.tea))],[...new Set(drinks.flatMap(d=>d.toppings))]);
-            if(parsed){conversation={...conversation,state:parsed.state,input:parsed.input};llm={modelVersion:parsed.modelVersion,durationMs:parsed.durationMs,ack:parsed.ack};}
+            if(parsed){conversation={...conversation,state:parsed.state,input:parsed.input};llm={modelVersion:parsed.modelVersion,durationMs:parsed.durationMs,ack:parsed.ack,clarify:parsed.clarify};}
           }catch{/* Keep the validated rule turn; no relaxed constraints. */}
         }
         const input = conversation ? validateInput({...conversation.input, likedIds:(body as Record<string,unknown>).likedIds, dislikedIds:(body as Record<string,unknown>).dislikedIds, excludedIds:conversation.next ? (body as Record<string,unknown>).excludedIds : []}) : validateInput(body);
-        const user=await currentUser(request,env.TRACE_DB);
         if(user){const prefs=storedPreferences(user.preferences);input.likedIds=prefs.likedIds;input.dislikedIds=prefs.dislikedIds;}
+        if(llm?.clarify)input.query='未辨識條件：等待對話補充';
         const pool=engine.candidatePool(input);
         let semantic;
         if(pool.length){
@@ -102,7 +107,9 @@ export default {
           }catch{semantic={scores:[],modelVersion:'',durationMs:0,fallbackReason:'Mac inference bridge error'};}
         }
         const {response,trace}=engine.recommendWithTrace(input,semantic);
-        if(conversation)Object.assign(trace.understanding,{llmUsed:!!llm,parser:llm?'qwen3-8b-mac':'rules',llmModelVersion:llm?.modelVersion??null,llmDurationMs:llm?.durationMs??null});
+        if(llm?.clarify){response.results=[];response.blocked=false;response.warnings=[];}
+        if(conversation){response.warnings=[...new Set([...response.warnings,...conversation.warnings])];}
+        if(conversation)Object.assign(trace.understanding,{llmUsed:!!llm,parser:llm?'qwen3-8b-mac':'rules',llmModelVersion:llm?.modelVersion??null,llmDurationMs:llm?.durationMs??null,llmAction:llm?.clarify?'clarify':'recommend',llmFeatureSchema:llm?featureSchemaVersion:null,llmCatalogVersion:llm?catalogVersion:null,consumerWarnings:response.warnings});
         const traceId=crypto.randomUUID();
         const createdAt=new Date().toISOString();
         const record={traceId,createdAt,...trace,...(conversation ? {interface:'conversation',conversation:{message:conversation.message,state:conversation.state,next:conversation.next}} : {interface:'manual'})};
@@ -113,7 +120,7 @@ export default {
           return json({error:'推薦紀錄暫時無法儲存，請稍後重試'},503);
         }
         console.log(JSON.stringify({event:'recommendation_saved',traceId,resultCount:response.results.length}));
-        return json({...response,traceId,...(conversation ? {state:conversation.state,next:conversation.next,chatMode:llm?'qwen3-8b':conversation.next||conversation.reset?'quick-command':'rules-fallback',chatModel:llm?.modelVersion??null,assistantMessage:response.blocked ? '這些條件目前無法確認，請查看說明。重新開始可以清除本輪條件。' : response.results.length ? `${llm?.ack??''} 找到 ${response.results.length} 杯符合條件的飲料。你可以繼續調整條件，或說「再推薦幾杯」。` : '目前沒有符合所有條件的飲料。你可以調整預算或條件，我不會自動放寬限制。'} : {})});
+        return json({...response,traceId,...(conversation ? {state:conversation.state,next:conversation.next,chatMode:llm?'qwen3-8b':conversation.next||conversation.reset?'quick-command':conversation.state.guard?'clarification':'rules-fallback',chatModel:llm?.modelVersion??null,needsClarification:llm?.clarify??false,assistantMessage:llm?.clarify?llm.ack:response.blocked ? '這些條件目前無法確認，請查看說明。重新開始可以清除本輪條件。' : response.results.length ? `${llm?.ack??''} 找到 ${response.results.length} 杯符合條件的飲料。你可以繼續調整條件，或說「再推薦幾杯」。` : '目前沒有符合所有條件的飲料。你可以調整預算或條件，我不會自動放寬限制。'} : {})});
       }
       return json({error: '找不到此 API 或請求方法不支援'}, 404);
     } catch (error) {

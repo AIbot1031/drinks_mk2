@@ -1,3 +1,4 @@
+import {normalizeDrinkLanguage, stripToppingExclusions, sameTopping, toppingTerms} from './drink-language';
 import type { Filters, RecommendInput, Understanding } from './types';
 
 const bounded = (value: unknown, name: string, max: number): number | undefined => {
@@ -20,7 +21,7 @@ export function validateInput(value: unknown): RecommendInput {
   if(!Array.isArray(excludedBrands)||excludedBrands.length>50||excludedBrands.some(b=>typeof b!=='string'||!b.trim()||b.length>60))throw new Error('排除品牌須為品牌名稱清單，最多 50 個');
   const milk = str('milk');
   const excludedToppings=f.excludedToppings??[];
-  if(!Array.isArray(excludedToppings)||excludedToppings.length>12||excludedToppings.some(t=>typeof t!=='string'||!['珍珠','波霸','椰果','布丁','仙草','燕麥','粉粿'].includes(t)))throw new Error('排除配料選項無效');
+  if(!Array.isArray(excludedToppings)||excludedToppings.length>20||excludedToppings.some(t=>typeof t!=='string'||!toppingTerms.includes(t)))throw new Error('排除配料選項無效');
   if(f.milkTea!==undefined&&typeof f.milkTea!=='boolean')throw new Error('奶茶條件格式有誤');
   if (milk && !['any', 'none', 'fresh', 'plant'].includes(milk)) throw new Error('奶類選項無效');
   const ids = (key: string, max = 200): string[] => {
@@ -34,7 +35,7 @@ export function validateInput(value: unknown): RecommendInput {
 }
 
 export function understand(input: RecommendInput, brands: string[]): Understanding {
-  const q = input.query;
+  const q = normalizeDrinkLanguage(input.query);
   const filters = {...input.filters};
   const warnings: string[] = [];
   if(filters.excludedBrands?.some(b=>!brands.includes(b))){warnings.push('排除品牌中有不支援的名稱，請從品牌選單重新選擇。');return {filters,warnings,blocked:true,preferences:[]};}
@@ -68,12 +69,16 @@ export function understand(input: RecommendInput, brands: string[]): Understandi
     warnings.push(`「${filters.brand}」同時被指定與排除，請調整品牌設定後再推薦。`);
     return {filters,warnings,blocked:true,preferences:[]};
   }
+  if (/^未辨識條件：/.test(q)||(/^忌口：/.test(q)&&!/過敏|花生|堅果|乳糖不耐|麩質/.test(q.slice(3)))) {
+    warnings.push('我還沒理解要排除的項目。請補充完整名稱，例如「不要珍珠」，或按下方「重新開始」換個需求。');
+    return {filters,warnings,blocked:true,preferences:[]};
+  }
   if (/過敏|花生|堅果|乳糖不耐|麩質|忌口/.test(q)) {
     warnings.push('目前過敏原欄位尚未核對，無法提供符合過敏或忌口限制的推薦。請先向店家確認成分。');
     return {filters, warnings, blocked: true, preferences: []};
   }
   if (/無糖|不加糖|不要糖|半糖|微糖|少糖|去冰|溫熱|熱飲/.test(q)) warnings.push('資料缺少可選甜度與冷熱的完整規則，這些條件需向店家確認，未作為已符合的篩選條件。');
-  const withoutToppings=q.replace(/(?:不要加|不要|不加|不放|排除)\s*(珍珠|波霸|椰果|布丁|仙草|燕麥|粉粿)/g,(_,t)=>{filters.excludedToppings=[...new Set([...(filters.excludedToppings??[]),t])];return '';});
+  const withoutToppings=stripToppingExclusions(q,t=>{filters.excludedToppings=[...new Set([...(filters.excludedToppings??[]),t])];});
   if (/排除|不喝(?:紅茶|綠茶|青茶|烏龍)/.test(withoutToppings)) {
     warnings.push('目前無法完整驗證文字中的排除條件；請改用支援的篩選條件後再查詢。');
     return {filters, warnings, blocked: true, preferences: []};
@@ -82,7 +87,7 @@ export function understand(input: RecommendInput, brands: string[]): Understandi
   if(filters.milkTea&&filters.milk==='none'){
     warnings.push('奶茶需求與無奶條件衝突，請先統一條件。');return {filters,warnings,blocked:true,preferences:[]};
   }
-  const requestedToppings = ['珍珠', '椰果', '布丁', '仙草', '燕麥', '粉粿'].filter(t => withoutToppings.includes(t));
+  const requestedToppings = toppingTerms.filter(t => withoutToppings.includes(t)&&!filters.excludedToppings?.some(x=>sameTopping(x,t)));
   if (!filters.topping && requestedToppings.length === 1) filters.topping = requestedToppings[0];
   if(filters.topping&&filters.excludedToppings?.includes(filters.topping)){
     warnings.push('同一配料同時被指定與排除，請調整條件。');return {filters,warnings,blocked:true,preferences:[]};

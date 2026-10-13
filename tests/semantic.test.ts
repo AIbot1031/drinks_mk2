@@ -1,3 +1,4 @@
+import {existsSync,readFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {validateSemanticReply} from '../worker/semantic-protocol';
@@ -17,4 +18,12 @@ test('Mac scores cannot bypass candidate filters or inject nonfinite, duplicate 
   assert.equal(trace.routeA.modelVersion,'macbert-test');
   const fallback=engine.recommendWithTrace(input,{scores:[],modelVersion:'',durationMs:0,fallbackReason:'offline'});
   assert.equal(fallback.response.mode.routeA,'tf-idf');assert.equal(fallback.trace.routeA.fallbackReason,'offline');
+});
+
+
+test('Qwen service credential cannot use training export or MacBERT role',{skip:!process.env.TEST_BASE_URL||!existsSync('.llm-key')},async()=>{
+ const base=process.env.TEST_BASE_URL!;const key=readFileSync('.llm-key','utf8').trim();
+ for(const [path,status] of [['/api/training/events',401],['/api/semantic/connect',401],['/api/semantic/connect?role=llm',426]] as const){
+  const response=await fetch(base+path,{headers:{Authorization:'Bearer '+key}});assert.equal(response.status,status);
+ }
 });
