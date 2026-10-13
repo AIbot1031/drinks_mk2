@@ -22,6 +22,26 @@ test('new workbook keeps all cup variants, stable unique IDs and source estimate
   assert.equal(eligible(estimated,{maxCaffeine:10000}),false);
   assert.ok(drinks.some(d=>d.tea.includes('抹茶')));
 });
+test('milk modes audit the full catalogue and product cards keep only eligible variants at minimum price',()=>{
+  assert.equal(engine.recommend(input('植物奶',{milk:'fresh'})).blocked,true);
+  assert.equal(engine.recommend(input('鮮奶',{milk:'plant'})).blocked,true);
+  for(const milk of ['none','fresh','plant'] as const){
+    const result=engine.recommend(input('',{milk}));
+    const keys=result.results.map(r=>JSON.stringify([r.brand,r.name]));
+    assert.equal(new Set(keys).size,keys.length);
+    for(const row of result.results){
+      assert.equal(row.drink.price,Math.min(...row.variants.map(d=>d.price??Infinity)));
+      assert.ok(row.variants.every(d=>eligible(d,{milk})&&d.brand===row.brand&&d.name===row.name));
+    }
+    for(const d of drinks.filter(d=>eligible(d,{milk}))){
+      if(milk==='none')assert.ok(d.noMilk&&!d.milk.length&&!d.milkConflict);
+      else {assert.ok(d.milk.includes(milk==='fresh'?'鮮奶':'植物奶'));if(milk==='plant')assert.ok(!d.milk.includes('鮮奶')&&!d.milk.includes('奶精'));}
+    }
+  }
+  const first=engine.recommend(input('清爽'));
+  const next=engine.recommend({...input('清爽'),excludedIds:first.results.map(r=>r.id)});
+  assert.ok(next.results.every(r=>!first.results.some(old=>r.brand===old.brand&&r.name===old.name)));
+});
 test('hard constraints are enforced in both retrieval paths and final results', () => {
   const filters = {maxPrice:60, maxCalories:200, maxCaffeine:100, milk:'none'};
   const result = engine.recommend(input('想喝清爽茶', filters));

@@ -1,0 +1,772 @@
+{
+  "total_rows_checked": 5781,
+  "no_milk_eligible": 3326,
+  "source_conflicts": [
+    {
+      "id": "d_041f2ce5ad0a0c24_1",
+      "sourceRow": 732,
+      "brand": "日出茶太",
+      "name": "蜜桃啵啵乳酸",
+      "milkDescription": "乳酸飲品",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_bbe5087ee9f501fa_1",
+      "sourceRow": 745,
+      "brand": "日出茶太",
+      "name": "紫玫瑰荔枝凍飲",
+      "milkDescription": "乳酸飲品",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_0e0dfecf388b2e5b_1",
+      "sourceRow": 777,
+      "brand": "日出茶太",
+      "name": "紫玫瑰荔枝凍飲",
+      "milkDescription": "乳酸飲品",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_126a9756bc98ae12_1",
+      "sourceRow": 1590,
+      "brand": "茶之魔手",
+      "name": "芋頭沙牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_d2933e2e4d6c0c52_1",
+      "sourceRow": 1591,
+      "brand": "茶之魔手",
+      "name": "芋頭沙牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_20416ea1409d476c_1",
+      "sourceRow": 2173,
+      "brand": "茶之魔手",
+      "name": "芋頭沙牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_6f906d40c9933279_1",
+      "sourceRow": 2174,
+      "brand": "茶之魔手",
+      "name": "芋頭沙牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_abb9c269460916dc_1",
+      "sourceRow": 2673,
+      "brand": "COMEBUY",
+      "name": "金芒果優酪",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_54ce657213aa98e5_1",
+      "sourceRow": 3191,
+      "brand": "清心福全",
+      "name": "益生菌纖維奶茶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_8f5a4c34b8693c43_1",
+      "sourceRow": 3192,
+      "brand": "清心福全",
+      "name": "益生菌纖維奶茶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_2bad789330f7b386_1",
+      "sourceRow": 3533,
+      "brand": "50嵐",
+      "name": "波霸紅茶拿鐵",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_94bdcfe87d011374_1",
+      "sourceRow": 3534,
+      "brand": "50嵐",
+      "name": "波霸紅茶拿鐵",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_bcd81b0afc55b66f_1",
+      "sourceRow": 3561,
+      "brand": "50嵐",
+      "name": "烏龍奶茶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_afdd93164ca3376c_1",
+      "sourceRow": 3562,
+      "brand": "50嵐",
+      "name": "烏龍奶茶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_be9b8747aed50ce0_1",
+      "sourceRow": 4050,
+      "brand": "先喝道",
+      "name": "太妃蜜桃風味厚奶霜",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_fa0563aeac6036d8_1",
+      "sourceRow": 4051,
+      "brand": "先喝道",
+      "name": "太妃風味伯爵厚奶霜",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_5c973788fd1c6942_1",
+      "sourceRow": 4052,
+      "brand": "先喝道",
+      "name": "太妃風味錫蘭厚奶霜",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_c8b142f408dbcbee_1",
+      "sourceRow": 4078,
+      "brand": "先喝道",
+      "name": "太妃蜜桃風味厚奶霜",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_1bd5f91365105ec1_1",
+      "sourceRow": 4079,
+      "brand": "先喝道",
+      "name": "太妃風味伯爵厚奶霜",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_8005b91709d525b2_1",
+      "sourceRow": 4080,
+      "brand": "先喝道",
+      "name": "太妃風味錫蘭厚奶霜",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_b2d648191aa751d8_1",
+      "sourceRow": 4430,
+      "brand": "得正",
+      "name": "優酪春烏龍",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_34ccebf5f43b7f54_1",
+      "sourceRow": 4431,
+      "brand": "得正",
+      "name": "優酪春烏龍",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_95ebb2cb32f3f90f_1",
+      "sourceRow": 4566,
+      "brand": "上宇林",
+      "name": "草莓牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_ca9daaf5ffb1c04a_1",
+      "sourceRow": 4569,
+      "brand": "上宇林",
+      "name": "紅豆麻糬牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_77eb645ef024b7b2_1",
+      "sourceRow": 4672,
+      "brand": "上宇林",
+      "name": "草莓牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_1f1690e00fb38aa2_1",
+      "sourceRow": 4675,
+      "brand": "上宇林",
+      "name": "紅豆麻糬牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_4b96df849d2c1cf1_1",
+      "sourceRow": 5038,
+      "brand": "五桐號",
+      "name": "藍莓優格蜜桃雪泥",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_bd54701c9607619a_1",
+      "sourceRow": 5096,
+      "brand": "拾汣茶屋",
+      "name": "靜岡抹茶生乳",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_2948f31bbc8df305_1",
+      "sourceRow": 5097,
+      "brand": "拾汣茶屋",
+      "name": "靜岡抹茶生乳",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_b90070cc05e6ab37_1",
+      "sourceRow": 5164,
+      "brand": "拾汣茶屋",
+      "name": "中焙生乳紅茶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_6e18db4a7a4bf9be_1",
+      "sourceRow": 5165,
+      "brand": "拾汣茶屋",
+      "name": "中焙生乳紅茶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_88b25ed730c124e4_1",
+      "sourceRow": 5289,
+      "brand": "萬波島嶼紅茶",
+      "name": "蘭葉那堤",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_3ebc8b6c9eb6ab0e_1",
+      "sourceRow": 5290,
+      "brand": "萬波島嶼紅茶",
+      "name": "蘭葉那堤",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_da0967782f0b3de9_1",
+      "sourceRow": 5291,
+      "brand": "萬波島嶼紅茶",
+      "name": "鐵觀音那堤",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_f49b4fd464d3abc4_1",
+      "sourceRow": 5292,
+      "brand": "萬波島嶼紅茶",
+      "name": "鐵觀音那堤",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_73c3df6033370c8a_1",
+      "sourceRow": 5293,
+      "brand": "萬波島嶼紅茶",
+      "name": "麗雅那堤",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_4b4ffb14f3fa8b1c_1",
+      "sourceRow": 5294,
+      "brand": "萬波島嶼紅茶",
+      "name": "麗雅那堤",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_3cf96b214053c413_1",
+      "sourceRow": 5335,
+      "brand": "萬波島嶼紅茶",
+      "name": "蘭葉那堤",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_428582157235a1c9_1",
+      "sourceRow": 5336,
+      "brand": "萬波島嶼紅茶",
+      "name": "蘭葉那堤",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_a68020b25e4201a2_1",
+      "sourceRow": 5337,
+      "brand": "萬波島嶼紅茶",
+      "name": "鐵觀音那堤",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_1ff1c82bdae41c0d_1",
+      "sourceRow": 5338,
+      "brand": "萬波島嶼紅茶",
+      "name": "鐵觀音那堤",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_b0ad16ddb948ca20_1",
+      "sourceRow": 5339,
+      "brand": "萬波島嶼紅茶",
+      "name": "麗雅那堤",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_ba60cf07f147d5dd_1",
+      "sourceRow": 5340,
+      "brand": "萬波島嶼紅茶",
+      "name": "麗雅那堤",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_d8bf8562da604dac_1",
+      "sourceRow": 5373,
+      "brand": "萬波島嶼紅茶",
+      "name": "蘭葉那堤",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_cf06a4d3465405b3_1",
+      "sourceRow": 5374,
+      "brand": "萬波島嶼紅茶",
+      "name": "鐵觀音那堤",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_d8bf8562da604dac_2",
+      "sourceRow": 5375,
+      "brand": "萬波島嶼紅茶",
+      "name": "蘭葉那堤",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_91b09ca47206bd10_1",
+      "sourceRow": 5376,
+      "brand": "萬波島嶼紅茶",
+      "name": "麗雅那堤",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_406797748bfd45d6_1",
+      "sourceRow": 5397,
+      "brand": "吳家紅茶冰",
+      "name": "綠茶牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_1d31dea3dad9b567_1",
+      "sourceRow": 5398,
+      "brand": "吳家紅茶冰",
+      "name": "綠茶牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_bf85ec37e481240f_1",
+      "sourceRow": 5413,
+      "brand": "吳家紅茶冰",
+      "name": "紅茶牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_7d60fad4abe61fd6_1",
+      "sourceRow": 5414,
+      "brand": "吳家紅茶冰",
+      "name": "紅茶牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_2dc8a97f75c77e4e_1",
+      "sourceRow": 5419,
+      "brand": "吳家紅茶冰",
+      "name": "特濃紅茶牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_d2fa8c549d72c6c1_1",
+      "sourceRow": 5420,
+      "brand": "吳家紅茶冰",
+      "name": "特濃紅茶牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_caf275c045eddaea_1",
+      "sourceRow": 5424,
+      "brand": "吳家紅茶冰",
+      "name": "紅糖珍珠牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_1dd773657de2a9fe_1",
+      "sourceRow": 5433,
+      "brand": "吳家紅茶冰",
+      "name": "冬瓜牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_504ff59eb42976ec_1",
+      "sourceRow": 5434,
+      "brand": "吳家紅茶冰",
+      "name": "冬瓜牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_46bbab5b27a68223_1",
+      "sourceRow": 5455,
+      "brand": "吳家紅茶冰",
+      "name": "麥香牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_dd41b0c957db939c_1",
+      "sourceRow": 5456,
+      "brand": "吳家紅茶冰",
+      "name": "麥香牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_9a67ea680ec0ca7f_1",
+      "sourceRow": 5481,
+      "brand": "吳家紅茶冰",
+      "name": "咖啡牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_c2eb62c2c88dffcd_1",
+      "sourceRow": 5482,
+      "brand": "吳家紅茶冰",
+      "name": "咖啡牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_6888378784e3ef49_1",
+      "sourceRow": 5485,
+      "brand": "吳家紅茶冰",
+      "name": "特濃紅茶牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_96d6ee8885d605d2_1",
+      "sourceRow": 5486,
+      "brand": "吳家紅茶冰",
+      "name": "特濃紅茶牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_1b58ca3d0172d9a6_1",
+      "sourceRow": 5504,
+      "brand": "吳家紅茶冰",
+      "name": "綠茶牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_675ae222ce5e34af_1",
+      "sourceRow": 5505,
+      "brand": "吳家紅茶冰",
+      "name": "綠茶牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_f2cd4a916f1f8bf1_1",
+      "sourceRow": 5520,
+      "brand": "吳家紅茶冰",
+      "name": "紅茶牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_b821ee15fe75ead7_1",
+      "sourceRow": 5521,
+      "brand": "吳家紅茶冰",
+      "name": "紅茶牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_8158da7060227572_1",
+      "sourceRow": 5524,
+      "brand": "吳家紅茶冰",
+      "name": "特濃紅茶牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_46d6c2ca26ddb1d9_1",
+      "sourceRow": 5525,
+      "brand": "吳家紅茶冰",
+      "name": "特濃紅茶牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_f5ada91ba3995fe7_1",
+      "sourceRow": 5534,
+      "brand": "吳家紅茶冰",
+      "name": "冬瓜牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_88a0f7512de8cf66_1",
+      "sourceRow": 5535,
+      "brand": "吳家紅茶冰",
+      "name": "冬瓜牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_8b8897ac552dc8a7_1",
+      "sourceRow": 5538,
+      "brand": "吳家紅茶冰",
+      "name": "特濃冬瓜牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_46bfbcce3efb1340_1",
+      "sourceRow": 5539,
+      "brand": "吳家紅茶冰",
+      "name": "特濃冬瓜牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_7d729e0270c4a494_1",
+      "sourceRow": 5558,
+      "brand": "吳家紅茶冰",
+      "name": "麥香牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_6d4e264d065e036c_1",
+      "sourceRow": 5559,
+      "brand": "吳家紅茶冰",
+      "name": "麥香牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_d51892d6ee0c7132_1",
+      "sourceRow": 5586,
+      "brand": "吳家紅茶冰",
+      "name": "咖啡牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_fe6c1e5b21c2dec4_1",
+      "sourceRow": 5587,
+      "brand": "吳家紅茶冰",
+      "name": "咖啡牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_50571a1fbe5c764f_1",
+      "sourceRow": 5591,
+      "brand": "吳家紅茶冰",
+      "name": "黑糖粉粿牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_2ee1f57e53dfb1c5_1",
+      "sourceRow": 5619,
+      "brand": "紅茶洋行",
+      "name": "麥茶牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_372eb6abcc543a5e_1",
+      "sourceRow": 5620,
+      "brand": "紅茶洋行",
+      "name": "麥茶牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_70b1d27eb24ae49a_1",
+      "sourceRow": 5635,
+      "brand": "紅茶洋行",
+      "name": "紅茶牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_302c41652bdc777e_1",
+      "sourceRow": 5636,
+      "brand": "紅茶洋行",
+      "name": "紅茶牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_53f1561ffd86d926_1",
+      "sourceRow": 5760,
+      "brand": "紅茶洋行",
+      "name": "麥茶牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_2954647a797fde8b_1",
+      "sourceRow": 5761,
+      "brand": "紅茶洋行",
+      "name": "麥茶牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_e93efed91b8975e5_1",
+      "sourceRow": 5766,
+      "brand": "紅茶洋行",
+      "name": "紅茶牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    },
+    {
+      "id": "d_3908f04a116d09ba_1",
+      "sourceRow": 5767,
+      "brand": "紅茶洋行",
+      "name": "紅茶牛奶",
+      "milkDescription": "無奶",
+      "milk": [],
+      "milkConflict": true
+    }
+  ],
+  "note": "矛盾紀錄不直接判為鮮奶；僅排除無奶篩選。未核對各店完整配方。"
+}

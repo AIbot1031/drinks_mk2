@@ -70,3 +70,7 @@ Cloudflare Tunnel 可由 Mac 主動建立連線，不需直接開家用路由器
 - [MacBERT arXiv](https://arxiv.org/abs/2004.13922)、[HFL 資源總覽](https://github.com/ymcui/HFL-Anthology)。
 - [BERT 原論文](https://arxiv.org/abs/1810.04805)、[Google BERT](https://github.com/google-research/bert)。
 - 模型選項：[chinese-bert-wwm](https://huggingface.co/hfl/chinese-bert-wwm)、[wwm-ext](https://huggingface.co/hfl/chinese-bert-wwm-ext)、[roberta-wwm-ext](https://huggingface.co/hfl/chinese-roberta-wwm-ext)、[bert-base-chinese](https://huggingface.co/google-bert/bert-base-chinese)。這些是參考候選，並未逐個下載／效能測試。
+
+## 2026-10-13 後續訓練要求
+
+使用者已要求現在訓練 MacBERT，已新增飲料文字對比微調入口與 [操作說明](MacBERT訓練操作.md)。每次實際結果見 training-runs 和 daily.txt；模型下載與本機微調不等於服務已接入網站。向量索引、Mac HTTP 服務、Tunnel 與 Worker adapter 仍未啟用。

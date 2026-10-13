@@ -211,6 +211,7 @@ def run(args, report, out):
 
 
 def main():
+    raise SystemExit("價格訓練已依使用者 2026-10-13 指示停用；RelGT 目標改為長期使用意圖。歷史程式僅保留追溯。")
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--epochs", type=int, default=10)
     parser.add_argument("--batch-size", type=int, default=64)

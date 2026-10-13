@@ -66,12 +66,12 @@ $('#account-form').onsubmit=async event=>{
   $('#account-status').textContent=action==='register'?'正在建立帳號…':'正在登入…';
   try {const result=await api(`/api/account/${action}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:$('#user-id').value,password:$('#user-password').value})});await switchAccount(result.user);$('#user-password').value='';$('#account-dialog').close();}
   catch(error){$('#account-status').textContent=error.message;}
-  finally{accountBusy=false;updateAccountButtons();refreshFeedbackButtons();$('#account-form').querySelectorAll('button').forEach(b=>b.disabled=false);}
+  finally{accountBusy=false;$('#submit-button').disabled=busy;updateAccountButtons();refreshFeedbackButtons();$('#account-form').querySelectorAll('button').forEach(b=>b.disabled=false);}
 };
 $('#account-logout').onclick=async()=>{
   if(accountBusy||preferenceBusy||busy)return;accountBusy=true;updateAccountButtons();
   try{await api('/api/account/logout',{method:'POST'});await switchAccount(null);}catch(error){$('#feedback-note').textContent=error.message;}
-  finally{accountBusy=false;updateAccountButtons();refreshFeedbackButtons();}
+  finally{accountBusy=false;$('#submit-button').disabled=busy;updateAccountButtons();refreshFeedbackButtons();}
 };
 $('#save-guest-feedback').onclick=()=>{if(!accountUser||preferenceBusy||accountBusy)return;try{const local=guestFeedback();const merged={version:1,liked:{...feedback.liked,...local.liked},disliked:[...new Set([...feedback.disliked,...local.disliked])]};merged.disliked=merged.disliked.filter(id=>!merged.liked[id]);feedback=validateFeedback(merged);saveFeedback();}catch(error){$('#collection-status').textContent=error.message;}};
 function refreshFeedbackButtons() {
@@ -85,10 +85,16 @@ async function api(path, options) {
   return value;
 }
 
-function card(d, index, rec) {
+function card(d, index, rec, variants = d.variants || rec?.variants || []) {
   const article = el('article', '', 'drink-card');
   if (index !== undefined) article.append(el('span', String(index + 1).padStart(2, '0'), 'rank'));
   const content = el('div', '', 'card-content'), top = el('div', '', 'card-top');
+  if (variants.length > 1) {
+    const select=el('select');select.setAttribute('aria-label',`${d.name}的杯型`);
+    for(const variant of variants){const option=el('option',`${variant.cupSize || variant.category} · NT$ ${variant.price ?? '未知'}${variant.priceEstimated ? '（估算）' : ''}`);option.value=variant.id;select.append(option);}select.value=d.id;
+    select.onchange=()=>{const variant=variants.find(v=>v.id===select.value);article.replaceWith(card(variant,index,null,variants));refreshFeedbackButtons();};
+    content.append(select,el('p',`共 ${variants.length} 個符合條件的版本，預設最低價；切換後顯示該杯型的價格與營養。`,'field-help'));
+  }
   top.append(el('h3', d.name), el('span', d.priceText ? `NT$ ${d.priceText}${d.priceEstimated ? '（估算）' : ''}` : (d.price === null ? '價格未知' : `NT$ ${d.price}`), 'price'));
   content.append(top, el('span', `${d.brand} · ${d.category}`, 'brand-label'));
   content.append(el('p', d.taste || '原表未提供風味描述', 'taste'));
@@ -105,9 +111,11 @@ function card(d, index, rec) {
   const details = el('details', '', 'card-details'); details.append(el('summary', '查看資料來源與備註'));
   details.append(el('p', `Excel「${d.sourceSheet || "飲料品項"}」第 ${d.sourceRow} 列。${d.status || ''}`));
   if (d.region) details.append(el('p', `適用地區／門市：${d.region}；容量：${d.volumeMl ?? '未知'} ml。`));
+  if(d.milkConflict)details.append(el('p','來源無奶標籤與奶類線索矛盾，已排除於無奶篩選；配方待確認。','card-warning'));
   if (d.fillMethod) details.append(el('p', `填值方式：${d.fillMethod}；${d.reviewStatus || ''}`));
   details.append(el('p', d.notes || '未提供備註。'));
   details.append(el('p', `茶種：${d.tea.join('、') || '未標記'}；奶類：${d.milk.join('、') || (d.noMilk ? '無奶標記' : '未標記')}；配料：${d.toppings.join('、') || '未標記'}。`));
+  if(rec?.rankSourceId && rec.rankSourceId!==d.id)details.append(el('p','此卡片按品項的匹配版本排序，預設顯示該品項符合條件的最低價版本。'));
   if (rec) details.append(el('p', `排序依據：路徑 A ${rec.ranks.a === null ? '未列入' : `第 ${rec.ranks.a} 名`}，路徑 B ${rec.ranks.b === null ? '未列入' : `第 ${rec.ranks.b} 名`}。排序分數並非正確率。`));
   details.append(el('p', rec?.warning || '價格可能為起價；過敏原未核對，成分請向店家確認。', 'card-warning'));
   content.append(details); article.append(content); return article;
@@ -122,7 +130,7 @@ function setBusy(value) {
 }
 function readSettings() {
   const optionalNumber = selector => $(selector).value === '' ? undefined : Number($(selector).value);
-  return {query: $('#query').value.trim(), filters: {brand: $('#brand').value, excludedBrands:[...$('#excluded-brands').querySelectorAll('input:checked')].map(n=>n.value), maxPrice: optionalNumber('#budget'), milk: $('#milk').value, tea: $('#tea-filter').value, topping: $('#topping-filter').value, maxCalories: optionalNumber('#calories'), maxCaffeine: optionalNumber('#caffeine')}};
+  return {query: $('#query').value.trim(), filters: {brand: $('#brand').value, excludedBrands:[...$('#excluded-brands').querySelectorAll('input:checked')].map(n=>n.value), maxPrice: optionalNumber('#budget'), milk: $('#milk-filter').value, tea: $('#tea-filter').value, topping: $('#topping-filter').value, maxCalories: optionalNumber('#calories'), maxCaffeine: optionalNumber('#caffeine')}};
 }
 function tags(filters) {
   $('#active-filters').replaceChildren();
@@ -190,7 +198,8 @@ $('#prev-page').onclick = () => {if (page > 1) {page--; loadCatalog();}};
 $('#next-page').onclick = () => {if (page < pages) {page++; loadCatalog();}};
 function renderFavorites() {
   const list = Object.values(feedback.liked);
-  $('#favorites-results').replaceChildren(...list.map(d => card(d)));
+  const groups=new Map();for(const d of list){const key=JSON.stringify([d.brand,d.name]);const items=groups.get(key)||[];items.push(d);groups.set(key,items);}
+  $('#favorites-results').replaceChildren(...[...groups.values()].map(variants=>{variants.sort((a,b)=>(a.price??Infinity)-(b.price??Infinity));return card(variants[0],undefined,undefined,variants);}));
   if (!list.length) $('#favorites-results').append(el('p', '還沒有收藏。遇到喜歡的一杯，按「♡ 喜歡這杯」就能留下來。', 'status'));
   refreshFeedbackButtons();
 }
@@ -260,4 +269,4 @@ try {
   for (const [values,selector] of [[meta.tea,'#tea-filter'],[meta.toppings,'#topping-filter']]) for (const v of values) {const option=el('option',v); option.value=v; $(selector).append(option);}
 } catch(error) {$('#catalog-summary').textContent='資料讀取失敗，請重新整理。'; $('#result-status').textContent=error.message;}
 showView();
-try {const result=await api('/api/account/me');await switchAccount(result.user);}catch(error){$('#feedback-note').textContent=`帳號暫時無法讀取：${error.message}`;}finally{accountBusy=false;updateAccountButtons();refreshFeedbackButtons();}
+try {const result=await api('/api/account/me');await switchAccount(result.user);}catch(error){$('#feedback-note').textContent=`帳號暫時無法讀取：${error.message}`;}finally{accountBusy=false;$('#submit-button').disabled=busy;updateAccountButtons();refreshFeedbackButtons();}

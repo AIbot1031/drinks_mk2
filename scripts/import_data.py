@@ -2,6 +2,7 @@
 import hashlib
 import json
 import math
+import re
 from collections import Counter
 from pathlib import Path
 import openpyxl
@@ -39,6 +40,8 @@ def convert(row, source_row, occurrences):
     for label in ['青茶','金萱茶','蕎麥茶']:
         if label in text(get('茶種')) and label not in tea:tea.append(label)
     milk=[label for key,label in MILK.items() if number(get(key))==1]
+    milk_clue=bool(re.search(r'鮮奶|生乳|拿鐵|那堤|奶茶|奶蓋|奶霜|奶油|奶精|乳酸|乳酪|優格|優酪|冰淇淋|牛奶|豆奶|燕麥奶|植物奶',name))
+    milk_conflict=number(get('milk_none'))==1 and (bool(milk) or milk_clue or text(get('奶的種類')) not in ('無奶',''))
     topping_text=text(get('配料'))
     toppings=[label for label,terms in TOPPINGS.items() if any(t in topping_text for t in terms)]
     caf_min,caf_max=number(get('咖啡因下限_mg')),number(get('咖啡因上限_mg'))
@@ -59,7 +62,8 @@ def convert(row, source_row, occurrences):
             'caffeineMin':caf_min,'caffeineMax':caf_max,
             'taste':text(get('官網描述')) or text(get('分類依據')),
             'notes':text(get('備註')),'tea':tea,'milk':milk,'toppings':toppings,
-            'noMilk':number(get('milk_none'))==1 and not milk,
+            'noMilk':number(get('milk_none'))==1 and not milk and not milk_conflict,
+            'milkDescription':text(get('奶的種類')),'milkConflict':milk_conflict,
             'richness':number(get('濃郁度_0至1')),
             'status':text(get('資料狀態')),'fillMethod':method,
             'reviewStatus':text(get('校準狀態')),'sourceUrl':text(get('官網商品網址')),

@@ -47,6 +47,10 @@ export function understand(input: RecommendInput, brands: string[]): Understandi
   else if (/無咖啡因|不含咖啡因|不要咖啡因/.test(q)) cap('maxCaffeine', 0);
   else if (/低咖啡因|晚上|睡前/.test(q)) {cap('maxCaffeine', 100); warnings.push('此查詢採咖啡因上界 100 mg 以下；這不是睡眠或健康保證。');}
   const noMilk = /(?:不要|不含|不加|不能喝|不喝|無)[^，。\s]{0,3}(?:奶|乳)/.test(q);
+  if((/鮮奶/.test(q)&&filters.milk==='plant')||(/植物奶|燕麥奶|豆奶/.test(q)&&filters.milk==='fresh')){
+    warnings.push('文字要求的奶類與選單不同，請先統一奶類條件。');
+    return {filters,warnings,blocked:true,preferences:[]};
+  }
   if (noMilk) {
     if (filters.milk && !['any', 'none'].includes(filters.milk)) { warnings.push('文字要求不含奶，與奶類選項衝突，請調整後再查詢。'); return {filters, warnings, blocked: true, preferences: []}; }
     filters.milk = 'none';

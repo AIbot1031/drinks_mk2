@@ -1,4 +1,5 @@
 export type Drink = {
+  milkDescription?: string; milkConflict?: boolean;
   sourceSheet?: string; cupSize?: string; region?: string; volumeMl?: number | null;
   priceEstimated?: boolean; caloriesEstimated?: boolean; caffeineEstimated?: boolean; fillMethod?: string; reviewStatus?: string;
   id: string; sourceRow: number; brand: string; category: string; name: string;

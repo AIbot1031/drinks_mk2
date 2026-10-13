@@ -1,4 +1,5 @@
 import catalog from '../data/catalog.json';
+import {groupProducts} from './products';
 import { makeEngine } from './recommend';
 import {conversationTurn} from './conversation';
 import { validateInput } from './understand';
@@ -34,7 +35,7 @@ export default {
     try {
       if(url.pathname.startsWith('/api/account/'))return await accountApi(request,env,readBody,drinks);
       if(url.pathname.startsWith('/api/internal/'))return await internalApi(request,env,readBody);
-      if (url.pathname === '/api/health' && request.method === 'GET') return json({ok: true, total: catalog.total, version: '2.0.0'});
+      if (url.pathname === '/api/health' && request.method === 'GET') return json({ok: true, total: catalog.total, version: '2.1.0'});
       if (url.pathname === '/api/meta' && request.method === 'GET') return json({total: catalog.total, brands: catalog.brands, missing: catalog.missing, tea: [...new Set(drinks.flatMap(d=>d.tea))].sort(), toppings: [...new Set(drinks.flatMap(d=>d.toppings))].sort()});
       if (url.pathname === '/api/catalog' && request.method === 'GET') {
         const query = (url.searchParams.get('q') ?? '').slice(0, 100).toLowerCase();
@@ -42,7 +43,8 @@ export default {
         const parsedPage = Number(url.searchParams.get('page') ?? 1);
         if (!Number.isInteger(parsedPage) || parsedPage < 1 || parsedPage > 1000) return json({error: '頁碼無效'}, 400);
         const pool = drinks.filter(d => (!brand || d.brand === brand) && `${d.name}${d.brand}${d.taste}`.toLowerCase().includes(query));
-        return json({total: pool.length, page: parsedPage, pages: Math.ceil(pool.length / 24), results: pool.slice((parsedPage - 1) * 24, parsedPage * 24)});
+        const products=[...groupProducts(pool).values()].map(variants=>({...variants[0],variants}));
+        return json({total: products.length, variantTotal:pool.length, page: parsedPage, pages: Math.ceil(products.length / 24), results: products.slice((parsedPage - 1) * 24, parsedPage * 24)});
       }
       if (['/api/recommend','/api/chat/recommend'].includes(url.pathname) && request.method === 'POST') {
         const origin = request.headers.get('origin');
