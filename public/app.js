@@ -1,3 +1,5 @@
+import {initChat} from './chat.js';
+let chatController;
 const $ = selector => document.querySelector(selector);
 const el = (tag, text = '', cls = '') => {const n = document.createElement(tag); n.textContent = text; if (cls) n.className = cls; return n;};
 const storageKey = 'drinks-mk2-feedback-v1';
@@ -48,6 +50,7 @@ function updateAccountButtons(){
 }
 async function switchAccount(user){
   const prefs=user?await api('/api/account/preferences'):guestFeedback();
+  chatController?.reset();
   accountUser=user;if(user&&$('#account-dialog').open)$('#account-dialog').close();feedback=validateFeedback(prefs);confirmedFeedback=structuredClone(feedback);
   lastSettings=null;seen=[];$('#batch-actions').hidden=true;
   // A previous user's recommendations must not remain visible after switching accounts.
@@ -237,8 +240,10 @@ async function loadGraph() {
   } catch(error) {if (request === graphRequest) $('#graph-status').textContent = error.message;}
 }
 $('#graph-form').onsubmit = event => {event.preventDefault(); loadGraph();};
+chatController=initChat({api,card,feedback:()=>feedback,isBusy:()=>busy||accountBusy||preferenceBusy,setBusy,refresh:refreshFeedbackButtons,ready:()=>preferenceSync});
 function showView() {
   const requested = location.hash.slice(1) || 'recommend';
+  if(requested==='chat')chatController.setMode('chat');
   if(requested==='login'&&!accountUser&&!$('#account-dialog').open)$('#account-dialog').showModal();
   const view = ['recommend','catalog','favorites','graph'].includes(requested) ? requested : 'recommend';
   document.querySelectorAll('.view').forEach(n => n.hidden = n.id !== `${view}-view`);

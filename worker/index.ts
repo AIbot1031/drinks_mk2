@@ -1,5 +1,6 @@
 import catalog from '../data/catalog.json';
 import { makeEngine } from './recommend';
+import {conversationTurn} from './conversation';
 import { validateInput } from './understand';
 import type { Drink } from './types';
 import { internalApi } from './internal';
@@ -43,16 +44,18 @@ export default {
         const pool = drinks.filter(d => (!brand || d.brand === brand) && `${d.name}${d.brand}${d.taste}`.toLowerCase().includes(query));
         return json({total: pool.length, page: parsedPage, pages: Math.ceil(pool.length / 24), results: pool.slice((parsedPage - 1) * 24, parsedPage * 24)});
       }
-      if (url.pathname === '/api/recommend' && request.method === 'POST') {
+      if (['/api/recommend','/api/chat/recommend'].includes(url.pathname) && request.method === 'POST') {
         const origin = request.headers.get('origin');
         if (origin && origin !== url.origin) return json({error: '請從本站送出查詢'}, 403);
-        const input = validateInput(await readBody(request));
+        const body = await readBody(request);
+        const conversation = url.pathname === '/api/chat/recommend' ? conversationTurn(body,Object.keys(catalog.brands)) : null;
+        const input = conversation ? validateInput({...conversation.input, likedIds:(body as Record<string,unknown>).likedIds, dislikedIds:(body as Record<string,unknown>).dislikedIds, excludedIds:conversation.next ? (body as Record<string,unknown>).excludedIds : []}) : validateInput(body);
         const user=await currentUser(request,env.TRACE_DB);
         if(user){const prefs=storedPreferences(user.preferences);input.likedIds=prefs.likedIds;input.dislikedIds=prefs.dislikedIds;}
         const {response,trace}=engine.recommendWithTrace(input);
         const traceId=crypto.randomUUID();
         const createdAt=new Date().toISOString();
-        const record={traceId,createdAt,...trace};
+        const record={traceId,createdAt,...trace,...(conversation ? {interface:'conversation',conversation:{message:conversation.message,state:conversation.state,next:conversation.next}} : {interface:'manual'})};
         try {
           await env.TRACE_DB.prepare('INSERT INTO recommendation_traces (id,created_at,query,result_count,payload) VALUES (?,?,?,?,?)').bind(traceId,createdAt,input.query,response.results.length,JSON.stringify(record)).run();
         } catch {
@@ -60,7 +63,7 @@ export default {
           return json({error:'推薦紀錄暫時無法儲存，請稍後重試'},503);
         }
         console.log(JSON.stringify({event:'recommendation_saved',traceId,resultCount:response.results.length}));
-        return json({...response,traceId});
+        return json({...response,traceId,...(conversation ? {state:conversation.state,next:conversation.next,assistantMessage:response.blocked ? '這些條件目前無法確認，請查看說明。重新開始可以清除本輪條件。' : response.results.length ? `找到 ${response.results.length} 杯符合條件的飲料。你可以繼續調整條件，或說「再推薦幾杯」。` : '目前沒有符合所有條件的飲料。你可以調整預算或條件，我不會自動放寬限制。'} : {})});
       }
       return json({error: '找不到此 API 或請求方法不支援'}, 404);
     } catch (error) {
