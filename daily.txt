@@ -336,3 +336,10 @@ RelGT 夜間訓練流程：
 - 權重實際變更，safetensors 保存後重新載入向量差 0；完整更新報告 docs/training-runs/20261013T143230-macbert-contrastive.md，JSON 保存資料 hash、設定、逐輪指標、checksum。兩次失敗亦保留報告。
 - 權重在 training_artifacts/20261013T143230-macbert-contrastive/model/，不提交大型權重或個資到 GitHub；程式、依賴鎖定與安全報告將同步。
 - 沒有價格訓練，沒有 RelGT 長期意圖訓練或自動排程，沒有網站模型切換；後續需人工相關性驗證、向量索引與受保護 Mac 服務。
+
+[2026-10-13 14:37:08｜2.1 與 MacBERT 報告 GitHub 同步完成]
+- 提交 2b72ab778b7eb8ed5a22358c6a3c681fd09eb2ee 已推送 main；v2.1.0 標籤與 Release 已發布：https://github.com/AIbot1031/drinks_mk2/releases/tag/v2.1.0。
+- 已核對 v1.0.0、v2.0.0 Release 仍保存，沒有覆寫舊版；82 個受版本控制檔案都有用途說明。
+- GitHub 自動檢查 38357598758 成功；20 項線上整合／推薦測試已另執行全部通過。訓練資料額外核對：價格／營養值變更不影響語料，複製杯型紀錄不增加語料，訓練與驗證文字不重疊。
+- MacBERT 程式、操作文件、三次實際報告（兩次失敗、一次完成）已同步；大型模型權重只存在本機忽略目錄，沒有上傳或啟用雲端模型。
+- 最終 Cloudflare 2.1.0 fdece4af-b5ae-406f-bd40-264edcb4ed08；奶類修正與品項單卡已上線。RelGT 長期意圖正式任務、MacBERT 查詢相關性評估／服務與排程仍未完成。
