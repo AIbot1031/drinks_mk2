@@ -408,3 +408,36 @@ RelGT 夜間訓練流程：
 - v2.2.0 GitHub 自動檢查 38362351828 成功（43 秒）；包含 TypeScript、單元測試及部署 dry-run。CI HTTP 因未設定 URL 略過，實際線上已另執行全部通過。
 - 最新實際雲端核對為 15:21：2 個非測試帳號、7 筆收藏與 7 筆單日 like 時間事件。只保存安全彙總，不公開帳號 ID 或完整事件。
 - 本次只發布軟體 2.2、同步 RelGT 現有程式／報告，沒有新模型訓練、權重更新或排程。正式長期訓練程式／排序驗證仍待完成。
+
+[2026-10-13T15:56:20+08:00｜RelGT 真實時間事件訓練]
+- 狀態：trained_unvalidated_small_temporal_data；optimizer 步數 10；耗時 2.189 秒。
+- 資料彙總：{"source_events": 7, "invalid_ids": 0, "duplicate_events": 0, "after_cutoff": 0, "duplicate_targets": 0, "users": 1, "like_targets": 7, "dislike_targets": 0, "valid_events": 7, "samples": 7, "with_history": 6, "cold_start_samples": 1, "multi_day_users": 0}。
+- 前後比較與更新報告：docs/training-runs/20261013T155618-relgt-long-intent.md／JSON。
+- 無價格目標；未發布模型／更新用戶榜單／啟用排程，沒有將原始事件或用戶代碼放到 GitHub。
+
+[2026-10-13 16:24:51｜2.3 RelGT 真實訓練、MacBERT 上線與按讚圖修正]
+- 規劃：使用者依序要求按讚顯示在關係圖、少量資料也要實際訓練、先補齊 RelGT 程式、Mac 持續開機時 BERT 取代 TF-IDF、Mac 故障以 TF-IDF 備援；全部納入 2.3，頁尾新增聯絡信箱。保留既有版本。
+- 實作／RelGT：新增匿名時間事件匯出、past-only 事件樣本與官方 local/global RelGT 訓練程式。候選／用戶／歷史／padding 異質節點，時間是距目標秒數；同時事件不互當歷史，未來事件不入圖，取消不是負標籤，杯型按品項合併。無價格／營養目標。
+- 實作／訓練：7 筆真實事件、1 位用戶、7 個下一操作目標（6 個有歷史、1 冷啟動）完成 10 輪／10 optimizer 步；CPU／Apple M6，2.189 秒。權重更新、保存與重新載入分數差 0 已確認。沒有再次價格訓練。
+- 實測／訓練：相同訓練樣本和抽樣候選 CE 2.773472 → 2.769076、MRR 0.165760 → 0.382313、Hit@5 0.285714 → 0.428571。只有單日資料，沒有驗證／測試，不能當成長期品質或全目錄效果。完整報告 docs/training-runs/20261013T155618-relgt-long-intent.md／JSON；權重及原始匿名快照僅本機忽略目錄、600 權限，沒有提交用戶事件或代碼。
+- 實作／A：MacBERT 已微調模型 macbert-5754da458c249ff9，建立 5,781 × 768 維正規化向量；Mac MPS 推論。Mac 主動以服務金鑰 WSS 連到 SQLite Durable Object，不需要自訂網域／公共 Mac 埠；最多 8 等待、5 秒超時。Worker 硬篩選後才送候選，回傳再核對 ID／有限分數／版本，保留 RRF 與 B 圖路徑。
+- 實作／備援：Mac 失聯、超時或版本／分數非法時用 TF-IDF，恢復後自動優先 MacBERT；手動、對話及 trace 顯示實際方法／模型與原因，沒有把備援冒充 BERT。服務金鑰僅本機忽略檔與 Cloudflare secret，不記錄值。
+- 實作／常駐：安裝 local.drinks-mk2.macbert LaunchAgent，登入後啟動及自動重連。最初直接在 Documents 執行的 LaunchAgent 以 78 結束，系統日誌無權讀取，未斷言原因；改為獨立 ~/Library/Application Support/DrinksMk2 的部署環境後，服務實際載入模型並 CLOUD_CONNECTED，線上 ready=true。此服務只推論，不是 04:00 訓練排程。
+- 實作／匯出：新增受服務金鑰保護 /api/training/events 與 node 匯出方式，既有 Wrangler D1 雲端授權不再阻擋；只讀事件、排除 testauth、在本機 HMAC 化，截止時間與目錄 hash 固定。最終實際匯出成功，仍 7 個真實事件；未授權請求 401。
+- 實作／關係圖：原圖只取目錄前 12 款，完全未讀偏好；預設改為「我的按讚」，按品項顯示全部目前有效喜歡、愛心節點、我的帳號／瀏覽器到飲料的連線。登入資料載入完才畫圖，按讚取消／帳號切換更新並取消過期請求；篩選與目錄範例仍可用。這是資料連結圖，不冒充 RelGT 已發布。
+- 實作／其他：版本改 2.3.0、頁尾顯示 2.3，新增 mailto:rtx941031@gmail.com 及「有任何問題可以寫到這個信箱」；沒有寄出郵件。更新逐檔用途、2.3 發布、訓練操作與 Mac 常駐備援文件。
+- 測試：TypeScript、JS／Python 語法、格式、部署 dry-run 通過；本機 24 項及最終線上 24 項全部通過。新增神經候選不放寬硬條件／非法分數拒絕／備援測試；Python 時間事件 5 項測試通過，加入 CI，人工 fixture 不算正式訓練。
+- 測試／線上：確認 A=macbert、6 張符合無奶卡與 trace；停止臨時 Mac PID 後確認 A=tf-idf 備援、仍 6 張卡；安裝常駐後 A 恢復 macbert，connect 與 training/events 無金鑰皆 401。
+- 測試／UI：本機訪客按讚後圖顯示 1 款／4 節點／3 關係、愛心與連線，取消後 0，測試收藏已清除。已保存完整畫面預覽（含頁尾信箱），不提交或列出真實用戶個資；沒有宣稱所有裝置測試。
+- 部署：Cloudflare 最終 2.3.0 47dbf4c1-d785-4561-a850-03ec5dff271a；已新增 SQLite DO 與金鑰，正式推論 bridge 上線。GitHub 2.3 標籤／Release 與最終同步待完成後補記。
+- 限制：RelGT B 榜單／個人分數尚未發布，B 仍特徵圖；續訓 CLI、跨日／全目錄驗證及 04:00 排程未完成。MacBERT 未做人工查詢相關性評估，不宣稱一定更好；Mac 使用者登出／睡眠／斷網時備援生效。沒有新增 C／Agent C／Workers AI。
+
+[2026-10-13 16:45:54 Asia/Taipei]
+2.3 Qwen 對話接入與配料排除
+規劃：使用者指定 Qwen 8B、Mac 處理並授權完成直接上線；選擇 Qwen3-8B MLX 4-bit、關閉 thinking、temperature 0、320 tokens 上限。此次為預訓練模型推論部署，沒有 Qwen 微調。
+實作：Qwen 與 MacBERT 分離 WebSocket 角色；解析 JSON 經 Worker 驗證後交資料庫篩選排序。修正「奶茶不要珍珠」誤判忌口，跨輪保留配料排除、恢復舊版錯誤 guard。真正過敏限制、預算與品牌排除保持；模型不能編造未知品牌或取消排除。
+實作：Qwen 使用獨立 .venv-llm、套件鎖定及登入後常駐 LaunchAgent local.drinks-mk2.qwen，執行環境位於 Library/Application Support/DrinksMk2LLM。與 MacBERT 環境分開；原 Transformers 4.57.6 已確認未變更。
+驗證：TypeScript、JavaScript/Python 語法檢查通過；26 個正式網站整合與單元測試全部通過；時序資料 Python 測試 5 個通過。三輪對話皆使用 Qwen、MacBERT、每轮 6 張卡片，各杯型無珍珠或波霸，整體回應 4190、3897、4725 ms（單次樣本非負載基準）。
+驗證：暫停 Qwen 後三輪自動退回規則，MacBERT 繼續服務，每輪 6 張卡片且條件保持；已恢復 Qwen 常駐服務。
+部署：Cloudflare 最新 eca74b21-777c-4277-982c-3c27ed40f53a。初期舊 DO 活躍連線造成角色互相取代，切換 inference-v2 actor 並重啟服務後同時 ready 成功。GitHub 2.3 發布與最後 UI 截圖待完成。
+限制：Mac 必須登入、連網且開機；Qwen 20 秒失敗規則備援，MacBERT 5 秒失敗 TF-IDF 備援。沒有新增訓練或改動 RelGT 雲端權重。文件 docs/Qwen對話服務與條件安全.md；本輪既有 RelGT 報告 docs/training-runs/20261013T155618-relgt-long-intent.md。

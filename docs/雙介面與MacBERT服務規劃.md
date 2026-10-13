@@ -1,6 +1,10 @@
+> 2.3 最新狀態：對話推薦已接入 Mac 的 Qwen3-8B 4-bit，失敗以規則備援；「不要珍珠」已改成配料排除。詳見 [Qwen 對話服務](Qwen對話服務與條件安全.md)。先前暫不接 LLM 的文字為歷史規劃。
+
 # 雙介面與 MacBERT 推論服務規劃
 
 更新：2026-10-13（Asia/Taipei）
+
+**2.3 已上線 MacBERT A 與 TF-IDF 備援；最新實作見 [MacBERT 上線與備援](MacBERT上線與備援.md)。以下保留原本規劃，原 Tunnel 接法改為 Mac 主動 WSS → Durable Object，不再需要固定服務網域。**
 
 ## 已完成的雙介面
 

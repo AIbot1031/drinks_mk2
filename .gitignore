@@ -19,3 +19,5 @@ internal_exports/
 
 .venv-training/
 training_artifacts/
+.semantic-key
+.venv-llm/

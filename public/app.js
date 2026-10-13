@@ -27,6 +27,7 @@ function updateFeedbackDisplay(message = '') {
   $('#collection-status').textContent = message;
   refreshFeedbackButtons();
   if (location.hash === '#favorites') renderFavorites();
+  if (location.hash === '#graph') loadGraph();
 }
 function saveFeedback() {
   const snapshot=structuredClone(feedback), owner=accountUser?.id;
@@ -69,12 +70,12 @@ $('#account-form').onsubmit=async event=>{
   $('#account-status').textContent=action==='register'?'正在建立帳號…':'正在登入…';
   try {const result=await api(`/api/account/${action}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:$('#user-id').value,password:$('#user-password').value})});await switchAccount(result.user);$('#user-password').value='';$('#account-dialog').close();}
   catch(error){$('#account-status').textContent=error.message;}
-  finally{accountBusy=false;$('#submit-button').disabled=busy;updateAccountButtons();refreshFeedbackButtons();$('#account-form').querySelectorAll('button').forEach(b=>b.disabled=false);}
+  finally{accountBusy=false;$('#submit-button').disabled=busy;updateAccountButtons();refreshFeedbackButtons();if(location.hash==='#graph')loadGraph();$('#account-form').querySelectorAll('button').forEach(b=>b.disabled=false);}
 };
 $('#account-logout').onclick=async()=>{
   if(accountBusy||preferenceBusy||busy)return;accountBusy=true;updateAccountButtons();
   try{await api('/api/account/logout',{method:'POST'});await switchAccount(null);}catch(error){$('#feedback-note').textContent=error.message;}
-  finally{accountBusy=false;$('#submit-button').disabled=busy;updateAccountButtons();refreshFeedbackButtons();}
+  finally{accountBusy=false;$('#submit-button').disabled=busy;updateAccountButtons();refreshFeedbackButtons();if(location.hash==='#graph')loadGraph();}
 };
 $('#save-guest-feedback').onclick=()=>{if(!accountUser||preferenceBusy||accountBusy)return;try{const local=guestFeedback();const merged={version:1,liked:{...feedback.liked,...local.liked},disliked:[...new Set([...feedback.disliked,...local.disliked])]};merged.disliked=merged.disliked.filter(id=>!merged.liked[id]);feedback=validateFeedback(merged);saveFeedback();}catch(error){$('#collection-status').textContent=error.message;}};
 function refreshFeedbackButtons() {
@@ -166,7 +167,7 @@ async function recommend(settings, next = false) {
       $('#results').append(el('span', '◡', 'empty-cup'), el('h3', value.blocked ? '先釐清條件，再幫你挑。' : '這次沒有符合的飲料'), el('p', value.blocked ? '請查看上方說明，調整需求後再查詢。' : '試著調整品牌、預算或營養上限。篩選條件不會自動放寬。'));
     } else value.results.forEach((r, i) => $('#results').append(card(r.drink, i, r)));
     $('#batch-actions').hidden = !value.results.length;
-    $('#result-status').textContent = `${value.mode.personalized ? '已參考你的收藏偏好。' : '收藏喜歡的飲料，讓下次更貼近你的口味。'} ${next ? `已看過 ${seen.length} 杯。` : ''}`;
+    $('#result-status').textContent = `${value.mode.routeA==='macbert'?'語意搜尋：MacBERT。':value.mode.routeAFallback?'Mac 暫時無法推論，改用 TF-IDF 備援。':'文字搜尋：TF-IDF。'} ${value.mode.personalized ? '已參考你的收藏偏好。' : '收藏喜歡的飲料，讓下次更貼近你的口味。'} ${next ? `已看過 ${seen.length} 杯。` : ''}`;
     refreshFeedbackButtons();
   } catch (error) {$('#result-status').textContent = `${error.message} ${$('#results .drink-card') ? '已保留上一份結果。' : ''}`;}
   finally {setBusy(false);}
@@ -230,11 +231,17 @@ $('#import-feedback').onchange = async event => {
 async function loadGraph() {
   const request = ++graphRequest;
   $('#graph-status').textContent = '正在整理飲料關係…';
+  $('#graph').replaceChildren();$('#graph-detail').textContent='點選節點查看連結。';
+  if(accountBusy||preferenceBusy){$('#graph-status').textContent='正在讀取你的按讚資料…';return;}
   try {
-    const params = new URLSearchParams({q:$('#graph-query').value, brand:$('#graph-brand').value});
-    const value = await api(`/api/catalog?${params}`);
+    const query=$('#graph-query').value.trim().toLowerCase(),brand=$('#graph-brand').value;
+    const own=$('#graph-scope').value==='likes';
+    const saved=likedProducts();
+    const params = new URLSearchParams({q:query,brand});
+    const value = own ? await api('/api/catalog/favorites',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({likedIds:Object.keys(feedback.liked)})}) : await api(`/api/catalog?${params}`);
     if (request !== graphRequest) return;
-    const list = value.results.slice(0, 12);
+    const list = own ? value.results.filter(d=>(!brand||d.brand===brand)&&`${d.name} ${d.brand} ${d.taste}`.toLowerCase().includes(query)) : value.results.slice(0,12);
+    const liked=list.filter(d=>saved.has(productKey(d)));
     const svg = $('#graph'); svg.replaceChildren();
     const ns = 'http://www.w3.org/2000/svg';
     const shape = (tag, attrs, text) => {const n = document.createElementNS(ns, tag); for (const [k,v] of Object.entries(attrs)) n.setAttribute(k,String(v)); if (text !== undefined) n.textContent = text; return n;};
@@ -244,23 +251,26 @@ async function loadGraph() {
     const height = Math.max(480, list.length * 48 + 100, features.length * 43 + 100);
     svg.setAttribute('viewBox', `0 0 1000 ${height}`);
     const positions = new Map();
-    const groups = [brands.map(b => ({id:`brand:${b}`,label:b,type:'brand'})), list.map(d => ({id:d.id,label:d.name,type:'drink',drink:d})), features.map(f => ({id:`feature:${f}`,label:f,type:'feature'}))];
+    const groups = [liked.length ? [{id:'viewer',label:accountUser?'我的帳號':'這個瀏覽器',type:'user'}] : [], brands.map(b => ({id:`brand:${b}`,label:b,type:'brand'})), list.map(d => ({id:d.id,label:d.name,type:'drink',drink:d})), features.map(f => ({id:`feature:${f}`,label:f,type:'feature'}))];
     const all = groups.flat();
-    groups.forEach((group, col) => {svg.append(shape('text',{x:[150,500,840][col],y:30,'text-anchor':'middle',fill:'#809171','font-size':12}, ['品牌','飲料','茶種／奶類／配料'][col])); group.forEach((n,i) => positions.set(n.id, {x:[150,500,840][col],y:65+(height-110)*(i+.5)/Math.max(1,group.length)}));});
-    const edges = list.flatMap(d => [{from:`brand:${d.brand}`,to:d.id}, ...featureNames(d).map(f => ({from:d.id,to:`feature:${f}`}))]);
-    const lines = edges.map(edge => {const a = positions.get(edge.from), b = positions.get(edge.to); const n = shape('line',{x1:a.x,y1:a.y,x2:b.x,y2:b.y,class:'graph-edge'}); svg.append(n); return {edge,n};});
+    groups.forEach((group, col) => {svg.append(shape('text',{x:[80,280,535,830][col],y:30,'text-anchor':'middle',fill:'#809171','font-size':12}, ['我的按讚','品牌','飲料','茶種／奶類／配料'][col])); group.forEach((n,i) => positions.set(n.id, {x:[80,280,535,830][col],y:65+(height-110)*(i+.5)/Math.max(1,group.length)}));});
+    const edges = [...liked.map(d=>({from:'viewer',to:d.id,liked:true})),...list.flatMap(d => [{from:`brand:${d.brand}`,to:d.id}, ...featureNames(d).map(f => ({from:d.id,to:`feature:${f}`}))])];
+    const lines = edges.map(edge => {const a = positions.get(edge.from), b = positions.get(edge.to); const n = shape('line',{x1:a.x,y1:a.y,x2:b.x,y2:b.y,class:edge.liked?'graph-edge liked':'graph-edge'}); svg.append(n); return {edge,n};});
     for (const n of all) {
-      const p = positions.get(n.id), width = n.type === 'drink' ? 235 : 170;
-      const colors = {brand:['#e8efdf','#648b57'],drink:['#edf3f4','#8daabc'],feature:['#f5efde','#c3a76c']};
-      const group = shape('g',{transform:`translate(${p.x},${p.y})`,class:'graph-node',tabindex:0,role:'button','aria-label':n.label});
-      group.append(shape('rect',{x:-width/2,y:-17,width,height:34,rx:8,fill:colors[n.type][0],stroke:colors[n.type][1]}),shape('text',{'text-anchor':'middle',y:4},n.label.length>15 ? `${n.label.slice(0,14)}…` : n.label),shape('title',{},n.label));
-      const select = () => {lines.forEach(({edge,n:line}) => line.setAttribute('class',`graph-edge${edge.from === n.id || edge.to === n.id ? ' highlight' : ''}`)); const related = edges.filter(e => e.from===n.id || e.to===n.id).map(e => all.find(other => other.id === (e.from===n.id?e.to:e.from)).label); $('#graph-detail').textContent = `${n.label}：連結 ${related.join('、') || '無已標記特徵'}。${n.drink ? `來源：Excel 第 ${n.drink.sourceRow} 列。` : ''}`;};
+      const p = positions.get(n.id), width = n.type === 'drink' ? 235 : n.type==='user'?120:160;
+      const isLiked=n.drink&&saved.has(productKey(n.drink));
+      const label=(isLiked?'♥ ':'')+n.label;
+      const colors = {user:['#fce7e5','#b42318'],liked:['#fce7e5','#b42318'],brand:['#e8efdf','#648b57'],drink:['#edf3f4','#8daabc'],feature:['#f5efde','#c3a76c']};
+      const group = shape('g',{transform:`translate(${p.x},${p.y})`,class:'graph-node',tabindex:0,role:'button','aria-label':label});
+      group.append(shape('rect',{x:-width/2,y:-17,width,height:34,rx:8,fill:colors[isLiked?'liked':n.type][0],stroke:colors[isLiked?'liked':n.type][1]}),shape('text',{'text-anchor':'middle',y:4},label.length>15 ? `${label.slice(0,14)}…` : label),shape('title',{},label));
+      const select = () => {lines.forEach(({edge,n:line}) => line.setAttribute('class',`graph-edge${edge.liked?' liked':''}${edge.from === n.id || edge.to === n.id ? ' highlight' : ''}`)); const related = edges.filter(e => e.from===n.id || e.to===n.id).map(e => all.find(other => other.id === (e.from===n.id?e.to:e.from)).label); $('#graph-detail').textContent = `${isLiked?'♥ 你已按讚。':''}${n.label}：連結 ${related.join('、') || '無已標記特徵'}。${n.drink ? `來源：Excel 第 ${n.drink.sourceRow} 列。` : ''}`;};
       group.onclick = select; group.onkeydown = event => {if (event.key==='Enter'||event.key===' ') {event.preventDefault(); select();}}; svg.append(group);
     }
-    $('#graph-status').textContent = `顯示 ${list.length} 款飲料、${all.length} 個節點、${edges.length} 條關係（共 ${value.total} 款符合搜尋）。`;
-    if (!list.length) $('#graph-detail').textContent = '沒有符合的飲料，請調整搜尋條件。';
+    $('#graph-status').textContent = `${own?'我的按讚':'目錄範例'}：顯示 ${list.length} 款飲料，其中 ${liked.length} 款已按讚；${all.length} 個節點、${edges.length} 條關係。${own?'搜尋／品牌篩選會限制顯示；共有 '+saved.size+' 款按讚。':'共 '+value.total+' 款符合搜尋，顯示前 12 款。'}`;
+    if (!list.length) $('#graph-detail').textContent = own&&!saved.size?'還沒有按讚飲料。先在推薦或圖鑑按「喜歡這杯」，或切換到目錄範例。':'沒有符合的飲料，請清除搜尋或品牌篩選。';
   } catch(error) {if (request === graphRequest) $('#graph-status').textContent = error.message;}
 }
+$('#graph-scope').onchange=()=>loadGraph();
 $('#graph-form').onsubmit = event => {event.preventDefault(); loadGraph();};
 chatController=initChat({api,card,feedback:()=>feedback,isBusy:()=>busy||accountBusy||preferenceBusy,setBusy,refresh:refreshFeedbackButtons,ready:()=>preferenceSync});
 function showView() {
@@ -282,4 +292,4 @@ try {
   for (const [values,selector] of [[meta.tea,'#tea-filter'],[meta.toppings,'#topping-filter']]) for (const v of values) {const option=el('option',v); option.value=v; $(selector).append(option);}
 } catch(error) {$('#catalog-summary').textContent='資料讀取失敗，請重新整理。'; $('#result-status').textContent=error.message;}
 showView();
-try {const result=await api('/api/account/me');await switchAccount(result.user);}catch(error){$('#feedback-note').textContent=`帳號暫時無法讀取：${error.message}`;}finally{accountBusy=false;$('#submit-button').disabled=busy;updateAccountButtons();refreshFeedbackButtons();}
+try {const result=await api('/api/account/me');await switchAccount(result.user);}catch(error){$('#feedback-note').textContent=`帳號暫時無法讀取：${error.message}`;}finally{accountBusy=false;$('#submit-button').disabled=busy;updateAccountButtons();refreshFeedbackButtons();if(location.hash==='#graph')loadGraph();}

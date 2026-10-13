@@ -10,7 +10,7 @@ export function initChat({api,card,feedback,isBusy,setBusy,refresh,ready}) {
     return n;
   }
   function showFilters(){
-    const labels={maxPrice:v=>`預算 ≤ ${v} 元`,maxCalories:v=>`熱量 ≤ ${v} kcal`,maxCaffeine:v=>`咖啡因 ≤ ${v} mg`,brand:v=>v,excludedBrands:v=>v.length?`不要：${v.join('、')}`:'',milk:v=>({none:'無奶標記',fresh:'鮮奶',plant:'植物奶',any:'奶類不限'})[v],tea:v=>v,topping:v=>v};
+    const labels={excludedToppings:v=>v.length?`不加：${v.join("、")}`:"",milkTea:v=>v?"奶茶":"",maxPrice:v=>`預算 ≤ ${v} 元`,maxCalories:v=>`熱量 ≤ ${v} kcal`,maxCaffeine:v=>`咖啡因 ≤ ${v} mg`,brand:v=>v,excludedBrands:v=>v.length?`不要：${v.join('、')}`:'',milk:v=>({none:'無奶標記',fresh:'鮮奶',plant:'植物奶',any:'奶類不限'})[v],tea:v=>v,topping:v=>v};
     const values=Object.entries(state.filters).map(([k,v])=>labels[k]?.(v)).filter(Boolean);
     if(state.query)values.unshift(`口味：${state.query}`);
     if(state.guard)values.push('有待釐清的限制');
@@ -35,7 +35,7 @@ export function initChat({api,card,feedback,isBusy,setBusy,refresh,ready}) {
       if(value.warnings.length)reply.append(text('p',value.warnings.join(' '),'card-warning'));
       const cards=document.createElement('div');cards.className='chat-cards';
       value.results.forEach((r,i)=>cards.append(card(r.drink,i,r)));reply.append(cards);refresh();
-      $('#chat-message').value='';$('#chat-status').textContent=value.mode.personalized?'已參考你的帳號／瀏覽器收藏。':'你可以繼續調整條件。';
+      $('#chat-message').value='';$('#chat-status').textContent=(value.chatMode==='qwen3-8b'?'對話：Qwen3-8B。 ':value.chatMode==='rules-fallback'?'對話模型暫時不可用，使用規則備援。 ':'')+(value.mode.routeA==='macbert'?'語意搜尋：MacBERT。 ':value.mode.routeAFallback?'Mac 暫時無法推論，改用 TF-IDF 備援。 ':'')+(value.mode.personalized?'已參考你的帳號／瀏覽器收藏。':'你可以繼續調整條件。');
     }catch(error){bubble('assistant',`這次未完成推薦：${error.message}。已保留上一輪條件，請再試一次。`);$('#chat-status').textContent='訊息未成功處理，輸入內容已保留。';}
     finally{lock(false);$('#chat-message').focus();$('#chat-log').lastElementChild?.scrollIntoView({block:'nearest'});}
   }

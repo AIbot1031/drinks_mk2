@@ -54,3 +54,22 @@ test('chat HTTP persists traces, excludes previous batches and applies same-orig
   assert.equal((await post({message:'清爽'},'https://unrelated.example')).status,403);
   assert.equal((await post({message:''})).status,400);
 });
+
+test('no pearl is a persistent topping preference and repairs legacy preference guards',()=>{
+  const a=turn('我想要喝奶茶不要珍珠');
+  assert.equal(a.state.guard,'');assert.equal(a.state.filters.milkTea,true);
+  assert.deepEqual(a.state.filters.excludedToppings,['珍珠']);
+  const b=turn('不要珍珠',a.state);
+  const c=turn('預算改成100元',b.state);
+  for(const step of [a,b,c]){
+    const response=engine.recommend(step.input);
+    assert.equal(response.blocked,false);assert.ok(response.results.length);
+    for(const drink of response.results)for(const variant of drink.variants??[drink]){
+      assert.ok(!/珍珠|波霸/.test(variant.name));
+      assert.ok(!variant.toppings.some(t=>/珍珠|波霸/.test(t)));
+    }
+  }
+  const legacy=turn('不要珍珠',{query:'',filters:{},guard:'忌口：我想要喝奶茶不要珍珠'});
+  assert.equal(legacy.state.guard,'');assert.equal(legacy.state.filters.milkTea,true);
+  assert.equal(engine.recommend(turn('不要珍珠',turn('花生過敏').state).input).blocked,true);
+});

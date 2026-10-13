@@ -9,6 +9,7 @@ export type Drink = {
   noMilk: boolean; richness: number | null; status: string; allergensVerified: boolean;
 };
 export type Filters = {
+  excludedToppings?:string[];milkTea?:boolean;
   brand?: string; excludedBrands?: string[]; maxPrice?: number; maxCalories?: number; maxCaffeine?: number;
   milk?: 'any' | 'none' | 'fresh' | 'plant'; tea?: string; topping?: string;
 };

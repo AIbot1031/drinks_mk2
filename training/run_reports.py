@@ -31,7 +31,9 @@ def add_comparison(report):
                    report.get('best_validation', {}).get(name), 'lower')
     for split, before in report.get('before_training', {}).items():
         after = report.get('after_training', {}).get(split)
-        for name, direction in [('bce', 'lower'), ('accuracy', 'higher')]:
+        for name, direction in [('bce', 'lower'), ('accuracy', 'higher'), ('sampled_ce','lower'), ('sampled_mrr','higher'), ('sampled_hit_at_5','higher')]:
+            if name not in (before or {}) and name not in (after or {}):
+                continue
             metric(split+'_'+name, before.get(name) if before else None,
                    after.get(name) if after else None, direction)
     if not comparison['metrics']:

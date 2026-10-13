@@ -1,0 +1,181 @@
+{
+  "run_id": "20261013T155618-relgt-long-intent",
+  "started_at": "2026-10-13T15:56:18+08:00",
+  "status": "trained_unvalidated_small_temporal_data",
+  "task": "self-supervised next observed preference action given strictly past user events",
+  "trigger": "explicit user training instruction",
+  "upstream_commit": "19e423ca3e7cac761130aba790857f2dc3a46ef7",
+  "git_commit": "cd4db2afb26fcf757f745230ba5c2c937f15ed5e",
+  "working_tree_dirty": true,
+  "script_sha256": "e32a479d510a8586bf5d1405c0c9b4f16b0143672a8fd0b028cfd79908be290e",
+  "optimizer_steps": 10,
+  "published": false,
+  "updated_users": 0,
+  "changes": [
+    "first real temporal intent training adapter",
+    "strict past-only event graph",
+    "next-action sampled ranking target, no price target",
+    "small real samples train without a quality gate"
+  ],
+  "limitations": [
+    "same-day data cannot establish long-term intent quality",
+    "unobserved distractors are not dislikes and may be future positives",
+    "sampled metrics are not full-catalog ranking quality",
+    "explicit padding tokens participate in upstream attention",
+    "current catalog metadata assumed available, no historic catalog reconstruction",
+    "no automatic production deployment, nightly schedule or resume CLI"
+  ],
+  "snapshot_sha256": "c8dfbbaffb1643b9b39890f5a40c05ea829ec1b4a44ef20e3e0006ac1d48a788",
+  "catalog_sha256": "ef2503d4ae5fe0324cd9d8e988719ca62800e5a24084971b8a0c2d00609ad97a",
+  "data_cutoff_ms": 1791878059000,
+  "data": {
+    "source_events": 7,
+    "invalid_ids": 0,
+    "duplicate_events": 0,
+    "after_cutoff": 0,
+    "duplicate_targets": 0,
+    "users": 1,
+    "like_targets": 7,
+    "dislike_targets": 0,
+    "valid_events": 7,
+    "samples": 7,
+    "with_history": 6,
+    "cold_start_samples": 1,
+    "multi_day_users": 0
+  },
+  "split_method": "small real data: train every target, no heldout quality claims",
+  "split_rows": {
+    "train": 7,
+    "validation": 0,
+    "test": 0
+  },
+  "environment": {
+    "python": "3.12.14",
+    "device": "cpu",
+    "chip": "Apple M6",
+    "packages": {
+      "torch": "2.14.1",
+      "torch-geometric": "2.8.0.post1",
+      "pytorch-frame": "0.3.0"
+    }
+  },
+  "parameters": {
+    "snapshot": "internal_exports/interactions-2026-10-13T07-54-24-660Z.json",
+    "epochs": 10,
+    "batch_size": 8,
+    "history_size": 8,
+    "distractors": 15,
+    "learning_rate": 0.0001,
+    "seed": 42,
+    "loss": "sampled next observed-action cross entropy; distractors are NOT dislike labels",
+    "trainable_parameters": 1191926,
+    "channels": 32,
+    "heads": 4,
+    "centroids": 8,
+    "starting_checkpoint": null,
+    "initialization": "new temporal task, random official architecture weights"
+  },
+  "before_training": {
+    "train": {
+      "sampled_ce": 2.773472172873361,
+      "sampled_mrr": 0.16575963718820863,
+      "sampled_hit_at_5": 0.2857142857142857,
+      "rows": 7
+    },
+    "validation": null,
+    "test": null
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "training_ce": 2.990903854370117
+    },
+    {
+      "epoch": 2,
+      "training_ce": 2.8479881286621094
+    },
+    {
+      "epoch": 3,
+      "training_ce": 2.5761358737945557
+    },
+    {
+      "epoch": 4,
+      "training_ce": 2.721245050430298
+    },
+    {
+      "epoch": 5,
+      "training_ce": 2.711315393447876
+    },
+    {
+      "epoch": 6,
+      "training_ce": 2.8695874214172363
+    },
+    {
+      "epoch": 7,
+      "training_ce": 2.8516218662261963
+    },
+    {
+      "epoch": 8,
+      "training_ce": 2.7394728660583496
+    },
+    {
+      "epoch": 9,
+      "training_ce": 2.635990858078003
+    },
+    {
+      "epoch": 10,
+      "training_ce": 2.790813446044922
+    }
+  ],
+  "after_training": {
+    "train": {
+      "sampled_ce": 2.7690755980355397,
+      "sampled_mrr": 0.382312925170068,
+      "sampled_hit_at_5": 0.42857142857142855,
+      "rows": 7
+    },
+    "validation": null,
+    "test": null
+  },
+  "weights_changed": true,
+  "checkpoint_reload_max_error": 0.0,
+  "checkpoint": "training_artifacts/20261013T155618-relgt-long-intent/model.pt",
+  "checkpoint_sha256": "05757994850db8f691bccc134834b5fd1fdd898c1ef3be1090667257646dd241",
+  "checkpoint_reload_verified": true,
+  "ended_at": "2026-10-13T15:56:20+08:00",
+  "duration_seconds": 2.189,
+  "before_after_comparison": {
+    "status": "trained_unvalidated_small_temporal_data",
+    "published": false,
+    "updated_users": 0,
+    "metrics": [
+      {
+        "name": "train_sampled_ce",
+        "before": 2.773472172873361,
+        "after": 2.7690755980355397,
+        "delta_after_minus_before": -0.004396574837821188,
+        "better_direction": "lower",
+        "reason": null
+      },
+      {
+        "name": "train_sampled_mrr",
+        "before": 0.16575963718820863,
+        "after": 0.382312925170068,
+        "delta_after_minus_before": 0.21655328798185935,
+        "better_direction": "higher",
+        "reason": null
+      },
+      {
+        "name": "train_sampled_hit_at_5",
+        "before": 0.2857142857142857,
+        "after": 0.42857142857142855,
+        "delta_after_minus_before": 0.14285714285714285,
+        "better_direction": "higher",
+        "reason": null
+      }
+    ],
+    "data_snapshot_sha256": "c8dfbbaffb1643b9b39890f5a40c05ea829ec1b4a44ef20e3e0006ac1d48a788",
+    "weights_changed": true,
+    "checkpoint_after": "training_artifacts/20261013T155618-relgt-long-intent/model.pt"
+  }
+}
