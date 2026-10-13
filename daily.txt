@@ -437,7 +437,7 @@ RelGT 夜間訓練流程：
 規劃：使用者指定 Qwen 8B、Mac 處理並授權完成直接上線；選擇 Qwen3-8B MLX 4-bit、關閉 thinking、temperature 0、320 tokens 上限。此次為預訓練模型推論部署，沒有 Qwen 微調。
 實作：Qwen 與 MacBERT 分離 WebSocket 角色；解析 JSON 經 Worker 驗證後交資料庫篩選排序。修正「奶茶不要珍珠」誤判忌口，跨輪保留配料排除、恢復舊版錯誤 guard。真正過敏限制、預算與品牌排除保持；模型不能編造未知品牌或取消排除。
 實作：Qwen 使用獨立 .venv-llm、套件鎖定及登入後常駐 LaunchAgent local.drinks-mk2.qwen，執行環境位於 Library/Application Support/DrinksMk2LLM。與 MacBERT 環境分開；原 Transformers 4.57.6 已確認未變更。
-驗證：TypeScript、JavaScript/Python 語法檢查通過；26 個正式網站整合與單元測試全部通過；時序資料 Python 測試 5 個通過。三輪對話皆使用 Qwen、MacBERT、每轮 6 張卡片，各杯型無珍珠或波霸，整體回應 4190、3897、4725 ms（單次樣本非負載基準）。
+驗證：TypeScript、JavaScript/Python 語法檢查通過；26 個正式網站整合與單元測試全部通過；時序資料 Python 測試 5 個通過。三輪對話皆使用 Qwen、MacBERT、每輪 6 張卡片，各杯型無珍珠或波霸，整體回應 4190、3897、4725 ms（單次樣本非負載基準）。
 驗證：暫停 Qwen 後三輪自動退回規則，MacBERT 繼續服務，每輪 6 張卡片且條件保持；已恢復 Qwen 常駐服務。
 部署：Cloudflare 最新 eca74b21-777c-4277-982c-3c27ed40f53a。初期舊 DO 活躍連線造成角色互相取代，切換 inference-v2 actor 並重啟服務後同時 ready 成功。GitHub 2.3 發布與最後 UI 截圖待完成。
 限制：Mac 必須登入、連網且開機；Qwen 20 秒失敗規則備援，MacBERT 5 秒失敗 TF-IDF 備援。沒有新增訓練或改動 RelGT 雲端權重。文件 docs/Qwen對話服務與條件安全.md；本輪既有 RelGT 報告 docs/training-runs/20261013T155618-relgt-long-intent.md。
@@ -453,10 +453,10 @@ Git 同步：實作 commit d4542ca6287b34eb9fda3ec6e04681e6c318062d 已推 main�
 實作：共用簡稱與配料排除解析，否定配料優先、修復舊錯誤 guard；新增實際奶蓋／果肉／冰淇淋／茶凍／芋圓／芋泥排除。未知配料改追問，真正過敏限制保留。
 實作：Qwen 接收 drink-catalog-v1 特徵契約、最近 8 則對話與各最多 10 筆收藏／不喜歡特徵摘要，無帳號 ID 或憑證。action clarify 先追問，recommend 才交 MacBERT；未知排除強制先釐清，不採用模型猜測的配料；追問沒有 A／B 榜單。Qwen 提示詞版本 intent-v2，未訓練、未變更模型權重。
 實作：帳號可自訂最多 8 個快捷標籤（名稱 20 字／需求 300 字）；D1 0004 新欄位與按讚分開儲存，登入／登出切換且跨裝置保留。下方恢復按鈕在卡住、無結果或錯誤時顯示，清除對話與批次、保留收藏和快捷標籤。
-驗證：本機 HTTP 29/29，正式 HTTP 29/29；型別与 JS/Python 語法通過。初期新增測試取錯結果配料層級，修正為逐杯型驗證後通過。實測 Qwen 對「想喝飲料」先追問、補充「濃郁奶茶不要珍珠」後 MacBERT 回 6 張卡片；未知配料先問完整名稱，回答珍珠後正常 6 張卡片，各杯型無珍珠／波霸。
+驗證：本機 HTTP 29/29，正式 HTTP 29/29；型別與 JS/Python 語法通過。初期新增測試取錯結果配料層級，修正為逐杯型驗證後通過。實測 Qwen 對「想喝飲料」先追問、補充「濃郁奶茶不要珍珠」後 MacBERT 回 6 張卡片；未知配料先問完整名稱，回答珍珠後正常 6 張卡片，各杯型無珍珠／波霸。
 驗證：新註冊隔離測試帳號完成標籤新增／修改／刪除及雲端保存，不使用真實用戶帳號。跨帳號不可讀取對方標籤，同源、數量與字數驗證通過，按讚欄位未被覆蓋。最終 UI 恢復與重新載入仍待最後檢查。
-部署：D1 0004 本地／遠端已套用；Worker 8a8d9140-3bb0-49a4-a412-f7c0772a956a 上線；Qwen Mac 常駐脚本已更新並重啟。Git 同步待完成。說明 docs/Qwen對話服務與條件安全.md，檔案用途說明同步新增。
-限制：小模型輸出仍可能不合法，後端驗證與规则／TF-IDF 備援保持；未實作糖度、冰量或過敏安全保證。此次沒有模型訓練，不產生虛構訓練比較報告。
+部署：D1 0004 本地／遠端已套用；Worker 8a8d9140-3bb0-49a4-a412-f7c0772a956a 上線；Qwen Mac 常駐腳本已更新並重啟。Git 同步待完成。說明 docs/Qwen對話服務與條件安全.md，檔案用途說明同步新增。
+限制：小模型輸出仍可能不合法，後端驗證與規則／TF-IDF 備援保持；未實作糖度、冰量或過敏安全保證。此次沒有模型訓練，不產生虛構訓練比較報告。
 
 [2026-10-13 17:40:08 Asia/Taipei] Qwen 本機部署位置與風險控制
 規劃：使用者要求查看 Qwen 所在位置，並限制電腦資料外洩風險。執行目錄 Library/Application Support/DrinksMk2LLM、模型 training_artifacts/qwen3-8b-4bit、登入後常駐 LaunchAgent 已列入文件，執行程式以 Codex 檔案頁排入開啟。
@@ -464,7 +464,7 @@ Git 同步：實作 commit d4542ca6287b34eb9fda3ec6e04681e6c318062d 已推 main�
 實作：Qwen 與固定目的地 relay 都透過 macOS sandbox-exec 啟動。Qwen 禁止讀取其他 /Users 檔案、不能寫入模型／程式／隔離設定／金鑰、不能啟動 shell／子程序或開放監聽。只能寫自己 logs/cache/tmp；Python 必要基礎環境可讀。
 實作：Qwen 只允許連 localhost:52791；loopback relay 檢查 TLS ClientHello 的 SNI 為本站後，才轉送到固定 Worker:443，保留端到端 TLS 與憑證驗證。relay 只允許必要 HTTPS 與本機系統 DNS socket，不接收任意目的地。HF offline／停用 telemetry 已設定，模型不提供檔案、執行指令、瀏覽器或任意 HTTP 工具。
 驗證：5 個 OS 實測（私人文件讀取、程式覆寫、shell、直接其他外連、監聽）全部遭拒；其他 TLS hostname 被拒；TLS parser 3 個 OpenSSL／錯誤格式單元通過。Node 正式角色授權測試為 401／401／426，完整正式 HTTP 30/30，本機 HTTP 30/30；Python 時序 5/5。
-驗證：限制實作初期，全檔案白名單阻止 Python 啟動，改為禁止其他使用者目錄資料並保持系統既有權限。早期轉接名稱與 socket 變數衝突、DNS socket 被阻擋造成規則備援，修正後實際 Qwen 接通、兩組追問與補充各正常輸出 6 張卡片。TLS relay 重啟時短暫備援，恢復 ready 後重測通過。Python urllib 遠端檢查遇 403，不當成 Worker 授權成功；改由 Node 整合測試確認精確狀態。本機密鑰環境初次未載入導致一项 401，重啟開發服務後 30 項皆通過。
+驗證：限制實作初期，全檔案白名單阻止 Python 啟動，改為禁止其他使用者目錄資料並保持系統既有權限。早期轉接名稱與 socket 變數衝突、DNS socket 被阻擋造成規則備援，修正後實際 Qwen 接通、兩組追問與補充各正常輸出 6 張卡片。TLS relay 重啟時短暫備援，恢復 ready 後重測通過。Python urllib 遠端檢查遇 403，不當成 Worker 授權成功；改由 Node 整合測試確認精確狀態。本機密鑰環境初次未載入導致一項 401，重啟開發服務後 30 項皆通過。
 部署：Cloudflare fa01b764-8989-4a8d-b210-12fc34a50aa2；Qwen 與 MacBERT 同時 ready。relay 僅 127.0.0.1:52791，未開放外網埠。隔離規則沒有無隔離自動備援；故障仍由網站規則與 TF-IDF 接手。
 限制：不是虛擬機與零風險保證，系統檔案仍依 macOS 原權限；sandbox-exec 已 deprecated，需留意 OS 相容性。推薦對話既有紀錄仍在自己的 Cloudflare D1，Mac 收到對話與飲料偏好摘要。未做新訓練、未改模型權重。說明 docs/Qwen本機安全與部署位置.md；可執行 scripts/verify_qwen_security.py 重驗。
 
@@ -473,7 +473,13 @@ Git 同步：實作 commit d4542ca6287b34eb9fda3ec6e04681e6c318062d 已推 main�
 實作：本機 127.0.0.1:8792、local.drinks-mk2.monitor LaunchAgent、Application Support/DrinksMk2Monitor；每 3 秒查看 Qwen、MacBERT、relay 與監控本身的 PID／CPU／RSS／執行時間。模型回報 MLX／MPS GPU 配置記憶體，與 RSS 不重複加總，沒有假造 GPU 使用率。
 實作：安全動作白名單僅記模型載入、預熱、連線、推論、排序候選數與耗時；丟棄 prompt／key／userId 等欄位。前端讀取最近 40 筆安全動作，不顯示真實用戶對話或帳號；不把監控資料送往雲端。Host／Origin／固定路徑檢查，不提供檔案或命令操作 API。
 驗證：實際推論後出現 Qwen 與 MacBERT inference_done，監控 JSON 不含原始測試文字。異常 Origin 403；Host 初次以 Node fetch 指定時被客戶端忽略，改用 curl 與 Python HTTP 實測正確為 403；任意金鑰檔案路徑 404。Python 安全／監控單元 5/5、時序單元 5/5、JS 與 Python 語法檢查通過。
-驗證：正式网站最終 2.3.1 整合／單元 30/30 通過，型別通過；Qwen 隔離 5 項 OS 測試與拒絕其他 TLS 網域仍通過。UI 新增／修改／刪除標籤、儲存、重新載入後保留、下方重新開始清條件但保留標籤、登出恢復預設皆已驗證；測試帳號已登出。
-驗證：本機監控 UI 真實顯示 32 GB／12 核心、各服務約 5 GB RSS 加總（單次快照可能重疊，不是負载基準）；截圖 /tmp/drinks-mk2-project-monitor.png。
+驗證：正式網站最終 2.3.1 整合／單元 30/30 通過，型別通過；Qwen 隔離 5 項 OS 測試與拒絕其他 TLS 網域仍通過。UI 新增／修改／刪除標籤、儲存、重新載入後保留、下方重新開始清條件但保留標籤、登出恢復預設皆已驗證；測試帳號已登出。
+驗證：本機監控 UI 真實顯示 32 GB／12 核心、各服務約 5 GB RSS 加總（單次快照可能重疊，不是負載基準）；截圖 /tmp/drinks-mk2-project-monitor.png。
 部署：Cloudflare 最新 918422fd-4587-4363-8416-30f8ff466719，health／engine 改為 2.3.1，網頁仍顯示 2.3；Mac 三個推論相關服務與監控常駐。為保留原 v2.3.0，不移動舊 tag，後續完整程式將發布為 v2.3.1。Git 同步待完成。
 限制：只監控這幾個本機服務，不含 Cloudflare、開發工具、其他程式或尚未接入的訓練；不是完整系統檔案鑑識，不保證零外洩。監控頁只能從推論 Mac 的 localhost 存取；GPU 數值為最近模型回報而非即時使用率。標準輸出日誌尚未自動輪替。文件 docs/本機專題監控使用說明.md，所有 127 個追蹤檔已有用途說明，金鑰／權重／個資未入 Git。
+
+[2026-10-13 18:20:33 Asia/Taipei] 2.3.1 GitHub 與上線確認
+Git 同步：main commit 50003b3455595eacdf4e264f9da59eebde1dda19 已推送；v2.3.1 tag／正式 Release https://github.com/AIbot1031/drinks_mk2/releases/tag/v2.3.1 已發布。原 2.3.0 及所有舊版保留。GitHub Actions 38381899198 全部成功（型別、Node 單元、Python 時序、Python 安全／監控、部署 dry-run）。
+部署：正式網站 health 2.3.1、5781 筆資料；Cloudflare 918422fd-4587-4363-8416-30f8ff466719；本機監控已開啟並保留頁籤，截圖 /tmp/drinks-mk2-project-monitor.png 已驗證。Qwen／MacBERT／relay 與監控皆常駐，未開放本機監控到外網。
+驗證：角色金鑰、模型與個資未入 Git，127 個追蹤檔皆有用途說明；新增資料庫欄位沒有刪除舊用戶偏好。未做新模型訓練。
+限制與後續：本機監控不包含尚未接入的訓練或雲端資源；OS 相容性、日誌輪替與更完整系統鑑識仍如文件所述。此次完成範圍為對話主入口、快捷標籤、Qwen 防護與 Mac 推論資源／動作監控。
