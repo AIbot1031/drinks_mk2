@@ -16,7 +16,7 @@ test('favorite lookup expands one saved ID and validates request size and origin
 });
 test('Worker runtime serves the site, catalogue, constrained recommendations and validation errors', {skip: !base}, async () => {
   const health = await fetch(`${base}/api/health`).then(r => r.json()) as {ok:boolean;total:number;version:string};
-  assert.equal(health.ok, true); assert.equal(health.version, "2.3.1"); assert.equal(health.total, 5781);
+  assert.equal(health.ok, true); assert.equal(health.version, "2.4.0"); assert.equal(health.total, 5781);
   const html = await fetch(`${base}/`);
   assert.equal(html.status, 200); assert.ok((await html.text()).includes('喝點剛好的'));
   const catalog = await fetch(`${base}/api/catalog?brand=${encodeURIComponent('得正')}&page=1`).then(r => r.json()) as {results:Array<{brand:string}>;total:number};

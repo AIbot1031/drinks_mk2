@@ -3,8 +3,67 @@ import {test} from 'node:test';
 import {conversationTurn} from '../worker/conversation';
 import {makeEngine} from '../worker/recommend';
 import catalog from '../data/catalog.json';
+import {applyLlmUnderstanding} from '../worker/llm-conversation';
 const brands=Object.keys(catalog.brands),engine=makeEngine(catalog.drinks);
 const turn=(message:string,state?:unknown)=>conversationTurn({message,state},brands);
+
+test('brand-first exclusions and allowing one brand preserve user intent',()=>{
+  const first=turn('春水堂先排除，預算75元',turn('我想喝奶茶').state);
+  assert.equal(first.state.guard,'');assert.ok(first.state.filters.excludedBrands?.includes('春水堂'));assert.equal(first.state.filters.brand,undefined);
+  const second=turn('星巴克也不要',first.state);
+  assert.equal(second.state.guard,'');assert.ok(second.state.filters.excludedBrands?.includes('星巴克'));assert.ok(second.state.filters.excludedBrands?.includes('春水堂'));
+  const allow=turn('春水堂可以了',second.state);
+  const parsed=applyLlmUnderstanding(allow,{action:'recommend',query:'奶茶',filters:{brand:'春水堂',milkTea:true,maxPrice:75},modelVersion:'qwen3-8b-4bit-test',durationMs:1},brands,[],[])!;
+  assert.equal(parsed.state.filters.brand,undefined);assert.deepEqual(parsed.state.filters.excludedBrands,['星巴克']);assert.equal(parsed.state.filters.maxPrice,75);
+});
+
+test('dislike of a topping and tea latte milk requirements are applied before ranking',()=>{
+  const disliked=turn('我不喜歡珍珠但想喝奶茶');
+  assert.equal(disliked.state.guard,'');assert.equal(disliked.state.filters.topping,undefined);assert.deepEqual(disliked.state.filters.excludedToppings,['珍珠']);
+  assert.ok(engine.recommend(disliked.input).results.length);
+  for(const text of ['我想喝紅茶拿鐵，預算80元','鮮奶茶，不要奶精']){
+    const a=turn(text);assert.equal(a.state.guard,'');assert.equal(a.state.filters.milk,'fresh');
+    const r=engine.recommend(a.input);assert.equal(r.blocked,false);assert.ok(r.results.length);
+    assert.ok(r.results.every(d=>d.variants.every(v=>v.milk.includes('鮮奶')&&!v.milk.includes('奶精')&&!v.milkConflict)));
+  }
+});
+
+test('allowing a topping or brand removes only that exclusion and pure tea replaces milk tea',()=>{
+  const noPearl=turn('奶茶不要珍珠，預算100元');
+  const allowed=turn('珍珠可以了',noPearl.state);
+  assert.deepEqual(allowed.state.filters.excludedToppings,[]);assert.equal(allowed.state.filters.topping,undefined);
+  assert.equal(allowed.state.filters.maxPrice,100);
+  const wrong=applyLlmUnderstanding(allowed,{query:'奶茶',filters:{milkTea:true,excludedToppings:['珍珠'],maxPrice:30},modelVersion:'qwen3-8b-4bit-test',durationMs:1,assistantMessage:'不加珍珠'},brands,[],['珍珠'])!;
+  assert.deepEqual(wrong.state.filters.excludedToppings,[]);assert.equal(wrong.state.filters.maxPrice,100);assert.ok(!wrong.ack.includes('不加珍珠'));
+  const blocked=turn('不要春水堂和星巴克');
+  const allowBrand=turn('春水堂可以了',blocked.state);
+  assert.deepEqual(allowBrand.state.filters.excludedBrands,['星巴克']);assert.equal(allowBrand.state.filters.brand,undefined);
+  const pure=turn('改喝純紅茶，不要奶茶',noPearl.state);
+  assert.equal(pure.state.guard,'');assert.equal(pure.state.filters.milkTea,false);assert.equal(pure.state.filters.milk,'none');assert.equal(pure.state.filters.tea,'紅茶');
+  const parsed=applyLlmUnderstanding(pure,{query:'奶茶',filters:{milkTea:true,milk:'fresh'},modelVersion:'qwen3-8b-4bit-test',durationMs:1},brands,['紅茶'],['珍珠'])!;
+  const results=engine.recommend(parsed.input);assert.equal(results.blocked,false);assert.ok(results.results.length);assert.ok(results.results.every(d=>d.variants.every(v=>v.noMilk&&v.tea.includes('紅茶'))));
+});
+
+test('explicit brand dislike with an explanation excludes that brand through later turns and Qwen output',()=>{
+  const prior=turn('春水堂珍奶');
+  for(const message of ['我不喜歡春水堂他們都是盤子','我不喜歡春水堂，太貴了','我不愛春水堂','不要春水堂，他們太貴']){
+    const excluded=turn(message,prior.state);
+    assert.ok(excluded.state.filters.excludedBrands?.includes('春水堂'));
+    assert.equal(excluded.state.filters.brand,undefined);
+    const parsed=applyLlmUnderstanding(excluded,{query:'春水堂珍珠奶茶',filters:{brand:'春水堂',milkTea:true},modelVersion:'qwen3-8b-4bit-test',durationMs:1},brands,[],[])!;
+    assert.ok(parsed);assert.equal(parsed.state.filters.brand,undefined);
+    for(const input of [excluded.input,parsed.input,turn('再推薦幾杯',parsed.state).input]){
+      const response=engine.recommend(input);
+      assert.equal(response.blocked,false);assert.ok(response.results.length);
+      assert.ok(response.results.every(drink=>drink.brand!=='春水堂'));
+    }
+  }
+  const direct=engine.recommend({query:'我不喜歡春水堂他們都是盤子',filters:{},likedIds:[],dislikedIds:[],excludedIds:[],limit:6});
+  assert.ok(direct.results.length);assert.ok(direct.results.every(drink=>drink.brand!=='春水堂'));
+  assert.ok(!turn('我不喜歡春水堂的珍珠奶茶').state.filters.excludedBrands?.includes('春水堂'));
+  assert.ok(!turn('我不是不喜歡春水堂').state.filters.excludedBrands?.includes('春水堂'));
+  assert.equal(turn('我喜歡春水堂').state.filters.brand,'春水堂');
+});
 
 test('chat replaces caps upward, retains taste, and excludes brands across turns',()=>{
   const first=turn('清爽回甘，預算 50 元');

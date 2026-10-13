@@ -1,6 +1,7 @@
 import {validateInput} from './understand';
 import type {ConversationState} from './conversation';
 import type {Filters} from './types';
+import {normalizeDrinkLanguage,sameTopping} from './drink-language';
 
 export function applyLlmUnderstanding(turn:{state:ConversationState;input:ReturnType<typeof validateInput>;message:string},value:unknown,brands:string[],tea:string[],toppings:string[]){
   const r=value as {action?:unknown;query?:unknown;filters?:unknown;assistantMessage?:unknown;modelVersion?:unknown;durationMs?:unknown}|null;
@@ -16,23 +17,37 @@ export function applyLlmUnderstanding(turn:{state:ConversationState;input:Return
     if(f[key]!==undefined){
       const pattern=key==='maxPrice'?/(?:預算|價格|價錢)[^\d，。]{0,12}(\d+(?:\.\d+)?)|(\d+(?:\.\d+)?)\s*(?:元|塊)/:key==='maxCalories'?/(?:熱量|卡路里)[^\d，。]{0,12}(\d+(?:\.\d+)?)/:/咖啡因[^\d，。]{0,12}(\d+(?:\.\d+)?)/;
       const explicit=turn.message.match(pattern);
-      filters[key]=explicit&&Number(explicit[1]??explicit[2])===f[key]?f[key]:Math.min(filters[key]??Infinity,f[key]!);
+      if(explicit&&Number(explicit[1]??explicit[2])===f[key])filters[key]=f[key];
     }
   }
-  filters.excludedBrands=[...new Set([...(filters.excludedBrands??[]),...(f.excludedBrands??[])])];
-  filters.excludedToppings=[...new Set([...(filters.excludedToppings??[]),...(f.excludedToppings??[])])];
-  if(f.brand&&(!filters.brand||turn.message.includes(f.brand)))filters.brand=f.brand;
-  if(f.milk&&/奶|乳/.test(turn.message))filters.milk=f.milk;
+  const normalized=normalizeDrinkLanguage(turn.message);
+  const negative=(term:string)=>new RegExp(`(?:不要|不想要|不喜歡|不愛|討厭|排除|不喝|不加|別加)\\s*${term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}`).test(normalized);
+  filters.excludedBrands=[...new Set([...(filters.excludedBrands??[]),...(f.excludedBrands??[]).filter(negative)])];
+  filters.excludedToppings=[...new Set([...(filters.excludedToppings??[]),...(f.excludedToppings??[]).filter(t=>negative(t)||(['珍珠','波霸'].includes(t)&&negative(t==='珍珠'?'波霸':'珍珠')))])];
+  if(filters.topping&&filters.excludedToppings.some(t=>sameTopping(t,filters.topping!)))delete filters.topping;
+  const allowsBrand=f.brand&&new RegExp(`${f.brand.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}(?:現在)?可以`).test(turn.message);
+  if(f.brand&&!allowsBrand&&!filters.excludedBrands.includes(f.brand)&&(!filters.brand||turn.message.includes(f.brand)))filters.brand=f.brand;
+  if(filters.brand&&filters.excludedBrands.includes(filters.brand))delete filters.brand;
+  if(f.milk==='fresh'&&/鮮奶|牛奶/.test(turn.message)&&!/(?:不要|不喝)(?:鮮奶|牛奶)/.test(turn.message))filters.milk='fresh';
+  if(f.milk==='plant'&&/植物奶|燕麥奶|豆奶/.test(turn.message))filters.milk='plant';
+  if(f.milk==='none'&&/(?:不要|不喝)(?:奶|乳)|純茶|純紅茶|純綠茶/.test(turn.message))filters.milk='none';
+  if(f.milk==='any'&&/奶(?:類)?(?:不限|都可以)/.test(turn.message))filters.milk='any';
   if(f.tea&&turn.message.includes(f.tea))filters.tea=f.tea;
-  if(f.topping&&turn.message.includes(f.topping)&&!filters.excludedToppings.includes(f.topping))filters.topping=f.topping;
-  if(f.milkTea===true)filters.milkTea=true;
+  if(f.topping&&turn.message.includes(f.topping)&&!filters.excludedToppings.some(t=>sameTopping(t,f.topping!))&&!new RegExp(`${f.topping}(?:現在)?可以`).test(turn.message))filters.topping=f.topping;
+  if(f.milkTea===true&&filters.milk!=='none'&&/奶茶|珍奶/.test(turn.message))filters.milkTea=true;
   else if(f.milkTea===false&&/(?:換|改|純茶|咖啡)/.test(turn.message))filters.milkTea=false;
-  const state:ConversationState={...turn.state,query:r.action==='clarify'?turn.state.query:r.query,filters};
+  const state:ConversationState={...turn.state,query:r.action==='clarify'||(filters.milk==='none'&&filters.milkTea===false)?turn.state.query:r.query,filters};
   if(r.action==='clarify')state.clarification=state.guard.startsWith('未辨識條件：')?'topping-exclusion':'taste';
   else delete state.clarification;
   const input=validateInput({...turn.input,query:state.guard||state.query,filters});
   // Only use short acknowledgements, never model-created drink/ingredient facts.
   let ack=typeof r.assistantMessage==='string'&&r.assistantMessage.length<=160&&!/保證|安全|過敏|熱量|咖啡因|價格|\d|mg|kcal/.test(r.assistantMessage)?r.assistantMessage:'已理解你的口味與篩選條件。';
+  if(r.action!=='clarify'){
+    const labels=[filters.milkTea?'奶茶':filters.tea,filters.milk==='fresh'?'鮮奶':filters.milk==='plant'?'植物奶':filters.milk==='none'?'無奶標記':undefined,filters.topping?`含${filters.topping}`:undefined,
+      filters.excludedToppings.length?`不加${filters.excludedToppings.join('、')}`:undefined,
+      filters.excludedBrands.length?`排除${filters.excludedBrands.join('、')}`:undefined].filter(Boolean);
+    ack=labels.length?`已套用條件：${labels.join('；')}。`:'已理解你的口味與篩選條件。';
+  }
   if(r.action==='clarify'&&ack==='已理解你的口味與篩選條件。')ack=state.clarification==='topping-exclusion'?'請問你想排除哪一種配料？':'你想喝清爽茶類，還是濃郁奶茶？';
   return {state,input,ack,clarify:r.action==='clarify',modelVersion:r.modelVersion,durationMs:r.durationMs};
 }

@@ -23,3 +23,15 @@
 後續需要人工標註查詢—飲料相關性，對照 TF-IDF 和原始 MacBERT、生成目錄向量、實作 Mac 服務及 Worker adapter。網站目前仍維持原先推薦；沒有開啟每日排程。
 
 來源：[官方模型](https://huggingface.co/hfl/chinese-macbert-base)、[官方 MacBERT](https://github.com/ymcui/MacBERT)、[SimCSE 論文](https://aclanthology.org/2021.emnlp-main.552/)。
+
+## 2026-10-13T23:14:11+08:00 每日訓練排程擴充
+
+Codex automation `relgt` 已更新為「飲料網站 RelGT／MacBERT／Qwen 每日訓練」，狀態 ACTIVE。讀取現有設定發現時間已變成每日 Asia/Taipei 02:00，這次保留現有時段；前段 04:00 為建立時的歷史設定。下一預定執行為 2026-10-14 02:00。
+
+三個模型依序處理：RelGT 使用真實匿名事件及現有 10 epoch 入口；MacBERT 使用現有目錄文字 MPS 對比微調入口、1 epoch；Qwen 第一次排程須先建立審核過的 intent 資料、MLX LoRA／QLoRA 入口及獨立驗證，再實際訓練。Qwen 入口目前尚未實作，加入排程指令不等於已完成訓練程式或已訓練。完全無有效資料或執行失敗須留下真實報告。每個模型都需前後比較；發布需相同驗證集的線上舊版／候選新版比較及重載、網站契約測試，未完成則沿用目前模型。
+
+本次只更新與核對排程，0 optimizer 步、無新權重或部署；沒有提交／推送 Git。需要 Mac 開機與 Codex App 持續運作。
+
+## 2026-10-13T23:26:28+08:00 三模型排程立即實測
+
+已依使用者要求實際執行三模型訓練，Qwen 新增 MLX QLoRA 入口並完成一次修正重試；權重未發布。安全總報告與各次真實前後比較見 [首次手動排程報告](training-runs/20261013T231513-manual-schedule-trial.md)。排程已改呼叫 `scripts/run_daily_training.py`，保留每日 02:00，新增防重疊與分模型失敗處理。Qwen 資料、方法與限制見 [Qwen訓練操作](Qwen訓練操作.md)。

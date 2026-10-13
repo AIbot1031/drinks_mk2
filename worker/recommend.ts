@@ -10,7 +10,7 @@ export function eligible(d: Drink, f: Filters): boolean {
     && (f.maxPrice === undefined || (d.price !== null && !d.priceEstimated && d.price <= f.maxPrice))
     && (f.maxCalories === undefined || (d.calories !== null && !d.caloriesEstimated && d.calories <= f.maxCalories))
     && (f.maxCaffeine === undefined || (d.caffeineMax !== null && !d.caffeineEstimated && d.caffeineMax <= f.maxCaffeine))
-    && (!f.milk || f.milk === 'any' || (f.milk === 'none' ? d.noMilk && !d.milkConflict && !d.milk.length : f.milk === 'fresh' ? d.milk.includes('鮮奶') : d.milk.includes('植物奶') && !d.milk.includes('鮮奶') && !d.milk.includes('奶精')))
+    && (!f.milk || f.milk === 'any' || (f.milk === 'none' ? d.noMilk && !d.milkConflict && !d.milk.length : f.milk === 'fresh' ? !d.milkConflict&&d.milk.includes('鮮奶')&&!d.milk.includes('奶精') : d.milk.includes('植物奶') && !d.milk.includes('鮮奶') && !d.milk.includes('奶精')))
     && (!f.tea || d.tea.includes(f.tea)) && (!f.topping || d.toppings.includes(f.topping))
     && (!f.milkTea || /奶茶/.test(d.name) || (d.milk.length>0&&d.tea.length>0))
     && !(f.excludedToppings??[]).some(t=>{const names=['珍珠','波霸'].includes(t)?['珍珠','波霸']:[t];return names.some(n=>d.toppings.includes(n)||d.name.includes(n));});
@@ -88,7 +88,7 @@ export function makeEngine(drinks: Drink[]) {
     const seen=new Set(input.excludedIds.flatMap(id=>byId.has(id)?[productKey(byId.get(id)!)]:[]));
     return parsed.blocked?[]:drinks.filter(d=>eligible(d,parsed.filters)&&!excluded.has(d.id)&&!disliked.has(d.id)&&!seen.has(productKey(d)));
   }
-  function recommendWithTrace(input: RecommendInput, semantic?:{scores:Array<{id:string;score:number}>;modelVersion:string;durationMs:number;fallbackReason?:string}) {
+  function recommendWithTrace(input: RecommendInput, semantic?:{scores:Array<{id:string;score:number}>;modelVersion:string;durationMs:number;fallbackReason?:string},relgt?:{scores:Array<{id:string;score:number}>;modelVersion:string;durationMs:number;historyCount?:number;fallbackReason?:string}) {
     const parsed = understand(input, [...new Set(drinks.map(d => d.brand))]);
     const disliked = new Set(input.dislikedIds);
     const excluded = new Set(input.excludedIds);
@@ -103,7 +103,8 @@ export function makeEngine(drinks: Drink[]) {
     const liked = input.likedIds.filter(id => byId.has(id) && !disliked.has(id) && !parsed.filters.excludedBrands?.includes(byId.get(id)!.brand));
     const a = liked.length && !input.query.trim() ? [] : lexicalA;
     const seeds = liked.length ? liked : lexicalA.filter(d => d.score > 0).slice(0, 5).map(d => d.drink.id);
-    const b = graph(seeds, pool);
+    const neuralB=!!relgt&&!relgt.fallbackReason&&relgt.scores.length>0;
+    const b = neuralB ? relgt.scores.filter(s=>poolIds.has(s.id)&&Number.isFinite(s.score)).map(s=>({drink:byId.get(s.id)!,score:s.score})).sort((x,y)=>y.score-x.score||x.drink.id.localeCompare(y.drink.id)) : graph(seeds, pool);
     const fused = new Map<string, {drink: Drink; score: number; aRank: number | null; bRank: number | null}>();
     for (const [path, list] of [['a', a], ['b', b]] as const) list.slice(0, RANKING_CONFIG.candidatesPerPath).forEach((item, index) => {
       const row = fused.get(item.drink.id) ?? {drink: item.drink, score: 0, aRank: null, bRank: null};
@@ -129,7 +130,7 @@ export function makeEngine(drinks: Drink[]) {
     const response = {
       query: input.query, filters: parsed.filters, warnings: parsed.warnings, blocked: parsed.blocked,
       eligibleCount: pool.length, total: drinks.length,
-      mode: {routeA: neural?'macbert':'tf-idf',routeAModel:neural?semantic.modelVersion:null,routeAFallback:semantic?.fallbackReason??null,routeB: 'feature-graph', personalized: liked.length > 0},
+      mode: {routeA: neural?'macbert':'tf-idf',routeAModel:neural?semantic.modelVersion:null,routeAFallback:semantic?.fallbackReason??null,routeB: neuralB?'relgt':'feature-graph',routeBModel:neuralB?relgt!.modelVersion:null,routeBFallback:relgt?.fallbackReason??null,personalized:neuralB||liked.length > 0},
       results: selected.map(row => {
         const variants=productGroups.get(productKey(row.drink))!;
         const d = variants[0];
@@ -139,7 +140,8 @@ export function makeEngine(drinks: Drink[]) {
         if (parsed.filters.maxPrice !== undefined) reasons.push(`資料記錄價格 ${d.price} 元，符合價格篩選`);
         if (parsed.filters.maxCaffeine !== undefined) reasons.push(`咖啡因資料上界 ${d.caffeineMax} mg`);
         if (parsed.filters.maxCalories !== undefined) reasons.push(`記錄熱量 ${d.calories} kcal`);
-        if (liked.length && row.bRank !== null) reasons.push('與你喜歡的飲料共享品牌、茶種、奶類或風味特徵');
+        if (neuralB && row.bRank !== null) reasons.push('依你的歷史飲料互動進行 RelGT 排序');
+        else if (liked.length && row.bRank !== null) reasons.push('與你喜歡的飲料共享品牌、茶種、奶類或風味特徵');
         if (!reasons.length) reasons.push(input.query ? '依飲料名稱與風味資料綜合排序' : '依目前條件列出可選飲料');
         const warnings = ['過敏原尚未核對，不能用於判斷成分安全。'];
         if (d.priceEstimated || d.caloriesEstimated || d.caffeineEstimated) warnings.push('部分數值為估算，需向店家確認。');
@@ -149,12 +151,12 @@ export function makeEngine(drinks: Drink[]) {
       }),
     };
     const trace = {
-      schemaVersion: 1, engineVersion: '2.3.1', input,
+      schemaVersion: 1, engineVersion: '2.4.0', input,
       understanding: {...parsed, parser:'rules', llmUsed:false},
       filtering: {sourceTotal:drinks.length, afterHardFilters:hardPool.length, afterDislikes:likedPool.length, afterSeenExclusions:pool.length, unknownNutrientsPassCaps:false},
       config: RANKING_CONFIG,
       routeA: {method:neural?'MacBERT mean-pooled normalized cosine on Mac':'TF-IDF cosine / 中文二元片段與風味同義概念',modelVersion:neural?semantic.modelVersion:null,inferenceMs:neural?semantic.durationMs:null,fallbackReason:semantic?.fallbackReason??null,totalCandidates:a.length, ranked:a.slice(0,RANKING_CONFIG.candidatesPerPath).map((r,i)=>({rank:i+1,id:r.drink.id,name:r.drink.name,brand:r.drink.brand,sourceRow:r.drink.sourceRow,rawScore:r.score}))},
-      routeB: {method:'飲料↔特徵圖的個人化隨機遊走，尚非 RelGT', seedSource:liked.length ? 'favorites' : 'query_top5', seeds:seeds.map(id=>({id,name:byId.get(id)!.name,brand:byId.get(id)!.brand})), totalCandidates:b.length, ranked:b.slice(0,RANKING_CONFIG.candidatesPerPath).map((r,i)=>({rank:i+1,id:r.drink.id,name:r.drink.name,brand:r.drink.brand,sourceRow:r.drink.sourceRow,rawScore:r.score}))},
+      routeB: {method:neuralB?'RelGT temporal next-like ranking on Mac CPU':'飲料↔特徵圖的個人化隨機遊走',modelVersion:neuralB?relgt!.modelVersion:null,inferenceMs:neuralB?relgt!.durationMs:null,historyCount:neuralB?relgt!.historyCount??null:null,fallbackReason:relgt?.fallbackReason??null, seedSource:neuralB?'past_interactions':liked.length ? 'favorites' : 'query_top5', seeds:neuralB?[]:seeds.map(id=>({id,name:byId.get(id)!.name,brand:byId.get(id)!.brand})), totalCandidates:b.length, ranked:b.slice(0,RANKING_CONFIG.candidatesPerPath).map((r,i)=>({rank:i+1,id:r.drink.id,name:r.drink.name,brand:r.drink.brand,sourceRow:r.drink.sourceRow,rawScore:r.score}))},
       fusion: {method:'weighted reciprocal rank fusion', formula:'score = 0.65 / (60 + rankA) + 0.35 / (60 + rankB); absent path contributes 0', rawScoresDirectlyAdded:false, ranked:ranked.map((r,i)=>({rank:i+1,id:r.drink.id,name:r.drink.name,brand:r.drink.brand,rankA:r.aRank,rankB:r.bRank,contributionA:r.aRank === null ? 0 : RANKING_CONFIG.weightA/(RANKING_CONFIG.rrfK+r.aRank),contributionB:r.bRank === null ? 0 : RANKING_CONFIG.weightB/(RANKING_CONFIG.rrfK+r.bRank),totalScore:r.score,calculation:`${r.aRank === null ? '0' : `0.65 / (60 + ${r.aRank})`} + ${r.bRank === null ? '0' : `0.35 / (60 + ${r.bRank})`}`}))},
       selection: {requestedLimit:input.limit, uniqueKey:'brand + name', firstPassBrandLimit:RANKING_CONFIG.brandLimitFirstPass, relaxHardFilters:false, decisions:selectionDecisions, finalOrder:selected.map((r,i)=>({rank:i+1,id:productGroups.get(productKey(r.drink))![0].id,rankSourceId:r.drink.id,name:r.drink.name,brand:r.drink.brand,originalFusionRank:ranked.indexOf(r)+1,score:r.score}))},
       consumerOutput:response,

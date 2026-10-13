@@ -1,0 +1,10 @@
+{
+  "catalogVersion": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+  "compatibleCatalogVersions": [
+    "ef2503d4ae5fe0324cd9d8e988719ca62800e5a24084971b8a0c2d00609ad97a"
+  ],
+  "source": "飲料資料庫.numbers",
+  "sourceSha256": "dba3851490dacca30fe39d14564fb797a9da6e6d01b77ee38f18ad4bd9270112",
+  "rows": 5781,
+  "brands": 41
+}

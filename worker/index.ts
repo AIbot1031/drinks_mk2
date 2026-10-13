@@ -9,11 +9,13 @@ import { internalApi } from './internal';
 import { accountApi, currentUser, storedPreferences } from './accounts';
 import {validateSemanticReply} from './semantic-protocol';
 import {applyLlmUnderstanding} from './llm-conversation';
+import {anonymousRelgtUser,validateRelgtReply} from './relgt-protocol';
+import type {RelgtHistory,RelgtReply} from './relgt-protocol';
+import {catalogVersion,compatibleCatalogVersions} from './catalog-version';
 export {SemanticBridge} from './semantic-bridge';
 
 const drinks: Drink[] = catalog.drinks;
 const engine = makeEngine(drinks);
-const catalogVersion='ef2503d4ae5fe0324cd9d8e988719ca62800e5a24084971b8a0c2d00609ad97a';
 const json = (body: unknown, status = 200) => Response.json(body, {status, headers: {'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff'}});
 
 async function readBody(request: Request): Promise<unknown> {
@@ -40,7 +42,9 @@ export default {
     try {
       if(['/api/semantic/connect','/api/training/events'].includes(url.pathname)){
         const supplied=request.headers.get('Authorization')?.replace(/^Bearer /,'')??'';
-        const expected=url.pathname==='/api/semantic/connect'&&url.searchParams.get('role')==='llm'?env.LLM_KEY:env.SEMANTIC_KEY;
+        const role=url.searchParams.get('role')??'mac';
+        if(url.pathname==='/api/semantic/connect'&&!['mac','llm','relgt'].includes(role))return json({error:'未知模型角色'},400);
+        const expected=url.pathname==='/api/semantic/connect'?(role==='llm'?env.LLM_KEY:role==='relgt'?env.RELGT_KEY:env.SEMANTIC_KEY):env.SEMANTIC_KEY;
         if(!expected||supplied.length>200)return json({error:'未授權'},401);
         const encoder=new TextEncoder();
         const [a,b]=await Promise.all([crypto.subtle.digest('SHA-256',encoder.encode(supplied)),crypto.subtle.digest('SHA-256',encoder.encode(expected))]);
@@ -59,7 +63,7 @@ export default {
       if(url.pathname==='/api/semantic/status'&&request.method==='GET')return json(await env.SEMANTIC_BRIDGE.getByName('inference-v2').status());
       if(url.pathname.startsWith('/api/account/'))return await accountApi(request,env,readBody,drinks);
       if(url.pathname.startsWith('/api/internal/'))return await internalApi(request,env,readBody);
-      if (url.pathname === '/api/health' && request.method === 'GET') return json({ok: true, total: catalog.total, version: '2.3.1'});
+      if (url.pathname === '/api/health' && request.method === 'GET') return json({ok: true, total: catalog.total, version: '2.4.0'});
       if (url.pathname === '/api/meta' && request.method === 'GET') return json({total: catalog.total, brands: catalog.brands, missing: catalog.missing, tea: [...new Set(drinks.flatMap(d=>d.tea))].sort(), toppings: [...new Set(drinks.flatMap(d=>d.toppings))].sort()});
       if (url.pathname === '/api/catalog/favorites' && request.method === 'POST') {
         const origin=request.headers.get('origin');
@@ -86,7 +90,7 @@ export default {
         const userPrefs=user?storedPreferences(user.preferences):{likedIds:validateInput({query:'',likedIds:(body as Record<string,unknown>).likedIds,dislikedIds:(body as Record<string,unknown>).dislikedIds}).likedIds,dislikedIds:validateInput({query:'',dislikedIds:(body as Record<string,unknown>).dislikedIds}).dislikedIds};
         const history=conversation?chatHistory((body as Record<string,unknown>).history):[];
         let llm:{modelVersion:string;durationMs:number;ack:string;clarify:boolean}|null=null;
-        if(conversation&&!conversation.reset&&!(/過敏|花生|堅果|乳糖不耐|麩質/.test(conversation.state.guard)||(/忌口/.test(conversation.state.guard)&&!conversation.state.guard.startsWith('忌口：')))){
+        if(conversation&&!conversation.reset&&!conversation.next&&!(/過敏|花生|堅果|乳糖不耐|麩質/.test(conversation.state.guard)||(/忌口/.test(conversation.state.guard)&&!conversation.state.guard.startsWith('忌口：')))){
           try{
             const result=await env.SEMANTIC_BRIDGE.getByName('inference-v2').conversation({message:conversation.message,state:conversation.state,
               history,preferenceProfile:preferenceProfile(drinks,userPrefs.likedIds,userPrefs.dislikedIds),catalogFeatures:catalogFeatures(drinks),brands:Object.keys(catalog.brands),tea:[...new Set(drinks.flatMap(d=>d.tea))],toppings:[...new Set(drinks.flatMap(d=>d.toppings))]});
@@ -106,7 +110,22 @@ export default {
             semantic=reply?{...reply}:{scores:[],modelVersion:'',durationMs:0,fallbackReason:'Mac unavailable, timeout, or index mismatch'};
           }catch{semantic={scores:[],modelVersion:'',durationMs:0,fallbackReason:'Mac inference bridge error'};}
         }
-        const {response,trace}=engine.recommendWithTrace(input,semantic);
+        let relgt:RelgtReply={scores:[],modelVersion:'',catalogVersion,durationMs:0,historyCount:0,fallbackReason:user?'no_history':'guest'};
+        if(user&&pool.length&&!llm?.clarify){
+          try{
+            const at=Date.now();
+            const versions=[catalogVersion,...compatibleCatalogVersions,'2.1.0'];
+            const rows=await env.TRACE_DB.prepare(`SELECT drink_id,action,occurred_at FROM consumer_interactions WHERE user_id=? AND occurred_at<? AND catalog_version IN (${versions.map(()=>'?').join(',')}) ORDER BY occurred_at DESC,id DESC LIMIT 8`).bind(user.id,at,...versions).all<{drink_id:string;action:RelgtHistory['action'];occurred_at:number}>();
+            const known=new Set(drinks.map(d=>d.id));
+            const history:RelgtHistory[]=rows.results.filter(e=>known.has(e.drink_id)).reverse().map(e=>({drinkId:e.drink_id,action:e.action,occurredAt:e.occurred_at}));
+            if(history.length){
+              const job={userCode:await anonymousRelgtUser(user.id,env.RELGT_USER_KEY),at,history,candidateIds:pool.map(d=>d.id),catalogVersion,topK:100};
+              const reply=validateRelgtReply(await env.SEMANTIC_BRIDGE.getByName('inference-v2').relgtRank(job),job);
+              relgt=reply??{...relgt,fallbackReason:'RelGT unavailable, timeout, or invalid reply'};
+            }
+          }catch{relgt={...relgt,fallbackReason:'RelGT history or inference unavailable'};}
+        }
+        const {response,trace}=engine.recommendWithTrace(input,semantic,relgt);
         if(llm?.clarify){response.results=[];response.blocked=false;response.warnings=[];}
         if(conversation){response.warnings=[...new Set([...response.warnings,...conversation.warnings])];}
         if(conversation)Object.assign(trace.understanding,{llmUsed:!!llm,parser:llm?'qwen3-8b-mac':'rules',llmModelVersion:llm?.modelVersion??null,llmDurationMs:llm?.durationMs??null,llmAction:llm?.clarify?'clarify':'recommend',llmFeatureSchema:llm?featureSchemaVersion:null,llmCatalogVersion:llm?catalogVersion:null,consumerWarnings:response.warnings});

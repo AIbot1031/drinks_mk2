@@ -1,5 +1,6 @@
 import {normalizeDrinkLanguage, stripToppingExclusions, sameTopping, toppingTerms} from './drink-language';
 import {understand, validateInput} from './understand';
+import {stripBrandExclusions} from './brand-language';
 import type {Filters} from './types';
 
 export type ConversationState = {query: string; filters: Filters; guard: string; clarification?:'topping-exclusion'|'taste'};
@@ -28,8 +29,25 @@ export function conversationTurn(body: unknown, brands: string[]) {
   const next = /^(?:再推薦(?:幾杯)?|再看一批|換一批|還有嗎|其他選擇)[？?！!。\s]*$/.test(message);
   if (reset || next) return {state,next,reset,warnings:[],input:validateInput({query:state.guard || state.query,filters:state.filters}), message};
   let cleaned = normalizeDrinkLanguage(message).replace(/(預算|價格|價錢|熱量|卡路里|咖啡因)(?:\s*(?:改成|改為|改到|調成|調到|設成))\s*/g,'$1 ');
+  // Explicitly allowing an item removes its old exclusion without requiring it.
+  for(const term of [...toppingTerms,...brands]){
+    const allow=new RegExp(`(?:取消(?:對)?${escape(term)}(?:的)?排除|${escape(term)}(?:現在)?可以(?:了)?|(?:可以|允許)(?:加|喝|吃)?${escape(term)})`,'g');
+    cleaned=cleaned.replace(allow,()=>{
+      state.filters.excludedToppings=state.filters.excludedToppings?.filter(t=>!sameTopping(t,term));
+      state.filters.excludedBrands=state.filters.excludedBrands?.filter(b=>b!==term);
+      return '';
+    });
+  }
+  const pureTea=/(?:純(?:紅茶|綠茶|青茶|烏龍茶|金萱茶|普洱茶|蕎麥茶)|純茶|(?:改喝|改成|換喝|換成)(?:純)?(?:紅茶|綠茶|青茶|烏龍茶|金萱茶|普洱茶|蕎麥茶))/.test(cleaned);
+  if(pureTea){
+    state.filters.milkTea=false;state.filters.milk='none';
+    state.query=cleaned.match(/紅茶|綠茶|青茶|烏龍茶|金萱茶|普洱茶|蕎麥茶/)?.[0]??'純茶';
+    cleaned=cleaned.replace(/(?:不要|不喝)奶茶/g,'不要奶');
+  }
   if(state.clarification==='topping-exclusion'&&toppingTerms.includes(cleaned.trim()))cleaned='不要'+cleaned.trim();
   const excluded = new Set(state.filters.excludedBrands ?? []);
+  cleaned=stripBrandExclusions(cleaned,brands,b=>excluded.add(b));
+  if(state.filters.brand&&excluded.has(state.filters.brand))delete state.filters.brand;
   // Only consume an exclusion clause if every named item is a known brand.
   cleaned = cleaned.split(/[，,。；;]/).map(clause=>{
     const match = clause.trim().match(/^(?:我|請|然後|還有|也)?(?:不要|排除|不喝|不想喝|不推薦)\s*(.+)$/);

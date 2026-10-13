@@ -1,0 +1,39 @@
+{
+  "checked_at": "2026-10-13T21:59:25+08:00",
+  "worker_version": "35724420-8882-41ba-afbe-e08adc680731",
+  "qwen_prompt_contract": "intent-v3",
+  "training_steps": 0,
+  "model_weights_updated": false,
+  "local_typescript_tests": {
+    "passed": 37,
+    "skipped": 0
+  },
+  "python_monitor_tests": {
+    "passed": 4
+  },
+  "online_cases": {
+    "core_passed": 13,
+    "core_total": 13,
+    "supplement_passed": 3,
+    "supplement_total": 3
+  },
+  "next_batch_ms": 1354,
+  "observed_qwen_conversation_ms_range": [
+    4928,
+    10392
+  ],
+  "ui": {
+    "brand_exclusion": true,
+    "favorite_count_0_1_0": true,
+    "cup_price_40_to_55": true,
+    "next_batch_count": 6,
+    "next_batch_overlap": 0,
+    "browser_console_errors": 0
+  },
+  "limits": [
+    "small hand-authored synthetic cases, not a semantic accuracy benchmark",
+    "no real-phone network validation in this run",
+    "RelGT quality still lacks heldout evaluation",
+    "no new training or schedule"
+  ]
+}

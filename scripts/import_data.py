@@ -1,14 +1,15 @@
 """Import the current cup/region workbook without treating estimates as facts."""
 import hashlib
+import argparse
 import json
 import math
 import re
 from collections import Counter
 from pathlib import Path
-import openpyxl
 
 ROOT = Path(__file__).resolve().parent.parent
 SOURCE = ROOT / 'data' / '飲料資料庫.xlsx'
+ROWS_SOURCE=ROOT/'data/飲料資料庫.rows.json'
 SHEET = '飲料品項'
 TEA = {'tea_black':'紅茶','tea_green':'綠茶','tea_oolong':'烏龍茶','tea_matcha':'抹茶','tea_herbal':'花草茶','tea_hojicha':'焙茶','tea_puer':'普洱茶','tea_grain':'穀物茶','tea_barley':'麥茶','tea_grain_blend':'混合穀物茶'}
 MILK = {'milk_fresh':'鮮奶','milk_plant':'植物奶','milk_creamer':'奶精'}
@@ -16,13 +17,13 @@ TOPPINGS = {'珍珠':('珍珠','波霸'), '椰果':('椰果',), '布丁':('布�
 
 
 def text(v):
-    return '' if v is None else str(v).strip()
+    return '' if v is None else format(v,'.15g') if isinstance(v,float) else str(v).strip()
 
 
 def number(v):
     try:
         n=float(v)
-        return n if math.isfinite(n) else None
+        return float(format(n,'.15g')) if math.isfinite(n) else None
     except (TypeError,ValueError):
         return None
 
@@ -32,7 +33,9 @@ def convert(row, source_row, occurrences):
     name,brand=text(get('飲料名稱')),text(get('品牌'))
     if not name or not brand:
         raise ValueError(f'第 {source_row} 列缺少品牌或飲料名稱')
-    identity=[brand,text(get('商品_ID')),name,text(get('杯型')),text(get('適用地區／門市')),text(get('容量_ml'))]
+    volume=number(get('容量_ml'))
+    capacity=str(int(volume)) if volume is not None and volume.is_integer() else text(get('容量_ml'))
+    identity=[brand,text(get('商品_ID')),name,text(get('杯型')),text(get('適用地區／門市')),capacity]
     digest=hashlib.sha256(json.dumps(identity,ensure_ascii=False).encode()).hexdigest()[:16]
     occurrences[digest]+=1
     method=text(get('填值方式'))
@@ -71,18 +74,29 @@ def convert(row, source_row, occurrences):
 
 
 def main():
-    wb=openpyxl.load_workbook(SOURCE,read_only=True,data_only=True)
-    if SHEET not in wb.sheetnames:raise ValueError(f'缺少工作表 {SHEET}')
-    it=wb[SHEET].iter_rows(values_only=True)
-    headers=next(it)
+    global SHEET
+    p=argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--rows-json',type=Path,default=ROWS_SOURCE if ROWS_SOURCE.exists() else None)
+    p.add_argument('--previous-catalog',type=Path,default=ROOT/'data/catalog.json')
+    args=p.parse_args()
+    previous_raw=args.previous_catalog.read_bytes() if args.previous_catalog.exists() else None
+    if args.rows_json:
+        raw=json.loads(args.rows_json.read_text())
+        if raw.get('schema')!=1:raise ValueError('Invalid extracted Numbers schema')
+        headers=raw['headers'];it=iter(raw['rows']);SHEET=raw['sheet'];source=raw['source']
+    else:
+        import openpyxl
+        wb=openpyxl.load_workbook(SOURCE,read_only=True,data_only=True)
+        if SHEET not in wb.sheetnames:raise ValueError(f'缺少工作表 {SHEET}')
+        it=wb[SHEET].iter_rows(values_only=True);headers=next(it);source=SOURCE.name
     required={'品牌','飲料名稱','杯型','售價_元','熱量_kcal','咖啡因_mg','商品_ID','填值方式','咖啡因下限_mg','咖啡因上限_mg'}
     if required-set(headers):raise ValueError(f'缺少必要欄位：{required-set(headers)}')
     drinks=[];occurrences=Counter()
     for n,r in enumerate(it,2):
         if any(v is not None for v in r):drinks.append(convert(dict(zip(headers,r)),n,occurrences))
-    wb.close()
+    if not args.rows_json:wb.close()
     if not drinks:raise ValueError('資料庫不可為空')
-    result={'source':SOURCE.name,'sheet':SHEET,'total':len(drinks),
+    result={'source':source,'sheet':SHEET,'total':len(drinks),
             'brands':dict(sorted(Counter(d['brand'] for d in drinks).items())),
             'missing':{'calories':sum(d['calories'] is None or d['caloriesEstimated'] for d in drinks),
                        'caffeine':sum(not d['caffeineText'] or d['caffeineEstimated'] for d in drinks),
@@ -90,6 +104,22 @@ def main():
             'estimates':{k:sum(d[k+'Estimated'] for d in drinks) for k in ['price','calories','caffeine']},
             'drinks':drinks}
     (ROOT/'data/catalog.json').write_text(json.dumps(result,ensure_ascii=False,separators=(',',':'))+'\n')
+    version=hashlib.sha256((ROOT/'data/catalog.json').read_bytes()).hexdigest()
+    compatible=[]
+    manifest=ROOT/'data/catalog-update.json'
+    if previous_raw:
+        old=json.loads(previous_raw);old_version=hashlib.sha256(previous_raw).hexdigest()
+        if {d['id'] for d in old['drinks']}=={d['id'] for d in drinks}:
+            compatible=[old_version]
+            if manifest.exists():
+                prior_manifest=json.loads(manifest.read_text())
+                if prior_manifest.get('catalogVersion')==old_version:compatible+=prior_manifest.get('compatibleCatalogVersions',[])
+    compatible=sorted(set(compatible)-{version})
+    manifest.write_text(json.dumps({'catalogVersion':version,'compatibleCatalogVersions':compatible,'source':source,
+        'sourceSha256':raw.get('sourceSha256') if args.rows_json else hashlib.sha256(SOURCE.read_bytes()).hexdigest(),
+        'rows':len(drinks),'brands':len(result['brands'])},ensure_ascii=False,indent=2)+'\n')
+    (ROOT/'worker/catalog-version.ts').write_text('// Generated by scripts/import_data.py; histories are compatible only when drink IDs are unchanged.\n'
+        +f'export const catalogVersion={json.dumps(version)};\nexport const compatibleCatalogVersions={json.dumps(compatible)};\n')
     print(json.dumps({k:v for k,v in result.items() if k!='drinks'},ensure_ascii=False))
 
 if __name__=='__main__':main()

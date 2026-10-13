@@ -1,5 +1,6 @@
 import {normalizeDrinkLanguage, stripToppingExclusions, sameTopping, toppingTerms} from './drink-language';
 import type { Filters, RecommendInput, Understanding } from './types';
+import {stripBrandExclusions} from './brand-language';
 
 const bounded = (value: unknown, name: string, max: number): number | undefined => {
   if (value === undefined || value === null || value === '') return undefined;
@@ -35,8 +36,11 @@ export function validateInput(value: unknown): RecommendInput {
 }
 
 export function understand(input: RecommendInput, brands: string[]): Understanding {
-  const q = normalizeDrinkLanguage(input.query);
+  let q = normalizeDrinkLanguage(input.query);
   const filters = {...input.filters};
+  const excluded=new Set(filters.excludedBrands??[]);
+  q=stripBrandExclusions(q,brands,b=>excluded.add(b));
+  filters.excludedBrands=[...excluded];
   const warnings: string[] = [];
   if(filters.excludedBrands?.some(b=>!brands.includes(b))){warnings.push('排除品牌中有不支援的名稱，請從品牌選單重新選擇。');return {filters,warnings,blocked:true,preferences:[]};}
   const cap = (key: 'maxPrice' | 'maxCalories' | 'maxCaffeine', n: number) => filters[key] = Math.min(filters[key] ?? Infinity, n);
@@ -50,7 +54,7 @@ export function understand(input: RecommendInput, brands: string[]): Understandi
   if (caf) cap('maxCaffeine', Number(caf[1]));
   else if (/無咖啡因|不含咖啡因|不要咖啡因/.test(q)) cap('maxCaffeine', 0);
   else if (/低咖啡因|晚上|睡前/.test(q)) {cap('maxCaffeine', 100); warnings.push('此查詢採咖啡因上界 100 mg 以下；這不是睡眠或健康保證。');}
-  const noMilk = /(?:不要|不含|不加|不能喝|不喝|無)(?:任何|一點)?(?:奶類|乳製品|牛奶|奶|乳)/.test(q);
+  const noMilk = /(?:不要|不含|不加|不能喝|不喝|無)(?:任何|一點)?(?:奶類|乳製品|牛奶|奶(?!精|蓋)|乳)/.test(q);
   if((/鮮奶/.test(q)&&filters.milk==='plant')||(/植物奶|燕麥奶|豆奶/.test(q)&&filters.milk==='fresh')){
     warnings.push('文字要求的奶類與選單不同，請先統一奶類條件。');
     return {filters,warnings,blocked:true,preferences:[]};
@@ -63,7 +67,7 @@ export function understand(input: RecommendInput, brands: string[]): Understandi
     return {filters, warnings, blocked: true, preferences: []};
   } else if (/鮮奶/.test(q) && (!filters.milk || filters.milk === 'any')) filters.milk = 'fresh';
   else if (/植物奶|燕麥奶|豆奶/.test(q) && (!filters.milk || filters.milk === 'any')) filters.milk = 'plant';
-  const mentionedBrands = brands.filter(b => q.includes(b));
+  const mentionedBrands = brands.filter(b => q.includes(b)&&!filters.excludedBrands?.includes(b));
   if (!filters.brand && mentionedBrands.length === 1 && !new RegExp(`(?:不要|排除|不喝)${mentionedBrands[0]}`).test(q)) filters.brand = mentionedBrands[0];
   if(filters.brand&&filters.excludedBrands?.includes(filters.brand)){
     warnings.push(`「${filters.brand}」同時被指定與排除，請調整品牌設定後再推薦。`);

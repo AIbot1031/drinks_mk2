@@ -1,5 +1,6 @@
 import {DurableObject} from 'cloudflare:workers';
 import type {SemanticJob,SemanticReply} from './semantic-protocol';
+import type {RelgtJob,RelgtReply} from './relgt-protocol';
 type AgentInfo={modelVersion:string;catalogVersion:string;device:string};
 
 // Coordination atom = this single Mac inference agent. Requests are transient;
@@ -9,19 +10,32 @@ export class SemanticBridge extends DurableObject<Env> {
   async fetch(request:Request):Promise<Response>{
     if(request.headers.get('Upgrade')?.toLowerCase()!=='websocket')return new Response('WebSocket required',{status:426});
     const [client,server]=Object.values(new WebSocketPair());
-    const role=new URL(request.url).searchParams.get('role')==='llm'?'llm':'mac';
-    for(const old of this.ctx.getWebSockets(role))old.close(1000,'agent replaced');
+    const role=new URL(request.url).searchParams.get('role')??'mac';
+    if(!['mac','llm','relgt'].includes(role))return new Response('Unknown model role',{status:400});
+    for(const old of this.ctx.getWebSockets(role)){
+      // A disconnected client's close handshake can leave a socket visible.
+      // Revoke readiness before closing so stale metadata can never win rank.
+      old.serializeAttachment({ready:false,replaced:true});
+      for(const item of this.pending.values())if(item.socket===old)item.finish(null);
+      old.close(1000,'agent replaced');
+    }
     this.ctx.acceptWebSocket(server,[role]);
     server.serializeAttachment({ready:false});
     return new Response(null,{status:101,webSocket:client});
   }
   private agentStatus(role:string){
-    const socket=this.ctx.getWebSockets(role).find(s=>s.readyState===1);
+    const sockets=this.ctx.getWebSockets(role).filter(s=>s.readyState===1&&!s.deserializeAttachment()?.replaced);
+    const socket=sockets.find(s=>s.deserializeAttachment()?.ready)||sockets[0];
     const attachment=socket?.deserializeAttachment();
     return {connected:!!socket,ready:!!socket&&attachment?.ready===true,
       ...(attachment?.ready ? {modelVersion:attachment.modelVersion,catalogVersion:attachment.catalogVersion,device:attachment.device}: {})};
   }
-  status(){return {...this.agentStatus('mac'),llm:this.agentStatus('llm')};}
+  status(){return {...this.agentStatus('mac'),llm:this.agentStatus('llm'),relgt:this.agentStatus('relgt')};}
+  async relgtRank(job:RelgtJob):Promise<RelgtReply|null>{
+    const socket=this.ctx.getWebSockets('relgt').find(s=>s.readyState===1&&s.deserializeAttachment()?.ready);
+    if(!socket||socket.deserializeAttachment().catalogVersion!==job.catalogVersion||this.pending.size>=8)return null;
+    return await this.request(socket,'relgt-rank',job,8000) as RelgtReply|null;
+  }
   async rank(job:SemanticJob):Promise<SemanticReply|null>{
     const socket=this.ctx.getWebSockets('mac').find(s=>s.readyState===1&&s.deserializeAttachment()?.ready);
     if(!socket||socket.deserializeAttachment().catalogVersion!==job.catalogVersion||this.pending.size>=8)return null;
@@ -42,6 +56,7 @@ export class SemanticBridge extends DurableObject<Env> {
     });
   }
   webSocketMessage(socket:WebSocket,message:string|ArrayBuffer){
+    if(socket.deserializeAttachment()?.replaced)return;
     if(typeof message!=='string'||message.length>65536){socket.close(1009,'invalid message');return;}
     let body;try{body=JSON.parse(message);}catch{return;}
     if(body.type==='ready'){

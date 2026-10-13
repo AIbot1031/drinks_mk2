@@ -170,6 +170,7 @@ def main():
     p.add_argument('--distractors',type=int,default=15)
     p.add_argument('--learning-rate',type=float,default=0.0001)
     p.add_argument('--seed',type=int,default=42)
+    p.add_argument('--trigger',default='explicit user training instruction')
     args=p.parse_args();args.snapshot=args.snapshot.resolve()
     if min(args.epochs,args.batch_size,args.history_size,args.distractors)<1 or args.learning_rate<=0:p.error('Positive settings required')
     started=time.perf_counter();at=datetime.now(TZ)
@@ -177,19 +178,19 @@ def main():
     out=ROOT/'training_artifacts'/run_id;out.mkdir(parents=True,exist_ok=False)
     report={'run_id':run_id,'started_at':at.isoformat(timespec='seconds'),'status':'running',
         'task':'self-supervised next observed preference action given strictly past user events',
-        'trigger':'explicit user training instruction','upstream_commit':UPSTREAM,
+        'trigger':args.trigger,'upstream_commit':UPSTREAM,
         'git_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
         'working_tree_dirty':bool(subprocess.check_output(['git','status','--porcelain'],cwd=ROOT)),
         'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         'optimizer_steps':0,'published':False,'updated_users':0,
-        'changes':['first real temporal intent training adapter','strict past-only event graph',
+        'changes':['train temporal intent task on current real snapshot','strict past-only event graph',
                    'next-action sampled ranking target, no price target','small real samples train without a quality gate'],
         'limitations':['same-day data cannot establish long-term intent quality',
             'unobserved distractors are not dislikes and may be future positives',
             'sampled metrics are not full-catalog ranking quality',
             'explicit padding tokens participate in upstream attention',
             'current catalog metadata assumed available, no historic catalog reconstruction',
-            'no automatic production deployment, nightly schedule or resume CLI']}
+            'trainer does not publish automatically or support resume; schedule managed by Codex']}
     try:
         raw=args.snapshot.read_bytes();snapshot=json.loads(raw)
         catalog=(ROOT/'data/catalog.json').read_bytes()
@@ -216,7 +217,7 @@ def main():
             '使用者要求立即實際訓練；本次使用真實匿名事件，根據先前互動預測下一個收藏／不喜歡目標。'
             '不訓練價格、不創造不喜歡標籤；對照候選只作排序比較。少量單日資料可訓練，但不能證明跨日長期效果。\n\n'
             +comparison_markdown(report)+'\n## 實際執行與更新內容\n\n```json\n'+body+'```\n')
-        with (ROOT/'daily.txt').open('a') as f:f.write(f"\n[{report['ended_at']}｜RelGT 真實時間事件訓練]\n- 狀態：{report['status']}；optimizer 步數 {report['optimizer_steps']}；耗時 {report['duration_seconds']} 秒。\n- 資料彙總：{json.dumps(report.get('data',{}),ensure_ascii=False)}。\n- 前後比較與更新報告：docs/training-runs/{run_id}.md／JSON。\n- 無價格目標；未發布模型／更新用戶榜單／啟用排程，沒有將原始事件或用戶代碼放到 GitHub。\n")
+        with (ROOT/'daily.txt').open('a') as f:f.write(f"\n[{report['ended_at']}｜RelGT 真實時間事件訓練]\n- 狀態：{report['status']}；optimizer 步數 {report['optimizer_steps']}；耗時 {report['duration_seconds']} 秒。\n- 資料彙總：{json.dumps(report.get('data',{}),ensure_ascii=False)}。\n- 前後比較與更新報告：docs/training-runs/{run_id}.md／JSON。\n- 無價格目標；本訓練入口未發布模型／更新用戶榜單，排程由 Codex 管理；沒有將原始事件或用戶代碼放到 GitHub。\n")
         print('REPORT='+str(folder/(run_id+'.md')),flush=True)
 
 

@@ -14,7 +14,9 @@
     "required": [
       "REVIEW_KEY",
       "SEMANTIC_KEY",
-      "LLM_KEY"
+      "LLM_KEY",
+      "RELGT_KEY",
+      "RELGT_USER_KEY"
     ]
   },
   "assets": {

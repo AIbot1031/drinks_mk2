@@ -179,6 +179,7 @@ def main():
     p.add_argument('--temperature', type=float, default=0.05)
     p.add_argument('--seed', type=int, default=42)
     p.add_argument('--device', choices=['cpu', 'mps'], default='mps')
+    p.add_argument('--trigger', default='user requested immediate MacBERT training')
     args = p.parse_args()
     if args.epochs < 1 or args.batch_size < 2 or args.max_length < 8 or args.learning_rate <= 0 or args.temperature <= 0:
         p.error('Invalid training settings')
@@ -187,21 +188,21 @@ def main():
     out.mkdir(parents=True, exist_ok=False)
     started = time.perf_counter()
     report = {'run_id': run_id, 'started_at': now(), 'status': 'running',
-              'trigger': 'user requested immediate MacBERT training', 'parameters': vars(args),
+              'trigger': args.trigger, 'parameters': vars(args),
               'git_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
               'working_tree_dirty': bool(subprocess.check_output(['git','status','--porcelain'],cwd=ROOT)),
               'script_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
               'task': 'unsupervised dropout-view contrastive fine-tuning on drink text',
               'published': False, 'updated_users': 0,
-              'changes': ['first MacBERT domain contrastive fine-tuning', 'product/name grouped holdout',
+              'changes': ['MacBERT domain contrastive fine-tuning on current catalog', 'product/name grouped holdout',
                           'no price or nutrition targets', 'no user information'],
               'limitations': ['not official MacBERT correction/WWM/SOP pretraining reproduction',
                              'no manually labelled query relevance evaluation',
                              'similar drinks may be false in-batch negatives',
                              'contrastive validation loss does not prove ranking improvements',
                              'source taste/milk metadata may contain errors',
-                             'no Worker inference service or automatic publishing',
-                             'no nightly schedule; no RelGT long-term intent training']}
+                             'trainer does not replace current Worker inference weights automatically',
+                             'schedule managed by Codex; this task is not RelGT long-term intent training']}
     try:
         train(args, report, out)
     except Exception as exc:
@@ -228,7 +229,7 @@ def main():
                     f"- 狀態：{report['status']}；步數：{report.get('optimizer_steps', 0)}；耗時：{report['duration_seconds']} 秒。\n"
                     '- 任務：飲料文字無監督對比學習，沒有價格目標、沒有用戶資料。\n'
                     f'- 完整更新報告：{md.relative_to(ROOT)}；同名 JSON 保存參數與實測。\n'
-                    '- 未發布模型、未更新用戶推薦、未啟用排程；人工查詢相關性驗證與服務接入待完成。\n')
+                    '- 本訓練入口未發布模型、未更新用戶推薦；排程由 Codex 管理，發布仍需人工查詢相關性與線上舊新版比較。\n')
         print('REPORT=' + str(md), flush=True)
 
 

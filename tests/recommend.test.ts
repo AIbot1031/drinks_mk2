@@ -37,6 +37,12 @@ test('new workbook keeps all cup variants, stable unique IDs and source estimate
   assert.equal(eligible(estimated,{maxCaffeine:10000}),false);
   assert.ok(drinks.some(d=>d.tea.includes('抹茶')));
 });
+test('updated Numbers pearl topping excludes the corrected product from no-pearl candidates',()=>{
+  const corrected=drinks.filter(d=>d.brand==='一沐日'&&d.name==='逮丸奶茶');
+  assert.ok(corrected.length);assert.ok(corrected.every(d=>d.toppings.includes('珍珠')&&d.taste.includes('草仔粿')));
+  const pool=engine.candidatePool(input('奶茶',{brand:'一沐日',excludedToppings:['珍珠']}));
+  assert.ok(pool.every(d=>d.name!=='逮丸奶茶'));
+});
 test('milk modes audit the full catalogue and product cards keep only eligible variants at minimum price',()=>{
   assert.equal(engine.recommend(input('植物奶',{milk:'fresh'})).blocked,true);
   assert.equal(engine.recommend(input('鮮奶',{milk:'plant'})).blocked,true);

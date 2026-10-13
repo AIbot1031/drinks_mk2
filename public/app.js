@@ -115,7 +115,7 @@ function card(d, index, rec, variants = d.variants || rec?.variants || []) {
   dislike.onclick = () => {if(preferenceBusy||accountBusy)return;if (feedback.disliked.includes(d.id)) feedback.disliked = feedback.disliked.filter(id => id !== d.id); else {if (feedback.disliked.length >= 200) {$('#feedback-note').textContent = '最多記錄 200 款不喜歡的飲料。'; return;} feedback.disliked.push(d.id); removeLikedProduct(d);} saveFeedback();};
   actions.append(like, dislike); content.append(actions);
   const details = el('details', '', 'card-details'); details.append(el('summary', '查看資料來源與備註'));
-  details.append(el('p', `Excel「${d.sourceSheet || "飲料品項"}」第 ${d.sourceRow} 列。${d.status || ''}`));
+  details.append(el('p', `資料表「${d.sourceSheet || "飲料品項"}」第 ${d.sourceRow} 列。${d.status || ''}`));
   if (d.region) details.append(el('p', `適用地區／門市：${d.region}；容量：${d.volumeMl ?? '未知'} ml。`));
   if(d.milkConflict)details.append(el('p','來源無奶標籤與奶類線索矛盾，已排除於無奶篩選；配方待確認。','card-warning'));
   if (d.fillMethod) details.append(el('p', `填值方式：${d.fillMethod}；${d.reviewStatus || ''}`));
@@ -168,7 +168,7 @@ async function recommend(settings, next = false) {
       $('#results').append(el('span', '◡', 'empty-cup'), el('h3', value.blocked ? '先釐清條件，再幫你挑。' : '這次沒有符合的飲料'), el('p', value.blocked ? '請查看上方說明，調整需求後再查詢。' : '試著調整品牌、預算或營養上限。篩選條件不會自動放寬。'));
     } else value.results.forEach((r, i) => $('#results').append(card(r.drink, i, r)));
     $('#batch-actions').hidden = !value.results.length;
-    $('#result-status').textContent = `${value.mode.routeA==='macbert'?'語意搜尋：MacBERT。':value.mode.routeAFallback?'Mac 暫時無法推論，改用 TF-IDF 備援。':'文字搜尋：TF-IDF。'} ${value.mode.personalized ? '已參考你的收藏偏好。' : '收藏喜歡的飲料，讓下次更貼近你的口味。'} ${next ? `已看過 ${seen.length} 杯。` : ''}`;
+    $('#result-status').textContent = `${value.mode.routeA==='macbert'?'語意搜尋：MacBERT。':value.mode.routeAFallback?'Mac 暫時無法推論，改用 TF-IDF 備援。':'文字搜尋：TF-IDF。'} ${value.mode.routeB==='relgt'?'個人化排序：RelGT，已參考你的歷史互動。':value.mode.personalized?'個人化排序：收藏特徵圖。':'收藏喜歡的飲料，讓下次更貼近你的口味。'} ${next ? `已看過 ${seen.length} 杯。` : ''}`;
     refreshFeedbackButtons();
   } catch (error) {$('#result-status').textContent = `${error.message} ${$('#results .drink-card') ? '已保留上一份結果。' : ''}`;}
   finally {setBusy(false);}
@@ -264,7 +264,7 @@ async function loadGraph() {
       const colors = {user:['#fce7e5','#b42318'],liked:['#fce7e5','#b42318'],brand:['#e8efdf','#648b57'],drink:['#edf3f4','#8daabc'],feature:['#f5efde','#c3a76c']};
       const group = shape('g',{transform:`translate(${p.x},${p.y})`,class:'graph-node',tabindex:0,role:'button','aria-label':label});
       group.append(shape('rect',{x:-width/2,y:-17,width,height:34,rx:8,fill:colors[isLiked?'liked':n.type][0],stroke:colors[isLiked?'liked':n.type][1]}),shape('text',{'text-anchor':'middle',y:4},label.length>15 ? `${label.slice(0,14)}…` : label),shape('title',{},label));
-      const select = () => {lines.forEach(({edge,n:line}) => line.setAttribute('class',`graph-edge${edge.liked?' liked':''}${edge.from === n.id || edge.to === n.id ? ' highlight' : ''}`)); const related = edges.filter(e => e.from===n.id || e.to===n.id).map(e => all.find(other => other.id === (e.from===n.id?e.to:e.from)).label); $('#graph-detail').textContent = `${isLiked?'♥ 你已按讚。':''}${n.label}：連結 ${related.join('、') || '無已標記特徵'}。${n.drink ? `來源：Excel 第 ${n.drink.sourceRow} 列。` : ''}`;};
+      const select = () => {lines.forEach(({edge,n:line}) => line.setAttribute('class',`graph-edge${edge.liked?' liked':''}${edge.from === n.id || edge.to === n.id ? ' highlight' : ''}`)); const related = edges.filter(e => e.from===n.id || e.to===n.id).map(e => all.find(other => other.id === (e.from===n.id?e.to:e.from)).label); $('#graph-detail').textContent = `${isLiked?'♥ 你已按讚。':''}${n.label}：連結 ${related.join('、') || '無已標記特徵'}。${n.drink ? `來源：資料表第 ${n.drink.sourceRow} 列。` : ''}`;};
       group.onclick = select; group.onkeydown = event => {if (event.key==='Enter'||event.key===' ') {event.preventDefault(); select();}}; svg.append(group);
     }
     $('#graph-status').textContent = `${own?'我的按讚':'目錄範例'}：顯示 ${list.length} 款飲料，其中 ${liked.length} 款已按讚；${all.length} 個節點、${edges.length} 條關係。${own?'搜尋／品牌篩選會限制顯示；共有 '+saved.size+' 款按讚。':'共 '+value.total+' 款符合搜尋，顯示前 12 款。'}`;
