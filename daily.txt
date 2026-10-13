@@ -441,3 +441,9 @@ RelGT 夜間訓練流程：
 驗證：暫停 Qwen 後三輪自動退回規則，MacBERT 繼續服務，每輪 6 張卡片且條件保持；已恢復 Qwen 常駐服務。
 部署：Cloudflare 最新 eca74b21-777c-4277-982c-3c27ed40f53a。初期舊 DO 活躍連線造成角色互相取代，切換 inference-v2 actor 並重啟服務後同時 ready 成功。GitHub 2.3 發布與最後 UI 截圖待完成。
 限制：Mac 必須登入、連網且開機；Qwen 20 秒失敗規則備援，MacBERT 5 秒失敗 TF-IDF 備援。沒有新增訓練或改動 RelGT 雲端權重。文件 docs/Qwen對話服務與條件安全.md；本輪既有 RelGT 報告 docs/training-runs/20261013T155618-relgt-long-intent.md。
+
+[2026-10-13 16:48:45 Asia/Taipei] 2.3 發布完成
+部署：Cloudflare 正式 /api/health 確認版本 2.3.0、5781 筆；MacBERT MPS 與 Qwen MLX 兩個常駐服務同時 ready。最新部署 eca74b21-777c-4277-982c-3c27ed40f53a。
+驗證：正式網站對話顯示 Qwen3-8B／MacBERT，「奶茶不要珍珠」正常出 6 張卡片，口味標籤不再留錯誤「不要」；截圖 /tmp/drinks-mk2-2.3-qwen.png。關係圖之前本機驗證截圖 /tmp/drinks-mk2-2.3-graph.png。最後本機 HTTP 測試 26/26；正式 HTTP 測試 26/26；Python 時序單元 5/5。
+Git 同步：實作 commit d4542ca6287b34eb9fda3ec6e04681e6c318062d 已推 main；v2.3.0 tag 與正式 Release 已發布 https://github.com/AIbot1031/drinks_mk2/releases/tag/v2.3.0 ，舊版 tags/releases 保留。GitHub Actions 38371683162 全部成功（型別、單元、時序資料、部署 dry-run）。檔案用途說明涵蓋 111 個追蹤檔，未追蹤密鑰、模型權重、原始互動或 Python 環境。
+限制與後續：RelGT 本輪真實 7 個目標的訓練完成並附前後報告，但未部署 B 權重，尚無跨日驗證或 04:00 自動訓練排程；Qwen 本次僅預訓練模型推論。Mac 離線則依既有雙層備援運作。
