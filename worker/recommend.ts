@@ -6,9 +6,9 @@ export const RANKING_CONFIG = {weightA: 0.65, weightB: 0.35, rrfK: 60, candidate
 export function eligible(d: Drink, f: Filters): boolean {
   return (!f.brand || d.brand === f.brand)
     && !f.excludedBrands?.includes(d.brand)
-    && (f.maxPrice === undefined || (d.price !== null && d.price <= f.maxPrice))
-    && (f.maxCalories === undefined || (d.calories !== null && d.calories <= f.maxCalories))
-    && (f.maxCaffeine === undefined || (d.caffeineMax !== null && d.caffeineMax <= f.maxCaffeine))
+    && (f.maxPrice === undefined || (d.price !== null && !d.priceEstimated && d.price <= f.maxPrice))
+    && (f.maxCalories === undefined || (d.calories !== null && !d.caloriesEstimated && d.calories <= f.maxCalories))
+    && (f.maxCaffeine === undefined || (d.caffeineMax !== null && !d.caffeineEstimated && d.caffeineMax <= f.maxCaffeine))
     && (!f.milk || f.milk === 'any' || (f.milk === 'none' ? d.noMilk : d.milk.includes(f.milk === 'fresh' ? '鮮奶' : '植物奶')))
     && (!f.tea || d.tea.includes(f.tea)) && (!f.topping || d.toppings.includes(f.topping));
 }
@@ -87,8 +87,8 @@ export function makeEngine(drinks: Drink[]) {
     const likedPool = hardPool.filter(d => !disliked.has(d.id));
     const pool = likedPool.filter(d => !excluded.has(d.id));
     const lexicalA = lexical(input.query, pool);
-    const a = lexicalA;
     const liked = input.likedIds.filter(id => byId.has(id) && !disliked.has(id) && !parsed.filters.excludedBrands?.includes(byId.get(id)!.brand));
+    const a = liked.length && !input.query.trim() ? [] : lexicalA;
     const seeds = liked.length ? liked : lexicalA.filter(d => d.score > 0).slice(0, 5).map(d => d.drink.id);
     const b = graph(seeds, pool);
     const fused = new Map<string, {drink: Drink; score: number; aRank: number | null; bRank: number | null}>();
@@ -106,7 +106,7 @@ export function makeEngine(drinks: Drink[]) {
     // First pass encourages brand diversity; second fills remaining slots without relaxing filters.
     for (const diverse of [true, false]) for (const row of ranked) {
       if (selected.length >= input.limit) break;
-      const key = `${row.drink.brand}:${row.drink.name}`;
+      const key = `${row.drink.brand}:${row.drink.name}:${row.drink.cupSize ?? ""}:${row.drink.region ?? ""}`;
       const priorBrandCount = counts.get(row.drink.brand) ?? 0;
       const decision = seen.has(key) ? 'skip_duplicate_brand_name' : diverse && priorBrandCount >= RANKING_CONFIG.brandLimitFirstPass ? 'defer_brand_diversity' : 'select';
       selectionDecisions.push({id:row.drink.id, name:row.drink.name, pass:diverse ? 'brand_diversity' : 'fill_remaining', decision, priorBrandCount});
@@ -128,6 +128,7 @@ export function makeEngine(drinks: Drink[]) {
         if (liked.length && row.bRank !== null) reasons.push('與你喜歡的飲料共享品牌、茶種、奶類或風味特徵');
         if (!reasons.length) reasons.push(input.query ? '依飲料名稱與風味資料綜合排序' : '依目前條件列出可選飲料');
         const warnings = ['過敏原尚未核對，不能用於判斷成分安全。'];
+        if (d.priceEstimated || d.caloriesEstimated || d.caffeineEstimated) warnings.push('部分數值為估算，需向店家確認。');
         if (d.calories === null || d.caffeineMax === null) warnings.push('部分營養資料未知。');
         if (/起/.test(d.priceText)) warnings.push('價格為起價，實際容量與加料可能另計。');
         return {id: d.id, name: d.name, brand: d.brand, match_score: Number(row.score.toFixed(6)), reasoning: reasons.join('；'), warning: warnings.join(' '), confidence: '資料完整度不等於推薦正確率，未校準機率', drink: d, reasons, ranks: {a: row.aRank, b: row.bRank}};

@@ -84,7 +84,7 @@ export async function accountApi(request:Request,env:Env,readBody:(r:Request)=>P
       user.preferences=JSON.stringify({likedIds,dislikedIds});
     }else if(request.method!=='GET')return json({error:'請求方法不支援'},405);
     const prefs=storedPreferences(user.preferences),liked=Object.fromEntries(prefs.likedIds.map(id=>[id,drinks.find(d=>d.id===id)]).filter(([,d])=>!!d));
-    return json({version:1,liked,disliked:prefs.dislikedIds});
+    return json({version:1,liked,disliked:prefs.dislikedIds.filter(id=>drinks.some(d=>d.id===id))});
   }
   return json({error:'找不到帳號 API'},404);
 }

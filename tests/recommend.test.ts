@@ -9,14 +9,18 @@ const drinks: Drink[] = catalog.drinks;
 const engine = makeEngine(drinks);
 const input = (query = '', filters = {}) => validateInput({query, filters});
 
-test('Excel import produces unique, traceable records with unknown nutrients preserved', () => {
-  assert.equal(drinks.length, 1178);
-  assert.equal(new Set(drinks.map(d => d.id)).size, 1178);
-  assert.equal(drinks.filter(d => d.calories === null).length, 239);
-  assert.equal(drinks.filter(d => !d.caffeineText).length, 367);
-  assert.equal(drinks.filter(d => d.caffeineMax === null).length, 386);
-  assert.ok(drinks.filter(d => d.caffeineText.startsWith('≥')).every(d => d.caffeineMin === 201 && d.caffeineMax === null));
-  assert.ok(drinks.every(d => d.sourceRow >= 2 && !d.allergensVerified));
+test('new workbook keeps all cup variants, stable unique IDs and source estimates', () => {
+  assert.equal(drinks.length, 5781);
+  assert.equal(new Set(drinks.map(d => d.id)).size, 5781);
+  assert.equal(Object.keys(catalog.brands).length,41);
+  assert.equal(drinks.filter(d=>d.caloriesEstimated).length,2535);
+  assert.equal(drinks.filter(d=>d.caffeineMax===null).length,3232);
+  assert.ok(drinks.every(d=>d.sourceRow>=2&&!d.allergensVerified&&d.sourceSheet==='飲料品項'));
+  const estimated=drinks.find(d=>d.caloriesEstimated&&d.caffeineEstimated&&d.priceEstimated)!;
+  assert.equal(eligible(estimated,{maxPrice:10000}),false);
+  assert.equal(eligible(estimated,{maxCalories:10000}),false);
+  assert.equal(eligible(estimated,{maxCaffeine:10000}),false);
+  assert.ok(drinks.some(d=>d.tea.includes('抹茶')));
 });
 test('hard constraints are enforced in both retrieval paths and final results', () => {
   const filters = {maxPrice:60, maxCalories:200, maxCaffeine:100, milk:'none'};
@@ -26,7 +30,7 @@ test('hard constraints are enforced in both retrieval paths and final results', 
   assert.ok(result.results.every(r => r.drink.calories !== null && r.drink.caffeineMax !== null && r.drink.noMilk));
 });
 test('unknown nutrients never become zero or pass a numeric cap', () => {
-  const unknown = drinks.find(d => d.calories === null && d.caffeineMax === null)!;
+  const unknown = {...drinks[0],calories:null,caffeineMax:null};
   assert.equal(eligible(unknown, {maxCalories:200}), false);
   assert.equal(eligible(unknown, {maxCaffeine:100}), false);
   const zero = engine.recommend(input('不要咖啡因'));
@@ -94,7 +98,7 @@ test('internal trace reconciles A/B ranks, individual contributions and consumer
 
 
 test('excluded brands stay out of both paths, favourites, fusion and every batch',()=>{
-  const excludedBrands=['得正','可不可熟成紅茶'];
+  const excludedBrands=['得正','可不可熟成茶行'];
   const actualBrands=[...new Set(drinks.map(d=>d.brand))];
   const exclusions=excludedBrands.filter(b=>actualBrands.includes(b));
   assert.equal(exclusions.length,2);

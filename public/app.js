@@ -86,12 +86,12 @@ function card(d, index, rec) {
   const article = el('article', '', 'drink-card');
   if (index !== undefined) article.append(el('span', String(index + 1).padStart(2, '0'), 'rank'));
   const content = el('div', '', 'card-content'), top = el('div', '', 'card-top');
-  top.append(el('h3', d.name), el('span', d.priceText ? `NT$ ${d.priceText}` : (d.price === null ? '價格未知' : `NT$ ${d.price}`), 'price'));
+  top.append(el('h3', d.name), el('span', d.priceText ? `NT$ ${d.priceText}${d.priceEstimated ? '（估算）' : ''}` : (d.price === null ? '價格未知' : `NT$ ${d.price}`), 'price'));
   content.append(top, el('span', `${d.brand} · ${d.category}`, 'brand-label'));
   content.append(el('p', d.taste || '原表未提供風味描述', 'taste'));
   if (rec) content.append(el('p', rec.reasoning, 'reason'));
   const nutrition = el('div', '', 'nutrition');
-  for (const [label, value] of [['熱量', d.calories === null ? '未知' : `${d.calories} kcal`], ['咖啡因', d.caffeineText ? `${d.caffeineText} mg` : '未知']]) {const n = el('span', label); n.append(el('strong', value)); nutrition.append(n);}
+  for (const [label, value] of [['熱量', d.calories === null ? '未知' : `${d.calories} kcal${d.caloriesEstimated ? "（估算）" : ""}`], ['咖啡因', d.caffeineText ? `${d.caffeineText} mg${d.caffeineEstimated ? "（估算）" : ""}` : '未知']]) {const n = el('span', label); n.append(el('strong', value)); nutrition.append(n);}
   content.append(nutrition);
   const actions = el('div', '', 'card-actions');
   const like = el('button', '', ''); like.type = 'button'; like.dataset.like = d.id; like.setAttribute('aria-label', `收藏${d.brand}的${d.name}`);
@@ -100,7 +100,9 @@ function card(d, index, rec) {
   dislike.onclick = () => {if(preferenceBusy||accountBusy)return;if(preferenceBusy||accountBusy)return;if (feedback.disliked.includes(d.id)) feedback.disliked = feedback.disliked.filter(id => id !== d.id); else {if (feedback.disliked.length >= 200) {$('#feedback-note').textContent = '最多記錄 200 款不喜歡的飲料。'; return;} feedback.disliked.push(d.id); delete feedback.liked[d.id];} saveFeedback();};
   actions.append(like, dislike); content.append(actions);
   const details = el('details', '', 'card-details'); details.append(el('summary', '查看資料來源與備註'));
-  details.append(el('p', `Excel「綜合飲料特徵」第 ${d.sourceRow} 列。${d.status || ''}`));
+  details.append(el('p', `Excel「${d.sourceSheet || "飲料品項"}」第 ${d.sourceRow} 列。${d.status || ''}`));
+  if (d.region) details.append(el('p', `適用地區／門市：${d.region}；容量：${d.volumeMl ?? '未知'} ml。`));
+  if (d.fillMethod) details.append(el('p', `填值方式：${d.fillMethod}；${d.reviewStatus || ''}`));
   details.append(el('p', d.notes || '未提供備註。'));
   details.append(el('p', `茶種：${d.tea.join('、') || '未標記'}；奶類：${d.milk.join('、') || (d.noMilk ? '無奶標記' : '未標記')}；配料：${d.toppings.join('、') || '未標記'}。`));
   if (rec) details.append(el('p', `排序依據：路徑 A ${rec.ranks.a === null ? '未列入' : `第 ${rec.ranks.a} 名`}，路徑 B ${rec.ranks.b === null ? '未列入' : `第 ${rec.ranks.b} 名`}。排序分數並非正確率。`));

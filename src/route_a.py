@@ -7,9 +7,9 @@ import chromadb
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 EXCEL_PATH = (
-    BASE_DIR / "data" / "飲料推薦系統_整理版.xlsx"
+    BASE_DIR / "data" / "飲料資料庫.xlsx"
 )
-SHEET_NAME = "綜合飲料特徵"
+SHEET_NAME = "飲料品項"
 DB_PATH = BASE_DIR / "chroma_db"
 # Tune these defaults when product policy defines different meanings for "low".
 LOW_CALORIE_MAX_KCAL = 200
@@ -77,17 +77,17 @@ def normalize_columns(df: pd.DataFrame) -> pd.DataFrame:
     """Map source headers to canonical names and coalesce duplicate aliases."""
     aliases = {
         "brand": ("品牌", "brand"),
-        "category": ("分類", "category"),
-        "name": ("品項", "name"),
-        "taste": ("口感、風味", "推論依據", "taste"),
+        "category": ("杯型", "分類", "category"),
+        "name": ("飲料名稱", "品項", "name"),
+        "taste": ("官網描述", "口感、風味", "推論依據", "taste"),
         "sweetness": ("建議甜度", "sweetness"),
         "ice": ("冰塊", "ice"),
         "calories": ("熱量_kcal", "熱量", "calories"),
         "caffeine": ("咖啡因_mg", "咖啡因", "caffeine"),
         "notes": ("備註", "notes"),
         "price_text": ("價格原文", "price_text"),
-        "price": ("價格_元", "price"),
-        "richness_score": ("richness_score",),
+        "price": ("售價_元", "價格_元", "price"),
+        "richness_score": ("濃郁度_0至1", "richness_score"),
         "status": ("資料狀態", "status"),
     }
     normalized = df.copy()
@@ -236,6 +236,14 @@ def build_document(row: pd.Series) -> str:
 def load_drink_rows(file_path: Path):
     """Load the configured worksheet and skip rows without a usable drink name."""
     df = pd.read_excel(file_path, sheet_name=SHEET_NAME)
+    # Filled estimates must not become verified numeric constraints in the prototype.
+    methods = df["填值方式"].fillna("").astype(str)
+    df.loc[methods.str.contains("熱量_kcal估算"), "熱量_kcal"] = float("nan")
+    df["咖啡因_mg"] = [
+        "" if to_number(upper) is None or "咖啡因_mg估算" in method
+        else f"{to_number(lower) or 0}–{to_number(upper)}"
+        for lower, upper, method in zip(df["咖啡因下限_mg"], df["咖啡因上限_mg"], methods)
+    ]
     df = normalize_columns(df)
     if "name" not in df.columns:
         raise ValueError(f"工作表「{SHEET_NAME}」缺少品項欄位")

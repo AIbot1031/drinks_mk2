@@ -33,8 +33,8 @@ export default {
     try {
       if(url.pathname.startsWith('/api/account/'))return await accountApi(request,env,readBody,drinks);
       if(url.pathname.startsWith('/api/internal/'))return await internalApi(request,env,readBody);
-      if (url.pathname === '/api/health' && request.method === 'GET') return json({ok: true, total: catalog.total, version: '0.1.0'});
-      if (url.pathname === '/api/meta' && request.method === 'GET') return json({total: catalog.total, brands: catalog.brands, missing: catalog.missing, tea: ['紅茶', '綠茶', '青茶', '烏龍茶', '金萱茶', '普洱茶', '蕎麥茶'], toppings: ['珍珠', '椰果', '布丁', '仙草', '燕麥', '粉粿']});
+      if (url.pathname === '/api/health' && request.method === 'GET') return json({ok: true, total: catalog.total, version: '2.0.0'});
+      if (url.pathname === '/api/meta' && request.method === 'GET') return json({total: catalog.total, brands: catalog.brands, missing: catalog.missing, tea: [...new Set(drinks.flatMap(d=>d.tea))].sort(), toppings: [...new Set(drinks.flatMap(d=>d.toppings))].sort()});
       if (url.pathname === '/api/catalog' && request.method === 'GET') {
         const query = (url.searchParams.get('q') ?? '').slice(0, 100).toLowerCase();
         const brand = url.searchParams.get('brand');
