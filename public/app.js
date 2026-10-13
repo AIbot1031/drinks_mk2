@@ -5,11 +5,14 @@ const el = (tag, text = '', cls = '') => {const n = document.createElement(tag);
 const storageKey = 'drinks-mk2-feedback-v1';
 let feedback = {version: 1, liked: {}, disliked: []};
 let meta, busy = false, exhausted = false, lastSettings = null, seen = [], page = 1, pages = 1;
-let catalogRequest = 0, graphRequest = 0;
+let catalogRequest = 0, graphRequest = 0, favoritesRequest = 0;
 let accountUser = null, preferenceBusy = false, accountBusy = true, preferenceSync = Promise.resolve();
 try {const saved = localStorage.getItem(storageKey); if (saved) feedback = validateFeedback(JSON.parse(saved));} catch {$('#feedback-note').textContent = '本機偏好讀取失敗，這次會使用空白偏好。';}
 
 let confirmedFeedback = structuredClone(feedback);
+const productKey = d => JSON.stringify([d.brand,d.name]);
+const likedProducts = () => new Set(Object.values(feedback.liked).map(productKey));
+const removeLikedProduct = d => {for(const [id,liked] of Object.entries(feedback.liked))if(productKey(liked)===productKey(d))delete feedback.liked[id];};
 
 function validateFeedback(value) {
   if (!value || value.version !== 1 || !value.liked || typeof value.liked !== 'object' || Array.isArray(value.liked) || !Array.isArray(value.disliked)) throw new Error('偏好檔案格式有誤');
@@ -19,7 +22,7 @@ function validateFeedback(value) {
   return {version: 1, liked: value.liked, disliked: [...new Set(value.disliked)]};
 }
 function updateFeedbackDisplay(message = '') {
-  $('#favorite-count').textContent = Object.keys(feedback.liked).length;
+  $('#favorite-count').textContent = likedProducts().size;
   $('#feedback-note').textContent = message;
   $('#collection-status').textContent = message;
   refreshFeedbackButtons();
@@ -75,7 +78,8 @@ $('#account-logout').onclick=async()=>{
 };
 $('#save-guest-feedback').onclick=()=>{if(!accountUser||preferenceBusy||accountBusy)return;try{const local=guestFeedback();const merged={version:1,liked:{...feedback.liked,...local.liked},disliked:[...new Set([...feedback.disliked,...local.disliked])]};merged.disliked=merged.disliked.filter(id=>!merged.liked[id]);feedback=validateFeedback(merged);saveFeedback();}catch(error){$('#collection-status').textContent=error.message;}};
 function refreshFeedbackButtons() {
-  document.querySelectorAll('[data-like]').forEach(n => {n.disabled=preferenceBusy||accountBusy;const liked = !!feedback.liked[n.dataset.like]; n.setAttribute('aria-pressed', String(liked)); n.textContent = liked ? '♥ 已收藏' : '♡ 喜歡這杯';});
+  const products=likedProducts();
+  document.querySelectorAll('[data-like]').forEach(n => {n.disabled=preferenceBusy||accountBusy;const liked = products.has(n.dataset.product); n.setAttribute('aria-pressed', String(liked)); n.textContent = liked ? '♥ 已收藏' : '♡ 喜歡這杯';});
   document.querySelectorAll('[data-dislike]').forEach(n => {n.disabled=preferenceBusy||accountBusy;const disliked = feedback.disliked.includes(n.dataset.dislike); n.setAttribute('aria-pressed', String(disliked)); n.textContent = disliked ? '已標記不喜歡' : '不太喜歡';});
 }
 async function api(path, options) {
@@ -93,7 +97,7 @@ function card(d, index, rec, variants = d.variants || rec?.variants || []) {
     const select=el('select');select.setAttribute('aria-label',`${d.name}的杯型`);
     for(const variant of variants){const option=el('option',`${variant.cupSize || variant.category} · NT$ ${variant.price ?? '未知'}${variant.priceEstimated ? '（估算）' : ''}`);option.value=variant.id;select.append(option);}select.value=d.id;
     select.onchange=()=>{const variant=variants.find(v=>v.id===select.value);article.replaceWith(card(variant,index,null,variants));refreshFeedbackButtons();};
-    content.append(select,el('p',`共 ${variants.length} 個符合條件的版本，預設最低價；切換後顯示該杯型的價格與營養。`,'field-help'));
+    content.append(select,el('p',`共 ${variants.length} 個可查看的版本，預設最低價；切換後顯示該杯型的價格與營養。`,'field-help'));
   }
   top.append(el('h3', d.name), el('span', d.priceText ? `NT$ ${d.priceText}${d.priceEstimated ? '（估算）' : ''}` : (d.price === null ? '價格未知' : `NT$ ${d.price}`), 'price'));
   content.append(top, el('span', `${d.brand} · ${d.category}`, 'brand-label'));
@@ -103,10 +107,10 @@ function card(d, index, rec, variants = d.variants || rec?.variants || []) {
   for (const [label, value] of [['熱量', d.calories === null ? '未知' : `${d.calories} kcal${d.caloriesEstimated ? "（估算）" : ""}`], ['咖啡因', d.caffeineText ? `${d.caffeineText} mg${d.caffeineEstimated ? "（估算）" : ""}` : '未知']]) {const n = el('span', label); n.append(el('strong', value)); nutrition.append(n);}
   content.append(nutrition);
   const actions = el('div', '', 'card-actions');
-  const like = el('button', '', ''); like.type = 'button'; like.dataset.like = d.id; like.setAttribute('aria-label', `收藏${d.brand}的${d.name}`);
-  like.onclick = () => {if(preferenceBusy||accountBusy)return;if (feedback.liked[d.id]) delete feedback.liked[d.id]; else {if (Object.keys(feedback.liked).length >= 200) {$('#feedback-note').textContent = '最多收藏 200 杯，請先取消部分收藏。'; return;} feedback.liked[d.id] = d; feedback.disliked = feedback.disliked.filter(id => id !== d.id);} saveFeedback();};
+  const like = el('button', '', ''); like.type = 'button'; like.dataset.like = d.id; like.dataset.product=productKey(d); like.setAttribute('aria-label', `收藏${d.brand}的${d.name}`);
+  like.onclick = () => {if(preferenceBusy||accountBusy)return;if (likedProducts().has(productKey(d))) removeLikedProduct(d); else {if (Object.keys(feedback.liked).length >= 200) {$('#feedback-note').textContent = '最多收藏 200 款，請先取消部分收藏。'; return;} feedback.liked[d.id] = {...d,variants:undefined}; feedback.disliked = feedback.disliked.filter(id => id !== d.id);} saveFeedback();};
   const dislike = el('button'); dislike.type = 'button'; dislike.dataset.dislike = d.id; dislike.setAttribute('aria-label', `標記不喜歡${d.name}`);
-  dislike.onclick = () => {if(preferenceBusy||accountBusy)return;if(preferenceBusy||accountBusy)return;if (feedback.disliked.includes(d.id)) feedback.disliked = feedback.disliked.filter(id => id !== d.id); else {if (feedback.disliked.length >= 200) {$('#feedback-note').textContent = '最多記錄 200 款不喜歡的飲料。'; return;} feedback.disliked.push(d.id); delete feedback.liked[d.id];} saveFeedback();};
+  dislike.onclick = () => {if(preferenceBusy||accountBusy)return;if (feedback.disliked.includes(d.id)) feedback.disliked = feedback.disliked.filter(id => id !== d.id); else {if (feedback.disliked.length >= 200) {$('#feedback-note').textContent = '最多記錄 200 款不喜歡的飲料。'; return;} feedback.disliked.push(d.id); removeLikedProduct(d);} saveFeedback();};
   actions.append(like, dislike); content.append(actions);
   const details = el('details', '', 'card-details'); details.append(el('summary', '查看資料來源與備註'));
   details.append(el('p', `Excel「${d.sourceSheet || "飲料品項"}」第 ${d.sourceRow} 列。${d.status || ''}`));
@@ -196,12 +200,21 @@ async function loadCatalog() {
 $('#catalog-form').onsubmit = event => {event.preventDefault(); page = 1; loadCatalog();};
 $('#prev-page').onclick = () => {if (page > 1) {page--; loadCatalog();}};
 $('#next-page').onclick = () => {if (page < pages) {page++; loadCatalog();}};
-function renderFavorites() {
+async function renderFavorites() {
+  const request=++favoritesRequest;
   const list = Object.values(feedback.liked);
   const groups=new Map();for(const d of list){const key=JSON.stringify([d.brand,d.name]);const items=groups.get(key)||[];items.push(d);groups.set(key,items);}
   $('#favorites-results').replaceChildren(...[...groups.values()].map(variants=>{variants.sort((a,b)=>(a.price??Infinity)-(b.price??Infinity));return card(variants[0],undefined,undefined,variants);}));
   if (!list.length) $('#favorites-results').append(el('p', '還沒有收藏。遇到喜歡的一杯，按「♡ 喜歡這杯」就能留下來。', 'status'));
   refreshFeedbackButtons();
+  if(!list.length)return;
+  try {
+    const value=await api('/api/catalog/favorites',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({likedIds:Object.keys(feedback.liked)})});
+    if(request!==favoritesRequest)return;
+    $('#favorites-results').replaceChildren(...value.results.map(d=>card(d)));
+    if(!value.results.length)$('#favorites-results').append(el('p','收藏品項已不在目前目錄中。','status'));
+    refreshFeedbackButtons();
+  }catch(error){if(request===favoritesRequest)$('#collection-status').textContent=`目前只顯示已保存杯型，完整杯型讀取失敗：${error.message}`;}
 }
 $('#export-feedback').onclick = () => {
   const url = URL.createObjectURL(new Blob([JSON.stringify(feedback, null, 2)], {type:'application/json'}));
@@ -260,7 +273,7 @@ function showView() {
   if (view==='catalog') loadCatalog(); else if (view==='favorites') renderFavorites(); else if (view==='graph') loadGraph();
 }
 window.addEventListener('hashchange', showView);
-$('#favorite-count').textContent = Object.keys(feedback.liked).length;
+$('#favorite-count').textContent = likedProducts().size;
 try {
   meta = await api('/api/meta');
   $('#catalog-summary').textContent = `${meta.total.toLocaleString()} 款飲料 · ${Object.keys(meta.brands).length} 個品牌`;

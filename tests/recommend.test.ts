@@ -4,10 +4,25 @@ import catalog from '../data/catalog.json';
 import { eligible, makeEngine } from '../worker/recommend';
 import { validateInput, understand } from '../worker/understand';
 import type { Drink } from '../worker/types';
+import {favoriteProducts,groupProducts} from '../worker/products';
 
 const drinks: Drink[] = catalog.drinks;
 const engine = makeEngine(drinks);
 const input = (query = '', filters = {}) => validateInput({query, filters});
+
+test('a favorite from any cup size expands every catalogue variant without duplicate products',()=>{
+  const groups=[...groupProducts(drinks).values()];
+  for(const variants of groups){
+    const saved=variants.at(-1)!;
+    const result=favoriteProducts(drinks,[saved.id,saved.id,variants[0].id]);
+    assert.equal(result.length,1);
+    assert.deepEqual(result[0].variants.map(d=>d.id),variants.map(d=>d.id));
+    assert.equal(result[0].id,variants[0].id);
+  }
+  assert.deepEqual(favoriteProducts(drinks,['removed-id']),[]);
+  const sameName=drinks.find(d=>drinks.some(other=>other.name===d.name&&other.brand!==d.brand))!;
+  assert.ok(favoriteProducts(drinks,[sameName.id])[0].variants.every(d=>d.brand===sameName.brand));
+});
 
 test('new workbook keeps all cup variants, stable unique IDs and source estimates', () => {
   assert.equal(drinks.length, 5781);

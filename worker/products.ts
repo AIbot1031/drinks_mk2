@@ -6,3 +6,8 @@ export function groupProducts(drinks:Drink[]) {
   for(const list of groups.values())list.sort((a,b)=>(a.price??Infinity)-(b.price??Infinity)||a.id.localeCompare(b.id));
   return groups;
 }
+export function favoriteProducts(drinks:Drink[], ids:string[]) {
+  const selected=new Set(ids);
+  const keys=new Set(drinks.filter(d=>selected.has(d.id)).map(productKey));
+  return [...groupProducts(drinks.filter(d=>keys.has(productKey(d)))).values()].map(variants=>({...variants[0],variants}));
+}

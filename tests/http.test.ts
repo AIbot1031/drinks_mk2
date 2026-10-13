@@ -3,9 +3,20 @@ import { test } from 'node:test';
 import {readFileSync,existsSync} from 'node:fs';
 
 const base = process.env.TEST_BASE_URL;
+test('favorite lookup expands one saved ID and validates request size and origin',{skip:!base},async()=>{
+  const catalog=await fetch(`${base}/api/catalog`).then(r=>r.json()) as {results:Array<{id:string;variants:Array<{id:string}>}>};
+  const drink=catalog.results.find(d=>d.variants.length>1)!;
+  const post=(body:unknown,origin?:string)=>fetch(`${base}/api/catalog/favorites`,{method:'POST',headers:{'Content-Type':'application/json',...(origin?{Origin:origin}:{})},body:JSON.stringify(body)});
+  const result=await post({likedIds:[drink.variants.at(-1)!.id]}).then(r=>r.json()) as {results:Array<{variants:Array<{id:string}>}>};
+  assert.equal(result.results.length,1);
+  assert.deepEqual(result.results[0].variants.map(d=>d.id),drink.variants.map(d=>d.id));
+  assert.equal((await post({likedIds:Array(201).fill(drink.id)})).status,400);
+  assert.equal((await post({likedIds:[null]})).status,400);
+  assert.equal((await post({likedIds:[]},'https://unrelated.example')).status,403);
+});
 test('Worker runtime serves the site, catalogue, constrained recommendations and validation errors', {skip: !base}, async () => {
   const health = await fetch(`${base}/api/health`).then(r => r.json()) as {ok:boolean;total:number;version:string};
-  assert.equal(health.ok, true); assert.equal(health.version, "2.1.0"); assert.equal(health.total, 5781);
+  assert.equal(health.ok, true); assert.equal(health.version, "2.2.0"); assert.equal(health.total, 5781);
   const html = await fetch(`${base}/`);
   assert.equal(html.status, 200); assert.ok((await html.text()).includes('喝點剛好的'));
   const catalog = await fetch(`${base}/api/catalog?brand=${encodeURIComponent('得正')}&page=1`).then(r => r.json()) as {results:Array<{brand:string}>;total:number};

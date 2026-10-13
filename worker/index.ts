@@ -1,5 +1,5 @@
 import catalog from '../data/catalog.json';
-import {groupProducts} from './products';
+import {groupProducts,favoriteProducts} from './products';
 import { makeEngine } from './recommend';
 import {conversationTurn} from './conversation';
 import { validateInput } from './understand';
@@ -35,8 +35,15 @@ export default {
     try {
       if(url.pathname.startsWith('/api/account/'))return await accountApi(request,env,readBody,drinks);
       if(url.pathname.startsWith('/api/internal/'))return await internalApi(request,env,readBody);
-      if (url.pathname === '/api/health' && request.method === 'GET') return json({ok: true, total: catalog.total, version: '2.1.0'});
+      if (url.pathname === '/api/health' && request.method === 'GET') return json({ok: true, total: catalog.total, version: '2.2.0'});
       if (url.pathname === '/api/meta' && request.method === 'GET') return json({total: catalog.total, brands: catalog.brands, missing: catalog.missing, tea: [...new Set(drinks.flatMap(d=>d.tea))].sort(), toppings: [...new Set(drinks.flatMap(d=>d.toppings))].sort()});
+      if (url.pathname === '/api/catalog/favorites' && request.method === 'POST') {
+        const origin=request.headers.get('origin');
+        if(origin && origin!==url.origin)return json({error:'請從本站送出查詢'},403);
+        const body=await readBody(request) as {likedIds?:unknown}|null;
+        if(!body || !Array.isArray(body.likedIds) || body.likedIds.length>200 || body.likedIds.some(id=>typeof id!=='string'||id.length>80))return json({error:'收藏查詢最多接受 200 個飲料 ID'},400);
+        return json({results:favoriteProducts(drinks,body.likedIds)});
+      }
       if (url.pathname === '/api/catalog' && request.method === 'GET') {
         const query = (url.searchParams.get('q') ?? '').slice(0, 100).toLowerCase();
         const brand = url.searchParams.get('brand');
