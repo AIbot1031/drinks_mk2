@@ -17,6 +17,7 @@ from zoneinfo import ZoneInfo
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from training.preference_data import prepare
+from training.run_reports import add_comparison, comparison_markdown
 TZ = ZoneInfo('Asia/Taipei')
 UPSTREAM = '19e423ca3e7cac761130aba790857f2dc3a46ef7'
 
@@ -63,6 +64,7 @@ def train(rows, splits, args, report, out):
                   conv_type='full', gnn_pe_dim=0, num_centroids=8, sample_node_len=6,
                   ff_dropout=0.0, attn_dropout=0.0)
     model = RelGT(**config)
+    initial_parameters = [p.detach().clone() for p in model.parameters()]
     optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate)
     labels = torch.tensor([r['label'] for r in rows], dtype=torch.float32)
     criterion = torch.nn.BCEWithLogitsLoss()
@@ -106,8 +108,8 @@ def train(rows, splits, args, report, out):
                         'accuracy': float(((logits >= 0).float() == target).float().mean()),
                         'rows': len(ids)}
 
-    report['before_training'] = {'train': evaluate(splits['train']),
-                                 'validation': evaluate(splits['validation'])}
+    report['before_training'] = {name: evaluate(ids) for name, ids in splits.items()}
+    report['optimizer_steps'] = 0
     ratio = labels[splits['train']].mean().clamp(1e-6, 1-1e-6)
     report['baseline_train_like_fraction'] = float(ratio)
     history, best = [], math.inf
@@ -124,6 +126,7 @@ def train(rows, splits, args, report, out):
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
             optimizer.step()
+            report['optimizer_steps'] += 1
             total += float(loss.detach())*len(ids)
         validation = evaluate(splits['validation'])
         item = {'epoch': epoch, 'train_bce': total/len(order), 'validation': validation}
@@ -142,6 +145,7 @@ def train(rows, splits, args, report, out):
             report['saved_epoch'] = epoch
     checkpoint = torch.load(out/'best.pt', weights_only=False)
     model.load_state_dict(checkpoint['model'])
+    report['weights_changed'] = any(not torch.equal(a, b.detach()) for a, b in zip(initial_parameters, model.parameters()))
     report['after_training'] = {name: evaluate(ids) for name, ids in splits.items()}
     fresh = RelGT(**checkpoint['config'])
     fresh.load_state_dict(checkpoint['model'])
@@ -202,6 +206,7 @@ def main():
     finally:
         report['ended_at'] = now()
         report['duration_seconds'] = round(time.perf_counter()-started, 3)
+        add_comparison(report)
         folder = ROOT/'docs/training-runs'
         folder.mkdir(parents=True, exist_ok=True)
         body = json.dumps(report, ensure_ascii=False, indent=2)+'\n'
@@ -210,7 +215,7 @@ def main():
             f"狀態：{report['status']}。開始／結束採台灣時間。\n\n"
             '只有真實收藏是正向標籤，明確不喜歡是負向標籤；未操作不當成負向。'
             '少量資料可訓練，但沒有足夠保留資料時不能宣稱推薦品質改善。'
-            '資料為零時略過，不生成模型。不會自動發布雲端。\n\n```json\n'+body+'```\n')
+            '資料為零時略過，不生成模型。不會自動發布雲端。\n\n'+comparison_markdown(report)+'\n```json\n'+body+'```\n')
         with (ROOT/'daily.txt').open('a') as f:
             f.write(f"\n[{report['ended_at']}｜用戶偏好訓練 {run_id}]\n"
                     f"- 狀態：{report['status']}；耗時 {report['duration_seconds']} 秒。\n"

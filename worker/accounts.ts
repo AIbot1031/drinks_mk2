@@ -1,4 +1,5 @@
 import type { Drink } from './types';
+import {savePreferencesWithEvents} from './interactions';
 const encoder = new TextEncoder();
 const cookieName = 'drinks_user_session';
 const sessionDays = 7;
@@ -80,7 +81,7 @@ export async function accountApi(request:Request,env:Env,readBody:(r:Request)=>P
       const known=new Set(drinks.map(d=>d.id));
       if(!body||![body.likedIds,body.dislikedIds].every(a=>Array.isArray(a)&&a.length<=200&&a.every(id=>typeof id==='string'&&known.has(id))))return json({error:'偏好須使用有效飲料 ID，每種最多 200 款'},400);
       const likedIds=[...new Set(body.likedIds as string[])],dislikedIds=[...new Set(body.dislikedIds as string[])].filter(id=>!likedIds.includes(id));
-      await env.TRACE_DB.prepare('UPDATE consumer_users SET preferences=? WHERE id=?').bind(JSON.stringify({likedIds,dislikedIds}),user.id).run();
+      await savePreferencesWithEvents(env.TRACE_DB,user.id,likedIds,dislikedIds);
       user.preferences=JSON.stringify({likedIds,dislikedIds});
     }else if(request.method!=='GET')return json({error:'請求方法不支援'},405);
     const prefs=storedPreferences(user.preferences),liked=Object.fromEntries(prefs.likedIds.map(id=>[id,drinks.find(d=>d.id===id)]).filter(([,d])=>!!d));

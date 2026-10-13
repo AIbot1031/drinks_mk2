@@ -73,5 +73,24 @@
   "checkpoint": "training_artifacts/20261013T143230-macbert-contrastive/model/model.safetensors",
   "checkpoint_sha256": "5754da458c249ff9d48d2a7f06423243f394ae066b3ef1e6e9163be13469a5f6",
   "ended_at": "2026-10-13T14:33:35+08:00",
-  "duration_seconds": 64.758
+  "duration_seconds": 64.758,
+  "before_after_comparison": {
+    "status": "trained_unvalidated_for_retrieval",
+    "published": false,
+    "updated_users": 0,
+    "metrics": [
+      {
+        "name": "heldout_dropout_contrastive_loss",
+        "before": 2.3572388452904245,
+        "after": 0.01086785584779578,
+        "delta_after_minus_before": -2.3463709894426286,
+        "better_direction": "lower",
+        "reason": null
+      }
+    ],
+    "data_snapshot_sha256": "ef2503d4ae5fe0324cd9d8e988719ca62800e5a24084971b8a0c2d00609ad97a",
+    "weights_changed": true,
+    "checkpoint_after": "training_artifacts/20261013T143230-macbert-contrastive/model/model.safetensors"
+  },
+  "comparison_added_at": "2026-10-13; retrospectively derived from recorded measurements, not a new training run"
 }

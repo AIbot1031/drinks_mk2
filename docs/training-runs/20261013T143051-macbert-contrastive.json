@@ -60,5 +60,18 @@
   },
   "error": "OSError",
   "ended_at": "2026-10-13T14:30:56+08:00",
-  "duration_seconds": 4.29
+  "duration_seconds": 4.29,
+  "optimizer_steps": 0,
+  "weights_changed": false,
+  "before_after_comparison": {
+    "status": "failed",
+    "published": false,
+    "updated_users": 0,
+    "metrics": [],
+    "data_snapshot_sha256": "ef2503d4ae5fe0324cd9d8e988719ca62800e5a24084971b8a0c2d00609ad97a",
+    "weights_changed": false,
+    "checkpoint_after": null,
+    "reason": "No before/after measurements were obtained"
+  },
+  "comparison_added_at": "2026-10-13; retrospectively derived from recorded measurements, not a new training run"
 }

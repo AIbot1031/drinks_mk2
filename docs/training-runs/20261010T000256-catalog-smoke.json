@@ -181,5 +181,32 @@
   "checkpoint": "training_artifacts/20261010T000256-catalog-smoke/best.pt",
   "checkpoint_sha256": "92067ac8cce5dfd01c6eeda18555cc279ccdd12dbcb7d29a9048fc1da9070880",
   "ended_at": "2026-10-10T00:03:02+08:00",
-  "duration_seconds": 6.415
+  "duration_seconds": 6.415,
+  "before_after_comparison": {
+    "status": "success",
+    "published": false,
+    "updated_users": 0,
+    "metrics": [
+      {
+        "name": "historical_validation_mae_ntd",
+        "before": 14.297070503234863,
+        "after": 9.847238540649414,
+        "delta_after_minus_before": -4.449831962585449,
+        "better_direction": "lower",
+        "reason": null
+      },
+      {
+        "name": "historical_validation_rmse_ntd",
+        "before": 19.387142181396484,
+        "after": 13.871899604797363,
+        "delta_after_minus_before": -5.515242576599121,
+        "better_direction": "lower",
+        "reason": null
+      }
+    ],
+    "data_snapshot_sha256": "d316458081667a0b219f031934ab3744fc41ee2555260aebfebce8e94807153e",
+    "weights_changed": null,
+    "checkpoint_after": "training_artifacts/20261010T000256-catalog-smoke/best.pt"
+  },
+  "comparison_added_at": "2026-10-13; retrospectively derived from recorded measurements, not a new training run"
 }

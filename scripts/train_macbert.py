@@ -11,12 +11,15 @@ import json
 import random
 import re
 import subprocess
+import sys
 import time
 from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from training.run_reports import add_comparison, comparison_markdown
 TZ = ZoneInfo('Asia/Taipei')
 
 
@@ -210,6 +213,7 @@ def main():
     finally:
         report['ended_at'] = now()
         report['duration_seconds'] = round(time.perf_counter() - started, 3)
+        add_comparison(report)
         reports = ROOT / 'docs/training-runs'
         reports.mkdir(exist_ok=True)
         (reports / (run_id + '.json')).write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
@@ -217,7 +221,7 @@ def main():
         md.write_text('# MacBERT 飲料語意微調報告\n\n'
                       '本次學習飲料文字的向量表示，不訓練價格或用戶長期意圖。'
                       '驗證 loss 只衡量對比任務，不代表消費者推薦品質改善；未更新網站模型。\n\n'
-                      '實際開始／結束、資料、參數、更新步數、驗證、權重與限制如下：\n\n```json\n' +
+                      + comparison_markdown(report) + '\n實際開始／結束、資料、參數、更新步數、驗證、權重與限制如下：\n\n```json\n' +
                       json.dumps(report, ensure_ascii=False, indent=2) + '\n```\n')
         with (ROOT / 'daily.txt').open('a') as f:
             f.write(f"\n[{report['ended_at']}｜MacBERT 飲料語意微調]\n"

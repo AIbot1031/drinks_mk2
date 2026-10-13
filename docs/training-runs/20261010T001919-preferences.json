@@ -38,5 +38,16 @@
   },
   "reason": "No valid real likes/dislikes; no optimizer steps or checkpoint produced",
   "ended_at": "2026-10-10T00:19:19+08:00",
-  "duration_seconds": 0.011
+  "duration_seconds": 0.011,
+  "before_after_comparison": {
+    "status": "skipped_no_real_preferences",
+    "published": false,
+    "updated_users": 0,
+    "metrics": [],
+    "data_snapshot_sha256": "664d3b4c9f35788e20a0a539c2958ae86294737ba686e5b8b2a28935fa7d70c9",
+    "weights_changed": false,
+    "checkpoint_after": null,
+    "reason": "No valid real likes/dislikes; no optimizer steps or checkpoint produced"
+  },
+  "comparison_added_at": "2026-10-13; retrospectively derived from recorded measurements, not a new training run"
 }
