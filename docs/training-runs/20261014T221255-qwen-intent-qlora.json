@@ -1,0 +1,281 @@
+{
+  "run_id": "20261014T221255-qwen-intent-qlora",
+  "started_at": "2026-10-14T22:12:55+08:00",
+  "status": "failed",
+  "trigger": "human-authorized Qwen3.5-9B synthetic robustness fine-tuning",
+  "git_commit": "20e9a5486557647e2b75f5882fd3462c47154079",
+  "working_tree_dirty": true,
+  "script_sha256": "bf8948b76d8285e9735294b5d94eaa7624c1e670c870899f553e148fe9078de3",
+  "parameters": {
+    "model": "training_artifacts/qwen3.5-9b-4bit",
+    "iters": 146,
+    "num_layers": 4,
+    "learning_rate": 5e-05,
+    "max_seq_length": 3072,
+    "seed": 42,
+    "rank": 8,
+    "dataset": "robust",
+    "max_tokens": 320,
+    "trigger": "human-authorized Qwen3.5-9B synthetic robustness fine-tuning"
+  },
+  "optimizer_steps": 0,
+  "weights_changed": null,
+  "published": false,
+  "updated_users": 0,
+  "changes": [
+    "human-authored robust scenarios when selected; legacy data preserved",
+    "Worker-preprocessed inputs for robust dataset",
+    "same frozen heldout before/after evaluation",
+    "prompt masking; frozen quantized base; train adapter only"
+  ],
+  "limitations": [
+    "small synthetic holdout is not proof of real-user quality",
+    "no resume or automatic publication",
+    "online model remains unchanged; no adapter installed"
+  ],
+  "data": {
+    "source": "manually authored synthetic intent scenarios; no consumer data",
+    "version": "intent-robust-v2-worker-contract",
+    "train": 73,
+    "validation": 59,
+    "split": "fixed train vs separately authored heldout compositions; existing 29 website cases are evaluation only",
+    "limitations": "small authored holdout, shared task vocabulary; not real-user distribution or external benchmark",
+    "sha256": "79a5cb29116541eb5568c36a533a63f2062f62092c561a160e3f25c5de0cee14",
+    "group_counts": {
+      "train": {
+        "ambiguous_numeric": 6,
+        "cross_turn": 7,
+        "injection": 5,
+        "messy_text": 15,
+        "mood_noise": 6,
+        "negation": 6,
+        "no_intent": 7,
+        "numeric": 9,
+        "release": 8,
+        "safety": 4
+      },
+      "validation": {
+        "ambiguous_numeric": 3,
+        "cross_turn": 4,
+        "injection": 3,
+        "messy_text": 3,
+        "mood_noise": 3,
+        "negation": 3,
+        "no_intent": 2,
+        "numeric": 4,
+        "regression": 29,
+        "release": 3,
+        "safety": 2
+      }
+    },
+    "limitations_detail": [
+      "Finite examples; not a real-user distribution",
+      "Human labels are authored by the coding assistant, not independently annotated",
+      "Quoted text, sarcasm and numeric ambiguity may remain unresolved",
+      "Some novel aliases cannot pass unchanged Worker merge rules even if the model learns them"
+    ]
+  },
+  "snapshot_sha256": "79a5cb29116541eb5568c36a533a63f2062f62092c561a160e3f25c5de0cee14",
+  "catalog_sha256": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+  "source": {
+    "model": "mlx-community/Qwen3.5-9B-4bit",
+    "revision": "8b2b98c00a6b4d291155e4890773ca8f769aee53",
+    "base": "Qwen/Qwen3.5-9B",
+    "quantization": "4bit",
+    "version_prefix": "qwen3.5-9b-4bit",
+    "weight_sha256": {
+      "model-00001-of-00002.safetensors": "a68b87558c6ef43f74c2bd63ce7e9092ceddc3101f3def0030774bae5f42aadd",
+      "model-00002-of-00002.safetensors": "b0a770bf8469c7f3f18756a0e0283f1c1174344a83e059a4e483f6af4907352d",
+      "tokenizer.json": "87a7830d63fcf43bf241c3c5242e96e62dd3fdc29224ca26fed8ea333db72de4"
+    }
+  },
+  "base_model_version": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+  "system_sha256": "702273a64cbd1ca6b1f81e7d871885365c5733a3b7773a40a969ff3c6380c79b",
+  "environment": {
+    "python": "3.12.14",
+    "device": "mlx-metal",
+    "packages": {
+      "mlx": "0.32.3",
+      "mlx-lm": "0.32.0",
+      "transformers": "5.19.0"
+    },
+    "hardware": {
+      "device_name": "Apple M6",
+      "max_recommended_working_set_size": 26800603136,
+      "memory_size": 34359738368,
+      "architecture": "applegpu_g18g",
+      "max_buffer_length": 20100448256,
+      "resource_limit": 499000
+    }
+  },
+  "base_weight_sha256": {
+    "model-00001-of-00002.safetensors": "a68b87558c6ef43f74c2bd63ce7e9092ceddc3101f3def0030774bae5f42aadd",
+    "model-00002-of-00002.safetensors": "b0a770bf8469c7f3f18756a0e0283f1c1174344a83e059a4e483f6af4907352d"
+  },
+  "intent_before": {
+    "json_rate": 1.0,
+    "schema_rate": 0.8813559322033898,
+    "intent_rate": 0.6101694915254238,
+    "action_filters_rate": 0.7966101694915254,
+    "query_rate": 0.6779661016949152,
+    "ambiguous_numeric_intent_rate": 0.3333333333333333,
+    "cross_turn_intent_rate": 0.5,
+    "injection_intent_rate": 0.0,
+    "messy_text_intent_rate": 0.6666666666666666,
+    "mood_noise_intent_rate": 0.3333333333333333,
+    "negation_intent_rate": 0.6666666666666666,
+    "no_intent_intent_rate": 1.0,
+    "numeric_intent_rate": 0.75,
+    "regression_intent_rate": 0.6551724137931034,
+    "release_intent_rate": 0.6666666666666666,
+    "safety_intent_rate": 1.0
+  },
+  "tokenization": {
+    "max_train_tokens": 2168,
+    "max_validation_tokens": 2190,
+    "prompt_loss_masked": true,
+    "truncated_rows": 0
+  },
+  "trainable_parameters": 2704896,
+  "validation_loss_history": [
+    {
+      "iteration": 0,
+      "val_loss": 1.2627285718917847,
+      "val_time": 143.99580174998846
+    }
+  ],
+  "error_type": "RuntimeError",
+  "reason": "METAL command buffer out of memory with all-last-four-block training at full Worker context; no completed optimizer step or saved adapter. Retry uses final attention block and exact completion-only loss.",
+  "ended_at": "2026-10-14T22:21:10+08:00",
+  "duration_seconds": 495.371,
+  "before_after_comparison": {
+    "status": "failed",
+    "published": false,
+    "updated_users": 0,
+    "model_before": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+    "model_after": null,
+    "evaluation": "same frozen holdout, production prompt and max_tokens; greedy temperature 0; raw JSON action/query/filters",
+    "weights_changed": null,
+    "checkpoint_after": null,
+    "data_snapshot_sha256": "79a5cb29116541eb5568c36a533a63f2062f62092c561a160e3f25c5de0cee14",
+    "metrics": [
+      {
+        "name": "json_rate",
+        "before": 1.0,
+        "after": null,
+        "delta_after_minus_before": null,
+        "better_direction": "higher"
+      },
+      {
+        "name": "schema_rate",
+        "before": 0.8813559322033898,
+        "after": null,
+        "delta_after_minus_before": null,
+        "better_direction": "higher"
+      },
+      {
+        "name": "intent_rate",
+        "before": 0.6101694915254238,
+        "after": null,
+        "delta_after_minus_before": null,
+        "better_direction": "higher"
+      },
+      {
+        "name": "action_filters_rate",
+        "before": 0.7966101694915254,
+        "after": null,
+        "delta_after_minus_before": null,
+        "better_direction": "higher"
+      },
+      {
+        "name": "query_rate",
+        "before": 0.6779661016949152,
+        "after": null,
+        "delta_after_minus_before": null,
+        "better_direction": "higher"
+      },
+      {
+        "name": "ambiguous_numeric_intent_rate",
+        "before": 0.3333333333333333,
+        "after": null,
+        "delta_after_minus_before": null,
+        "better_direction": "higher"
+      },
+      {
+        "name": "cross_turn_intent_rate",
+        "before": 0.5,
+        "after": null,
+        "delta_after_minus_before": null,
+        "better_direction": "higher"
+      },
+      {
+        "name": "injection_intent_rate",
+        "before": 0.0,
+        "after": null,
+        "delta_after_minus_before": null,
+        "better_direction": "higher"
+      },
+      {
+        "name": "messy_text_intent_rate",
+        "before": 0.6666666666666666,
+        "after": null,
+        "delta_after_minus_before": null,
+        "better_direction": "higher"
+      },
+      {
+        "name": "mood_noise_intent_rate",
+        "before": 0.3333333333333333,
+        "after": null,
+        "delta_after_minus_before": null,
+        "better_direction": "higher"
+      },
+      {
+        "name": "negation_intent_rate",
+        "before": 0.6666666666666666,
+        "after": null,
+        "delta_after_minus_before": null,
+        "better_direction": "higher"
+      },
+      {
+        "name": "no_intent_intent_rate",
+        "before": 1.0,
+        "after": null,
+        "delta_after_minus_before": null,
+        "better_direction": "higher"
+      },
+      {
+        "name": "numeric_intent_rate",
+        "before": 0.75,
+        "after": null,
+        "delta_after_minus_before": null,
+        "better_direction": "higher"
+      },
+      {
+        "name": "regression_intent_rate",
+        "before": 0.6551724137931034,
+        "after": null,
+        "delta_after_minus_before": null,
+        "better_direction": "higher"
+      },
+      {
+        "name": "release_intent_rate",
+        "before": 0.6666666666666666,
+        "after": null,
+        "delta_after_minus_before": null,
+        "better_direction": "higher"
+      },
+      {
+        "name": "safety_intent_rate",
+        "before": 1.0,
+        "after": null,
+        "delta_after_minus_before": null,
+        "better_direction": "higher"
+      }
+    ],
+    "reason": "59-case raw baseline obtained; training failed before first completed optimizer update, so no after metric or delta can be computed."
+  },
+  "failure_stage": "first backward/optimizer graph evaluation, before any completed update",
+  "saved_weights_changed": false,
+  "online_model_changed": false,
+  "base_weights_unchanged": true
+}

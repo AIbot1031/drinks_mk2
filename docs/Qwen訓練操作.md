@@ -34,3 +34,20 @@
 本次切換 optimizer 步數 0。以正式訓練相同的最後 4 層／rank 4 配置，對一筆人工合成資料進行前向及反向相容性探測，1,352,448 可訓練參數、62 個梯度張量均有限且有非零梯度；沒有 optimizer update、沒有保存新候選。最長既有訓練序列為 1,268 tokens，小於 2,048 上限。這只證明入口相容，不能宣稱已訓練或推薦改善。
 
 資料仍是 intent-cases-v1，原有的小樣本及 state 與正式 Worker 差異仍適用。訓練評估原始模型生成；服務數值 null→省略的格式轉換不混入訓練原始語意指標。完整切換與回復：[Qwen3.5-9B 模型切換與驗證](Qwen3.5-9B模型切換與驗證.md)。
+
+## 2026-10-14 奇怪輸入實際微調
+
+已依使用者要求新增 `intent-robust-v2-worker-contract`：73 筆助理人工合成訓練情境，30 筆新組合驗證與 29 筆既有回歸，合計 59 筆固定驗證。實際完成一次 Qwen3.5-9B 微調：最後 1 個完整注意力區塊、rank 8、146 optimizer steps；前兩次相對路徑與 Metal OOM 失敗都是 0 個完成步數，報告保留。
+
+```sh
+.venv-llm/bin/python scripts/train_qwen.py \
+  --dataset robust --num-layers 1 --rank 8 --iters 146 \
+  --learning-rate 0.00005 --max-seq-length 3072 \
+  --completion-loss --val-batches 8
+```
+
+`completion-loss` 保留所有輸入，只建立最後 512 個位置的詞彙 logits，遮罩仍只計回答；回答超出視窗會失敗。凍結的 DeltaNet 區塊用推論 kernel，只有 adapter 區塊訓練。實機 loss 與原 masked CE 差值 0.0；adapter 保存重載 logits 差值 0.0，基礎權重檔案未變。
+
+**候選退步，不發布：完整意圖 36/59 → 22/59、原始 action＋filters 47/59 → 31/59；服務解析後有 17 個案例退步。** 格式改善及訓練 loss 下降不能抵銷原有條件被漏掉。線上仍為原 Qwen3.5-9B intent-v7，沒有載入本次 adapter。每日入口預設仍使用 legacy，排程沒有暗改。
+
+完整設計見 [奇怪輸入微調設計](Qwen奇怪輸入微調設計.md)，實測與所有差值見 [本次完整報告](training-runs/20261014T222622-qwen-intent-qlora.md)。

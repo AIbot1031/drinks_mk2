@@ -1,0 +1,1113 @@
+{
+  "method": "same frozen generations; production null codec / guard override and actual existing Worker merge only; not full HTTP/eligibility/ranking replay",
+  "versions": {
+    "before": {
+      "total": 59,
+      "parserCorrect": 48,
+      "mergeProbeCorrect": 50,
+      "modelRouted": 48,
+      "routedMergeProbeCorrect": 41,
+      "bypassed": 11,
+      "cases": [
+        {
+          "id": "validation-074",
+          "group": "messy_text",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-075",
+          "group": "messy_text",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": false,
+          "accepted": false,
+          "inheritedRuleMismatch": true
+        },
+        {
+          "id": "validation-076",
+          "group": "messy_text",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-077",
+          "group": "negation",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": false,
+          "accepted": true,
+          "inheritedRuleMismatch": true
+        },
+        {
+          "id": "validation-078",
+          "group": "negation",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-079",
+          "group": "negation",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-080",
+          "group": "release",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-081",
+          "group": "release",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": false,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-082",
+          "group": "release",
+          "modelRouted": false,
+          "parserPassed": false,
+          "mergePassed": false,
+          "accepted": true,
+          "inheritedRuleMismatch": true
+        },
+        {
+          "id": "validation-083",
+          "group": "numeric",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-084",
+          "group": "numeric",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-085",
+          "group": "numeric",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-086",
+          "group": "numeric",
+          "modelRouted": false,
+          "parserPassed": true,
+          "mergePassed": false,
+          "accepted": true,
+          "inheritedRuleMismatch": true
+        },
+        {
+          "id": "validation-087",
+          "group": "ambiguous_numeric",
+          "modelRouted": false,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-088",
+          "group": "ambiguous_numeric",
+          "modelRouted": false,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-089",
+          "group": "ambiguous_numeric",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": false,
+          "accepted": true,
+          "inheritedRuleMismatch": true
+        },
+        {
+          "id": "validation-090",
+          "group": "mood_noise",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-091",
+          "group": "mood_noise",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": false,
+          "accepted": true,
+          "inheritedRuleMismatch": true
+        },
+        {
+          "id": "validation-092",
+          "group": "mood_noise",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": false,
+          "accepted": true,
+          "inheritedRuleMismatch": true
+        },
+        {
+          "id": "validation-093",
+          "group": "injection",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": true
+        },
+        {
+          "id": "validation-094",
+          "group": "injection",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-095",
+          "group": "injection",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-096",
+          "group": "no_intent",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-097",
+          "group": "no_intent",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-098",
+          "group": "safety",
+          "modelRouted": false,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-099",
+          "group": "safety",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-100",
+          "group": "cross_turn",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-101",
+          "group": "cross_turn",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": false,
+          "accepted": false,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-102",
+          "group": "cross_turn",
+          "modelRouted": false,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-103",
+          "group": "cross_turn",
+          "modelRouted": false,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-brand-no",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-brand-allow",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-pearl-no",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-pearl-allow",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-budget-up",
+          "group": "regression",
+          "modelRouted": false,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-caffeine-off",
+          "group": "regression",
+          "modelRouted": false,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-pure-tea",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-fresh-milk",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-clarify-taste",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-unknown-topping",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-cream-no",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-brand-more",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-milk-no",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-milk-no-green",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-milk-no-prior",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-milk-release",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-milk-choose",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-pearl-contradiction",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-pure-red",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-brand-dislike",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-all-caps",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-h-milk-only",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-h-milk-prior",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-h-red-no-milk",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-h-brand-release",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-h-pearl-release",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-h-caffeine-release",
+          "group": "regression",
+          "modelRouted": false,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-h-budget",
+          "group": "regression",
+          "modelRouted": false,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-h-green-no-milk",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        }
+      ]
+    },
+    "after": {
+      "total": 59,
+      "parserCorrect": 32,
+      "mergeProbeCorrect": 51,
+      "modelRouted": 48,
+      "routedMergeProbeCorrect": 42,
+      "bypassed": 11,
+      "cases": [
+        {
+          "id": "validation-074",
+          "group": "messy_text",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-075",
+          "group": "messy_text",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": false,
+          "accepted": true,
+          "inheritedRuleMismatch": true
+        },
+        {
+          "id": "validation-076",
+          "group": "messy_text",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-077",
+          "group": "negation",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": false,
+          "accepted": true,
+          "inheritedRuleMismatch": true
+        },
+        {
+          "id": "validation-078",
+          "group": "negation",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-079",
+          "group": "negation",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-080",
+          "group": "release",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-081",
+          "group": "release",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": false,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-082",
+          "group": "release",
+          "modelRouted": false,
+          "parserPassed": false,
+          "mergePassed": false,
+          "accepted": true,
+          "inheritedRuleMismatch": true
+        },
+        {
+          "id": "validation-083",
+          "group": "numeric",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-084",
+          "group": "numeric",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-085",
+          "group": "numeric",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-086",
+          "group": "numeric",
+          "modelRouted": false,
+          "parserPassed": false,
+          "mergePassed": false,
+          "accepted": true,
+          "inheritedRuleMismatch": true
+        },
+        {
+          "id": "validation-087",
+          "group": "ambiguous_numeric",
+          "modelRouted": false,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-088",
+          "group": "ambiguous_numeric",
+          "modelRouted": false,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-089",
+          "group": "ambiguous_numeric",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": false,
+          "accepted": true,
+          "inheritedRuleMismatch": true
+        },
+        {
+          "id": "validation-090",
+          "group": "mood_noise",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-091",
+          "group": "mood_noise",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": false,
+          "accepted": true,
+          "inheritedRuleMismatch": true
+        },
+        {
+          "id": "validation-092",
+          "group": "mood_noise",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": false,
+          "accepted": true,
+          "inheritedRuleMismatch": true
+        },
+        {
+          "id": "validation-093",
+          "group": "injection",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": true
+        },
+        {
+          "id": "validation-094",
+          "group": "injection",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-095",
+          "group": "injection",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-096",
+          "group": "no_intent",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-097",
+          "group": "no_intent",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-098",
+          "group": "safety",
+          "modelRouted": false,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-099",
+          "group": "safety",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-100",
+          "group": "cross_turn",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-101",
+          "group": "cross_turn",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-102",
+          "group": "cross_turn",
+          "modelRouted": false,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "validation-103",
+          "group": "cross_turn",
+          "modelRouted": false,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-brand-no",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-brand-allow",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-pearl-no",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-pearl-allow",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-budget-up",
+          "group": "regression",
+          "modelRouted": false,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-caffeine-off",
+          "group": "regression",
+          "modelRouted": false,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-pure-tea",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-fresh-milk",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-clarify-taste",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-unknown-topping",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-cream-no",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-brand-more",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-milk-no",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-milk-no-green",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-milk-no-prior",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-milk-release",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-milk-choose",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-pearl-contradiction",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-pure-red",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-brand-dislike",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-all-caps",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-h-milk-only",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-h-milk-prior",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": false,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-h-red-no-milk",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-h-brand-release",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-h-pearl-release",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-h-caffeine-release",
+          "group": "regression",
+          "modelRouted": false,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-h-budget",
+          "group": "regression",
+          "modelRouted": false,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        },
+        {
+          "id": "regression-h-green-no-milk",
+          "group": "regression",
+          "modelRouted": true,
+          "parserPassed": true,
+          "mergePassed": true,
+          "accepted": true,
+          "inheritedRuleMismatch": false
+        }
+      ]
+    }
+  },
+  "parserRegressions": [
+    "validation-078",
+    "validation-080",
+    "validation-084",
+    "validation-085",
+    "validation-086",
+    "validation-095",
+    "validation-100",
+    "regression-pure-tea",
+    "regression-fresh-milk",
+    "regression-brand-more",
+    "regression-milk-no",
+    "regression-milk-no-prior",
+    "regression-milk-release",
+    "regression-milk-choose",
+    "regression-pure-red",
+    "regression-brand-dislike",
+    "regression-h-milk-only"
+  ],
+  "mergeRegressions": [],
+  "publicationAttempted": false,
+  "limitations": [
+    "Some scenarios are bypassed by the real Worker; hypothetical merge results must not be claimed as production gains",
+    "Current merge rules restrict novel typo/English aliases and cannot repair every existing preprocessing error",
+    "No real-user ranking or satisfaction benchmark"
+  ]
+}
