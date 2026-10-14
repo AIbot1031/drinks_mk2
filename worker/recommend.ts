@@ -1,4 +1,5 @@
 import type { Drink, Filters, RecommendInput, Scored } from './types';
+import {appVersion} from './app-version';
 import { understand } from './understand';
 import {groupProducts,productKey,createProductPreferences} from './products';
 import {milkTeaRetrievalQuery,requiredToppings,sameTopping} from './drink-language';
@@ -158,7 +159,7 @@ export function makeEngine(drinks: Drink[]) {
       }),
     };
     const trace = {
-      schemaVersion: 1, engineVersion: '2.5.0', input,
+      schemaVersion: 1, engineVersion: appVersion, input,
       understanding: {...parsed, parser:'rules', llmUsed:false},
       filtering: {sourceTotal:drinks.length, afterHardFilters:hardPool.length, afterDislikes:likedPool.length, afterSeenExclusions:pool.length, unknownNutrientsPassCaps:false},
       config: RANKING_CONFIG,

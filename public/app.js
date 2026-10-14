@@ -265,7 +265,7 @@ async function loadGraph() {
     const positions = new Map();
     const groups = [liked.length ? [{id:'viewer',label:accountUser?'我的帳號':'這個瀏覽器',type:'user'}] : [], brands.map(b => ({id:`brand:${b}`,label:b,type:'brand'})), list.map(d => ({id:d.id,label:d.name,type:'drink',drink:d})), features.map(f => ({id:`feature:${f}`,label:f,type:'feature'}))];
     const all = groups.flat();
-    groups.forEach((group, col) => {svg.append(shape('text',{x:[80,280,535,830][col],y:30,'text-anchor':'middle',fill:'#809171','font-size':12}, ['我的按讚','品牌','飲料','茶種／奶類／配料'][col])); group.forEach((n,i) => positions.set(n.id, {x:[80,280,535,830][col],y:65+(height-110)*(i+.5)/Math.max(1,group.length)}));});
+    groups.forEach((group, col) => {svg.append(shape('text',{x:[80,280,535,830][col],y:30,'text-anchor':'middle',fill:'#809171','font-size':14}, ['我的按讚','品牌','飲料','茶種／奶類／配料'][col])); group.forEach((n,i) => positions.set(n.id, {x:[80,280,535,830][col],y:65+(height-110)*(i+.5)/Math.max(1,group.length)}));});
     const edges = [...liked.map(d=>({from:'viewer',to:d.id,liked:true})),...list.flatMap(d => [{from:`brand:${d.brand}`,to:d.id}, ...featureNames(d).map(f => ({from:d.id,to:`feature:${f}`}))])];
     const lines = edges.map(edge => {const a = positions.get(edge.from), b = positions.get(edge.to); const n = shape('line',{x1:a.x,y1:a.y,x2:b.x,y2:b.y,class:edge.liked?'graph-edge liked':'graph-edge'}); svg.append(n); return {edge,n};});
     for (const n of all) {

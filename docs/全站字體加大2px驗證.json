@@ -1,0 +1,154 @@
+{
+  "desktop": {
+    "before": {
+      "#animation-toggle": "11px",
+      "#manual-mode": "13px",
+      "#query": "13px",
+      "#submit-button": "13px",
+      ".atmosphere-copy": "13px",
+      ".empty-state h3": "16px",
+      ".field-help": "10px",
+      ".header nav a": "12px",
+      ".hero h1": "53px",
+      ".intro": "14px",
+      ".logo": "19px",
+      ".results-heading h2": "21px",
+      ".topping-choices label": "12px",
+      "footer": "9px",
+      "html": "16px",
+      "label[for=\"query\"]": "12px"
+    },
+    "after": {
+      "#animation-toggle": "13px",
+      "#manual-mode": "15px",
+      "#query": "15px",
+      "#submit-button": "15px",
+      ".atmosphere-copy": "15px",
+      ".empty-state h3": "18px",
+      ".field-help": "12px",
+      ".header nav a": "14px",
+      ".hero h1": "55px",
+      ".intro": "16px",
+      ".logo": "21px",
+      ".results-heading h2": "23px",
+      ".topping-choices label": "14px",
+      "footer": "11px",
+      "html": "18px",
+      "label[for=\"query\"]": "14px"
+    },
+    "deltas": {
+      "html": 2,
+      ".logo": 2,
+      ".header nav a": 2,
+      ".hero h1": 2,
+      ".intro": 2,
+      ".atmosphere-copy": 2,
+      "#animation-toggle": 2,
+      "#manual-mode": 2,
+      "label[for=\"query\"]": 2,
+      "#query": 2,
+      ".topping-choices label": 2,
+      "#submit-button": 2,
+      ".field-help": 2,
+      ".results-heading h2": 2,
+      ".empty-state h3": 2,
+      "footer": 2
+    }
+  },
+  "mobile": {
+    "before": {
+      "#animation-toggle": "11px",
+      "#manual-mode": "13px",
+      "#query": "13px",
+      "#submit-button": "13px",
+      ".atmosphere-copy": "13px",
+      ".empty-state h3": "16px",
+      ".field-help": "10px",
+      ".header nav a": "11px",
+      ".hero h1": "27.3px",
+      ".intro": "12px",
+      ".logo": "17px",
+      ".results-heading h2": "21px",
+      ".topping-choices label": "12px",
+      "footer": "9px",
+      "html": "16px",
+      "label[for=\"query\"]": "12px"
+    },
+    "after": {
+      "#animation-toggle": "13px",
+      "#manual-mode": "15px",
+      "#query": "15px",
+      "#submit-button": "15px",
+      ".atmosphere-copy": "15px",
+      ".empty-state h3": "18px",
+      ".field-help": "12px",
+      ".header nav a": "13px",
+      ".hero h1": "29.3px",
+      ".intro": "14px",
+      ".logo": "19px",
+      ".results-heading h2": "23px",
+      ".topping-choices label": "14px",
+      "footer": "11px",
+      "html": "18px",
+      "label[for=\"query\"]": "14px"
+    },
+    "deltas": {
+      "html": 2,
+      ".logo": 2,
+      ".header nav a": 2,
+      ".hero h1": 2,
+      ".intro": 2,
+      ".atmosphere-copy": 2,
+      "#animation-toggle": 2,
+      "#manual-mode": 2,
+      "label[for=\"query\"]": 2,
+      "#query": 2,
+      ".topping-choices label": 2,
+      "#submit-button": 2,
+      ".field-help": 2,
+      ".results-heading h2": 2,
+      ".empty-state h3": 2,
+      "footer": 2
+    },
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "contentWidth": 375
+  },
+  "verifiedAt": "2026-10-14T16:53:41.220Z",
+  "timezone": "Asia/Taipei",
+  "version": "2.5.1",
+  "versionId": "cdefc19e-2e36-4cd9-ba0d-d4d7e8912bb0",
+  "assets": [
+    {
+      "path": "index.html",
+      "status": 200,
+      "sha256": "a26147860cfde0af39a6ee6f712dd9886bcd44640c2e81e30383a40574fa3e36",
+      "matchesLocal": true
+    },
+    {
+      "path": "styles.css",
+      "status": 200,
+      "sha256": "90d6a9bcfccdfb0a28b9a8d51cf8e9720bfdeff189d0908e38dde34879ac151f",
+      "matchesLocal": true
+    },
+    {
+      "path": "internal.css",
+      "status": 200,
+      "sha256": "2fb7e63edcfcae7b25a95b03f331b9e1e56b0860400e6c30e9883454b9934764",
+      "matchesLocal": true
+    },
+    {
+      "path": "app.js",
+      "status": 200,
+      "sha256": "fde308b8277bed57978a014f222f1a5c6e049099c09f4e543d33e0831ca9651e",
+      "matchesLocal": true
+    }
+  ],
+  "health": {
+    "ok": true,
+    "total": 5781,
+    "version": "2.5.1"
+  }
+}

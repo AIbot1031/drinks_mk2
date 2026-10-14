@@ -1,3 +1,4 @@
+import {appVersion} from './app-version';
 import {catalogFeatures,featureSchemaVersion,preferenceProfile,chatHistory} from './catalog-features';
 import catalog from '../data/catalog.json';
 import {groupProducts,favoriteProducts,createProductPreferences} from './products';
@@ -67,7 +68,7 @@ export default {
       if(url.pathname==='/api/semantic/status'&&request.method==='GET')return json(await env.SEMANTIC_BRIDGE.getByName('inference-v2').status());
       if(url.pathname.startsWith('/api/account/'))return await accountApi(request,env,readBody,drinks,productPreferences);
       if(url.pathname.startsWith('/api/internal/'))return await internalApi(request,env,readBody);
-      if (url.pathname === '/api/health' && request.method === 'GET') return json({ok: true, total: catalog.total, version: '2.5.0'});
+      if (url.pathname === '/api/health' && request.method === 'GET') return json({ok: true, total: catalog.total, version: appVersion});
       if (url.pathname === '/api/meta' && request.method === 'GET') return json({total: catalog.total, brands: catalog.brands, missing: catalog.missing, tea: [...new Set(drinks.flatMap(d=>d.tea))].sort(), toppings: [...new Set(drinks.flatMap(d=>d.toppings))].sort()});
       if (url.pathname === '/api/catalog/favorites' && request.method === 'POST') {
         const origin=request.headers.get('origin');

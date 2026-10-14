@@ -1,6 +1,10 @@
 import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 const required = ['public/index.html', 'public/app.js', 'public/styles.css', 'data/catalog.json'];
+const {version}=JSON.parse(await fs.readFile('package.json','utf8'));
+if(!(await fs.readFile('public/index.html','utf8')).includes(`版本 ${version}</p>`))throw new Error('網站顯示版本與 package.json 不一致');
+const lock=JSON.parse(await fs.readFile('package-lock.json','utf8'));
+if(lock.version!==version||lock.packages[''].version!==version)throw new Error('套件與 lockfile 版本不一致');
 for (const path of required) await fs.access(path);
 const catalog = JSON.parse(await fs.readFile('data/catalog.json', 'utf8'));
 if (catalog.total !== catalog.drinks.length || new Set(catalog.drinks.map(d => d.id)).size !== catalog.total) throw new Error('飲料資料筆數或 ID 有誤');
