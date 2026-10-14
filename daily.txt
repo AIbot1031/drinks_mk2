@@ -747,4 +747,4 @@ Git 同步：main commit 50003b3455595eacdf4e264f9da59eebde1dda19 已推送；v2
 - 規劃：完成使用者指定 GitHub 2.5 同步與可下載版本；保留原始備份 ZIP。
 - 實作／Git：版本提交 e081fce 已推送 origin/main；v2.5.0 指向同一提交，GitHub Release 已正式發布且非 draft／prerelease：https://github.com/AIbot1031/drinks_mk2/releases/tag/v2.5.0。82 個相關程式、文件與安全合成報告檔案納入，既有未提交工作一併保存；180 個候選檔案範圍的文字與本機憑證比對無命中，沒有推送金鑰、權重或原始互動匯出。
 - 驗證：讀回遠端 main／標籤解析提交均為 e081fcef2941ffd6f4b93909717dce9167be3448；Release 狀態與網址確認。獨立 8894 測試頁、Worker 與本輪建立的隔離 D1 資料已清理；保留 8893 本機預覽。
-- 部署／限制：正式 Cloudflare 本輪未部署，GitHub 發布不等於網站部署；本輪没有訓練，0 optimizer 步數。使用者既有 docs拷貝.zip 未追蹤且原檔保留。本則同步結果與更新說明再以紀錄提交補上主分支；第一次補紀錄命令因 stdin 編碼失敗未修改檔案，改用檔案 patch 補上。
+- 部署／限制：正式 Cloudflare 本輪未部署，GitHub 發布不等於網站部署；本輪沒有訓練，0 optimizer 步數。使用者既有 docs拷貝.zip 未追蹤且原檔保留。本則同步結果與更新說明再以紀錄提交補上主分支；第一次補紀錄命令因 stdin 編碼失敗未修改檔案，改用檔案 patch 補上。
