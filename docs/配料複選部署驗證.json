@@ -1,0 +1,76 @@
+{
+  "verifiedAt": "2026-10-14T15:47:34.963Z",
+  "timezone": "Asia/Taipei",
+  "url": "https://drinks-mk2.rtx941031.workers.dev",
+  "versionId": "75fece59-6e0c-4a76-9710-2929f0b2d9e1",
+  "assets": [
+    {
+      "path": "index.html",
+      "status": 200,
+      "sha256": "a1a8060e68243e0a0320aff49d5bbb9a646de71ff5141e796f57a2fe23d77115",
+      "matchesLocal": true
+    },
+    {
+      "path": "app.js",
+      "status": 200,
+      "sha256": "179be6343babdee54e32a3a0a36a120d3c6e8c55e62eb14006038a37f6945fc0",
+      "matchesLocal": true
+    },
+    {
+      "path": "styles.css",
+      "status": 200,
+      "sha256": "58da22ede7d67771608830b7b91c2a7b82fe39f1bcbdedfa4d73cfc6ed7d6a4a",
+      "matchesLocal": true
+    },
+    {
+      "path": "drink-atmosphere.js",
+      "status": 200,
+      "sha256": "c41b6142d6542a2a843d85c4c88d4f44b790cd6898ae80c58f84da74c4a7e850",
+      "matchesLocal": true
+    },
+    {
+      "path": "chat-conditions.js",
+      "status": 200,
+      "sha256": "de4e9ebc7a0052ea3cc2e514f93721639c51c0fc745568cbe3134e43b2d50f1f",
+      "matchesLocal": true
+    },
+    {
+      "path": "topping-selection.js",
+      "status": 200,
+      "sha256": "978fc9ad8def5e396e265d1ca2b07df3d01eb1b562fa09e7d342f32e6eb7561e",
+      "matchesLocal": true
+    },
+    {
+      "path": "topping-scene.js",
+      "status": 200,
+      "sha256": "a4a8c9554c31b537d34cc4f94c21c111c4432c37f2c910a8a9376958eec32f5e",
+      "matchesLocal": true
+    }
+  ],
+  "health": {
+    "ok": true,
+    "total": 5781,
+    "version": "2.5.0"
+  },
+  "multiTopping": {
+    "firstResults": 6,
+    "secondResults": 2,
+    "verifiedVariants": 10,
+    "allContainEverySelection": true,
+    "noRepeatedBatch": true
+  },
+  "chat": {
+    "initialRequired": [
+      "珍珠",
+      "布丁"
+    ],
+    "afterRemoval": [
+      "布丁"
+    ],
+    "initialQuery": "奶茶",
+    "initialResults": 4,
+    "afterRemovalResults": 6,
+    "initialMode": "qwen3.5-9b",
+    "afterRemovalMode": "qwen3.5-9b"
+  }
+}

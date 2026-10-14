@@ -115,3 +115,12 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 body{background:radial-gradient(ellipse at 12% 18%,var(--mood-glow),transparent 55%),linear-gradient(var(--liquid-top),var(--liquid-bottom))}
 .hero-art #tea stop:first-child{stop-color:var(--soft)}
 .hero-art #tea stop:last-child{stop-color:var(--green)}
+.topping-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:22px;font-size:12px;font-weight:600}
+.topping-heading small{font-size:10px;font-weight:400;color:var(--muted);margin-left:5px}
+.topping-choices{display:flex;flex-wrap:wrap;gap:8px;padding:0;border:0;margin:10px 0 0;min-width:0}
+.topping-choices label{position:relative;display:flex;align-items:center;gap:5px;margin:0;padding:9px 11px;min-height:40px;border:1px solid var(--border);border-radius:18px;background:#fffdf8;color:var(--green);cursor:pointer;font-size:12px}
+.topping-choices input{width:14px;height:14px;margin:0;padding:0;accent-color:var(--green)}
+.topping-choices label:has(input:checked){background:var(--soft);border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);font-weight:700}
+.topping-choices label:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:3px}
+.topping-selection{font-size:11px;color:var(--green);line-height:1.7;margin:12px 0 0}
+#drink-scene{opacity:1}

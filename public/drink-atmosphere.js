@@ -1,3 +1,5 @@
+import {selectedToppings, manualToppings} from './topping-selection.js';
+import {drawTopping} from './topping-scene.js';
 // Decorative atmosphere only. Never changes recommendation filters or stores messages.
 export function detectMood(message = '') {
   const text = message.replace(/(?:不開心|不快樂)/g, '難過').replace(/(?:不是|沒有|不覺得|不感到|不太|不)(?:很|太|再|那麼)?(?:開心|快樂|興奮|難過|傷心|疲累|疲倦|累|焦慮|緊張|煩躁|生氣|放鬆|平靜)/g, '');
@@ -38,8 +40,18 @@ export function initAtmosphere() {
   let enabled = preference === 'on' || (preference !== 'off' && !reduced.matches);
   let chat = { filters: {}, mood: '' }, manualMood = '', override = '';
   let frame = 0, lastTime = 0, elapsed = 0, width = 0, height = 0, palette, current;
+  let readingAreas = [];
+  function updateReadingAreas() {
+    readingAreas = [...document.querySelectorAll('.hero > div:first-child, .results-heading, #result-status, #feedback-note, footer')].map(element => {
+      const box = element.getBoundingClientRect();
+      return {left:box.left,right:box.right,top:box.top+scrollY,bottom:box.bottom+scrollY};
+    });
+  }
+  function ingredientOpacity(x, y, radius) {
+    return readingAreas.some(box => x+radius>box.left && x-radius<box.right && y+scrollY+radius>box.top && y+scrollY-radius<box.bottom) ? 0.16 : 0.82;
+  }
   const particles = Array.from({ length: 36 }, () => ({
-    x: Math.random(), y: Math.random(), radius: 5 + Math.random() * 9,
+    x: Math.random(), y: Math.random(), radius: 13 + Math.random() * 12,
     speed: 0.018 + Math.random() * 0.025, phase: Math.random() * Math.PI * 2,
   }));
   const moods = { bright: '輕快', rest: '放鬆', comfort: '溫柔', quiet: '安靜' };
@@ -60,34 +72,27 @@ export function initAtmosphere() {
     context.fillStyle = gradient; context.fillRect(0, 0, width, height);
     const slow = current.mood === 'quiet' ? 0.35 : current.mood === 'rest' || current.mood === 'comfort' ? 0.55 : 1;
     const count = current.mood === 'quiet' ? 14 : width < 700 ? 22 : particles.length;
-    for (const particle of particles.slice(0, count)) {
+    for (const [index, particle] of particles.slice(0, count).entries()) {
       particle.y = (particle.y + delta * particle.speed * slow) % 1;
       const x = particle.x * width + Math.sin(elapsed * 0.4 + particle.phase) * 15;
-      const solid = /珍珠|芋圓|椰果|仙草|茶凍|布丁|果肉/.test(current.topping);
-      const color = /芋/.test(current.topping) ? '#9e83b1' : /布丁|果肉|茶凍/.test(current.topping) ? '#dfad55' : /椰果|奶蓋|冰淇淋/.test(current.topping) ? '#fff7dc' : '#51372f';
+      const topping = current.toppings[index % current.toppings.length] || '';
+      const solid = topping && !/奶蓋|冰淇淋/.test(topping);
       const y = solid ? particle.y * (height + 60) - 30 : height - particle.y * (height + 60);
-      const radius = particle.radius * (width < 700 ? 0.8 : 1);
-      context.beginPath();
-      if (/椰果|仙草|茶凍/.test(current.topping)) context.roundRect(x - radius, y - radius, radius * 2, radius * 2, 4);
-      else context.arc(x, y, radius, 0, Math.PI * 2);
-      if (current.topping) {
-        context.fillStyle = color;
-        context.globalAlpha = 0.24; context.fill();
-        context.globalAlpha = 0.22;
-        context.beginPath(); context.arc(x - radius * 0.3, y - radius * 0.3, radius * 0.22, 0, Math.PI * 2);
-        context.fillStyle = '#fff8ed'; context.fill(); context.globalAlpha = 1;
+      const radius = particle.radius * (width < 700 ? 0.9 : 1);
+      if (topping) {
+        drawTopping(context, topping, x, y, radius, /珍珠|波霸/.test(topping) ? 0 : Math.sin(elapsed * 0.3 + particle.phase) * 0.3, ingredientOpacity(x, y, radius));
       } else {
+        context.beginPath();context.arc(x, y, radius * 0.5, 0, Math.PI * 2);
         context.strokeStyle = palette.bubble; context.lineWidth = 1.2; context.stroke();
       }
     }
     // A small settled layer makes the viewport feel like the bottom of a cup.
-    if (/珍珠|芋圓|椰果|仙草|茶凍|布丁|果肉/.test(current.topping)) {
-      context.fillStyle = /芋/.test(current.topping) ? '#9e83b1' : /布丁|果肉|茶凍/.test(current.topping) ? '#dfad55' : /椰果/.test(current.topping) ? '#fff7dc' : '#51372f';
-      context.globalAlpha = 0.16;
-      for (let i = 0; i < Math.ceil(width / 42); i++) {
-        context.beginPath(); context.arc(i * 43 + 16, height - 6 - (i % 3) * 8, 8 + (i % 4), 0, Math.PI * 2); context.fill();
+    const settled = current.toppings.filter(t => !/奶蓋|冰淇淋/.test(t));
+    if (settled.length) {
+      for (let i = 0; i < Math.ceil(width / 39); i++) {
+        const x=i*39+15,y=height-7-(i%3)*9,radius=13+(i%4);
+        drawTopping(context, settled[i % settled.length], x, y, radius, (i % 3 - 1) * 0.15, ingredientOpacity(x,y,radius));
       }
-      context.globalAlpha = 1;
     }
   }
   function animate(time) {
@@ -99,17 +104,17 @@ export function initAtmosphere() {
   }
   function sync() {
     cancelAnimationFrame(frame); frame = 0; lastTime = 0;
+    updateReadingAreas();
     const inChat = document.querySelector('#chat-mode').getAttribute('aria-pressed') === 'true';
     const filters = inChat ? chat.filters : {
       tea: document.querySelector('#tea-filter').value,
-      topping: document.querySelector('#topping-filter').value,
+      toppings: manualToppings(),
     };
-    current = { tea: teaTheme(filters.tea), topping: filters.topping || '', mood: override || (inChat ? chat.mood : manualMood) };
-    if (filters.excludedToppings?.includes(current.topping)) current.topping = '';
+    current = { tea: teaTheme(filters.tea), toppings: selectedToppings(filters), mood: override || (inChat ? chat.mood : manualMood) };
     root.dataset.tea = current.tea; root.dataset.mood = current.mood;
     root.dataset.animation = enabled ? 'on' : 'off';
     toggle.setAttribute('aria-pressed', String(enabled)); toggle.textContent = `背景動畫：${enabled ? '開' : '關'}`;
-    note.textContent = [filters.tea || '日常的一杯', current.topping, moods[current.mood]].filter(Boolean).join(' · ');
+    note.textContent = [filters.tea || '日常的一杯', current.toppings.join('＋'), moods[current.mood]].filter(Boolean).join(' · ');
     const style = getComputedStyle(root);
     palette = { top: style.getPropertyValue('--liquid-top').trim(), bottom: style.getPropertyValue('--liquid-bottom').trim(), bubble: style.getPropertyValue('--bubble').trim() };
     const visible = enabled && !document.hidden && !['catalog', 'favorites', 'graph'].includes(location.hash.slice(1));
@@ -140,5 +145,6 @@ export function initAtmosphere() {
   document.addEventListener('visibilitychange', sync);
   window.addEventListener('hashchange', sync);
   window.addEventListener('resize', resize);
+  new ResizeObserver(updateReadingAreas).observe(document.querySelector('#main'));
   resize();
 }

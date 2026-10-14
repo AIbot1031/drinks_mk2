@@ -1,4 +1,4 @@
-import {normalizeDrinkLanguage, stripToppingExclusions, stripMilkTeaExclusions, sameTopping, toppingTerms} from './drink-language';
+import {normalizeDrinkLanguage, stripToppingExclusions, stripMilkTeaExclusions, sameTopping, toppingTerms,requiredToppings,setRequiredToppings} from './drink-language';
 import type { Filters, RecommendInput, Understanding } from './types';
 import {stripBrandExclusions} from './brand-language';
 import {capFields,exclusiveKeys,numericConditions,numericFollowUp} from './numeric-language';
@@ -23,6 +23,9 @@ export function validateInput(value: unknown): RecommendInput {
   if(!Array.isArray(excludedBrands)||excludedBrands.length>50||excludedBrands.some(b=>typeof b!=='string'||!b.trim()||b.length>60))throw new Error('排除品牌須為品牌名稱清單，最多 50 個');
   const milk = str('milk');
   const excludedToppings=f.excludedToppings??[];
+  if(f.toppings!==undefined&&(!Array.isArray(f.toppings)||f.toppings.length>20||f.toppings.some(t=>typeof t!=='string'||!toppingTerms.includes(t))))throw new Error('配料須為支援的配料清單，最多 20 個');
+  const selected:Filters={topping:str('topping'),toppings:f.toppings as string[]|undefined};
+  setRequiredToppings(selected,requiredToppings(selected));
   if(!Array.isArray(excludedToppings)||excludedToppings.length>20||excludedToppings.some(t=>typeof t!=='string'||!toppingTerms.includes(t)))throw new Error('排除配料選項無效');
   if(f.milkTea!==undefined&&typeof f.milkTea!=='boolean')throw new Error('奶茶條件格式有誤');
   const exclusive:Partial<Filters>={};
@@ -35,7 +38,7 @@ export function validateInput(value: unknown): RecommendInput {
   };
   const limit = v.limit ?? 6;
   if (typeof limit !== 'number' || !Number.isInteger(limit) || limit < 1 || limit > 20) throw new Error('推薦數量須介於 1 至 20');
-  return {query: v.query.trim(), filters: {...exclusive,brand: str('brand'), excludedBrands: [...new Set(excludedBrands.map(b=>b.trim()))],excludedToppings:[...new Set(excludedToppings)],milkTea:f.milkTea as boolean|undefined,maxPrice: bounded(f.maxPrice, '預算', 10000), maxCalories: bounded(f.maxCalories, '熱量', 10000), maxCaffeine: bounded(f.maxCaffeine, '咖啡因', 10000), milk: milk as Filters['milk'], tea: str('tea'), topping: str('topping')}, likedIds: ids('likedIds'), dislikedIds: ids('dislikedIds'), excludedIds: ids('excludedIds', 2000), limit};
+  return {query: v.query.trim(), filters: {...exclusive,brand: str('brand'), excludedBrands: [...new Set(excludedBrands.map(b=>b.trim()))],excludedToppings:[...new Set(excludedToppings)],milkTea:f.milkTea as boolean|undefined,maxPrice: bounded(f.maxPrice, '預算', 10000), maxCalories: bounded(f.maxCalories, '熱量', 10000), maxCaffeine: bounded(f.maxCaffeine, '咖啡因', 10000), milk: milk as Filters['milk'], tea: str('tea'),...selected}, likedIds: ids('likedIds'), dislikedIds: ids('dislikedIds'), excludedIds: ids('excludedIds', 2000), limit};
 }
 
 export function understand(input: RecommendInput, brands: string[]): Understanding {
@@ -95,8 +98,8 @@ export function understand(input: RecommendInput, brands: string[]): Understandi
     warnings.push('奶茶需求與無奶條件衝突，請先統一條件。');return {filters,warnings,blocked:true,preferences:[]};
   }
   const requestedToppings = toppingTerms.filter(t => withoutToppings.includes(t)&&!filters.excludedToppings?.some(x=>sameTopping(x,t)));
-  if (!filters.topping && requestedToppings.length === 1) filters.topping = requestedToppings[0];
-  if(filters.topping&&filters.excludedToppings?.includes(filters.topping)){
+  setRequiredToppings(filters,[...requiredToppings(filters),...requestedToppings]);
+  if(requiredToppings(filters).some(t=>filters.excludedToppings?.some(x=>sameTopping(x,t)))){
     warnings.push('同一配料同時被指定與排除，請調整條件。');return {filters,warnings,blocked:true,preferences:[]};
   }
   const requestedTea = ['紅茶', '綠茶', '青茶', '烏龍茶', '金萱茶', '普洱茶', '蕎麥茶'].filter(t => q.includes(t));

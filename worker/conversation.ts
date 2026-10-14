@@ -1,4 +1,4 @@
-import {normalizeDrinkLanguage, stripToppingExclusions, stripMilkTeaExclusions, milkTeaRetrievalQuery, milkTeaAllowedPattern, sameTopping, toppingTerms} from './drink-language';
+import {normalizeDrinkLanguage, stripToppingExclusions, stripMilkTeaExclusions, milkTeaRetrievalQuery, milkTeaAllowedPattern, sameTopping, toppingTerms,requiredToppings,setRequiredToppings} from './drink-language';
 import {understand, validateInput} from './understand';
 import {stripBrandExclusions} from './brand-language';
 import type {Filters} from './types';
@@ -87,13 +87,15 @@ export function conversationTurn(body: unknown, brands: string[]) {
   const fresh = understand(validateInput({query:cleaned,filters:excludesMilkTea?{milkTea:false}:undefined}),brands);
   if(state.clarification==='topping-exclusion'&&state.guard.startsWith('未辨識條件：')&&fresh.filters.excludedToppings?.length){state.guard='';delete state.clarification;}
   for (const [key,value] of Object.entries(fresh.filters)) {
-    if (key!=='excludedBrands'&&key!=='excludedToppings' && value!==undefined) Object.assign(state.filters,{[key]:value});
+    if (!['excludedBrands','excludedToppings','topping','toppings'].includes(key) && value!==undefined) Object.assign(state.filters,{[key]:value});
   }
+  const requested=requiredToppings(fresh.filters);
+  if(requested.length)setRequiredToppings(state.filters,[...(/再加|也要|還要|加上|多加|再來|^(?:請|幫我)?加/.test(message)?requiredToppings(state.filters):[]),...requested]);
   for(const field of capFields)if(numeric.resolved.has(field)){state.filters[field]=numeric.updates[field];state.filters[exclusiveKeys[field]]=numeric.updates[exclusiveKeys[field]];}
   state.filters.excludedToppings=[...new Set([...(state.filters.excludedToppings??[]),...(fresh.filters.excludedToppings??[])])];
-  if(state.filters.topping&&state.filters.excludedToppings.some(t=>sameTopping(t,state.filters.topping!)))delete state.filters.topping;
+  setRequiredToppings(state.filters,requiredToppings(state.filters).filter(t=>!state.filters.excludedToppings?.some(x=>sameTopping(x,t))));
   for (const [phrase,key] of [['預算','maxPrice'],['價格','maxPrice'],['熱量','maxCalories'],['咖啡因','maxCaffeine'],['品牌','brand'],['茶種','tea'],['配料','topping']] as const) {
-    if (new RegExp(`${phrase}(?:改成|改為)?(?:不限|都可以|不限制)`).test(message)) delete state.filters[key];
+    if (new RegExp(`${phrase}(?:改成|改為)?(?:不限|都可以|不限制)`).test(message)) {delete state.filters[key];if(key==='topping')delete state.filters.toppings;}
   }
   if (/奶類(?:改成|改為)?(?:不限|都可以)|奶都可以/.test(message)) state.filters.milk='any';
   const supportedCleaned=stripToppingExclusions(cleaned);
@@ -111,7 +113,12 @@ export function conversationTurn(body: unknown, brands: string[]) {
     state.query=q.replace(/(?:但是|可是|而且|但)[，\s]*$/,'').replace(/^[，\s]+|[，\s]+$/g,'');
   }
   if(/過敏|花生|堅果|乳糖不耐|麩質|忌口/.test(message))state.guard=normalizeDrinkLanguage(message);
+  // Consumed ingredients live in filters, so later removal cannot revive them from old query text.
+  if(requested.length||fresh.filters.excludedToppings?.length||/配料(?:改成|改為)?(?:不限|都可以|不限制)/.test(message)) {
+    for(const topping of toppingTerms)state.query=state.query.replaceAll(topping,'');
+  }
   state.query=flavorQuery(milkTeaRetrievalQuery(state.query,state.filters.milkTea===false));
+  if(requested.length>1)state.query=state.query.replace(/^(?:我)?(?:想喝|要喝|想要|想|要)?(?:和|跟|及|與|、|，|,|\s)+/,'');
   if(!state.query&&state.filters.milkTea===false&&state.filters.tea)state.query=state.filters.tea;
   const constraintOnly=numeric.onlyConditions&&!!(state.query||state.filters.tea||state.filters.milkTea);
   return {state,next:false,reset:false,followUp:!state.guard?numericFollowUp(state.pendingCaps??[]):undefined,constraintOnly,ack:constraintOnly?numericAcknowledgement(state.filters):undefined,warnings:[...new Set([...numeric.warnings,...fresh.warnings])],input:validateInput({query:state.guard || state.query,filters:state.filters}),message};

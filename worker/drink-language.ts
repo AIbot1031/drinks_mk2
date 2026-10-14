@@ -1,4 +1,16 @@
+import type {Filters} from './types';
 export const toppingTerms=['珍珠','波霸','椰果','布丁','仙草','燕麥','粉粿','奶蓋','果肉','冰淇淋','茶凍','芋圓','芋泥'];
+export function requiredToppings(filters:Filters):string[] {
+  const values=[...(filters.topping?[filters.topping]:[]),...(filters.toppings??[])];
+  return values.filter((t,i)=>!values.slice(0,i).some(other=>sameTopping(t,other)));
+}
+// Keep the legacy scalar for one choice; arrays mean every topping is required.
+export function setRequiredToppings(filters:Filters,values:string[]):void {
+  delete filters.topping;delete filters.toppings;
+  const unique=requiredToppings({toppings:values});
+  if(unique.length===1)filters.topping=unique[0];
+  else if(unique.length)filters.toppings=unique;
+}
 const terms=toppingTerms.join('|');
 const milkTeaTerms='(?:珍珠奶茶|奶茶)';
 export function stripMilkTeaExclusions(text:string,exclude:()=>void=()=>{}):string {

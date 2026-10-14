@@ -1,7 +1,7 @@
 import type { Drink, Filters, RecommendInput, Scored } from './types';
 import { understand } from './understand';
 import {groupProducts,productKey,createProductPreferences} from './products';
-import {milkTeaRetrievalQuery} from './drink-language';
+import {milkTeaRetrievalQuery,requiredToppings,sameTopping} from './drink-language';
 import {flavorQuery} from './numeric-language';
 
 export const RANKING_CONFIG = {weightA: 0.65, weightB: 0.35, rrfK: 60, candidatesPerPath: 100, graphRounds: 3, graphRestart: 0.3, brandLimitFirstPass: 2} as const;
@@ -14,7 +14,7 @@ export function eligible(d: Drink, f: Filters): boolean {
     && (f.maxCalories === undefined || (d.calories !== null && !d.caloriesEstimated && (f.caloriesExclusive?d.calories < f.maxCalories:d.calories <= f.maxCalories)))
     && (f.maxCaffeine === undefined || (d.caffeineMax !== null && !d.caffeineEstimated && (f.caffeineExclusive?d.caffeineMax < f.maxCaffeine:d.caffeineMax <= f.maxCaffeine)))
     && (!f.milk || f.milk === 'any' || (f.milk === 'none' ? d.noMilk && !d.milkConflict && !d.milk.length : f.milk === 'fresh' ? !d.milkConflict&&d.milk.includes('鮮奶')&&!d.milk.includes('奶精') : d.milk.includes('植物奶') && !d.milk.includes('鮮奶') && !d.milk.includes('奶精')))
-    && (!f.tea || d.tea.includes(f.tea)) && (!f.topping || d.toppings.includes(f.topping))
+    && (!f.tea || d.tea.includes(f.tea)) && requiredToppings(f).every(t=>d.toppings.some(actual=>sameTopping(t,actual)))
     && (f.milkTea===undefined || (f.milkTea ? isMilkTea(d) : !isMilkTea(d)))
     && !(f.excludedToppings??[]).some(t=>{const names=['珍珠','波霸'].includes(t)?['珍珠','波霸']:[t];return names.some(n=>d.toppings.includes(n)||d.name.includes(n));});
 }
