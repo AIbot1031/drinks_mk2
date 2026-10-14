@@ -754,5 +754,5 @@ Git 同步：main commit 50003b3455595eacdf4e264f9da59eebde1dda19 已推送；v2
 - 實作：以 GitHub 2.5 程式碼（目前提交 bda83a2）執行專案 build／deploy，附 v2.5.0 標籤；5 個更新前端資產已上傳，D1 與推論橋接綁定沿用。
 - 測試：build 通過；正式 API 回傳 2.5.0／5,781 款，7 個前端檔案與本機內容逐字一致。合成訪客查詢返回 6 杯紅茶珍珠且價格不超過 80 元，實際使用 MacBERT；訪客 B 路徑為特徵圖。MacBERT、Qwen3.5-9B intent-v7、RelGT 均 connected／ready。瀏覽器確認紅茶／珍珠／放鬆氛圍、關閉畫布且保留茶色，再開啟恢復；沒有水平溢位。
 - 部署：Cloudflare 已發布，部署列表確認 100% 流量使用 afab0539-3149-4500-ada2-61f91c578e23，正式網址 https://drinks-mk2.rtx941031.workers.dev。部署前版本為 258bf8a1-9e10-4a06-9f0a-d08d070e63aa，可作程式回復參考。
-- Git／紀錄：安全驗證 docs/2.5正式部署驗證.json、合成正式畫面 docs/screenshots/2.5正式部署紅茶珍珠.jpg；更新 2.5 說明與 Release 部署狀態，本則紀錄將 commit／push 至 main。原 v2.5.0 標籤保留在原發布程式碼，不移動歷史標籤；既有備份 ZIP 不納入。
+- Git／紀錄：安全驗證 docs/2.5正式部署驗證.json、合成正式畫面 docs/screenshots/2.5正式部署紅茶珍珠.jpg；更新 2.5 說明與 Release 部署狀態。部署紀錄提交 8654a52 已推送 origin/main，讀回確認本機與遠端差異 0／0；GitHub Release 已更新正式網址與 Worker 版本。原 v2.5.0 標籤保留在原發布程式碼，不移動歷史標籤；既有備份 ZIP 不納入。
 - 限制／後續：本次未訓練，optimizer 步數 0，沒有變更模型權重、排程或 D1 schema，沒有登入真實帳號或寫入顧客偏好事件。此次為上線與合成條件／介面驗證，不宣稱推薦品質或心情改善指標；已開啟舊站頁面需重新整理載入新版。
