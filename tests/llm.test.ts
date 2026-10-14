@@ -3,6 +3,13 @@ import {test} from 'node:test';
 import {conversationTurn} from '../worker/conversation';
 import {applyLlmUnderstanding} from '../worker/llm-conversation';
 const reply={query:'奶茶',filters:{milkTea:true},modelVersion:'qwen3-8b-4bit-test',durationMs:100,assistantMessage:'好，我幫你挑奶茶。'};
+test('Qwen 3.5 9B is accepted with the same constraint contract; unsupported families are rejected',()=>{
+ const turn=conversationTurn({message:'不喜歡奶茶，但想喝綠茶，預算80元'},[]);
+ const newer={...reply,query:'綠茶',filters:{tea:'綠茶',milkTea:false,maxPrice:80},modelVersion:'qwen3.5-9b-4bit-8b2b98c00a6b-intent-v4'};
+ const out=applyLlmUnderstanding(turn,newer,[],['綠茶'],[])!;
+ assert.equal(out.state.filters.milkTea,false);assert.equal(out.state.filters.maxPrice,80);assert.equal(out.state.query,'綠茶');
+ for(const modelVersion of ['qwen3.5-4b-4bit-test','other-model','qwen3.5-9b-unverified'])assert.equal(applyLlmUnderstanding(turn,{...newer,modelVersion},[],['綠茶'],[]),null);
+});
 test('LLM cannot invent exclusions or contradict verified constraints in acknowledgements',()=>{
  const turn=conversationTurn({message:'我想喝珍奶，預算100元'},['春水堂']);
  const output=applyLlmUnderstanding(turn,{...reply,filters:{milkTea:true,excludedToppings:['珍珠'],excludedBrands:['春水堂']},assistantMessage:'不加珍珠，排除春水堂'},['春水堂'],[],['珍珠'])!;

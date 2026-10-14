@@ -1,0 +1,46 @@
+{
+  "checkedAt": "2026-10-14T03:01:46.742Z",
+  "kind": "authored synthetic guest production checks; no account creation or real user data",
+  "workerVersion": "26ab12af-e1bc-406a-81e8-656b90da1eb2",
+  "checks": {
+    "likesCountOneProduct": true,
+    "oldConflictingCupPreferencesNormalized": true,
+    "firstPlaceProductAbsentAfterDislike": true,
+    "secondFreshRequestAlsoExcludesAllSizes": true,
+    "chatAlsoExcludesProduct": true,
+    "modelsReady": true,
+    "frontendModuleAvailable": true
+  },
+  "target": {
+    "brand": "星巴克",
+    "name": "可可瑪奇朵",
+    "variants": 3
+  },
+  "baselineRank": 1,
+  "afterDislikeCount": 6,
+  "chatMode": "qwen3.5-9b",
+  "chatModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+  "feedbackSchema": 2,
+  "modelStatus": {
+    "connected": true,
+    "ready": true,
+    "modelVersion": "macbert-8e08de527639956d",
+    "catalogVersion": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+    "device": "mps",
+    "llm": {
+      "connected": true,
+      "ready": true,
+      "modelVersion": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+      "catalogVersion": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+      "device": "mlx"
+    },
+    "relgt": {
+      "connected": true,
+      "ready": true,
+      "modelVersion": "relgt-temporal-05757994850db8f6",
+      "catalogVersion": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+      "device": "cpu"
+    }
+  },
+  "initialTestAssumptionCorrection": "A preliminary probe assumed one preselected catalogue drink would be in the first six recommendations; that assumption failed. This test uses the actual first-place product rather than changing ranking behavior."
+}

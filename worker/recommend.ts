@@ -1,18 +1,21 @@
 import type { Drink, Filters, RecommendInput, Scored } from './types';
 import { understand } from './understand';
-import {groupProducts,productKey} from './products';
+import {groupProducts,productKey,createProductPreferences} from './products';
+import {milkTeaRetrievalQuery} from './drink-language';
+import {flavorQuery} from './numeric-language';
 
 export const RANKING_CONFIG = {weightA: 0.65, weightB: 0.35, rrfK: 60, candidatesPerPath: 100, graphRounds: 3, graphRestart: 0.3, brandLimitFirstPass: 2} as const;
+export const isMilkTea=(d:Drink)=>/奶茶|奶綠|奶青|奶烏龍/.test(d.name)||(d.milk.length>0&&d.tea.length>0);
 
 export function eligible(d: Drink, f: Filters): boolean {
   return (!f.brand || d.brand === f.brand)
     && !f.excludedBrands?.includes(d.brand)
-    && (f.maxPrice === undefined || (d.price !== null && !d.priceEstimated && d.price <= f.maxPrice))
-    && (f.maxCalories === undefined || (d.calories !== null && !d.caloriesEstimated && d.calories <= f.maxCalories))
-    && (f.maxCaffeine === undefined || (d.caffeineMax !== null && !d.caffeineEstimated && d.caffeineMax <= f.maxCaffeine))
+    && (f.maxPrice === undefined || (d.price !== null && !d.priceEstimated && (f.priceExclusive?d.price < f.maxPrice:d.price <= f.maxPrice)))
+    && (f.maxCalories === undefined || (d.calories !== null && !d.caloriesEstimated && (f.caloriesExclusive?d.calories < f.maxCalories:d.calories <= f.maxCalories)))
+    && (f.maxCaffeine === undefined || (d.caffeineMax !== null && !d.caffeineEstimated && (f.caffeineExclusive?d.caffeineMax < f.maxCaffeine:d.caffeineMax <= f.maxCaffeine)))
     && (!f.milk || f.milk === 'any' || (f.milk === 'none' ? d.noMilk && !d.milkConflict && !d.milk.length : f.milk === 'fresh' ? !d.milkConflict&&d.milk.includes('鮮奶')&&!d.milk.includes('奶精') : d.milk.includes('植物奶') && !d.milk.includes('鮮奶') && !d.milk.includes('奶精')))
     && (!f.tea || d.tea.includes(f.tea)) && (!f.topping || d.toppings.includes(f.topping))
-    && (!f.milkTea || /奶茶/.test(d.name) || (d.milk.length>0&&d.tea.length>0))
+    && (f.milkTea===undefined || (f.milkTea ? isMilkTea(d) : !isMilkTea(d)))
     && !(f.excludedToppings??[]).some(t=>{const names=['珍珠','波霸'].includes(t)?['珍珠','波霸']:[t];return names.some(n=>d.toppings.includes(n)||d.name.includes(n));});
 }
 
@@ -33,6 +36,7 @@ function tokenize(text: string): string[] {
 }
 export function makeEngine(drinks: Drink[]) {
   const byId = new Map(drinks.map(d => [d.id, d]));
+  const preferences=createProductPreferences(drinks);
   const df = new Map<string, number>();
   const tokens = new Map(drinks.map(d => {
     const t = tokenize(searchable(d));
@@ -86,15 +90,18 @@ export function makeEngine(drinks: Drink[]) {
     const parsed=understand(input,[...new Set(drinks.map(d=>d.brand))]);
     const excluded=new Set(input.excludedIds),disliked=new Set(input.dislikedIds);
     const seen=new Set(input.excludedIds.flatMap(id=>byId.has(id)?[productKey(byId.get(id)!)]:[]));
-    return parsed.blocked?[]:drinks.filter(d=>eligible(d,parsed.filters)&&!excluded.has(d.id)&&!disliked.has(d.id)&&!seen.has(productKey(d)));
+    const dislikedProducts=new Set(input.dislikedIds.flatMap(id=>byId.has(id)?[productKey(byId.get(id)!)]:[]));
+    return parsed.blocked?[]:drinks.filter(d=>eligible(d,parsed.filters)&&!excluded.has(d.id)&&!disliked.has(d.id)&&!dislikedProducts.has(productKey(d))&&!seen.has(productKey(d)));
   }
   function recommendWithTrace(input: RecommendInput, semantic?:{scores:Array<{id:string;score:number}>;modelVersion:string;durationMs:number;fallbackReason?:string},relgt?:{scores:Array<{id:string;score:number}>;modelVersion:string;durationMs:number;historyCount?:number;fallbackReason?:string}) {
     const parsed = understand(input, [...new Set(drinks.map(d => d.brand))]);
+    input={...input,...preferences.normalize(input),query:flavorQuery(milkTeaRetrievalQuery(input.query,parsed.filters.milkTea===false))};
     const disliked = new Set(input.dislikedIds);
     const excluded = new Set(input.excludedIds);
     const seenProducts=new Set(input.excludedIds.flatMap(id=>byId.has(id)?[productKey(byId.get(id)!)]:[]));
+    const dislikedProducts=new Set(input.dislikedIds.flatMap(id=>byId.has(id)?[productKey(byId.get(id)!)]:[]));
     const hardPool = parsed.blocked ? [] : drinks.filter(d => eligible(d, parsed.filters));
-    const likedPool = hardPool.filter(d => !disliked.has(d.id));
+    const likedPool = hardPool.filter(d => !dislikedProducts.has(productKey(d)));
     const pool = likedPool.filter(d => !excluded.has(d.id)&&!seenProducts.has(productKey(d)));
     const productGroups=groupProducts(pool);
     const poolIds=new Set(pool.map(d=>d.id));
@@ -151,7 +158,7 @@ export function makeEngine(drinks: Drink[]) {
       }),
     };
     const trace = {
-      schemaVersion: 1, engineVersion: '2.4.0', input,
+      schemaVersion: 1, engineVersion: '2.5.0', input,
       understanding: {...parsed, parser:'rules', llmUsed:false},
       filtering: {sourceTotal:drinks.length, afterHardFilters:hardPool.length, afterDislikes:likedPool.length, afterSeenExclusions:pool.length, unknownNutrientsPassCaps:false},
       config: RANKING_CONFIG,

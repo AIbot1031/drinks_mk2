@@ -1,4 +1,6 @@
-# Qwen 對話推薦服務（2.3）
+# Qwen 對話推薦服務（2.4）
+
+2026-10-14 現況：已切換 Qwen3.5-9B 的 MLX 4-bit，固定 revision `8b2b98c00a6b4d291155e4890773ca8f769aee53`，服務版本 `qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7`。同一組更新包括提示及 optional-number 格式轉換，0 訓練步數，沒有套用 8B adapter。開發／補充契約比較、原始輸出限制、線上實測及回復見 [切換驗證](Qwen3.5-9B模型切換與驗證.md)。下方 2.3／8B 為歷史說明。
 
 使用者選擇 Qwen 8B，並授權由 Mac 處理、完成後直接上線。使用 Qwen3-8B 的 MLX 4-bit 量化版本，固定 revision `545dc4251c05440727734bcd94334791f6ab0192`；關閉 thinking、temperature 0、最多輸出 320 tokens，優先兼顧記憶體及速度。本次只下載預訓練權重並執行推論，沒有微調 Qwen。
 
@@ -50,3 +52,7 @@ Codex automation `relgt` 已更新為「飲料網站 RelGT／MacBERT／Qwen 每�
 ## 2026-10-13T23:26:28+08:00 三模型排程立即實測
 
 已依使用者要求實際執行三模型訓練，Qwen 新增 MLX QLoRA 入口並完成一次修正重試；權重未發布。安全總報告與各次真實前後比較見 [首次手動排程報告](training-runs/20261013T231513-manual-schedule-trial.md)。排程已改呼叫 `scripts/run_daily_training.py`，保留每日 02:00，新增防重疊與分模型失敗處理。Qwen 資料、方法與限制見 [Qwen訓練操作](Qwen訓練操作.md)。
+
+## 2026-10-14T10:05:02+08:00 奶茶否定與 intent-v4
+
+解析契約現在是 milkTea:true=想喝、false=排除、省略=不限；負向類別不進向量 query。Worker 保留排除並清理模型回覆，沒有正向口味時固定先追問，不讓 Qwen 自行補紅茶等偏好。提示詞 intent-v4、特徵說明 drink-catalog-v2 已接線上；0 訓練步數，沒有更新基礎權重。修正与驗證見 [奶茶否定與向量查詢修正](奶茶否定與向量查詢修正.md)。

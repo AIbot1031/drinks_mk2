@@ -1,0 +1,302 @@
+# Qwen 飲料意圖 QLoRA 訓練報告
+
+資料是本次人工編寫的合成任務例句，沒有冒充真實用戶對話。固定獨立組合情境作前後比較；小样本不足證明線上改善，本次未發布。
+
+## 訓練前後比較
+
+| 項目 | 訓練前 | 訓練後 | 差值（後−前） |
+| --- | --- | --- | --- |
+| json_valid_rate | 1 | 1 | 0 |
+| schema_valid_rate | 1 | 1 | 0 |
+| brand_exclusion_intent_exact_rate | 1 | 0 | -1 |
+| brand_release_intent_exact_rate | 0 | 0 | 0 |
+| topping_exclusion_intent_exact_rate | 1 | 1 | 0 |
+| topping_release_intent_exact_rate | 0 | 1 | 1 |
+| numeric_intent_exact_rate | 1 | 1 | 0 |
+| cross_turn_intent_exact_rate | 0.666667 | 0.666667 | 0 |
+| clarify_intent_exact_rate | 0 | 0 | 0 |
+| all_intent_exact_rate | 0.6 | 0.6 | 0 |
+
+沒有可比較指標時，不推算改善幅度；未完成訓練不代表模型已更新。
+對比 loss／分類 loss 不等同推薦排序品質；只有相同資料與評估方式才能比較。
+發布：否；更新用戶：0；權重變更：是。
+
+```json
+{
+  "run_id": "20261014T020059-qwen-intent-qlora",
+  "started_at": "2026-10-14T02:00:59+08:00",
+  "status": "trained_synthetic_intent_not_published",
+  "trigger": "manual schedule trial / authorized recurring training",
+  "git_commit": "c81ff313cd93814449115006bf462e933d63794b",
+  "working_tree_dirty": true,
+  "script_sha256": "95b3d5b91c3e4a056a7ee4082c4f514993182c20c3217fbce6a61150dd07120d",
+  "parameters": {
+    "model": "training_artifacts/qwen3-8b-4bit",
+    "iters": 10,
+    "num_layers": 4,
+    "learning_rate": 0.0001,
+    "max_seq_length": 2048,
+    "seed": 42
+  },
+  "optimizer_steps": 10,
+  "weights_changed": true,
+  "published": false,
+  "updated_users": 0,
+  "changes": [
+    "new actual MLX QLoRA trainer",
+    "manually authored synthetic intent dataset",
+    "fixed heldout semantic before/after evaluation"
+  ],
+  "limitations": [
+    "small synthetic holdout is not proof of real-user quality",
+    "no resume or automatic publication",
+    "online model remains unchanged; no adapter installed"
+  ],
+  "data": {
+    "source": "manually authored synthetic intent scenarios; no consumer data",
+    "version": "intent-cases-v1",
+    "train": 24,
+    "validation": 10,
+    "split": "fixed simple single-edit training; separate composed heldout scenarios",
+    "limitations": "small authored holdout, shared task vocabulary; not real-user distribution or external benchmark",
+    "sha256": "56b6477ce116a4d779a4a04b44419dc4177d93b2fe9a402f4be10f2788879726"
+  },
+  "snapshot_sha256": "56b6477ce116a4d779a4a04b44419dc4177d93b2fe9a402f4be10f2788879726",
+  "catalog_sha256": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+  "source": {
+    "model": "mlx-community/Qwen3-8B-4bit",
+    "revision": "545dc4251c05440727734bcd94334791f6ab0192",
+    "base": "Qwen/Qwen3-8B",
+    "quantization": "4bit"
+  },
+  "system_sha256": "335d93ebb62983f10946ef31eabfd3fdeb0a97b0d7e301e7309087ea8abf313f",
+  "environment": {
+    "python": "3.12.14",
+    "device": "mlx-metal",
+    "packages": {
+      "mlx": "0.32.3",
+      "mlx-lm": "0.32.0",
+      "transformers": "5.19.0"
+    }
+  },
+  "base_weight_sha256": {
+    "model.safetensors": "f2d29621aab300336ad645567ff38c42aac755513006ef4e8a579cf7ef5256d8"
+  },
+  "intent_before": {
+    "json_valid_rate": 1.0,
+    "schema_valid_rate": 1.0,
+    "brand_exclusion_intent_exact_rate": 1.0,
+    "brand_release_intent_exact_rate": 0.0,
+    "topping_exclusion_intent_exact_rate": 1.0,
+    "topping_release_intent_exact_rate": 0.0,
+    "numeric_intent_exact_rate": 1.0,
+    "cross_turn_intent_exact_rate": 0.6666666666666666,
+    "clarify_intent_exact_rate": 0.0,
+    "all_intent_exact_rate": 0.6
+  },
+  "trainable_parameters": 1212416,
+  "validation_loss_history": [
+    {
+      "iteration": 0,
+      "val_loss": 1.3817195892333984,
+      "val_time": 9.116234625020297
+    },
+    {
+      "iteration": 9,
+      "val_loss": 0.1101522222161293,
+      "val_time": 9.112159292009892
+    }
+  ],
+  "history": [
+    {
+      "iteration": 1,
+      "train_loss": 2.7690937519073486,
+      "learning_rate": 9.999999747378752e-05,
+      "iterations_per_second": 0.6539295181904957,
+      "tokens_per_second": 22.88753313666735,
+      "trained_tokens": 35,
+      "peak_memory": 5.921860146
+    },
+    {
+      "iteration": 2,
+      "train_loss": 1.4864007234573364,
+      "learning_rate": 9.999999747378752e-05,
+      "iterations_per_second": 0.6313341395083842,
+      "tokens_per_second": 29.67270455689406,
+      "trained_tokens": 82,
+      "peak_memory": 5.93089072
+    },
+    {
+      "iteration": 3,
+      "train_loss": 2.1034953594207764,
+      "learning_rate": 9.999999747378752e-05,
+      "iterations_per_second": 0.6688694768032911,
+      "tokens_per_second": 19.397214827295443,
+      "trained_tokens": 111,
+      "peak_memory": 5.93089072
+    },
+    {
+      "iteration": 4,
+      "train_loss": 0.6029366850852966,
+      "learning_rate": 9.999999747378752e-05,
+      "iterations_per_second": 0.6618158323658541,
+      "tokens_per_second": 33.0907916182927,
+      "trained_tokens": 161,
+      "peak_memory": 5.930896142
+    },
+    {
+      "iteration": 5,
+      "train_loss": 0.21215413510799408,
+      "learning_rate": 9.999999747378752e-05,
+      "iterations_per_second": 0.6388125241761287,
+      "tokens_per_second": 29.38537611210192,
+      "trained_tokens": 207,
+      "peak_memory": 5.930896142
+    },
+    {
+      "iteration": 6,
+      "train_loss": 0.28804081678390503,
+      "learning_rate": 9.999999747378752e-05,
+      "iterations_per_second": 0.640259040398902,
+      "tokens_per_second": 27.531138737152787,
+      "trained_tokens": 250,
+      "peak_memory": 5.930896142
+    },
+    {
+      "iteration": 7,
+      "train_loss": 0.32262226939201355,
+      "learning_rate": 9.999999747378752e-05,
+      "iterations_per_second": 0.647034734305524,
+      "tokens_per_second": 22.64621570069334,
+      "trained_tokens": 285,
+      "peak_memory": 5.930896142
+    },
+    {
+      "iteration": 8,
+      "train_loss": 0.27381882071495056,
+      "learning_rate": 9.999999747378752e-05,
+      "iterations_per_second": 0.6572334678757379,
+      "tokens_per_second": 19.0597705683964,
+      "trained_tokens": 314,
+      "peak_memory": 5.930896142
+    },
+    {
+      "iteration": 9,
+      "train_loss": 0.2001238316297531,
+      "learning_rate": 9.999999747378752e-05,
+      "iterations_per_second": 0.6605652273566889,
+      "tokens_per_second": 28.404304776337625,
+      "trained_tokens": 357,
+      "peak_memory": 5.930896142
+    },
+    {
+      "iteration": 10,
+      "train_loss": 0.08221148699522018,
+      "learning_rate": 9.999999747378752e-05,
+      "iterations_per_second": 0.6637268725582612,
+      "tokens_per_second": 28.540255520005235,
+      "trained_tokens": 400,
+      "peak_memory": 5.930896142
+    }
+  ],
+  "checkpoint": "training_artifacts/20261014T020059-qwen-intent-qlora/adapter",
+  "checkpoint_sha256": "b8595beaed590126bae994b8dae553358bec7f6325920ff9e192e1447b1f51f6",
+  "intent_after": {
+    "json_valid_rate": 1.0,
+    "schema_valid_rate": 1.0,
+    "brand_exclusion_intent_exact_rate": 0.0,
+    "brand_release_intent_exact_rate": 0.0,
+    "topping_exclusion_intent_exact_rate": 1.0,
+    "topping_release_intent_exact_rate": 1.0,
+    "numeric_intent_exact_rate": 1.0,
+    "cross_turn_intent_exact_rate": 0.6666666666666666,
+    "clarify_intent_exact_rate": 0.0,
+    "all_intent_exact_rate": 0.6
+  },
+  "checkpoint_reload_max_error": 0.0,
+  "checkpoint_reload_verified": true,
+  "base_weights_unchanged": true,
+  "ended_at": "2026-10-14T02:02:38+08:00",
+  "duration_seconds": 99.476,
+  "before_after_comparison": {
+    "status": "trained_synthetic_intent_not_published",
+    "published": false,
+    "updated_users": 0,
+    "weights_changed": true,
+    "checkpoint_after": "training_artifacts/20261014T020059-qwen-intent-qlora/adapter",
+    "data_snapshot_sha256": "56b6477ce116a4d779a4a04b44419dc4177d93b2fe9a402f4be10f2788879726",
+    "metrics": [
+      {
+        "name": "json_valid_rate",
+        "before": 1.0,
+        "after": 1.0,
+        "delta_after_minus_before": 0.0,
+        "better_direction": "higher"
+      },
+      {
+        "name": "schema_valid_rate",
+        "before": 1.0,
+        "after": 1.0,
+        "delta_after_minus_before": 0.0,
+        "better_direction": "higher"
+      },
+      {
+        "name": "brand_exclusion_intent_exact_rate",
+        "before": 1.0,
+        "after": 0.0,
+        "delta_after_minus_before": -1.0,
+        "better_direction": "higher"
+      },
+      {
+        "name": "brand_release_intent_exact_rate",
+        "before": 0.0,
+        "after": 0.0,
+        "delta_after_minus_before": 0.0,
+        "better_direction": "higher"
+      },
+      {
+        "name": "topping_exclusion_intent_exact_rate",
+        "before": 1.0,
+        "after": 1.0,
+        "delta_after_minus_before": 0.0,
+        "better_direction": "higher"
+      },
+      {
+        "name": "topping_release_intent_exact_rate",
+        "before": 0.0,
+        "after": 1.0,
+        "delta_after_minus_before": 1.0,
+        "better_direction": "higher"
+      },
+      {
+        "name": "numeric_intent_exact_rate",
+        "before": 1.0,
+        "after": 1.0,
+        "delta_after_minus_before": 0.0,
+        "better_direction": "higher"
+      },
+      {
+        "name": "cross_turn_intent_exact_rate",
+        "before": 0.6666666666666666,
+        "after": 0.6666666666666666,
+        "delta_after_minus_before": 0.0,
+        "better_direction": "higher"
+      },
+      {
+        "name": "clarify_intent_exact_rate",
+        "before": 0.0,
+        "after": 0.0,
+        "delta_after_minus_before": 0.0,
+        "better_direction": "higher"
+      },
+      {
+        "name": "all_intent_exact_rate",
+        "before": 0.6,
+        "after": 0.6,
+        "delta_after_minus_before": 0.0,
+        "better_direction": "higher"
+      }
+    ]
+  }
+}
+```

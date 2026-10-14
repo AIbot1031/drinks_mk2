@@ -1,0 +1,2276 @@
+{
+  "started_at": "2026-10-14T10:12:16+08:00",
+  "fixture_sha256": "febb11ffa65dba490304c3e80293ff0cf00f1a06a82c5f6c627ffabc0ceeba8c",
+  "system_sha256": "6c99cda7a61e8cb795792e3010334b88f579c069566a9320e79ee7dda2589fd4",
+  "catalog_sha256": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+  "kind": "independently authored synthetic Worker-preprocessed contract; no consumer records",
+  "optimizer_steps": 0,
+  "thinking": false,
+  "temperature": 0,
+  "max_tokens": 320,
+  "versions": {
+    "online": {
+      "model_version": "qwen3-8b-4bit-545dc4251c05-intent-v4",
+      "source": {
+        "model": "mlx-community/Qwen3-8B-4bit",
+        "revision": "545dc4251c05440727734bcd94334791f6ab0192",
+        "base": "Qwen/Qwen3-8B",
+        "quantization": "4bit"
+      },
+      "weights_sha256": {
+        "model.safetensors": "f2d29621aab300336ad645567ff38c42aac755513006ef4e8a579cf7ef5256d8"
+      },
+      "checkpoint_reload_max_error": 0.0,
+      "checkpoint_reload_verified": true,
+      "elapsed_seconds": 98.715,
+      "gpu_memory": {
+        "active_mb": 4394.3,
+        "peak_mb": 5227.3
+      },
+      "rows": [
+        {
+          "id": "brand-no",
+          "group": "brand_exclusion",
+          "prediction": {
+            "action": "recommend",
+            "query": "我想喝奶茶",
+            "filters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 75
+            },
+            "assistantMessage": "好，我幫你找符合預算的奶茶，不包含春水堂品牌。"
+          },
+          "error_type": null,
+          "duration_ms": 4595.813
+        },
+        {
+          "id": "brand-allow",
+          "group": "brand_release",
+          "prediction": {
+            "action": "recommend",
+            "query": "奶茶",
+            "filters": {
+              "excludedBrands": [
+                "星巴克"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 75
+            },
+            "assistantMessage": "好，我幫你找春水堂的奶茶，價格上限75元。"
+          },
+          "error_type": null,
+          "duration_ms": 4385.687
+        },
+        {
+          "id": "pearl-no",
+          "group": "topping_exclusion",
+          "prediction": {
+            "action": "recommend",
+            "query": "想喝奶茶",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "珍珠"
+              ],
+              "milkTea": true,
+              "maxPrice": 80
+            },
+            "assistantMessage": "好，我幫你找不加珍珠的奶茶，價格在80元以內。"
+          },
+          "error_type": null,
+          "duration_ms": 4528.149
+        },
+        {
+          "id": "pearl-allow",
+          "group": "topping_release",
+          "prediction": {
+            "action": "recommend",
+            "query": "奶茶",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 80,
+              "topping": "布丁"
+            },
+            "assistantMessage": "好，我幫你找奶茶，排除珍珠。"
+          },
+          "error_type": null,
+          "duration_ms": 4397.005
+        },
+        {
+          "id": "budget-up",
+          "group": "numeric",
+          "prediction": {
+            "action": "recommend",
+            "query": "奶茶",
+            "filters": {
+              "excludedBrands": [
+                "一沐日"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 95
+            },
+            "assistantMessage": "好的，預算已調整為95元，我會幫你推薦符合條件的奶茶。"
+          },
+          "error_type": null,
+          "duration_ms": 4561.17
+        },
+        {
+          "id": "caffeine-off",
+          "group": "numeric",
+          "prediction": {
+            "action": "recommend",
+            "query": "喝",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "maxPrice": 60,
+              "tea": "綠茶"
+            },
+            "assistantMessage": "好，我幫你找綠茶飲料，價格上限60元。"
+          },
+          "error_type": null,
+          "duration_ms": 4275.238
+        },
+        {
+          "id": "pure-tea",
+          "group": "cross_turn",
+          "prediction": {
+            "action": "recommend",
+            "query": "綠茶",
+            "filters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "milk": "none",
+              "tea": "綠茶"
+            },
+            "assistantMessage": "好，我幫你找純綠茶飲料，不包含奶茶。"
+          },
+          "error_type": null,
+          "duration_ms": 4980.786
+        },
+        {
+          "id": "fresh-milk",
+          "group": "cross_turn",
+          "prediction": {
+            "action": "recommend",
+            "query": "奶茶",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "奶蓋"
+              ],
+              "milkTea": true,
+              "maxPrice": 80,
+              "milk": "fresh"
+            },
+            "assistantMessage": "好，我幫你找使用鮮奶的奶茶，並排除奶蓋。"
+          },
+          "error_type": null,
+          "duration_ms": 4659.373
+        },
+        {
+          "id": "clarify-taste",
+          "group": "clarify",
+          "prediction": {
+            "action": "clarify",
+            "query": "",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": []
+            },
+            "assistantMessage": "好，請問你想喝什麼類型的飲料呢？例如純茶、果汁、奶茶，或是其他口味？"
+          },
+          "error_type": null,
+          "duration_ms": 3937.846
+        },
+        {
+          "id": "unknown-topping",
+          "group": "clarify",
+          "prediction": {
+            "action": "clarify",
+            "query": "想喝奶茶",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 80
+            },
+            "assistantMessage": "請問您不喜歡哪些配料呢？"
+          },
+          "error_type": null,
+          "duration_ms": 4207.419
+        },
+        {
+          "id": "cream-no",
+          "group": "topping_exclusion",
+          "prediction": {
+            "action": "recommend",
+            "query": "這杯",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "奶蓋"
+              ],
+              "maxPrice": 70,
+              "tea": "紅茶"
+            },
+            "assistantMessage": "好，我幫你找不加奶蓋的紅茶飲料。"
+          },
+          "error_type": null,
+          "duration_ms": 4366.169
+        },
+        {
+          "id": "brand-more",
+          "group": "brand_exclusion",
+          "prediction": {
+            "action": "recommend",
+            "query": "奶茶",
+            "filters": {
+              "excludedBrands": [
+                "春水堂",
+                "星巴克"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 90
+            },
+            "assistantMessage": "好，我幫你找奶茶，不包含星巴克與春水堂。"
+          },
+          "error_type": null,
+          "duration_ms": 4493.091
+        },
+        {
+          "id": "milk-no",
+          "group": "category_exclusion",
+          "prediction": {
+            "action": "recommend",
+            "query": "",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": false
+            },
+            "assistantMessage": "好，我幫你挑不喜歡奶茶的飲料，有其他口味偏好可以告訴我嗎？"
+          },
+          "error_type": null,
+          "duration_ms": 4062.39
+        },
+        {
+          "id": "milk-no-green",
+          "group": "category_exclusion",
+          "prediction": {
+            "action": "recommend",
+            "query": "綠茶",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "tea": "綠茶"
+            },
+            "assistantMessage": "好，我幫你找綠茶飲料，預算在80元以內。"
+          },
+          "error_type": null,
+          "duration_ms": 4724.156
+        },
+        {
+          "id": "milk-no-prior",
+          "group": "category_exclusion",
+          "prediction": {
+            "action": "recommend",
+            "query": "紅茶",
+            "filters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80
+            },
+            "assistantMessage": "好，我幫你找紅茶飲料，不包含奶茶，並排除春水堂品牌。"
+          },
+          "error_type": null,
+          "duration_ms": 4623.073
+        },
+        {
+          "id": "milk-release",
+          "group": "category_release",
+          "prediction": {
+            "action": "recommend",
+            "query": "奶茶",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "maxPrice": 80,
+              "tea": "綠茶",
+              "milkTea": true
+            },
+            "assistantMessage": "好，我幫你找奶茶，茶種是綠茶，價格上限80元。"
+          },
+          "error_type": null,
+          "duration_ms": 4669.871
+        },
+        {
+          "id": "milk-choose",
+          "group": "category_release",
+          "prediction": {
+            "action": "recommend",
+            "query": "奶茶",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 80,
+              "tea": "綠茶"
+            },
+            "assistantMessage": "好，我幫你找奶茶，茶種是綠茶，價格上限80元。"
+          },
+          "error_type": null,
+          "duration_ms": 4710.713
+        },
+        {
+          "id": "pearl-contradiction",
+          "group": "topping_exclusion",
+          "prediction": {
+            "action": "recommend",
+            "query": "奶茶",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "珍珠"
+              ],
+              "milkTea": true
+            },
+            "assistantMessage": "好，我幫你挑奶茶，排除珍珠。"
+          },
+          "error_type": null,
+          "duration_ms": 3842.184
+        },
+        {
+          "id": "pure-red",
+          "group": "cross_turn",
+          "prediction": {
+            "action": "recommend",
+            "query": "紅茶",
+            "filters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "milk": "none",
+              "tea": "紅茶"
+            },
+            "assistantMessage": "好，我幫你找純紅茶，不包含奶茶。"
+          },
+          "error_type": null,
+          "duration_ms": 4882.943
+        },
+        {
+          "id": "brand-dislike",
+          "group": "brand_exclusion",
+          "prediction": {
+            "action": "recommend",
+            "query": "我，想喝",
+            "filters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "maxPrice": 70,
+              "tea": "紅茶"
+            },
+            "assistantMessage": "好，我幫你找紅茶飲料，預算70元，不包含春水堂。"
+          },
+          "error_type": null,
+          "duration_ms": 4693.29
+        },
+        {
+          "id": "all-caps",
+          "group": "numeric",
+          "prediction": {
+            "action": "recommend",
+            "query": "紅茶",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "maxPrice": 60,
+              "maxCalories": 100,
+              "maxCaffeine": 50,
+              "tea": "紅茶"
+            },
+            "assistantMessage": "好，我幫你找紅茶飲料，預算60元，熱量100以下，咖啡因50以下。"
+          },
+          "error_type": null,
+          "duration_ms": 5585.107
+        }
+      ]
+    },
+    "candidate": {
+      "model_version": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v4",
+      "source": {
+        "model": "mlx-community/Qwen3.5-9B-4bit",
+        "revision": "8b2b98c00a6b4d291155e4890773ca8f769aee53",
+        "base": "Qwen/Qwen3.5-9B",
+        "quantization": "4bit",
+        "version_prefix": "qwen3.5-9b-4bit",
+        "weight_sha256": {
+          "model-00001-of-00002.safetensors": "a68b87558c6ef43f74c2bd63ce7e9092ceddc3101f3def0030774bae5f42aadd",
+          "model-00002-of-00002.safetensors": "b0a770bf8469c7f3f18756a0e0283f1c1174344a83e059a4e483f6af4907352d",
+          "tokenizer.json": "87a7830d63fcf43bf241c3c5242e96e62dd3fdc29224ca26fed8ea333db72de4"
+        }
+      },
+      "weights_sha256": {
+        "model-00001-of-00002.safetensors": "a68b87558c6ef43f74c2bd63ce7e9092ceddc3101f3def0030774bae5f42aadd",
+        "model-00002-of-00002.safetensors": "b0a770bf8469c7f3f18756a0e0283f1c1174344a83e059a4e483f6af4907352d"
+      },
+      "checkpoint_reload_max_error": 0.0,
+      "checkpoint_reload_verified": true,
+      "elapsed_seconds": 109.776,
+      "gpu_memory": {
+        "active_mb": 4804.7,
+        "peak_mb": 6173.9
+      },
+      "rows": [
+        {
+          "id": "brand-no",
+          "group": "brand_exclusion",
+          "prediction": {
+            "action": "recommend",
+            "query": "奶茶",
+            "filters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 75
+            },
+            "assistantMessage": "好的，我為您推薦春水堂以外的奶茶，預算在 75 元以內。"
+          },
+          "error_type": null,
+          "duration_ms": 5471.795
+        },
+        {
+          "id": "brand-allow",
+          "group": "brand_release",
+          "prediction": {
+            "action": "recommend",
+            "query": "奶茶",
+            "filters": {
+              "excludedBrands": [
+                "星巴克"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 75,
+              "brand": "春水堂"
+            },
+            "assistantMessage": "好的，我為您推薦春水堂的奶茶，並排除星巴克。"
+          },
+          "error_type": null,
+          "duration_ms": 5074.207
+        },
+        {
+          "id": "pearl-no",
+          "group": "topping_exclusion",
+          "prediction": {
+            "action": "recommend",
+            "query": "奶茶",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "珍珠"
+              ],
+              "milkTea": true,
+              "maxPrice": 80
+            },
+            "assistantMessage": "好的，我為您推薦不含珍珠的奶茶，預算在 80 元以內。"
+          },
+          "error_type": null,
+          "duration_ms": 4722.3
+        },
+        {
+          "id": "pearl-allow",
+          "group": "topping_release",
+          "prediction": {
+            "action": "recommend",
+            "query": "奶茶",
+            "filters": {
+              "milkTea": true,
+              "topping": "布丁",
+              "excludedToppings": []
+            },
+            "assistantMessage": "好的，我為您推薦有布丁的奶茶。"
+          },
+          "error_type": null,
+          "duration_ms": 4045.88
+        },
+        {
+          "id": "budget-up",
+          "group": "numeric",
+          "prediction": {
+            "action": "recommend",
+            "query": "奶茶",
+            "filters": {
+              "excludedBrands": [
+                "一沐日"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 95
+            },
+            "assistantMessage": "好的，我為您推薦 95 元以內的奶茶，並排除一沐日。"
+          },
+          "error_type": null,
+          "duration_ms": 4978.06
+        },
+        {
+          "id": "caffeine-off",
+          "group": "numeric",
+          "prediction": {
+            "action": "recommend",
+            "query": "綠茶",
+            "filters": {
+              "tea": "綠茶",
+              "maxPrice": 60,
+              "maxCaffeine": null
+            },
+            "assistantMessage": "好的，我為您推薦綠茶飲品，價格在 60 元以內，且不限咖啡因含量。"
+          },
+          "error_type": null,
+          "duration_ms": 4496.396
+        },
+        {
+          "id": "pure-tea",
+          "group": "cross_turn",
+          "prediction": {
+            "action": "recommend",
+            "query": "純綠茶",
+            "filters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "milk": "none",
+              "tea": "綠茶"
+            },
+            "assistantMessage": "好的，我為您推薦純綠茶，並排除春水堂與所有奶茶。"
+          },
+          "error_type": null,
+          "duration_ms": 5599.667
+        },
+        {
+          "id": "fresh-milk",
+          "group": "cross_turn",
+          "prediction": {
+            "action": "recommend",
+            "query": "鮮奶",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "奶蓋"
+              ],
+              "milkTea": true,
+              "milk": "fresh",
+              "maxPrice": 80
+            },
+            "assistantMessage": "好，我幫你找一杯含鮮奶的奶茶，並排除奶蓋，預算在 80 元以內。"
+          },
+          "error_type": null,
+          "duration_ms": 5307.78
+        },
+        {
+          "id": "clarify-taste",
+          "group": "clarify",
+          "prediction": {
+            "action": "clarify",
+            "query": "",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": []
+            },
+            "assistantMessage": "想喝飲料？請問您比較偏好哪種茶底（例如紅茶、綠茶、抹茶）或想喝奶茶嗎？"
+          },
+          "error_type": null,
+          "duration_ms": 4268.832
+        },
+        {
+          "id": "unknown-topping",
+          "group": "clarify",
+          "prediction": {
+            "action": "clarify",
+            "query": "想喝奶茶",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 80
+            },
+            "assistantMessage": "「不要奇怪配料」比較籠統，請問您具體想排除哪種配料呢？例如珍珠、奶蓋、布丁或芋圓？"
+          },
+          "error_type": null,
+          "duration_ms": 5134.758
+        },
+        {
+          "id": "cream-no",
+          "group": "topping_exclusion",
+          "prediction": {
+            "action": "recommend",
+            "query": "紅茶",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "奶蓋"
+              ],
+              "maxPrice": 70,
+              "tea": "紅茶"
+            },
+            "assistantMessage": "好的，我為您推薦紅茶口味，並排除奶蓋配料。"
+          },
+          "error_type": null,
+          "duration_ms": 4634.578
+        },
+        {
+          "id": "brand-more",
+          "group": "brand_exclusion",
+          "prediction": {
+            "action": "recommend",
+            "query": "奶茶",
+            "filters": {
+              "excludedBrands": [
+                "春水堂",
+                "星巴克"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 90
+            },
+            "assistantMessage": "好的，我幫你找一杯不含春水堂和星巴克的奶茶，預算在 90 元以內。"
+          },
+          "error_type": null,
+          "duration_ms": 5318.651
+        },
+        {
+          "id": "milk-no",
+          "group": "category_exclusion",
+          "prediction": {
+            "action": "clarify",
+            "query": "",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": false
+            },
+            "assistantMessage": "好的，已排除奶茶。請問您想喝純茶、果汁，或是其他口味的飲料呢？"
+          },
+          "error_type": null,
+          "duration_ms": 4314.91
+        },
+        {
+          "id": "milk-no-green",
+          "group": "category_exclusion",
+          "prediction": {
+            "action": "recommend",
+            "query": "綠茶",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "tea": "綠茶"
+            },
+            "assistantMessage": "好，我為您推薦不含奶茶的綠茶飲品，預算在 80 元以內。"
+          },
+          "error_type": null,
+          "duration_ms": 5108.93
+        },
+        {
+          "id": "milk-no-prior",
+          "group": "category_exclusion",
+          "prediction": {
+            "action": "recommend",
+            "query": "",
+            "filters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80
+            },
+            "assistantMessage": "好的，我為您推薦非奶茶類型的飲料，並排除春水堂，預算在 80 元以內。"
+          },
+          "error_type": null,
+          "duration_ms": 5378.015
+        },
+        {
+          "id": "milk-release",
+          "group": "category_release",
+          "prediction": {
+            "action": "recommend",
+            "query": "奶茶",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "maxPrice": 80,
+              "tea": "綠茶",
+              "milkTea": true
+            },
+            "assistantMessage": "好的，我幫你挑一杯綠茶奶茶，預算 80 元以內。"
+          },
+          "error_type": null,
+          "duration_ms": 5009.956
+        },
+        {
+          "id": "milk-choose",
+          "group": "category_release",
+          "prediction": {
+            "action": "recommend",
+            "query": "奶茶",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 80,
+              "tea": "綠茶"
+            },
+            "assistantMessage": "好的，我為您推薦綠茶奶茶，預算 80 元以內。"
+          },
+          "error_type": null,
+          "duration_ms": 4974.238
+        },
+        {
+          "id": "pearl-contradiction",
+          "group": "topping_exclusion",
+          "prediction": {
+            "action": "recommend",
+            "query": "奶茶",
+            "filters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "珍珠"
+              ],
+              "milkTea": true
+            },
+            "assistantMessage": "好的，我為您推薦不含珍珠的奶茶。"
+          },
+          "error_type": null,
+          "duration_ms": 4304.828
+        },
+        {
+          "id": "pure-red",
+          "group": "cross_turn",
+          "prediction": {
+            "action": "recommend",
+            "query": "純紅茶",
+            "filters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "milk": "none",
+              "tea": "紅茶"
+            },
+            "assistantMessage": "好的，我為您推薦純紅茶，並排除春水堂與所有奶茶。"
+          },
+          "error_type": null,
+          "duration_ms": 5663.909
+        },
+        {
+          "id": "brand-dislike",
+          "group": "brand_exclusion",
+          "prediction": {
+            "action": "recommend",
+            "query": "紅茶",
+            "filters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "maxPrice": 70,
+              "tea": "紅茶",
+              "milkTea": false,
+              "milk": "any"
+            },
+            "assistantMessage": "好的，我為您推薦非春水堂品牌的紅茶飲品，預算在 70 元以內。"
+          },
+          "error_type": null,
+          "duration_ms": 5849.227
+        },
+        {
+          "id": "all-caps",
+          "group": "numeric",
+          "prediction": {
+            "action": "recommend",
+            "query": "紅茶",
+            "filters": {
+              "tea": "紅茶",
+              "maxPrice": 60,
+              "maxCalories": 100,
+              "maxCaffeine": 50
+            },
+            "assistantMessage": "好的，我為您推薦紅茶口味，並篩選價格 60 元以內、熱量 100 卡以下、咖啡因 50mg 以下的飲品。"
+          },
+          "error_type": null,
+          "duration_ms": 5519.701
+        }
+      ]
+    }
+  },
+  "ended_at": "2026-10-14T10:15:45+08:00",
+  "validation": {
+    "kind": "independently authored synthetic Worker-preprocessed contract; no consumer records",
+    "fixture_sha256": "febb11ffa65dba490304c3e80293ff0cf00f1a06a82c5f6c627ffabc0ceeba8c",
+    "versions": {
+      "online": {
+        "cases": [
+          {
+            "id": "brand-no",
+            "group": "brand_exclusion",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 75
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 75
+            },
+            "finalFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 75
+            }
+          },
+          {
+            "id": "brand-allow",
+            "group": "brand_release",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [
+                "星巴克"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 75
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [
+                "星巴克"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 75
+            },
+            "finalFilters": {
+              "excludedBrands": [
+                "星巴克"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 75
+            }
+          },
+          {
+            "id": "pearl-no",
+            "group": "topping_exclusion",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "珍珠"
+              ],
+              "milkTea": true,
+              "maxPrice": 80
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "珍珠"
+              ],
+              "milkTea": true,
+              "maxPrice": 80
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "珍珠"
+              ],
+              "milkTea": true,
+              "maxPrice": 80
+            }
+          },
+          {
+            "id": "pearl-allow",
+            "group": "topping_release",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 80,
+              "topping": "布丁"
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 80,
+              "topping": "布丁"
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 80,
+              "topping": "布丁"
+            }
+          },
+          {
+            "id": "budget-up",
+            "group": "numeric",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [
+                "一沐日"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 95
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [
+                "一沐日"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 95
+            },
+            "finalFilters": {
+              "excludedBrands": [
+                "一沐日"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 95
+            }
+          },
+          {
+            "id": "caffeine-off",
+            "group": "numeric",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "maxPrice": 60,
+              "tea": "綠茶"
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "maxPrice": 60,
+              "tea": "綠茶"
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "maxPrice": 60,
+              "tea": "綠茶"
+            }
+          },
+          {
+            "id": "pure-tea",
+            "group": "cross_turn",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "milk": "none",
+              "tea": "綠茶"
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "milk": "none",
+              "tea": "綠茶"
+            },
+            "finalFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "milk": "none",
+              "tea": "綠茶"
+            }
+          },
+          {
+            "id": "fresh-milk",
+            "group": "cross_turn",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "奶蓋"
+              ],
+              "milkTea": true,
+              "maxPrice": 80,
+              "milk": "fresh"
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "奶蓋"
+              ],
+              "milkTea": true,
+              "maxPrice": 80,
+              "milk": "fresh"
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "奶蓋"
+              ],
+              "milkTea": true,
+              "maxPrice": 80,
+              "milk": "fresh"
+            }
+          },
+          {
+            "id": "clarify-taste",
+            "group": "clarify",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "clarify",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": []
+            },
+            "predictedAction": "clarify",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": []
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": []
+            }
+          },
+          {
+            "id": "unknown-topping",
+            "group": "clarify",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "clarify",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 80
+            },
+            "predictedAction": "clarify",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 80
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 80
+            }
+          },
+          {
+            "id": "cream-no",
+            "group": "topping_exclusion",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "奶蓋"
+              ],
+              "maxPrice": 70,
+              "tea": "紅茶"
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "奶蓋"
+              ],
+              "maxPrice": 70,
+              "tea": "紅茶"
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "奶蓋"
+              ],
+              "maxPrice": 70,
+              "tea": "紅茶"
+            }
+          },
+          {
+            "id": "brand-more",
+            "group": "brand_exclusion",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [
+                "春水堂",
+                "星巴克"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 90
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [
+                "春水堂",
+                "星巴克"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 90
+            },
+            "finalFilters": {
+              "excludedBrands": [
+                "春水堂",
+                "星巴克"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 90
+            }
+          },
+          {
+            "id": "milk-no",
+            "group": "category_exclusion",
+            "rawPassed": false,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "clarify",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": false
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": false
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": false
+            }
+          },
+          {
+            "id": "milk-no-green",
+            "group": "category_exclusion",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "tea": "綠茶"
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "tea": "綠茶"
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "tea": "綠茶"
+            }
+          },
+          {
+            "id": "milk-no-prior",
+            "group": "category_exclusion",
+            "rawPassed": false,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "clarify",
+            "expectedFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80
+            },
+            "finalFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80
+            }
+          },
+          {
+            "id": "milk-release",
+            "group": "category_release",
+            "rawPassed": false,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "maxPrice": 80,
+              "tea": "綠茶"
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "maxPrice": 80,
+              "tea": "綠茶",
+              "milkTea": true
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "maxPrice": 80,
+              "tea": "綠茶"
+            }
+          },
+          {
+            "id": "milk-choose",
+            "group": "category_release",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 80,
+              "tea": "綠茶"
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 80,
+              "tea": "綠茶"
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 80,
+              "tea": "綠茶"
+            }
+          },
+          {
+            "id": "pearl-contradiction",
+            "group": "topping_exclusion",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "珍珠"
+              ],
+              "milkTea": true
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "珍珠"
+              ],
+              "milkTea": true
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "珍珠"
+              ],
+              "milkTea": true
+            }
+          },
+          {
+            "id": "pure-red",
+            "group": "cross_turn",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "milk": "none",
+              "tea": "紅茶"
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "milk": "none",
+              "tea": "紅茶"
+            },
+            "finalFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "milk": "none",
+              "tea": "紅茶"
+            }
+          },
+          {
+            "id": "brand-dislike",
+            "group": "brand_exclusion",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "maxPrice": 70,
+              "tea": "紅茶"
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "maxPrice": 70,
+              "tea": "紅茶"
+            },
+            "finalFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "maxPrice": 70,
+              "tea": "紅茶"
+            }
+          },
+          {
+            "id": "all-caps",
+            "group": "numeric",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "maxPrice": 60,
+              "maxCalories": 100,
+              "maxCaffeine": 50,
+              "tea": "紅茶"
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "maxPrice": 60,
+              "maxCalories": 100,
+              "maxCaffeine": 50,
+              "tea": "紅茶"
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "maxPrice": 60,
+              "maxCalories": 100,
+              "maxCaffeine": 50,
+              "tea": "紅茶"
+            }
+          }
+        ],
+        "raw_correct": 18,
+        "schema_correct": 21,
+        "website_correct": 21,
+        "total": 21
+      },
+      "candidate": {
+        "cases": [
+          {
+            "id": "brand-no",
+            "group": "brand_exclusion",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 75
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 75
+            },
+            "finalFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 75
+            }
+          },
+          {
+            "id": "brand-allow",
+            "group": "brand_release",
+            "rawPassed": false,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [
+                "星巴克"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 75
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [
+                "星巴克"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 75,
+              "brand": "春水堂"
+            },
+            "finalFilters": {
+              "excludedBrands": [
+                "星巴克"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 75
+            }
+          },
+          {
+            "id": "pearl-no",
+            "group": "topping_exclusion",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "珍珠"
+              ],
+              "milkTea": true,
+              "maxPrice": 80
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "珍珠"
+              ],
+              "milkTea": true,
+              "maxPrice": 80
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "珍珠"
+              ],
+              "milkTea": true,
+              "maxPrice": 80
+            }
+          },
+          {
+            "id": "pearl-allow",
+            "group": "topping_release",
+            "rawPassed": false,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 80,
+              "topping": "布丁"
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "milkTea": true,
+              "topping": "布丁",
+              "excludedToppings": []
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 80,
+              "topping": "布丁"
+            }
+          },
+          {
+            "id": "budget-up",
+            "group": "numeric",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [
+                "一沐日"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 95
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [
+                "一沐日"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 95
+            },
+            "finalFilters": {
+              "excludedBrands": [
+                "一沐日"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 95
+            }
+          },
+          {
+            "id": "caffeine-off",
+            "group": "numeric",
+            "rawPassed": false,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": false,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "maxPrice": 60,
+              "tea": "綠茶"
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "tea": "綠茶",
+              "maxPrice": 60,
+              "maxCaffeine": null
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "maxPrice": 60,
+              "tea": "綠茶"
+            }
+          },
+          {
+            "id": "pure-tea",
+            "group": "cross_turn",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "milk": "none",
+              "tea": "綠茶"
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "milk": "none",
+              "tea": "綠茶"
+            },
+            "finalFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "milk": "none",
+              "tea": "綠茶"
+            }
+          },
+          {
+            "id": "fresh-milk",
+            "group": "cross_turn",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "奶蓋"
+              ],
+              "milkTea": true,
+              "maxPrice": 80,
+              "milk": "fresh"
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "奶蓋"
+              ],
+              "milkTea": true,
+              "milk": "fresh",
+              "maxPrice": 80
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "奶蓋"
+              ],
+              "milkTea": true,
+              "maxPrice": 80,
+              "milk": "fresh"
+            }
+          },
+          {
+            "id": "clarify-taste",
+            "group": "clarify",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "clarify",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": []
+            },
+            "predictedAction": "clarify",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": []
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": []
+            }
+          },
+          {
+            "id": "unknown-topping",
+            "group": "clarify",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "clarify",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 80
+            },
+            "predictedAction": "clarify",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 80
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 80
+            }
+          },
+          {
+            "id": "cream-no",
+            "group": "topping_exclusion",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "奶蓋"
+              ],
+              "maxPrice": 70,
+              "tea": "紅茶"
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "奶蓋"
+              ],
+              "maxPrice": 70,
+              "tea": "紅茶"
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "奶蓋"
+              ],
+              "maxPrice": 70,
+              "tea": "紅茶"
+            }
+          },
+          {
+            "id": "brand-more",
+            "group": "brand_exclusion",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [
+                "春水堂",
+                "星巴克"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 90
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [
+                "春水堂",
+                "星巴克"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 90
+            },
+            "finalFilters": {
+              "excludedBrands": [
+                "春水堂",
+                "星巴克"
+              ],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 90
+            }
+          },
+          {
+            "id": "milk-no",
+            "group": "category_exclusion",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "clarify",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": false
+            },
+            "predictedAction": "clarify",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": false
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": false
+            }
+          },
+          {
+            "id": "milk-no-green",
+            "group": "category_exclusion",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "tea": "綠茶"
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "tea": "綠茶"
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "tea": "綠茶"
+            }
+          },
+          {
+            "id": "milk-no-prior",
+            "group": "category_exclusion",
+            "rawPassed": false,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "clarify",
+            "expectedFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80
+            },
+            "finalFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80
+            }
+          },
+          {
+            "id": "milk-release",
+            "group": "category_release",
+            "rawPassed": false,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "maxPrice": 80,
+              "tea": "綠茶"
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "maxPrice": 80,
+              "tea": "綠茶",
+              "milkTea": true
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "maxPrice": 80,
+              "tea": "綠茶"
+            }
+          },
+          {
+            "id": "milk-choose",
+            "group": "category_release",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 80,
+              "tea": "綠茶"
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 80,
+              "tea": "綠茶"
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "milkTea": true,
+              "maxPrice": 80,
+              "tea": "綠茶"
+            }
+          },
+          {
+            "id": "pearl-contradiction",
+            "group": "topping_exclusion",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "珍珠"
+              ],
+              "milkTea": true
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "珍珠"
+              ],
+              "milkTea": true
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [
+                "珍珠"
+              ],
+              "milkTea": true
+            }
+          },
+          {
+            "id": "pure-red",
+            "group": "cross_turn",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "milk": "none",
+              "tea": "紅茶"
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "milk": "none",
+              "tea": "紅茶"
+            },
+            "finalFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "milkTea": false,
+              "maxPrice": 80,
+              "milk": "none",
+              "tea": "紅茶"
+            }
+          },
+          {
+            "id": "brand-dislike",
+            "group": "brand_exclusion",
+            "rawPassed": false,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "maxPrice": 70,
+              "tea": "紅茶"
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "maxPrice": 70,
+              "tea": "紅茶",
+              "milkTea": false,
+              "milk": "any"
+            },
+            "finalFilters": {
+              "excludedBrands": [
+                "春水堂"
+              ],
+              "excludedToppings": [],
+              "maxPrice": 70,
+              "tea": "紅茶"
+            }
+          },
+          {
+            "id": "all-caps",
+            "group": "numeric",
+            "rawPassed": true,
+            "finalPassed": true,
+            "queryPassed": true,
+            "schemaPassed": true,
+            "accepted": true,
+            "expectedAction": "recommend",
+            "expectedFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "maxPrice": 60,
+              "maxCalories": 100,
+              "maxCaffeine": 50,
+              "tea": "紅茶"
+            },
+            "predictedAction": "recommend",
+            "predictedFilters": {
+              "tea": "紅茶",
+              "maxPrice": 60,
+              "maxCalories": 100,
+              "maxCaffeine": 50
+            },
+            "finalFilters": {
+              "excludedBrands": [],
+              "excludedToppings": [],
+              "maxPrice": 60,
+              "maxCalories": 100,
+              "maxCaffeine": 50,
+              "tea": "紅茶"
+            }
+          }
+        ],
+        "raw_correct": 15,
+        "schema_correct": 20,
+        "website_correct": 21,
+        "total": 21
+      }
+    },
+    "raw_regressions": [
+      "brand-allow",
+      "pearl-allow",
+      "caffeine-off",
+      "brand-dislike"
+    ],
+    "website_regressions": [],
+    "promotion_allowed": false
+  },
+  "published": false,
+  "reason": "Raw action/filter regressions block the first candidate; no deployment",
+  "training_steps": 0
+}

@@ -1,6 +1,6 @@
 # Qwen 飲料意圖 QLoRA 訓練
 
-2026-10-13 已新增並實際執行 `scripts/train_qwen.py`。使用本機固定 revision 的 Qwen3-8B 4-bit 與 MLX，只有最後 4 層 rank 4 adapter 接受更新，基礎模型凍結；預設 batch 1、10 optimizer steps、lr 0.0001、max sequence 2048。每次從相同基礎模型重新建立 adapter，尚不支援線上版本續訓。
+2026-10-13 已新增並實際執行 `scripts/train_qwen.py`。最初使用本機固定 revision 的 Qwen3-8B 4-bit 與 MLX，只有最後 4 層 rank 4 adapter 接受更新，基礎模型凍結；預設 batch 1、10 optimizer steps、lr 0.0001、max sequence 2048。每次從相同基礎模型重新建立 adapter，尚不支援線上版本續訓。
 
 ```sh
 .venv-llm/bin/python scripts/train_qwen.py --iters 10
@@ -26,3 +26,11 @@
 三模型串行、檔案鎖防重疊、受保護的 Cloudflare 真實匿名事件匯出、模型別及批次報告；一模型失敗仍處理其餘模型。Mac 與 Codex App 必須運作。runner 只保存候選，發布須由排程後續工作完成獨立驗證、線上舊新版本比較、推論契約／硬篩選／重載與回復檢查；條件不足沿用現有版本。訓練已實作不代表 adapter 已被推論服務載入。
 
 [MLX 官方 LoRA／QLoRA 文件](https://github.com/ml-explore/mlx-lm/blob/main/mlx_lm/LORA.md)。
+
+## 2026-10-14 基礎模型更新
+
+`scripts/qwen_model.py` 為推論及訓練共用預設，現在為 Qwen3.5-9B MLX 4-bit 固定快照。每日 02:00 排程保留；下次 Qwen 訓練從 9B 基礎模型重新建立 adapter，不載入舊 8B adapter，不自動續接前一天 adapter。
+
+本次切換 optimizer 步數 0。以正式訓練相同的最後 4 層／rank 4 配置，對一筆人工合成資料進行前向及反向相容性探測，1,352,448 可訓練參數、62 個梯度張量均有限且有非零梯度；沒有 optimizer update、沒有保存新候選。最長既有訓練序列為 1,268 tokens，小於 2,048 上限。這只證明入口相容，不能宣稱已訓練或推薦改善。
+
+資料仍是 intent-cases-v1，原有的小樣本及 state 與正式 Worker 差異仍適用。訓練評估原始模型生成；服務數值 null→省略的格式轉換不混入訓練原始語意指標。完整切換與回復：[Qwen3.5-9B 模型切換與驗證](Qwen3.5-9B模型切換與驗證.md)。

@@ -17,6 +17,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 from training.qwen_intent_cases import datasets,semantic_metrics,VERSION
 from scripts.qwen_agent import SYSTEM
+from scripts.qwen_model import default_model_path,model_version
 TZ=ZoneInfo('Asia/Taipei')
 
 
@@ -46,6 +47,7 @@ def run(args,report,out):
     report['snapshot_sha256']=report['data']['sha256']
     report['catalog_sha256']=sha(ROOT/'data/catalog.json')
     report['source']=json.loads((args.model/'source.json').read_text())
+    report['base_model_version']=model_version(args.model)
     report['system_sha256']=hashlib.sha256(SYSTEM.encode()).hexdigest()
     report['environment']={'python':platform.python_version(),'device':'mlx-metal','packages':{k:importlib.metadata.version(k) for k in ['mlx','mlx-lm','transformers']}}
     report['base_weight_sha256']={p.name:sha(p) for p in sorted(args.model.glob('*.safetensors'))}
@@ -120,7 +122,7 @@ def run(args,report,out):
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--model',type=Path,default=ROOT/'training_artifacts/qwen3-8b-4bit')
+    p.add_argument('--model',type=Path,default=default_model_path(ROOT))
     p.add_argument('--iters',type=int,default=10)
     p.add_argument('--num-layers',type=int,default=4)
     p.add_argument('--learning-rate',type=float,default=1e-4)

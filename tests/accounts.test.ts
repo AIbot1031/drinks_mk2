@@ -22,7 +22,7 @@ test('consumer registration, login and private preferences are isolated from oth
   const saved=await put({likedIds:[liked],dislikedIds:[disliked]},cookie).then(r=>r.json()) as {liked:Record<string,unknown>;disliked:string[]};assert.deepEqual(Object.keys(saved.liked),[liked]);assert.deepEqual(saved.disliked,[disliked]);
   const other=await post('register',{id:otherId,password});assert.equal(other.status,201);
   const otherCookie=other.headers.get('set-cookie')!.split(';')[0];
-  const otherPrefs=await fetch(`${base}/api/account/preferences`,{headers:{Cookie:otherCookie}}).then(r=>r.json()) as {liked:Record<string,unknown>;disliked:string[]};assert.deepEqual(otherPrefs,{version:1,liked:{},disliked:[]});
+  const otherPrefs=await fetch(`${base}/api/account/preferences`,{headers:{Cookie:otherCookie}}).then(r=>r.json()) as {liked:Record<string,unknown>;disliked:string[]};assert.deepEqual(otherPrefs,{version:2,liked:{},disliked:[],dislikedProducts:{}});
   const shortcutsUrl=`${base}/api/account/shortcuts`;
   assert.equal((await fetch(shortcutsUrl)).status,401);
   const getShortcuts=(c:string)=>fetch(shortcutsUrl,{headers:{Cookie:c}}).then(r=>r.json());

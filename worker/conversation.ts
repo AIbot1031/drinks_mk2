@@ -1,9 +1,11 @@
-import {normalizeDrinkLanguage, stripToppingExclusions, sameTopping, toppingTerms} from './drink-language';
+import {normalizeDrinkLanguage, stripToppingExclusions, stripMilkTeaExclusions, milkTeaRetrievalQuery, milkTeaAllowedPattern, sameTopping, toppingTerms} from './drink-language';
 import {understand, validateInput} from './understand';
 import {stripBrandExclusions} from './brand-language';
 import type {Filters} from './types';
+import {capFields,exclusiveKeys,numericConditions,numericAnswer,numericFollowUp,numericAcknowledgement,validateNumericQuestions,flavorQuery} from './numeric-language';
+import type {NumericQuestion} from './numeric-language';
 
-export type ConversationState = {query: string; filters: Filters; guard: string; clarification?:'topping-exclusion'|'taste'};
+export type ConversationState = {query: string; filters: Filters; guard: string; clarification?:'topping-exclusion'|'taste'|'numeric';pendingCaps?:NumericQuestion[]};
 const escape = (s:string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 export function conversationTurn(body: unknown, brands: string[]) {
@@ -14,21 +16,40 @@ export function conversationTurn(body: unknown, brands: string[]) {
   const prior = v.state as Partial<ConversationState> | undefined;
   if (prior !== undefined && (!prior || typeof prior !== 'object' || Array.isArray(prior))) throw new Error('對話條件格式有誤');
   if (prior?.guard !== undefined && (typeof prior.guard !== 'string' || prior.guard.length > 300)) throw new Error('對話限制格式有誤');
-  if(prior?.clarification!==undefined&&!['topping-exclusion','taste'].includes(prior.clarification))throw new Error('追問狀態格式有誤');
+  if(prior?.clarification!==undefined&&!['topping-exclusion','taste','numeric'].includes(prior.clarification))throw new Error('追問狀態格式有誤');
+  const pendingCaps=validateNumericQuestions(prior?.pendingCaps);
   const validated = validateInput({query:prior?.query ?? '',filters:prior?.filters ?? {}});
   const reset = /^(?:重新開始|重設|清除條件|換個話題)[！!。\s]*$/.test(message);
-  const state:ConversationState = reset ? {query:'',filters:{},guard:''} : {query:validated.query,filters:{...validated.filters},guard:prior?.guard ?? '',clarification:prior?.clarification};
+  const state:ConversationState = reset ? {query:'',filters:{},guard:''} : {query:validated.query,filters:{...validated.filters},guard:prior?.guard ?? '',clarification:prior?.clarification,...(pendingCaps.length?{pendingCaps}:{})};
+  const legacyNumeric=numericConditions(state.query,brands);
+  for(const field of legacyNumeric.resolved)if(state.filters[field]===undefined&&legacyNumeric.updates[field]!==undefined){state.filters[field]=legacyNumeric.updates[field];state.filters[exclusiveKeys[field]]=legacyNumeric.updates[exclusiveKeys[field]];}
+  if(legacyNumeric.questions.length)state.pendingCaps=validateNumericQuestions([...(state.pendingCaps??[]).filter(q=>!legacyNumeric.questions.some(n=>n.field===q.field)),...legacyNumeric.questions]);
+  state.query=flavorQuery(state.query);
+  stripMilkTeaExclusions(normalizeDrinkLanguage(state.query),()=>{state.filters.milkTea=false;});
+  state.query=milkTeaRetrievalQuery(state.query,state.filters.milkTea===false);
   // Repair old preference-only guards without clearing genuine allergy restrictions.
   if(state.guard.startsWith('忌口：')||state.guard.startsWith('未辨識條件：')){
-    const rest=stripToppingExclusions(normalizeDrinkLanguage(state.guard.replace(/^(?:忌口|未辨識條件)：/,'')));
+    const rest=stripMilkTeaExclusions(stripToppingExclusions(normalizeDrinkLanguage(state.guard.replace(/^(?:忌口|未辨識條件)：/,''))),()=>{state.filters.milkTea=false;});
     if(!/(過敏|乳糖不耐|忌口|不要|不加|不放|排除|不喝)/.test(rest)){
       state.guard='';if(rest.includes('奶茶'))state.filters.milkTea=true;
       if(!state.query)state.query=rest.replace(/珍珠/g,'').trim();
     }
   }
+  state.query=milkTeaRetrievalQuery(state.query,state.filters.milkTea===false);
   const next = /^(?:再推薦(?:幾杯)?|再看一批|換一批|還有嗎|其他選擇)[？?！!。\s]*$/.test(message);
-  if (reset || next) return {state,next,reset,warnings:[],input:validateInput({query:state.guard || state.query,filters:state.filters}), message};
-  let cleaned = normalizeDrinkLanguage(message).replace(/(預算|價格|價錢|熱量|卡路里|咖啡因)(?:\s*(?:改成|改為|改到|調成|調到|設成))\s*/g,'$1 ');
+  if (reset || next) return {state,next,reset,followUp:!state.guard?numericFollowUp(state.pendingCaps??[]):undefined,constraintOnly:false,ack:undefined,warnings:[],input:validateInput({query:state.guard || state.query,filters:state.filters}), message};
+  const numericMessage=state.pendingCaps?.length?numericAnswer(message,state.pendingCaps[0].field)??message:message;
+  const numeric=numericConditions(numericMessage,brands);
+  state.pendingCaps=[...(state.pendingCaps??[]).filter(q=>!numeric.resolved.has(q.field)&&!numeric.questions.some(n=>n.field===q.field)),...numeric.questions];
+  if(!state.pendingCaps.length){delete state.pendingCaps;if(state.clarification==='numeric')delete state.clarification;}else state.clarification='numeric';
+  let cleaned = normalizeDrinkLanguage(numeric.remainder).replace(/(預算|價格|價錢|熱量|卡路里|咖啡因)(?:\s*(?:改成|改為|改到|調成|調到|設成))\s*/g,'$1 ');
+  cleaned=cleaned.replace(milkTeaAllowedPattern(),()=>{delete state.filters.milkTea;return '';});
+  let excludesMilkTea=false;
+  cleaned=stripMilkTeaExclusions(cleaned,()=>{excludesMilkTea=true;state.filters.milkTea=false;state.query=milkTeaRetrievalQuery(state.query,true);});
+  if(!excludesMilkTea&&/奶茶/.test(cleaned)&&state.filters.milkTea===false){
+    state.filters.milkTea=true;
+    if(state.filters.milk==='none')delete state.filters.milk;
+  }
   // Explicitly allowing an item removes its old exclusion without requiring it.
   for(const term of [...toppingTerms,...brands]){
     const allow=new RegExp(`(?:取消(?:對)?${escape(term)}(?:的)?排除|${escape(term)}(?:現在)?可以(?:了)?|(?:可以|允許)(?:加|喝|吃)?${escape(term)})`,'g');
@@ -63,11 +84,12 @@ export function conversationTurn(body: unknown, brands: string[]) {
   }).join('，');
   state.filters.excludedBrands=[...excluded];
   if (/取消(?:所有)?品牌排除|品牌都可以/.test(message)) state.filters.excludedBrands=[];
-  const fresh = understand(validateInput({query:cleaned}),brands);
+  const fresh = understand(validateInput({query:cleaned,filters:excludesMilkTea?{milkTea:false}:undefined}),brands);
   if(state.clarification==='topping-exclusion'&&state.guard.startsWith('未辨識條件：')&&fresh.filters.excludedToppings?.length){state.guard='';delete state.clarification;}
   for (const [key,value] of Object.entries(fresh.filters)) {
     if (key!=='excludedBrands'&&key!=='excludedToppings' && value!==undefined) Object.assign(state.filters,{[key]:value});
   }
+  for(const field of capFields)if(numeric.resolved.has(field)){state.filters[field]=numeric.updates[field];state.filters[exclusiveKeys[field]]=numeric.updates[exclusiveKeys[field]];}
   state.filters.excludedToppings=[...new Set([...(state.filters.excludedToppings??[]),...(fresh.filters.excludedToppings??[])])];
   if(state.filters.topping&&state.filters.excludedToppings.some(t=>sameTopping(t,state.filters.topping!)))delete state.filters.topping;
   for (const [phrase,key] of [['預算','maxPrice'],['價格','maxPrice'],['熱量','maxCalories'],['咖啡因','maxCaffeine'],['品牌','brand'],['茶種','tea'],['配料','topping']] as const) {
@@ -78,7 +100,7 @@ export function conversationTurn(body: unknown, brands: string[]) {
   const unsupportedNegative = /(?:不要|排除|不喝|不推薦)/.test(supportedCleaned) && !/(?:不要|不喝)(?:奶類|乳製品|奶|乳)(?=$|[，。\s])|不要咖啡因/.test(supportedCleaned);
   if (fresh.blocked || unsupportedNegative){state.guard=unsupportedNegative ? `未辨識條件：${message}` : cleaned;if(unsupportedNegative)state.clarification='topping-exclusion';}
   if (fresh.preferences.length) state.query=fresh.preferences.join('、');
-  else if (!Object.entries(fresh.filters).some(([k,val])=>k!=='excludedBrands'&&val!==undefined) && !/(?:不限|都可以|取消|不要|排除)/.test(message)) state.query=cleaned;
+  else if (!numeric.onlyConditions && !Object.entries(fresh.filters).some(([k,val])=>k!=='excludedBrands'&&val!==undefined) && !/(?:不限|都可以|取消|不要|排除)/.test(message)) state.query=cleaned;
   // Strip known filter phrases before retaining initial free text, so later caps can increase.
   if (!state.query && !state.guard) {
     let q=stripToppingExclusions(cleaned).replace(/(?:預算|價格|價錢|熱量|卡路里|咖啡因)\s*(?:不超過|最多|上限|低於|小於)?\s*\d+(?:\.\d+)?\s*(?:元|塊|mg|kcal)?/g,'');
@@ -88,5 +110,9 @@ export function conversationTurn(body: unknown, brands: string[]) {
     for (const b of brands) q=q.replace(new RegExp(escape(b),'g'),'');
     state.query=q.replace(/(?:但是|可是|而且|但)[，\s]*$/,'').replace(/^[，\s]+|[，\s]+$/g,'');
   }
-  return {state,next:false,reset:false,warnings:fresh.warnings,input:validateInput({query:state.guard || state.query,filters:state.filters}),message};
+  if(/過敏|花生|堅果|乳糖不耐|麩質|忌口/.test(message))state.guard=normalizeDrinkLanguage(message);
+  state.query=flavorQuery(milkTeaRetrievalQuery(state.query,state.filters.milkTea===false));
+  if(!state.query&&state.filters.milkTea===false&&state.filters.tea)state.query=state.filters.tea;
+  const constraintOnly=numeric.onlyConditions&&!!(state.query||state.filters.tea||state.filters.milkTea);
+  return {state,next:false,reset:false,followUp:!state.guard?numericFollowUp(state.pendingCaps??[]):undefined,constraintOnly,ack:constraintOnly?numericAcknowledgement(state.filters):undefined,warnings:[...new Set([...numeric.warnings,...fresh.warnings])],input:validateInput({query:state.guard || state.query,filters:state.filters}),message};
 }

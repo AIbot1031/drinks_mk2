@@ -11,6 +11,7 @@ export type Drink = {
 export type Filters = {
   excludedToppings?:string[];milkTea?:boolean;
   brand?: string; excludedBrands?: string[]; maxPrice?: number; maxCalories?: number; maxCaffeine?: number;
+  priceExclusive?:boolean; caloriesExclusive?:boolean; caffeineExclusive?:boolean;
   milk?: 'any' | 'none' | 'fresh' | 'plant'; tea?: string; topping?: string;
 };
 export type RecommendInput = { query: string; filters: Filters; likedIds: string[]; dislikedIds: string[]; excludedIds: string[]; limit: number };

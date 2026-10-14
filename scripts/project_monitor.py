@@ -67,7 +67,7 @@ def events(runtime,name):
                 value=v.get(k)
                 if isinstance(value,(int,float)) and math.isfinite(value):item[k]=value
                 elif k=='device' and value in ['mps','mlx','cpu']:item[k]=value
-                elif k=='modelVersion' and isinstance(value,str) and re.fullmatch(r'(?:macbert-[a-f0-9]{16}|relgt-temporal-[a-f0-9]{16}|qwen3-8b-4bit-[a-f0-9]{12}(?:-intent-v[23])?)',value):item[k]=value
+                elif k=='modelVersion' and isinstance(value,str) and re.fullmatch(r'(?:macbert-[a-f0-9]{16}|relgt-temporal-[a-f0-9]{16}|qwen(?:3-8b|3\.5-9b)-4bit-[a-f0-9]{12}(?:-intent-v[234567])?)',value):item[k]=value
             result.append(item)
         except (ValueError,TypeError,KeyError):continue
     return result

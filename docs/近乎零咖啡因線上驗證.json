@@ -1,0 +1,263 @@
+{
+  "kind": "截圖可見原句重建的零咖啡因語句／條件對照",
+  "source": "第一句由使用者另以文字確認，其餘依四張截圖可見訊息；訪客重建測試，不是原始API trace。",
+  "before_worker": "84b5c3c6-3e64-4f47-8327-da306262e9e1",
+  "after_worker": "258bf8a1-9e10-4a06-9f0a-d08d070e63aa",
+  "optimizer_steps": 0,
+  "script_sha256": "9201d11f445834b285b5b1e9c6c489426888a549636d9d08ec9f493a56ccda14",
+  "before": {
+    "kind": "依截圖文字構造的訪客測試；不是原始trace",
+    "phase": "before",
+    "at": "2026-10-14T05:12:51.455Z",
+    "rows": [
+      {
+        "case": 1,
+        "reconstructedMessage": "100元內 茶類 咖啡因含量近乎為零",
+        "passed": false,
+        "aligned": true,
+        "clean": true,
+        "flavor": true,
+        "zeroSafe": true,
+        "noRedTea": true,
+        "query": "茶類",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [],
+          "maxPrice": 100
+        },
+        "pendingCaps": [
+          {
+            "field": "maxCaffeine",
+            "reason": "missing"
+          }
+        ],
+        "needsClarification": true,
+        "assistantMessage": "你希望咖啡因最多多少 mg？如果想要零咖啡因，可以回覆「零」。其他條件會保留。",
+        "results": 0,
+        "chatMode": "clarification"
+      },
+      {
+        "case": 2,
+        "reconstructedMessage": "咖啡因含量為零",
+        "passed": true,
+        "aligned": true,
+        "clean": true,
+        "flavor": true,
+        "zeroSafe": true,
+        "noRedTea": true,
+        "query": "茶類",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [],
+          "maxPrice": 100,
+          "maxCaffeine": 0
+        },
+        "needsClarification": false,
+        "assistantMessage": "已套用條件：預算 ≤ 100 元；咖啡因 ≤ 0 mg。 找到 6 杯符合條件的飲料。你可以繼續調整條件，或說「再推薦幾杯」。",
+        "results": 6,
+        "chatMode": "quick-command"
+      },
+      {
+        "case": 3,
+        "reconstructedMessage": "咖啡因為零",
+        "passed": true,
+        "aligned": true,
+        "clean": true,
+        "flavor": true,
+        "zeroSafe": true,
+        "noRedTea": true,
+        "query": "茶類",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [],
+          "maxPrice": 100,
+          "maxCaffeine": 0
+        },
+        "needsClarification": false,
+        "assistantMessage": "已套用條件：預算 ≤ 100 元；咖啡因 ≤ 0 mg。 找到 6 杯符合條件的飲料。你可以繼續調整條件，或說「再推薦幾杯」。",
+        "results": 6,
+        "chatMode": "quick-command"
+      },
+      {
+        "case": 4,
+        "reconstructedMessage": "咖啡因=0",
+        "passed": false,
+        "aligned": true,
+        "clean": true,
+        "flavor": true,
+        "zeroSafe": true,
+        "noRedTea": true,
+        "query": "茶類",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [],
+          "maxPrice": 100,
+          "maxCaffeine": 0
+        },
+        "pendingCaps": [
+          {
+            "field": "maxCaffeine",
+            "reason": "missing"
+          }
+        ],
+        "needsClarification": true,
+        "assistantMessage": "你希望咖啡因最多多少 mg？如果想要零咖啡因，可以回覆「零」。其他條件會保留。",
+        "results": 0,
+        "chatMode": "clarification"
+      }
+    ]
+  },
+  "after": {
+    "kind": "依截圖文字構造的訪客測試；不是原始trace",
+    "phase": "after",
+    "at": "2026-10-14T11:03:07.163Z",
+    "rows": [
+      {
+        "case": 1,
+        "reconstructedMessage": "100元內 茶類 咖啡因含量近乎為零",
+        "passed": true,
+        "aligned": true,
+        "clean": true,
+        "flavor": true,
+        "zeroSafe": true,
+        "noRedTea": true,
+        "query": "茶類",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [],
+          "maxPrice": 100
+        },
+        "pendingCaps": [
+          {
+            "field": "maxCaffeine",
+            "reason": "approximate-zero"
+          }
+        ],
+        "needsClarification": true,
+        "assistantMessage": "「近乎為零」還沒有明確上限。你要嚴格 0 mg，還是接受少量咖啡因？如果接受少量，請告訴我每杯最多幾 mg。口味與預算會保留。",
+        "results": 0,
+        "chatMode": "clarification"
+      },
+      {
+        "case": 2,
+        "reconstructedMessage": "咖啡因含量為零",
+        "passed": true,
+        "aligned": true,
+        "clean": true,
+        "flavor": true,
+        "zeroSafe": true,
+        "noRedTea": true,
+        "query": "茶類",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [],
+          "maxPrice": 100,
+          "maxCaffeine": 0
+        },
+        "needsClarification": false,
+        "assistantMessage": "已套用條件：預算 ≤ 100 元；咖啡因 ≤ 0 mg。 找到 6 杯符合條件的飲料。你可以繼續調整條件，或說「再推薦幾杯」。",
+        "results": 6,
+        "chatMode": "quick-command"
+      },
+      {
+        "case": 3,
+        "reconstructedMessage": "咖啡因為零",
+        "passed": true,
+        "aligned": true,
+        "clean": true,
+        "flavor": true,
+        "zeroSafe": true,
+        "noRedTea": true,
+        "query": "茶類",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [],
+          "maxPrice": 100,
+          "maxCaffeine": 0
+        },
+        "needsClarification": false,
+        "assistantMessage": "已套用條件：預算 ≤ 100 元；咖啡因 ≤ 0 mg。 找到 6 杯符合條件的飲料。你可以繼續調整條件，或說「再推薦幾杯」。",
+        "results": 6,
+        "chatMode": "quick-command"
+      },
+      {
+        "case": 4,
+        "reconstructedMessage": "咖啡因=0",
+        "passed": true,
+        "aligned": true,
+        "clean": true,
+        "flavor": true,
+        "zeroSafe": true,
+        "noRedTea": true,
+        "query": "茶類",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [],
+          "maxPrice": 100,
+          "maxCaffeine": 0
+        },
+        "needsClarification": false,
+        "assistantMessage": "已套用條件：預算 ≤ 100 元；咖啡因 ≤ 0 mg。 找到 6 杯符合條件的飲料。你可以繼續調整條件，或說「再推薦幾杯」。",
+        "results": 6,
+        "chatMode": "quick-command"
+      }
+    ]
+  },
+  "pass_counts": {
+    "before": 2,
+    "after": 4,
+    "total": 4
+  },
+  "smoke": {
+    "kind": "synthetic-website-smoke",
+    "at": "2026-10-14T11:03:57.217Z",
+    "assetReady": true,
+    "passed": true,
+    "chatMode": "qwen3.5-9b",
+    "chatModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+    "results": 6,
+    "filters": {
+      "excludedBrands": [],
+      "excludedToppings": [],
+      "maxPrice": 80,
+      "maxCaffeine": 50
+    },
+    "stateAligned": true,
+    "status": {
+      "connected": true,
+      "ready": true,
+      "modelVersion": "macbert-8e08de527639956d",
+      "catalogVersion": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+      "device": "mps",
+      "llm": {
+        "connected": true,
+        "ready": true,
+        "modelVersion": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+        "catalogVersion": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+        "device": "mlx"
+      },
+      "relgt": {
+        "connected": true,
+        "ready": true,
+        "modelVersion": "relgt-temporal-05757994850db8f6",
+        "catalogVersion": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+        "device": "cpu"
+      }
+    }
+  },
+  "cached_qwen_output_replay": {
+    "regression-dev": {
+      "website_correct": 21,
+      "total": 21,
+      "regressions": [],
+      "note": "重播既有輸出，不是重新生成或模型訓練。"
+    },
+    "regression-holdout": {
+      "website_correct": 8,
+      "total": 8,
+      "regressions": [],
+      "note": "重播既有輸出，不是重新生成或模型訓練。"
+    }
+  },
+  "limitations": "最近正式版的前測未重現0mg生效仍回傳熟成紅茶；無法由截圖確定原請求的filters或歷史回答時點。近乎零不自行指定容許量。通過數是語句／篩選契約，不是模型排序品質。"
+}

@@ -1,0 +1,409 @@
+{
+  "kind": "人工合成口味與條件混合句前後比較",
+  "training_optimizer_steps": 0,
+  "before_worker": "185a8c27-56a8-40a6-8daa-ad1b755530e7",
+  "after_worker": "84b5c3c6-3e64-4f47-8327-da306262e9e1",
+  "same_method": "相同八句、相同程式與判準：已知口味保留、數值置入filters、query無數值描述、澄清狀態及回傳杯型上限。未取得使用者未提供的原始句子，不宣稱真實顧客互動。",
+  "validation_script_sha256": "706af03507527fb72b2b5d512cbd510fe94e8ba93875ccce7f509e7c97e6d43f",
+  "before": {
+    "kind": "synthetic-mixed-intent-website-validation",
+    "at": "2026-10-14T03:54:35.287Z",
+    "phase": "before",
+    "rows": [
+      {
+        "id": "comma-mixed",
+        "message": "清爽回甘，咖啡因50mg以下，預算80元",
+        "passed": true,
+        "cleanQuery": true,
+        "classified": true,
+        "bounded": true,
+        "durationMs": 7442,
+        "query": "清爽、回甘",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [],
+          "maxPrice": 80,
+          "maxCaffeine": 50
+        },
+        "needsClarification": false,
+        "chatMode": "qwen3.5-9b",
+        "chatModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+        "results": 6
+      },
+      {
+        "id": "no-comma-mixed",
+        "message": "我想喝清爽奶茶咖啡因不要超過50mg預算80元",
+        "passed": true,
+        "cleanQuery": true,
+        "classified": true,
+        "bounded": true,
+        "durationMs": 6195,
+        "query": "清爽",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [],
+          "milkTea": true,
+          "maxPrice": 80,
+          "maxCaffeine": 50
+        },
+        "needsClarification": false,
+        "chatMode": "qwen3.5-9b",
+        "chatModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+        "results": 6
+      },
+      {
+        "id": "caffeine-content",
+        "message": "咖啡因含量50以下，想喝果香酸甜的飲料",
+        "passed": false,
+        "cleanQuery": true,
+        "classified": false,
+        "bounded": true,
+        "durationMs": 358,
+        "query": "果香、酸甜",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": []
+        },
+        "needsClarification": true,
+        "chatMode": "clarification",
+        "chatModel": null,
+        "results": 0
+      },
+      {
+        "id": "bound-in-sentence",
+        "message": "想喝果香飲料，咖啡因要在50mg以下，預算不要超過80元",
+        "passed": false,
+        "cleanQuery": true,
+        "classified": false,
+        "bounded": true,
+        "durationMs": 347,
+        "query": "果香",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [],
+          "maxPrice": 80
+        },
+        "needsClarification": true,
+        "chatMode": "clarification",
+        "chatModel": null,
+        "results": 0
+      },
+      {
+        "id": "low-before-flavor",
+        "message": "低咖啡因的清爽茶，預算60元",
+        "passed": false,
+        "cleanQuery": true,
+        "classified": false,
+        "bounded": true,
+        "durationMs": 373,
+        "query": "低",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [],
+          "maxPrice": 60
+        },
+        "needsClarification": true,
+        "chatMode": "clarification",
+        "chatModel": null,
+        "results": 0
+      },
+      {
+        "id": "all-caps-mixed",
+        "message": "濃郁奶香，熱量低於兩百，咖啡因50mg以下，80元內",
+        "passed": true,
+        "cleanQuery": true,
+        "classified": true,
+        "bounded": true,
+        "durationMs": 7518,
+        "query": "濃郁、奶香",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [],
+          "maxPrice": 80,
+          "maxCalories": 200,
+          "maxCaffeine": 50,
+          "caloriesExclusive": true
+        },
+        "needsClarification": false,
+        "chatMode": "qwen3.5-9b",
+        "chatModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+        "results": 6
+      },
+      {
+        "id": "negative-zero-flavor-after",
+        "message": "咖啡因少於零的清爽綠茶",
+        "passed": true,
+        "cleanQuery": true,
+        "classified": true,
+        "bounded": true,
+        "durationMs": 358,
+        "query": "清爽",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [],
+          "tea": "綠茶"
+        },
+        "needsClarification": true,
+        "chatMode": "clarification",
+        "chatModel": null,
+        "results": 0
+      },
+      {
+        "id": "units-before-field",
+        "message": "我想喝咖啡因在50以下的清爽茶",
+        "passed": false,
+        "cleanQuery": true,
+        "classified": false,
+        "bounded": true,
+        "durationMs": 352,
+        "query": "",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": []
+        },
+        "needsClarification": true,
+        "chatMode": "clarification",
+        "chatModel": null,
+        "results": 0
+      }
+    ]
+  },
+  "after": {
+    "kind": "synthetic-mixed-intent-website-validation",
+    "at": "2026-10-14T04:10:48.098Z",
+    "phase": "after",
+    "rows": [
+      {
+        "id": "comma-mixed",
+        "message": "清爽回甘，咖啡因50mg以下，預算80元",
+        "passed": true,
+        "cleanQuery": true,
+        "classified": true,
+        "bounded": true,
+        "durationMs": 8879,
+        "query": "清爽、回甘",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [],
+          "maxPrice": 80,
+          "maxCaffeine": 50
+        },
+        "needsClarification": false,
+        "chatMode": "qwen3.5-9b",
+        "chatModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+        "results": 6
+      },
+      {
+        "id": "no-comma-mixed",
+        "message": "我想喝清爽奶茶咖啡因不要超過50mg預算80元",
+        "passed": true,
+        "cleanQuery": true,
+        "classified": true,
+        "bounded": true,
+        "durationMs": 6805,
+        "query": "清爽",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [],
+          "milkTea": true,
+          "maxPrice": 80,
+          "maxCaffeine": 50
+        },
+        "needsClarification": false,
+        "chatMode": "qwen3.5-9b",
+        "chatModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+        "results": 6
+      },
+      {
+        "id": "caffeine-content",
+        "message": "咖啡因含量50以下，想喝果香酸甜的飲料",
+        "passed": true,
+        "cleanQuery": true,
+        "classified": true,
+        "bounded": true,
+        "durationMs": 5658,
+        "query": "果香、酸甜",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [],
+          "maxCaffeine": 50
+        },
+        "needsClarification": false,
+        "chatMode": "qwen3.5-9b",
+        "chatModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+        "results": 6
+      },
+      {
+        "id": "bound-in-sentence",
+        "message": "想喝果香飲料，咖啡因要在50mg以下，預算不要超過80元",
+        "passed": true,
+        "cleanQuery": true,
+        "classified": true,
+        "bounded": true,
+        "durationMs": 6163,
+        "query": "果香",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [],
+          "maxPrice": 80,
+          "maxCaffeine": 50
+        },
+        "needsClarification": false,
+        "chatMode": "qwen3.5-9b",
+        "chatModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+        "results": 6
+      },
+      {
+        "id": "low-before-flavor",
+        "message": "低咖啡因的清爽茶，預算60元",
+        "passed": true,
+        "cleanQuery": true,
+        "classified": true,
+        "bounded": true,
+        "durationMs": 5888,
+        "query": "清爽",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [],
+          "maxPrice": 60,
+          "maxCaffeine": 100
+        },
+        "needsClarification": false,
+        "chatMode": "qwen3.5-9b",
+        "chatModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+        "results": 6
+      },
+      {
+        "id": "all-caps-mixed",
+        "message": "濃郁奶香，熱量低於兩百，咖啡因50mg以下，80元內",
+        "passed": true,
+        "cleanQuery": true,
+        "classified": true,
+        "bounded": true,
+        "durationMs": 7641,
+        "query": "濃郁、奶香",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [],
+          "maxPrice": 80,
+          "maxCalories": 200,
+          "maxCaffeine": 50,
+          "caloriesExclusive": true
+        },
+        "needsClarification": false,
+        "chatMode": "qwen3.5-9b",
+        "chatModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+        "results": 6
+      },
+      {
+        "id": "negative-zero-flavor-after",
+        "message": "咖啡因少於零的清爽綠茶",
+        "passed": true,
+        "cleanQuery": true,
+        "classified": true,
+        "bounded": true,
+        "durationMs": 448,
+        "query": "清爽",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [],
+          "tea": "綠茶"
+        },
+        "needsClarification": true,
+        "chatMode": "clarification",
+        "chatModel": null,
+        "results": 0
+      },
+      {
+        "id": "units-before-field",
+        "message": "我想喝咖啡因在50以下的清爽茶",
+        "passed": true,
+        "cleanQuery": true,
+        "classified": true,
+        "bounded": true,
+        "durationMs": 5232,
+        "query": "清爽",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [],
+          "maxCaffeine": 50
+        },
+        "needsClarification": false,
+        "chatMode": "qwen3.5-9b",
+        "chatModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+        "results": 6
+      }
+    ]
+  },
+  "pass_counts": {
+    "before": 4,
+    "after": 8,
+    "total": 8
+  },
+  "extra": {
+    "kind": "synthetic-website-extra-contract-validation",
+    "at": "2026-10-14T04:10:42.679Z",
+    "rows": [
+      {
+        "id": "original-clinical-guard-preserved",
+        "passed": true,
+        "results": 0
+      },
+      {
+        "id": "unsupported-bound-keeps-exclusions",
+        "passed": true,
+        "results": 6
+      },
+      {
+        "id": "range-keeps-exclusions",
+        "passed": true,
+        "results": 6
+      },
+      {
+        "id": "old-mixed-query-cannot-restore-old-budget",
+        "passed": true
+      }
+    ],
+    "status": {
+      "connected": true,
+      "ready": true,
+      "modelVersion": "macbert-8e08de527639956d",
+      "catalogVersion": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+      "device": "mps",
+      "llm": {
+        "connected": true,
+        "ready": true,
+        "modelVersion": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+        "catalogVersion": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+        "device": "mlx"
+      },
+      "relgt": {
+        "connected": true,
+        "ready": true,
+        "modelVersion": "relgt-temporal-05757994850db8f6",
+        "catalogVersion": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+        "device": "cpu"
+      }
+    }
+  },
+  "intermediate_deployment": {
+    "worker": "654656de-b0f8-40ac-8b4c-9650d99d23c8",
+    "passed": 8,
+    "total": 8,
+    "note": "初版亦為8/8；隨後補強數值片段保留配料與原始過敏限制。最終版本重測相同情境。"
+  },
+  "cached_qwen_replay": {
+    "regression-dev": {
+      "website_correct": 21,
+      "total": 21,
+      "website_regressions": [],
+      "note": "重播既有輸出，不是重新生成、訓練或模型品質評估。"
+    },
+    "regression-holdout": {
+      "website_correct": 8,
+      "total": 8,
+      "website_regressions": [],
+      "note": "重播既有輸出，不是重新生成、訓練或模型品質評估。"
+    }
+  }
+}

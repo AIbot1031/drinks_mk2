@@ -1,0 +1,32 @@
+{
+  "kind": "人工合成同句與分輪條件分類對照",
+  "at": "2026-10-14T04:14:55.558Z",
+  "passed": true,
+  "combined": {
+    "query": "清爽、回甘",
+    "filters": {
+      "excludedBrands": [],
+      "excludedToppings": [],
+      "maxPrice": 80,
+      "maxCaffeine": 50
+    },
+    "needsClarification": false,
+    "resultCount": 6,
+    "chatMode": "qwen3.5-9b",
+    "chatModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7"
+  },
+  "separate": {
+    "query": "清爽、回甘",
+    "filters": {
+      "excludedBrands": [],
+      "excludedToppings": [],
+      "maxPrice": 80,
+      "maxCaffeine": 50
+    },
+    "needsClarification": false,
+    "resultCount": 6,
+    "chatMode": "quick-command",
+    "chatModel": null
+  },
+  "note": "訪客合成請求，未提供使用者原始句子，未登入或寫入偏好事件。僅比較條件與口味分類，不要求飲料排序完全一致。"
+}

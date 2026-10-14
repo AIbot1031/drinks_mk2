@@ -1,6 +1,6 @@
 {
   "name": "drinks-mk2",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "private": true,
   "type": "module",
   "overrides": {
@@ -10,7 +10,7 @@
     "dev": "wrangler dev",
     "build": "node scripts/build.mjs",
     "check": "tsc --noEmit",
-    "test": "tsx --test tests/*.test.ts",
+    "test": "tsx --test tests/*.test.ts tests/*.test.mjs",
     "types": "wrangler types",
     "deploy": "npm run build && wrangler deploy",
     "deploy:check": "npm run build && wrangler deploy --dry-run",

@@ -1,0 +1,399 @@
+{
+  "kind": "人工合成網站對話前後比較",
+  "training_optimizer_steps": 0,
+  "before_worker": "26ab12af-e1bc-406a-81e8-656b90da1eb2",
+  "after_worker": "185a8c27-56a8-40a6-8daa-ad1b755530e7",
+  "method": "相同8組訪客情境、相同程式與判準；兩個環境均保留已有條件，檢查狀態、追問欄位、通過數。沒有登入真實帳號或寫入喜歡／不喜歡事件。",
+  "validation_script_sha256": "e27a008bc56682a08eb41ee0d990f3166f76c321bc01bbf815f958536f06ff9b",
+  "before": {
+    "kind": "synthetic-website-conversation-check",
+    "phase": "before",
+    "at": "2026-10-14T03:37:57.997Z",
+    "base": "https://drinks-mk2.rtx941031.workers.dev",
+    "rows": [
+      {
+        "id": "negative-zero",
+        "passed": false,
+        "durationMs": 6823,
+        "chatMode": "qwen3.5-9b",
+        "chatModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+        "needsClarification": true,
+        "query": "茶類",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [
+            "珍珠"
+          ],
+          "maxPrice": 100
+        },
+        "resultCount": 0,
+        "assistantMessage": "你想喝清爽茶類，還是濃郁奶茶？"
+      },
+      {
+        "id": "short-answer-zero",
+        "passed": false,
+        "durationMs": 6505,
+        "chatMode": "qwen3.5-9b",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [
+            "珍珠"
+          ],
+          "maxPrice": 100
+        },
+        "resultCount": 6
+      },
+      {
+        "id": "chinese-budget",
+        "passed": false,
+        "durationMs": 6349,
+        "chatMode": "qwen3.5-9b",
+        "chatModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+        "needsClarification": false,
+        "query": "茶類",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [
+            "珍珠"
+          ],
+          "maxPrice": 100
+        },
+        "resultCount": 6,
+        "assistantMessage": "已套用條件：不加珍珠。 找到 6 杯符合條件的飲料。你可以繼續調整條件，或說「再推薦幾杯」。"
+      },
+      {
+        "id": "chinese-caffeine",
+        "passed": false,
+        "durationMs": 6820,
+        "chatMode": "qwen3.5-9b",
+        "chatModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+        "needsClarification": false,
+        "query": "茶類",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [
+            "珍珠"
+          ],
+          "maxPrice": 100
+        },
+        "resultCount": 6,
+        "assistantMessage": "已套用條件：不加珍珠。 找到 6 杯符合條件的飲料。你可以繼續調整條件，或說「再推薦幾杯」。"
+      },
+      {
+        "id": "strict-caffeine",
+        "passed": false,
+        "durationMs": 6185,
+        "chatMode": "qwen3.5-9b",
+        "chatModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+        "needsClarification": false,
+        "query": "茶類",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [
+            "珍珠"
+          ],
+          "maxPrice": 100,
+          "maxCaffeine": 50
+        },
+        "resultCount": 6,
+        "assistantMessage": "已套用條件：不加珍珠。 找到 6 杯符合條件的飲料。你可以繼續調整條件，或說「再推薦幾杯」。"
+      },
+      {
+        "id": "relative-price",
+        "passed": false,
+        "durationMs": 6049,
+        "chatMode": "qwen3.5-9b",
+        "chatModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+        "needsClarification": false,
+        "query": "茶類",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [
+            "珍珠"
+          ],
+          "maxPrice": 100
+        },
+        "resultCount": 6,
+        "assistantMessage": "已套用條件：不加珍珠。 找到 6 杯符合條件的飲料。你可以繼續調整條件，或說「再推薦幾杯」。"
+      },
+      {
+        "id": "negative-number",
+        "passed": true,
+        "durationMs": 6840,
+        "chatMode": "qwen3.5-9b",
+        "chatModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+        "needsClarification": true,
+        "query": "茶類",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [
+            "珍珠"
+          ],
+          "maxPrice": 100
+        },
+        "resultCount": 0,
+        "assistantMessage": "你想喝清爽茶類，還是濃郁奶茶？"
+      },
+      {
+        "id": "two-exclusions",
+        "passed": false,
+        "durationMs": 5588,
+        "chatMode": "qwen3.5-9b",
+        "chatModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+        "needsClarification": false,
+        "query": "奶茶",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [
+            "珍珠"
+          ],
+          "milkTea": true,
+          "topping": "布丁"
+        },
+        "resultCount": 6,
+        "assistantMessage": "已套用條件：奶茶；含布丁；不加珍珠。 找到 6 杯符合條件的飲料。你可以繼續調整條件，或說「再推薦幾杯」。"
+      }
+    ],
+    "status": {
+      "connected": true,
+      "ready": true,
+      "modelVersion": "macbert-8e08de527639956d",
+      "catalogVersion": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+      "device": "mps",
+      "llm": {
+        "connected": true,
+        "ready": true,
+        "modelVersion": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+        "catalogVersion": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+        "device": "mlx"
+      },
+      "relgt": {
+        "connected": true,
+        "ready": true,
+        "modelVersion": "relgt-temporal-05757994850db8f6",
+        "catalogVersion": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+        "device": "cpu"
+      }
+    }
+  },
+  "after": {
+    "kind": "synthetic-website-conversation-check",
+    "phase": "after",
+    "at": "2026-10-14T03:45:20.406Z",
+    "base": "https://drinks-mk2.rtx941031.workers.dev",
+    "rows": [
+      {
+        "id": "negative-zero",
+        "passed": true,
+        "durationMs": 1889,
+        "chatMode": "clarification",
+        "chatModel": null,
+        "needsClarification": true,
+        "query": "茶類",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [
+            "珍珠"
+          ],
+          "maxPrice": 100
+        },
+        "resultCount": 0,
+        "assistantMessage": "這個咖啡因上限無法套用，請指定有效的非負數字。咖啡因不能小於零。你希望咖啡因最多多少 mg？如果想要零咖啡因，可以回覆「零」。其他條件會保留。"
+      },
+      {
+        "id": "short-answer-zero",
+        "passed": true,
+        "durationMs": 1894,
+        "chatMode": "quick-command",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [
+            "珍珠"
+          ],
+          "maxPrice": 100,
+          "maxCaffeine": 0
+        },
+        "resultCount": 6
+      },
+      {
+        "id": "chinese-budget",
+        "passed": true,
+        "durationMs": 1556,
+        "chatMode": "quick-command",
+        "chatModel": null,
+        "needsClarification": false,
+        "query": "茶類",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [
+            "珍珠"
+          ],
+          "maxPrice": 80
+        },
+        "resultCount": 6,
+        "assistantMessage": "已套用條件：預算 ≤ 80 元。 找到 6 杯符合條件的飲料。你可以繼續調整條件，或說「再推薦幾杯」。"
+      },
+      {
+        "id": "chinese-caffeine",
+        "passed": true,
+        "durationMs": 1088,
+        "chatMode": "quick-command",
+        "chatModel": null,
+        "needsClarification": false,
+        "query": "茶類",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [
+            "珍珠"
+          ],
+          "maxPrice": 100,
+          "maxCaffeine": 50
+        },
+        "resultCount": 6,
+        "assistantMessage": "已套用條件：預算 ≤ 100 元；咖啡因 ≤ 50 mg。 找到 6 杯符合條件的飲料。你可以繼續調整條件，或說「再推薦幾杯」。"
+      },
+      {
+        "id": "strict-caffeine",
+        "passed": true,
+        "durationMs": 1377,
+        "chatMode": "quick-command",
+        "chatModel": null,
+        "needsClarification": false,
+        "query": "茶類",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [
+            "珍珠"
+          ],
+          "maxPrice": 100,
+          "maxCaffeine": 50,
+          "caffeineExclusive": true
+        },
+        "resultCount": 6,
+        "assistantMessage": "已套用條件：預算 ≤ 100 元；咖啡因 < 50 mg。 找到 6 杯符合條件的飲料。你可以繼續調整條件，或說「再推薦幾杯」。"
+      },
+      {
+        "id": "relative-price",
+        "passed": true,
+        "durationMs": 482,
+        "chatMode": "clarification",
+        "chatModel": null,
+        "needsClarification": true,
+        "query": "茶類",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [
+            "珍珠"
+          ],
+          "maxPrice": 100
+        },
+        "resultCount": 0,
+        "assistantMessage": "你希望預算最多多少 元？其他條件會保留。"
+      },
+      {
+        "id": "negative-number",
+        "passed": true,
+        "durationMs": 436,
+        "chatMode": "clarification",
+        "chatModel": null,
+        "needsClarification": true,
+        "query": "茶類",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [
+            "珍珠"
+          ],
+          "maxPrice": 100
+        },
+        "resultCount": 0,
+        "assistantMessage": "這個咖啡因上限無法套用，請指定有效的非負數字。咖啡因不能小於零。你希望咖啡因最多多少 mg？如果想要零咖啡因，可以回覆「零」。其他條件會保留。"
+      },
+      {
+        "id": "two-exclusions",
+        "passed": true,
+        "durationMs": 6723,
+        "chatMode": "qwen3.5-9b",
+        "chatModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+        "needsClarification": false,
+        "query": "奶茶",
+        "filters": {
+          "excludedBrands": [],
+          "excludedToppings": [
+            "珍珠",
+            "布丁"
+          ],
+          "milkTea": true
+        },
+        "resultCount": 6,
+        "assistantMessage": "已套用條件：奶茶；不加珍珠、布丁。 找到 6 杯符合條件的飲料。你可以繼續調整條件，或說「再推薦幾杯」。"
+      }
+    ],
+    "status": {
+      "connected": true,
+      "ready": true,
+      "modelVersion": "macbert-8e08de527639956d",
+      "catalogVersion": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+      "device": "mps",
+      "llm": {
+        "connected": true,
+        "ready": true,
+        "modelVersion": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+        "catalogVersion": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+        "device": "mlx"
+      },
+      "relgt": {
+        "connected": true,
+        "ready": true,
+        "modelVersion": "relgt-temporal-05757994850db8f6",
+        "catalogVersion": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+        "device": "cpu"
+      }
+    }
+  },
+  "pass_counts": {
+    "before": 1,
+    "after": 8,
+    "total": 8
+  },
+  "extra_hard_filters": {
+    "kind": "synthetic-website-hard-filter-check",
+    "at": "2026-10-14T03:48:00.742Z",
+    "rows": [
+      {
+        "id": "strict-variant-bounds",
+        "passed": true,
+        "results": 6,
+        "chatMode": "quick-command"
+      },
+      {
+        "id": "milk-negative-with-chinese-budget",
+        "passed": true,
+        "results": 6,
+        "chatMode": "qwen3.5-9b"
+      },
+      {
+        "id": "next-batch-distinct-products",
+        "passed": true,
+        "results": 6
+      },
+      {
+        "id": "release-only-budget",
+        "passed": true
+      }
+    ]
+  },
+  "cached_qwen_output_replay": {
+    "regression-dev": {
+      "candidate_website_correct": 21,
+      "total": 21,
+      "website_regressions": [],
+      "note": "重播既有Qwen輸出至新的合併程式；未重新生成、未更新提示或權重，不能作為新模型品質指標。"
+    },
+    "regression-holdout": {
+      "candidate_website_correct": 8,
+      "total": 8,
+      "website_regressions": [],
+      "note": "重播既有Qwen輸出至新的合併程式；未重新生成、未更新提示或權重，不能作為新模型品質指標。"
+    }
+  }
+}

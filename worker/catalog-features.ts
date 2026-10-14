@@ -1,13 +1,13 @@
 import type {Drink} from './types';
 import {toppingTerms} from './drink-language';
-export const featureSchemaVersion='drink-catalog-v1';
+export const featureSchemaVersion='drink-catalog-v2';
 export function catalogFeatures(drinks:Drink[]){
   const values=(key:'tea'|'milk'|'toppings')=>[...new Set(drinks.flatMap(d=>d[key]))].sort();
   return {version:featureSchemaVersion,tea:values('tea'),milkTags:values('milk'),toppings:values('toppings'),supportedExclusions:toppingTerms,
     flavorExamples:['清爽','回甘','果香','酸甜','濃郁','奶香','嚼勁','提神','茶香','花香'],
     fields:{query:'自由口味文字，對照飲料名稱與 taste 風味描述，以 MacBERT 做語意排序。',
       milk:'any=不限；none=資料標記無奶且無已知奶衝突；fresh=鮮奶；plant=植物奶且排除已標記鮮奶或奶精。無奶不代表過敏安全。',
-      milkTea:'名稱為奶茶，或同時有奶類與茶種標記；珍奶不要珍為 milkTea=true 並 excludedToppings=[珍珠]。',
+      milkTea:'true=只要奶茶；false=排除奶茶；省略=不限。奶茶包含名稱奶茶／奶綠／奶青／奶烏龍，或同時有奶類與茶種標記。不喜歡奶茶為 false，不代表所有飲料都不能含奶。珍奶不要珍為 true 並 excludedToppings=[珍珠]。',
       tea:'只用提供的實際茶種；紅茶拿鐵仍是紅茶及鮮奶，不等於咖啡。',
       topping:'想要的配料；excludedToppings 為不要的配料，排除優先，珍珠與波霸視為同類。',
       brand:'指定品牌；excludedBrands 為排除品牌，只用提供的品牌名稱。',

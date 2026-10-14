@@ -1,6 +1,7 @@
 import {defaultShortcuts,validateShortcuts} from './chat-shortcuts';
 import type { Drink } from './types';
 import {savePreferencesWithEvents} from './interactions';
+import type {createProductPreferences} from './products';
 const encoder = new TextEncoder();
 const cookieName = 'drinks_user_session';
 const sessionDays = 7;
@@ -45,7 +46,7 @@ async function rateAllowed(request:Request,db:D1Database):Promise<boolean> {
   await db.prepare('DELETE FROM consumer_auth_limits WHERE expires_at<=?').bind(now).run();
   return !!row&&row.attempts<=40;
 }
-export async function accountApi(request:Request,env:Env,readBody:(r:Request)=>Promise<unknown>,drinks:Drink[]):Promise<Response> {
+export async function accountApi(request:Request,env:Env,readBody:(r:Request)=>Promise<unknown>,drinks:Drink[],products:ReturnType<typeof createProductPreferences>):Promise<Response> {
   const url=new URL(request.url),path=url.pathname;
   if(request.headers.get('origin')&&request.headers.get('origin')!==url.origin)return json({error:'請從本站操作'},403);
   if((path==='/api/account/register'||path==='/api/account/login')&&request.method==='POST'){
@@ -92,12 +93,11 @@ export async function accountApi(request:Request,env:Env,readBody:(r:Request)=>P
       const body=await readBody(request) as {likedIds?:unknown;dislikedIds?:unknown}|null;
       const known=new Set(drinks.map(d=>d.id));
       if(!body||![body.likedIds,body.dislikedIds].every(a=>Array.isArray(a)&&a.length<=200&&a.every(id=>typeof id==='string'&&known.has(id))))return json({error:'偏好須使用有效飲料 ID，每種最多 200 款'},400);
-      const likedIds=[...new Set(body.likedIds as string[])],dislikedIds=[...new Set(body.dislikedIds as string[])].filter(id=>!likedIds.includes(id));
-      await savePreferencesWithEvents(env.TRACE_DB,user.id,likedIds,dislikedIds);
+      const {likedIds,dislikedIds}=products.normalize({likedIds:body.likedIds as string[],dislikedIds:body.dislikedIds as string[]});
+      await savePreferencesWithEvents(env.TRACE_DB,user.id,likedIds,dislikedIds,products.canonicalMapping);
       user.preferences=JSON.stringify({likedIds,dislikedIds});
     }else if(request.method!=='GET')return json({error:'請求方法不支援'},405);
-    const prefs=storedPreferences(user.preferences),liked=Object.fromEntries(prefs.likedIds.map(id=>[id,drinks.find(d=>d.id===id)]).filter(([,d])=>!!d));
-    return json({version:1,liked,disliked:prefs.dislikedIds.filter(id=>drinks.some(d=>d.id===id))});
+    return json(products.feedback(storedPreferences(user.preferences)));
   }
   return json({error:'找不到帳號 API'},404);
 }

@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-10-14T02:03:23.556Z",
+  "checks": {
+    "negativeOnlyClarifies": true,
+    "noInventedTaste": true,
+    "positiveGreenQuery": true,
+    "capRetained": true,
+    "nextNoMilkTeaOrOverlap": true,
+    "manualEmptyRetrievalQuery": true
+  },
+  "negative": {
+    "query": "",
+    "filters": {
+      "excludedBrands": [],
+      "excludedToppings": [],
+      "milkTea": false
+    },
+    "clarify": true,
+    "message": "已設定不喝奶茶，你想喝純茶、果汁，還是其他口味？",
+    "model": "qwen3-8b-4bit-545dc4251c05-intent-v4"
+  },
+  "positive": {
+    "query": "綠茶",
+    "filters": {
+      "excludedBrands": [],
+      "excludedToppings": [],
+      "milkTea": false,
+      "maxPrice": 80,
+      "tea": "綠茶"
+    },
+    "count": 6,
+    "model": "qwen3-8b-4bit-545dc4251c05-intent-v4"
+  },
+  "manual": {
+    "query": "",
+    "count": 6,
+    "model": "macbert-8e08de527639956d"
+  }
+}

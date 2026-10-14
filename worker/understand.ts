@@ -1,6 +1,7 @@
-import {normalizeDrinkLanguage, stripToppingExclusions, sameTopping, toppingTerms} from './drink-language';
+import {normalizeDrinkLanguage, stripToppingExclusions, stripMilkTeaExclusions, sameTopping, toppingTerms} from './drink-language';
 import type { Filters, RecommendInput, Understanding } from './types';
 import {stripBrandExclusions} from './brand-language';
+import {capFields,exclusiveKeys,numericConditions,numericFollowUp} from './numeric-language';
 
 const bounded = (value: unknown, name: string, max: number): number | undefined => {
   if (value === undefined || value === null || value === '') return undefined;
@@ -24,6 +25,8 @@ export function validateInput(value: unknown): RecommendInput {
   const excludedToppings=f.excludedToppings??[];
   if(!Array.isArray(excludedToppings)||excludedToppings.length>20||excludedToppings.some(t=>typeof t!=='string'||!toppingTerms.includes(t)))throw new Error('排除配料選項無效');
   if(f.milkTea!==undefined&&typeof f.milkTea!=='boolean')throw new Error('奶茶條件格式有誤');
+  const exclusive:Partial<Filters>={};
+  for(const field of capFields){const key=exclusiveKeys[field];if(f[key]!==undefined){if(typeof f[key]!=='boolean'||f[key]===true&&f[field]===undefined)throw new Error('數值比較格式有誤');exclusive[key]=f[key];}}
   if (milk && !['any', 'none', 'fresh', 'plant'].includes(milk)) throw new Error('奶類選項無效');
   const ids = (key: string, max = 200): string[] => {
     const values = v[key] ?? [];
@@ -32,28 +35,28 @@ export function validateInput(value: unknown): RecommendInput {
   };
   const limit = v.limit ?? 6;
   if (typeof limit !== 'number' || !Number.isInteger(limit) || limit < 1 || limit > 20) throw new Error('推薦數量須介於 1 至 20');
-  return {query: v.query.trim(), filters: {brand: str('brand'), excludedBrands: [...new Set(excludedBrands.map(b=>b.trim()))],excludedToppings:[...new Set(excludedToppings)],milkTea:f.milkTea as boolean|undefined,maxPrice: bounded(f.maxPrice, '預算', 10000), maxCalories: bounded(f.maxCalories, '熱量', 10000), maxCaffeine: bounded(f.maxCaffeine, '咖啡因', 10000), milk: milk as Filters['milk'], tea: str('tea'), topping: str('topping')}, likedIds: ids('likedIds'), dislikedIds: ids('dislikedIds'), excludedIds: ids('excludedIds', 2000), limit};
+  return {query: v.query.trim(), filters: {...exclusive,brand: str('brand'), excludedBrands: [...new Set(excludedBrands.map(b=>b.trim()))],excludedToppings:[...new Set(excludedToppings)],milkTea:f.milkTea as boolean|undefined,maxPrice: bounded(f.maxPrice, '預算', 10000), maxCalories: bounded(f.maxCalories, '熱量', 10000), maxCaffeine: bounded(f.maxCaffeine, '咖啡因', 10000), milk: milk as Filters['milk'], tea: str('tea'), topping: str('topping')}, likedIds: ids('likedIds'), dislikedIds: ids('dislikedIds'), excludedIds: ids('excludedIds', 2000), limit};
 }
 
 export function understand(input: RecommendInput, brands: string[]): Understanding {
   let q = normalizeDrinkLanguage(input.query);
   const filters = {...input.filters};
+  q=stripMilkTeaExclusions(q,()=>{filters.milkTea=false;});
   const excluded=new Set(filters.excludedBrands??[]);
   q=stripBrandExclusions(q,brands,b=>excluded.add(b));
   filters.excludedBrands=[...excluded];
   const warnings: string[] = [];
   if(filters.excludedBrands?.some(b=>!brands.includes(b))){warnings.push('排除品牌中有不支援的名稱，請從品牌選單重新選擇。');return {filters,warnings,blocked:true,preferences:[]};}
-  const cap = (key: 'maxPrice' | 'maxCalories' | 'maxCaffeine', n: number) => filters[key] = Math.min(filters[key] ?? Infinity, n);
-  const price = q.match(/(?:預算|價格|價錢)\s*(?:不超過|最多|上限)?\s*(\d+(?:\.\d+)?)/) ?? q.match(/(?:不超過|最多|上限)\s*(\d+(?:\.\d+)?)\s*(?:元|塊)/);
-  const price2 = q.match(/(\d+(?:\.\d+)?)\s*(?:元|塊)\s*(?:以下|內|以內)/);
-  if (price || price2) cap('maxPrice', Number((price ?? price2)![1]));
-  const cal = q.match(/(?:熱量|卡路里)\s*(?:不超過|最多|低於|小於|上限)?\s*(\d+(?:\.\d+)?)/);
-  const caf = q.match(/咖啡因\s*(?:不超過|最多|低於|小於|上限)?\s*(\d+(?:\.\d+)?)/);
-  if (cal) cap('maxCalories', Number(cal[1]));
-  else if (/低(?:熱量|卡)/.test(q)) {cap('maxCalories', 200); warnings.push('「低熱量」先採每杯 200 kcal 以下，可在篩選中調整。');}
-  if (caf) cap('maxCaffeine', Number(caf[1]));
-  else if (/無咖啡因|不含咖啡因|不要咖啡因/.test(q)) cap('maxCaffeine', 0);
-  else if (/低咖啡因|晚上|睡前/.test(q)) {cap('maxCaffeine', 100); warnings.push('此查詢採咖啡因上界 100 mg 以下；這不是睡眠或健康保證。');}
+  const numeric=numericConditions(q);warnings.push(...numeric.warnings);
+  const cap=(key:typeof capFields[number],n:number,strict=false)=>{
+    if(filters[key]===undefined||n<filters[key]!){filters[key]=n;filters[exclusiveKeys[key]]=strict||undefined;}
+    else if(n===filters[key])filters[exclusiveKeys[key]]=!!filters[exclusiveKeys[key]]||strict||undefined;
+  };
+  if(numeric.questions.length){warnings.push(numericFollowUp(numeric.questions)!.message);return {filters,warnings,blocked:true,preferences:[]};}
+  for(const field of capFields){const n=numeric.updates[field];if(n!==undefined)cap(field,n,!!numeric.updates[exclusiveKeys[field]]);}
+  if(numeric.updates.maxCalories===undefined&&/低(?:熱量|卡)/.test(q)) {cap('maxCalories',200);warnings.push('「低熱量」先採每杯 200 kcal 以下，可在篩選中調整。');}
+  if(numeric.updates.maxCaffeine===undefined&&/低咖啡因|晚上|睡前/.test(q)) {cap('maxCaffeine',100);warnings.push('此查詢採咖啡因上界 100 mg 以下；這不是睡眠或健康保證。');}
+  if(/^等待對話釐清：/.test(q))return {filters,warnings,blocked:true,preferences:[]};
   const noMilk = /(?:不要|不含|不加|不能喝|不喝|無)(?:任何|一點)?(?:奶類|乳製品|牛奶|奶(?!精|蓋)|乳)/.test(q);
   if((/鮮奶/.test(q)&&filters.milk==='plant')||(/植物奶|燕麥奶|豆奶/.test(q)&&filters.milk==='fresh')){
     warnings.push('文字要求的奶類與選單不同，請先統一奶類條件。');
@@ -87,7 +90,7 @@ export function understand(input: RecommendInput, brands: string[]): Understandi
     warnings.push('目前無法完整驗證文字中的排除條件；請改用支援的篩選條件後再查詢。');
     return {filters, warnings, blocked: true, preferences: []};
   }
-  if(/奶茶/.test(q))filters.milkTea=true;
+  if(/奶茶/.test(q)&&filters.milkTea!==false)filters.milkTea=true;
   if(filters.milkTea&&filters.milk==='none'){
     warnings.push('奶茶需求與無奶條件衝突，請先統一條件。');return {filters,warnings,blocked:true,preferences:[]};
   }

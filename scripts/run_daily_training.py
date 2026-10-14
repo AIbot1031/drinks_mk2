@@ -15,6 +15,10 @@ import time
 from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
+try:
+    from .qwen_model import default_model_path,model_version
+except ImportError:
+    from qwen_model import default_model_path,model_version
 
 ROOT=Path(__file__).resolve().parents[1]
 TZ=ZoneInfo('Asia/Taipei')
@@ -42,7 +46,8 @@ def main():
     for cmd in cmds.values():
         if not Path(cmd[0]).is_file() or not Path(cmd[1]).is_file():raise RuntimeError('Missing trainer/runtime')
     if args.check:
-        print('CHECK_OK: RelGT / MacBERT / Qwen entrypoints available; no training run')
+        qwen_version=model_version(default_model_path(ROOT))
+        print('CHECK_OK: RelGT / MacBERT / Qwen entrypoints available; Qwen='+qwen_version+'; no training run')
         return 0
     directory=ROOT/'internal_exports';directory.mkdir(mode=0o700,exist_ok=True)
     lock=(directory/'.daily-training.lock').open('a')
