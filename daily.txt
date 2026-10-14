@@ -748,3 +748,11 @@ Git 同步：main commit 50003b3455595eacdf4e264f9da59eebde1dda19 已推送；v2
 - 實作／Git：版本提交 e081fce 已推送 origin/main；v2.5.0 指向同一提交，GitHub Release 已正式發布且非 draft／prerelease：https://github.com/AIbot1031/drinks_mk2/releases/tag/v2.5.0。82 個相關程式、文件與安全合成報告檔案納入，既有未提交工作一併保存；180 個候選檔案範圍的文字與本機憑證比對無命中，沒有推送金鑰、權重或原始互動匯出。
 - 驗證：讀回遠端 main／標籤解析提交均為 e081fcef2941ffd6f4b93909717dce9167be3448；Release 狀態與網址確認。獨立 8894 測試頁、Worker 與本輪建立的隔離 D1 資料已清理；保留 8893 本機預覽。
 - 部署／限制：正式 Cloudflare 本輪未部署，GitHub 發布不等於網站部署；本輪沒有訓練，0 optimizer 步數。使用者既有 docs拷貝.zip 未追蹤且原檔保留。本則同步結果與更新說明再以紀錄提交補上主分支；第一次補紀錄命令因 stdin 編碼失敗未修改檔案，改用檔案 patch 補上。
+
+[2026-10-14T19:41:09+08:00｜2.5 正式網站部署]
+- 規劃：使用者明確要求部署，依既有 Wrangler 設定更新正式 drinks-mk2 Worker；核對帳號、現有綁定與部署前版本，不改資料庫結構或模型權重。
+- 實作：以 GitHub 2.5 程式碼（目前提交 bda83a2）執行專案 build／deploy，附 v2.5.0 標籤；5 個更新前端資產已上傳，D1 與推論橋接綁定沿用。
+- 測試：build 通過；正式 API 回傳 2.5.0／5,781 款，7 個前端檔案與本機內容逐字一致。合成訪客查詢返回 6 杯紅茶珍珠且價格不超過 80 元，實際使用 MacBERT；訪客 B 路徑為特徵圖。MacBERT、Qwen3.5-9B intent-v7、RelGT 均 connected／ready。瀏覽器確認紅茶／珍珠／放鬆氛圍、關閉畫布且保留茶色，再開啟恢復；沒有水平溢位。
+- 部署：Cloudflare 已發布，部署列表確認 100% 流量使用 afab0539-3149-4500-ada2-61f91c578e23，正式網址 https://drinks-mk2.rtx941031.workers.dev。部署前版本為 258bf8a1-9e10-4a06-9f0a-d08d070e63aa，可作程式回復參考。
+- Git／紀錄：安全驗證 docs/2.5正式部署驗證.json、合成正式畫面 docs/screenshots/2.5正式部署紅茶珍珠.jpg；更新 2.5 說明與 Release 部署狀態，本則紀錄將 commit／push 至 main。原 v2.5.0 標籤保留在原發布程式碼，不移動歷史標籤；既有備份 ZIP 不納入。
+- 限制／後續：本次未訓練，optimizer 步數 0，沒有變更模型權重、排程或 D1 schema，沒有登入真實帳號或寫入顧客偏好事件。此次為上線與合成條件／介面驗證，不宣稱推薦品質或心情改善指標；已開啟舊站頁面需重新整理載入新版。
