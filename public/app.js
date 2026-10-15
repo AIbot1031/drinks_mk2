@@ -1,4 +1,5 @@
 import {initAtmosphere} from './drink-atmosphere.js';
+import {appendWellbeingSources} from './wellbeing-sources.js';
 import {manualToppings} from './topping-selection.js';
 import {initChat} from './chat.js';
 import {productKey,likedProducts as likedProductKeys,dislikedProducts,toggleProductPreference} from './preferences.js';
@@ -164,6 +165,7 @@ async function recommend(settings, next = false) {
     const value = await api('/api/recommend', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({...settings, limit:6, likedIds:Object.keys(feedback.liked), dislikedIds:feedback.disliked, excludedIds:next ? seen : []})});
     tags(value.filters);
     $('#result-warnings').replaceChildren(...value.warnings.map(w => el('p', w)));
+    appendWellbeingSources($('#result-warnings'),value.wellbeing);
     $('#result-warnings').hidden = !value.warnings.length;
     if (next && !value.results.length) {exhausted = true; $('#result-status').textContent = '這組設定的候選已看完。可以從頭看，或調整條件。'; return;}
     lastSettings = settings;

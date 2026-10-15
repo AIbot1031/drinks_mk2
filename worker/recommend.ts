@@ -1,4 +1,5 @@
 import type { Drink, Filters, RecommendInput, Scored } from './types';
+import {wellbeingAdvice} from './wellbeing';
 import {appVersion} from './app-version';
 import { understand } from './understand';
 import {groupProducts,productKey,createProductPreferences} from './products';
@@ -96,6 +97,7 @@ export function makeEngine(drinks: Drink[]) {
   }
   function recommendWithTrace(input: RecommendInput, semantic?:{scores:Array<{id:string;score:number}>;modelVersion:string;durationMs:number;fallbackReason?:string},relgt?:{scores:Array<{id:string;score:number}>;modelVersion:string;durationMs:number;historyCount?:number;fallbackReason?:string}) {
     const parsed = understand(input, [...new Set(drinks.map(d => d.brand))]);
+    const wellbeing = wellbeingAdvice(input.query);
     input={...input,...preferences.normalize(input),query:flavorQuery(milkTeaRetrievalQuery(input.query,parsed.filters.milkTea===false))};
     const disliked = new Set(input.dislikedIds);
     const excluded = new Set(input.excludedIds);
@@ -136,7 +138,7 @@ export function makeEngine(drinks: Drink[]) {
       selected.push(row); seen.add(key); counts.set(row.drink.brand, (counts.get(row.drink.brand) ?? 0) + 1);
     }
     const response = {
-      query: input.query, filters: parsed.filters, warnings: parsed.warnings, blocked: parsed.blocked,
+      query: input.query, filters: parsed.filters, warnings: parsed.warnings, blocked: parsed.blocked, wellbeing,
       eligibleCount: pool.length, total: drinks.length,
       mode: {routeA: neural?'macbert':'tf-idf',routeAModel:neural?semantic.modelVersion:null,routeAFallback:semantic?.fallbackReason??null,routeB: neuralB?'relgt':'feature-graph',routeBModel:neuralB?relgt!.modelVersion:null,routeBFallback:relgt?.fallbackReason??null,personalized:neuralB||liked.length > 0},
       results: selected.map(row => {

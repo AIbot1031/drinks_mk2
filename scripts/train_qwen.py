@@ -39,8 +39,11 @@ def run(args,report,out):
 
     mx.random.seed(args.seed)
     np.random.seed(args.seed)
-    if args.dataset=='robust':
-        from training.qwen_robust_cases import datasets as selected_datasets, semantic_metrics as selected_metrics, VERSION as selected_version, SNAPSHOT
+    if args.dataset in ('robust', 'wellbeing'):
+        if args.dataset == 'wellbeing':
+            from training.qwen_wellbeing_cases import datasets as selected_datasets, semantic_metrics as selected_metrics, VERSION as selected_version, SNAPSHOT
+        else:
+            from training.qwen_robust_cases import datasets as selected_datasets, semantic_metrics as selected_metrics, VERSION as selected_version, SNAPSHOT
         train_cases,valid_cases=selected_datasets();metric_fn=selected_metrics
         snapshot=json.loads(SNAPSHOT.read_text())
         if snapshot['catalogSha256']!=sha(ROOT/'data/catalog.json'):raise ValueError('Robust data catalog differs')
@@ -170,7 +173,7 @@ def main():
     p.add_argument('--max-seq-length',type=int,default=2048)
     p.add_argument('--seed',type=int,default=42)
     p.add_argument('--rank',type=int,default=4)
-    p.add_argument('--dataset',choices=['legacy','robust'],default='legacy')
+    p.add_argument('--dataset',choices=['legacy','robust','wellbeing'],default='legacy')
     p.add_argument('--max-tokens',type=int,default=320)
     p.add_argument('--trigger',default='manual / scheduled authorized training')
     p.add_argument('--baseline-results',type=Path)

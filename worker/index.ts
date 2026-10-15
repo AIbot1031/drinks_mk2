@@ -16,6 +16,7 @@ import {catalogVersion,compatibleCatalogVersions} from './catalog-version';
 import {milkTeaRetrievalQuery} from './drink-language';
 import {flavorQuery} from './numeric-language';
 import {consumerContractMatches} from './consumer-contract';
+import {wellbeingAdvice} from './wellbeing';
 export {SemanticBridge} from './semantic-bridge';
 
 const drinks: Drink[] = catalog.drinks;
@@ -144,6 +145,10 @@ export default {
           }catch{relgt={...relgt,fallbackReason:'RelGT history or inference unavailable'};}
         }
         const {response,trace}=engine.recommendWithTrace(input,semantic,relgt);
+        if(conversation){
+          response.wellbeing=wellbeingAdvice(conversation.message);
+          response.warnings=[...new Set([...response.warnings,...response.wellbeing.notes])];
+        }
         if(needsClarification){response.results=[];response.blocked=false;response.warnings=[];}
         if(!consumerContractMatches(input.filters,response.filters,response.results)){console.error(JSON.stringify({event:'recommendation_contract_failed'}));return json({error:'這次結果與篩選條件不一致，已停止顯示，請重試。'},503);}
         if(conversation){conversation.state.filters=response.filters;if(!needsClarification&&!response.blocked)conversation.state.query=response.query;}

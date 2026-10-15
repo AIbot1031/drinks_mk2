@@ -1,6 +1,7 @@
 import {validateInput} from './understand';
 import type {ConversationState} from './conversation';
 import type {Filters} from './types';
+import {wellbeingAdvice} from './wellbeing';
 import {numericConditions,exclusiveKeys,numericAcknowledgement,flavorQuery} from './numeric-language';
 import {normalizeDrinkLanguage,sameTopping,milkTeaRetrievalQuery,milkTeaAllowedPattern,requiredToppings,setRequiredToppings,toppingTerms} from './drink-language';
 
@@ -37,6 +38,7 @@ export function applyLlmUnderstanding(turn:{state:ConversationState;input:Return
   if(f.milkTea===true&&filters.milkTea!==false&&!allowsMilkTea&&filters.milk!=='none'&&/奶茶|珍奶/.test(turn.message))filters.milkTea=true;
   else if(f.milkTea===false&&/(?:換|改|純茶|咖啡)/.test(turn.message))filters.milkTea=false;
   const conditionEdit=numeric.onlyConditions&&!!(turn.state.query||turn.state.filters.tea||turn.state.filters.milkTea);
+  if(wellbeingAdvice(turn.message).sleep&&filters.maxCaffeine!==0){filters.maxCaffeine=0;delete filters.caffeineExclusive;}
   const action=conditionEdit?'recommend':filters.milkTea===false&&!turn.state.query&&!turn.state.guard?'clarify':r.action;
   const state:ConversationState={...turn.state,query:conditionEdit||action==='clarify'||allowsMilkTea||(filters.milk==='none'&&filters.milkTea===false)?turn.state.query:r.query,filters};
   const flavor=(query:string)=>flavorQuery(milkTeaRetrievalQuery(query,filters.milkTea===false).replace(new RegExp(toppingTerms.join('|'),'g'),''));
@@ -45,7 +47,7 @@ export function applyLlmUnderstanding(turn:{state:ConversationState;input:Return
   else delete state.clarification;
   const input=validateInput({...turn.input,query:state.guard||state.query,filters});
   // Only use short acknowledgements, never model-created drink/ingredient facts.
-  let ack=typeof r.assistantMessage==='string'&&r.assistantMessage.length<=160&&!/保證|安全|過敏|熱量|咖啡因|價格|\d|mg|kcal/.test(r.assistantMessage)?r.assistantMessage:'已理解你的口味與篩選條件。';
+  let ack=typeof r.assistantMessage==='string'&&r.assistantMessage.length<=160&&!/保證|安全|過敏|熱量|咖啡因|價格|治療|療效|改善|舒壓|助眠|抗憂鬱|血清素|多巴胺|\d|mg|kcal/.test(r.assistantMessage)?r.assistantMessage:'已理解你的口味與篩選條件。';
   if(action!=='clarify'){
     const labels=[filters.milkTea?'奶茶':filters.tea,filters.milkTea===false?'不喝奶茶':undefined,filters.milk==='fresh'?'鮮奶':filters.milk==='plant'?'植物奶':filters.milk==='none'?'無奶標記':undefined,requiredToppings(filters).length?`含${requiredToppings(filters).join('、')}`:undefined,
       filters.excludedToppings.length?`不加${filters.excludedToppings.join('、')}`:undefined,
@@ -53,6 +55,7 @@ export function applyLlmUnderstanding(turn:{state:ConversationState;input:Return
     ack=labels.length?`已套用條件：${labels.join('；')}。`:'已理解你的口味與篩選條件。';
   }
   if(conditionEdit)ack=numericAcknowledgement(filters);
+  if(action==='clarify'&&(wellbeingAdvice(turn.message).applied.length||/焦慮|失眠|憂鬱|治療/.test(turn.message)))ack='已理解你的口味與篩選條件。';
   if(action==='clarify'&&ack==='已理解你的口味與篩選條件。')ack=state.clarification==='topping-exclusion'?'請問你想排除哪一種配料？':filters.milkTea===false?'不喝奶茶的話，你想喝純茶、果汁，還是其他口味？':'你想喝清爽茶類，還是濃郁奶茶？';
   if(action==='clarify'&&filters.milkTea===false&&state.clarification==='taste')ack='已設定不喝奶茶，你想喝純茶、果汁，還是其他口味？';
   return {state,input,ack,clarify:action==='clarify',modelVersion:r.modelVersion,durationMs:r.durationMs};

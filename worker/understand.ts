@@ -1,5 +1,6 @@
 import {normalizeDrinkLanguage, stripToppingExclusions, stripMilkTeaExclusions, sameTopping, toppingTerms,requiredToppings,setRequiredToppings} from './drink-language';
 import type { Filters, RecommendInput, Understanding } from './types';
+import {wellbeingAdvice} from './wellbeing';
 import {stripBrandExclusions} from './brand-language';
 import {capFields,exclusiveKeys,numericConditions,numericFollowUp} from './numeric-language';
 
@@ -58,7 +59,10 @@ export function understand(input: RecommendInput, brands: string[]): Understandi
   if(numeric.questions.length){warnings.push(numericFollowUp(numeric.questions)!.message);return {filters,warnings,blocked:true,preferences:[]};}
   for(const field of capFields){const n=numeric.updates[field];if(n!==undefined)cap(field,n,!!numeric.updates[exclusiveKeys[field]]);}
   if(numeric.updates.maxCalories===undefined&&/低(?:熱量|卡)/.test(q)) {cap('maxCalories',200);warnings.push('「低熱量」先採每杯 200 kcal 以下，可在篩選中調整。');}
-  if(numeric.updates.maxCaffeine===undefined&&/低咖啡因|晚上|睡前/.test(q)) {cap('maxCaffeine',100);warnings.push('此查詢採咖啡因上界 100 mg 以下；這不是睡眠或健康保證。');}
+  const wellbeing=wellbeingAdvice(q);
+  warnings.push(...wellbeing.notes);
+  if(wellbeing.sleep)cap('maxCaffeine',0);
+  else if(numeric.updates.maxCaffeine===undefined&&/低咖啡因/.test(q)) {cap('maxCaffeine',100);warnings.push('「低咖啡因」暫採上界 100 mg 以下，可自行調整；這不是睡眠或健康保證。');}
   if(/^等待對話釐清：/.test(q))return {filters,warnings,blocked:true,preferences:[]};
   const noMilk = /(?:不要|不含|不加|不能喝|不喝|無)(?:任何|一點)?(?:奶類|乳製品|牛奶|奶(?!精|蓋)|乳)/.test(q);
   if((/鮮奶/.test(q)&&filters.milk==='plant')||(/植物奶|燕麥奶|豆奶/.test(q)&&filters.milk==='fresh')){

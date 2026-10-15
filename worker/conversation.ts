@@ -2,6 +2,7 @@ import {normalizeDrinkLanguage, stripToppingExclusions, stripMilkTeaExclusions, 
 import {understand, validateInput} from './understand';
 import {stripBrandExclusions} from './brand-language';
 import type {Filters} from './types';
+import {wellbeingAdvice} from './wellbeing';
 import {capFields,exclusiveKeys,numericConditions,numericAnswer,numericFollowUp,numericAcknowledgement,validateNumericQuestions,flavorQuery} from './numeric-language';
 import type {NumericQuestion} from './numeric-language';
 
@@ -121,5 +122,11 @@ export function conversationTurn(body: unknown, brands: string[]) {
   if(requested.length>1)state.query=state.query.replace(/^(?:我)?(?:想喝|要喝|想要|想|要)?(?:和|跟|及|與|、|，|,|\s)+/,'');
   if(!state.query&&state.filters.milkTea===false&&state.filters.tea)state.query=state.filters.tea;
   const constraintOnly=numeric.onlyConditions&&!!(state.query||state.filters.tea||state.filters.milkTea);
+  if(wellbeingAdvice(message).sleep){
+    // Apply after numeric edits; an explicit sleep goal wins in this turn.
+    if(state.filters.maxCaffeine!==0){state.filters.maxCaffeine=0;delete state.filters.caffeineExclusive;}
+    // Consumed context must not resurrect a cap after an explicit later release.
+    state.query=state.query.replace(/睡前|準備睡(?:覺)?|打算睡(?:覺)?|快睡了|要睡覺|想睡覺|等等.{0,3}睡(?:覺)?|待會.{0,3}睡(?:覺)?|等一下.{0,3}睡(?:覺)?|不想失眠|怕失眠/g,'').trim();
+  }
   return {state,next:false,reset:false,followUp:!state.guard?numericFollowUp(state.pendingCaps??[]):undefined,constraintOnly,ack:constraintOnly?numericAcknowledgement(state.filters):undefined,warnings:[...new Set([...numeric.warnings,...fresh.warnings])],input:validateInput({query:state.guard || state.query,filters:state.filters}),message};
 }

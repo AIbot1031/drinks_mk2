@@ -1,0 +1,81 @@
+{
+  "checkedAt": "2026-10-15T01:52:06.677Z",
+  "version": "3.0.0",
+  "deploymentId": "d11bff4b-57df-4b68-93f2-b5c6ad5b9332",
+  "assets": [
+    "index.html",
+    "app.js",
+    "chat.js",
+    "wellbeing-sources.js"
+  ],
+  "health": {
+    "ok": true,
+    "total": 5781,
+    "version": "3.0.0"
+  },
+  "checks": [
+    {
+      "route": "recommend",
+      "count": 6,
+      "allVariantsVerifiedZero": true,
+      "sourcePresent": true,
+      "mode": {
+        "routeA": "macbert",
+        "routeAModel": "macbert-8e08de527639956d",
+        "routeAFallback": null,
+        "routeB": "feature-graph",
+        "routeBModel": null,
+        "routeBFallback": "guest",
+        "personalized": false
+      },
+      "conversation": null
+    },
+    {
+      "route": "chat/recommend",
+      "count": 6,
+      "allVariantsVerifiedZero": true,
+      "sourcePresent": true,
+      "mode": {
+        "routeA": "macbert",
+        "routeAModel": "macbert-8e08de527639956d",
+        "routeAFallback": null,
+        "routeB": "feature-graph",
+        "routeBModel": null,
+        "routeBFallback": "guest",
+        "personalized": false
+      },
+      "conversation": null
+    }
+  ],
+  "scope": "Synthetic guest checks only; no consumer accounts, preferences or raw interactions exported",
+  "initialHealth": {
+    "ok": true,
+    "total": 5781,
+    "version": "2.5.1"
+  },
+  "healthRecheckedAt": "2026-10-15T01:52:24.295Z",
+  "note": "First health request immediately after deployment returned 2.5.1; later fresh request confirms 3.0.0. Cause not established.",
+  "multiturn": [
+    {
+      "scenario": "sleep",
+      "chatMode": "qwen3.5-9b",
+      "chatModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+      "count": 6,
+      "cap": 0
+    },
+    {
+      "scenario": "next_batch",
+      "chatMode": "quick-command",
+      "chatModel": null,
+      "count": 6,
+      "cap": 0
+    },
+    {
+      "scenario": "release",
+      "chatMode": "quick-command",
+      "chatModel": null,
+      "count": 6,
+      "cap": null
+    }
+  ]
+}
