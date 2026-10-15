@@ -1133,3 +1133,10 @@ Git 同步：main commit 50003b3455595eacdf4e264f9da59eebde1dda19 已推送；v2
 - 實作：補建v2.5.1、v3.0.0、v3.1.0，分別指向a532833、00c0f8e、5d75ec0既有發布提交；說明明示本次為補登，未偽造歷史發布時間。v3.1.0標為Latest，AGENTS.md新增每次發布同步tag/Release並核對Latest規則。
 - 驗證：gh release list讀回三版已發布且3.1.0為Latest；正式health仍3.1.0。
 - 部署／Git：沒有功能變更，未重新部署或提高版本；本次規則與紀錄提交推送後核對遠端SHA。未上傳權重、ZIP、憑證或用戶互動。
+
+[2026-10-15T19:02:56+08:00｜3.1 Git tag／GitHub Release／Latest 核對]
+- 規劃：依使用者要求確認3.1的tag與Release，缺少才補，Latest須與正式站一致。
+- 實作：遠端已存在v3.1.0 tag及正式GitHub Release，未重複建立或移動tag；本機原未有該tag，已fetch同步。
+- 驗證：正式health與首頁頁尾皆3.1.0；遠端tag與本機v3.1.0解析均為已驗證功能提交5d75ec02514f235cfd36dfb49e5d5b522f3d1c14。GitHub Release targetCommitish相同，非draft／prerelease，list與releases/latest API均確認Latest=v3.1.0；對應CI38674200249為completed/success。Release：https://github.com/AIbot1031/drinks_mk2/releases/tag/v3.1.0。
+- 部署／Git：本輪無重新部署、版本更動或訓練；只同步本機tag與追加本核對紀錄，紀錄提交推送後讀回遠端。既有ZIP不加入Git。
+- 限制與後續：3.1發布、tag、Release及Latest已一致；本輪未重新跑推薦或訓練測試，使用既有已驗證提交與CI結果核對發布指向。
