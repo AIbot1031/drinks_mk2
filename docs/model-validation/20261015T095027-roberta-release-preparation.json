@@ -1,0 +1,36 @@
+{
+  "started_at": "2026-10-15T09:50:27.332164+08:00",
+  "published": false,
+  "training_performed": false,
+  "deployment_ready": false,
+  "checks": {
+    "all_24_top10_match_benchmark": true,
+    "actual_candidate_subset_and_identity": true,
+    "seven_invalid_requests_rejected": true,
+    "blank_query_zero_scores": true,
+    "index_reload_and_repeat_embedding": true
+  },
+  "pending": [
+    "3.0 deployment and GitHub completion",
+    "Worker routeA, UI and operational monitoring must show RoBERTa identity",
+    "isolated Worker integration, outage fallback and deployment rollback validation"
+  ],
+  "rollback_reference": {
+    "weights_relative_to_runtime": "training_artifacts/20261013T231557-macbert-contrastive/model",
+    "weights_sha256": "8e08de527639956dea6b49ea16f2de47f7b9e5fcbce0b89a28bd32fa6f30071d",
+    "launchagent": "local.drinks-mk2.macbert",
+    "service_modified": false,
+    "rollback_exercised": false
+  },
+  "status": "offline_preparation_passed",
+  "modelVersion": "roberta-wwm-2d7aecfdae2f3374",
+  "catalogVersion": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+  "index_relative_path": "training_artifacts/roberta-wwm-index-6aa67407a66b-2d7aecfdae2f.npz",
+  "index_sha256": "b7a0ea3fcbee84a55423770a069d948fcaba783afaa23d4c0ffe4708e7a467b4",
+  "vector_shape": [
+    5781,
+    768
+  ],
+  "benchmark_report": "docs/model-validation/20261015T005914-v3.1-encoders/summary.json",
+  "ended_at": "2026-10-15T09:50:29.168144+08:00"
+}

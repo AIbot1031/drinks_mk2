@@ -58,3 +58,22 @@ test('a replacing agent revokes the old socket and reports the new model',{
  try{await connect('macbert-local-old');await connect('macbert-local-new');}
  finally{for(const ws of sockets)ws.terminate();}
 });
+
+test('RoBERTa keeps actual identity and preserves 3.0 sleep constraints and fallback',()=>{
+ const engine=makeEngine(catalog.drinks);
+ const input=validateInput({query:'準備睡覺，預算80元',filters:{},limit:6});
+ const pool=engine.candidatePool(input);
+ const semantic={scores:pool.map((d,i)=>({id:d.id,score:1-i/(pool.length+1)})),modelVersion:'roberta-wwm-0123456789abcdef',durationMs:8};
+ const {response,trace}=engine.recommendWithTrace(input,semantic);
+ assert.equal(response.mode.routeA,'roberta-wwm');
+ assert.match(trace.routeA.method,/RoBERTa-WWM/);
+ assert.equal(trace.routeA.modelVersion,semantic.modelVersion);
+ assert.ok(response.results.length>0);
+ for(const r of response.results)for(const d of r.variants){
+   assert.equal(d.caffeineMax,0);assert.ok(!d.caffeineEstimated);assert.ok(d.price!==null&&d.price<=80);
+ }
+ const fallback=engine.recommendWithTrace(input,{scores:[],modelVersion:'',durationMs:0,fallbackReason:'offline'});
+ assert.equal(fallback.response.mode.routeA,'tf-idf');
+ assert.equal(fallback.trace.routeA.modelVersion,null);
+ for(const r of fallback.response.results)for(const d of r.variants)assert.equal(d.caffeineMax,0);
+});

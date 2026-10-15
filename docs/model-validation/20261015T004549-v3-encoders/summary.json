@@ -1,0 +1,19 @@
+{
+  "started_at": "2026-10-15T00:45:49.992119+08:00",
+  "device": "mps",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "git_commit": "90e0b23617980050500ef4a7eddee3e066e98442",
+  "catalog_sha256": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+  "fixture_sha256": "0e33e53b851f030af83f6a153eb20265d77d77dd5a32721d533e836b2cc1eaf0",
+  "method": "24 authored synthetic queries; binary catalog-field labels; all 5781 variants grouped into 2603 products using max variant score; no hard filtering; K=10; same production pooling; no training; no deployment",
+  "limitations": [
+    "Not human taste judgements or unseen-catalog evaluation; fine-tuned MacBERT has seen catalog text.",
+    "Related paraphrases are correlated; scores cannot establish statistical superiority.",
+    "Sequential models, single run on shared Mac with existing services; local timings exclude network/Worker/RRF/RelGT.",
+    "RSS and MPS memory may overlap; do not add them."
+  ],
+  "models": [],
+  "status": "failed",
+  "failed_model": "macbert-base",
+  "error": "Official snapshot provided pytorch_model.bin, not model.safetensors; no benchmark completed. Corrected loader to weights_only=True for official bin snapshots. No training/deployment."
+}

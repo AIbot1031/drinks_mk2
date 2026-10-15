@@ -1,0 +1,218 @@
+{
+  "checkedAt": "2026-10-15T03:01:04.384Z",
+  "base": "https://drinks-mk2.rtx941031.workers.dev",
+  "expected": "roberta-wwm",
+  "checks": [
+    {
+      "route": "recommend",
+      "query": "準備睡覺，預算80元",
+      "clarified": false,
+      "count": 6,
+      "variantsChecked": 7,
+      "mode": {
+        "routeA": "roberta-wwm",
+        "routeAModel": "roberta-wwm-2d7aecfdae2f3374",
+        "routeAFallback": null,
+        "routeB": "feature-graph",
+        "routeBModel": null,
+        "routeBFallback": "guest",
+        "personalized": false
+      },
+      "hasWellbeingSource": true
+    },
+    {
+      "route": "chat/recommend",
+      "query": "準備睡覺，預算80元",
+      "clarified": true,
+      "count": 6,
+      "variantsChecked": 14,
+      "mode": {
+        "routeA": "roberta-wwm",
+        "routeAModel": "roberta-wwm-2d7aecfdae2f3374",
+        "routeAFallback": null,
+        "routeB": "feature-graph",
+        "routeBModel": null,
+        "routeBFallback": "guest",
+        "personalized": false
+      },
+      "hasWellbeingSource": true
+    },
+    {
+      "route": "recommend",
+      "query": "紅茶拿鐵",
+      "clarified": false,
+      "count": 6,
+      "variantsChecked": 17,
+      "mode": {
+        "routeA": "roberta-wwm",
+        "routeAModel": "roberta-wwm-2d7aecfdae2f3374",
+        "routeAFallback": null,
+        "routeB": "feature-graph",
+        "routeBModel": null,
+        "routeBFallback": "guest",
+        "personalized": false
+      },
+      "hasWellbeingSource": true
+    },
+    {
+      "route": "recommend",
+      "query": "奶蓋茶",
+      "clarified": false,
+      "count": 6,
+      "variantsChecked": 18,
+      "mode": {
+        "routeA": "roberta-wwm",
+        "routeAModel": "roberta-wwm-2d7aecfdae2f3374",
+        "routeAFallback": null,
+        "routeB": "feature-graph",
+        "routeBModel": null,
+        "routeBFallback": "guest",
+        "personalized": false
+      },
+      "hasWellbeingSource": true
+    },
+    {
+      "route": "recommend",
+      "query": "植物奶飲料",
+      "clarified": false,
+      "count": 6,
+      "variantsChecked": 11,
+      "mode": {
+        "routeA": "roberta-wwm",
+        "routeAModel": "roberta-wwm-2d7aecfdae2f3374",
+        "routeAFallback": null,
+        "routeB": "feature-graph",
+        "routeBModel": null,
+        "routeBFallback": "guest",
+        "personalized": false
+      },
+      "hasWellbeingSource": true
+    }
+  ],
+  "health": {
+    "ok": true,
+    "total": 5781,
+    "version": "3.1.0"
+  },
+  "assets": [
+    {
+      "file": "index.html",
+      "sha256": "f3758d007723e4c4ee38e0dc3ff97a90cc6b715e01230c4154888264a828376d"
+    },
+    {
+      "file": "app.js",
+      "sha256": "9704b1cd13a1a51c42037aaef68018e1e648bf015d3716aaf6b2cfd942d24e04"
+    },
+    {
+      "file": "chat.js",
+      "sha256": "131c08a78a4e73c4ff7cdc22409c65a5f630fedd62efbf7c645b1d5fefecd995"
+    },
+    {
+      "file": "wellbeing-sources.js",
+      "sha256": "fefa9ee0d836c1bf5e2440a332a450cb5ac5030e989802f0bb4e2e0060c7dc71"
+    }
+  ],
+  "rollback": {
+    "at": "2026-10-15T03:00:35.726Z",
+    "mode": {
+      "routeA": "macbert",
+      "routeAModel": "macbert-8e08de527639956d",
+      "routeAFallback": null,
+      "routeB": "feature-graph",
+      "routeBModel": null,
+      "routeBFallback": "guest",
+      "personalized": false
+    },
+    "results": 6,
+    "allVerifiedZero": true
+  },
+  "deploymentId": "526a505f-9206-46f5-a2f6-8d211b169a75",
+  "catalogVersion": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+  "localFallback": {
+    "checkedAt": "2026-10-15T02:59:00.128Z",
+    "base": "http://127.0.0.1:8895",
+    "expected": "tf-idf",
+    "checks": [
+      {
+        "route": "recommend",
+        "query": "準備睡覺，預算80元",
+        "count": 6,
+        "variantsChecked": 11,
+        "mode": {
+          "routeA": "tf-idf",
+          "routeAModel": null,
+          "routeAFallback": "Mac unavailable, timeout, or index mismatch",
+          "routeB": "feature-graph",
+          "routeBModel": null,
+          "routeBFallback": "guest",
+          "personalized": false
+        },
+        "hasWellbeingSource": true
+      },
+      {
+        "route": "chat/recommend",
+        "query": "準備睡覺，預算80元",
+        "count": 6,
+        "variantsChecked": 11,
+        "mode": {
+          "routeA": "tf-idf",
+          "routeAModel": null,
+          "routeAFallback": "Mac unavailable, timeout, or index mismatch",
+          "routeB": "feature-graph",
+          "routeBModel": null,
+          "routeBFallback": "guest",
+          "personalized": false
+        },
+        "hasWellbeingSource": true
+      },
+      {
+        "route": "recommend",
+        "query": "紅茶拿鐵",
+        "count": 6,
+        "variantsChecked": 24,
+        "mode": {
+          "routeA": "tf-idf",
+          "routeAModel": null,
+          "routeAFallback": "Mac unavailable, timeout, or index mismatch",
+          "routeB": "feature-graph",
+          "routeBModel": null,
+          "routeBFallback": "guest",
+          "personalized": false
+        },
+        "hasWellbeingSource": true
+      },
+      {
+        "route": "recommend",
+        "query": "奶蓋茶",
+        "count": 6,
+        "variantsChecked": 9,
+        "mode": {
+          "routeA": "tf-idf",
+          "routeAModel": null,
+          "routeAFallback": "Mac unavailable, timeout, or index mismatch",
+          "routeB": "feature-graph",
+          "routeBModel": null,
+          "routeBFallback": "guest",
+          "personalized": false
+        },
+        "hasWellbeingSource": true
+      },
+      {
+        "route": "recommend",
+        "query": "植物奶飲料",
+        "count": 6,
+        "variantsChecked": 25,
+        "mode": {
+          "routeA": "tf-idf",
+          "routeAModel": null,
+          "routeAFallback": "Mac unavailable, timeout, or index mismatch",
+          "routeB": "feature-graph",
+          "routeBModel": null,
+          "routeBFallback": "guest",
+          "personalized": false
+        },
+        "hasWellbeingSource": true
+      }
+    ]
+  }
+}

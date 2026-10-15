@@ -95,7 +95,16 @@ async def serve(args):
     from websockets.asyncio.client import connect
     key=args.key_file.read_text().strip()
     if not re.fullmatch(r'[a-f0-9]{64}',key):raise ValueError('Invalid service key')
-    ranker=await asyncio.to_thread(Ranker,args.model,args.device)
+    if args.candidate_report:
+        try:
+            from .prepare_roberta_release import LocalRoBERTa
+        except ImportError:
+            from prepare_roberta_release import LocalRoBERTa
+        audit('macbert','loading')
+        ranker=await asyncio.to_thread(LocalRoBERTa,args.candidate_report,args.device)
+        audit('macbert','ready',modelVersion=ranker.model_version,device=args.device,**ranker.memory())
+    else:
+        ranker=await asyncio.to_thread(Ranker,args.model,args.device)
     url=args.worker.rstrip('/').replace('https://','wss://').replace('http://','ws://')+'/api/semantic/connect'
     delay=1
     while True:
@@ -109,7 +118,9 @@ async def serve(args):
                     job=json.loads(message)
                     if job.get('type')!='rank':continue
                     try:
+                        if args.candidate_report:audit('macbert','inference_started',modelVersion=ranker.model_version,candidateCount=len(job.get('candidateIds',[])))
                         result=await asyncio.to_thread(ranker.rank,job)
+                        if args.candidate_report:audit('macbert','inference_done',modelVersion=ranker.model_version,durationMs=result['durationMs'],outputCount=len(result['scores']),**ranker.memory())
                         await socket.send(json.dumps({'type':'result','id':job['id'],'result':result}))
                     except Exception:
                         audit('macbert','inference_failed')
@@ -122,6 +133,7 @@ async def serve(args):
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--candidate-report',type=Path,help='Verified local RoBERTa training report; otherwise use MacBERT')
     p.add_argument('--model',type=Path,default=ROOT/'training_artifacts/20261013T143230-macbert-contrastive/model')
     p.add_argument('--worker',default='https://drinks-mk2.rtx941031.workers.dev')
     p.add_argument('--key-file',type=Path,default=ROOT/'.semantic-key')

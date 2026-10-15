@@ -109,6 +109,8 @@ export function makeEngine(drinks: Drink[]) {
     const productGroups=groupProducts(pool);
     const poolIds=new Set(pool.map(d=>d.id));
     const neural=semantic&&!semantic.fallbackReason;
+    const encoder=semantic?.modelVersion.startsWith('roberta-wwm-')?'roberta-wwm':'macbert';
+    const encoderLabel=encoder==='roberta-wwm'?'RoBERTa-WWM':'MacBERT';
     const lexicalA = neural ? semantic.scores.filter(s=>poolIds.has(s.id)&&Number.isFinite(s.score)).map(s=>({drink:byId.get(s.id)!,score:s.score})).sort((a,b)=>b.score-a.score||a.drink.id.localeCompare(b.drink.id)) : lexical(input.query, pool);
     const liked = input.likedIds.filter(id => byId.has(id) && !disliked.has(id) && !parsed.filters.excludedBrands?.includes(byId.get(id)!.brand));
     const a = liked.length && !input.query.trim() ? [] : lexicalA;
@@ -140,7 +142,7 @@ export function makeEngine(drinks: Drink[]) {
     const response = {
       query: input.query, filters: parsed.filters, warnings: parsed.warnings, blocked: parsed.blocked, wellbeing,
       eligibleCount: pool.length, total: drinks.length,
-      mode: {routeA: neural?'macbert':'tf-idf',routeAModel:neural?semantic.modelVersion:null,routeAFallback:semantic?.fallbackReason??null,routeB: neuralB?'relgt':'feature-graph',routeBModel:neuralB?relgt!.modelVersion:null,routeBFallback:relgt?.fallbackReason??null,personalized:neuralB||liked.length > 0},
+      mode: {routeA: neural?encoder:'tf-idf',routeAModel:neural?semantic.modelVersion:null,routeAFallback:semantic?.fallbackReason??null,routeB: neuralB?'relgt':'feature-graph',routeBModel:neuralB?relgt!.modelVersion:null,routeBFallback:relgt?.fallbackReason??null,personalized:neuralB||liked.length > 0},
       results: selected.map(row => {
         const variants=productGroups.get(productKey(row.drink))!;
         const d = variants[0];
@@ -165,7 +167,7 @@ export function makeEngine(drinks: Drink[]) {
       understanding: {...parsed, parser:'rules', llmUsed:false},
       filtering: {sourceTotal:drinks.length, afterHardFilters:hardPool.length, afterDislikes:likedPool.length, afterSeenExclusions:pool.length, unknownNutrientsPassCaps:false},
       config: RANKING_CONFIG,
-      routeA: {method:neural?'MacBERT mean-pooled normalized cosine on Mac':'TF-IDF cosine / 中文二元片段與風味同義概念',modelVersion:neural?semantic.modelVersion:null,inferenceMs:neural?semantic.durationMs:null,fallbackReason:semantic?.fallbackReason??null,totalCandidates:a.length, ranked:a.slice(0,RANKING_CONFIG.candidatesPerPath).map((r,i)=>({rank:i+1,id:r.drink.id,name:r.drink.name,brand:r.drink.brand,sourceRow:r.drink.sourceRow,rawScore:r.score}))},
+      routeA: {method:neural?`${encoderLabel} mean-pooled normalized cosine on Mac`:'TF-IDF cosine / 中文二元片段與風味同義概念',modelVersion:neural?semantic.modelVersion:null,inferenceMs:neural?semantic.durationMs:null,fallbackReason:semantic?.fallbackReason??null,totalCandidates:a.length, ranked:a.slice(0,RANKING_CONFIG.candidatesPerPath).map((r,i)=>({rank:i+1,id:r.drink.id,name:r.drink.name,brand:r.drink.brand,sourceRow:r.drink.sourceRow,rawScore:r.score}))},
       routeB: {method:neuralB?'RelGT temporal next-like ranking on Mac CPU':'飲料↔特徵圖的個人化隨機遊走',modelVersion:neuralB?relgt!.modelVersion:null,inferenceMs:neuralB?relgt!.durationMs:null,historyCount:neuralB?relgt!.historyCount??null:null,fallbackReason:relgt?.fallbackReason??null, seedSource:neuralB?'past_interactions':liked.length ? 'favorites' : 'query_top5', seeds:neuralB?[]:seeds.map(id=>({id,name:byId.get(id)!.name,brand:byId.get(id)!.brand})), totalCandidates:b.length, ranked:b.slice(0,RANKING_CONFIG.candidatesPerPath).map((r,i)=>({rank:i+1,id:r.drink.id,name:r.drink.name,brand:r.drink.brand,sourceRow:r.drink.sourceRow,rawScore:r.score}))},
       fusion: {method:'weighted reciprocal rank fusion', formula:'score = 0.65 / (60 + rankA) + 0.35 / (60 + rankB); absent path contributes 0', rawScoresDirectlyAdded:false, ranked:ranked.map((r,i)=>({rank:i+1,id:r.drink.id,name:r.drink.name,brand:r.drink.brand,rankA:r.aRank,rankB:r.bRank,contributionA:r.aRank === null ? 0 : RANKING_CONFIG.weightA/(RANKING_CONFIG.rrfK+r.aRank),contributionB:r.bRank === null ? 0 : RANKING_CONFIG.weightB/(RANKING_CONFIG.rrfK+r.bRank),totalScore:r.score,calculation:`${r.aRank === null ? '0' : `0.65 / (60 + ${r.aRank})`} + ${r.bRank === null ? '0' : `0.35 / (60 + ${r.bRank})`}`}))},
       selection: {requestedLimit:input.limit, uniqueKey:'brand + name', firstPassBrandLimit:RANKING_CONFIG.brandLimitFirstPass, relaxHardFilters:false, decisions:selectionDecisions, finalOrder:selected.map((r,i)=>({rank:i+1,id:productGroups.get(productKey(r.drink))![0].id,rankSourceId:r.drink.id,name:r.drink.name,brand:r.drink.brand,originalFusionRank:ranked.indexOf(r)+1,score:r.score}))},

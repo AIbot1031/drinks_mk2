@@ -73,7 +73,7 @@ export function initChat({api,card,feedback,isBusy,setBusy,refresh,ready}) {
       appendWellbeingSources(reply,value.wellbeing);
       const cards=document.createElement('div');cards.className='chat-cards';
       value.results.forEach((r,i)=>cards.append(card(r.drink,i,r)));reply.append(cards);refresh();
-      $('#chat-message').value='';$('#chat-status').textContent=value.needsClarification?'請補充上方條件，原本的口味與篩選已保留。':(value.chatMode==='quick-command'?'已接續上一輪條件。 ':'')+(value.chatMode==='qwen3.5-9b'?'對話：Qwen3.5-9B。 ':value.chatMode==='qwen3-8b'?'對話：Qwen3-8B。 ':value.chatMode==='rules-fallback'?'對話模型暫時不可用，使用規則備援。 ':'')+(value.mode.routeA==='macbert'?'語意搜尋：MacBERT。 ':value.mode.routeAFallback?'Mac 暫時無法推論，改用 TF-IDF 備援。 ':'')+(value.mode.routeB==='relgt'?'個人化排序：RelGT，已參考你的歷史互動。':value.mode.personalized?'個人化排序：收藏特徵圖。':'你可以繼續調整條件。');
+      $('#chat-message').value='';$('#chat-status').textContent=value.needsClarification?'請補充上方條件，原本的口味與篩選已保留。':(value.chatMode==='quick-command'?'已接續上一輪條件。 ':'')+(value.chatMode==='qwen3.5-9b'?'對話：Qwen3.5-9B。 ':value.chatMode==='qwen3-8b'?'對話：Qwen3-8B。 ':value.chatMode==='rules-fallback'?'對話模型暫時不可用，使用規則備援。 ':'')+(value.mode.routeA==='roberta-wwm'?'語意搜尋：RoBERTa-WWM。 ':value.mode.routeA==='macbert'?'語意搜尋：MacBERT。 ':value.mode.routeAFallback?'Mac 暫時無法推論，改用 TF-IDF 備援。 ':'')+(value.mode.routeB==='relgt'?'個人化排序：RelGT，已參考你的歷史互動。':value.mode.personalized?'個人化排序：收藏特徵圖。':'你可以繼續調整條件。');
     }catch(error){$('#chat-recovery').hidden=false;bubble('assistant',`這次未完成推薦：${error.message}。已保留上一輪條件，請再試一次。`);$('#chat-status').textContent='訊息未成功處理，輸入內容已保留。';}
     finally{lock(false);$('#chat-message').focus();$('#chat-log').lastElementChild?.scrollIntoView({block:'nearest'});}
   }

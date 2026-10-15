@@ -1,0 +1,1522 @@
+{
+  "name": "roberta-wwm-trained",
+  "weights_sha256": "2d7aecfdae2f33744782b0a2d7cbeb868368d883391f877d97ebfa3d22200169",
+  "parameters": 102267648,
+  "weight_mib": 390.1414108276367,
+  "load_s": 0.14596937500755303,
+  "index_s": 15.763347125001019,
+  "index_rows_per_s": 366.7368328666191,
+  "query_samples": 72,
+  "query_median_ms": 8.445728992228396,
+  "query_p95_ms": 11.12735175265698,
+  "process_peak_rss_mib": 560.75,
+  "torch_version": "2.14.1",
+  "transformers_version": "4.57.6",
+  "cases": [
+    {
+      "query": "紅茶",
+      "label_fields": {
+        "tea": "紅茶"
+      },
+      "relevant_products": 556,
+      "precision_at_10": 1.0,
+      "recall_at_10": 0.017985611510791366,
+      "ndcg_at_10": 1.0,
+      "top10": [
+        {
+          "brand": "得正",
+          "name": "紅茶",
+          "relevant": true
+        },
+        {
+          "brand": "藍衫茶所",
+          "name": "古香紅茶",
+          "relevant": true
+        },
+        {
+          "brand": "特好喝",
+          "name": "昔日紅茶",
+          "relevant": true
+        },
+        {
+          "brand": "好了啦紅茶冰",
+          "name": "古早味紅茶",
+          "relevant": true
+        },
+        {
+          "brand": "50嵐",
+          "name": "多多紅茶",
+          "relevant": true
+        },
+        {
+          "brand": "水巷茶弄",
+          "name": "紅茶拿鐵",
+          "relevant": true
+        },
+        {
+          "brand": "迷客夏",
+          "name": "大正紅茶拿鐵",
+          "relevant": true
+        },
+        {
+          "brand": "八曜和茶",
+          "name": "柚香覺醒紅茶",
+          "relevant": true
+        },
+        {
+          "brand": "烏弄原茶",
+          "name": "珍珠紅茶拿鐵",
+          "relevant": true
+        },
+        {
+          "brand": "烏弄原茶",
+          "name": "玉霞紅茶拿鐵",
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "query": "想喝紅茶，茶香明顯",
+      "label_fields": {
+        "tea": "紅茶"
+      },
+      "relevant_products": 556,
+      "precision_at_10": 0.7,
+      "recall_at_10": 0.012589928057553957,
+      "ndcg_at_10": 0.7315449642824573,
+      "top10": [
+        {
+          "brand": "迷客夏",
+          "name": "大正醇香紅茶",
+          "relevant": true
+        },
+        {
+          "brand": "藍衫茶所",
+          "name": "古香紅茶",
+          "relevant": true
+        },
+        {
+          "brand": "迷客夏",
+          "name": "桂香原片青",
+          "relevant": false
+        },
+        {
+          "brand": "Tea’s原味",
+          "name": "文山青茶",
+          "relevant": false
+        },
+        {
+          "brand": "COMEBUY",
+          "name": "錫蘭紅茶",
+          "relevant": true
+        },
+        {
+          "brand": "Tea’s原味",
+          "name": "伯爵紅茶",
+          "relevant": true
+        },
+        {
+          "brand": "春水堂",
+          "name": "頂級烏瓦紅茶凍飲",
+          "relevant": true
+        },
+        {
+          "brand": "星巴克",
+          "name": "金萃紅玉茶那堤",
+          "relevant": true
+        },
+        {
+          "brand": "可不可熟成茶行",
+          "name": "麗春紅茶",
+          "relevant": true
+        },
+        {
+          "brand": "Tea’s原味",
+          "name": "梅子綠",
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "query": "綠茶",
+      "label_fields": {
+        "tea": "綠茶"
+      },
+      "relevant_products": 407,
+      "precision_at_10": 1.0,
+      "recall_at_10": 0.02457002457002457,
+      "ndcg_at_10": 1.0,
+      "top10": [
+        {
+          "brand": "得正",
+          "name": "綠茶",
+          "relevant": true
+        },
+        {
+          "brand": "可不可熟成茶行",
+          "name": "春芽綠茶",
+          "relevant": true
+        },
+        {
+          "brand": "紅茶洋行",
+          "name": "綠茶多多",
+          "relevant": true
+        },
+        {
+          "brand": "清心福全",
+          "name": "茉綠茶凍拿鐵 /茉綠茶凍綠茶拿鐵",
+          "relevant": true
+        },
+        {
+          "brand": "茶湯會",
+          "name": "珍珠綠茶",
+          "relevant": true
+        },
+        {
+          "brand": "Tea’s原味",
+          "name": "綠茶多多",
+          "relevant": true
+        },
+        {
+          "brand": "翰林茶館",
+          "name": "翡翠綠茶",
+          "relevant": true
+        },
+        {
+          "brand": "先喝道",
+          "name": "茉綠多多",
+          "relevant": true
+        },
+        {
+          "brand": "50嵐",
+          "name": "多多綠茶",
+          "relevant": true
+        },
+        {
+          "brand": "大苑子",
+          "name": "纖活綠茶",
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "query": "來杯綠茶",
+      "label_fields": {
+        "tea": "綠茶"
+      },
+      "relevant_products": 407,
+      "precision_at_10": 1.0,
+      "recall_at_10": 0.02457002457002457,
+      "ndcg_at_10": 1.0,
+      "top10": [
+        {
+          "brand": "茶湯會",
+          "name": "養樂多綠茶",
+          "relevant": true
+        },
+        {
+          "brand": "可不可熟成茶行",
+          "name": "春芽綠茶",
+          "relevant": true
+        },
+        {
+          "brand": "得正",
+          "name": "綠茶",
+          "relevant": true
+        },
+        {
+          "brand": "台茶一號",
+          "name": "養樂多綠茶",
+          "relevant": true
+        },
+        {
+          "brand": "Tea’s原味",
+          "name": "綠茶多多",
+          "relevant": true
+        },
+        {
+          "brand": "迷客夏",
+          "name": "養樂多綠",
+          "relevant": true
+        },
+        {
+          "brand": "水巷茶弄",
+          "name": "養樂多綠",
+          "relevant": true
+        },
+        {
+          "brand": "可不可熟成茶行",
+          "name": "春檸綠茶",
+          "relevant": true
+        },
+        {
+          "brand": "大苑子",
+          "name": "養樂多綠茶",
+          "relevant": true
+        },
+        {
+          "brand": "春水堂",
+          "name": "蜂蜜翡翠綠茶",
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "query": "烏龍茶",
+      "label_fields": {
+        "tea": "烏龍茶"
+      },
+      "relevant_products": 519,
+      "precision_at_10": 1.0,
+      "recall_at_10": 0.019267822736030827,
+      "ndcg_at_10": 1.0,
+      "top10": [
+        {
+          "brand": "UG樂己",
+          "name": "茶花紅烏龍",
+          "relevant": true
+        },
+        {
+          "brand": "可不可熟成茶行",
+          "name": "18週年——紅烏龍茶王",
+          "relevant": true
+        },
+        {
+          "brand": "台茶一號",
+          "name": "雲霧烏龍青",
+          "relevant": true
+        },
+        {
+          "brand": "先喝道",
+          "name": "糯烏龍",
+          "relevant": true
+        },
+        {
+          "brand": "得正",
+          "name": "輕烏龍",
+          "relevant": true
+        },
+        {
+          "brand": "茶之魔手",
+          "name": "台灣烏龍青",
+          "relevant": true
+        },
+        {
+          "brand": "一沐日",
+          "name": "輕香烏龍綠",
+          "relevant": true
+        },
+        {
+          "brand": "得正",
+          "name": "春烏龍",
+          "relevant": true
+        },
+        {
+          "brand": "50嵐",
+          "name": "旺來青茶",
+          "relevant": true
+        },
+        {
+          "brand": "COMEBUY",
+          "name": "烏龍綠茶",
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "query": "想喝烏龍茶",
+      "label_fields": {
+        "tea": "烏龍茶"
+      },
+      "relevant_products": 519,
+      "precision_at_10": 1.0,
+      "recall_at_10": 0.019267822736030827,
+      "ndcg_at_10": 1.0,
+      "top10": [
+        {
+          "brand": "Tea’s原味",
+          "name": "烏龍青茶",
+          "relevant": true
+        },
+        {
+          "brand": "可不可熟成茶行",
+          "name": "18週年——紅烏龍茶王",
+          "relevant": true
+        },
+        {
+          "brand": "UG樂己",
+          "name": "茶花紅烏龍",
+          "relevant": true
+        },
+        {
+          "brand": "翰林茶館",
+          "name": "特優級／阿里山烏龍茶",
+          "relevant": true
+        },
+        {
+          "brand": "特好喝",
+          "name": "特·茶王",
+          "relevant": true
+        },
+        {
+          "brand": "50嵐",
+          "name": "旺來青茶",
+          "relevant": true
+        },
+        {
+          "brand": "吳家紅茶冰",
+          "name": "烏龍綠茶",
+          "relevant": true
+        },
+        {
+          "brand": "CoCo都可",
+          "name": "２１歲輕烏龍",
+          "relevant": true
+        },
+        {
+          "brand": "一手私藏世界紅茶",
+          "name": "台灣黑金烏龍茶",
+          "relevant": true
+        },
+        {
+          "brand": "先喝道",
+          "name": "糯烏龍",
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "query": "紅茶加鮮奶",
+      "label_fields": {
+        "tea": "紅茶",
+        "milk": "鮮奶"
+      },
+      "relevant_products": 145,
+      "precision_at_10": 0.5,
+      "recall_at_10": 0.034482758620689655,
+      "ndcg_at_10": 0.5289638450374726,
+      "top10": [
+        {
+          "brand": "得正",
+          "name": "紅茶鮮奶",
+          "relevant": true
+        },
+        {
+          "brand": "好了啦紅茶冰",
+          "name": "薑母鮮奶茶",
+          "relevant": false
+        },
+        {
+          "brand": "好了啦紅茶冰",
+          "name": "可可鮮奶",
+          "relevant": false
+        },
+        {
+          "brand": "春水堂",
+          "name": "紅茶拿鐵",
+          "relevant": true
+        },
+        {
+          "brand": "好了啦紅茶冰",
+          "name": "黑豆奶鮮奶",
+          "relevant": false
+        },
+        {
+          "brand": "好了啦紅茶冰",
+          "name": "鮮奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "好了啦紅茶冰",
+          "name": "鮮奶綠",
+          "relevant": false
+        },
+        {
+          "brand": "翰林茶館",
+          "name": "鮮奶紅茶",
+          "relevant": true
+        },
+        {
+          "brand": "可不可熟成茶行",
+          "name": "熟成歐蕾",
+          "relevant": true
+        },
+        {
+          "brand": "好了啦紅茶冰",
+          "name": "桂圓鮮奶茶",
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "query": "紅茶拿鐵",
+      "label_fields": {
+        "tea": "紅茶",
+        "milk": "鮮奶"
+      },
+      "relevant_products": 145,
+      "precision_at_10": 0.9,
+      "recall_at_10": 0.06206896551724138,
+      "ndcg_at_10": 0.9216017310213246,
+      "top10": [
+        {
+          "brand": "一手私藏世界紅茶",
+          "name": "紅玉茶拿鐵",
+          "relevant": true
+        },
+        {
+          "brand": "一手私藏世界紅茶",
+          "name": "德古拉茶拿鐵",
+          "relevant": true
+        },
+        {
+          "brand": "水巷茶弄",
+          "name": "紅茶拿鐵",
+          "relevant": true
+        },
+        {
+          "brand": "麻古茶坊",
+          "name": "紅茶拿鐵",
+          "relevant": true
+        },
+        {
+          "brand": "茶湯會",
+          "name": "紅茶拿鐵",
+          "relevant": true
+        },
+        {
+          "brand": "茶湯會",
+          "name": "紅豆拿鐵",
+          "relevant": false
+        },
+        {
+          "brand": "白巷子",
+          "name": "紅茶拿鐵／綠茶拿鐵",
+          "relevant": true
+        },
+        {
+          "brand": "麻古茶坊",
+          "name": "波霸紅茶拿鐵",
+          "relevant": true
+        },
+        {
+          "brand": "先喝道",
+          "name": "錫蘭莊園紅茶拿鐵",
+          "relevant": true
+        },
+        {
+          "brand": "一手私藏世界紅茶",
+          "name": "伯爵茶拿鐵",
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "query": "綠茶加鮮奶",
+      "label_fields": {
+        "tea": "綠茶",
+        "milk": "鮮奶"
+      },
+      "relevant_products": 48,
+      "precision_at_10": 0.4,
+      "recall_at_10": 0.08333333333333333,
+      "ndcg_at_10": 0.4885468020156227,
+      "top10": [
+        {
+          "brand": "好了啦紅茶冰",
+          "name": "鮮奶綠",
+          "relevant": true
+        },
+        {
+          "brand": "水巷茶弄",
+          "name": "綠豆鮮奶冰沙",
+          "relevant": false
+        },
+        {
+          "brand": "紅茶洋行",
+          "name": "鮮奶綠茶",
+          "relevant": true
+        },
+        {
+          "brand": "上宇林",
+          "name": "鮮奶綠茶",
+          "relevant": true
+        },
+        {
+          "brand": "好了啦紅茶冰",
+          "name": "可可鮮奶",
+          "relevant": false
+        },
+        {
+          "brand": "好了啦紅茶冰",
+          "name": "黑豆奶鮮奶",
+          "relevant": false
+        },
+        {
+          "brand": "好了啦紅茶冰",
+          "name": "黑豆奶綠茶",
+          "relevant": false
+        },
+        {
+          "brand": "好了啦紅茶冰",
+          "name": "薑母鮮奶茶",
+          "relevant": false
+        },
+        {
+          "brand": "可不可熟成茶行",
+          "name": "熟成歐蕾",
+          "relevant": false
+        },
+        {
+          "brand": "一沐日",
+          "name": "烏龍綠鮮奶茶",
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "query": "奶茶有珍珠",
+      "label_fields": {
+        "milkAny": true,
+        "topping": "珍珠"
+      },
+      "relevant_products": 126,
+      "precision_at_10": 1.0,
+      "recall_at_10": 0.07936507936507936,
+      "ndcg_at_10": 1.0,
+      "top10": [
+        {
+          "brand": "春水堂",
+          "name": "珍珠奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "Tea’s原味",
+          "name": "小珍珠奶茶／奶綠",
+          "relevant": true
+        },
+        {
+          "brand": "水巷茶弄",
+          "name": "珍珠奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "翰林茶館",
+          "name": "原創珍珠奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "大苑子",
+          "name": "珍珠奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "得正",
+          "name": "珍珠奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "五桐號",
+          "name": "珍珠奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "烏弄原茶",
+          "name": "珍珠醇奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "COMEBUY",
+          "name": "雙Q奶茶1號",
+          "relevant": true
+        },
+        {
+          "brand": "白巷子",
+          "name": "小珍珠奶茶",
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "query": "想喝有珍珠的奶茶",
+      "label_fields": {
+        "milkAny": true,
+        "topping": "珍珠"
+      },
+      "relevant_products": 126,
+      "precision_at_10": 1.0,
+      "recall_at_10": 0.07936507936507936,
+      "ndcg_at_10": 1.0,
+      "top10": [
+        {
+          "brand": "Tea’s原味",
+          "name": "小珍珠奶茶／奶綠",
+          "relevant": true
+        },
+        {
+          "brand": "CoCo都可",
+          "name": "珍珠奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "春水堂",
+          "name": "珍珠奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "COMEBUY",
+          "name": "珍珠奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "水巷茶弄",
+          "name": "珍珠奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "翰林茶館",
+          "name": "原創珍珠奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "CoCo都可",
+          "name": "日焙珍珠奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "CoCo都可",
+          "name": "珍珠鮮奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "CoCo都可",
+          "name": "日焙珍珠鮮奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "Tea’s原味",
+          "name": "雙Q奶茶",
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "query": "布丁奶茶",
+      "label_fields": {
+        "milkAny": true,
+        "topping": "布丁"
+      },
+      "relevant_products": 25,
+      "precision_at_10": 1.0,
+      "recall_at_10": 0.4,
+      "ndcg_at_10": 1.0,
+      "top10": [
+        {
+          "brand": "台茶一號",
+          "name": "布丁奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "茶湯會",
+          "name": "布丁奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "Tea’s原味",
+          "name": "布丁奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "大苑子",
+          "name": "布丁奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "50嵐",
+          "name": "布丁奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "紅茶洋行",
+          "name": "布丁奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "白巷子",
+          "name": "布丁奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "茶之魔手",
+          "name": "布丁奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "水巷茶弄",
+          "name": "手作布丁奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "老賴茶棧",
+          "name": "布丁奶茶",
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "query": "奶蓋茶",
+      "label_fields": {
+        "topping": "奶蓋"
+      },
+      "relevant_products": 87,
+      "precision_at_10": 0.6,
+      "recall_at_10": 0.06896551724137931,
+      "ndcg_at_10": 0.6473362615659565,
+      "top10": [
+        {
+          "brand": "春水堂",
+          "name": "紅茶拿鐵",
+          "relevant": true
+        },
+        {
+          "brand": "Tea’s原味",
+          "name": "奶蓋茶",
+          "relevant": true
+        },
+        {
+          "brand": "水巷茶弄",
+          "name": "紅茶拿鐵",
+          "relevant": false
+        },
+        {
+          "brand": "可不可熟成茶行",
+          "name": "18週年——紅烏龍茶王歐蕾",
+          "relevant": false
+        },
+        {
+          "brand": "一沐日",
+          "name": "奶蓋高山青",
+          "relevant": true
+        },
+        {
+          "brand": "烏弄原茶",
+          "name": "大人的可可拿鐵",
+          "relevant": false
+        },
+        {
+          "brand": "一沐日",
+          "name": "奶蓋島韻紅",
+          "relevant": true
+        },
+        {
+          "brand": "UG樂己",
+          "name": "三窨十五茉·奶茶",
+          "relevant": false
+        },
+        {
+          "brand": "星巴克",
+          "name": "冰焦糖奶香紅茶那堤",
+          "relevant": true
+        },
+        {
+          "brand": "先喝道",
+          "name": "朵朵奶蓋伯爵茶",
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "query": "想喝有奶蓋的飲料",
+      "label_fields": {
+        "topping": "奶蓋"
+      },
+      "relevant_products": 87,
+      "precision_at_10": 0.8,
+      "recall_at_10": 0.09195402298850575,
+      "ndcg_at_10": 0.8048109992093389,
+      "top10": [
+        {
+          "brand": "星巴克",
+          "name": "卡布奇諾",
+          "relevant": true
+        },
+        {
+          "brand": "星巴克",
+          "name": "那堤",
+          "relevant": true
+        },
+        {
+          "brand": "烏弄原茶",
+          "name": "大人的可可拿鐵",
+          "relevant": false
+        },
+        {
+          "brand": "星巴克",
+          "name": "冰福吉茶那堤",
+          "relevant": true
+        },
+        {
+          "brand": "星巴克",
+          "name": "冰馥列白",
+          "relevant": false
+        },
+        {
+          "brand": "Tea’s原味",
+          "name": "奶蓋茶",
+          "relevant": true
+        },
+        {
+          "brand": "星巴克",
+          "name": "福吉茶那堤",
+          "relevant": true
+        },
+        {
+          "brand": "星巴克",
+          "name": "冰香草風味蛋白雲朵那堤",
+          "relevant": true
+        },
+        {
+          "brand": "星巴克",
+          "name": "冰焦糖奶香紅茶那堤",
+          "relevant": true
+        },
+        {
+          "brand": "星巴克",
+          "name": "冰可可蛋白雲朵那堤",
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "query": "仙草飲料",
+      "label_fields": {
+        "topping": "仙草"
+      },
+      "relevant_products": 65,
+      "precision_at_10": 1.0,
+      "recall_at_10": 0.15384615384615385,
+      "ndcg_at_10": 1.0,
+      "top10": [
+        {
+          "brand": "水巷茶弄",
+          "name": "手作仙草茶",
+          "relevant": true
+        },
+        {
+          "brand": "Tea’s原味",
+          "name": "仙草干茶",
+          "relevant": true
+        },
+        {
+          "brand": "Tea’s原味",
+          "name": "回憶仙草蜜",
+          "relevant": true
+        },
+        {
+          "brand": "好了啦紅茶冰",
+          "name": "豆漿仙草",
+          "relevant": true
+        },
+        {
+          "brand": "大苑子",
+          "name": "百年仙草凍奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "Tea’s原味",
+          "name": "冬瓜仙草凍",
+          "relevant": true
+        },
+        {
+          "brand": "萬波島嶼紅茶",
+          "name": "超級仙草甘",
+          "relevant": true
+        },
+        {
+          "brand": "上宇林",
+          "name": "仙草凍青茶",
+          "relevant": true
+        },
+        {
+          "brand": "CoCo都可",
+          "name": "仙草蜜",
+          "relevant": true
+        },
+        {
+          "brand": "大苑子",
+          "name": "百年仙草干茶",
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "query": "椰果飲料",
+      "label_fields": {
+        "topping": "椰果"
+      },
+      "relevant_products": 50,
+      "precision_at_10": 0.9,
+      "recall_at_10": 0.18,
+      "ndcg_at_10": 0.933745776545611,
+      "top10": [
+        {
+          "brand": "水巷茶弄",
+          "name": "椰果奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "紅茶洋行",
+          "name": "椰果奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "50嵐",
+          "name": "椰果奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "迷客夏",
+          "name": "荔荔蜜桃椰果",
+          "relevant": true
+        },
+        {
+          "brand": "Tea’s原味",
+          "name": "椰果奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "紅茶洋行",
+          "name": "椰果紅茶冰",
+          "relevant": true
+        },
+        {
+          "brand": "50嵐",
+          "name": "椰果紅茶",
+          "relevant": true
+        },
+        {
+          "brand": "紅茶洋行",
+          "name": "冬瓜椰果",
+          "relevant": true
+        },
+        {
+          "brand": "Tea’s原味",
+          "name": "楊枝甘露",
+          "relevant": false
+        },
+        {
+          "brand": "50嵐",
+          "name": "椰果綠茶",
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "query": "芋圓飲料",
+      "label_fields": {
+        "topping": "芋圓"
+      },
+      "relevant_products": 14,
+      "precision_at_10": 0.7,
+      "recall_at_10": 0.5,
+      "ndcg_at_10": 0.725452110735279,
+      "top10": [
+        {
+          "brand": "CoCo都可",
+          "name": "芋頭QQ牛奶",
+          "relevant": true
+        },
+        {
+          "brand": "迷客夏",
+          "name": "芋頭鮮奶",
+          "relevant": false
+        },
+        {
+          "brand": "CoCo都可",
+          "name": "3Q奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "CoCo都可",
+          "name": "QQ鮮奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "CoCo都可",
+          "name": "3Q鮮奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "CoCo都可",
+          "name": "QQ奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "台茶一號",
+          "name": "紅豆芋圓奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "CoCo都可",
+          "name": "濃芋冰沙",
+          "relevant": false
+        },
+        {
+          "brand": "叮哥茶飲",
+          "name": "芋頭西米露",
+          "relevant": false
+        },
+        {
+          "brand": "五桐號",
+          "name": "粉粿芋圓青茶",
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "query": "有冰淇淋的飲料",
+      "label_fields": {
+        "topping": "冰淇淋"
+      },
+      "relevant_products": 33,
+      "precision_at_10": 0.5,
+      "recall_at_10": 0.15151515151515152,
+      "ndcg_at_10": 0.6055047656192208,
+      "top10": [
+        {
+          "brand": "星巴克",
+          "name": "冰經典美式馥洛特",
+          "relevant": true
+        },
+        {
+          "brand": "星巴克",
+          "name": "經典阿法奇朵",
+          "relevant": true
+        },
+        {
+          "brand": "星巴克",
+          "name": "咖啡星冰樂",
+          "relevant": false
+        },
+        {
+          "brand": "Tea’s原味",
+          "name": "冰淇淋紅茶",
+          "relevant": true
+        },
+        {
+          "brand": "星巴克",
+          "name": "冰美式咖啡",
+          "relevant": false
+        },
+        {
+          "brand": "星巴克",
+          "name": "麥芽雪冷萃",
+          "relevant": true
+        },
+        {
+          "brand": "可不可熟成茶行",
+          "name": "雪藏奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "CoCo都可",
+          "name": "芒果冰沙",
+          "relevant": false
+        },
+        {
+          "brand": "COMEBUY",
+          "name": "蘋果冰茶",
+          "relevant": false
+        },
+        {
+          "brand": "星巴克",
+          "name": "冰焦糖奶香星享那堤",
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "query": "麥茶",
+      "label_fields": {
+        "tea": "麥茶"
+      },
+      "relevant_products": 40,
+      "precision_at_10": 0.0,
+      "recall_at_10": 0.0,
+      "ndcg_at_10": 0.0,
+      "top10": [
+        {
+          "brand": "烏弄原茶",
+          "name": "蕎麥冬露",
+          "relevant": false
+        },
+        {
+          "brand": "迷客夏",
+          "name": "娜杯紅茶",
+          "relevant": false
+        },
+        {
+          "brand": "水巷茶弄",
+          "name": "冬瓜青",
+          "relevant": false
+        },
+        {
+          "brand": "一沐日",
+          "name": "手採高山青",
+          "relevant": false
+        },
+        {
+          "brand": "烏弄原茶",
+          "name": "大人的可可拿鐵",
+          "relevant": false
+        },
+        {
+          "brand": "水巷茶弄",
+          "name": "黃金麥麥",
+          "relevant": false
+        },
+        {
+          "brand": "可不可熟成茶行",
+          "name": "春梅冰茶",
+          "relevant": false
+        },
+        {
+          "brand": "可不可熟成茶行",
+          "name": "春芽綠茶",
+          "relevant": false
+        },
+        {
+          "brand": "迷客夏",
+          "name": "娜杯紅茶拿鐵",
+          "relevant": false
+        },
+        {
+          "brand": "先喝道",
+          "name": "四季春茶王",
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "query": "抹茶",
+      "label_fields": {
+        "tea": "抹茶"
+      },
+      "relevant_products": 32,
+      "precision_at_10": 1.0,
+      "recall_at_10": 0.3125,
+      "ndcg_at_10": 1.0,
+      "top10": [
+        {
+          "brand": "日出茶太",
+          "name": "三倍濃抹茶",
+          "relevant": true
+        },
+        {
+          "brand": "特好喝",
+          "name": "抹茶極濃厚潤奶",
+          "relevant": true
+        },
+        {
+          "brand": "COMEBUY",
+          "name": "宇治抹茶",
+          "relevant": true
+        },
+        {
+          "brand": "拾汣茶屋",
+          "name": "靜岡一番抹茶",
+          "relevant": true
+        },
+        {
+          "brand": "拾汣茶屋",
+          "name": "靜岡抹茶厚奶",
+          "relevant": true
+        },
+        {
+          "brand": "特好喝",
+          "name": "抹茶輕潤奶",
+          "relevant": true
+        },
+        {
+          "brand": "拾汣茶屋",
+          "name": "靜岡抹茶生乳",
+          "relevant": true
+        },
+        {
+          "brand": "拾汣茶屋",
+          "name": "靜岡抹茶香檸",
+          "relevant": true
+        },
+        {
+          "brand": "特好喝",
+          "name": "抹茶厚潤奶",
+          "relevant": true
+        },
+        {
+          "brand": "白巷子",
+          "name": "抹茶拿鐵",
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "query": "清心福全紅茶",
+      "label_fields": {
+        "brand": "清心福全",
+        "tea": "紅茶"
+      },
+      "relevant_products": 28,
+      "precision_at_10": 0.1,
+      "recall_at_10": 0.03571428571428571,
+      "ndcg_at_10": 0.07336392209936005,
+      "top10": [
+        {
+          "brand": "清心福全",
+          "name": "紅心芭樂優多",
+          "relevant": false
+        },
+        {
+          "brand": "清心福全",
+          "name": "優多綠茶",
+          "relevant": false
+        },
+        {
+          "brand": "Tea’s原味",
+          "name": "仙草干茶",
+          "relevant": false
+        },
+        {
+          "brand": "Tea’s原味",
+          "name": "回憶仙草蜜",
+          "relevant": false
+        },
+        {
+          "brand": "春水堂",
+          "name": "頂級烏瓦紅茶凍飲",
+          "relevant": false
+        },
+        {
+          "brand": "清心福全",
+          "name": "優多紅柚茶凍",
+          "relevant": false
+        },
+        {
+          "brand": "清心福全",
+          "name": "相思紅豆奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "迷客夏",
+          "name": "桂香原片青",
+          "relevant": false
+        },
+        {
+          "brand": "可不可熟成茶行",
+          "name": "麗春紅茶",
+          "relevant": false
+        },
+        {
+          "brand": "春水堂",
+          "name": "冰梅凍飲",
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "query": "一沐日綠茶",
+      "label_fields": {
+        "brand": "一沐日",
+        "tea": "綠茶"
+      },
+      "relevant_products": 6,
+      "precision_at_10": 0.0,
+      "recall_at_10": 0.0,
+      "ndcg_at_10": 0.0,
+      "top10": [
+        {
+          "brand": "一沐日",
+          "name": "手採高山青",
+          "relevant": false
+        },
+        {
+          "brand": "水巷茶弄",
+          "name": "寒天愛玉",
+          "relevant": false
+        },
+        {
+          "brand": "一沐日",
+          "name": "島韻紅茶",
+          "relevant": false
+        },
+        {
+          "brand": "可不可熟成茶行",
+          "name": "春檸綠茶",
+          "relevant": false
+        },
+        {
+          "brand": "上宇林",
+          "name": "三窨花綠茶",
+          "relevant": false
+        },
+        {
+          "brand": "上宇林",
+          "name": "精鐉雨林",
+          "relevant": false
+        },
+        {
+          "brand": "可不可熟成茶行",
+          "name": "春芽綠茶",
+          "relevant": false
+        },
+        {
+          "brand": "水巷茶弄",
+          "name": "冬瓜青",
+          "relevant": false
+        },
+        {
+          "brand": "烏弄原茶",
+          "name": "春枝梅綠",
+          "relevant": false
+        },
+        {
+          "brand": "上宇林",
+          "name": "黃金多多綠",
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "query": "春水堂珍珠奶茶",
+      "label_fields": {
+        "brand": "春水堂",
+        "milkAny": true,
+        "topping": "珍珠"
+      },
+      "relevant_products": 4,
+      "precision_at_10": 0.2,
+      "recall_at_10": 0.5,
+      "ndcg_at_10": 0.5135312443624667,
+      "top10": [
+        {
+          "brand": "春水堂",
+          "name": "珍珠奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "翰林茶館",
+          "name": "原創珍珠奶茶",
+          "relevant": false
+        },
+        {
+          "brand": "Tea’s原味",
+          "name": "小珍珠奶茶／奶綠",
+          "relevant": false
+        },
+        {
+          "brand": "水巷茶弄",
+          "name": "珍珠奶茶",
+          "relevant": false
+        },
+        {
+          "brand": "翰林茶館",
+          "name": "原創珍珠鮮奶茶",
+          "relevant": false
+        },
+        {
+          "brand": "COMEBUY",
+          "name": "雙Q奶茶1號",
+          "relevant": false
+        },
+        {
+          "brand": "水巷茶弄",
+          "name": "紅豆珍珠奶茶",
+          "relevant": false
+        },
+        {
+          "brand": "春水堂",
+          "name": "觀音珍珠奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "烏弄原茶",
+          "name": "珍珠醇奶茶",
+          "relevant": false
+        },
+        {
+          "brand": "五桐號",
+          "name": "珍珠奶茶",
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "query": "植物奶飲料",
+      "label_fields": {
+        "milk": "植物奶"
+      },
+      "relevant_products": 61,
+      "precision_at_10": 0.4,
+      "recall_at_10": 0.06557377049180328,
+      "ndcg_at_10": 0.3565964385966262,
+      "top10": [
+        {
+          "brand": "CoCo都可",
+          "name": "綠豆沙牛乳",
+          "relevant": false
+        },
+        {
+          "brand": "清心福全",
+          "name": "濃情巧克力",
+          "relevant": false
+        },
+        {
+          "brand": "好了啦紅茶冰",
+          "name": "黑豆奶綠茶",
+          "relevant": true
+        },
+        {
+          "brand": "好了啦紅茶冰",
+          "name": "黑豆奶豆漿",
+          "relevant": true
+        },
+        {
+          "brand": "清心福全",
+          "name": "濃情巧克力拿鐵",
+          "relevant": false
+        },
+        {
+          "brand": "八曜和茶",
+          "name": "505極韻花生白奶茶",
+          "relevant": true
+        },
+        {
+          "brand": "好了啦紅茶冰",
+          "name": "可可豆漿",
+          "relevant": true
+        },
+        {
+          "brand": "星巴克",
+          "name": "冰馥列白",
+          "relevant": false
+        },
+        {
+          "brand": "清心福全",
+          "name": "益生菌纖維奶茶",
+          "relevant": false
+        },
+        {
+          "brand": "清心福全",
+          "name": "頂級可可",
+          "relevant": false
+        }
+      ]
+    }
+  ],
+  "means": {
+    "precision_at_10": 0.6958333333333334,
+    "recall_at_10": 0.12153897300746493,
+    "ndcg_at_10": 0.7221249525454474
+  },
+  "gpu_active_mib": 390.2294921875,
+  "gpu_driver_mib": 1034.6875
+}

@@ -1,4 +1,4 @@
-"""Unsupervised dropout-view contrastive fine-tuning of MacBERT on menu text.
+"""Unsupervised dropout-view contrastive fine-tuning of Chinese BERT encoders on menu text.
 
 No price target, user records, synthetic query labels, or production publishing.
 """
@@ -78,15 +78,15 @@ def train(args, report, out):
                       'removed_duplicate_texts': products - sum(map(len, splits.values()))}
     report['environment'] = {'device': str(device), 'packages': {
         n: importlib.metadata.version(n) for n in ['torch', 'transformers', 'safetensors']}}
-    revision = model_info('hfl/chinese-macbert-base').sha
-    report['source'] = {'model': 'hfl/chinese-macbert-base', 'revision': revision,
+    revision = model_info(args.model, revision=args.revision).sha
+    report['source'] = {'model': args.model, 'revision': revision,
                         'license': 'Apache-2.0'}
     report['attention_implementation'] = 'eager (MPS SDPA does not support dropout)'
     print('Loading pinned official model ' + revision, flush=True)
-    tokenizer = AutoTokenizer.from_pretrained(report['source']['model'], revision=revision)
+    tokenizer = AutoTokenizer.from_pretrained(report['source']['model'], revision=revision, trust_remote_code=False)
     # Official pinned repo has pytorch_model.bin; restrict loading to tensor weights.
     model = AutoModel.from_pretrained(report['source']['model'], revision=revision,
-                                      use_safetensors=False, weights_only=True,
+                                      use_safetensors=False, weights_only=True, trust_remote_code=False,
                                       attn_implementation='eager').to(device)
 
     def embed(texts, encoder=model):
@@ -172,6 +172,8 @@ def train(args, report, out):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--model', choices=['hfl/chinese-macbert-base', 'hfl/chinese-roberta-wwm-ext'], default='hfl/chinese-macbert-base')
+    p.add_argument('--revision', help='Pin official source revision; omission resolves current official commit')
     p.add_argument('--epochs', type=int, default=1)
     p.add_argument('--batch-size', type=int, default=32)
     p.add_argument('--max-length', type=int, default=64)
@@ -183,7 +185,9 @@ def main():
     args = p.parse_args()
     if args.epochs < 1 or args.batch_size < 2 or args.max_length < 8 or args.learning_rate <= 0 or args.temperature <= 0:
         p.error('Invalid training settings')
-    run_id = datetime.now(TZ).strftime('%Y%m%dT%H%M%S') + '-macbert-contrastive'
+    model_label = 'MacBERT' if args.model == 'hfl/chinese-macbert-base' else 'RoBERTa-WWM'
+    run_suffix = 'macbert' if model_label == 'MacBERT' else 'roberta-wwm'
+    run_id = datetime.now(TZ).strftime('%Y%m%dT%H%M%S') + '-' + run_suffix + '-contrastive'
     out = ROOT / 'training_artifacts' / run_id
     out.mkdir(parents=True, exist_ok=False)
     started = time.perf_counter()
@@ -194,7 +198,7 @@ def main():
               'script_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
               'task': 'unsupervised dropout-view contrastive fine-tuning on drink text',
               'published': False, 'updated_users': 0,
-              'changes': ['MacBERT domain contrastive fine-tuning on current catalog', 'product/name grouped holdout',
+              'changes': [model_label + ' domain contrastive fine-tuning on current catalog', 'product/name grouped holdout',
                           'no price or nutrition targets', 'no user information'],
               'limitations': ['not official MacBERT correction/WWM/SOP pretraining reproduction',
                              'no manually labelled query relevance evaluation',
@@ -219,13 +223,13 @@ def main():
         reports.mkdir(exist_ok=True)
         (reports / (run_id + '.json')).write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
         md = reports / (run_id + '.md')
-        md.write_text('# MacBERT 飲料語意微調報告\n\n'
+        md.write_text('# ' + model_label + ' 飲料語意微調報告\n\n'
                       '本次學習飲料文字的向量表示，不訓練價格或用戶長期意圖。'
                       '驗證 loss 只衡量對比任務，不代表消費者推薦品質改善；未更新網站模型。\n\n'
                       + comparison_markdown(report) + '\n實際開始／結束、資料、參數、更新步數、驗證、權重與限制如下：\n\n```json\n' +
                       json.dumps(report, ensure_ascii=False, indent=2) + '\n```\n')
         with (ROOT / 'daily.txt').open('a') as f:
-            f.write(f"\n[{report['ended_at']}｜MacBERT 飲料語意微調]\n"
+            f.write(f"\n[{report['ended_at']}｜{model_label} 飲料語意微調]\n"
                     f"- 狀態：{report['status']}；步數：{report.get('optimizer_steps', 0)}；耗時：{report['duration_seconds']} 秒。\n"
                     '- 任務：飲料文字無監督對比學習，沒有價格目標、沒有用戶資料。\n'
                     f'- 完整更新報告：{md.relative_to(ROOT)}；同名 JSON 保存參數與實測。\n'

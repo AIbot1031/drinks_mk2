@@ -1082,3 +1082,11 @@ Git 同步：main commit 50003b3455595eacdf4e264f9da59eebde1dda19 已推送；v2
 - 測試：92項Node／HTTP序列測試全通過、無略過；8項Python既有Qwen／編排測試通過（替身非額外訓練）。型別、build、Wrangler dry-run通過；續作後8項心情單元／HTTP再次通過。修正否定誤判與正規化遺失來源，並行HTTP角色競爭改序列測試。瀏覽器確認可展開文獻連結，畫面 docs/screenshots/3.0-wellbeing.png。
 - 部署：drinks-mk2正式版本d11bff4b-57df-4b68-93f2-b5c6ad5b9332，部署列表100%。4資產hash一致，手動與對話各6款且全部杯型符合已知0mg／預算；初次health回2.5.1，後續無快取讀取3.0.0，原因未確定。安全驗證 docs/3.0部署驗證.json，只用合成訪客請求，不登入或寫真實偏好。
 - Git／限制：本次功能、規則、合成訓練資料與安全報告準備提交推送，最終同步結果另記；不納入權重、憑證、原始互動、ZIP或其他工作中的編碼器候選檔案。有限詞彙可能漏判反諷或複雜指涉；不宣稱身心療效，未新增路徑C／AgentC／Workers AI。
+
+[2026-10-15T11:02:10+08:00｜3.1 RoBERTa 正式整合與部署]
+- 規劃：依先前授權，確認正式3.0.0及GitHub00c0f8e後才接續3.1，不覆蓋或移除3.0情境規則。
+- 實作：RoBERTa候選報告核對與執行入口、可stage/activate/rollback安裝程式、實際模型mode/trace/UI/監控身分；版本統一3.1.0。保留原操作槽、MacBERT回復與TF-IDF；Qwen/RelGT權重及每日排程不變。未重新訓練。
+- 測試：型別/build/dry-run/JS語法/diff通過；隔離Worker96項Node／HTTP無失敗略過、模型環境16項Python通過。實際RoBERTa手動/對話/3退步查詢5項、停止本機agent後同5項TF-IDF備援通過；正式5項及四資產hash一致。初次正式測試誤假設Qwen立即出卡，補測既有追問口味的第二輪後通過，未修改Qwen行為。
+- 部署：Worker526a505f-9206-46f5-a2f6-8d211b169a75；health/頁尾3.1.0，正式ready=true、模型roberta-wwm-2d7aecfdae2f3374、目錄6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab。實際回復MacBERT8e08de527639956d並驗證6款已知0mg，再切回RoBERTa並重測成功；監控標示正確。
+- Git：本段記錄時尚待提交／推送核對；僅備份自身公開程式、比較、訓練報告與文件，不提交權重、憑證、原始互動、ZIP或其他工作截圖。
+- 限制／後續：24合成查詢欄位代理評估，非人工口味或身心療效；3類查詢退步保留完整報告。模型回復實測，Worker程式回滾未實際演練。同步GitHub並核對完成後停止此追蹤，避免重複發布。完整docs/3.1更新說明.md、docs/3.1部署驗證.json。

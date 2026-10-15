@@ -17,7 +17,7 @@ except ImportError:
 
 PORT=8792
 BASE=Path(__file__).resolve().parent
-SERVICES=[('qwen','Qwen 對話理解','local.drinks-mk2.qwen','DrinksMk2LLM','qwen.log'),('macbert','MacBERT 語意排序','local.drinks-mk2.macbert','DrinksMk2','macbert.log'),('relgt','RelGT 個人化排序','local.drinks-mk2.relgt','DrinksMk2RelGT','relgt.log'),('relay','網站安全轉接','local.drinks-mk2.qwen-relay','DrinksMk2LLM','qwen-relay.log')]
+SERVICES=[('qwen','Qwen 對話理解','local.drinks-mk2.qwen','DrinksMk2LLM','qwen.log'),('macbert','中文編碼器語意排序','local.drinks-mk2.macbert','DrinksMk2','macbert.log'),('relgt','RelGT 個人化排序','local.drinks-mk2.relgt','DrinksMk2RelGT','relgt.log'),('relay','網站安全轉接','local.drinks-mk2.qwen-relay','DrinksMk2LLM','qwen-relay.log')]
 lock=threading.Lock();cached=None;last_sample=0
 
 def lan_config():
@@ -67,7 +67,7 @@ def events(runtime,name):
                 value=v.get(k)
                 if isinstance(value,(int,float)) and math.isfinite(value):item[k]=value
                 elif k=='device' and value in ['mps','mlx','cpu']:item[k]=value
-                elif k=='modelVersion' and isinstance(value,str) and re.fullmatch(r'(?:macbert-[a-f0-9]{16}|relgt-temporal-[a-f0-9]{16}|qwen(?:3-8b|3\.5-9b)-4bit-[a-f0-9]{12}(?:-intent-v[234567])?)',value):item[k]=value
+                elif k=='modelVersion' and isinstance(value,str) and re.fullmatch(r'(?:(?:macbert|roberta-wwm)-[a-f0-9]{16}|relgt-temporal-[a-f0-9]{16}|qwen(?:3-8b|3\.5-9b)-4bit-[a-f0-9]{12}(?:-intent-v[234567])?)',value):item[k]=value
             result.append(item)
         except (ValueError,TypeError,KeyError):continue
     return result
@@ -90,7 +90,9 @@ def snapshot():
             history=events(runtime,log);all_events.extend(history)
             own=[e for e in history if e['pid']==pid]
             memory=next((e for e in reversed(own) if 'gpuActiveMB' in e),{})
-            rows.append({'service':service,'title':title,'running':bool(pid),'pid':pid,**(process_stats(pid) if pid else {}),'lastEvent':own[-1] if own else None,'gpuMemory':{k:v for k,v in memory.items() if k.startswith('gpu')},'gpuSampleAt':memory.get('at')})
+            model_version=next((e['modelVersion'] for e in reversed(own) if 'modelVersion' in e),None)
+            if service=='macbert' and model_version:title=('RoBERTa-WWM' if model_version.startswith('roberta-wwm-') else 'MacBERT')+' 語意排序'
+            rows.append({'modelVersion':model_version,'service':service,'title':title,'running':bool(pid),'pid':pid,**(process_stats(pid) if pid else {}),'lastEvent':own[-1] if own else None,'gpuMemory':{k:v for k,v in memory.items() if k.startswith('gpu')},'gpuSampleAt':memory.get('at')})
         rows.append({'service':'monitor','title':'監控程式本身','running':True,'pid':os.getpid(),**process_stats(os.getpid()),'gpuMemory':{}})
         total=command(['/usr/sbin/sysctl','-n','hw.memsize']).strip()
         cached={'at':datetime.now(timezone.utc).isoformat(),'logicalCores':os.cpu_count(),'systemRAMGB':round(int(total)/1073741824,1) if total.isdigit() else None,'cpuTotal':round(sum(r.get('cpu',0) for r in rows),1),'rssTotalMB':round(sum(r.get('rssMB',0) for r in rows),1),'processes':rows,'events':sorted(all_events,key=lambda e:e['at'],reverse=True)[:40]}
