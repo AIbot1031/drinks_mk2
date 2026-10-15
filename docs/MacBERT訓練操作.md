@@ -1,3 +1,5 @@
+> 2026-10-15：每日自動訓練已改為 RoBERTa，包含自動排序前後比較，見 [RoBERTa每日訓練](RoBERTa每日訓練.md)。下方 MacBERT 排程敘述保留為歷史；手動入口仍可使用。
+
 # MacBERT 飲料文字微調
 
 本次依使用者要求立即進行初次實驗，從官方 `hfl/chinese-macbert-base` 開始，解析並固定下載時的 Git revision；不是從零重做 MacBERT 官方預訓練，也不是用戶長期意圖訓練。

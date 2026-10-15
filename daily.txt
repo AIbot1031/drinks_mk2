@@ -1140,3 +1140,11 @@ Git 同步：main commit 50003b3455595eacdf4e264f9da59eebde1dda19 已推送；v2
 - 驗證：正式health與首頁頁尾皆3.1.0；遠端tag與本機v3.1.0解析均為已驗證功能提交5d75ec02514f235cfd36dfb49e5d5b522f3d1c14。GitHub Release targetCommitish相同，非draft／prerelease，list與releases/latest API均確認Latest=v3.1.0；對應CI38674200249為completed/success。Release：https://github.com/AIbot1031/drinks_mk2/releases/tag/v3.1.0。
 - 部署／Git：本輪無重新部署、版本更動或訓練；只同步本機tag與追加本核對紀錄，紀錄提交推送後讀回遠端。既有ZIP不加入Git。
 - 限制與後續：3.1發布、tag、Release及Latest已一致；本輪未重新跑推薦或訓練測試，使用既有已驗證提交與CI結果核對發布指向。
+
+[2026-10-15T19:08:23+08:00｜每日語意訓練切換 RoBERTa 與自動效果比較]
+- 規劃：使用者要求每日任務從MacBERT改RoBERTa並保留訓練前後比較；不要求立即多跑一輪三模型訓練。
+- 實作：run_daily_training.py改RoBERTa命令與報告suffix，使用--model hfl/chinese-roberta-wwm-ext --retrieval-eval；訓練入口自動跑固定24查詢前後檢索指標、耗時與退步清單；共同比較器輸出Markdown與JSON前後差值，評估缺失不補造。新增操作文件及失敗／改善／退步測試。
+- 排程：automation_update已更新既有relgt為「飲料網站 RelGT／RoBERTa／Qwen 每日訓練」，讀回ACTIVE、原聊天及每日Asia/Taipei02:00規則皆保留；未新增重複排程，RelGT及Qwen任務不變。
+- 測試：37項Python測試通過，--check及diff檢查通過。用既有官方base與既有75步RoBERTa權重實際驗證新增前後評估入口，非本次重訓；P@10 0.5875→0.6958、NDCG0.5905→0.7221，重現原結果。完整入口驗證docs/model-validation/20261015T190614-scheduled-roberta-evaluation.json。
+- 部署／Git：正式網站及線上權重未動，維持3.1.0；本機排程及候選產生流程調整，不建立新的網站版本或Release。程式／文件／安全報告提交推送後核對遠端；無憑證或權重加入Git。
+- 限制與後續：每次仍從固定官方revision開始，非線上權重續訓；欄位代理指標不等同人工口味滿意度。批次不自動發布，排程保留原發布驗證門檻。更新後首個真實每日訓練尚未發生，不宣稱已排程執行完成。操作說明docs/RoBERTa每日訓練.md。

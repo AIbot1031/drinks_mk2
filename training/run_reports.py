@@ -24,6 +24,15 @@ def add_comparison(report):
         epochs = report.get('epochs', [])
         metric('heldout_dropout_contrastive_loss', report['validation_before'],
                epochs[-1]['validation_loss'] if epochs else None, 'lower')
+    retrieval = report.get('retrieval_evaluation', {})
+    before_retrieval = retrieval.get('before', {})
+    after_retrieval = retrieval.get('after', {})
+    if before_retrieval:
+        for key in ['precision_at_10', 'recall_at_10', 'ndcg_at_10']:
+            metric('catalog_proxy_' + key, before_retrieval.get('means', {}).get(key),
+                   after_retrieval.get('means', {}).get(key), 'higher')
+        for key in ['query_median_ms', 'query_p95_ms', 'index_s']:
+            metric('retrieval_' + key, before_retrieval.get(key), after_retrieval.get(key), 'lower')
     # Historical price experiment only; the executable is disabled by user request.
     for name in ['mae_ntd', 'rmse_ntd']:
         if 'before_training_validation' in report:

@@ -53,10 +53,49 @@ def corpus(drinks, seed):
     return splits, len(groups)
 
 
+def evaluate_retrieval(args, report, out, source, phase):
+    """Fixed query/catalog proxy in a fresh process; failures fail the run honestly."""
+    from scripts.benchmark_encoders import SPECS, relevant
+    import inspect
+    protocol = {
+        'catalog_sha256': hashlib.sha256((ROOT / 'data/catalog.json').read_bytes()).hexdigest(),
+        'fixture_sha256': hashlib.sha256(json.dumps(SPECS, ensure_ascii=False).encode()).hexdigest(),
+        'label_rule_sha256': hashlib.sha256(inspect.getsource(relevant).encode()).hexdigest(),
+        'queries': len(SPECS), 'kind': 'catalog-field relevance proxy; not human taste satisfaction',
+        'same_catalog_seen_during_training': True,
+    }
+    report.setdefault('retrieval_evaluation', {'protocol': protocol, 'published': False})
+    if report['retrieval_evaluation']['protocol'] != protocol:
+        raise RuntimeError('Retrieval evaluation protocol changed during training')
+    output = out / ('retrieval-' + phase + '.json')
+    command = [sys.executable, str(ROOT / 'scripts/benchmark_encoders.py'), '--worker',
+        '--name', phase, '--source', str(source), '--device', args.device, '--output', str(output)]
+    subprocess.run(command, cwd=ROOT, check=True)
+    result = json.loads(output.read_text())
+    if [x.get('query') for x in result.get('cases', [])] != [q for q, _ in SPECS]:
+        raise RuntimeError('Incomplete or changed retrieval evaluation queries')
+    if hashlib.sha256((ROOT / 'data/catalog.json').read_bytes()).hexdigest() != protocol['catalog_sha256']:
+        raise RuntimeError('Catalog changed during retrieval evaluation')
+    metrics = result.get('means', {})
+    import math
+    if any(not isinstance(metrics.get(k), (int, float)) or not math.isfinite(metrics[k])
+           for k in ['precision_at_10', 'recall_at_10', 'ndcg_at_10']):
+        raise RuntimeError('Missing or nonfinite retrieval metrics')
+    if phase == 'after':
+        before = report['retrieval_evaluation']['before']
+        if [x['query'] for x in before['cases']] != [x['query'] for x in result['cases']]:
+            raise RuntimeError('Query order differs between evaluations')
+        report['retrieval_evaluation']['delta_after_minus_before'] = {
+            k: metrics[k] - before['means'][k] for k in metrics}
+        report['retrieval_evaluation']['regressions'] = [a['query'] for a, b in zip(before['cases'], result['cases'])
+            if b['ndcg_at_10'] < a['ndcg_at_10'] - 1e-9]
+    report['retrieval_evaluation'][phase] = result
+
+
 def train(args, report, out):
     import torch
     import torch.nn.functional as F
-    from huggingface_hub import model_info
+    from huggingface_hub import model_info, snapshot_download
     from transformers import AutoModel, AutoTokenizer
 
     random.seed(args.seed)
@@ -82,6 +121,9 @@ def train(args, report, out):
     report['source'] = {'model': args.model, 'revision': revision,
                         'license': 'Apache-2.0'}
     report['attention_implementation'] = 'eager (MPS SDPA does not support dropout)'
+    if args.retrieval_eval:
+        source = snapshot_download(args.model, revision=revision, allow_patterns=['*.json', 'vocab.txt', 'pytorch_model.bin'])
+        evaluate_retrieval(args, report, out, source, 'before')
     print('Loading pinned official model ' + revision, flush=True)
     tokenizer = AutoTokenizer.from_pretrained(report['source']['model'], revision=revision, trust_remote_code=False)
     # Official pinned repo has pytorch_model.bin; restrict loading to tensor weights.
@@ -168,11 +210,15 @@ def train(args, report, out):
     report['checkpoint'] = str(checkpoint.relative_to(ROOT))
     report['checkpoint_sha256'] = hashlib.sha256(checkpoint.read_bytes()).hexdigest()
     report['status'] = 'trained_unvalidated_for_retrieval'
+    if args.retrieval_eval:
+        evaluate_retrieval(args, report, out, out / 'model', 'after')
+        report['status'] = 'trained_proxy_evaluated_not_published'
 
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--model', choices=['hfl/chinese-macbert-base', 'hfl/chinese-roberta-wwm-ext'], default='hfl/chinese-macbert-base')
+    p.add_argument('--retrieval-eval', action='store_true', help='Run fixed query ranking before/after; no deployment')
     p.add_argument('--revision', help='Pin official source revision; omission resolves current official commit')
     p.add_argument('--epochs', type=int, default=1)
     p.add_argument('--batch-size', type=int, default=32)
@@ -200,7 +246,9 @@ def main():
               'published': False, 'updated_users': 0,
               'changes': [model_label + ' domain contrastive fine-tuning on current catalog', 'product/name grouped holdout',
                           'no price or nutrition targets', 'no user information'],
-              'limitations': ['not official MacBERT correction/WWM/SOP pretraining reproduction',
+              'limitations': ['ranking labels are catalog proxies, not human judgements or unseen-catalog tests',
+                             'fresh official initialization each run, not continued training from the live checkpoint',
+                             'not official MacBERT correction/WWM/SOP pretraining reproduction',
                              'no manually labelled query relevance evaluation',
                              'similar drinks may be false in-batch negatives',
                              'contrastive validation loss does not prove ranking improvements',
