@@ -1,0 +1,63 @@
+{
+  "checkedAt": "2026-10-15T06:05:56.469Z",
+  "version": "3.1.0",
+  "health": {
+    "ok": true,
+    "total": 5781,
+    "version": "3.1.0"
+  },
+  "direct": {
+    "count": 6,
+    "variantsChecked": 9,
+    "filters": {
+      "excludedBrands": [],
+      "excludedToppings": [],
+      "maxPrice": 80,
+      "maxCaffeine": 0
+    },
+    "hasSleepSource": true,
+    "mode": {
+      "routeA": "roberta-wwm",
+      "routeAModel": "roberta-wwm-2d7aecfdae2f3374",
+      "routeAFallback": null,
+      "routeB": "feature-graph",
+      "routeBModel": null,
+      "routeBFallback": "guest",
+      "personalized": false
+    }
+  },
+  "negatedSleep": {
+    "maxCaffeine": null,
+    "passed": true
+  },
+  "conversation": {
+    "count": 6,
+    "variantsChecked": 8,
+    "sleepCap": 0,
+    "budget": 80,
+    "releasedCap": null,
+    "releasedBudget": 80
+  },
+  "assets": [
+    {
+      "file": "index.html",
+      "sha256": "f3758d007723e4c4ee38e0dc3ff97a90cc6b715e01230c4154888264a828376d"
+    },
+    {
+      "file": "app.js",
+      "sha256": "9704b1cd13a1a51c42037aaef68018e1e648bf015d3716aaf6b2cfd942d24e04"
+    },
+    {
+      "file": "chat.js",
+      "sha256": "131c08a78a4e73c4ff7cdc22409c65a5f630fedd62efbf7c645b1d5fefecd995"
+    },
+    {
+      "file": "wellbeing-sources.js",
+      "sha256": "fefa9ee0d836c1bf5e2440a332a450cb5ac5030e989802f0bb4e2e0060c7dc71"
+    }
+  ],
+  "scope": "Synthetic guest probes only; no account data, raw interactions, trace IDs or weights included.",
+  "priorCheck": {
+    "result": "An earlier production probe failed to see maxCaffeine=0 during the 3.0 release. This current check passes with 3.1.0; the earlier failure cause was not established."
+  }
+}
