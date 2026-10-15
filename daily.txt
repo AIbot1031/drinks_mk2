@@ -1153,3 +1153,10 @@ Git 同步：main commit 50003b3455595eacdf4e264f9da59eebde1dda19 已推送；v2
 - Git：每日RoBERTa與自動排序前後比較提交315cd0feeb68c742029f26217f12b21c86269d5a已推送，遠端main完整SHA讀回與本機一致；當時GitHub CI38725215549仍in_progress，未宣稱通過。37項本機Python測試及既有權重評估入口已通過。
 - 研究說明：圖中避免原始CLS直接比相似度的方向已落實為mean pooling/L2/飲料無監督對比微調；尚未接入指定現成text2vec或分類head，也不是文件RAG。官方text2vec-base-chinese模型頁說明其為MacBERT底座CoSENT句向量模型，不將它誤稱RoBERTa或保證推薦提升。
 - 後續資料：先提供固定需求查詢與飲料ID相關性人工評分，再整理訓練配對與混淆反例；訓練／驗證／最終測試按意圖分組隔離。數量建議僅規劃起點，不是改善保證；未執行新模型下載、訓練或部署，未要求個資。
+
+[2026-10-15T19:12:40+08:00｜已完成3.1追蹤再次喚醒核對與停止]
+- 規劃：收到舊發布heartbeat，依完成後停止追蹤指示核對，不重複部署。
+- 實作：本次讀回3-0-roberta-3-1為ACTIVE，與先前PAUSED紀錄不同，原因未確認；透過automation_update再設PAUSED，實際檔案讀回已確認。每日relgt仍ACTIVE、名稱RoBERTa、原每日02:00規則不變。
+- 驗證：正式health／頁尾3.1.0，RoBERTa版本roberta-wwm-2d7aecfdae2f3374 ready=true；Latest及tag皆v3.1.0，指向5d75ec02514f235cfd36dfb49e5d5b522f3d1c14；原遠端main與本機2f17ac210ceb8df819d7e27934a58a7aba11c130一致。
+- 部署／Git：無部署、訓練、權重或版本修改，僅停止已完成追蹤；本核對紀錄提交推送後讀回遠端，不將既有ZIP加入Git。
+- 限制與後續：不推測追蹤恢復ACTIVE的原因；目前停止狀態已讀回，每日RoBERTa任務保留。
