@@ -17,6 +17,6 @@ export function interactionSummary(trace={}) {
  return {chat,input:chat?trace.conversation?.message:trace.request?.query??trace.input?.query,
   originalSaved:chat?typeof trace.conversation?.message==='string':typeof trace.request?.query==='string',
   selectedFilters:trace.request?.filters??trace.input?.filters??{},
-  reply:chat&&typeof trace.conversation?.assistantMessage==='string'?trace.conversation.assistantMessage:null,
+  reply:chat&&typeof trace.conversation?.assistantMessage==='string'?trace.conversation.assistantMessage:!chat&&typeof trace.manualUnderstanding?.assistantMessage==='string'?trace.manualUnderstanding.assistantMessage:null,
   results:trace.consumerOutput?.results??[]};
 }

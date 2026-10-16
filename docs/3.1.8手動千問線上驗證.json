@@ -1,0 +1,29 @@
+{
+  "version": "3.1.8",
+  "workerVersion": "562c0d08-cd2d-40f2-b4ae-a736e54232e2",
+  "assetsMatched": [
+    "app.js",
+    "review-summary.js",
+    "index.html",
+    "internal.html"
+  ],
+  "realQwenModel": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+  "checks": {
+    "flavour": true,
+    "formPrice": true,
+    "mixedNumeric": true,
+    "allSelectableVariants": true,
+    "clarification": true,
+    "noGuessedCap": true,
+    "milkTeaExclusion": true,
+    "formOnlyNoQwen": true,
+    "traceParserAndVisibleMessage": true
+  },
+  "models": {
+    "qwen": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+    "encoder": "roberta-wwm-2d7aecfdae2f3374",
+    "relgt": "relgt-temporal-05757994850db8f6",
+    "allReady": true
+  },
+  "note": "Synthetic smoke inputs only. No raw user traces, credentials, cookies or model weights saved."
+}

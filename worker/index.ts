@@ -1,3 +1,4 @@
+import {prepareManualUnderstanding,applyManualUnderstanding} from './manual-understanding';
 import {validateTrainingSummary} from './training-summary';
 import {appVersion} from './app-version';
 import {catalogFeatures,featureSchemaVersion,preferenceProfile,chatHistory} from './catalog-features';
@@ -107,26 +108,33 @@ export default {
         if (origin && origin !== url.origin) return json({error: '請從本站送出查詢'}, 403);
         const body = await readBody(request);
         let conversation = url.pathname === '/api/chat/recommend' ? conversationTurn(body,Object.keys(catalog.brands)) : null;
+        const manualOriginal=conversation?null:validateInput(body);
+        const manual=manualOriginal?.query?prepareManualUnderstanding(manualOriginal,Object.keys(catalog.brands)):null;
+        const understandingTurn=conversation??manual?.turn;
+        let manualParsed:ReturnType<typeof applyManualUnderstanding>=null;
+        let manualModelAttempted=false;
         const user=await currentUser(request,env.TRACE_DB);
         const userPrefs=productPreferences.normalize(user?storedPreferences(user.preferences):validateInput({query:'',likedIds:(body as Record<string,unknown>).likedIds,dislikedIds:(body as Record<string,unknown>).dislikedIds}));
         const history=conversation?chatHistory((body as Record<string,unknown>).history):[];
         let llm:{modelVersion:string;durationMs:number;ack:string;clarify:boolean}|null=null;
-        if(conversation&&!conversation.reset&&!conversation.next&&!conversation.followUp&&!conversation.constraintOnly&&!(/過敏|花生|堅果|乳糖不耐|麩質/.test(conversation.state.guard)||(/忌口/.test(conversation.state.guard)&&!conversation.state.guard.startsWith('忌口：')))){
+        if(understandingTurn&&(manual||(!understandingTurn.reset&&!understandingTurn.next&&!understandingTurn.followUp&&!understandingTurn.constraintOnly))&&!(/過敏|花生|堅果|乳糖不耐|麩質/.test(understandingTurn.state.guard)||(/忌口/.test(understandingTurn.state.guard)&&!understandingTurn.state.guard.startsWith('忌口：')))){
+          manualModelAttempted=!!manual;
           try{
-            const result=await env.SEMANTIC_BRIDGE.getByName('inference-v2').conversation({message:conversation.message,state:conversation.state,
+            const result=await env.SEMANTIC_BRIDGE.getByName('inference-v2').conversation({message:understandingTurn.message,state:understandingTurn.state,
               history,preferenceProfile:preferenceProfile(drinks,userPrefs.likedIds,userPrefs.dislikedIds),catalogFeatures:catalogFeatures(drinks),brands:Object.keys(catalog.brands),tea:[...new Set(drinks.flatMap(d=>d.tea))],toppings:[...new Set(drinks.flatMap(d=>d.toppings))]});
-            const parsed=applyLlmUnderstanding(conversation,result,Object.keys(catalog.brands),[...new Set(drinks.flatMap(d=>d.tea))],[...new Set(drinks.flatMap(d=>d.toppings))]);
-            if(parsed){conversation={...conversation,state:parsed.state,input:parsed.input};llm={modelVersion:parsed.modelVersion,durationMs:parsed.durationMs,ack:parsed.ack,clarify:parsed.clarify};}
+            const parsed=manual?applyManualUnderstanding(manual,result,Object.keys(catalog.brands),[...new Set(drinks.flatMap(d=>d.tea))],[...new Set(drinks.flatMap(d=>d.toppings))]):applyLlmUnderstanding(conversation!,result,Object.keys(catalog.brands),[...new Set(drinks.flatMap(d=>d.tea))],[...new Set(drinks.flatMap(d=>d.toppings))]);
+            if(parsed){if(manual)manualParsed=parsed;else conversation={...conversation!,state:parsed.state,input:parsed.input};llm={modelVersion:parsed.modelVersion,durationMs:parsed.durationMs,ack:parsed.ack,clarify:parsed.clarify};}
           }catch{/* Keep the validated rule turn; no relaxed constraints. */}
         }
-        const input = conversation ? validateInput({...conversation.input, likedIds:(body as Record<string,unknown>).likedIds, dislikedIds:(body as Record<string,unknown>).dislikedIds, excludedIds:conversation.next ? (body as Record<string,unknown>).excludedIds : []}) : validateInput(body);
-        const submittedInput=conversation?null:{query:input.query,filters:structuredClone(input.filters)};
+        const input = conversation ? validateInput({...conversation.input, likedIds:(body as Record<string,unknown>).likedIds, dislikedIds:(body as Record<string,unknown>).dislikedIds, excludedIds:conversation.next ? (body as Record<string,unknown>).excludedIds : []}) :manualParsed?.input??manual?.turn.input??manualOriginal!;
+        const submittedInput=manualOriginal?{query:manualOriginal.query,filters:structuredClone(manualOriginal.filters)}:null;
         const parsedQuery=understand(input,Object.keys(catalog.brands));
         input.filters=parsedQuery.filters;
         input.query=milkTeaRetrievalQuery(input.query,input.filters.milkTea===false);
         if(conversation&&!parsedQuery.blocked)input.query=flavorQuery(input.query);
         Object.assign(input,userPrefs);
-        const needsClarification=!!conversation?.followUp||!!llm?.clarify;
+        const manualFollowUp=manual?.turn.followUp;
+        const needsClarification=!!conversation?.followUp||!!manualFollowUp||!!llm?.clarify;
         if(needsClarification)input.query='等待對話釐清：';
         const pool=engine.candidatePool(input);
         let semantic;
@@ -161,15 +169,17 @@ export default {
         if(!consumerContractMatches(input.filters,response.filters,response.results)){console.error(JSON.stringify({event:'recommendation_contract_failed'}));return json({error:'這次結果與篩選條件不一致，已停止顯示，請重試。'},503);}
         if(conversation){conversation.state.filters=response.filters;if(!needsClarification&&!response.blocked)conversation.state.query=response.query;}
         if(conversation){response.warnings=[...new Set([...response.warnings,...conversation.warnings])];}
+        if(manual){response.warnings=[...new Set([...response.warnings,...manual.rules.warnings,...manual.turn.warnings,...(manualFollowUp?[manualFollowUp.message]:[])])];}
         if(conversation)Object.assign(trace.understanding,{llmUsed:!!llm,parser:llm?'qwen-mac':'rules',llmModelVersion:llm?.modelVersion??null,llmDurationMs:llm?.durationMs??null,llmAction:needsClarification?'clarify':'recommend',llmFeatureSchema:llm?featureSchemaVersion:null,llmCatalogVersion:llm?catalogVersion:null,consumerWarnings:response.warnings});
-        const assistantMessage=conversation?.followUp?.message??(llm?.clarify?llm.ack:response.blocked
+        if(manual)Object.assign(trace.understanding,{llmUsed:!!llm,parser:llm?'qwen-mac':'rules',llmModelVersion:llm?.modelVersion??null,llmDurationMs:llm?.durationMs??null,llmAction:needsClarification?'clarify':'recommend',llmAttempted:manualModelAttempted,consumerWarnings:response.warnings});
+        const assistantMessage=manualFollowUp?.message??conversation?.followUp?.message??(llm?.clarify?llm.ack:response.blocked
           ? '這些條件目前無法確認，請查看說明。重新開始可以清除本輪條件。'
           : response.results.length
             ? `${llm?.ack??conversation?.ack??''} 找到 ${response.results.length} 杯符合條件的飲料。你可以繼續調整條件，或說「再推薦幾杯」。`
             : '目前沒有符合所有條件的飲料。你可以調整預算或條件，我不會自動放寬限制。');
         const traceId=crypto.randomUUID();
         const createdAt=new Date().toISOString();
-        const record={traceId,createdAt,...trace,...(conversation ? {interface:'conversation',conversation:{message:conversation.message,state:conversation.state,next:conversation.next,assistantMessage,needsClarification,choices:conversation.followUp?.choices??[]}} : {interface:'manual',request:submittedInput})};
+        const record={traceId,createdAt,...trace,...(conversation ? {interface:'conversation',conversation:{message:conversation.message,state:conversation.state,next:conversation.next,assistantMessage,needsClarification,choices:conversation.followUp?.choices??[]}} : {interface:'manual',request:submittedInput,manualUnderstanding:{modelVersion:llm?.modelVersion??null,attempted:manualModelAttempted,assistantMessage:needsClarification?assistantMessage:null,needsClarification}})};
         try {
           await env.TRACE_DB.prepare('INSERT INTO recommendation_traces (id,created_at,query,result_count,payload) VALUES (?,?,?,?,?)').bind(traceId,createdAt,input.query,response.results.length,JSON.stringify(record)).run();
         } catch {
@@ -177,7 +187,7 @@ export default {
           return json({error:'推薦紀錄暫時無法儲存，請稍後重試'},503);
         }
         console.log(JSON.stringify({event:'recommendation_saved',traceId,resultCount:response.results.length}));
-        return json({...response,traceId,...(conversation?{
+        return json({...response,traceId,...(!conversation?{understandingMode:llm?(llm.modelVersion.startsWith('qwen3.5-9b-')?'qwen3.5-9b':'qwen3-8b'):manualModelAttempted?'rules-fallback':'rules',understandingModel:llm?.modelVersion??null,needsClarification,manualMessage:assistantMessage}:{}),...(conversation?{
           state:conversation.state,next:conversation.next,
           chatMode:llm?(llm.modelVersion.startsWith('qwen3.5-9b-')?'qwen3.5-9b':'qwen3-8b'):conversation.followUp?'clarification':conversation.constraintOnly||conversation.next||conversation.reset?'quick-command':conversation.state.guard?'clarification':'rules-fallback',
           chatModel:llm?.modelVersion??null,needsClarification,assistantMessage,choices:conversation.followUp?.choices??[]

@@ -161,7 +161,7 @@ async function recommend(settings, next = false) {
   if (!next) exhausted = false;
   setBusy(true);
   // Batched exclusions are independent of personal dislikes and do not affect learned preferences.
-  $('#result-status').textContent = '正在比對你的偏好與飲料資料…';
+  $('#result-status').textContent = settings.query?'正在理解口味與條件，並比對飲料資料…':'正在比對你的偏好與飲料資料…';
   try {
     const value = await api('/api/recommend', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({...settings, limit:6, likedIds:Object.keys(feedback.liked), dislikedIds:feedback.disliked, excludedIds:next ? seen : []})});
     tags(value.filters);
@@ -177,10 +177,10 @@ async function recommend(settings, next = false) {
     $('#results').replaceChildren();
     if (!value.results.length) {
       $('#results').className = 'empty-state';
-      $('#results').append(el('span', '◡', 'empty-cup'), el('h3', value.blocked ? '先釐清條件，再幫你挑。' : '這次沒有符合的飲料'), el('p', value.blocked ? '請查看上方說明，調整需求後再查詢。' : '試著調整品牌、預算或營養上限。篩選條件不會自動放寬。'));
+      $('#results').append(el('span', '◡', 'empty-cup'), el('h3', value.needsClarification||value.blocked ? '先釐清條件，再幫你挑。' : '這次沒有符合的飲料'), el('p', value.needsClarification?value.manualMessage:value.blocked ? '請查看上方說明，調整需求後再查詢。' : '試著調整品牌、預算或營養上限。篩選條件不會自動放寬。'));
     } else value.results.forEach((r, i) => $('#results').append(card(r.drink, i, r)));
     $('#batch-actions').hidden = !value.results.length;
-    $('#result-status').textContent = `${value.mode.routeA==='roberta-wwm'?'語意搜尋：RoBERTa-WWM。 ':value.mode.routeA==='macbert'?'語意搜尋：MacBERT。':value.mode.routeAFallback?'Mac 暫時無法推論，改用 TF-IDF 備援。':'文字搜尋：TF-IDF。'} ${value.mode.routeB==='relgt'?'個人化排序：RelGT，已參考你的歷史互動。':value.mode.personalized?'個人化排序：收藏特徵圖。':'收藏喜歡的飲料，讓下次更貼近你的口味。'} ${next ? `已看過 ${seen.length} 杯。` : ''}`;
+    $('#result-status').textContent = `${value.understandingMode==='qwen3.5-9b'?'條件理解：Qwen3.5-9B。 ':value.understandingMode==='qwen3-8b'?'條件理解：Qwen3-8B。 ':value.understandingMode==='rules-fallback'?'Qwen 暫時無法解析，使用規則備援。 ':''}${value.mode.routeA==='roberta-wwm'?'語意搜尋：RoBERTa-WWM。 ':value.mode.routeA==='macbert'?'語意搜尋：MacBERT。':value.mode.routeAFallback?'Mac 暫時無法推論，改用 TF-IDF 備援。':'文字搜尋：TF-IDF。'} ${value.mode.routeB==='relgt'?'個人化排序：RelGT，已參考你的歷史互動。':value.mode.personalized?'個人化排序：收藏特徵圖。':'收藏喜歡的飲料，讓下次更貼近你的口味。'} ${next ? `已看過 ${seen.length} 杯。` : ''}`;
     refreshFeedbackButtons();
   } catch (error) {$('#result-status').textContent = `${error.message} ${$('#results .drink-card') ? '已保留上一份結果。' : ''}`;}
   finally {setBusy(false);}
