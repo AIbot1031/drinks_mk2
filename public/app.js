@@ -120,10 +120,11 @@ function card(d, index, rec, variants = d.variants || rec?.variants || []) {
   content.append(nutrition);
   const actions = el('div', '', 'card-actions');
   const like = el('button', '', ''); like.type = 'button'; like.dataset.like = d.id; like.dataset.product=productKey(d); like.setAttribute('aria-label', `收藏${d.brand}的${d.name}`);
+  like.title = '告訴系統你喜歡的口味，作為之後個人化推薦的參考。';
   like.onclick = () => {if(preferenceBusy||accountBusy)return;try{feedback=toggleProductPreference(feedback,d,'like');saveFeedback();}catch(error){$('#feedback-note').textContent=error.message;}};
   const dislike = el('button'); dislike.type = 'button'; dislike.dataset.dislike = d.id;dislike.dataset.product=productKey(d); dislike.setAttribute('aria-label', `標記不喜歡${d.brand}的${d.name}`);
   dislike.onclick = () => {if(preferenceBusy||accountBusy)return;try{feedback=toggleProductPreference(feedback,d,'dislike');saveFeedback();}catch(error){$('#feedback-note').textContent=error.message;}};
-  actions.append(like, dislike); content.append(actions);
+  actions.append(like, dislike); content.append(actions,el('p','按「喜歡這杯」，幫助系統了解你的口味，讓之後的推薦更貼近你。','preference-hint'));
   const details = el('details', '', 'card-details'); details.append(el('summary', '查看資料來源與備註'));
   details.append(el('p', `資料表「${d.sourceSheet || "飲料品項"}」第 ${d.sourceRow} 列。${d.status || ''}`));
   if (d.region) details.append(el('p', `適用地區／門市：${d.region}；容量：${d.volumeMl ?? '未知'} ml。`));

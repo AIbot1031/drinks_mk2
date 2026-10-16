@@ -124,3 +124,5 @@ body{background:radial-gradient(ellipse at 12% 18%,var(--mood-glow),transparent 
 .topping-choices label:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:3px}
 .topping-selection{font-size:13px;color:var(--green);line-height:1.7;margin:12px 0 0}
 #drink-scene{opacity:1}
+
+.preference-hint{font-size:12px;line-height:1.8;color:#667b5d;margin:10px 0 0;overflow-wrap:anywhere}
