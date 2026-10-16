@@ -1236,3 +1236,7 @@ Git 同步：main commit 50003b3455595eacdf4e264f9da59eebde1dda19 已推送；v2
 - 文件：docs/3.1.4輸入回覆對照.md、線上安全驗證 JSON、截圖（本機合成資料）；報告未寫原始用戶內容或憑證。
 - Git：接續提交／推送並建立 v3.1.4 tag／Release，核對 Latest；既有訓練報告與使用者 ZIP 不納入本次提交。
 - 限制：舊聊天未保存的回覆無法完整回放，新紀錄開始可對照實際文字。
+
+[2026-10-16T14:07:14+08:00｜3.1.4 發布同步核對]
+- GitHub main／v3.1.4 已分別核對為 ff058e7cf25ebeeabdc6427106ead64ec612e0ce；Release Latest=v3.1.4，正式 health 與後台 3.1.4。部署、推送、tag 與 Release 全部完成。
+- 本段只補記核對結果；本機測試服務停止、臨時分頁關閉、viewport override 重設；原有未提交訓練報告及 ZIP 保留。
