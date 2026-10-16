@@ -36,7 +36,7 @@ export async function internalApi(request:Request,env:Env,bodyReader:(r:Request)
   if(url.pathname==='/api/internal/logout'&&request.method==='POST')return json({ok:true},200,{'Set-Cookie':`${cookieName}=; Path=/api/internal; HttpOnly; Secure; SameSite=Strict; Max-Age=0`});
   if(url.pathname==='/api/internal/traces'&&request.method==='GET'){
     const q=(url.searchParams.get('q')??'').slice(0,100);
-    const result=await env.TRACE_DB.prepare("SELECT id, created_at, COALESCE(json_extract(payload, '$.conversation.message'), query) AS query, result_count FROM recommendation_traces WHERE query LIKE ? OR json_extract(payload, '$.conversation.message') LIKE ? ORDER BY created_at DESC LIMIT 50").bind(`%${q}%`,`%${q}%`).all();
+    const result=await env.TRACE_DB.prepare("SELECT id, created_at, COALESCE(json_extract(payload, '$.conversation.message'), json_extract(payload, '$.request.query'), query) AS query, result_count FROM recommendation_traces WHERE query LIKE ? OR json_extract(payload, '$.conversation.message') LIKE ? OR json_extract(payload, '$.request.query') LIKE ? ORDER BY created_at DESC LIMIT 50").bind(`%${q}%`,`%${q}%`,`%${q}%`).all();
     return json({results:result.results});
   }
   const match=url.pathname.match(/^\/api\/internal\/traces\/([a-f0-9-]{36})$/);

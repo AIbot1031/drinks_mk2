@@ -1,0 +1,22 @@
+{
+  "version": "3.1.4",
+  "assetsMatched": [
+    "internal.html",
+    "internal.css",
+    "internal.js",
+    "review-summary.js"
+  ],
+  "unauthorizedStatus": 401,
+  "authenticatedSearchStatus": 200,
+  "authenticatedSearchCount": 4,
+  "logoutStatus": 200,
+  "modelReadiness": {
+    "qwen": true,
+    "encoder": true,
+    "relgt": true
+  },
+  "exactSyntheticReplyAndResultsMatch": true,
+  "note": "This verification report contains only safe aggregates; no raw user content, cookies or credentials. The request used for exact reply matching is synthetic; screenshot is isolated local synthetic data.",
+  "verifiedAt": "2026-10-16T14:06:46+08:00",
+  "workerVersion": "ea60945f-c7dd-4841-a7a1-36c2373c3ce8"
+}

@@ -113,6 +113,7 @@ export default {
           }catch{/* Keep the validated rule turn; no relaxed constraints. */}
         }
         const input = conversation ? validateInput({...conversation.input, likedIds:(body as Record<string,unknown>).likedIds, dislikedIds:(body as Record<string,unknown>).dislikedIds, excludedIds:conversation.next ? (body as Record<string,unknown>).excludedIds : []}) : validateInput(body);
+        const submittedInput=conversation?null:{query:input.query,filters:structuredClone(input.filters)};
         const parsedQuery=understand(input,Object.keys(catalog.brands));
         input.filters=parsedQuery.filters;
         input.query=milkTeaRetrievalQuery(input.query,input.filters.milkTea===false);
@@ -154,9 +155,14 @@ export default {
         if(conversation){conversation.state.filters=response.filters;if(!needsClarification&&!response.blocked)conversation.state.query=response.query;}
         if(conversation){response.warnings=[...new Set([...response.warnings,...conversation.warnings])];}
         if(conversation)Object.assign(trace.understanding,{llmUsed:!!llm,parser:llm?'qwen-mac':'rules',llmModelVersion:llm?.modelVersion??null,llmDurationMs:llm?.durationMs??null,llmAction:needsClarification?'clarify':'recommend',llmFeatureSchema:llm?featureSchemaVersion:null,llmCatalogVersion:llm?catalogVersion:null,consumerWarnings:response.warnings});
+        const assistantMessage=conversation?.followUp?.message??(llm?.clarify?llm.ack:response.blocked
+          ? '這些條件目前無法確認，請查看說明。重新開始可以清除本輪條件。'
+          : response.results.length
+            ? `${llm?.ack??conversation?.ack??''} 找到 ${response.results.length} 杯符合條件的飲料。你可以繼續調整條件，或說「再推薦幾杯」。`
+            : '目前沒有符合所有條件的飲料。你可以調整預算或條件，我不會自動放寬限制。');
         const traceId=crypto.randomUUID();
         const createdAt=new Date().toISOString();
-        const record={traceId,createdAt,...trace,...(conversation ? {interface:'conversation',conversation:{message:conversation.message,state:conversation.state,next:conversation.next}} : {interface:'manual'})};
+        const record={traceId,createdAt,...trace,...(conversation ? {interface:'conversation',conversation:{message:conversation.message,state:conversation.state,next:conversation.next,assistantMessage,needsClarification,choices:conversation.followUp?.choices??[]}} : {interface:'manual',request:submittedInput})};
         try {
           await env.TRACE_DB.prepare('INSERT INTO recommendation_traces (id,created_at,query,result_count,payload) VALUES (?,?,?,?,?)').bind(traceId,createdAt,input.query,response.results.length,JSON.stringify(record)).run();
         } catch {
@@ -164,11 +170,6 @@ export default {
           return json({error:'推薦紀錄暫時無法儲存，請稍後重試'},503);
         }
         console.log(JSON.stringify({event:'recommendation_saved',traceId,resultCount:response.results.length}));
-        const assistantMessage=conversation?.followUp?.message??(llm?.clarify?llm.ack:response.blocked
-          ? '這些條件目前無法確認，請查看說明。重新開始可以清除本輪條件。'
-          : response.results.length
-            ? `${llm?.ack??conversation?.ack??''} 找到 ${response.results.length} 杯符合條件的飲料。你可以繼續調整條件，或說「再推薦幾杯」。`
-            : '目前沒有符合所有條件的飲料。你可以調整預算或條件，我不會自動放寬限制。');
         return json({...response,traceId,...(conversation?{
           state:conversation.state,next:conversation.next,
           chatMode:llm?(llm.modelVersion.startsWith('qwen3.5-9b-')?'qwen3.5-9b':'qwen3-8b'):conversation.followUp?'clarification':conversation.constraintOnly||conversation.next||conversation.reset?'quick-command':conversation.state.guard?'clarification':'rules-fallback',

@@ -10,5 +10,8 @@ test('team review requires authentication, searches original conversation text a
  const detail=await fetch(`${base}/api/internal/traces/${data.results[0].id}`,{headers});assert.equal(detail.status,200);
  assert.equal((await detail.json()).conversation.message,'100元內 茶類 咖啡因含量近乎為零');
  assert.equal((await fetch(`${base}/api/internal/traces`,{headers:{...headers,Origin:'https://example.invalid'}})).status,403);
+ const chatResponse=await fetch(`${base}/api/chat/recommend`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:'100元內 茶類 咖啡因含量近乎為零'})});assert.equal(chatResponse.status,200);const chat=await chatResponse.json();
+ const saved=await(await fetch(`${base}/api/internal/traces/${chat.traceId}`,{headers})).json();assert.equal(saved.conversation.assistantMessage,chat.assistantMessage);assert.deepEqual(saved.conversation.choices,chat.choices);assert.deepEqual(saved.consumerOutput.results,chat.results);
+ const manualResponse=await fetch(`${base}/api/recommend`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query:'清爽茶，60元內'})});assert.equal(manualResponse.status,200);const manual=await manualResponse.json();const savedManual=await(await fetch(`${base}/api/internal/traces/${manual.traceId}`,{headers})).json();assert.equal(savedManual.request.query,'清爽茶，60元內');
  const logout=await fetch(`${base}/api/internal/logout`,{method:'POST',headers});assert.equal(logout.status,200);assert.ok(logout.headers.get('set-cookie').includes('Max-Age=0'));
 });

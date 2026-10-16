@@ -11,3 +11,12 @@ export function traceSummary(trace={}) {
 }
 export function listSummary(rows=[]) {return {total:rows.length,withResults:rows.filter(r=>r.result_count>0).length,empty:rows.filter(r=>r.result_count===0).length};}
 export function modelState(value) {return !value?'未取得':value.connected&&value.ready?'就緒':value.connected?'已連線・準備中':'未連線';}
+
+export function interactionSummary(trace={}) {
+ const chat=trace.interface==='conversation'||!!trace.conversation;
+ return {chat,input:chat?trace.conversation?.message:trace.request?.query??trace.input?.query,
+  originalSaved:chat?typeof trace.conversation?.message==='string':typeof trace.request?.query==='string',
+  selectedFilters:trace.request?.filters??trace.input?.filters??{},
+  reply:chat&&typeof trace.conversation?.assistantMessage==='string'?trace.conversation.assistantMessage:null,
+  results:trace.consumerOutput?.results??[]};
+}
