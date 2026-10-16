@@ -1253,3 +1253,14 @@ Git 同步：main commit 50003b3455595eacdf4e264f9da59eebde1dda19 已推送；v2
 [2026-10-16T14:19:35+08:00｜3.1.5 發布同步核對]
 - 正式 health 3.1.5、摘要16筆、三模型ready；GitHub main／v3.1.5 核對為 cd7883ac50145817316d1575106e4068332109aa，Release Latest=v3.1.5。部署／Git／tag／Release 分別成功。
 - 本段只補記核對結果；本機 Worker 已停止，viewport override 重設，臨時分頁關閉。沒有重訓、換權重或變更02:00排程。
+
+[2026-10-16T14:20:38+08:00｜用戶輸入／回答訓練資料儲存評估]
+- 檢查：確認現有D1 recommendation_traces.payload 已保存3.1.4後新對話原話與實際回覆；收藏事件另存consumer_interactions。
+- 規劃：建議保留原始紀錄、另建人工審核標註資料層，再匯出版本化的私有JSONL訓練／驗證快照；需補匿名對話連結與回合順序，不能把現有單筆紀錄說成完整可用訓練集。
+- 實作／驗證：本次僅閱讀程式及schema，未新增資料表、蒐集流程或訓練接入，未執行測試或訓練；未部署、調版本或Git同步。
+
+[2026-10-16T14:23:49+08:00｜GitHub npm ci 404 修復驗證]
+- 原因：先前以全檔字串替換應用程式版號，誤把 @jridgewell/resolve-uri 的固定版本／URL 從3.1.2改成應用版號，registry 404，GitHub後續測試未執行。承認是版本更新疏漏，沒有把舊紅燈稱成測試通過。
+- 實作：還原原始依賴版本3.1.2與原integrity；逐一比較所有依賴entry，與09aaf7a完全一致。新增只修改專案根版號與網站顯示的set_app_version入口及依賴不變測試。修正Node測試硬編碼本機.venv路徑，改用PYTHON或python3。準備3.1.6修正版。
+- 驗證：npm ci乾淨安裝成功；TypeScript、89項Node通過／17條件略過；意圖資料5項通過；training環境Python完整39項通過，沒有訓練或改權重。系統python初跑因本機存在checkpoint但未裝torch出現1錯，改用既有完整環境驗證模型測試；GitHub乾淨機器的結果另行核對，不以本機替代。
+- 部署／Git：本段先提交推送修復、等待GitHub同提交檢查；3.1.6尚未部署或建立Release，正式站仍3.1.5。
