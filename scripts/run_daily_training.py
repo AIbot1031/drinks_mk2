@@ -46,6 +46,8 @@ def main():
     for cmd in cmds.values():
         if not Path(cmd[0]).is_file() or not Path(cmd[1]).is_file():raise RuntimeError('Missing trainer/runtime')
     if args.check:
+        for entry in ['scripts/sync_training_reports.mjs','scripts/build_training_summaries.py']:
+            if not (ROOT/entry).is_file():raise RuntimeError('Missing training dashboard sync entrypoint')
         if not (ROOT/'scripts/benchmark_encoders.py').is_file():raise RuntimeError('Missing retrieval evaluation entrypoint')
         qwen_version=model_version(default_model_path(ROOT))
         print('CHECK_OK: RelGT / RoBERTa / Qwen entrypoints available; Qwen='+qwen_version+'; no training run')
@@ -112,8 +114,16 @@ def main():
     except Exception as exc:
         report['status']='failed_batch';report['error_type']=type(exc).__name__
     finally:
-        report['ended_at']=now();report['duration_seconds']=round(time.perf_counter()-start,3)
         folder=ROOT/'docs/training-runs';folder.mkdir(exist_ok=True)
+        if report['status'] not in ('skipped_training_already_running','skipped_external_training_already_running'):
+            try:
+                sync=subprocess.run([node,str(ROOT/'scripts/sync_training_reports.mjs')],cwd=ROOT,capture_output=True,text=True,timeout=180)
+                report['dashboard_sync']={'status':'completed' if sync.returncode==0 else 'failed','raw_reports_uploaded':False}
+                if sync.returncode!=0 and 'fail' not in report['status']:report['status']='completed_with_dashboard_sync_failure'
+            except Exception as exc:
+                report['dashboard_sync']={'status':'failed','error_type':type(exc).__name__,'raw_reports_uploaded':False}
+                if 'fail' not in report['status']:report['status']='completed_with_dashboard_sync_failure'
+        report['ended_at']=now();report['duration_seconds']=round(time.perf_counter()-start,3)
         body=json.dumps(report,ensure_ascii=False,indent=2)+'\n'
         (folder/(run_id+'.json')).write_text(body)
         (folder/(run_id+'.md')).write_text('# 三模型每日訓練執行報告\n\n各模型相同驗證方法之前後指標與版本比較見下方連結報告；候選只保存本機，線上權重未替換。\n\n```json\n'+body+'```\n')

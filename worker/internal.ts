@@ -39,6 +39,10 @@ export async function internalApi(request:Request,env:Env,bodyReader:(r:Request)
     const result=await env.TRACE_DB.prepare("SELECT id, created_at, COALESCE(json_extract(payload, '$.conversation.message'), json_extract(payload, '$.request.query'), query) AS query, result_count FROM recommendation_traces WHERE query LIKE ? OR json_extract(payload, '$.conversation.message') LIKE ? OR json_extract(payload, '$.request.query') LIKE ? ORDER BY created_at DESC LIMIT 50").bind(`%${q}%`,`%${q}%`,`%${q}%`).all();
     return json({results:result.results});
   }
+  if(url.pathname==='/api/internal/training'&&request.method==='GET'){
+    const result=await env.TRACE_DB.prepare('SELECT payload,synced_at FROM training_summaries ORDER BY started_at DESC LIMIT 120').all<{payload:string;synced_at:string}>();
+    return json({results:result.results.map(r=>({...JSON.parse(r.payload),syncedAt:r.synced_at}))});
+  }
   const match=url.pathname.match(/^\/api\/internal\/traces\/([a-f0-9-]{36})$/);
   if(match&&request.method==='GET'){
     const row=await env.TRACE_DB.prepare('SELECT payload FROM recommendation_traces WHERE id=?').bind(match[1]).first<{payload:string}>();

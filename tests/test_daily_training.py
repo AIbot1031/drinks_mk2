@@ -38,6 +38,8 @@ class BatchTests(unittest.TestCase):
             report=json.loads(next((root/'docs/training-runs').glob('*daily-training.json')).read_text())
             self.assertEqual(report['models']['RelGT']['optimizer_steps'],0)
             self.assertEqual(report['status'],'completed_with_failures')
+            self.assertEqual(report['dashboard_sync']['status'],'failed')
+            self.assertFalse(report['dashboard_sync']['raw_reports_uploaded'])
 
 
 if __name__=='__main__':unittest.main()

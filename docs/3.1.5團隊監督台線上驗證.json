@@ -1,0 +1,24 @@
+{
+  "version": "3.1.5",
+  "assetsMatched": [
+    "internal.html",
+    "internal.css",
+    "internal.js",
+    "review-summary.js",
+    "training-review.js"
+  ],
+  "unauthorizedStatus": 401,
+  "authenticatedSearchStatus": 200,
+  "authenticatedSearchCount": 5,
+  "logoutStatus": 200,
+  "modelReadiness": {
+    "qwen": true,
+    "encoder": true,
+    "relgt": true
+  },
+  "trainingSummaryCount": 16,
+  "trainingUnauthorizedStatus": 401,
+  "note": "Verification report contains safe aggregates only. Screenshot shows actual training report aggregates on isolated local UI; local model sockets are unconnected. No user text, IDs, credentials, cookies or model weights included.",
+  "verifiedAt": "2026-10-16T14:18:13+08:00",
+  "workerVersion": "c29797b4-926a-4c89-b323-e9a36b1c3f87"
+}

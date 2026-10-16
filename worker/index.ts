@@ -1,3 +1,4 @@
+import {validateTrainingSummary} from './training-summary';
 import {appVersion} from './app-version';
 import {catalogFeatures,featureSchemaVersion,preferenceProfile,chatHistory} from './catalog-features';
 import catalog from '../data/catalog.json';
@@ -46,7 +47,7 @@ export default {
     const url = new URL(request.url);
     if (!url.pathname.startsWith('/api/')) return env.ASSETS.fetch(request);
     try {
-      if(['/api/semantic/connect','/api/training/events'].includes(url.pathname)){
+      if(['/api/semantic/connect','/api/training/events','/api/training/reports'].includes(url.pathname)){
         const supplied=request.headers.get('Authorization')?.replace(/^Bearer /,'')??'';
         const role=url.searchParams.get('role')??'mac';
         if(url.pathname==='/api/semantic/connect'&&!['mac','llm','relgt'].includes(role))return json({error:'未知模型角色'},400);
@@ -55,6 +56,12 @@ export default {
         const encoder=new TextEncoder();
         const [a,b]=await Promise.all([crypto.subtle.digest('SHA-256',encoder.encode(supplied)),crypto.subtle.digest('SHA-256',encoder.encode(expected))]);
         if(!crypto.subtle.timingSafeEqual(a,b))return json({error:'未授權'},401);
+        if(url.pathname==='/api/training/reports'){
+          if(request.method!=='POST')return json({error:'請求方法不支援'},405);
+          const report=validateTrainingSummary(await readBody(request));
+          await env.TRACE_DB.prepare('INSERT INTO training_summaries (run_id,model,started_at,payload,synced_at) VALUES (?,?,?,?,?) ON CONFLICT(run_id) DO UPDATE SET payload=excluded.payload,synced_at=excluded.synced_at').bind(report.runId,report.model,report.startedAt,JSON.stringify(report),new Date().toISOString()).run();
+          return json({ok:true,runId:report.runId});
+        }
         if(url.pathname==='/api/training/events'){
           if(request.method!=='GET')return json({error:'請求方法不支援'},405);
           const requested=Number(url.searchParams.get('cutoff_ms')??Date.now());
