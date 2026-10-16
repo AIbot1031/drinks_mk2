@@ -1264,3 +1264,9 @@ Git 同步：main commit 50003b3455595eacdf4e264f9da59eebde1dda19 已推送；v2
 - 實作：還原原始依賴版本3.1.2與原integrity；逐一比較所有依賴entry，與09aaf7a完全一致。新增只修改專案根版號與網站顯示的set_app_version入口及依賴不變測試。修正Node測試硬編碼本機.venv路徑，改用PYTHON或python3。準備3.1.6修正版。
 - 驗證：npm ci乾淨安裝成功；TypeScript、89項Node通過／17條件略過；意圖資料5項通過；training環境Python完整39項通過，沒有訓練或改權重。系統python初跑因本機存在checkpoint但未裝torch出現1錯，改用既有完整環境驗證模型測試；GitHub乾淨機器的結果另行核對，不以本機替代。
 - 部署／Git：本段先提交推送修復、等待GitHub同提交檢查；3.1.6尚未部署或建立Release，正式站仍3.1.5。
+
+[2026-10-16T14:26:37+08:00｜3.1.6 CI／部署／Release 完成]
+- GitHub修復提交09d35429e5c7f5641be43a17239ac35f38b9dfee完整檢查success，run38860968355；npm ci、型別、Node／Python測試與dry-run均通過，歷史失敗保留。
+- 正式3.1.6部署成功，Worker 3f6c39bf-03db-4e04-8d60-8a2262bc65e5；health正常、消費者及後台HTML hash與本機一致。
+- v3.1.6 tag核對上述已驗證提交，GitHub Release Latest=v3.1.6；原始碼已推送。本段與README／線上安全驗證為事後文件補記接續同步，不再變更發布程式。
+- 推薦功能、資料及模型權重未修改；未執行訓練。

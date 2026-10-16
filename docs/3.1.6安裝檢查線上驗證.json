@@ -1,0 +1,13 @@
+{
+  "version": "3.1.6",
+  "ok": true,
+  "workerVersion": "3f6c39bf-03db-4e04-8d60-8a2262bc65e5",
+  "ciCommit": "09d35429e5c7f5641be43a17239ac35f38b9dfee",
+  "ciConclusion": "success",
+  "ciUrl": "https://github.com/AIbot1031/drinks_mk2/actions/runs/38860968355",
+  "assetsMatched": [
+    "index.html",
+    "internal.html"
+  ],
+  "dependencyRestored": "@jridgewell/resolve-uri@3.1.2"
+}
