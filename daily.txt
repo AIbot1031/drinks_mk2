@@ -1277,3 +1277,7 @@ Git 同步：main commit 50003b3455595eacdf4e264f9da59eebde1dda19 已推送；v2
 - 驗證：TypeScript、89項Node測試通過／17條件略過、dry-run通過；圖鑑瀏覽器與390px排版核對，提示可見且不溢出。safe版本工具只更新根版號，依賴lock未誤改。
 - 部署／Git：準備3.1.7；先提交／推送並執行正式部署，接續核對GitHub CI、health、靜態資產與tag／Release。
 - 文件：docs/3.1.7喜歡回饋說明.md、docs/screenshots/3.1.7喜歡提示.png；此次沒有訓練或更換權重。
+
+[2026-10-16T14:31:19+08:00｜3.1.7 發布與同步完成]
+- 正式health 3.1.7、四個靜態資產hash一致，Worker 6bf99e98-41bd-4af4-8e11-672cab8511b9。GitHub修正提交dc992a8a7e8d57a31e1c150ab20306774b03a732完整CI success（run38861467093）。
+- v3.1.7 tag與Release指向已驗證提交，Latest=v3.1.7；本段及線上驗證文件為事後補記，接續Git同步。測試服務停止、viewport重設、分頁關閉。

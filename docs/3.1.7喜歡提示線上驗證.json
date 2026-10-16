@@ -1,0 +1,13 @@
+{
+  "version": "3.1.7",
+  "ok": true,
+  "workerVersion": "6bf99e98-41bd-4af4-8e11-672cab8511b9",
+  "assetsMatched": [
+    "app.js",
+    "styles.css",
+    "index.html",
+    "internal.html"
+  ],
+  "copy": "按「喜歡這杯」，幫助系統了解你的口味，讓之後的推薦更貼近你。",
+  "dependencyVersionsChanged": false
+}
