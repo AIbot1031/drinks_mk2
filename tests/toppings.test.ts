@@ -16,14 +16,14 @@ test('multiple topping inputs validate, deduplicate aliases and retain scalar co
   assert.equal(validateInput({query:'',filters:{topping:'珍珠'}}).filters.topping,'珍珠');
   for(const toppings of [null,'珍珠',[5],['未知配料'],Array(21).fill('珍珠')])assert.throws(()=>validateInput({query:'',filters:{toppings}}));
 });
-test('every selected topping is required in both recommendation batches and all cup variants',()=>{
+test('any selected topping is accepted in both recommendation batches and all cup variants',()=>{
   const input=validateInput({query:'',filters:{toppings:['珍珠','布丁']},limit:20});
   const first=engine.recommend(input);assert.ok(first.results.length);
   const onlyPearl=drinks.find(d=>d.toppings.includes('珍珠')&&!d.toppings.includes('布丁'))!;
   const onlyPudding=drinks.find(d=>d.toppings.includes('布丁')&&!d.toppings.includes('珍珠'))!;
-  assert.equal(eligible(onlyPearl,input.filters),false);assert.equal(eligible(onlyPudding,input.filters),false);
+  assert.equal(eligible(onlyPearl,input.filters),true);assert.equal(eligible(onlyPudding,input.filters),true);
   const second=engine.recommend({...input,excludedIds:first.results.map(r=>r.id)});
-  for(const result of [first,second])for(const r of result.results)for(const d of r.variants)assert.ok(d.toppings.includes('珍珠')&&d.toppings.includes('布丁'));
+  for(const result of [first,second])for(const r of result.results)for(const d of r.variants)assert.ok(d.toppings.includes('珍珠')||d.toppings.includes('波霸')||d.toppings.includes('布丁'));
   assert.ok(second.results.every(r=>!first.results.some(old=>old.id===r.id)));
 });
 test('text understands several toppings and rejects selection/exclusion conflicts',()=>{
@@ -57,11 +57,27 @@ test('legacy single-topping model output cannot shrink a verified multi-topping 
 });
 
 const base=process.env.TEST_BASE_URL;
-test('HTTP recommendations enforce all selected toppings and reject malformed arrays',{skip:!base},async()=>{
+test('HTTP recommendations accept any selected topping and reject malformed arrays',{skip:!base},async()=>{
   const post=(filters:unknown,excludedIds:string[]=[])=>fetch(`${base}/api/recommend`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query:'',filters,excludedIds})});
   const first=await (await post({toppings:['珍珠','布丁']})).json() as ReturnType<typeof engine.recommend>;
   assert.ok(first.results.length);assert.deepEqual(first.filters.toppings,['珍珠','布丁']);
   const second=await (await post({toppings:['珍珠','布丁']},first.results.map(r=>r.id))).json() as typeof first;
-  for(const response of [first,second])for(const r of response.results)for(const d of r.variants)assert.ok(d.toppings.includes('珍珠')&&d.toppings.includes('布丁'));
+  for(const response of [first,second])for(const r of response.results)for(const d of r.variants)assert.ok(d.toppings.includes('珍珠')||d.toppings.includes('波霸')||d.toppings.includes('布丁'));
   assert.equal((await post({toppings:'珍珠'})).status,400);
+});
+
+test('more matching toppings outrank model scores and brand diversity, including past candidate cutoff',()=>{
+  const seed=drinks[0];
+  const items:Drink[]=Array.from({length:110},(_,i)=>({...seed,id:`single-${i}`,name:`單料${i}`,brand:'單料品牌',toppings:['珍珠']}));
+  for(let i=0;i<4;i++)items.push({...seed,id:`both-${i}`,name:`雙料${i}`,brand:'雙料品牌',toppings:['波霸','布丁']});
+  items.push({...seed,id:'neither',name:'無料',toppings:[]});
+  const local=makeEngine(items),input=validateInput({query:'茶',filters:{toppings:['珍珠','波霸','布丁']},limit:6});
+  const scores=items.map((d,i)=>({id:d.id,score:1000-i}));
+  const {response}=local.recommendWithTrace(input,{scores,modelVersion:'roberta-wwm-test',durationMs:1},{scores,modelVersion:'relgt-test',durationMs:1});
+  assert.deepEqual(response.results.slice(0,4).map(r=>r.name),['雙料0','雙料1','雙料2','雙料3']);
+  assert.ok(response.results.slice(4).every(r=>r.name.startsWith('單料')));
+  assert.ok(!response.results.some(r=>r.name==='無料'));
+  assert.ok(response.results[0].reasoning.includes('2/2'));
+  assert.equal(eligible({...seed,toppings:['珍珠','布丁']},{toppings:['珍珠','布丁'],excludedToppings:['布丁']}),false);
+  assert.equal(eligible({...seed,toppings:['珍珠'],price:90,priceEstimated:false},{toppings:['珍珠','布丁'],maxPrice:80}),false);
 });

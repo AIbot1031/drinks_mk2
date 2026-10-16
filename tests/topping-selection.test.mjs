@@ -8,7 +8,7 @@ test('mixed atmosphere selections keep every topping, deduplicate aliases and re
   assert.deepEqual(selectedToppings({}),[]);
   assert.deepEqual(selectedToppings({toppings:['珍珠','布丁'],excludedToppings:['波霸']}),['布丁']);
 });
-test('conversation condition chips show all required toppings',()=>{
-  assert.ok(conditionLabels({filters:{toppings:['珍珠','布丁']}}).includes('含：珍珠、布丁'));
+test('conversation condition chips show all selected alternatives',()=>{
+  assert.ok(conditionLabels({filters:{toppings:['珍珠','布丁']}}).includes('配料任一：珍珠、布丁'));
   assert.ok(conditionLabels({filters:{topping:'珍珠'}}).includes('珍珠'));
 });

@@ -150,7 +150,7 @@ function readSettings() {
 }
 function tags(filters) {
   $('#active-filters').replaceChildren();
-  const labels = {milkTea:v=>v===false?'不喝奶茶':v?'奶茶':null,brand: v => v, excludedBrands:v=>v?.length?`不推薦：${v.join('、')}`:null, maxPrice: v => `價格 ≤ ${v} 元`, maxCalories: v => `熱量 ≤ ${v} kcal`, maxCaffeine: v => `咖啡因上界 ≤ ${v} mg`, milk: v => ({none:'無奶標記', fresh:'鮮奶', plant:'植物奶'})[v], tea: v => v, topping: v => v,toppings:v=>v.length?`含：${v.join('、')}`:null};
+  const labels = {milkTea:v=>v===false?'不喝奶茶':v?'奶茶':null,brand: v => v, excludedBrands:v=>v?.length?`不推薦：${v.join('、')}`:null, maxPrice: v => `價格 ≤ ${v} 元`, maxCalories: v => `熱量 ≤ ${v} kcal`, maxCaffeine: v => `咖啡因上界 ≤ ${v} mg`, milk: v => ({none:'無奶標記', fresh:'鮮奶', plant:'植物奶'})[v], tea: v => v, topping: v => v,toppings:v=>v.length?`配料任一：${v.join('、')}`:null};
   for (const [key, value] of Object.entries(filters)) {const label = labels[key]?.(value); if (label) $('#active-filters').append(el('span', label));}
 }
 async function recommend(settings, next = false) {

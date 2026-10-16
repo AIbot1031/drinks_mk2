@@ -49,7 +49,7 @@ export function applyLlmUnderstanding(turn:{state:ConversationState;input:Return
   // Only use short acknowledgements, never model-created drink/ingredient facts.
   let ack=typeof r.assistantMessage==='string'&&r.assistantMessage.length<=160&&!/保證|安全|過敏|熱量|咖啡因|價格|治療|療效|改善|舒壓|助眠|抗憂鬱|血清素|多巴胺|\d|mg|kcal/.test(r.assistantMessage)?r.assistantMessage:'已理解你的口味與篩選條件。';
   if(action!=='clarify'){
-    const labels=[filters.milkTea?'奶茶':filters.tea,filters.milkTea===false?'不喝奶茶':undefined,filters.milk==='fresh'?'鮮奶':filters.milk==='plant'?'植物奶':filters.milk==='none'?'無奶標記':undefined,requiredToppings(filters).length?`含${requiredToppings(filters).join('、')}`:undefined,
+    const labels=[filters.milkTea?'奶茶':filters.tea,filters.milkTea===false?'不喝奶茶':undefined,filters.milk==='fresh'?'鮮奶':filters.milk==='plant'?'植物奶':filters.milk==='none'?'無奶標記':undefined,requiredToppings(filters).length?`配料任一：${requiredToppings(filters).join('、')}`:undefined,
       filters.excludedToppings.length?`不加${filters.excludedToppings.join('、')}`:undefined,
       filters.excludedBrands.length?`排除${filters.excludedBrands.join('、')}`:undefined].filter(Boolean);
     ack=labels.length?`已套用條件：${labels.join('；')}。`:'已理解你的口味與篩選條件。';

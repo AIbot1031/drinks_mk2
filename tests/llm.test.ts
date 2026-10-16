@@ -14,7 +14,7 @@ test('LLM cannot invent exclusions or contradict verified constraints in acknowl
  const turn=conversationTurn({message:'我想喝珍奶，預算100元'},['春水堂']);
  const output=applyLlmUnderstanding(turn,{...reply,filters:{milkTea:true,excludedToppings:['珍珠'],excludedBrands:['春水堂']},assistantMessage:'不加珍珠，排除春水堂'},['春水堂'],[],['珍珠'])!;
  assert.deepEqual(output.state.filters.excludedToppings,[]);assert.deepEqual(output.state.filters.excludedBrands,[]);
- assert.equal(output.state.filters.topping,'珍珠');assert.ok(!output.ack.includes('不加珍珠'));assert.ok(output.ack.includes('含珍珠'));
+ assert.equal(output.state.filters.topping,'珍珠');assert.ok(!output.ack.includes('不加珍珠'));assert.ok(output.ack.includes('配料任一：珍珠'));
 });
 test('LLM cannot relax parsed budget, exclusions or clinical guards, or invent brands',()=>{
   const turn=conversationTurn({message:'奶茶不要珍珠，預算60元'},[]);
