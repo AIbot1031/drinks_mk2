@@ -78,6 +78,8 @@ test('more matching toppings outrank model scores and brand diversity, including
   assert.ok(response.results.slice(4).every(r=>r.name.startsWith('單料')));
   assert.ok(!response.results.some(r=>r.name==='無料'));
   assert.ok(response.results[0].reasoning.includes('2/2'));
+  const truncated=local.recommendWithTrace(input,{scores:scores.slice(0,100),modelVersion:'roberta-wwm-test',durationMs:1});
+  assert.ok(truncated.response.results.slice(0,4).every(r=>r.name.startsWith('雙料')));
   assert.equal(eligible({...seed,toppings:['珍珠','布丁']},{toppings:['珍珠','布丁'],excludedToppings:['布丁']}),false);
   assert.equal(eligible({...seed,toppings:['珍珠'],price:90,priceEstimated:false},{toppings:['珍珠','布丁'],maxPrice:80}),false);
 });

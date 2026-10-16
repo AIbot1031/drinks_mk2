@@ -131,6 +131,9 @@ export function makeEngine(drinks: Drink[]) {
       if (path === 'a') row.aRank = index + 1; else row.bRank = index + 1;
       fused.set(item.drink.id, row);
     });
+    // The inference service returns only its top 100. Preserve selected-topping
+    // candidates omitted there so a better topping match cannot disappear.
+    if(requiredToppings(parsed.filters).length)for(const drink of pool)if(!fused.has(drink.id))fused.set(drink.id,{drink,score:0,aRank:null,bRank:null});
     const ranked = [...fused.values()].sort(byTopping);
     const selected: typeof ranked = [];
     const counts = new Map<string, number>();

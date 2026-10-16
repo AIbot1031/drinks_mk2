@@ -1160,3 +1160,46 @@ Git 同步：main commit 50003b3455595eacdf4e264f9da59eebde1dda19 已推送；v2
 - 驗證：正式health／頁尾3.1.0，RoBERTa版本roberta-wwm-2d7aecfdae2f3374 ready=true；Latest及tag皆v3.1.0，指向5d75ec02514f235cfd36dfb49e5d5b522f3d1c14；原遠端main與本機2f17ac210ceb8df819d7e27934a58a7aba11c130一致。
 - 部署／Git：無部署、訓練、權重或版本修改，僅停止已完成追蹤；本核對紀錄提交推送後讀回遠端，不將既有ZIP加入Git。
 - 限制與後續：不推測追蹤恢復ACTIVE的原因；目前停止狀態已讀回，每日RoBERTa任務保留。
+
+[2026-10-16T01:59:08+08:00｜RelGT 真實時間事件訓練]
+- 狀態：trained_unvalidated_small_temporal_data；optimizer 步數 20；耗時 1.744 秒。
+- 資料彙總：{"source_events": 13, "invalid_ids": 0, "duplicate_events": 0, "after_cutoff": 0, "duplicate_targets": 0, "users": 4, "like_targets": 13, "dislike_targets": 0, "valid_events": 13, "samples": 13, "with_history": 9, "cold_start_samples": 4, "multi_day_users": 1}。
+- 前後比較與更新報告：docs/training-runs/20261016T015906-relgt-long-intent.md／JSON。
+- 無價格目標；本訓練入口未發布模型／更新用戶榜單，排程由 Codex 管理；沒有將原始事件或用戶代碼放到 GitHub。
+
+[2026-10-16T02:00:50+08:00｜RoBERTa-WWM 飲料語意微調]
+- 狀態：trained_proxy_evaluated_not_published；步數：75；耗時：102.133 秒。
+- 任務：飲料文字無監督對比學習，沒有價格目標、沒有用戶資料。
+- 完整更新報告：docs/training-runs/20261016T015908-roberta-wwm-contrastive.md；同名 JSON 保存參數與實測。
+- 本訓練入口未發布模型、未更新用戶推薦；排程由 Codex 管理，發布仍需人工查詢相關性與線上舊新版比較。
+
+[2026-10-16T02:02:06+08:00｜Qwen 實際 QLoRA 訓練]
+- 狀態：failed；實際 optimizer 步數：0；耗時：75.013 秒。
+- 以人工合成意圖資料訓練，沒有使用真實用戶對話；固定驗證集前後比較與完整報告：docs/training-runs/20261016T020051-qwen-intent-qlora.md／JSON。
+- 未發布、未更新線上權重；基礎模型／adapter 保存與載入結果見報告，不以訓練 loss 宣稱推薦改善。
+
+[2026-10-16T02:02:06+08:00｜三模型每日訓練]
+- 狀態：completed_with_failures；完成步數彙總：95；未發布權重。
+- 批次與各模型前後比較報告：docs/training-runs/20261016T015905-daily-training.md／JSON。
+- 沒有將原始用戶互動或金鑰寫入報告／Git；保護的執行日誌只存 internal_exports。
+
+[2026-10-16T02:04:26+08:00｜Qwen 實際 QLoRA 訓練]
+- 狀態：trained_synthetic_intent_not_published；實際 optimizer 步數：10；耗時：115.738 秒。
+- 以人工合成意圖資料訓練，沒有使用真實用戶對話；固定驗證集前後比較與完整報告：docs/training-runs/20261016T020230-qwen-intent-qlora.md／JSON。
+- 未發布、未更新線上權重；基礎模型／adapter 保存與載入結果見報告，不以訓練 loss 宣稱推薦改善。
+
+[2026-10-16T02:05:17+08:00｜每日 RelGT／RoBERTa／Qwen 訓練覆核]
+- 規劃：遵守每日入口與原每日 02:00 排程；先 --check 通過，再實際執行，未更改排程。
+- 執行：RelGT 20 步、RoBERTa 75 步完成；Qwen 首次 GPU 記憶體不足，0 完成步數。保留首次失敗，使用既有 --num-layers 1 --completion-loss 低記憶體模式有限重試一次，完成 10 步；不是從線上權重續訓。無程式修改。
+- 驗證：已讀模型與批次報告；RelGT 無獨立時間驗證。RoBERTa 同 24 個合成目錄代理查詢，平均指標提高但 3 查詢退步，非正式舊版對候選比較。Qwen 固定合成驗證完整意圖 90%→50%、schema 100%→90%，候選退步；三模型重載誤差均 0。不得用 loss 宣稱推薦改善。
+- 部署：候選僅留本機，不發布；線上權重未替換。未 Git commit／push，未變更正式版本。
+- 報告：docs/training-runs/20261016T015905-daily-training.md；重試與判斷 docs/training-runs/20261016-daily-training-retry-review.md／JSON。首次失敗報告未覆寫。
+- 限制／後續：Qwen 預設四層模式本次 OOM；低記憶體候選雖成功仍語意退步，不可上線；需另行改善及正式舊新同方法驗證。
+
+[2026-10-16T12:27:20+08:00｜配料 OR 與符合數量優先發布]
+- 規劃：依使用者要求，複選配料任一符合即可，符合更多種優先。
+- 實作：共用 eligible 改 OR；A／B 候選、融合與品牌多樣性按配料符合數分層；珍珠／波霸去重；介面標籤與卡片顯示任一及符合數。
+- 驗證：TypeScript、82 項離線測試通過，15 項 HTTP 條件略過；配料專用 7 項含 HTTP 在本機及正式站全通過。首次本機隔離庫未 migration 致 503，補本機 migration 後通過。
+- 部署：3.1.1 首次發布 85c8c197-0eef-4c35-969c-a03121bb8dce；後測發現上游前 100 名漏掉高符合候選，保留首次驗證並以 3.1.2 修復，部署 f59310cc-02f2-4bb8-80a2-6b9f4dd9d171。正式 health／網站 3.1.2；三配料前 20 名符合數為 3,3,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1，第二批無重複且全任一符合。
+- 限制：未回傳神經分數的配料候選採中性融合分數，不偽造模型分數；配料依資料標籤。沒有重訓或替換模型，無正式資料庫結構異動。
+- 發布文件：docs/3.1.2配料OR更新.md、線上驗證 JSON 與 docs/screenshots/配料OR排序驗證.png。Git／tag／Release 同步接續核對。

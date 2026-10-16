@@ -1,0 +1,423 @@
+{
+  "version": "3.1.2",
+  "workerVersion": "f59310cc-02f2-4bb8-80a2-6b9f4dd9d171",
+  "filters": {
+    "toppings": [
+      "珍珠",
+      "布丁",
+      "仙草"
+    ]
+  },
+  "eligibleCount": 795,
+  "route": {
+    "routeA": "roberta-wwm",
+    "routeAModel": "roberta-wwm-2d7aecfdae2f3374",
+    "routeAFallback": null,
+    "routeB": "feature-graph",
+    "routeBModel": null,
+    "routeBFallback": "guest",
+    "personalized": false
+  },
+  "batches": [
+    [
+      {
+        "name": "奶茶三兄弟",
+        "brand": "CoCo都可",
+        "matched": 3,
+        "variantMatches": [
+          3
+        ]
+      },
+      {
+        "name": "奶茶三號",
+        "brand": "Tea’s原味",
+        "matched": 3,
+        "variantMatches": [
+          3
+        ]
+      },
+      {
+        "name": "【紅茶三兄弟】珍珠冰淇淋布丁紅茶",
+        "brand": "清心福全",
+        "matched": 2,
+        "variantMatches": [
+          2
+        ]
+      },
+      {
+        "name": "紅糖珍珠仙草",
+        "brand": "吳家紅茶冰",
+        "matched": 2,
+        "variantMatches": [
+          2,
+          2
+        ]
+      },
+      {
+        "name": "珍珠仙草蜜",
+        "brand": "水巷茶弄",
+        "matched": 2,
+        "variantMatches": [
+          2,
+          2,
+          2
+        ]
+      },
+      {
+        "name": "紅茶3號(冰淇淋+波霸+布丁)",
+        "brand": "白巷子",
+        "matched": 2,
+        "variantMatches": [
+          2,
+          2
+        ]
+      },
+      {
+        "name": "紅豆珍珠仙草蜜",
+        "brand": "水巷茶弄",
+        "matched": 2,
+        "variantMatches": [
+          2,
+          2
+        ]
+      },
+      {
+        "name": "焦糖布蕾珍奶",
+        "brand": "Tea’s原味",
+        "matched": 2,
+        "variantMatches": [
+          2
+        ]
+      },
+      {
+        "name": "珍珠布丁奶茶",
+        "brand": "老賴茶棧",
+        "matched": 2,
+        "variantMatches": [
+          2
+        ]
+      },
+      {
+        "name": "紅茶三號",
+        "brand": "Tea’s原味",
+        "matched": 2,
+        "variantMatches": [
+          2
+        ]
+      },
+      {
+        "name": "珍珠布丁奶茶",
+        "brand": "水巷茶弄",
+        "matched": 2,
+        "variantMatches": [
+          2,
+          2
+        ]
+      },
+      {
+        "name": "仙草凍青茶",
+        "brand": "上宇林",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "珍珠奶綠",
+        "brand": "COMEBUY",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1
+        ]
+      },
+      {
+        "name": "波霸青茶",
+        "brand": "茶之魔手",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "紅豆芋頭奶茶",
+        "brand": "台茶一號",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "仙草凍紅茶",
+        "brand": "上宇林",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "黑糖珍珠鮮奶",
+        "brand": "日出茶太",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "珍珠奶綠茶",
+        "brand": "50嵐",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1
+        ]
+      },
+      {
+        "name": "波霸綠茶",
+        "brand": "茶之魔手",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "太極厚茶拿鐵",
+        "brand": "日出茶太",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1
+        ]
+      }
+    ],
+    [
+      {
+        "name": "靜岡抹茶 波霸冰淇淋",
+        "brand": "Tea’s原味",
+        "matched": 1,
+        "variantMatches": [
+          1
+        ]
+      },
+      {
+        "name": "珍珠烏龍茶",
+        "brand": "上宇林",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "波霸珍珠奶茶",
+        "brand": "Mr.Wish",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "波霸奶茶",
+        "brand": "麻古茶坊",
+        "matched": 1,
+        "variantMatches": [
+          1
+        ]
+      },
+      {
+        "name": "波霸奶烏",
+        "brand": "茶之魔手",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "珍珠奶綠",
+        "brand": "茶之魔手",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "吳家仙草蜜",
+        "brand": "吳家紅茶冰",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "黑芝麻珍珠太后牛乳",
+        "brand": "老賴茶棧",
+        "matched": 1,
+        "variantMatches": [
+          1
+        ]
+      },
+      {
+        "name": "布丁奶茶",
+        "brand": "台茶一號",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "許慶良布丁鮮奶茶",
+        "brand": "大苑子",
+        "matched": 1,
+        "variantMatches": [
+          1
+        ]
+      },
+      {
+        "name": "布丁綠茶",
+        "brand": "上宇林",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "布丁奶茶",
+        "brand": "清心福全",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1
+        ]
+      },
+      {
+        "name": "嫩仙草凍奶茶",
+        "brand": "水巷茶弄",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1
+        ]
+      },
+      {
+        "name": "波霸紅茶拿鐵",
+        "brand": "Tea’s原味",
+        "matched": 1,
+        "variantMatches": [
+          1
+        ]
+      },
+      {
+        "name": "珍珠紅茶",
+        "brand": "老賴茶棧",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1
+        ]
+      },
+      {
+        "name": "珍珠奶茶",
+        "brand": "龜記",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "仙草干冬瓜",
+        "brand": "紅茶洋行",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "雙Q果奶茶(波霸+椰果)",
+        "brand": "白巷子",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1
+        ]
+      },
+      {
+        "name": "波霸小珍珠奶茶(混珠)",
+        "brand": "白巷子",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "波霸奶茶",
+        "brand": "台茶一號",
+        "matched": 1,
+        "variantMatches": [
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    ]
+  ]
+}
