@@ -1,0 +1,16 @@
+{
+  "version": "3.1.9",
+  "refresh": {
+    "status": "completed",
+    "news": "failed",
+    "community": "success"
+  },
+  "newsRows": 0,
+  "communityRows": 14,
+  "communityVotes": 22,
+  "unauthedRefresh": 401,
+  "nextUpdate": "2026-10-18T18:00:00.000Z",
+  "schedule": "每週一 02:00（台北時間）",
+  "modelWeightsChanged": false,
+  "note": "Only aggregate counts saved. No account identifiers or raw interaction payloads."
+}

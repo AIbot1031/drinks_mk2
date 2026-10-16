@@ -1,3 +1,4 @@
+import {refreshTrends,publicTrends} from './trends';
 import {prepareManualUnderstanding,applyManualUnderstanding} from './manual-understanding';
 import {validateTrainingSummary} from './training-summary';
 import {appVersion} from './app-version';
@@ -48,7 +49,8 @@ export default {
     const url = new URL(request.url);
     if (!url.pathname.startsWith('/api/')) return env.ASSETS.fetch(request);
     try {
-      if(['/api/semantic/connect','/api/training/events','/api/training/reports'].includes(url.pathname)){
+      if(url.pathname==='/api/trends'&&request.method==='GET')return json(await publicTrends(env.TRACE_DB));
+      if(['/api/trends/refresh','/api/semantic/connect','/api/training/events','/api/training/reports'].includes(url.pathname)){
         const supplied=request.headers.get('Authorization')?.replace(/^Bearer /,'')??'';
         const role=url.searchParams.get('role')??'mac';
         if(url.pathname==='/api/semantic/connect'&&!['mac','llm','relgt'].includes(role))return json({error:'未知模型角色'},400);
@@ -57,6 +59,10 @@ export default {
         const encoder=new TextEncoder();
         const [a,b]=await Promise.all([crypto.subtle.digest('SHA-256',encoder.encode(supplied)),crypto.subtle.digest('SHA-256',encoder.encode(expected))]);
         if(!crypto.subtle.timingSafeEqual(a,b))return json({error:'未授權'},401);
+        if(url.pathname==='/api/trends/refresh'){
+          if(request.method!=='POST')return json({error:'請求方法不支援'},405);
+          return json(await refreshTrends(env.TRACE_DB,drinks,catalogVersion));
+        }
         if(url.pathname==='/api/training/reports'){
           if(request.method!=='POST')return json({error:'請求方法不支援'},405);
           const report=validateTrainingSummary(await readBody(request));
@@ -200,4 +206,5 @@ export default {
       return json({error: '服務暫時無法使用，請稍後再試'}, 500);
     }
   },
+  async scheduled(_controller,env,ctx){ctx.waitUntil(refreshTrends(env.TRACE_DB,drinks,catalogVersion).then(result=>{console.log(JSON.stringify({event:'weekly_trends_refresh',...result}));if(result.news==='failed'||result.community==='failed')throw new Error('Weekly trend source refresh failed');}));},
 } satisfies ExportedHandler<Env>;

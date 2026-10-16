@@ -26,6 +26,7 @@
       "/api/*"
     ]
   },
+  "triggers": {"crons": ["0 18 * * SUN"]},
   "observability": {
     "enabled": true,
     "logs": {

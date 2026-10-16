@@ -1,3 +1,4 @@
+import {initTrends} from './trends.js';
 import {initAtmosphere} from './drink-atmosphere.js';
 import {appendWellbeingSources} from './wellbeing-sources.js';
 import {manualToppings} from './topping-selection.js';
@@ -5,6 +6,7 @@ import {initChat} from './chat.js';
 import {productKey,likedProducts as likedProductKeys,dislikedProducts,toggleProductPreference} from './preferences.js';
 initAtmosphere();
 let chatController;
+const trendsController=initTrends();
 const $ = selector => document.querySelector(selector);
 const el = (tag, text = '', cls = '') => {const n = document.createElement(tag); n.textContent = text; if (cls) n.className = cls; return n;};
 const storageKey = 'drinks-mk2-feedback-v1';
@@ -292,9 +294,10 @@ function showView() {
   const requested = location.hash.slice(1) || 'recommend';
   if(requested==='chat')chatController.setMode('chat');
   if(requested==='login'&&!accountUser&&!$('#account-dialog').open)$('#account-dialog').showModal();
-  const view = ['recommend','catalog','favorites','graph'].includes(requested) ? requested : 'recommend';
+  const view = ['recommend','catalog','favorites','graph','trends'].includes(requested) ? requested : 'recommend';
   document.querySelectorAll('.view').forEach(n => n.hidden = n.id !== `${view}-view`);
   document.querySelectorAll('.header nav a').forEach(n => {const active=n.hash===`#${view}`; n.classList.toggle('active',active); if(active)n.setAttribute('aria-current','page'); else n.removeAttribute('aria-current');});
+  if(view==='trends')trendsController.load();
   if (view==='catalog') loadCatalog(); else if (view==='favorites') renderFavorites(); else if (view==='graph') loadGraph();
 }
 window.addEventListener('hashchange', showView);
