@@ -1,3 +1,4 @@
+import {appendAlternatives} from './alternatives.js';
 import {initTrends} from './trends.js';
 import {initAtmosphere} from './drink-atmosphere.js';
 import {appendWellbeingSources} from './wellbeing-sources.js';
@@ -170,18 +171,20 @@ async function recommend(settings, next = false) {
     $('#result-warnings').replaceChildren(...value.warnings.map(w => el('p', w)));
     appendWellbeingSources($('#result-warnings'),value.wellbeing);
     $('#result-warnings').hidden = !value.warnings.length;
-    if (next && !value.results.length) {exhausted = true; $('#result-status').textContent = '這組設定的候選已看完。可以從頭看，或調整條件。'; return;}
+    if (next && !value.results.length&&!value.alternatives?.length) {exhausted = true; $('#result-status').textContent = '這組設定的候選已看完。可以從頭看，或調整條件。'; return;}
     lastSettings = settings;
     if (!next) seen = [];
-    seen.push(...value.results.map(r => r.id));
+    seen.push(...[...value.results,...(value.alternatives??[])].map(r => r.id));
     $('#result-count').textContent = `${value.results.length} 杯推薦 / ${value.eligibleCount.toLocaleString()} 杯符合篩選`;
     $('#results').className = '';
     $('#results').replaceChildren();
     if (!value.results.length) {
-      $('#results').className = 'empty-state';
-      $('#results').append(el('span', '◡', 'empty-cup'), el('h3', value.needsClarification||value.blocked ? '先釐清條件，再幫你挑。' : '這次沒有符合的飲料'), el('p', value.needsClarification?value.manualMessage:value.blocked ? '請查看上方說明，調整需求後再查詢。' : '試著調整品牌、預算或營養上限。篩選條件不會自動放寬。'));
+      $('#results').className = value.alternatives?.length?'nearby-results':'empty-state';
+      $('#results').append(el('span', '◡', 'empty-cup'), el('h3', value.needsClarification||value.blocked ? '先釐清條件，再幫你挑。' : '這次沒有完全符合的飲料'), el('p', value.needsClarification?value.manualMessage:value.blocked ? '請查看上方說明，調整需求後再查詢。' : value.alternatives?.length?'下方另列接近選擇，每杯都標示差異；原本要求的條件保持不變。':'試著調整品牌、預算或營養上限。篩選條件不會自動放寬。'));
     } else value.results.forEach((r, i) => $('#results').append(card(r.drink, i, r)));
-    $('#batch-actions').hidden = !value.results.length;
+    appendAlternatives($('#results'),value,card);
+    $('#result-count').textContent+=value.alternatives?.length?` / ${value.alternatives.length} 款接近選擇`:'';
+    $('#batch-actions').hidden = !value.results.length&&!value.alternatives?.length;
     $('#result-status').textContent = `${value.understandingMode==='qwen3.5-9b'?'條件理解：Qwen3.5-9B。 ':value.understandingMode==='qwen3-8b'?'條件理解：Qwen3-8B。 ':value.understandingMode==='rules-fallback'?'Qwen 暫時無法解析，使用規則備援。 ':''}${value.mode.routeA==='roberta-wwm'?'語意搜尋：RoBERTa-WWM。 ':value.mode.routeA==='macbert'?'語意搜尋：MacBERT。':value.mode.routeAFallback?'Mac 暫時無法推論，改用 TF-IDF 備援。':'文字搜尋：TF-IDF。'} ${value.mode.routeB==='relgt'?'個人化排序：RelGT，已參考你的歷史互動。':value.mode.personalized?'個人化排序：收藏特徵圖。':'收藏喜歡的飲料，讓下次更貼近你的口味。'} ${next ? `已看過 ${seen.length} 杯。` : ''}`;
     refreshFeedbackButtons();
   } catch (error) {$('#result-status').textContent = `${error.message} ${$('#results .drink-card') ? '已保留上一份結果。' : ''}`;}

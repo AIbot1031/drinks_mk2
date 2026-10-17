@@ -1,0 +1,30 @@
+{
+  "version": "3.1.10",
+  "strict": 0,
+  "nearby": 5,
+  "zeroBudgetPreserved": true,
+  "allergyBlocked": true,
+  "nextBatchNoProductRepeat": true,
+  "chatClarification": false,
+  "chatNearby": 5,
+  "modelWeightsChanged": false,
+  "note": "Synthetic smoke requests only. No account credentials, raw user records or model weights saved.",
+  "assetsMatched": [
+    "app.js",
+    "chat.js",
+    "alternatives.js",
+    "styles.css",
+    "internal.js",
+    "review-summary.js",
+    "index.html",
+    "internal.html"
+  ],
+  "traceStrictAndAlternativesMatch": true,
+  "workerVersion": "0d5c7445-ab92-4e4d-a97b-e6e63be42cca",
+  "models": {
+    "encoder": "roberta-wwm-2d7aecfdae2f3374",
+    "qwen": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+    "relgt": "relgt-temporal-05757994850db8f6",
+    "allReady": true
+  }
+}

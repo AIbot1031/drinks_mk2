@@ -1,3 +1,4 @@
+import {nearbyChoices} from './alternatives';
 import {refreshTrends,publicTrends} from './trends';
 import {prepareManualUnderstanding,applyManualUnderstanding} from './manual-understanding';
 import {validateTrainingSummary} from './training-summary';
@@ -173,12 +174,14 @@ export default {
         }
         if(needsClarification){response.results=[];response.blocked=false;response.warnings=[];}
         if(!consumerContractMatches(input.filters,response.filters,response.results)){console.error(JSON.stringify({event:'recommendation_contract_failed'}));return json({error:'這次結果與篩選條件不一致，已停止顯示，請重試。'},503);}
+        const nearby=nearbyChoices(engine,drinks,input,response,needsClarification);
+        Object.assign(response,nearby);
         if(conversation){conversation.state.filters=response.filters;if(!needsClarification&&!response.blocked)conversation.state.query=response.query;}
         if(conversation){response.warnings=[...new Set([...response.warnings,...conversation.warnings])];}
         if(manual){response.warnings=[...new Set([...response.warnings,...manual.rules.warnings,...manual.turn.warnings,...(manualFollowUp?[manualFollowUp.message]:[])])];}
         if(conversation)Object.assign(trace.understanding,{llmUsed:!!llm,parser:llm?'qwen-mac':'rules',llmModelVersion:llm?.modelVersion??null,llmDurationMs:llm?.durationMs??null,llmAction:needsClarification?'clarify':'recommend',llmFeatureSchema:llm?featureSchemaVersion:null,llmCatalogVersion:llm?catalogVersion:null,consumerWarnings:response.warnings});
         if(manual)Object.assign(trace.understanding,{llmUsed:!!llm,parser:llm?'qwen-mac':'rules',llmModelVersion:llm?.modelVersion??null,llmDurationMs:llm?.durationMs??null,llmAction:needsClarification?'clarify':'recommend',llmAttempted:manualModelAttempted,consumerWarnings:response.warnings});
-        const assistantMessage=manualFollowUp?.message??conversation?.followUp?.message??(llm?.clarify?llm.ack:response.blocked
+        const assistantMessage=manualFollowUp?.message??conversation?.followUp?.message??(llm?.clarify?llm.ack:nearby.alternativeNotice?nearby.alternativeNotice:response.blocked
           ? '這些條件目前無法確認，請查看說明。重新開始可以清除本輪條件。'
           : response.results.length
             ? `${llm?.ack??conversation?.ack??''} 找到 ${response.results.length} 杯符合條件的飲料。你可以繼續調整條件，或說「再推薦幾杯」。`

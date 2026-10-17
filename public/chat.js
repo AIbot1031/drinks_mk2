@@ -1,3 +1,4 @@
+import {appendAlternatives} from './alternatives.js';
 import {conditionLabels} from './chat-conditions.js';
 import {appendWellbeingSources} from './wellbeing-sources.js';
 export function initChat({api,card,feedback,isBusy,setBusy,refresh,ready}) {
@@ -64,15 +65,15 @@ export function initChat({api,card,feedback,isBusy,setBusy,refresh,ready}) {
     try{
       const prefs=feedback();
       const value=await api('/api/chat/recommend',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message,state,history,excludedIds:seen,likedIds:Object.keys(prefs.liked),dislikedIds:prefs.disliked})});
-      history.push({role:'user',content:message},{role:'assistant',content:value.assistantMessage.slice(0,300)});history=history.slice(-8);$('#chat-recovery').hidden=value.needsClarification||(!value.blocked&&value.results.length>0);state=value.state;if(!value.next)seen=[];seen.push(...value.results.map(r=>r.id));seen=[...new Set(seen)].slice(-2000);showFilters(message);
+      history.push({role:'user',content:message},{role:'assistant',content:value.assistantMessage.slice(0,300)});history=history.slice(-8);$('#chat-recovery').hidden=value.needsClarification||(!value.blocked&&(value.results.length>0||!!value.alternatives?.length));state=value.state;if(!value.next)seen=[];seen.push(...[...value.results,...(value.alternatives??[])].map(r=>r.id));seen=[...new Set(seen)].slice(-2000);showFilters(message);
       const reply=bubble('assistant',value.assistantMessage);
-      reply.append(text('p',value.needsClarification?'本輪保留的條件（待確認）':'這次推薦使用的條件','field-help'));
+      reply.append(text('p',value.needsClarification?'本輪保留的條件（待確認）':value.alternatives?.length?'原本要求的條件；接近選擇的差異另列於下方':'這次推薦使用的條件','field-help'));
       const snapshot=document.createElement('div');snapshot.className='filter-tags chat-turn-filters';snapshot.setAttribute('aria-label','本輪實際條件');snapshot.append(...conditionLabels({...value.state,filters:value.filters}).map(v=>text('span',v)));reply.append(snapshot);
       if(value.choices?.length){const choices=document.createElement('div');choices.className='chat-choices';value.choices.forEach(item=>{const button=text('button',item.label);button.type='button';button.dataset.chat=item.message;button.disabled=pending;button.onclick=()=>send(item.message);choices.append(button);});reply.append(choices);}
       if(value.warnings.length)reply.append(text('p',value.warnings.join(' '),'card-warning'));
       appendWellbeingSources(reply,value.wellbeing);
       const cards=document.createElement('div');cards.className='chat-cards';
-      value.results.forEach((r,i)=>cards.append(card(r.drink,i,r)));reply.append(cards);refresh();
+      value.results.forEach((r,i)=>cards.append(card(r.drink,i,r)));reply.append(cards);appendAlternatives(reply,value,card);refresh();
       $('#chat-message').value='';$('#chat-status').textContent=value.needsClarification?'請補充上方條件，原本的口味與篩選已保留。':(value.chatMode==='quick-command'?'已接續上一輪條件。 ':'')+(value.chatMode==='qwen3.5-9b'?'對話：Qwen3.5-9B。 ':value.chatMode==='qwen3-8b'?'對話：Qwen3-8B。 ':value.chatMode==='rules-fallback'?'對話模型暫時不可用，使用規則備援。 ':'')+(value.mode.routeA==='roberta-wwm'?'語意搜尋：RoBERTa-WWM。 ':value.mode.routeA==='macbert'?'語意搜尋：MacBERT。 ':value.mode.routeAFallback?'Mac 暫時無法推論，改用 TF-IDF 備援。 ':'')+(value.mode.routeB==='relgt'?'個人化排序：RelGT，已參考你的歷史互動。':value.mode.personalized?'個人化排序：收藏特徵圖。':'你可以繼續調整條件。');
     }catch(error){$('#chat-recovery').hidden=false;bubble('assistant',`這次未完成推薦：${error.message}。已保留上一輪條件，請再試一次。`);$('#chat-status').textContent='訊息未成功處理，輸入內容已保留。';}
     finally{lock(false);$('#chat-message').focus();$('#chat-log').lastElementChild?.scrollIntoView({block:'nearest'});}

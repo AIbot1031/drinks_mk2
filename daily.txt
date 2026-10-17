@@ -1321,3 +1321,49 @@ Git：待CI、tag及Release核對；未更動訓練與模型權重。
 Git：69d0d15f55e72c8dcc8165fc6196cf80b20136b7 已推送main、遠端一致；CI38909672732全部通過。tag v3.1.9指向發布提交，Release已建立且Latest核對為v3.1.9，與正式站一致。
 收尾：桌面／手機截圖及安全聚合驗證已記錄，臨時分頁及本機Worker已關閉。
 限制：新聞外部取得失敗，尚無有效新聞排行；店家缺統計。已部署每週自動嘗試更新，不宣稱已取得社群聲量或全網排行。
+
+[2026-10-17T02:01:29+08:00｜RelGT 真實時間事件訓練]
+- 狀態：trained_unvalidated_small_temporal_data；optimizer 步數 20；耗時 1.874 秒。
+- 資料彙總：{"source_events": 16, "invalid_ids": 0, "duplicate_events": 0, "after_cutoff": 0, "duplicate_targets": 0, "users": 5, "like_targets": 16, "dislike_targets": 0, "valid_events": 16, "samples": 16, "with_history": 11, "cold_start_samples": 5, "multi_day_users": 1}。
+- 前後比較與更新報告：docs/training-runs/20261017T020127-relgt-long-intent.md／JSON。
+- 無價格目標；本訓練入口未發布模型／更新用戶榜單，排程由 Codex 管理；沒有將原始事件或用戶代碼放到 GitHub。
+
+[2026-10-17T02:03:08+08:00｜RoBERTa-WWM 飲料語意微調]
+- 狀態：trained_proxy_evaluated_not_published；步數：75；耗時：98.633 秒。
+- 任務：飲料文字無監督對比學習，沒有價格目標、沒有用戶資料。
+- 完整更新報告：docs/training-runs/20261017T020129-roberta-wwm-contrastive.md；同名 JSON 保存參數與實測。
+- 本訓練入口未發布模型、未更新用戶推薦；排程由 Codex 管理，發布仍需人工查詢相關性與線上舊新版比較。
+
+[2026-10-17T02:04:22+08:00｜Qwen 實際 QLoRA 訓練]
+- 狀態：failed；實際 optimizer 步數：0；耗時：73.804 秒。
+- 以人工合成意圖資料訓練，沒有使用真實用戶對話；固定驗證集前後比較與完整報告：docs/training-runs/20261017T020308-qwen-intent-qlora.md／JSON。
+- 未發布、未更新線上權重；基礎模型／adapter 保存與載入結果見報告，不以訓練 loss 宣稱推薦改善。
+
+[2026-10-17T02:04:47+08:00｜三模型每日訓練]
+- 狀態：completed_with_failures；完成步數彙總：95；未發布權重。
+- 批次與各模型前後比較報告：docs/training-runs/20261017T020126-daily-training.md／JSON。
+- 沒有將原始用戶互動或金鑰寫入報告／Git；保護的執行日誌只存 internal_exports。
+
+[2026-10-17T02:06:56+08:00｜Qwen 實際 QLoRA 訓練]
+- 狀態：trained_synthetic_intent_not_published；實際 optimizer 步數：10；耗時：114.901 秒。
+- 以人工合成意圖資料訓練，沒有使用真實用戶對話；固定驗證集前後比較與完整報告：docs/training-runs/20261017T020501-qwen-intent-qlora.md／JSON。
+- 未發布、未更新線上權重；基礎模型／adapter 保存與載入結果見報告，不以訓練 loss 宣稱推薦改善。
+
+[2026-10-17T02:09:08+08:00｜每日訓練有限重試審查]
+- 規劃／執行：--check通過後跑每日入口；RelGT20步、RoBERTa75步；Qwen首次GPU記憶體不足0步，保留原失敗報告，一次低記憶體重試10步，合計105步。
+- 驗證：RelGT無獨立時間驗證；RoBERTa目錄代理整體上升但3個查詢退步，且非正式舊新版比較；Qwen固定合成意圖90%→50%、schema100%→90%，不發布。成功候選重載誤差均0，非續訓。
+- 報告：docs/training-runs/20261017-daily-training-retry-review.md／JSON及其中各模型連結；原批次失敗結果不覆寫。
+- 線上／同步：20份安全摘要同步後台成功，無原始互動；線上3.1.9、三模型版本與目錄不變且均ready。
+- 限制／後續：候選留本機；需獨立時間驗證、正式舊新版比較及修正Qwen合成驗證退步。沒有改02:00排程、沒有部署或Git commit／push。
+
+[2026-10-17 16:32:19 Asia/Taipei] 3.1.10 無結果與接近選擇
+規劃：依使用者圖片改善嚴格條件零結果，另列接近飲料、逐杯標示差異，目標合計5款但不為湊數提高上限。
+實作：只將正向品牌／茶種／奶茶／配料列作替代差異；保留預算、營養、奶類、否定排除、個人不喜歡與換批限制。原始條件／符合結果不變；手動、對話、監督台顯示與保存替代項。
+驗證：型別與語法檢查；Node121項（104通過17條件略過）；隔離HTTP零符合補5、硬限制、過敏、杯型與換批去重通過。八曜目錄實際有奶茶，不沿用圖片假設當事實。
+部署／Git：尚待正式部署及Git／Release核對。詳見 docs/3.1.10無結果與接近選擇.md。
+限制：重要限制保留後仍可能不足5款；替代依條件差異與TF-IDF，不宣稱新模型推薦改善。未訓練或改權重。
+
+[2026-10-17 16:34:26 Asia/Taipei] 3.1.10 正式部署與驗證
+部署：Worker 0d5c7445-ab92-4e4d-a97b-e6e63be42cca，正式站3.1.10與8個資產雜湊一致，既有Cron不變。
+驗證：正式HTTP零符合另列5款、0元上限保留、過敏阻擋、跨杯型換批無重複；後台consumerOutput的條件及兩組結果與API一致。實際Qwen解析的手動頁顯示差異標籤，390px手機版無橫向溢出；三模型ready且版本未變。
+Git：待CI／tag／Release核對。臨時分頁已關閉、手機viewport已復原，沒有改訓練或模型。
