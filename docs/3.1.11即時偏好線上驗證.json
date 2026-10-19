@@ -1,0 +1,78 @@
+{
+  "verifiedAt": "2026-10-19T08:58:17.130Z",
+  "site": "https://drinks-mk2.rtx941031.workers.dev",
+  "version": "3.1.11",
+  "deploymentId": "60996e9a-d92b-4100-a91d-3f6ce78c40dc",
+  "assetsMatch": [
+    "index.html",
+    "internal.html",
+    "app.js",
+    "chat.js"
+  ],
+  "checks": [
+    {
+      "action": "like",
+      "status": "passed",
+      "durationMs": 746,
+      "resultCount": 6
+    },
+    {
+      "action": "unlike",
+      "status": "passed",
+      "durationMs": 730,
+      "resultCount": 6
+    },
+    {
+      "action": "dislike",
+      "status": "passed",
+      "durationMs": 1022,
+      "resultCount": 6
+    },
+    {
+      "action": "undislike",
+      "status": "passed",
+      "durationMs": 689,
+      "resultCount": 6
+    }
+  ],
+  "sleepConstraintsAndNotices": "passed",
+  "oldContextRejected": 400,
+  "models": {
+    "connected": true,
+    "ready": true,
+    "modelVersion": "roberta-wwm-2d7aecfdae2f3374",
+    "catalogVersion": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+    "device": "mps",
+    "llm": {
+      "connected": true,
+      "ready": true,
+      "modelVersion": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+      "catalogVersion": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+      "device": "mlx"
+    },
+    "relgt": {
+      "connected": true,
+      "ready": true,
+      "modelVersion": "relgt-temporal-05757994850db8f6",
+      "catalogVersion": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+      "device": "cpu"
+    }
+  },
+  "releaseCommit": "ed9bc0a1dc92aed207277ad3df6651e9e4a4f928",
+  "ci": {
+    "runId": 39226638702,
+    "conclusion": "success"
+  },
+  "release": {
+    "tag": "v3.1.11",
+    "latest": true,
+    "url": "https://github.com/AIbot1031/drinks_mk2/releases/tag/v3.1.11"
+  },
+  "browser": {
+    "manualLikeRefresh": "passed",
+    "chatWithLiveQwenAndEncoder": "passed",
+    "chatDislikeKeepsAcceptedFilters": "passed",
+    "collectionUndoBothPreferences": "passed",
+    "testPreferencesRestored": true
+  }
+}
