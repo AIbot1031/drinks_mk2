@@ -113,6 +113,7 @@ async function refreshRecommendations(){
   }finally{preferenceRefreshRunning=false;storeController?.lock(false);refreshFeedbackButtons();updateAccountButtons();}
 }
 function refreshFeedbackButtons() {
+  storeController?.lock(busy||accountBusy||preferenceBusy||preferenceRefreshRunning);
   const products=likedProducts(),dislikes=dislikedProducts(feedback);
   document.querySelectorAll('[data-like]').forEach(n => {n.disabled=preferenceBusy||accountBusy||busy||preferenceRefreshRunning;const liked = products.has(n.dataset.product); n.setAttribute('aria-pressed', String(liked)); n.textContent = liked ? '♥ 已收藏' : '♡ 喜歡這杯';});
   document.querySelectorAll('[data-dislike]').forEach(n => {n.disabled=preferenceBusy||accountBusy||busy||preferenceRefreshRunning;const disliked = dislikes.has(n.dataset.product)||feedback.disliked.includes(n.dataset.dislike); n.setAttribute('aria-pressed', String(disliked));n.setAttribute('aria-label',`${disliked?'取消不喜歡':'標記不喜歡'}這款飲料`); n.textContent = disliked ? '取消不喜歡' : '不太喜歡';});

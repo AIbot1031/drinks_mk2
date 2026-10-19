@@ -6,7 +6,7 @@ export function activeReports(records,now=Date.now()){
 }
 export function initStoreControls({api,isBusy,setBusy,onChanged}){
  const $=s=>document.querySelector(s),storage='drinks-store-session-v1';
- let store=null,records={},reporting=false,locked=false,stores=[],attempts=new Map(),reporterId=crypto.randomUUID();
+ let store=null,records={},reporting=false,locked=isBusy(),stores=[],attempts=new Map(),reporterId=crypto.randomUUID();
  try{const saved=JSON.parse(sessionStorage.getItem(storage)||'null');if(saved){store=saved.store&&['brand','name','address','id'].every(k=>typeof saved.store[k]==='string')?saved.store:null;records=saved.records&&typeof saved.records==='object'?saved.records:{};reporterId=/^[a-f0-9-]{36}$/.test(saved.reporterId)?saved.reporterId:reporterId;}}catch{}
  const save=()=>{try{sessionStorage.setItem(storage,JSON.stringify({store,records,reporterId}));}catch{$('#store-status').textContent='此分頁無法保存門市選擇，關閉後需重新選擇。';}};
  const current=()=>store?activeReports(records[store.id]||[]):[];
@@ -31,7 +31,7 @@ export function initStoreControls({api,isBusy,setBusy,onChanged}){
  }
  async function choose(value){if(isBusy()||reporting)return;store=value;save();render();await onChanged();}
  $('#store-search-form').onsubmit=e=>{e.preventDefault();if(!isBusy())search();};
- $('#store-select').onchange=()=>choose(stores.find(s=>s.id===$('#store-select').value)||(store?.id===$('#store-select').value?store:null));
+ $('#store-select').onchange=()=>{if(isBusy()||reporting){$('#store-select').value=store?.id||'';return;}return choose(stores.find(s=>s.id===$('#store-select').value)||(store?.id===$('#store-select').value?store:null));};
  $('#store-custom-form').onsubmit=async e=>{
   e.preventDefault();if(isBusy()||reporting)return;setBusy(true);
   try{const value=await api('/api/stores/resolve',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({brand:$('#store-brand').value,name:$('#store-name').value,address:$('#store-address').value})});setBusy(false);await choose(value);await search();}
