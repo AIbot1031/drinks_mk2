@@ -1,3 +1,4 @@
+import {initStoreControls} from './store-controls.js';
 import {appendAlternatives} from './alternatives.js';
 import {initTrends} from './trends.js';
 import {initAtmosphere} from './drink-atmosphere.js';
@@ -6,7 +7,7 @@ import {manualToppings} from './topping-selection.js';
 import {initChat} from './chat.js';
 import {productKey,likedProducts as likedProductKeys,dislikedProducts,toggleProductPreference} from './preferences.js';
 initAtmosphere();
-let chatController;
+let chatController,storeController;
 const trendsController=initTrends();
 const $ = selector => document.querySelector(selector);
 const el = (tag, text = '', cls = '') => {const n = document.createElement(tag); n.textContent = text; if (cls) n.className = cls; return n;};
@@ -105,11 +106,11 @@ function removeDislikedRecommendations(){
 }
 async function refreshRecommendations(){
   if(preferenceRefreshRunning)return;
-  preferenceRefreshRunning=true;refreshFeedbackButtons();updateAccountButtons();
+  preferenceRefreshRunning=true;storeController?.lock(true);refreshFeedbackButtons();updateAccountButtons();
   try{
     if(lastRankingContext)await recommend(lastSettings,false,lastRankingContext);
     await chatController?.refreshPreferences();
-  }finally{preferenceRefreshRunning=false;refreshFeedbackButtons();updateAccountButtons();}
+  }finally{preferenceRefreshRunning=false;storeController?.lock(false);refreshFeedbackButtons();updateAccountButtons();}
 }
 function refreshFeedbackButtons() {
   const products=likedProducts(),dislikes=dislikedProducts(feedback);
@@ -117,9 +118,13 @@ function refreshFeedbackButtons() {
   document.querySelectorAll('[data-dislike]').forEach(n => {n.disabled=preferenceBusy||accountBusy||busy||preferenceRefreshRunning;const disliked = dislikes.has(n.dataset.product)||feedback.disliked.includes(n.dataset.dislike); n.setAttribute('aria-pressed', String(disliked));n.setAttribute('aria-label',`${disliked?'取消不喜歡':'標記不喜歡'}這款飲料`); n.textContent = disliked ? '取消不喜歡' : '不太喜歡';});
 }
 async function api(path, options) {
+  if(storeController&&['/api/recommend','/api/chat/recommend','/api/preference-refresh'].includes(path)&&options?.body){
+    options={...options,body:JSON.stringify({...JSON.parse(options.body),...storeController.body()})};
+  }
   const response = await fetch(path, options);
   const value = await response.json();
   if (!response.ok) throw new Error(value.error || '暫時無法完成，請稍後重試。');
+  if(['/api/recommend','/api/chat/recommend','/api/preference-refresh'].includes(path))storeController?.accept(value.store);
   return value;
 }
 
@@ -130,7 +135,7 @@ function card(d, index, rec, variants = d.variants || rec?.variants || []) {
   if (variants.length > 1) {
     const select=el('select');select.setAttribute('aria-label',`${d.name}的杯型`);
     for(const variant of variants){const option=el('option',`${variant.cupSize || variant.category} · NT$ ${variant.price ?? '未知'}${variant.priceEstimated ? '（估算）' : ''}`);option.value=variant.id;select.append(option);}select.value=d.id;
-    select.onchange=()=>{const variant=variants.find(v=>v.id===select.value);article.replaceWith(card(variant,index,null,variants));refreshFeedbackButtons();};
+    select.onchange=()=>{const variant=variants.find(v=>v.id===select.value);article.replaceWith(card(variant,index,rec,variants));refreshFeedbackButtons();};
     content.append(select,el('p',`共 ${variants.length} 個可查看的版本，預設最低價；杯型價格與營養分開，喜歡／不喜歡共用。`,'field-help'));
   }
   top.append(el('h3', d.name), el('span', d.priceText ? `NT$ ${d.priceText}${d.priceEstimated ? '（估算）' : ''}` : (d.price === null ? '價格未知' : `NT$ ${d.price}`), 'price'));
@@ -157,11 +162,12 @@ function card(d, index, rec, variants = d.variants || rec?.variants || []) {
   if(rec?.rankSourceId && rec.rankSourceId!==d.id)details.append(el('p','此卡片按品項的匹配版本排序，預設顯示該品項符合條件的最低價版本。'));
   if (rec) details.append(el('p', `排序依據：路徑 A ${rec.ranks.a === null ? '未列入' : `第 ${rec.ranks.a} 名`}，路徑 B ${rec.ranks.b === null ? '未列入' : `第 ${rec.ranks.b} 名`}。排序分數並非正確率。`));
   details.append(el('p', rec?.warning || '價格可能為起價；過敏原未核對，成分請向店家確認。', 'card-warning'));
+  storeController?.decorate(content,d,rec);
   content.append(details); article.append(content); return article;
 }
 
 function setBusy(value) {
-  busy = value;updateAccountButtons();refreshFeedbackButtons();
+  busy = value;storeController?.lock(value);updateAccountButtons();refreshFeedbackButtons();
   $('#recommend-form').querySelectorAll('input,select,textarea,button').forEach(n => n.disabled = value);
   $('#submit-button').textContent = value ? '正在幫你挑選…' : '幫我找一杯 ↗';
   $('#next-batch').disabled = value || exhausted;
@@ -218,7 +224,7 @@ $('#recommend-form').oninput = () => {updateExcludedBrandCount();updateToppingCo
 $('#recommend-form').onchange = $('#recommend-form').oninput;
 $('#next-batch').onclick = () => {if (lastSettings) recommend(lastSettings, true);};
 $('#restart-batch').onclick = () => {if (lastSettings) recommend(lastSettings);};
-$('#reset-filters').onclick = () => {$('#recommend-form').reset();updateExcludedBrandCount();updateToppingCount(); $('#batch-actions').hidden = true; lastSettings = null; lastRankingContext=null; seen = []; $('#result-status').textContent = '偏好條件已重設。';};
+$('#reset-filters').onclick = () => {$('#recommend-form').reset();updateExcludedBrandCount();updateToppingCount(); $('#batch-actions').hidden = true; lastSettings = null; lastRankingContext=null; seen = []; $('#results').replaceChildren(...welcomeNodes);$('#results').className='empty-state';$('#result-count').textContent='等你說說偏好';$('#result-warnings').hidden=true;$('#active-filters').replaceChildren(); $('#result-status').textContent = '偏好條件已重設。';};
 document.querySelectorAll('[data-query]').forEach(n => n.onclick = () => {$('#query').value = n.dataset.query; $('#batch-actions').hidden = true; $('#query').focus();});
 $('#inspiration').onclick = () => {$('#query').value = '想喝清爽、回甘的茶'; recommend(readSettings());};
 
@@ -318,6 +324,7 @@ async function loadGraph() {
 }
 $('#graph-scope').onchange=()=>loadGraph();
 $('#graph-form').onsubmit = event => {event.preventDefault(); loadGraph();};
+storeController=initStoreControls({api,isBusy:()=>busy||accountBusy||preferenceBusy||preferenceRefreshRunning,setBusy,onChanged:refreshRecommendations});
 chatController=initChat({api,card,feedback:()=>feedback,isBusy:()=>busy||accountBusy||preferenceBusy||preferenceRefreshRunning,setBusy,refresh:refreshFeedbackButtons,ready:()=>preferenceSync});
 function showView() {
   const requested = location.hash.slice(1) || 'recommend';
@@ -332,7 +339,7 @@ function showView() {
 window.addEventListener('hashchange', showView);
 $('#favorite-count').textContent = likedProducts().size;
 try {
-  meta = await api('/api/meta');
+  meta = await api('/api/meta');storeController.setBrands(Object.keys(meta.brands));
   $('#catalog-summary').textContent = `${meta.total.toLocaleString()} 款飲料 · ${Object.keys(meta.brands).length} 個品牌`;
   for (const brand of Object.keys(meta.brands)) for (const selector of ['#brand','#catalog-brand','#graph-brand']) {const option=el('option',brand); option.value=brand; $(selector).append(option);}
   for (const brand of Object.keys(meta.brands)){const label=el('label'),checkbox=el('input');checkbox.type='checkbox';checkbox.value=brand;checkbox.name='excludedBrand';label.append(checkbox,el('span',brand));$('#excluded-brands').append(label);}

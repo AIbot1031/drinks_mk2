@@ -1,3 +1,4 @@
+import {listedStores,loadStoreSupply,submitStoreReport,storeIdentity} from './stores';
 import {readRankingContext,type RankingContext,type RankScores} from './ranking-context';
 import {nearbyChoices} from './alternatives';
 import {refreshTrends,publicTrends} from './trends';
@@ -51,6 +52,12 @@ export default {
     const url = new URL(request.url);
     if (!url.pathname.startsWith('/api/')) return env.ASSETS.fetch(request);
     try {
+      if(url.pathname==='/api/stores'&&request.method==='GET')return json({results:await listedStores(env.TRACE_DB,Object.keys(catalog.brands),(url.searchParams.get('q')??'').slice(0,100))});
+      if(url.pathname==='/api/stores/resolve'&&request.method==='POST')return json(await storeIdentity(await readBody(request),Object.keys(catalog.brands)));
+      if(url.pathname==='/api/stores/reports'&&request.method==='POST'){
+        const origin=request.headers.get('origin');if(origin&&origin!==url.origin)return json({error:'請從本站回報'},403);
+        return json(await submitStoreReport(env.TRACE_DB,await readBody(request),drinks));
+      }
       if(url.pathname==='/api/trends'&&request.method==='GET')return json(await publicTrends(env.TRACE_DB));
       if(['/api/trends/refresh','/api/semantic/connect','/api/training/events','/api/training/reports'].includes(url.pathname)){
         const supplied=request.headers.get('Authorization')?.replace(/^Bearer /,'')??'';
@@ -145,6 +152,7 @@ export default {
         const manualFollowUp=manual?.turn.followUp;
         const needsClarification=!!conversation?.followUp||!!manualFollowUp||!!llm?.clarify;
         if(needsClarification)input.query='等待對話釐清：';
+        input.supply=await loadStoreSupply(env.TRACE_DB,(body as Record<string,unknown>).store,(body as Record<string,unknown>).storeReports,drinks);
         const pool=engine.candidatePool(input);
         let semantic:RankScores|undefined=refreshContext?.semantic;
         if(pool.length&&!refreshContext){
@@ -174,10 +182,12 @@ export default {
         const goalPhrases={sleep:'睡前',focus:'提神',hydration:'口渴',comfort:'難過'};
         response.wellbeing=wellbeingAdvice(refreshContext?(refreshContext.wellbeingGoals??[]).map(k=>goalPhrases[k]).join('，'):conversation?.message??manualOriginal?.query??input.query);
         response.warnings=[...new Set([...response.warnings,...response.wellbeing.notes])];
+        if(input.supply&&response.filters.brand&&response.filters.brand!==input.supply.store.brand)response.warnings.push(`門市屬於${input.supply.store.brand}，與指定品牌${response.filters.brand}不同；請調整門市或品牌，原條件未自動更改。`);
+        if(input.supply&&!response.results.length&&!response.blocked&&!needsClarification)response.warnings.push('這家門市目前沒有符合原條件的替代品項，未自動放寬條件。供應待確認不代表一定買得到。');
         const rankingContext:RankingContext|null=needsClarification||response.blocked?null:refreshContext??{version:1,appVersion,catalogVersion,input:{query:input.query,filters:input.filters},semantic,relgt,wellbeingGoals:response.wellbeing.applied};
         if(needsClarification){response.results=[];response.blocked=false;response.warnings=[];}
         if(!consumerContractMatches(input.filters,response.filters,response.results)){console.error(JSON.stringify({event:'recommendation_contract_failed'}));return json({error:'這次結果與篩選條件不一致，已停止顯示，請重試。'},503);}
-        const nearby=nearbyChoices(engine,drinks,input,response,needsClarification);
+        const nearby=nearbyChoices(engine,drinks,input,response,needsClarification||!!input.supply);
         Object.assign(response,nearby);
         if(conversation){conversation.state.filters=response.filters;if(!needsClarification&&!response.blocked)conversation.state.query=response.query;}
         if(conversation){response.warnings=[...new Set([...response.warnings,...conversation.warnings])];}
@@ -199,7 +209,7 @@ export default {
           return json({error:'推薦紀錄暫時無法儲存，請稍後重試'},503);
         }
         console.log(JSON.stringify({event:'recommendation_saved',traceId,resultCount:response.results.length}));
-        return json({...response,traceId,rankingContext,rankingReused:!!refreshContext,...(!conversation?{understandingMode:llm?(llm.modelVersion.startsWith('qwen3.5-9b-')?'qwen3.5-9b':'qwen3-8b'):manualModelAttempted?'rules-fallback':'rules',understandingModel:llm?.modelVersion??null,needsClarification,manualMessage:assistantMessage}:{}),...(conversation?{
+        return json({...response,store:input.supply?.store??null,traceId,rankingContext,rankingReused:!!refreshContext,...(!conversation?{understandingMode:llm?(llm.modelVersion.startsWith('qwen3.5-9b-')?'qwen3.5-9b':'qwen3-8b'):manualModelAttempted?'rules-fallback':'rules',understandingModel:llm?.modelVersion??null,needsClarification,manualMessage:assistantMessage}:{}),...(conversation?{
           state:conversation.state,next:conversation.next,
           chatMode:llm?(llm.modelVersion.startsWith('qwen3.5-9b-')?'qwen3.5-9b':'qwen3-8b'):conversation.followUp?'clarification':conversation.constraintOnly||conversation.next||conversation.reset?'quick-command':conversation.state.guard?'clarification':'rules-fallback',
           chatModel:llm?.modelVersion??null,needsClarification,assistantMessage,choices:conversation.followUp?.choices??[]

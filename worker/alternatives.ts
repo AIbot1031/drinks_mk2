@@ -1,3 +1,4 @@
+import {supplyStatus} from './stores';
 import {eligible,isMilkTea,makeEngine,toppingMatches} from './recommend';
 import {groupProducts,productKey} from './products';
 import {requiredToppings} from './drink-language';
@@ -35,7 +36,7 @@ export function nearbyChoices(engine:ReturnType<typeof makeEngine>,drinks:Drink[
   const consistent=variants.filter(v=>JSON.stringify(deviations(v,f))===JSON.stringify(ds)).sort((a,b)=>(a.price??Infinity)-(b.price??Infinity)||a.id.localeCompare(b.id));
   const d=consistent[0];
   const message=ds.map(x=>x.message).join('；');
-  return {id:d.id,name:d.name,brand:d.brand,rankSourceId:d.id,drink:d,variants:consistent,match_score:lexical.get(d.id)??0,reasoning:`接近選擇，未完全符合：${message}`,warning:'請先確認差異；預算、營養上限、奶類與排除條件仍保留。',confidence:'依條件差異及TF-IDF文字相近度排序，非模型校準機率',reasons:[message],ranks:{a:null,b:null},deviations:ds,actualFilters};
+  return {availability:{...supplyStatus(d),storeId:null},id:d.id,name:d.name,brand:d.brand,rankSourceId:d.id,drink:d,variants:consistent,match_score:lexical.get(d.id)??0,reasoning:`接近選擇，未完全符合：${message}`,warning:'請先確認差異；預算、營養上限、奶類與排除條件仍保留。',confidence:'依條件差異及TF-IDF文字相近度排序，非模型校準機率',reasons:[message],ranks:{a:null,b:null},deviations:ds,actualFilters};
  }).sort((a,b)=>penalty(a.drink)-penalty(b.drink)||b.match_score-a.match_score||a.id.localeCompare(b.id));
  const alternatives=candidates.slice(0,needed);
  if(!alternativesMatch(f,alternatives))throw new Error('Alternative recommendation contract failed');

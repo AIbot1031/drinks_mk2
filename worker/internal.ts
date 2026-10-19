@@ -1,3 +1,4 @@
+import {reviewStoreReport} from './stores';
 const json = (body:unknown,status=200,headers:Record<string,string>={})=>Response.json(body,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...headers}});
 const cookieName='drinks_team_session';
 const encoder=new TextEncoder();
@@ -34,6 +35,13 @@ export async function internalApi(request:Request,env:Env,bodyReader:(r:Request)
   }
   if(!await authorized(request,env.REVIEW_KEY))return json({error:'請先登入團隊檢查頁面'},401);
   if(url.pathname==='/api/internal/logout'&&request.method==='POST')return json({ok:true},200,{'Set-Cookie':`${cookieName}=; Path=/api/internal; HttpOnly; Secure; SameSite=Strict; Max-Age=0`});
+  if(url.pathname==='/api/internal/stores/reports'&&request.method==='GET'){
+    const rows=await env.TRACE_DB.prepare(`SELECT r.id,r.kind,r.created_at,r.product_key,s.brand,s.name,s.address FROM store_reports r JOIN drink_stores s ON s.id=r.store_id WHERE r.review_status='pending' ORDER BY r.created_at DESC LIMIT 50`).all();
+    return json({results:rows.results});
+  }
+  if(url.pathname==='/api/internal/stores/review'&&request.method==='POST'){
+    await reviewStoreReport(env.TRACE_DB,await bodyReader(request));return json({ok:true});
+  }
   if(url.pathname==='/api/internal/traces'&&request.method==='GET'){
     const q=(url.searchParams.get('q')??'').slice(0,100);
     const result=await env.TRACE_DB.prepare("SELECT id, created_at, COALESCE(json_extract(payload, '$.conversation.message'), json_extract(payload, '$.request.query'), query) AS query, result_count FROM recommendation_traces WHERE query LIKE ? OR json_extract(payload, '$.conversation.message') LIKE ? OR json_extract(payload, '$.request.query') LIKE ? ORDER BY created_at DESC LIMIT 50").bind(`%${q}%`,`%${q}%`,`%${q}%`).all();

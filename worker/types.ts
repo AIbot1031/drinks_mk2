@@ -14,6 +14,6 @@ export type Filters = {
   priceExclusive?:boolean; caloriesExclusive?:boolean; caffeineExclusive?:boolean;
   milk?: 'any' | 'none' | 'fresh' | 'plant'; tea?: string; topping?: string; toppings?: string[];
 };
-export type RecommendInput = { query: string; filters: Filters; likedIds: string[]; dislikedIds: string[]; excludedIds: string[]; limit: number };
+export type RecommendInput = { supply?:import('./stores').StoreSupply; query: string; filters: Filters; likedIds: string[]; dislikedIds: string[]; excludedIds: string[]; limit: number };
 export type Understanding = { filters: Filters; warnings: string[]; blocked: boolean; preferences: string[] };
 export type Scored = { drink: Drink; score: number };

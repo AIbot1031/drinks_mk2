@@ -1,3 +1,4 @@
+import {storeEligible,supplyStatus} from './stores';
 import type { Drink, Filters, RecommendInput, Scored } from './types';
 import {wellbeingAdvice} from './wellbeing';
 import {appVersion} from './app-version';
@@ -98,7 +99,7 @@ export function makeEngine(drinks: Drink[]) {
     const excluded=new Set(input.excludedIds),disliked=new Set(input.dislikedIds);
     const seen=new Set(input.excludedIds.flatMap(id=>byId.has(id)?[productKey(byId.get(id)!)]:[]));
     const dislikedProducts=new Set(input.dislikedIds.flatMap(id=>byId.has(id)?[productKey(byId.get(id)!)]:[]));
-    return parsed.blocked?[]:drinks.filter(d=>eligible(d,parsed.filters)&&!excluded.has(d.id)&&!disliked.has(d.id)&&!dislikedProducts.has(productKey(d))&&!seen.has(productKey(d)));
+    return parsed.blocked?[]:drinks.filter(d=>eligible(d,parsed.filters)&&storeEligible(d,input.supply)&&!excluded.has(d.id)&&!disliked.has(d.id)&&!dislikedProducts.has(productKey(d))&&!seen.has(productKey(d)));
   }
   function recommendWithTrace(input: RecommendInput, semantic?:{scores:Array<{id:string;score:number}>;modelVersion:string;durationMs:number;fallbackReason?:string},relgt?:{scores:Array<{id:string;score:number}>;modelVersion:string;durationMs:number;historyCount?:number;fallbackReason?:string},reuseRanks=false) {
     const parsed = understand(input, [...new Set(drinks.map(d => d.brand))]);
@@ -108,7 +109,7 @@ export function makeEngine(drinks: Drink[]) {
     const excluded = new Set(input.excludedIds);
     const seenProducts=new Set(input.excludedIds.flatMap(id=>byId.has(id)?[productKey(byId.get(id)!)]:[]));
     const dislikedProducts=new Set(input.dislikedIds.flatMap(id=>byId.has(id)?[productKey(byId.get(id)!)]:[]));
-    const hardPool = parsed.blocked ? [] : drinks.filter(d => eligible(d, parsed.filters));
+    const hardPool = parsed.blocked ? [] : drinks.filter(d => eligible(d, parsed.filters)&&storeEligible(d,input.supply));
     const likedPool = hardPool.filter(d => !dislikedProducts.has(productKey(d)));
     const pool = likedPool.filter(d => !excluded.has(d.id)&&!seenProducts.has(productKey(d)));
     const productGroups=groupProducts(pool);
@@ -118,7 +119,8 @@ export function makeEngine(drinks: Drink[]) {
     const encoderLabel=encoder==='roberta-wwm'?'RoBERTa-WWM':'MacBERT';
     const lexicalA = neural ? semantic.scores.filter(s=>poolIds.has(s.id)&&Number.isFinite(s.score)).map(s=>({drink:byId.get(s.id)!,score:s.score})).sort((a,b)=>b.score-a.score||a.drink.id.localeCompare(b.drink.id)) : lexical(input.query, pool);
     const liked = input.likedIds.filter(id => byId.has(id) && !disliked.has(id) && !parsed.filters.excludedBrands?.includes(byId.get(id)!.brand));
-    const byTopping=(x:Scored,y:Scored)=>toppingMatches(y.drink,parsed.filters)-toppingMatches(x.drink,parsed.filters)||y.score-x.score||x.drink.id.localeCompare(y.drink.id);
+    const available=(d:Drink)=>supplyStatus(d,input.supply).status==='available'?1:0;
+    const byTopping=(x:Scored,y:Scored)=>available(y.drink)-available(x.drink)||toppingMatches(y.drink,parsed.filters)-toppingMatches(x.drink,parsed.filters)||y.score-x.score||x.drink.id.localeCompare(y.drink.id);
     lexicalA.sort(byTopping);
     const a = liked.length && !input.query.trim() ? [] : lexicalA;
     const seeds = liked.length ? liked : lexicalA.filter(d => d.score > 0).slice(0, 5).map(d => d.drink.id);
@@ -139,7 +141,7 @@ export function makeEngine(drinks: Drink[]) {
     // RRF has a fixed upper bound. Normalize against it, never compare raw model logits.
     const baseScale=1/(RANKING_CONFIG.rrfK+1);
     const supplements=new Map<string,{path:'a'|'b';rank:number;score:number}>();
-    if(reuseRanks){
+    if(reuseRanks||input.supply){
       const supplement=(list:Scored[],path:'a'|'b')=>list.slice(0,RANKING_CONFIG.candidatesPerPath).forEach((item,index)=>{
         if(fused.get(item.drink.id)?.score)return;
         const rank=index+1,score=(path==='a'?RANKING_CONFIG.weightA:RANKING_CONFIG.weightB)/(RANKING_CONFIG.rrfK+rank);
@@ -149,6 +151,7 @@ export function makeEngine(drinks: Drink[]) {
       if(a.length)supplement(lexical(input.query,pool),'a');
       supplement(graph(seeds,pool),'b');
     }
+    if(input.supply)for(const d of pool)if(available(d)&&!fused.has(d.id))fused.set(d.id,{drink:d,score:0,aRank:null,bRank:null});
     const ranked = [...fused.values()].map(row=>{
       const preference=live.score(row.drink),baseScore=row.score;
       const supplemented=supplements.has(row.drink.id);
@@ -159,8 +162,9 @@ export function makeEngine(drinks: Drink[]) {
     const seen = new Set<string>();
     const selectionDecisions: Array<{id: string; name: string; pass: string; decision: string; priorBrandCount: number}> = [];
     // First pass encourages brand diversity; second fills remaining slots without relaxing filters.
-    const tiers=[...new Set(ranked.map(r=>toppingMatches(r.drink,parsed.filters)))].sort((a,b)=>b-a);
-    for (const tier of tiers) for (const diverse of [true, false]) for (const row of ranked.filter(r=>toppingMatches(r.drink,parsed.filters)===tier)) {
+    const selectionTier=(d:Drink)=>available(d)*100+toppingMatches(d,parsed.filters);
+    const tiers=[...new Set(ranked.map(r=>selectionTier(r.drink)))].sort((a,b)=>b-a);
+    for (const tier of tiers) for (const diverse of [true, false]) for (const row of ranked.filter(r=>selectionTier(r.drink)===tier)) {
       if (selected.length >= input.limit) break;
       const key = productKey(row.drink);
       const priorBrandCount = counts.get(row.drink.brand) ?? 0;
@@ -194,11 +198,11 @@ export function makeEngine(drinks: Drink[]) {
         if (d.priceEstimated || d.caloriesEstimated || d.caffeineEstimated) warnings.push('部分數值為估算，需向店家確認。');
         if (d.calories === null || d.caffeineMax === null) warnings.push('部分營養資料未知。');
         if (/起/.test(d.priceText)) warnings.push('價格為起價，實際容量與加料可能另計。');
-        return {id: d.id, name: d.name, brand: d.brand, rankSourceId:row.drink.id, variants, match_score: Number(row.score.toFixed(6)), reasoning: reasons.join('；'), warning: warnings.join(' '), confidence: '資料完整度不等於推薦正確率，未校準機率', drink: d, reasons, ranks: {a: row.aRank, b: row.bRank}};
+        return {availability:{...supplyStatus(d,input.supply),storeId:input.supply?.store.id??null},id: d.id, name: d.name, brand: d.brand, rankSourceId:row.drink.id, variants, match_score: Number(row.score.toFixed(6)), reasoning: reasons.join('；'), warning: warnings.join(' '), confidence: '資料完整度不等於推薦正確率，未校準機率', drink: d, reasons, ranks: {a: row.aRank, b: row.bRank}};
       }),
     };
     const trace = {
-      schemaVersion: 1, engineVersion: appVersion, input,
+      schemaVersion: 1, engineVersion: appVersion, input:{...input,supply:undefined},store:input.supply?{id:input.supply.store.id,brand:input.supply.store.brand,excludedProducts:input.supply.excluded.size}:null,
       understanding: {...parsed, parser:'rules', llmUsed:false},
       filtering: {sourceTotal:drinks.length, afterHardFilters:hardPool.length, afterDislikes:likedPool.length, afterSeenExclusions:pool.length, unknownNutrientsPassCaps:false},
       config: RANKING_CONFIG,
