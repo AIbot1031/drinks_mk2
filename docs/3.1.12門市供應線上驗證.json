@@ -1,0 +1,28 @@
+{
+  "verifiedAt": "2026-10-19T19:18:45.369Z",
+  "version": "3.1.12",
+  "deploymentId": "ecab09d0-da87-4a80-9f3a-60bf60132734",
+  "assetsMatch": [
+    "index.html",
+    "app.js",
+    "store-controls.js",
+    "styles.css",
+    "internal.html",
+    "internal.js"
+  ],
+  "publicDirectoryHasSources": true,
+  "checks": {
+    "pendingStatuses": "passed",
+    "soldOutAndNotSoldReports": "passed",
+    "sameStoreStrictReplacements": "passed",
+    "otherSessionUnchanged": "passed",
+    "otherStoreEvenWithForeignReportsUnchanged": "passed",
+    "zeroBudgetStaysEmpty": "passed",
+    "noPreferenceChanges": "passed",
+    "unverifiedStoreNotPublic": "passed",
+    "unauthenticatedReviewBlocked": "passed",
+    "authenticatedReviewReject": "passed",
+    "testReportsClosed": true
+  },
+  "testData": "Clearly labelled non-physical store only; no real-store availability changed"
+}

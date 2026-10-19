@@ -1,0 +1,46 @@
+{
+  "verifiedAt": "2026-10-19T19:22:19.805Z",
+  "version": "3.1.13",
+  "deploymentId": "0c5dd7ef-fd4c-4015-9f10-ff3881765112",
+  "assetsMatch": [
+    "index.html",
+    "app.js",
+    "store-controls.js",
+    "styles.css",
+    "internal.html",
+    "internal.js"
+  ],
+  "checks": {
+    "sameStoreStrictReplacements": "passed",
+    "bothReportTypes": "passed",
+    "otherStoreEvenWithForeignReportsUnchanged": "passed",
+    "otherSessionUnchanged": "passed",
+    "zeroBudgetStaysEmpty": "passed",
+    "noPreferenceChanges": "passed",
+    "unverifiedStoreNotPublic": "passed",
+    "testReportsClosed": true
+  },
+  "testData": "Clearly labelled non-physical store only; no real-store availability changed",
+  "browser": {
+    "initialSelectionDisabled": true,
+    "readySelectionApplied": true,
+    "allResultsAtSelectedBrand": true,
+    "budget70AndGreenTeaPreserved": true,
+    "unknownSupplyClearlyLabelled": true,
+    "realStoreTestReportSubmitted": false
+  },
+  "releaseCommit": "72e497f6dd37cd3567d0d89d1cf8a9a1b9fdbfe5",
+  "ci": {
+    "runId": 39310248277,
+    "conclusion": "success"
+  },
+  "release": {
+    "tag": "v3.1.13",
+    "latest": true,
+    "url": "https://github.com/AIbot1031/drinks_mk2/releases/tag/v3.1.13",
+    "previousRelease": {
+      "tag": "v3.1.12",
+      "commit": "74163f646d77e8751267ec43ca0dc429c6b50286"
+    }
+  }
+}
