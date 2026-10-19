@@ -1,3 +1,4 @@
+import {readRankingContext,type RankingContext,type RankScores} from './ranking-context';
 import {nearbyChoices} from './alternatives';
 import {refreshTrends,publicTrends} from './trends';
 import {prepareManualUnderstanding,applyManualUnderstanding} from './manual-understanding';
@@ -110,13 +111,14 @@ export default {
         const products=[...groupProducts(pool).values()].map(variants=>({...variants[0],variants}));
         return json({total: products.length, variantTotal:pool.length, page: parsedPage, pages: Math.ceil(products.length / 24), results: products.slice((parsedPage - 1) * 24, parsedPage * 24)});
       }
-      if (['/api/recommend','/api/chat/recommend'].includes(url.pathname) && request.method === 'POST') {
+      if (['/api/recommend','/api/chat/recommend','/api/preference-refresh'].includes(url.pathname) && request.method === 'POST') {
         const origin = request.headers.get('origin');
         if (origin && origin !== url.origin) return json({error: '請從本站送出查詢'}, 403);
         const body = await readBody(request);
+        const refreshContext=url.pathname==='/api/preference-refresh'?readRankingContext((body as Record<string,unknown>).rankingContext):null;
         let conversation = url.pathname === '/api/chat/recommend' ? conversationTurn(body,Object.keys(catalog.brands)) : null;
-        const manualOriginal=conversation?null:validateInput(body);
-        const manual=manualOriginal?.query?prepareManualUnderstanding(manualOriginal,Object.keys(catalog.brands)):null;
+        const manualOriginal=conversation?null:validateInput(refreshContext?.input??body);
+        const manual=!refreshContext&&manualOriginal?.query?prepareManualUnderstanding(manualOriginal,Object.keys(catalog.brands)):null;
         const understandingTurn=conversation??manual?.turn;
         let manualParsed:ReturnType<typeof applyManualUnderstanding>=null;
         let manualModelAttempted=false;
@@ -144,8 +146,8 @@ export default {
         const needsClarification=!!conversation?.followUp||!!manualFollowUp||!!llm?.clarify;
         if(needsClarification)input.query='等待對話釐清：';
         const pool=engine.candidatePool(input);
-        let semantic;
-        if(pool.length){
+        let semantic:RankScores|undefined=refreshContext?.semantic;
+        if(pool.length&&!refreshContext){
           const job={query:input.query,candidateIds:pool.map(d=>d.id),catalogVersion,topK:100};
           try{
             const reply=validateSemanticReply(await env.SEMANTIC_BRIDGE.getByName('inference-v2').rank(job),job);
@@ -153,7 +155,8 @@ export default {
           }catch{semantic={scores:[],modelVersion:'',durationMs:0,fallbackReason:'Mac inference bridge error'};}
         }
         let relgt:RelgtReply={scores:[],modelVersion:'',catalogVersion,durationMs:0,historyCount:0,fallbackReason:user?'no_history':'guest'};
-        if(user&&pool.length&&!needsClarification){
+        if(refreshContext?.relgt)relgt={...refreshContext.relgt,catalogVersion,historyCount:refreshContext.relgt.historyCount??0};
+        if(user&&pool.length&&!needsClarification&&!refreshContext){
           try{
             const at=Date.now();
             const versions=[catalogVersion,...compatibleCatalogVersions,'2.1.0'];
@@ -167,11 +170,11 @@ export default {
             }
           }catch{relgt={...relgt,fallbackReason:'RelGT history or inference unavailable'};}
         }
-        const {response,trace}=engine.recommendWithTrace(input,semantic,relgt);
-        if(conversation){
-          response.wellbeing=wellbeingAdvice(conversation.message);
-          response.warnings=[...new Set([...response.warnings,...response.wellbeing.notes])];
-        }
+        const {response,trace}=engine.recommendWithTrace(input,semantic,relgt,!!refreshContext);
+        const goalPhrases={sleep:'睡前',focus:'提神',hydration:'口渴',comfort:'難過'};
+        response.wellbeing=wellbeingAdvice(refreshContext?(refreshContext.wellbeingGoals??[]).map(k=>goalPhrases[k]).join('，'):conversation?.message??manualOriginal?.query??input.query);
+        response.warnings=[...new Set([...response.warnings,...response.wellbeing.notes])];
+        const rankingContext:RankingContext|null=needsClarification||response.blocked?null:refreshContext??{version:1,appVersion,catalogVersion,input:{query:input.query,filters:input.filters},semantic,relgt,wellbeingGoals:response.wellbeing.applied};
         if(needsClarification){response.results=[];response.blocked=false;response.warnings=[];}
         if(!consumerContractMatches(input.filters,response.filters,response.results)){console.error(JSON.stringify({event:'recommendation_contract_failed'}));return json({error:'這次結果與篩選條件不一致，已停止顯示，請重試。'},503);}
         const nearby=nearbyChoices(engine,drinks,input,response,needsClarification);
@@ -188,7 +191,7 @@ export default {
             : '目前沒有符合所有條件的飲料。你可以調整預算或條件，我不會自動放寬限制。');
         const traceId=crypto.randomUUID();
         const createdAt=new Date().toISOString();
-        const record={traceId,createdAt,...trace,...(conversation ? {interface:'conversation',conversation:{message:conversation.message,state:conversation.state,next:conversation.next,assistantMessage,needsClarification,choices:conversation.followUp?.choices??[]}} : {interface:'manual',request:submittedInput,manualUnderstanding:{modelVersion:llm?.modelVersion??null,attempted:manualModelAttempted,assistantMessage:needsClarification?assistantMessage:null,needsClarification}})};
+        const record={traceId,createdAt,...trace,rankingReuse:{enabled:!!refreshContext,source:refreshContext?'validated browser ranking hint':'fresh inference or local fallback',modelsSkippedForPreferenceRefresh:!!refreshContext},...(conversation ? {interface:'conversation',conversation:{message:conversation.message,state:conversation.state,next:conversation.next,assistantMessage,needsClarification,choices:conversation.followUp?.choices??[]}} : {interface:'manual',request:submittedInput,manualUnderstanding:{modelVersion:llm?.modelVersion??null,attempted:manualModelAttempted,assistantMessage:needsClarification?assistantMessage:null,needsClarification}})};
         try {
           await env.TRACE_DB.prepare('INSERT INTO recommendation_traces (id,created_at,query,result_count,payload) VALUES (?,?,?,?,?)').bind(traceId,createdAt,input.query,response.results.length,JSON.stringify(record)).run();
         } catch {
@@ -196,7 +199,7 @@ export default {
           return json({error:'推薦紀錄暫時無法儲存，請稍後重試'},503);
         }
         console.log(JSON.stringify({event:'recommendation_saved',traceId,resultCount:response.results.length}));
-        return json({...response,traceId,...(!conversation?{understandingMode:llm?(llm.modelVersion.startsWith('qwen3.5-9b-')?'qwen3.5-9b':'qwen3-8b'):manualModelAttempted?'rules-fallback':'rules',understandingModel:llm?.modelVersion??null,needsClarification,manualMessage:assistantMessage}:{}),...(conversation?{
+        return json({...response,traceId,rankingContext,rankingReused:!!refreshContext,...(!conversation?{understandingMode:llm?(llm.modelVersion.startsWith('qwen3.5-9b-')?'qwen3.5-9b':'qwen3-8b'):manualModelAttempted?'rules-fallback':'rules',understandingModel:llm?.modelVersion??null,needsClarification,manualMessage:assistantMessage}:{}),...(conversation?{
           state:conversation.state,next:conversation.next,
           chatMode:llm?(llm.modelVersion.startsWith('qwen3.5-9b-')?'qwen3.5-9b':'qwen3-8b'):conversation.followUp?'clarification':conversation.constraintOnly||conversation.next||conversation.reset?'quick-command':conversation.state.guard?'clarification':'rules-fallback',
           chatModel:llm?.modelVersion??null,needsClarification,assistantMessage,choices:conversation.followUp?.choices??[]

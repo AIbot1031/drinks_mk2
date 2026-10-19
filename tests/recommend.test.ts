@@ -110,7 +110,8 @@ test('dislikes and next-batch exclusions remain excluded after graph fusion', ()
   assert.ok(second.results.length > 0);
   assert.ok(second.results.every(r => !ids.includes(r.id)));
   const disliked = engine.recommend({...input('奶香濃郁'), likedIds:ids, dislikedIds:ids});
-  assert.equal(disliked.mode.personalized, false);
+  assert.equal(disliked.mode.personalized, true);
+  assert.equal(disliked.mode.livePreferences, true);
   assert.ok(disliked.results.every(r => !ids.includes(r.id)));
 });
 test('genuine likes activate a repeatable personalised feature graph', () => {

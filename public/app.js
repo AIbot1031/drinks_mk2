@@ -14,6 +14,7 @@ const storageKey = 'drinks-mk2-feedback-v1';
 const welcomeNodes = [...$('#results').childNodes];
 let feedback = {version: 1, liked: {}, disliked: []};
 let meta, busy = false, exhausted = false, lastSettings = null, seen = [], page = 1, pages = 1;
+let lastRankingContext=null, preferenceRefreshRunning=false;
 let catalogRequest = 0, graphRequest = 0, favoritesRequest = 0;
 let accountUser = null, preferenceBusy = false, accountBusy = true, preferenceSync = Promise.resolve();
 try {const saved = localStorage.getItem(storageKey); if (saved) feedback = validateFeedback(JSON.parse(saved));} catch {$('#feedback-note').textContent = '本機偏好讀取失敗，這次會使用空白偏好。';}
@@ -42,23 +43,25 @@ function saveFeedback() {
   const snapshot=structuredClone(feedback), owner=accountUser?.id;
   preferenceBusy=true;refreshFeedbackButtons();updateAccountButtons();
   preferenceSync=(async()=>{
-    let message;
+    let message,saved=false;
     try {
       if(owner){feedback=await api('/api/account/preferences',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({likedIds:Object.keys(snapshot.liked),dislikedIds:snapshot.disliked})});message='偏好已保存到你的帳號，其他裝置登入後也能查看。';}
       else {localStorage.setItem(storageKey,JSON.stringify(snapshot));message='訪客偏好已保存在這個瀏覽器。登入可保存到自己的帳號。';}
-      confirmedFeedback=structuredClone(feedback);
+      confirmedFeedback=structuredClone(feedback);saved=true;
     }catch(error){feedback=structuredClone(confirmedFeedback);message=`未能保存這次變更：${error.message}`;}
     finally {preferenceBusy=false;updateAccountButtons();updateFeedbackDisplay(message);}
+    return saved;
   })();
+  preferenceSync.then(saved=>{if(saved){removeDislikedRecommendations();refreshRecommendations();}});
   return preferenceSync;
 }
 function guestFeedback(){try {const raw=localStorage.getItem(storageKey);return raw?validateFeedback(JSON.parse(raw)):{version:1,liked:{},disliked:[]};}catch{return {version:1,liked:{},disliked:[]};}}
 function updateAccountButtons(){
   $('#account-open').textContent=accountUser?`帳號：${accountUser.id}`:'登入 / 註冊';
-  $('#account-open').disabled=accountBusy||preferenceBusy||busy;
-  $('#account-logout').hidden=!accountUser;$('#account-logout').disabled=accountBusy||preferenceBusy||busy;
+  $('#account-open').disabled=accountBusy||preferenceBusy||busy||preferenceRefreshRunning;
+  $('#account-logout').hidden=!accountUser;$('#account-logout').disabled=accountBusy||preferenceBusy||busy||preferenceRefreshRunning;
   $('#save-guest-feedback').hidden=!accountUser;
-  $('#save-guest-feedback').disabled=accountBusy||preferenceBusy;
+  $('#save-guest-feedback').disabled=accountBusy||preferenceBusy||busy||preferenceRefreshRunning;
   $('#collection-description').textContent=accountUser?'收藏與不喜歡清單保存在你的帳號，其他裝置登入後也能查看。':'訪客偏好保存在這個瀏覽器；登入後可保存到自己的帳號。';
 }
 async function switchAccount(user){
@@ -70,7 +73,7 @@ async function switchAccount(user){
   chatController?.reset();
   accountUser=user;if(user&&$('#account-dialog').open)$('#account-dialog').close();feedback=validateFeedback(prefs);confirmedFeedback=structuredClone(feedback);
   await chatController?.setAccount(user);
-  lastSettings=null;seen=[];$('#batch-actions').hidden=true;
+  lastSettings=null;lastRankingContext=null;seen=[];$('#batch-actions').hidden=true;
   // A previous user's recommendations must not remain visible after switching accounts.
   $('#results').className='empty-state';$('#results').replaceChildren(...welcomeNodes);$('#result-count').textContent='等你說說偏好';$('#result-status').textContent='';$('#result-warnings').hidden=true;$('#active-filters').replaceChildren();
   updateAccountButtons();updateFeedbackDisplay(user?`已登入 ${user.id}，已載入帳號偏好。`:'已切回這個瀏覽器的訪客偏好。');
@@ -91,11 +94,27 @@ $('#account-logout').onclick=async()=>{
   try{await api('/api/account/logout',{method:'POST'});await switchAccount(null);}catch(error){$('#feedback-note').textContent=error.message;}
   finally{accountBusy=false;$('#submit-button').disabled=busy;updateAccountButtons();refreshFeedbackButtons();if(location.hash==='#graph')loadGraph();}
 };
-$('#save-guest-feedback').onclick=()=>{if(!accountUser||preferenceBusy||accountBusy)return;try{const local=guestFeedback();const merged={version:2,liked:{...feedback.liked,...local.liked},disliked:[...new Set([...feedback.disliked,...local.disliked])],dislikedProducts:{...feedback.dislikedProducts,...local.dislikedProducts}};feedback=validateFeedback(merged);saveFeedback();}catch(error){$('#collection-status').textContent=error.message;}};
+$('#save-guest-feedback').onclick=()=>{if(!accountUser||preferenceBusy||accountBusy||busy||preferenceRefreshRunning)return;try{const local=guestFeedback();const merged={version:2,liked:{...feedback.liked,...local.liked},disliked:[...new Set([...feedback.disliked,...local.disliked])],dislikedProducts:{...feedback.dislikedProducts,...local.dislikedProducts}};feedback=validateFeedback(merged);saveFeedback();}catch(error){$('#collection-status').textContent=error.message;}};
+function removeDislikedRecommendations(){
+  const dislikes=dislikedProducts(feedback);
+  for(const button of document.querySelectorAll('#results [data-dislike],#chat-log .chat-message:last-child [data-dislike]')){
+    if(dislikes.has(button.dataset.product)||feedback.disliked.includes(button.dataset.dislike)){
+      (button.closest('.nearby-item')??button.closest('.drink-card'))?.remove();
+    }
+  }
+}
+async function refreshRecommendations(){
+  if(preferenceRefreshRunning)return;
+  preferenceRefreshRunning=true;refreshFeedbackButtons();updateAccountButtons();
+  try{
+    if(lastRankingContext)await recommend(lastSettings,false,lastRankingContext);
+    await chatController?.refreshPreferences();
+  }finally{preferenceRefreshRunning=false;refreshFeedbackButtons();updateAccountButtons();}
+}
 function refreshFeedbackButtons() {
   const products=likedProducts(),dislikes=dislikedProducts(feedback);
-  document.querySelectorAll('[data-like]').forEach(n => {n.disabled=preferenceBusy||accountBusy;const liked = products.has(n.dataset.product); n.setAttribute('aria-pressed', String(liked)); n.textContent = liked ? '♥ 已收藏' : '♡ 喜歡這杯';});
-  document.querySelectorAll('[data-dislike]').forEach(n => {n.disabled=preferenceBusy||accountBusy;const disliked = dislikes.has(n.dataset.product)||feedback.disliked.includes(n.dataset.dislike); n.setAttribute('aria-pressed', String(disliked)); n.textContent = disliked ? '已標記不喜歡' : '不太喜歡';});
+  document.querySelectorAll('[data-like]').forEach(n => {n.disabled=preferenceBusy||accountBusy||busy||preferenceRefreshRunning;const liked = products.has(n.dataset.product); n.setAttribute('aria-pressed', String(liked)); n.textContent = liked ? '♥ 已收藏' : '♡ 喜歡這杯';});
+  document.querySelectorAll('[data-dislike]').forEach(n => {n.disabled=preferenceBusy||accountBusy||busy||preferenceRefreshRunning;const disliked = dislikes.has(n.dataset.product)||feedback.disliked.includes(n.dataset.dislike); n.setAttribute('aria-pressed', String(disliked));n.setAttribute('aria-label',`${disliked?'取消不喜歡':'標記不喜歡'}這款飲料`); n.textContent = disliked ? '取消不喜歡' : '不太喜歡';});
 }
 async function api(path, options) {
   const response = await fetch(path, options);
@@ -124,10 +143,10 @@ function card(d, index, rec, variants = d.variants || rec?.variants || []) {
   const actions = el('div', '', 'card-actions');
   const like = el('button', '', ''); like.type = 'button'; like.dataset.like = d.id; like.dataset.product=productKey(d); like.setAttribute('aria-label', `收藏${d.brand}的${d.name}`);
   like.title = '告訴系統你喜歡的口味，作為之後個人化推薦的參考。';
-  like.onclick = () => {if(preferenceBusy||accountBusy)return;try{feedback=toggleProductPreference(feedback,d,'like');saveFeedback();}catch(error){$('#feedback-note').textContent=error.message;}};
+  like.onclick = () => {if(preferenceBusy||accountBusy||busy||preferenceRefreshRunning)return;try{feedback=toggleProductPreference(feedback,d,'like');saveFeedback();}catch(error){$('#feedback-note').textContent=error.message;}};
   const dislike = el('button'); dislike.type = 'button'; dislike.dataset.dislike = d.id;dislike.dataset.product=productKey(d); dislike.setAttribute('aria-label', `標記不喜歡${d.brand}的${d.name}`);
-  dislike.onclick = () => {if(preferenceBusy||accountBusy)return;try{feedback=toggleProductPreference(feedback,d,'dislike');saveFeedback();}catch(error){$('#feedback-note').textContent=error.message;}};
-  actions.append(like, dislike); content.append(actions,el('p','按「喜歡這杯」，幫助系統了解你的口味，讓之後的推薦更貼近你。','preference-hint'));
+  dislike.onclick = () => {if(preferenceBusy||accountBusy||busy||preferenceRefreshRunning)return;try{feedback=toggleProductPreference(feedback,d,'dislike');saveFeedback();}catch(error){$('#feedback-note').textContent=error.message;}};
+  actions.append(like, dislike); content.append(actions,el('p','收藏、不喜歡或取消後，推薦會依最新偏好更新。','preference-hint'));
   const details = el('details', '', 'card-details'); details.append(el('summary', '查看資料來源與備註'));
   details.append(el('p', `資料表「${d.sourceSheet || "飲料品項"}」第 ${d.sourceRow} 列。${d.status || ''}`));
   if (d.region) details.append(el('p', `適用地區／門市：${d.region}；容量：${d.volumeMl ?? '未知'} ml。`));
@@ -142,7 +161,7 @@ function card(d, index, rec, variants = d.variants || rec?.variants || []) {
 }
 
 function setBusy(value) {
-  busy = value;updateAccountButtons();
+  busy = value;updateAccountButtons();refreshFeedbackButtons();
   $('#recommend-form').querySelectorAll('input,select,textarea,button').forEach(n => n.disabled = value);
   $('#submit-button').textContent = value ? '正在幫你挑選…' : '幫我找一杯 ↗';
   $('#next-batch').disabled = value || exhausted;
@@ -157,22 +176,22 @@ function tags(filters) {
   const labels = {milkTea:v=>v===false?'不喝奶茶':v?'奶茶':null,brand: v => v, excludedBrands:v=>v?.length?`不推薦：${v.join('、')}`:null, maxPrice: v => `價格 ≤ ${v} 元`, maxCalories: v => `熱量 ≤ ${v} kcal`, maxCaffeine: v => `咖啡因上界 ≤ ${v} mg`, milk: v => ({none:'無奶標記', fresh:'鮮奶', plant:'植物奶'})[v], tea: v => v, topping: v => v,toppings:v=>v.length?`配料任一：${v.join('、')}`:null};
   for (const [key, value] of Object.entries(filters)) {const label = labels[key]?.(value); if (label) $('#active-filters').append(el('span', label));}
 }
-async function recommend(settings, next = false) {
-  if (busy||accountBusy) return;
+async function recommend(settings, next = false, rankingContext = null) {
+  if (busy||accountBusy||preferenceRefreshRunning&&!rankingContext) return;
   await preferenceSync;
   if(busy||accountBusy)return;
   if (!next) exhausted = false;
   setBusy(true);
   // Batched exclusions are independent of personal dislikes and do not affect learned preferences.
-  $('#result-status').textContent = settings.query?'正在理解口味與條件，並比對飲料資料…':'正在比對你的偏好與飲料資料…';
+  $('#result-status').textContent = rankingContext?'正在依最新偏好更新推薦…':settings.query?'正在理解口味與條件，並比對飲料資料…':'正在比對你的偏好與飲料資料…';
   try {
-    const value = await api('/api/recommend', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({...settings, limit:6, likedIds:Object.keys(feedback.liked), dislikedIds:feedback.disliked, excludedIds:next ? seen : []})});
+    const value = await api(rankingContext?'/api/preference-refresh':'/api/recommend', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({...settings,...(rankingContext?{rankingContext}:{}), limit:6, likedIds:Object.keys(feedback.liked), dislikedIds:feedback.disliked, excludedIds:next ? seen : []})});
     tags(value.filters);
     $('#result-warnings').replaceChildren(...value.warnings.map(w => el('p', w)));
     appendWellbeingSources($('#result-warnings'),value.wellbeing);
     $('#result-warnings').hidden = !value.warnings.length;
     if (next && !value.results.length&&!value.alternatives?.length) {exhausted = true; $('#result-status').textContent = '這組設定的候選已看完。可以從頭看，或調整條件。'; return;}
-    lastSettings = settings;
+    lastSettings = settings;lastRankingContext=value.rankingContext;
     if (!next) seen = [];
     seen.push(...[...value.results,...(value.alternatives??[])].map(r => r.id));
     $('#result-count').textContent = `${value.results.length} 杯推薦 / ${value.eligibleCount.toLocaleString()} 杯符合篩選`;
@@ -185,9 +204,9 @@ async function recommend(settings, next = false) {
     appendAlternatives($('#results'),value,card);
     $('#result-count').textContent+=value.alternatives?.length?` / ${value.alternatives.length} 款接近選擇`:'';
     $('#batch-actions').hidden = !value.results.length&&!value.alternatives?.length;
-    $('#result-status').textContent = `${value.understandingMode==='qwen3.5-9b'?'條件理解：Qwen3.5-9B。 ':value.understandingMode==='qwen3-8b'?'條件理解：Qwen3-8B。 ':value.understandingMode==='rules-fallback'?'Qwen 暫時無法解析，使用規則備援。 ':''}${value.mode.routeA==='roberta-wwm'?'語意搜尋：RoBERTa-WWM。 ':value.mode.routeA==='macbert'?'語意搜尋：MacBERT。':value.mode.routeAFallback?'Mac 暫時無法推論，改用 TF-IDF 備援。':'文字搜尋：TF-IDF。'} ${value.mode.routeB==='relgt'?'個人化排序：RelGT，已參考你的歷史互動。':value.mode.personalized?'個人化排序：收藏特徵圖。':'收藏喜歡的飲料，讓下次更貼近你的口味。'} ${next ? `已看過 ${seen.length} 杯。` : ''}`;
+    $('#result-status').textContent = `${value.understandingMode==='qwen3.5-9b'?'條件理解：Qwen3.5-9B。 ':value.understandingMode==='qwen3-8b'?'條件理解：Qwen3-8B。 ':value.understandingMode==='rules-fallback'?'Qwen 暫時無法解析，使用規則備援。 ':''}${value.mode.routeA==='roberta-wwm'?'語意搜尋：RoBERTa-WWM。 ':value.mode.routeA==='macbert'?'語意搜尋：MacBERT。':value.mode.routeAFallback?'Mac 暫時無法推論，改用 TF-IDF 備援。':'文字搜尋：TF-IDF。'} ${value.mode.routeB==='relgt'?'個人化排序：RelGT，已參考你的歷史互動。':value.mode.personalized?'已套用最新收藏與不喜歡偏好。':'收藏喜歡的飲料，讓下次更貼近你的口味。'} ${value.rankingReused?'已依最新收藏與不喜歡更新推薦。 ':''}${next ? `已看過 ${seen.length} 杯。` : ''}`;
     refreshFeedbackButtons();
-  } catch (error) {$('#result-status').textContent = `${error.message} ${$('#results .drink-card') ? '已保留上一份結果。' : ''}`;}
+  } catch (error) {$('#result-status').textContent = `${rankingContext?'偏好已保存，但推薦更新失敗：':''}${error.message} ${$('#results .drink-card') ? '已保留上一份結果。' : ''}`;}
   finally {setBusy(false);}
 }
 $('#recommend-form').onsubmit = event => {event.preventDefault(); recommend(readSettings());};
@@ -199,7 +218,7 @@ $('#recommend-form').oninput = () => {updateExcludedBrandCount();updateToppingCo
 $('#recommend-form').onchange = $('#recommend-form').oninput;
 $('#next-batch').onclick = () => {if (lastSettings) recommend(lastSettings, true);};
 $('#restart-batch').onclick = () => {if (lastSettings) recommend(lastSettings);};
-$('#reset-filters').onclick = () => {$('#recommend-form').reset();updateExcludedBrandCount();updateToppingCount(); $('#batch-actions').hidden = true; lastSettings = null; seen = []; $('#result-status').textContent = '偏好條件已重設。';};
+$('#reset-filters').onclick = () => {$('#recommend-form').reset();updateExcludedBrandCount();updateToppingCount(); $('#batch-actions').hidden = true; lastSettings = null; lastRankingContext=null; seen = []; $('#result-status').textContent = '偏好條件已重設。';};
 document.querySelectorAll('[data-query]').forEach(n => n.onclick = () => {$('#query').value = n.dataset.query; $('#batch-actions').hidden = true; $('#query').focus();});
 $('#inspiration').onclick = () => {$('#query').value = '想喝清爽、回甘的茶'; recommend(readSettings());};
 
@@ -224,6 +243,13 @@ $('#next-page').onclick = () => {if (page < pages) {page++; loadCatalog();}};
 async function renderFavorites() {
   const request=++favoritesRequest;
   const list = Object.values(feedback.liked);
+  $('#disliked-results').replaceChildren(...Object.values(feedback.dislikedProducts||{}).map(d=>{
+    const row=el('div','', 'collection-actions'),button=el('button','取消不喜歡','secondary');
+    button.type='button';button.dataset.dislike=d.id;button.dataset.product=productKey(d);
+    button.onclick=()=>{if(preferenceBusy||accountBusy||busy||preferenceRefreshRunning)return;feedback=toggleProductPreference(feedback,d,'dislike');saveFeedback();};
+    row.append(el('span',`${d.brand} · ${d.name}`),button);return row;
+  }));
+  if(!feedback.disliked.length)$('#disliked-results').append(el('p','目前沒有不喜歡的品項。','status'));
   const groups=new Map();for(const d of list){const key=JSON.stringify([d.brand,d.name]);const items=groups.get(key)||[];items.push(d);groups.set(key,items);}
   $('#favorites-results').replaceChildren(...[...groups.values()].map(variants=>{variants.sort((a,b)=>(a.price??Infinity)-(b.price??Infinity));return card(variants[0],undefined,undefined,variants);}));
   if (!list.length) $('#favorites-results').append(el('p', '還沒有收藏。遇到喜歡的一杯，按「♡ 喜歡這杯」就能留下來。', 'status'));
@@ -244,7 +270,7 @@ $('#export-feedback').onclick = () => {
 };
 $('#import-feedback').onchange = async event => {
   const file = event.target.files[0]; if (!file) return;
-  if(preferenceBusy||accountBusy){event.target.value='';return;}
+  if(preferenceBusy||accountBusy||busy||preferenceRefreshRunning){event.target.value='';return;}
   try {if (file.size > 1024 * 1024) throw new Error('偏好檔案不可超過 1 MB'); const imported = validateFeedback(JSON.parse(await file.text())); const merged = {version:2, liked:{...feedback.liked,...imported.liked}, disliked:[...new Set([...feedback.disliked,...imported.disliked])],dislikedProducts:{...feedback.dislikedProducts,...imported.dislikedProducts}}; const normalized=await api('/api/catalog/preferences',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({likedIds:Object.keys(merged.liked),dislikedIds:merged.disliked})});feedback = validateFeedback(normalized); await saveFeedback(); renderFavorites();} catch(error) {$('#collection-status').textContent = error.message || '無法匯入偏好檔案。';} finally {event.target.value = '';}
 };
 
@@ -292,7 +318,7 @@ async function loadGraph() {
 }
 $('#graph-scope').onchange=()=>loadGraph();
 $('#graph-form').onsubmit = event => {event.preventDefault(); loadGraph();};
-chatController=initChat({api,card,feedback:()=>feedback,isBusy:()=>busy||accountBusy||preferenceBusy,setBusy,refresh:refreshFeedbackButtons,ready:()=>preferenceSync});
+chatController=initChat({api,card,feedback:()=>feedback,isBusy:()=>busy||accountBusy||preferenceBusy||preferenceRefreshRunning,setBusy,refresh:refreshFeedbackButtons,ready:()=>preferenceSync});
 function showView() {
   const requested = location.hash.slice(1) || 'recommend';
   if(requested==='chat')chatController.setMode('chat');
