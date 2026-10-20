@@ -7,7 +7,7 @@
     "sharp": "^0.35.5"
   },
   "scripts": {
-    "dev": "wrangler dev",
+    "dev": "node scripts/build_catalog_runtime.mjs && wrangler dev",
     "build": "node scripts/build.mjs",
     "check": "tsc --noEmit",
     "test": "tsx --test tests/*.test.ts tests/*.test.mjs",

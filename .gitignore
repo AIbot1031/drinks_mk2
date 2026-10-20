@@ -24,3 +24,6 @@ training_artifacts/
 
 .llm-key
 .relgt-key
+
+# Generated public runtime data modules (reproducible by npm run build)
+data/*-runtime.bin
