@@ -1,5 +1,5 @@
 import {listedStores,loadStoreSupply,submitStoreReport,storeResearch} from './stores';
-import {regionDirectory,readRegion,assertStoreRegion,regionEligible} from './regions';
+import {regionDirectory,readRegion,assertStoreRegion,regionEligible,regionalDrink} from './regions';
 import {readRankingContext,type RankingContext,type RankScores} from './ranking-context';
 import {nearbyChoices} from './alternatives';
 import {refreshTrends,publicTrends} from './trends';
@@ -7,7 +7,7 @@ import {prepareManualUnderstanding,applyManualUnderstanding} from './manual-unde
 import {validateTrainingSummary} from './training-summary';
 import {appVersion} from './app-version';
 import {catalogFeatures,featureSchemaVersion,preferenceProfile,chatHistory} from './catalog-features';
-import catalog from '../data/catalog.json';
+import catalog from './catalog';
 import {groupProducts,favoriteProducts,createProductPreferences} from './products';
 import { makeEngine } from './recommend';
 import {conversationTurn} from './conversation';
@@ -195,8 +195,10 @@ export default {
         const rankingContext:RankingContext|null=needsClarification||response.blocked?null:refreshContext??{version:1,appVersion,catalogVersion,input:{query:input.query,filters:input.filters},semantic,relgt,wellbeingGoals:response.wellbeing.applied};
         if(needsClarification){response.results=[];response.blocked=false;response.warnings=[];}
         if(!consumerContractMatches(input.filters,response.filters,response.results)){console.error(JSON.stringify({event:'recommendation_contract_failed'}));return json({error:'這次結果與篩選條件不一致，已停止顯示，請重試。'},503);}
-        if(input.region)response.warnings.push(`地區硬限制：${input.region.city}${input.region.district}。僅推薦此地區已收錄的品牌，不自動跨區。`);
+        if(input.region)response.warnings.push(`地區硬限制：${input.region.city}${input.region.district}。僅推薦適用範圍相符的已收錄飲料版本；適用範圍待確認者不視為符合，不自動跨區。`);
         if(response.results.some(r=>!regionEligible(r.drink,input.region)))throw Error('推薦地區驗證失敗，請重試。');
+        if(input.region)response.results=response.results.map(r=>({...r,drink:regionalDrink(r.drink,input.region),variants:r.variants.map(d=>regionalDrink(d,input.region))}));
+        if(input.region&&response.filters.brand&&!drinks.some(d=>d.brand===response.filters.brand&&regionEligible(d,input.region)))response.warnings.push(`${response.filters.brand}在${input.region.city}${input.region.district}尚無可確認適用的飲料版本，資料待確認；不代表沒有販售，也不會套用其他地區的價格、營養或配方。`);
         const pendingBrand=!!response.filters.brand&&catalog.brands[response.filters.brand as keyof typeof catalog.brands]===0;
         if(pendingBrand)response.warnings.push('此品牌已收錄，但可推薦飲料菜單尚待確認；不會改推其他品牌。');
         const nearby=nearbyChoices(engine,drinks,input,response,needsClarification||!!input.supply||!!input.region||pendingBrand);
