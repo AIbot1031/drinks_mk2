@@ -1,0 +1,180 @@
+{
+  "checkedAt": "2026-10-20T21:16:42+08:00",
+  "sourceCommit": "eac7200efd4ccb987afe1eb4a1a6b5ddb468110c",
+  "workerVersionId": "2d73d997-ca87-470f-9fd5-17c7de68bed3",
+  "normalTrafficPercent": 100,
+  "requests": [
+    {
+      "path": "/api/recommend",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 9282,
+      "seconds": 1.45
+    },
+    {
+      "path": "/api/recommend",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 9282,
+      "seconds": 5.98
+    },
+    {
+      "path": "/api/recommend",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 1253,
+      "seconds": 1.05
+    },
+    {
+      "path": "/api/recommend",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 82,
+      "seconds": 1.3
+    },
+    {
+      "path": "/api/recommend",
+      "status": 200,
+      "resultCount": 0,
+      "eligibleCount": 0,
+      "seconds": 6.62
+    },
+    {
+      "path": "/api/chat/recommend",
+      "status": 200,
+      "resultCount": 0,
+      "eligibleCount": 0,
+      "seconds": 6.62
+    },
+    {
+      "path": "/api/recommend",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 82,
+      "seconds": 1.13
+    },
+    {
+      "path": "/api/recommend",
+      "status": 200,
+      "resultCount": 0,
+      "eligibleCount": 0,
+      "seconds": 0.65
+    },
+    {
+      "path": "/api/preference-refresh",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 82,
+      "seconds": 1.2
+    },
+    {
+      "path": "/api/preference-refresh",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 82,
+      "seconds": 0.97
+    },
+    {
+      "path": "/api/preference-refresh",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 81,
+      "seconds": 1.16
+    },
+    {
+      "path": "/api/preference-refresh",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 82,
+      "seconds": 1.19
+    },
+    {
+      "path": "/api/recommend",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 79,
+      "seconds": 1.05
+    },
+    {
+      "path": "/api/recommend",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 148,
+      "seconds": 6.32
+    },
+    {
+      "path": "/api/recommend",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 123,
+      "seconds": 0.9
+    },
+    {
+      "path": "/api/recommend",
+      "status": 200,
+      "resultCount": 0,
+      "eligibleCount": 0,
+      "seconds": 0.64
+    },
+    {
+      "path": "/api/preference-refresh",
+      "status": 200,
+      "resultCount": 0,
+      "eligibleCount": 0,
+      "seconds": 0.71
+    },
+    {
+      "path": "/api/preference-refresh",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 79,
+      "seconds": 0.9
+    }
+  ],
+  "checks": {
+    "fullCatalogBlankTasteAndNumericRequests": true,
+    "actualRoBERTaScoresUsed": true,
+    "huweiCocoHasOnlyLocalMenuProvenance": true,
+    "screenshotRequestDoesNotBorrowTaoyuan": true,
+    "chatDoesNotBorrowTaoyuan": true,
+    "countyWithoutDistrictIsAllowed": true,
+    "unknownFullPriceDoesNotPassCap": true,
+    "likeAndUnlikeApplyImmediately": true,
+    "dislikeAndUndoApplyImmediately": true,
+    "original41BrandsAndExactRegionalBrands": true,
+    "feedbackValidationAndTeamAuth": true,
+    "huwei19ActualOfficialMenuAndModel": true,
+    "newlyVerifiedHuweiMenusUseRoBERTaAndLocalProvenance": true,
+    "emptyMenuConstraintsDoNotClaimTFIDF": true,
+    "allDislikedSkipAndUndoRestoresCachedModel": true,
+    "manualShortcutsAssetsAndAccountAuth": true
+  },
+  "huweiBrandCount": 17,
+  "modelStatus": {
+    "connected": true,
+    "ready": true,
+    "modelVersion": "roberta-wwm-2d7aecfdae2f3374",
+    "catalogVersion": "33044f87f2dbec84043bf25d61c367ec029e6ba207ed0e62efb38fd78d9fa7ff",
+    "device": "mps",
+    "llm": {
+      "connected": true,
+      "ready": true,
+      "modelVersion": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+      "catalogVersion": "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+      "device": "mlx"
+    },
+    "relgt": {
+      "connected": true,
+      "ready": true,
+      "modelVersion": "relgt-temporal-05757994850db8f6",
+      "catalogVersion": "33044f87f2dbec84043bf25d61c367ec029e6ba207ed0e62efb38fd78d9fa7ff",
+      "device": "cpu"
+    }
+  },
+  "relgtVerificationLimit": "Actual weights tested offline with trusted history; ready bridge verified. Guest requests retain feature-graph; no production user interactions fabricated.",
+  "normalTrafficHealth": {
+    "ok": true,
+    "total": 9282,
+    "version": "3.1.22"
+  }
+}
