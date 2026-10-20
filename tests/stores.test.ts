@@ -61,3 +61,22 @@ test('anonymous quotas bound writes and rejecting a report never changes public 
  await assert.rejects(submitStoreReport(db,{store:branch,drinkId:d.id,kind:'sold_out',reporterId,id:crypto.randomUUID()},drinks));
  assert.equal(sql.prepare('SELECT COUNT(*) AS n FROM store_reports').get()!.n,20);sql.close();
 });
+test('official Huwei snapshot separates verified address, listed products and unconfirmed 3Q, expires and never leaks to other branches',async()=>{
+ const {default:huwei}=await import('../data/coco-huwei-store.json');
+ const {db,sql}=database(),checked=Date.parse(huwei.checkedAt),now=checked+1000;
+ const stores=await listedStores(db,brands,'虎尾');assert.equal(stores.length,1);
+ const store=stores[0];assert.equal(store.name,'雲林虎尾店');assert.equal(store.address,'雲林縣虎尾鎮中正路125號');assert.equal(store.verified,1);assert.equal(store.source_url,huwei.sourceUrl);assert.equal(store.phone,huwei.phone);assert.match(store.menu_note!,/3Q奶茶、3Q鮮奶茶：供應待確認/);
+ const supply=(await loadStoreSupply(db,store,[],drinks,now))!;
+ const pearl=drinks.find(d=>d.brand===store.brand&&d.name==='珍珠奶茶')!;
+ const threeQ=drinks.filter(d=>d.brand===store.brand&&d.name==='3Q奶茶');assert.ok(threeQ.length);
+ assert.equal(supply.statuses.get(productKey(pearl))!.status,'available');
+ for(const d of threeQ){const status=supply.statuses.get(productKey(d))!;assert.equal(status.status,'unknown');assert.match(status.evidence,/未列出不等於門市未販售/);assert.equal(status.sourceUrl,huwei.sourceUrl);assert.equal(supply.excluded.has(productKey(d)),false);}
+ const expired=(await loadStoreSupply(db,store,[],drinks,checked+7*86400000))!;assert.equal(expired.statuses.get(productKey(pearl))!.status,'unknown');assert.match(expired.statuses.get(productKey(pearl))!.evidence,/重新確認/);
+ assert.equal((await loadStoreSupply(db,{...huwei,name:'其他門市'},[],drinks,now))!.statuses.size,0);
+ assert.equal((await loadStoreSupply(db,huwei,[],drinks,checked-1))!.statuses.get(productKey(pearl))!.status,'unknown');
+ // A pending report does not alter the snapshot; an active reviewed status overrides it.
+ sql.prepare('INSERT INTO drink_stores(id,brand,name,address,checked_at) VALUES(?,?,?,?,?)').run(store.id,store.brand,store.name,store.address,now);
+ sql.prepare('INSERT INTO store_availability VALUES(?,?,?,?,?,?,?)').run(store.id,productKey(pearl),'sold_out',now,now+10000,'合成查證覆蓋測試','https://example.com');
+ const overridden=(await loadStoreSupply(db,store,[],drinks,now))!;assert.equal(overridden.statuses.get(productKey(pearl))!.status,'sold_out');assert.ok(overridden.excluded.has(productKey(pearl)));
+ sql.close();
+});

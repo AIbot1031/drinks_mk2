@@ -13,6 +13,9 @@ export function initStoreControls({api,isBusy,setBusy,onChanged}){
  function lock(value){locked=value;document.querySelectorAll('#store-custom-form input,#store-custom-form select,#store-custom-form button,#store-select,#store-search-form input,#store-search-form button,[data-store-report],[data-store-undo]').forEach(n=>{const turn=n.closest('.chat-message');n.disabled=value||reporting||!!turn&&turn!==turn.parentElement.lastElementChild;});}
  function render(){
   $('#store-status').textContent=store?`${store.brand} · ${store.name} · ${store.address}。${store.verified?'門市資料有公開來源；':'門市資料待查證；'}飲料供應須逐項確認。`:'未選門市；各門市供應可能不同。';
+  if(store?.source_url?.startsWith('https://')){const link=text('a','查看門市資料來源');link.href=store.source_url;link.target='_blank';link.rel='noopener noreferrer';$('#store-status').append(' ',link);}
+  if(store?.phone)$('#store-status').append(' 電話：'+store.phone+'。');
+  if(store?.menu_note)$('#store-status').append(text('p',store.menu_note,'field-help'));
   $('#store-reports').replaceChildren();
   for(const r of current()){
    const row=text('div','','collection-actions'),button=text('button','解除本次排除','secondary');button.type='button';button.dataset.storeUndo=r.drinkId;
@@ -40,7 +43,7 @@ export function initStoreControls({api,isBusy,setBusy,onChanged}){
  function decorate(target,d,rec){
   const selected=store,s=rec?.availability?.storeId===selected?.id?rec.availability:null;
   const labels={available:'已確認供應',sold_out:'暫時售完',not_sold:'門市未販售',unknown:'供應待確認'};
-  const line=text('p',selected&&d.brand===selected.brand?`${selected.name}：${labels[s?.status||'unknown']}${s?.checkedAt?' · 最後確認 '+new Date(s.checkedAt).toLocaleDateString('zh-TW',{timeZone:'Asia/Taipei'}):' · 尚未確認此店菜單'}`:'各門市供應可能不同；選擇門市後可回報缺品。','field-help store-availability');target.append(line);
+  const line=text('p',selected&&d.brand===selected.brand?`${selected.name}：${s?.status==='available'&&s.menuListed?'官方菜單列售':labels[s?.status||'unknown']}${s?.checkedAt?' · 最後查核 '+new Date(s.checkedAt).toLocaleDateString('zh-TW',{timeZone:'Asia/Taipei'}):' · 尚未確認此店菜單'}`:'各門市供應可能不同；選擇門市後可回報缺品。','field-help store-availability');target.append(line);
   if(s?.evidence)target.append(text('p',s.evidence,'field-help'));
   if(s?.sourceUrl?.startsWith('https://')){const link=text('a','查看供應查證來源','field-help');link.href=s.sourceUrl;link.target='_blank';link.rel='noopener noreferrer';target.append(link);}
   if(!rec||!selected||selected.brand!==d.brand)return;
@@ -62,5 +65,5 @@ export function initStoreControls({api,isBusy,setBusy,onChanged}){
   target.append(controls);
  }
  render();search();
- return {decorate,lock,accept(value){if(store&&value?.id===store.id&&value.verified!==store.verified){store=value;save();render();}},currentStore:()=>store,body:()=>({store,storeReports:current().map(({drinkId,kind,reportedAt})=>({storeId:store.id,drinkId,kind,reportedAt}))}),setBrands(brands){$('#store-brand').append(...brands.map(b=>{const option=text('option',b);option.value=b;return option;}));}};
+ return {decorate,lock,accept(value){if(store&&value?.id===store.id&&JSON.stringify(value)!==JSON.stringify(store)){store=value;save();render();}},currentStore:()=>store,body:()=>({store,storeReports:current().map(({drinkId,kind,reportedAt})=>({storeId:store.id,drinkId,kind,reportedAt}))}),setBrands(brands){$('#store-brand').append(...brands.map(b=>{const option=text('option',b);option.value=b;return option;}));}};
 }

@@ -30,3 +30,15 @@ test('team review confirms only the reported branch, with evidence and source re
  const fresh=await post('/api/preference-refresh',{rankingContext:first.value.rankingContext,store});assert.ok(fresh.value.results.every((r:any)=>r.name!==d.name));
  await post('/api/internal/logout',{},cookie);
 });
+test('official Huwei directory and 3Q research are exposed by the real Worker without claiming absent products are unavailable',{skip:!base},async()=>{
+ const {default:huwei}=await import('../data/coco-huwei-store.json');
+ const directory=await fetch(base+'/api/stores?q='+encodeURIComponent('虎尾'));assert.equal(directory.status,200);
+ const {results}=await directory.json() as any;assert.equal(results.length,1);assert.equal(results[0].source_url,huwei.sourceUrl);assert.match(results[0].menu_note,/3Q奶茶、3Q鮮奶茶：供應待確認/);
+ const rec=await post('/api/recommend',{query:'3Q奶茶',filters:{brand:'CoCo都可'},store:results[0]});
+ assert.equal(rec.response.status,200);assert.equal(rec.value.store.verified,1);
+ assert.ok(rec.value.results.every((r:any)=>r.brand==='CoCo都可'));
+ // Recommendations prioritize officially listed alternatives; unit tests cover every 3Q cup status.
+ const exact=rec.value.results.find((r:any)=>r.name==='3Q奶茶');
+ if(exact){assert.equal(exact.availability.status,'unknown');assert.match(exact.availability.evidence,/未列出不等於/);}
+ const conflict=await post('/api/recommend',{query:'',filters:{brand:'50嵐'},store:results[0]});assert.equal(conflict.value.results.length,0);
+});
