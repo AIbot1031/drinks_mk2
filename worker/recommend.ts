@@ -46,16 +46,25 @@ function tokenize(text: string): string[] {
 }
 export function makeEngine(drinks: Drink[],preferences=createProductPreferences(drinks)) {
   const byId = new Map(drinks.map(d => [d.id, d]));
-  const df = new Map<string, number>();
+  const dictionary=new Map<string,number>(),df:number[]=[];
   const tokens = new Map(drinks.map(d => {
-    const t = tokenize(searchable(d));
-    for (const token of t) df.set(token, (df.get(token) ?? 0) + 1);
+    const t = tokenize(searchable(d)).map(token=>{
+      let id=dictionary.get(token);
+      if(id===undefined){id=df.length;dictionary.set(token,id);df.push(0);}
+      df[id]++;return id;
+    });
     return [d.id, t];
   }));
-  const idf = (t: string) => 1 + Math.log((1 + drinks.length) / (1 + (df.get(t) ?? 0)));
-  const weights = new Map([...df.keys()].map(t => [t, idf(t) ** 2]));
-  const tokenSets = new Map([...tokens].map(([id, ts]) => [id, new Set(ts)]));
-  const norms = new Map([...tokens].map(([id, ts]) => [id, Math.sqrt(ts.reduce((sum,t) => sum + weights.get(t)!, 0))]));
+  const idf = (id:number) => 1 + Math.log((1 + drinks.length) / (1 + (df[id] ?? 0)));
+  const weights = df.map((_,id)=>idf(id)**2);
+  // Compute norms in the original token order, retaining floating-point scores.
+  const norms = new Map([...tokens].map(([id, ts]) => [id, Math.sqrt(ts.reduce((sum,t) => sum + weights[t], 0))]));
+  for(const vector of tokens.values())vector.sort((a,b)=>a-b);
+  const contains=(vector:number[],id:number)=>{
+    if(id<0)return false;let left=0,right=vector.length-1;
+    while(left<=right){const middle=(left+right)>>>1,value=vector[middle];if(value===id)return true;if(value<id)left=middle+1;else right=middle-1;}
+    return false;
+  };
   const nodes = new Map<string, string[]>();
   const features = new Map(drinks.map(d => {
     const f = [`品牌:${d.brand}`, ...d.tea.map(t => `茶:${t}`), ...d.milk.map(t => `奶:${t}`), ...d.toppings.map(t => `料:${t}`), ...tokenize(d.taste).filter(t => t.startsWith('concept:'))];
@@ -64,12 +73,12 @@ export function makeEngine(drinks: Drink[],preferences=createProductPreferences(
   }));
 
   function lexical(query: string, pool: Drink[]): Scored[] {
-    const qt = tokenize(query);
+    const qt = tokenize(query).map(token=>dictionary.get(token)??-1);
     const qNorm = Math.sqrt(qt.reduce((sum, t) => sum + idf(t) ** 2, 0));
     return pool.map(drink => {
-      const set = tokenSets.get(drink.id)!;
+      const vector = tokens.get(drink.id)!;
       const norm = norms.get(drink.id)!;
-      const dot = qt.filter(t => set.has(t)).reduce((sum, t) => sum + weights.get(t)!, 0);
+      const dot = qt.filter(t => contains(vector,t)).reduce((sum, t) => sum + weights[t], 0);
       const score = qNorm && norm ? dot / (qNorm * norm) : 0;
       return {drink, score};
     }).sort((a, b) => b.score - a.score || a.drink.id.localeCompare(b.drink.id));
