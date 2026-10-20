@@ -1,0 +1,87 @@
+{
+  "checkedAt": "2026-10-20T15:41:11+08:00",
+  "sourceCommit": "bdbae283e559deec6c0c2916b254d60504228221",
+  "baseUrl": "https://drinks-mk2.rtx941031.workers.dev",
+  "checks": {
+    "storeUiRemainsRemoved": true,
+    "huweiCocoUsesLocalMenuAndNoTaoyuanVariants": {
+      "count": 6,
+      "sourceUrl": "https://order.nidin.shop/menu/23257"
+    },
+    "screenshotRequestFailsClosedWithoutForeignCupOrNutrition": true,
+    "preferenceRefreshKeepsStrictApplicability": true,
+    "chatKeepsStrictApplicability": true,
+    "unknownFullPriceDoesNotPassBudget": true,
+    "countyOnlyIsValidAndStillHardBounded": true,
+    "newBrandsRecommendAndGeneralClearsStaleScope": true,
+    "pendingBrandDoesNotSubstituteAnotherBrand": true,
+    "newMenuDislikeAndUndoReflectImmediatelyWithoutTraining": true
+  },
+  "workerVersionId": "610b4d8d-4b5c-44c8-b99c-2125bf2a23bc",
+  "health": {
+    "ok": true,
+    "total": 32165,
+    "version": "3.1.18"
+  },
+  "assetHashes": {
+    "/": "e1a5c23ca78c438c14d5f592a6b82c0e16eedb3b4994e9542f91dfae7ce2c8bb",
+    "/app.js": "0aa581bb1f79d909e5b4bfac81d36c910e4bd9658b14b668c29acc59753cf99c",
+    "/chat.js": "e30c09ec8eeb5ef46310f8a5c6d6d486e95b4b8ee081e4b92ae9b4f864adead7",
+    "/region-controls.js": "d87c3e04ce0053a1521347b011553e6bdb4d397fe61dbe642c4e79fa49c10f10",
+    "/brew-loading.js": "42e8347f724fff1721b6bb1d47cad7c289b9a0917700e6e0a9362a763fdc297e",
+    "/brew-loading.css": "8919edb280cf8d41cea8038a5b09a0f021fb09790792b4936c0bf08b9c8ecf7b",
+    "/internal.html": "612008b5c94881667214ddbf4ab9c0b7ce1c6720ba10fff034de874b0c3a7c66",
+    "/nidin-research.json": "cd1f7209cea0763b6b2771e41098ab28109a8791bc8d39c932fc50cc3b088882"
+  },
+  "catalog": {
+    "variants": 32165,
+    "products": 25866,
+    "brands": 404,
+    "pendingBrands": 7
+  },
+  "mode": {
+    "routeA": "tf-idf",
+    "routeAModel": null,
+    "routeAFallback": "Mac unavailable, timeout, or index mismatch",
+    "routeB": "feature-graph",
+    "routeBModel": null,
+    "routeBFallback": "guest",
+    "personalized": false,
+    "livePreferences": false
+  },
+  "firstOwnPostDeployRecommendation": {
+    "status": 200,
+    "resultCount": 6,
+    "tailOutcome": "ok",
+    "cpuTimeMs": 666,
+    "wallTimeMs": 1664,
+    "note": "部署後首個自有推薦驗證請求；不保證是平台全域首個或所有地區的冷請求。"
+  },
+  "localValidation": {
+    "nodeTests": 159,
+    "nodePassed": 153,
+    "nodeSkipped": 6,
+    "nodeFailed": 0,
+    "pythonTests": 44,
+    "pythonSkipped": 7,
+    "intentTests": 5,
+    "typeCheck": "passed",
+    "dryRun": "passed"
+  },
+  "screenshots": [
+    "3.1.18正式製杯動畫.jpg",
+    "3.1.18虎尾CoCo正式畫面.jpg"
+  ],
+  "releaseStatus": "withdrawn_after_intermediate_general_request_resource_failure",
+  "incompleteChecks": [
+    "不指定品牌的整份目錄追加驗證遇一次503/1102；標記重試成功，仍不接受間歇資源錯誤。"
+  ],
+  "rollback": {
+    "version": "3.1.16",
+    "workerVersionId": "57c0a8dd-6175-4368-b35c-f68a156f382e"
+  },
+  "ci": {
+    "id": 39387999132,
+    "conclusion": "success"
+  }
+}

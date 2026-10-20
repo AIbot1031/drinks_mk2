@@ -7,6 +7,7 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
+  "alias": {"drinks-directory":"./worker/directory.ts"},
   "rules": [{"type":"Data","globs":["**/*-runtime.bin"],"fallthrough":true}],
   "vars": {
     "REVIEW_ID": "team001"

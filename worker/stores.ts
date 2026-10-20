@@ -2,7 +2,7 @@ import type {Drink} from './types';
 import {productKey} from './products';
 import huwei from '../data/coco-huwei-store.json';
 import research from '../data/huwei-brand-research.json';
-import directory from '../data/nidin-directory.json';
+import directory from 'drinks-directory';
 export type Store={id:string;brand:string;name:string;address:string;verified:number;source_url:string;checked_at:number;phone?:string;menu_note?:string;menu_source_url?:string};
 export type SupplyStatus={status:'unknown'|'available'|'sold_out'|'not_sold';checkedAt:number|null;expiresAt:number|null;sourceUrl:string;evidence:string;menuListed?:boolean};
 export type StoreSupply={store:Store;statuses:Map<string,SupplyStatus>;excluded:Set<string>};

@@ -1,4 +1,4 @@
-import directory from '../data/nidin-directory.json';
+import directory from 'drinks-directory';
 import type {Drink} from './types';
 export type RegionScope={city:string;district:string;brands:Set<string>};
 export const regionDirectory=()=>({regions:directory.regions,checkedAt:directory.checkedAt,coverage:'地區來自公開門市地址；榜單僅含本網站已有飲料資料的品牌。無符合資料時不自動跨區；不是全台完整門市清單。'});
