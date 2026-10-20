@@ -1,4 +1,5 @@
 import {initRegionControls} from './region-controls.js';
+import {initQuickFeedback} from './quick-feedback.js';
 import {initBrewLoading} from './brew-loading.js';
 import {appendAlternatives} from './alternatives.js';
 import {initTrends} from './trends.js';
@@ -329,7 +330,18 @@ async function loadGraph() {
 }
 $('#graph-scope').onchange=()=>loadGraph();
 $('#graph-form').onsubmit = event => {event.preventDefault(); loadGraph();};
-regionController=initRegionControls({api,isBusy:()=>busy||accountBusy||preferenceBusy||preferenceRefreshRunning,onChanged:()=>refreshRecommendations(false)});
+let scopedBrands=null;
+function updateScopedBrands(brands=scopedBrands){
+ scopedBrands=brands;if(!meta)return;
+ const allowed=brands===null?Object.keys(meta.brands):brands,select=$('#brand'),selected=select.value;
+ select.replaceChildren(new Option(brands===null?'不限品牌':'此地區所有已收錄品牌',''),...allowed.map(b=>new Option(b,b)));
+ select.value=allowed.includes(selected)?selected:'';
+ for(const input of $('#excluded-brands').querySelectorAll('input')){input.parentElement.hidden=!allowed.includes(input.value);if(input.parentElement.hidden)input.checked=false;}
+ updateExcludedBrandCount();
+ $('#region-brand-note').textContent=brands===null?'':allowed.length?`此地區已收錄 ${allowed.length} 個品牌；門市、菜單及供應仍以實際情況為準。`:'此地區尚無已收錄品牌，歡迎快速回報協助補齊。';
+}
+regionController=initRegionControls({api,isBusy:()=>busy||accountBusy||preferenceBusy||preferenceRefreshRunning,onChanged:()=>refreshRecommendations(false),onBrandsChanged:updateScopedBrands});
+initQuickFeedback({api,scope:()=>regionController.body()});
 chatController=initChat({api,card,feedback:()=>feedback,isBusy:()=>busy||accountBusy||preferenceBusy||preferenceRefreshRunning,setBusy,refresh:refreshFeedbackButtons,ready:()=>preferenceSync});
 function showView() {
   const requested = location.hash.slice(1) || 'recommend';
@@ -348,6 +360,7 @@ try {
   $('#catalog-summary').textContent = `${(meta.totalProducts??meta.total).toLocaleString()} 款飲料 · ${Object.keys(meta.brands).length} 個品牌`;
   for (const brand of Object.keys(meta.brands)) for (const selector of ['#brand','#catalog-brand','#graph-brand']) {const option=el('option',brand+(meta.brands[brand]===0?'（菜單待確認）':'')); option.value=brand; $(selector).append(option);}
   for (const brand of Object.keys(meta.brands)){const label=el('label'),checkbox=el('input');checkbox.type='checkbox';checkbox.value=brand;checkbox.name='excludedBrand';label.append(checkbox,el('span',brand));$('#excluded-brands').append(label);}
+  updateScopedBrands();
   for (const v of meta.tea) {const option=el('option',v);option.value=v;$('#tea-filter').append(option);}
   for (const v of meta.toppings) {const label=el('label'),checkbox=el('input');checkbox.type='checkbox';checkbox.value=v;checkbox.name='topping';label.append(checkbox,el('span',v));$('#topping-filter').append(label);}
 } catch(error) {$('#catalog-summary').textContent='資料讀取失敗，請重新整理。'; $('#result-status').textContent=error.message;}

@@ -32,6 +32,24 @@ class ReleaseReportTests(unittest.TestCase):
                 report.write_text(json.dumps({**good, **patch}))
                 with self.assertRaises(ValueError): verify_report(report, catalog)
 
+    def test_reindex_uses_explicit_compatible_catalog_and_same_weights(self):
+        (ROOT / 'training_artifacts').mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT / 'training_artifacts') as directory:
+            root=Path(directory);weights=root/'model.safetensors';weights.write_bytes(b'fixed-weights')
+            catalog=root/'catalog.json';catalog.write_bytes(b'expanded catalog')
+            report=root/'report.json'
+            value={'source':{'model':'hfl/chinese-roberta-wwm-ext'},'checkpoint':str(weights.relative_to(ROOT)),
+                   'checkpoint_sha256':hashlib.sha256(weights.read_bytes()).hexdigest(),'status':'trained',
+                   'weights_changed':True,'optimizer_steps':1,'checkpoint_reload_max_error':0,
+                   'data':{'catalog_sha256':'old-trained-catalog'}}
+            report.write_text(json.dumps(value))
+            manifest=root/'catalog-update.json'
+            manifest.write_text(json.dumps({'catalogVersion':hashlib.sha256(catalog.read_bytes()).hexdigest(),
+                                            'compatibleCatalogVersions':['old-trained-catalog']}))
+            self.assertEqual(verify_report(report,catalog)[1],weights)
+            manifest.write_text(json.dumps({'catalogVersion':'wrong','compatibleCatalogVersions':['old-trained-catalog']}))
+            with self.assertRaises(ValueError):verify_report(report,catalog)
+
 
 @unittest.skipIf(np is None, 'Optional model runtime NumPy not installed')
 class LocalRankContractTests(unittest.TestCase):

@@ -1,3 +1,3 @@
 // Generated catalog identity; previous interactions retain unchanged drink IDs.
-export const catalogVersion="4d63f86e58c35681f0b0ac3ac26e5cb0883cf677181dcf613655811178fd0b52";
-export const compatibleCatalogVersions=["6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab", "ef2503d4ae5fe0324cd9d8e988719ca62800e5a24084971b8a0c2d00609ad97a"];
+export const catalogVersion="beb1bb301ed378da875d6cc39c345ecca8fa16b3098ab1f54238c8a58dac54f1";
+export const compatibleCatalogVersions=["4d63f86e58c35681f0b0ac3ac26e5cb0883cf677181dcf613655811178fd0b52", "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab", "ef2503d4ae5fe0324cd9d8e988719ca62800e5a24084971b8a0c2d00609ad97a"];

@@ -11,6 +11,11 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 
 def features(d):
+    if d.get('sourceKind') == 'nidin':
+        # Missing menu facts use the frozen encoders' missing-value handling.
+        # Do not teach the model that an unverified recipe has no milk/toppings.
+        return {'product':json.dumps([d['brand'],d['name']],ensure_ascii=False),'brand':d['brand'],
+                'tea':None,'milk':None,'toppings':None,'richness':float('nan'),'no_milk':float('nan')}
     return {'product':json.dumps([d['brand'],d['name']],ensure_ascii=False),'brand':d['brand'],
             'tea':'|'.join(d['tea']) or 'NONE','milk':'|'.join(d['milk']) or 'NONE',
             'toppings':'|'.join(d['toppings']) or 'NONE','richness':float(d['richness'] or 0),
@@ -42,10 +47,13 @@ class RelgtRanker:
         self.saved=saved;self.config=saved['config'];self.products=saved['products']
         grouped={}
         for d in sorted(rows,key=lambda d:d['id']):grouped.setdefault((d['brand'],d['name']),d)
-        if set(grouped)!={(d['brand'],d['name']) for d in self.products}:raise ValueError('Product identity mismatch')
+        trained_keys={(d['brand'],d['name']) for d in self.products}
+        if not trained_keys.issubset(grouped):raise ValueError('Product identity mismatch')
         current=[grouped[(d['brand'],d['name'])] for d in self.products]
         if any(a['id']!=b['id'] for a,b in zip(self.products,current)):raise ValueError('Product representative mismatch')
-        self.products=current # Current features, frozen training vocabulary and weights.
+        # Preserve trained product indices. Novel products pass through the
+        # existing categorical OOV encoders, never random learned embeddings.
+        self.products=current+[grouped[key] for key in sorted(set(grouped)-trained_keys)]
         self.known_users=set(self.config['col_stats_dict']['user']['user'][StatType.COUNT][0])
         intents=self.config['col_stats_dict']['user']['intent'][StatType.COUNT][0]
         if 'like' not in intents:raise ValueError('Checkpoint lacks like intent')
@@ -97,7 +105,7 @@ class RelgtRanker:
         user=job.get('userCode');at=job.get('at');ids=job.get('candidateIds');history=job.get('history');top=job.get('topK')
         if not isinstance(user,str) or not re.fullmatch(r'u_[a-f0-9]{64}',user):raise ValueError('Anonymous user required')
         if type(at) is not int or at<0 or type(top) is not int or not 1<=top<=100:raise ValueError('Invalid request')
-        if not isinstance(ids,list) or not 1<=len(ids)<=10000 or len(ids)!=len(set(ids)) or any(i not in self.lookup for i in ids):raise ValueError('Invalid candidates')
+        if not isinstance(ids,list) or not 1<=len(ids)<=len(self.lookup) or len(ids)!=len(set(ids)) or any(not isinstance(i,str) or i not in self.lookup for i in ids):raise ValueError('Invalid candidates')
         if not isinstance(history,list) or len(history)>self.config['sample_node_len']-2:raise ValueError('Invalid history')
         last=-1
         for e in history:

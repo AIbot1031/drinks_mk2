@@ -3,12 +3,20 @@ import hashlib
 import json
 import unittest
 import tempfile
+import importlib.util
 from pathlib import Path
-from scripts.relgt_inference import RelgtRanker,ROOT
+from scripts.relgt_inference import RelgtRanker,ROOT,features
+
+class PendingFeatureTests(unittest.TestCase):
+    def test_unverified_recipe_is_missing_not_negative_evidence(self):
+        import math
+        value=features({'brand':'CoCo都可','name':'待確認茶','sourceKind':'nidin'})
+        for field in ['tea','milk','toppings']:self.assertIsNone(value[field])
+        for field in ['richness','no_milk']:self.assertTrue(math.isnan(value[field]))
 
 CHECKPOINT=ROOT/'training_artifacts/20261013T155618-relgt-long-intent/model.pt'
 
-@unittest.skipUnless(CHECKPOINT.exists(),'Existing local checkpoint required')
+@unittest.skipUnless(CHECKPOINT.exists() and importlib.util.find_spec('torch'),'Existing local checkpoint and model runtime required')
 class RelgtInferenceTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -38,6 +46,14 @@ class RelgtInferenceTests(unittest.TestCase):
         self.assertEqual(len(result['scores']),1)
         self.assertEqual(result['scores'][0]['id'],ids[0])
 
+    def test_new_menu_products_and_history_use_frozen_encoders(self):
+        ids=[d['id'] for d in self.rank.products if d.get('sourceKind')=='nidin'][:3]
+        self.assertTrue(ids)
+        history=[{**self.job['history'][-1],'drinkId':ids[0]}]
+        result=self.rank.rank({**self.job,'candidateIds':ids,'history':history})
+        self.assertEqual(set(r['id'] for r in result['scores']),set(ids))
+        self.assertTrue(all(self.rank.torch.equal(v,self.rank.model.state_dict()[k]) for k,v in self.before.items()))
+
     def test_changed_product_identity_cannot_use_old_checkpoint(self):
         with tempfile.TemporaryDirectory() as folder:
             root=Path(folder);(root/'data').mkdir()
@@ -45,7 +61,7 @@ class RelgtInferenceTests(unittest.TestCase):
             catalog['drinks'][0]['name']='synthetic incompatible product'
             raw=json.dumps(catalog).encode();(root/'data/catalog.json').write_bytes(raw)
             (root/'data/catalog-update.json').write_text(json.dumps({'catalogVersion':hashlib.sha256(raw).hexdigest(),'compatibleCatalogVersions':[self.rank.training_catalog_version]}))
-            with self.assertRaisesRegex(ValueError,'Product identity mismatch'):
+            with self.assertRaisesRegex(ValueError,'Product (identity|representative) mismatch'):
                 RelgtRanker(CHECKPOINT,hashlib.sha256(CHECKPOINT.read_bytes()).hexdigest(),root)
 
 if __name__=='__main__':unittest.main()

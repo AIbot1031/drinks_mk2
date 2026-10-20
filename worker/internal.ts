@@ -35,6 +35,16 @@ export async function internalApi(request:Request,env:Env,bodyReader:(r:Request)
   }
   if(!await authorized(request,env.REVIEW_KEY))return json({error:'請先登入團隊檢查頁面'},401);
   if(url.pathname==='/api/internal/logout'&&request.method==='POST')return json({ok:true},200,{'Set-Cookie':`${cookieName}=; Path=/api/internal; HttpOnly; Secure; SameSite=Strict; Max-Age=0`});
+  if(url.pathname==='/api/internal/feedback'&&request.method==='GET'){
+    const rows=await env.TRACE_DB.prepare("SELECT id,kind,message,context_json,created_at FROM quick_feedback WHERE status='pending' ORDER BY created_at DESC LIMIT 100").all<{id:string;kind:string;message:string;context_json:string;created_at:number}>();
+    return json({results:rows.results.map(({context_json,...r})=>({...r,context:JSON.parse(context_json)}))});
+  }
+  if(url.pathname==='/api/internal/feedback/review'&&request.method==='POST'){
+    const v=await bodyReader(request) as Record<string,unknown>;
+    if(!v||typeof v.id!=='string'||!/^[a-f0-9-]{36}$/.test(v.id)||!['resolved','rejected'].includes(v.status as string))return json({error:'處理狀態格式有誤'},400);
+    const result=await env.TRACE_DB.prepare("UPDATE quick_feedback SET status=?,reviewed_at=? WHERE id=? AND status='pending'").bind(v.status,Date.now(),v.id).run();
+    return result.meta.changes?json({ok:true}):json({error:'回報已處理或不存在'},404);
+  }
   if(url.pathname==='/api/internal/stores/reports'&&request.method==='GET'){
     const rows=await env.TRACE_DB.prepare(`SELECT r.id,r.kind,r.created_at,r.product_key,s.brand,s.name,s.address FROM store_reports r JOIN drink_stores s ON s.id=r.store_id WHERE r.review_status='pending' ORDER BY r.created_at DESC LIMIT 50`).all();
     return json({results:rows.results});

@@ -8,10 +8,12 @@ import {groupProducts} from '../worker/products';
 import type {Drink} from '../worker/types';
 const drinks:Drink[]=catalog.drinks;
 const added=drinks.filter(d=>d.sourceKind==='nidin');
-test('new catalog retains original IDs, contains new brands, and keeps unknown facts null',()=>{
+test('catalog keeps exactly the original 41 brands and IDs, and unknown facts remain null',()=>{
  assert.equal(drinks.filter(d=>d.id.startsWith('d_')).length,5781);
  assert.equal(new Set(drinks.map(d=>d.id)).size,drinks.length);
- assert.ok(Object.keys(catalog.brands).length>41);assert.ok(added.length>20000);
+ const originals=new Set(drinks.filter(d=>d.sourceKind!=='nidin').map(d=>d.brand));
+ assert.equal(originals.size,41);assert.deepEqual(new Set(Object.keys(catalog.brands)),originals);
+ assert.ok(added.length>0);assert.ok(added.every(d=>originals.has(d.brand)));
  for(const d of added){
   assert.equal(d.price,null);assert.equal(d.calories,null);assert.equal(d.caffeineMax,null);
   assert.deepEqual(d.toppings,[]);assert.equal(d.noMilk,false);assert.ok(d.pendingFields?.length);

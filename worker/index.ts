@@ -1,5 +1,6 @@
 import {listedStores,loadStoreSupply,submitStoreReport,storeResearch} from './stores';
 import {regionDirectory,readRegion,assertStoreRegion,regionEligible,regionalDrink} from './regions';
+import {submitQuickFeedback} from './quick-feedback';
 import {readRankingContext,type RankingContext,type RankScores} from './ranking-context';
 import {nearbyChoices} from './alternatives';
 import {refreshTrends,publicTrends} from './trends';
@@ -59,6 +60,10 @@ export default {
     const url = new URL(request.url);
     if (!url.pathname.startsWith('/api/')) return env.ASSETS.fetch(request);
     try {
+      if(url.pathname==='/api/reports/quick'&&request.method==='POST'){
+        const origin=request.headers.get('origin');if(origin&&origin!==url.origin)return json({error:'請從本站回報'},403);
+        return json(await submitQuickFeedback(env.TRACE_DB,await readBody(request),drinks));
+      }
       if(url.pathname==='/api/stores/research'&&request.method==='GET')return json(storeResearch());
       if(url.pathname==='/api/stores'&&request.method==='GET')return json({results:await listedStores(env.TRACE_DB,Object.keys(catalog.brands),(url.searchParams.get('q')??'').slice(0,100),url.searchParams.has('city')?readRegion({city:url.searchParams.get('city'),district:url.searchParams.get('district')}):undefined)});
       if(url.pathname==='/api/stores/reports'&&request.method==='POST'){
@@ -100,7 +105,10 @@ export default {
       if(url.pathname.startsWith('/api/account/'))return await accountApi(request,env,readBody,drinks,getPreferences());
       if(url.pathname.startsWith('/api/internal/'))return await internalApi(request,env,readBody);
       if (url.pathname === '/api/health' && request.method === 'GET') return json({ok: true, total: catalog.total, version: appVersion});
-      if(url.pathname==='/api/regions'&&request.method==='GET')return json(regionDirectory());
+      if(url.pathname==='/api/regions'&&request.method==='GET'){
+        const scope=url.searchParams.has('city')?readRegion({city:url.searchParams.get('city'),district:url.searchParams.get('district')??''}):undefined;
+        return json({...regionDirectory(),brands:scope?[...scope.brands].filter(b=>b in catalog.brands).sort():Object.keys(catalog.brands)});
+      }
       if (url.pathname === '/api/meta' && request.method === 'GET') return json({total: catalog.total, totalProducts, brands: catalog.brands, brandStatus:catalog.brandStatus, missing: catalog.missing, tea: [...new Set(drinks.flatMap(d=>d.tea))].sort(), toppings: [...new Set(drinks.flatMap(d=>d.toppings))].sort()});
       if (url.pathname === '/api/catalog/favorites' && request.method === 'POST') {
         const origin=request.headers.get('origin');

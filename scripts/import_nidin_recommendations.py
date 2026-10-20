@@ -34,12 +34,16 @@ def main():
     previous = json.loads(previous_bytes)
     # Idempotent: a rerun starts from the unchanged original records.
     base = [d for d in previous['drinks'] if d.get('sourceKind') != 'nidin']
+    allowed_brands = {d['brand'] for d in base}
     original_names = {(d['brand'], norm(d['name'])):d['name'] for d in base}
     source_index = json.loads((SOURCE / 'index.json').read_text())
     groups, brand_state, pending, excluded = {}, {}, {}, collections.Counter()
     for info in source_index['brands']:
         raw = json.loads((SOURCE / (info['code'] + '.json')).read_text())
         brand = ALIASES.get(raw['code'], raw['name'])
+        if brand not in allowed_brands:
+            excluded['brand_outside_original_catalog'] += 1
+            continue
         state = brand_state.setdefault(brand, {'sourceCode':raw['code'],'sourceUrl':raw['sourceUrl'],'status':'pending','importedVariants':0,'pendingItems':0,'menuReadFailures':len(raw['errors'])})
         for store in raw['stores']:
             menu = store.get('menu', {})

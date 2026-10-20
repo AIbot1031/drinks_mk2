@@ -39,7 +39,11 @@ def verify_report(report_path, catalog_path):
         raise ValueError('Candidate training was not completed')
     if report.get('optimizer_steps', 0) < 1 or report.get('checkpoint_reload_max_error') is None or report['checkpoint_reload_max_error'] > 1e-5:
         raise ValueError('Candidate has not passed save/reload validation')
-    if report['data']['catalog_sha256'] != sha(catalog_path): raise ValueError('Stale training catalog')
+    if report['data']['catalog_sha256'] != sha(catalog_path):
+        manifest_path = Path(catalog_path).parent / 'catalog-update.json'
+        manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {}
+        if manifest.get('catalogVersion') != sha(catalog_path) or report['data']['catalog_sha256'] not in manifest.get('compatibleCatalogVersions', []):
+            raise ValueError('Stale training catalog')
     if report['checkpoint_sha256'] != sha(weights): raise ValueError('Candidate checksum mismatch')
     return report, weights
 
@@ -95,7 +99,7 @@ class LocalRoBERTa:
     def rank(self, job):
         if job.get('catalogVersion') != self.catalog_version: raise ValueError('Catalog mismatch')
         query, ids, k = job.get('query'), job.get('candidateIds'), job.get('topK')
-        if not isinstance(query, str) or len(query) > 300 or not isinstance(ids, list) or not 1 <= len(ids) <= 10000 or type(k) is not int or not 1 <= k <= 100:
+        if not isinstance(query, str) or len(query) > 300 or not isinstance(ids, list) or not 1 <= len(ids) <= len(self.lookup) or type(k) is not int or not 1 <= k <= 100:
             raise ValueError('Invalid rank request')
         if any(not isinstance(key, str) for key in ids) or len(ids) != len(set(ids)) or any(key not in self.lookup for key in ids):
             raise ValueError('Invalid candidate IDs')
