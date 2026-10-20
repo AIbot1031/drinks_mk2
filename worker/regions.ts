@@ -5,13 +5,13 @@ export const regionDirectory=()=>({regions:directory.regions,checkedAt:directory
 export function readRegion(value:unknown):RegionScope|undefined{
  if(value===null||value===undefined)return;
  if(typeof value!=='object'||Array.isArray(value))throw Error('請選擇有效的縣市及鄉鎮市區。');
- const {city,district}=value as Record<string,unknown>;
- if(typeof city!=='string'||typeof district!=='string'||!directory.regions.some(r=>r.city===city&&r.district===district))throw Error('請選擇已收錄的縣市及鄉鎮市區。');
- return {city,district,brands:new Set(directory.stores.filter(s=>s.city===city&&s.district===district).map(s=>s.brand))};
+ const {city}=value as Record<string,unknown>,district=(value as Record<string,unknown>).district??'';
+ if(typeof city!=='string'||typeof district!=='string'||!directory.regions.some(r=>r.city===city&&(!district||r.district===district)))throw Error('請選擇已收錄的縣市；鄉鎮市區可略過。');
+ return {city,district,brands:new Set(directory.stores.filter(s=>s.city===city&&(!district||s.district===district)).map(s=>s.brand))};
 }
-export const regionEligible=(d:Drink,region?:RegionScope)=>!region||region.brands.has(d.brand);
+export const regionEligible=(d:Drink,region?:RegionScope)=>!region||(region.brands.has(d.brand)&&(d.sourceKind!=='nidin'||!!d.regionKeys?.some(key=>key===region.city+'|'+region.district||!region.district&&key.startsWith(region.city+'|'))));
 export function assertStoreRegion(store:{brand:string;name:string;address:string}|undefined,region?:RegionScope){
  if(!store||!region)return;
- if(!directory.stores.some(s=>s.city===region.city&&s.district===region.district&&s.brand===store.brand&&s.name===store.name&&s.address===store.address))throw Error('所選門市不在指定地區，請重新選擇門市。');
+ if(!directory.stores.some(s=>s.city===region.city&&(!region.district||s.district===region.district)&&s.brand===store.brand&&s.name===store.name&&s.address===store.address))throw Error('所選門市不在指定地區，請重新選擇門市。');
 }
-export const regionStores=(city:string,district:string)=>directory.stores.filter(s=>s.city===city&&s.district===district);
+export const regionStores=(city:string,district='')=>directory.stores.filter(s=>s.city===city&&(!district||s.district===district));

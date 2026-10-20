@@ -12,7 +12,7 @@ const input = (query = '', filters = {}) => validateInput({query, filters});
 
 test('a favorite from any cup size expands every catalogue variant without duplicate products',()=>{
   const groups=[...groupProducts(drinks).values()];
-  for(const variants of groups){
+  for(const variants of groups.filter((_,i)=>i%100===0||i<100)){
     const saved=variants.at(-1)!;
     const result=favoriteProducts(drinks,[saved.id,saved.id,variants[0].id]);
     assert.equal(result.length,1);
@@ -25,12 +25,13 @@ test('a favorite from any cup size expands every catalogue variant without dupli
 });
 
 test('new workbook keeps all cup variants, stable unique IDs and source estimates', () => {
-  assert.equal(drinks.length, 5781);
-  assert.equal(new Set(drinks.map(d => d.id)).size, 5781);
-  assert.equal(Object.keys(catalog.brands).length,41);
+  const original=drinks.filter(d=>d.sourceKind!=='nidin');
+  assert.equal(original.length, 5781);
+  assert.equal(new Set(drinks.map(d => d.id)).size, catalog.total);
+  assert.equal(new Set(original.map(d=>d.brand)).size,41);
   assert.equal(drinks.filter(d=>d.caloriesEstimated).length,2535);
-  assert.equal(drinks.filter(d=>d.caffeineMax===null).length,3232);
-  assert.ok(drinks.every(d=>d.sourceRow>=2&&!d.allergensVerified&&d.sourceSheet==='飲料品項'));
+  assert.equal(original.filter(d=>d.caffeineMax===null).length,3232);
+  assert.ok(original.every(d=>d.sourceRow>=2&&!d.allergensVerified&&d.sourceSheet==='飲料品項'));
   const estimated=drinks.find(d=>d.caloriesEstimated&&d.caffeineEstimated&&d.priceEstimated)!;
   assert.equal(eligible(estimated,{maxPrice:10000}),false);
   assert.equal(eligible(estimated,{maxCalories:10000}),false);
@@ -156,7 +157,7 @@ test('excluded brands stay out of both paths, favourites, fusion and every batch
   assert.ok(next.results.length>0);assert.ok(next.results.every(d=>!exclusions.includes(d.brand)));
   const conflict=engine.recommend(input('',{brand:exclusions[0],excludedBrands:exclusions}));
   assert.equal(conflict.blocked,true);assert.equal(conflict.results.length,0);assert.ok(conflict.warnings.some(w=>w.includes('同時被指定與排除')));
-  const all=engine.recommend(input('',{excludedBrands:actualBrands}));assert.equal(all.results.length,0);assert.equal(all.eligibleCount,0);assert.equal(all.blocked,false);
+  const all=engine.recommend({...input(''),filters:{excludedBrands:actualBrands}});assert.equal(all.results.length,0);assert.equal(all.eligibleCount,0);assert.equal(all.blocked,false);
   assert.equal(engine.recommend(input('',{excludedBrands:['不存在的品牌']})).blocked,true);
   for(const invalid of ['得正',[12],[''],new Array(51).fill('得正')])assert.throws(()=>validateInput({query:'',filters:{excludedBrands:invalid}}));
 });

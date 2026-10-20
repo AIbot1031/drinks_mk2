@@ -29,6 +29,7 @@ export {SemanticBridge} from './semantic-bridge';
 const drinks: Drink[] = catalog.drinks;
 const engine = makeEngine(drinks);
 const productPreferences=createProductPreferences(drinks);
+const totalProducts=groupProducts(drinks).size;
 const json = (body: unknown, status = 200) => Response.json(body, {status, headers: {'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff'}});
 
 async function readBody(request: Request): Promise<unknown> {
@@ -95,7 +96,7 @@ export default {
       if(url.pathname.startsWith('/api/internal/'))return await internalApi(request,env,readBody);
       if (url.pathname === '/api/health' && request.method === 'GET') return json({ok: true, total: catalog.total, version: appVersion});
       if(url.pathname==='/api/regions'&&request.method==='GET')return json(regionDirectory());
-      if (url.pathname === '/api/meta' && request.method === 'GET') return json({total: catalog.total, brands: catalog.brands, missing: catalog.missing, tea: [...new Set(drinks.flatMap(d=>d.tea))].sort(), toppings: [...new Set(drinks.flatMap(d=>d.toppings))].sort()});
+      if (url.pathname === '/api/meta' && request.method === 'GET') return json({total: catalog.total, totalProducts, brands: catalog.brands, brandStatus:catalog.brandStatus, missing: catalog.missing, tea: [...new Set(drinks.flatMap(d=>d.tea))].sort(), toppings: [...new Set(drinks.flatMap(d=>d.toppings))].sort()});
       if (url.pathname === '/api/catalog/favorites' && request.method === 'POST') {
         const origin=request.headers.get('origin');
         if(origin && origin!==url.origin)return json({error:'請從本站送出查詢'},403);
@@ -157,7 +158,7 @@ export default {
         const scopeBody=body as Record<string,unknown>,searchMode=scopeBody.searchMode;
         if(searchMode!==undefined&&!['general','region'].includes(searchMode as string))throw Error('請選擇一般推薦或依地區推薦。');
         input.region=readRegion(searchMode==='general'?null:scopeBody.region);
-        if(searchMode==='region'&&!input.region)throw Error('請先選擇縣市及鄉鎮市區；地區不會自動放寬。');
+        if(searchMode==='region'&&!input.region)throw Error('請先選擇縣市；鄉鎮市區可略過，地區不會自動放寬。');
         input.supply=await loadStoreSupply(env.TRACE_DB,searchMode==='general'?null:scopeBody.store,scopeBody.storeReports,drinks);
         assertStoreRegion(input.supply?.store,input.region);
         const pool=engine.candidatePool(input);
@@ -196,7 +197,9 @@ export default {
         if(!consumerContractMatches(input.filters,response.filters,response.results)){console.error(JSON.stringify({event:'recommendation_contract_failed'}));return json({error:'這次結果與篩選條件不一致，已停止顯示，請重試。'},503);}
         if(input.region)response.warnings.push(`地區硬限制：${input.region.city}${input.region.district}。僅推薦此地區已收錄的品牌，不自動跨區。`);
         if(response.results.some(r=>!regionEligible(r.drink,input.region)))throw Error('推薦地區驗證失敗，請重試。');
-        const nearby=nearbyChoices(engine,drinks,input,response,needsClarification||!!input.supply||!!input.region);
+        const pendingBrand=!!response.filters.brand&&catalog.brands[response.filters.brand as keyof typeof catalog.brands]===0;
+        if(pendingBrand)response.warnings.push('此品牌已收錄，但可推薦飲料菜單尚待確認；不會改推其他品牌。');
+        const nearby=nearbyChoices(engine,drinks,input,response,needsClarification||!!input.supply||!!input.region||pendingBrand);
         Object.assign(response,nearby);
         if(conversation){conversation.state.filters=response.filters;if(!needsClarification&&!response.blocked)conversation.state.query=response.query;}
         if(conversation){response.warnings=[...new Set([...response.warnings,...conversation.warnings])];}

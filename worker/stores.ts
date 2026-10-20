@@ -47,7 +47,7 @@ export async function listedStores(db:D1Database,brands:string[],query:string,re
  const byId=new Map(seeded.map(s=>[s.id,s]));
  for(const row of rows.results)byId.set(row.id,{...byId.get(row.id),...row});
  const list=[...byId.values()];
- const local=region?new Set(directory.stores.filter(s=>s.city===region.city&&s.district===region.district).map(s=>JSON.stringify([s.brand,s.name,s.address]))):null;
+ const local=region?new Set(directory.stores.filter(s=>s.city===region.city&&(!region.district||s.district===region.district)).map(s=>JSON.stringify([s.brand,s.name,s.address]))):null;
  return list.filter(s=>(!local||local.has(JSON.stringify([s.brand,s.name,s.address])))&&`${s.brand}${s.name}${s.address}`.toLowerCase().includes(query.toLowerCase())).slice(0,50);
 }
 export function localExclusions(value:unknown,store:Store,drinks:Drink[],now=Date.now()){

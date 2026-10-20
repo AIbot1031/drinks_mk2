@@ -1,6 +1,6 @@
 """Map audited Nidin brand identities onto the existing recommendation catalog.
 
-New brands stay in research data until drink features/prices can be validated.
+All catalog brands may have pending fields; only known addresses set geography.
 Only exact normalized product names may become branch menu evidence.
 """
 import datetime
@@ -76,7 +76,9 @@ def main():
     for b in source_index['brands']:
         raw = json.loads((SOURCE / (b['code'] + '.json')).read_text())
         all_regions.update(place for s in raw['stores'] if (place := region(s.get('address') or '')))
-        mapped = ALIASES.get(b['code'])
+        mapped = ALIASES.get(b['code'],raw['name'])
+        if mapped not in catalog['brands']:
+            mapped = None
         if mapped and mapped not in catalog['brands']:
             raise ValueError('unknown catalog brand mapping')
         brand_summary.append({'name':raw['name'],'code':b['code'],'tags':raw['tags'],'sourceUrl':raw['sourceUrl'],
@@ -100,7 +102,7 @@ def main():
     regions = sorted(all_regions | {(s['city'],s['district']) for s in stores})
     output = {'checkedAt':datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8))).isoformat(timespec='seconds'),
       'sourceUrl':source_index['sourceUrl'],'regions':[{'city':c,'district':d} for c,d in regions],
-      'brandMappings':ALIASES,'pending':pending,'stores':stores}
+      'brandMappings':{b['code']:b['catalogBrand'] for b in brand_summary},'pending':pending,'stores':stores}
     (ROOT / 'data/nidin-directory.json').write_text(json.dumps(output,ensure_ascii=False,separators=(',', ':'))+'\n')
     summary = {'checkedAt':output['checkedAt'],'scope':source_index['scope'],'platformBrandCount':source_index['platformBrandCount'],
       'beverageBrandCount':len(brand_summary),'storeCount':sum(b['storeCount'] for b in brand_summary),

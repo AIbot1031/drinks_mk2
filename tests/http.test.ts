@@ -16,11 +16,11 @@ test('favorite lookup expands one saved ID and validates request size and origin
 });
 test('Worker runtime serves the site, catalogue, constrained recommendations and validation errors', {skip: !base}, async () => {
   const health = await fetch(`${base}/api/health`).then(r => r.json()) as {ok:boolean;total:number;version:string};
-  assert.equal(health.ok, true); assert.equal(health.version, JSON.parse(readFileSync('package.json','utf8')).version); assert.equal(health.total, 5781);
+  assert.equal(health.ok, true); assert.equal(health.version, JSON.parse(readFileSync('package.json','utf8')).version); assert.equal(health.total, JSON.parse(readFileSync('data/catalog.json','utf8')).total);
   const html = await fetch(`${base}/`);
   assert.equal(html.status, 200); assert.ok((await html.text()).includes('喝點剛好的'));
   const catalog = await fetch(`${base}/api/catalog?brand=${encodeURIComponent('得正')}&page=1`).then(r => r.json()) as {results:Array<{brand:string}>;total:number};
-  assert.ok(catalog.total > 0 && catalog.total < 59); assert.ok(catalog.results.every(d => d.brand === '得正'));
+  assert.ok(catalog.total > 0 && catalog.total < 1000); assert.ok(catalog.results.every(d => d.brand === '得正'));
   const post = (body:unknown, origin?:string) => fetch(`${base}/api/recommend`, {method:'POST',headers:{'Content-Type':'application/json',...(origin?{Origin:origin}:{})},body:JSON.stringify(body)});
   const first = await post({query:'清爽',filters:{maxPrice:60,maxCalories:200,maxCaffeine:100,milk:'none'}}).then(r=>r.json()) as {results:Array<{id:string;drink:{price:number;calories:number;caffeineMax:number;noMilk:boolean}}>};
   assert.ok(first.results.length > 0);

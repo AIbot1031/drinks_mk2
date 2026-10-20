@@ -21,8 +21,12 @@ class CorpusTests(unittest.TestCase):
         old = json.loads((ROOT / 'docs/training-runs/20261013T231557-macbert-contrastive.json').read_text())
         import hashlib
         raw = (ROOT / 'data/catalog.json').read_bytes()
-        self.assertEqual(hashlib.sha256(raw).hexdigest(), old['data']['catalog_sha256'])
-        splits, _ = corpus(json.loads(raw)['drinks'], old['parameters']['seed'])
+        # The saved baseline trained on original workbook rows. New public
+        # menu records are not retroactively part of that historical run.
+        rows=[d for d in json.loads(raw)['drinks'] if d.get('sourceKind') != 'nidin']
+        self.assertEqual(len(rows), 5781)
+        self.assertIn(old['data']['catalog_sha256'], json.loads((ROOT/'data/catalog-update.json').read_text())['compatibleCatalogVersions'])
+        splits, _ = corpus(rows, old['parameters']['seed'])
         self.assertEqual(len(splits['train']), old['data']['train_texts'])
         self.assertEqual(len(splits['validation']), old['data']['validation_texts'])
 

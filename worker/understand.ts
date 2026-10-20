@@ -77,8 +77,8 @@ export function understand(input: RecommendInput, brands: string[]): Understandi
     return {filters, warnings, blocked: true, preferences: []};
   } else if (/鮮奶/.test(q) && (!filters.milk || filters.milk === 'any')) filters.milk = 'fresh';
   else if (/植物奶|燕麥奶|豆奶/.test(q) && (!filters.milk || filters.milk === 'any')) filters.milk = 'plant';
-  const mentionedBrands = brands.filter(b => q.includes(b)&&!filters.excludedBrands?.includes(b));
-  if (!filters.brand && mentionedBrands.length === 1 && !new RegExp(`(?:不要|排除|不喝)${mentionedBrands[0]}`).test(q)) filters.brand = mentionedBrands[0];
+  const mentionedBrands = brands.filter(b => q.includes(b)&&!filters.excludedBrands?.includes(b)&&!brands.some(longer=>longer.length>b.length&&longer.includes(b)&&q.includes(longer)));
+  if (!filters.brand && mentionedBrands.length === 1 && !['不要','排除','不喝'].some(prefix=>q.includes(prefix+mentionedBrands[0]))) filters.brand = mentionedBrands[0];
   if(filters.brand&&filters.excludedBrands?.includes(filters.brand)){
     warnings.push(`「${filters.brand}」同時被指定與排除，請調整品牌設定後再推薦。`);
     return {filters,warnings,blocked:true,preferences:[]};

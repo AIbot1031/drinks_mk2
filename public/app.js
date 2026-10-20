@@ -1,4 +1,5 @@
 import {initRegionControls} from './region-controls.js';
+import {initBrewLoading} from './brew-loading.js';
 import {appendAlternatives} from './alternatives.js';
 import {initTrends} from './trends.js';
 import {initAtmosphere} from './drink-atmosphere.js';
@@ -7,6 +8,7 @@ import {manualToppings} from './topping-selection.js';
 import {initChat} from './chat.js';
 import {productKey,likedProducts as likedProductKeys,dislikedProducts,toggleProductPreference} from './preferences.js';
 initAtmosphere();
+const brewLoading=initBrewLoading();
 let chatController,regionController;
 const trendsController=initTrends();
 const $ = selector => document.querySelector(selector);
@@ -121,10 +123,13 @@ async function api(path, options) {
   if(regionController&&['/api/recommend','/api/chat/recommend','/api/preference-refresh'].includes(path)&&options?.body){
     options={...options,body:JSON.stringify({...JSON.parse(options.body),...regionController?.body()})};
   }
-  const response = await fetch(path, options);
-  const value = await response.json();
-  if (!response.ok) throw new Error(value.error || '暫時無法完成，請稍後重試。');
-  return value;
+  const loading=['/api/recommend','/api/chat/recommend','/api/preference-refresh'].includes(path)&&options?.body?brewLoading.start(JSON.parse(options.body)):null;
+  try{
+    const response = await fetch(path, options);
+    const value = await response.json();
+    if (!response.ok) throw new Error(value.error || '暫時無法完成，請稍後重試。');
+    return value;
+  }finally{if(loading)brewLoading.stop(loading);}
 }
 
 function card(d, index, rec, variants = d.variants || rec?.variants || []) {
@@ -133,17 +138,18 @@ function card(d, index, rec, variants = d.variants || rec?.variants || []) {
   const content = el('div', '', 'card-content'), top = el('div', '', 'card-top');
   if (variants.length > 1) {
     const select=el('select');select.setAttribute('aria-label',`${d.name}的杯型`);
-    for(const variant of variants){const option=el('option',`${variant.cupSize || variant.category} · NT$ ${variant.price ?? '未知'}${variant.priceEstimated ? '（估算）' : ''}`);option.value=variant.id;select.append(option);}select.value=d.id;
+    for(const variant of variants){const option=el('option',`${variant.cupSize || variant.category} · NT$ ${variant.priceText || variant.price || '待確認'}${variant.priceEstimated ? '（估算）' : ''}`);option.value=variant.id;select.append(option);}select.value=d.id;
     select.onchange=()=>{const variant=variants.find(v=>v.id===select.value);article.replaceWith(card(variant,index,rec,variants));refreshFeedbackButtons();};
-    content.append(select,el('p',`共 ${variants.length} 個可查看的版本，預設最低價；杯型價格與營養分開，喜歡／不喜歡共用。`,'field-help'));
+    content.append(select,el('p',d.sourceKind==='nidin'?`共 ${variants.length} 個菜單價格版本；完整售價與杯型待確認，喜歡／不喜歡共用。`:`共 ${variants.length} 個可查看的版本，預設最低價；杯型價格與營養分開，喜歡／不喜歡共用。`,'field-help'));
   }
   top.append(el('h3', d.name), el('span', d.priceText ? `NT$ ${d.priceText}${d.priceEstimated ? '（估算）' : ''}` : (d.price === null ? '價格未知' : `NT$ ${d.price}`), 'price'));
   content.append(top, el('span', `${d.brand} · ${d.category}`, 'brand-label'));
-  content.append(el('p', d.taste || '原表未提供風味描述', 'taste'));
+  content.append(el('p', d.taste || (d.sourceKind==='nidin'?'公開菜單已收錄；配方與營養待確認。':'原表未提供風味描述'), 'taste'));
   if (rec) content.append(el('p', rec.reasoning, 'reason'));
   const nutrition = el('div', '', 'nutrition');
   for (const [label, value] of [['熱量', d.calories === null ? '未知' : `${d.calories} kcal${d.caloriesEstimated ? "（估算）" : ""}`], ['咖啡因', d.caffeineText ? `${d.caffeineText} mg${d.caffeineEstimated ? "（估算）" : ""}` : '未知']]) {const n = el('span', label); n.append(el('strong', value)); nutrition.append(n);}
   content.append(nutrition);
+  if(d.pendingFields?.length)content.append(el('p',`待確認：${d.pendingFields.join('、')}`,'card-warning'));
   const actions = el('div', '', 'card-actions');
   const like = el('button', '', ''); like.type = 'button'; like.dataset.like = d.id; like.dataset.product=productKey(d); like.setAttribute('aria-label', `收藏${d.brand}的${d.name}`);
   like.title = '告訴系統你喜歡的口味，作為之後個人化推薦的參考。';
@@ -152,7 +158,8 @@ function card(d, index, rec, variants = d.variants || rec?.variants || []) {
   dislike.onclick = () => {if(preferenceBusy||accountBusy||busy||preferenceRefreshRunning)return;try{feedback=toggleProductPreference(feedback,d,'dislike');saveFeedback();}catch(error){$('#feedback-note').textContent=error.message;}};
   actions.append(like, dislike); content.append(actions,el('p','收藏、不喜歡或取消後，推薦會依最新偏好更新。','preference-hint'));
   const details = el('details', '', 'card-details'); details.append(el('summary', '查看資料來源與備註'));
-  details.append(el('p', `資料表「${d.sourceSheet || "飲料品項"}」第 ${d.sourceRow} 列。${d.status || ''}`));
+  details.append(el('p',d.sourceKind==='nidin'?`來源：你訂公開菜單快照。${d.status}；不是即時庫存。`:`資料表「${d.sourceSheet || "飲料品項"}」第 ${d.sourceRow} 列。${d.status || ''}`));
+  if(d.sourceKind==='nidin'&&d.sourceUrl?.startsWith('https://')){const source=el('a','查看公開菜單來源');source.href=d.sourceUrl;source.target='_blank';source.rel='noopener noreferrer';details.append(source);}
   if (d.region) details.append(el('p', `適用地區／門市：${d.region}；容量：${d.volumeMl ?? '未知'} ml。`));
   if(d.milkConflict)details.append(el('p','來源無奶標籤與奶類線索矛盾，已排除於無奶篩選；配方待確認。','card-warning'));
   if (d.fillMethod) details.append(el('p', `填值方式：${d.fillMethod}；${d.reviewStatus || ''}`));
@@ -208,7 +215,7 @@ async function recommend(settings, next = false, rankingContext = null, scopeRef
     appendAlternatives($('#results'),value,card);
     $('#result-count').textContent+=value.alternatives?.length?` / ${value.alternatives.length} 款接近選擇`:'';
     $('#batch-actions').hidden = !value.results.length&&!value.alternatives?.length;
-    $('#result-status').textContent = `${value.understandingMode==='qwen3.5-9b'?'條件理解：Qwen3.5-9B。 ':value.understandingMode==='qwen3-8b'?'條件理解：Qwen3-8B。 ':value.understandingMode==='rules-fallback'?'Qwen 暫時無法解析，使用規則備援。 ':''}${value.mode.routeA==='roberta-wwm'?'語意搜尋：RoBERTa-WWM。 ':value.mode.routeA==='macbert'?'語意搜尋：MacBERT。':value.mode.routeAFallback?'Mac 暫時無法推論，改用 TF-IDF 備援。':'文字搜尋：TF-IDF。'} ${value.mode.routeB==='relgt'?'個人化排序：RelGT，已參考你的歷史互動。':value.mode.personalized?'已套用最新收藏與不喜歡偏好。':'收藏喜歡的飲料，讓下次更貼近你的口味。'} ${value.rankingReused?'已依最新收藏與不喜歡更新推薦。 ':''}${next ? `已看過 ${seen.length} 杯。` : ''}`;
+    $('#result-status').textContent = `${value.understandingMode==='qwen3.5-9b'?'條件理解：Qwen3.5-9B。 ':value.understandingMode==='qwen3-8b'?'條件理解：Qwen3-8B。 ':value.understandingMode==='rules-fallback'?'Qwen 暫時無法解析，使用規則備援。 ':''}${value.mode.routeA==='roberta-wwm'?'語意搜尋：RoBERTa-WWM。 ':value.mode.routeA==='macbert'?'語意搜尋：MacBERT。':value.mode.routeAFallback?'語意排序暫不可用，改用文字與偏好排序。':'文字搜尋：TF-IDF。'} ${value.mode.routeB==='relgt'?'個人化排序：RelGT，已參考你的歷史互動。':value.mode.personalized?'已套用最新收藏與不喜歡偏好。':'收藏喜歡的飲料，讓下次更貼近你的口味。'} ${value.rankingReused?'已依最新收藏與不喜歡更新推薦。 ':''}${next ? `已看過 ${seen.length} 杯。` : ''}`;
     refreshFeedbackButtons();
   } catch (error) {$('#result-status').textContent = `${rankingContext?'偏好已保存，但推薦更新失敗：':''}${error.message} ${$('#results .drink-card') ? '已保留上一份結果。' : ''}`;}
   finally {setBusy(false);}
@@ -338,8 +345,8 @@ window.addEventListener('hashchange', showView);
 $('#favorite-count').textContent = likedProducts().size;
 try {
   meta = await api('/api/meta');
-  $('#catalog-summary').textContent = `${meta.total.toLocaleString()} 款飲料 · ${Object.keys(meta.brands).length} 個品牌`;
-  for (const brand of Object.keys(meta.brands)) for (const selector of ['#brand','#catalog-brand','#graph-brand']) {const option=el('option',brand); option.value=brand; $(selector).append(option);}
+  $('#catalog-summary').textContent = `${(meta.totalProducts??meta.total).toLocaleString()} 款飲料 · ${Object.keys(meta.brands).length} 個品牌`;
+  for (const brand of Object.keys(meta.brands)) for (const selector of ['#brand','#catalog-brand','#graph-brand']) {const option=el('option',brand+(meta.brands[brand]===0?'（菜單待確認）':'')); option.value=brand; $(selector).append(option);}
   for (const brand of Object.keys(meta.brands)){const label=el('label'),checkbox=el('input');checkbox.type='checkbox';checkbox.value=brand;checkbox.name='excludedBrand';label.append(checkbox,el('span',brand));$('#excluded-brands').append(label);}
   for (const v of meta.tea) {const option=el('option',v);option.value=v;$('#tea-filter').append(option);}
   for (const v of meta.toppings) {const label=el('label'),checkbox=el('input');checkbox.type='checkbox';checkbox.value=v;checkbox.name='topping';label.append(checkbox,el('span',v));$('#topping-filter').append(label);}

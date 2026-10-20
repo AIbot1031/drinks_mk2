@@ -18,6 +18,7 @@ export function toppingMatches(d:Drink,f:Filters):number {
 
 export function eligible(d: Drink, f: Filters): boolean {
   return (!f.brand || d.brand === f.brand)
+    && !(d.sourceKind==='nidin'&&(f.milkTea===false||!!f.excludedToppings?.length))
     && !f.excludedBrands?.includes(d.brand)
     && (f.maxPrice === undefined || (d.price !== null && !d.priceEstimated && (f.priceExclusive?d.price < f.maxPrice:d.price <= f.maxPrice)))
     && (f.maxCalories === undefined || (d.calories !== null && !d.caloriesEstimated && (f.caloriesExclusive?d.calories < f.maxCalories:d.calories <= f.maxCalories)))
@@ -35,7 +36,7 @@ const concepts: Record<string, string[]> = {
   嚼勁: ['嚼勁', '珍珠', '波霸', '椰果', '布丁', '粉粿', '燕麥'], 回甘: ['回甘', '茶香', '烏龍', '青茶'],
   花香: ['花香', '茉莉', '桂花', '玫瑰'], 提神: ['提神', '咖啡', '紅茶', '抹茶'],
 };
-export function searchable(d: Drink): string { return `${d.name} ${d.brand} ${d.taste} ${d.category} ${d.tea.join(' ')} ${d.milk.join(' ')} ${d.toppings.join(' ')}`; }
+export function searchable(d: Drink): string { return d.sourceKind==='nidin'?`${d.name} ${d.brand} ${d.sourceMenuCategory||''}`:`${d.name} ${d.brand} ${d.taste} ${d.category} ${d.tea.join(' ')} ${d.milk.join(' ')} ${d.toppings.join(' ')}`; }
 function tokenize(text: string): string[] {
   const s = text.toLowerCase().replace(/[^\p{L}\p{N}]/gu, '');
   const tokens = new Set<string>();
@@ -59,7 +60,7 @@ export function makeEngine(drinks: Drink[]) {
   const nodes = new Map<string, string[]>();
   const features = new Map(drinks.map(d => {
     const f = [`品牌:${d.brand}`, ...d.tea.map(t => `茶:${t}`), ...d.milk.map(t => `奶:${t}`), ...d.toppings.map(t => `料:${t}`), ...tokenize(d.taste).filter(t => t.startsWith('concept:'))];
-    for (const key of f) nodes.set(key, [...(nodes.get(key) ?? []), d.id]);
+    for (const key of f){const list=nodes.get(key);if(list)list.push(d.id);else nodes.set(key,[d.id]);}
     return [d.id, f];
   }));
 
