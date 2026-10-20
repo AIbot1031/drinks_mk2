@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-20T20:20:31+08:00",
+  "checkedAt": "2026-10-20T21:10:11+08:00",
   "scope": "僅既有41品牌中原本缺菜單的23門市，不新增品牌或門市",
   "entries": [
     {
@@ -1556,7 +1556,7 @@
           "sha256": "cf2617bb08ae16b7f7d9d3f5054c7951cedf94ce5d61d4e9efc6eef0287d06d1"
         }
       ],
-      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。",
+      "evidence": "官方飲品介紹與 SipSpot 為品牌通用資料；未取得虎尾兩店逐店菜單，官方門市網址本次 TLS 驗證失敗，維持待確認。",
       "reference": {
         "source": "SipSpot",
         "url": "https://sipspot.wisplu.com.tw/brands/TEA%27S%E5%8E%9F%E5%91%B3/menu/",
@@ -1664,6 +1664,34 @@
           "備註"
         ],
         "note": "品牌參考菜單，不是逐店菜單；不據此證明虎尾門市販售，不移植價格或成分。"
+      },
+      "recheckedAt": "2026-10-20T21:10:11+08:00",
+      "recheck": {
+        "checkedAt": "2026-10-20T21:10:11+08:00",
+        "checks": [
+          {
+            "url": "http://www.teas.com.tw/products.php?class_id=10",
+            "httpStatus": "200",
+            "sha256": "4f8f3afa0740282df087f6bac1698618abe52b91ed15ab36449848cb9cd39aca",
+            "bytes": 12309,
+            "curlCode": 0
+          },
+          {
+            "url": "https://sipspot.wisplu.com.tw/brands/TEA%27S%E5%8E%9F%E5%91%B3/menu/",
+            "httpStatus": "200",
+            "sha256": "cf2617bb08ae16b7f7d9d3f5054c7951cedf94ce5d61d4e9efc6eef0287d06d1",
+            "bytes": 116874,
+            "curlCode": 0
+          },
+          {
+            "url": "https://www.teas.com.tw/store.php?county=%E9%9B%B2%E6%9E%97%E7%B8%A3&district=%E8%99%8E%E5%B0%BE%E9%8E%AE&zipcode=632",
+            "httpStatus": "000",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0,
+            "curlCode": 60
+          }
+        ],
+        "result": "官方飲品介紹與 SipSpot 為品牌通用資料；未取得虎尾兩店逐店菜單，官方門市網址本次 TLS 驗證失敗，維持待確認。"
       }
     },
     {
@@ -1695,7 +1723,7 @@
           "sha256": "cf2617bb08ae16b7f7d9d3f5054c7951cedf94ce5d61d4e9efc6eef0287d06d1"
         }
       ],
-      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。",
+      "evidence": "官方飲品介紹與 SipSpot 為品牌通用資料；未取得虎尾兩店逐店菜單，官方門市網址本次 TLS 驗證失敗，維持待確認。",
       "reference": {
         "source": "SipSpot",
         "url": "https://sipspot.wisplu.com.tw/brands/TEA%27S%E5%8E%9F%E5%91%B3/menu/",
@@ -1803,6 +1831,34 @@
           "備註"
         ],
         "note": "品牌參考菜單，不是逐店菜單；不據此證明虎尾門市販售，不移植價格或成分。"
+      },
+      "recheckedAt": "2026-10-20T21:10:11+08:00",
+      "recheck": {
+        "checkedAt": "2026-10-20T21:10:11+08:00",
+        "checks": [
+          {
+            "url": "http://www.teas.com.tw/products.php?class_id=10",
+            "httpStatus": "200",
+            "sha256": "4f8f3afa0740282df087f6bac1698618abe52b91ed15ab36449848cb9cd39aca",
+            "bytes": 12309,
+            "curlCode": 0
+          },
+          {
+            "url": "https://sipspot.wisplu.com.tw/brands/TEA%27S%E5%8E%9F%E5%91%B3/menu/",
+            "httpStatus": "200",
+            "sha256": "cf2617bb08ae16b7f7d9d3f5054c7951cedf94ce5d61d4e9efc6eef0287d06d1",
+            "bytes": 116874,
+            "curlCode": 0
+          },
+          {
+            "url": "https://www.teas.com.tw/store.php?county=%E9%9B%B2%E6%9E%97%E7%B8%A3&district=%E8%99%8E%E5%B0%BE%E9%8E%AE&zipcode=632",
+            "httpStatus": "000",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0,
+            "curlCode": 60
+          }
+        ],
+        "result": "官方飲品介紹與 SipSpot 為品牌通用資料；未取得虎尾兩店逐店菜單，官方門市網址本次 TLS 驗證失敗，維持待確認。"
       }
     },
     {
@@ -1865,7 +1921,35 @@
         ],
         "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
       },
-      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+      "evidence": "官方逐店資料可讀；官方公告線上菜單需登入會員，公開單品頁與 SipSpot 通用菜單不能證明虎尾店供應。",
+      "recheckedAt": "2026-10-20T21:10:11+08:00",
+      "recheck": {
+        "checkedAt": "2026-10-20T21:10:11+08:00",
+        "checks": [
+          {
+            "url": "https://kebuke.com/product/%e9%85%92%e5%90%a7%e7%9b%a3%e8%a3%bd%e7%b3%bb%e5%88%97-%e7%99%bd%e6%9f%9a%e6%b0%b4%e7%8e%89%e7%b4%85%e7%83%8f%e9%be%8d/",
+            "httpStatus": "200",
+            "sha256": "0d876624f2a7a53dc405bf85d3d3419284eae336d84ca954817f168dec129750",
+            "bytes": 28465,
+            "curlCode": 0
+          },
+          {
+            "url": "https://kebuke.com/wp-json/api/v1/town/41",
+            "httpStatus": "200",
+            "sha256": "7c8725713335d01765538b9892489e4e2794bdc84da119cfffd2411f8ad892ab",
+            "bytes": 8892,
+            "curlCode": 0
+          },
+          {
+            "url": "https://sipspot.wisplu.com.tw/brands/%E5%8F%AF%E4%B8%8D%E5%8F%AF%E7%86%9F%E6%88%90%E7%B4%85%E8%8C%B6/menu/",
+            "httpStatus": "200",
+            "sha256": "5eee2b2c04e3c7a19bc275108249e67bb0a2697ef6fb47b82fd67fcc73bdb860",
+            "bytes": 59596,
+            "curlCode": 0
+          }
+        ],
+        "result": "官方逐店資料可讀；官方公告線上菜單需登入會員，公開單品頁與 SipSpot 通用菜單不能證明虎尾店供應。"
+      }
     },
     {
       "brand": "麻古茶坊",
@@ -1966,7 +2050,35 @@
         ],
         "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
       },
-      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+      "evidence": "官方門市名址可核對；飲品介紹與 SipSpot 均為品牌通用資料，未取得兩店逐店菜單。",
+      "recheckedAt": "2026-10-20T21:10:11+08:00",
+      "recheck": {
+        "checkedAt": "2026-10-20T21:10:11+08:00",
+        "checks": [
+          {
+            "url": "https://sipspot.wisplu.com.tw/brands/%E9%BA%BB%E5%8F%A4%E8%8C%B6%E5%9D%8A/menu/",
+            "httpStatus": "200",
+            "sha256": "57c786eb2b541bfa119cd2b5af66ac03bfad9630c8b9743d0e38b2d2d5a951f9",
+            "bytes": 84203,
+            "curlCode": 0
+          },
+          {
+            "url": "https://www.macutea.com.tw/drink.php",
+            "httpStatus": "200",
+            "sha256": "d2c30b8bc81a4dc5da2470fb278e1b98ddbc9b9f2040da1e50cb31349d40e2bb",
+            "bytes": 75269,
+            "curlCode": 0
+          },
+          {
+            "url": "https://www.macutea.com.tw/shop.php",
+            "httpStatus": "200",
+            "sha256": "c1eb27ec66c4881ea35778489951c3c768cc07c027e35a69e8fd63c19b42fde0",
+            "bytes": 543958,
+            "curlCode": 0
+          }
+        ],
+        "result": "官方門市名址可核對；飲品介紹與 SipSpot 均為品牌通用資料，未取得兩店逐店菜單。"
+      }
     },
     {
       "brand": "麻古茶坊",
@@ -2067,7 +2179,35 @@
         ],
         "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
       },
-      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+      "evidence": "官方門市名址可核對；飲品介紹與 SipSpot 均為品牌通用資料，未取得兩店逐店菜單。",
+      "recheckedAt": "2026-10-20T21:10:11+08:00",
+      "recheck": {
+        "checkedAt": "2026-10-20T21:10:11+08:00",
+        "checks": [
+          {
+            "url": "https://sipspot.wisplu.com.tw/brands/%E9%BA%BB%E5%8F%A4%E8%8C%B6%E5%9D%8A/menu/",
+            "httpStatus": "200",
+            "sha256": "57c786eb2b541bfa119cd2b5af66ac03bfad9630c8b9743d0e38b2d2d5a951f9",
+            "bytes": 84203,
+            "curlCode": 0
+          },
+          {
+            "url": "https://www.macutea.com.tw/drink.php",
+            "httpStatus": "200",
+            "sha256": "d2c30b8bc81a4dc5da2470fb278e1b98ddbc9b9f2040da1e50cb31349d40e2bb",
+            "bytes": 75269,
+            "curlCode": 0
+          },
+          {
+            "url": "https://www.macutea.com.tw/shop.php",
+            "httpStatus": "200",
+            "sha256": "c1eb27ec66c4881ea35778489951c3c768cc07c027e35a69e8fd63c19b42fde0",
+            "bytes": 543958,
+            "curlCode": 0
+          }
+        ],
+        "result": "官方門市名址可核對；飲品介紹與 SipSpot 均為品牌通用資料，未取得兩店逐店菜單。"
+      }
     },
     {
       "brand": "老賴茶棧",
@@ -2075,11 +2215,522 @@
       "address": "雲林縣虎尾鎮西安里文化路53號",
       "phone": "05-632-2152",
       "sourceUrl": "https://www.liketeashop.com/tw/store",
-      "menuSourceUrl": "https://www.liketeashop.com/tw/drink",
-      "checkedAt": "2026-10-20T20:20:31+08:00",
-      "status": "pending",
-      "menuScope": "pending",
-      "menuItems": [],
+      "menuSourceUrl": "https://order.ocard.co/liketeashop/mqyLGm",
+      "checkedAt": "2026-10-20T21:10:11+08:00",
+      "status": "listed",
+      "menuScope": "branch",
+      "menuItems": [
+        {
+          "name": "白桃烏龍",
+          "listedPrice": 45,
+          "category": "門市飲品"
+        },
+        {
+          "name": "桃桃烏龍",
+          "listedPrice": 70,
+          "category": "門市飲品"
+        },
+        {
+          "name": "桃桃烏龍奶茶",
+          "listedPrice": 75,
+          "category": "門市飲品"
+        },
+        {
+          "name": "奶蓋桃桃烏龍",
+          "listedPrice": 75,
+          "category": "門市飲品"
+        },
+        {
+          "name": "老賴紅茶",
+          "listedPrice": 35,
+          "category": "門市飲品"
+        },
+        {
+          "name": "老賴豆漿",
+          "listedPrice": 50,
+          "category": "門市飲品"
+        },
+        {
+          "name": "豆香紅茶",
+          "listedPrice": 55,
+          "category": "門市飲品"
+        },
+        {
+          "name": "太后牛乳",
+          "listedPrice": 60,
+          "category": "門市飲品"
+        },
+        {
+          "name": "珍珠紅茶",
+          "listedPrice": 40,
+          "category": "門市飲品"
+        },
+        {
+          "name": "珍珠奶茶",
+          "listedPrice": 50,
+          "category": "門市飲品"
+        },
+        {
+          "name": "烏梅紅茶",
+          "listedPrice": 50,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬瓜檸檬",
+          "listedPrice": 50,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冷香青茶",
+          "listedPrice": 35,
+          "category": "門市飲品"
+        },
+        {
+          "name": "茉翠香綠",
+          "listedPrice": 35,
+          "category": "門市飲品"
+        },
+        {
+          "name": "文清烏龍",
+          "listedPrice": 35,
+          "category": "門市飲品"
+        },
+        {
+          "name": "招牌奶茶",
+          "listedPrice": 50,
+          "category": "門市飲品"
+        },
+        {
+          "name": "香綠奶茶",
+          "listedPrice": 50,
+          "category": "門市飲品"
+        },
+        {
+          "name": "烏龍奶茶",
+          "listedPrice": 50,
+          "category": "門市飲品"
+        },
+        {
+          "name": "蜂蜜奶茶",
+          "listedPrice": 65,
+          "category": "門市飲品"
+        },
+        {
+          "name": "胚芽奶茶",
+          "listedPrice": 60,
+          "category": "門市飲品"
+        },
+        {
+          "name": "椰果奶茶",
+          "listedPrice": 60,
+          "category": "門市飲品"
+        },
+        {
+          "name": "布丁奶茶",
+          "listedPrice": 60,
+          "category": "門市飲品"
+        },
+        {
+          "name": "珍珠綠奶",
+          "listedPrice": 50,
+          "category": "門市飲品"
+        },
+        {
+          "name": "布丁綠奶",
+          "listedPrice": 60,
+          "category": "門市飲品"
+        },
+        {
+          "name": "珍珠烏龍奶茶",
+          "listedPrice": 50,
+          "category": "門市飲品"
+        },
+        {
+          "name": "熬煮冬瓜茶",
+          "listedPrice": 35,
+          "category": "門市飲品"
+        },
+        {
+          "name": "玄米穀麥茶",
+          "listedPrice": 40,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬檸穀麥",
+          "listedPrice": 55,
+          "category": "門市飲品"
+        },
+        {
+          "name": "穀麥豆香",
+          "listedPrice": 55,
+          "category": "門市飲品"
+        },
+        {
+          "name": "穀麥奶茶",
+          "listedPrice": 55,
+          "category": "門市飲品"
+        },
+        {
+          "name": "穀麥太后牛乳",
+          "listedPrice": 65,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬瓜紅茶",
+          "listedPrice": 35,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬瓜香綠",
+          "listedPrice": 35,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬瓜冷香青",
+          "listedPrice": 35,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬瓜烏龍",
+          "listedPrice": 35,
+          "category": "門市飲品"
+        },
+        {
+          "name": "鮮檸紅茶",
+          "listedPrice": 50,
+          "category": "門市飲品"
+        },
+        {
+          "name": "鮮檸香綠",
+          "listedPrice": 50,
+          "category": "門市飲品"
+        },
+        {
+          "name": "鮮檸冷香青",
+          "listedPrice": 50,
+          "category": "門市飲品"
+        },
+        {
+          "name": "鮮檸烏龍",
+          "listedPrice": 50,
+          "category": "門市飲品"
+        },
+        {
+          "name": "樂多香綠",
+          "listedPrice": 55,
+          "category": "門市飲品"
+        },
+        {
+          "name": "樂多冷香青",
+          "listedPrice": 55,
+          "category": "門市飲品"
+        },
+        {
+          "name": "樂多烏龍",
+          "listedPrice": 55,
+          "category": "門市飲品"
+        },
+        {
+          "name": "蜂蜜烏龍",
+          "listedPrice": 55,
+          "category": "門市飲品"
+        },
+        {
+          "name": "蜂蜜香綠",
+          "listedPrice": 55,
+          "category": "門市飲品"
+        },
+        {
+          "name": "蜂蜜冷香青",
+          "listedPrice": 55,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬瓜太后牛乳",
+          "listedPrice": 60,
+          "category": "門市飲品"
+        },
+        {
+          "name": "香綠太后牛乳",
+          "listedPrice": 60,
+          "category": "門市飲品"
+        },
+        {
+          "name": "烏龍太后牛乳",
+          "listedPrice": 60,
+          "category": "門市飲品"
+        },
+        {
+          "name": "珍珠太后牛乳",
+          "listedPrice": 65,
+          "category": "門市飲品"
+        },
+        {
+          "name": "布丁太后牛乳",
+          "listedPrice": 70,
+          "category": "門市飲品"
+        },
+        {
+          "name": "黑芝麻豆漿",
+          "listedPrice": 60,
+          "category": "門市飲品"
+        },
+        {
+          "name": "黑芝麻奶茶",
+          "listedPrice": 60,
+          "category": "門市飲品"
+        },
+        {
+          "name": "黑芝麻珍珠奶茶",
+          "listedPrice": 65,
+          "category": "門市飲品"
+        },
+        {
+          "name": "黑芝麻胚芽奶茶",
+          "listedPrice": 70,
+          "category": "門市飲品"
+        },
+        {
+          "name": "黑芝麻太后牛乳",
+          "listedPrice": 75,
+          "category": "門市飲品"
+        },
+        {
+          "name": "鮮柳橙香綠",
+          "listedPrice": 65,
+          "category": "門市飲品"
+        },
+        {
+          "name": "鮮百香果綠",
+          "listedPrice": 65,
+          "category": "門市飲品"
+        },
+        {
+          "name": "鮮百香雙 Q",
+          "listedPrice": 70,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬檸冰粿飲",
+          "listedPrice": 60,
+          "category": "門市飲品"
+        },
+        {
+          "name": "烏龍冰粿奶茶",
+          "listedPrice": 60,
+          "category": "門市飲品"
+        },
+        {
+          "name": "珍珠冰粿奶茶",
+          "listedPrice": 60,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冰淇淋紅茶",
+          "listedPrice": 55,
+          "category": "門市飲品"
+        },
+        {
+          "name": "凍香冰淇淋紅茶",
+          "listedPrice": 60,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冰淇淋奶茶",
+          "listedPrice": 65,
+          "category": "門市飲品"
+        },
+        {
+          "name": "凍香冰淇淋奶茶",
+          "listedPrice": 70,
+          "category": "門市飲品"
+        },
+        {
+          "name": "海鹽奶蓋紅茶",
+          "listedPrice": 60,
+          "category": "門市飲品"
+        },
+        {
+          "name": "海鹽奶蓋綠",
+          "listedPrice": 60,
+          "category": "門市飲品"
+        },
+        {
+          "name": "海鹽奶蓋冷香青",
+          "listedPrice": 60,
+          "category": "門市飲品"
+        },
+        {
+          "name": "海鹽奶蓋烏龍",
+          "listedPrice": 60,
+          "category": "門市飲品"
+        },
+        {
+          "name": "烤糖奶蓋紅",
+          "listedPrice": 70,
+          "category": "門市飲品"
+        },
+        {
+          "name": "烤糖奶蓋綠",
+          "listedPrice": 70,
+          "category": "門市飲品"
+        },
+        {
+          "name": "烤糖奶蓋青",
+          "listedPrice": 70,
+          "category": "門市飲品"
+        },
+        {
+          "name": "烤糖奶蓋烏",
+          "listedPrice": 70,
+          "category": "門市飲品"
+        },
+        {
+          "name": "老賴紅茶 - 瓶",
+          "listedPrice": 115,
+          "category": "門市飲品"
+        },
+        {
+          "name": "老賴豆漿 - 瓶",
+          "listedPrice": 160,
+          "category": "門市飲品"
+        },
+        {
+          "name": "豆香紅茶 - 瓶",
+          "listedPrice": 175,
+          "category": "門市飲品"
+        },
+        {
+          "name": "太后牛乳 - 瓶",
+          "listedPrice": 190,
+          "category": "門市飲品"
+        },
+        {
+          "name": "烏梅紅茶 - 瓶",
+          "listedPrice": 160,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬瓜檸檬 - 瓶",
+          "listedPrice": 160,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冷香青茶 - 瓶",
+          "listedPrice": 115,
+          "category": "門市飲品"
+        },
+        {
+          "name": "茉翠香綠 - 瓶",
+          "listedPrice": 115,
+          "category": "門市飲品"
+        },
+        {
+          "name": "文清烏龍 - 瓶",
+          "listedPrice": 115,
+          "category": "門市飲品"
+        },
+        {
+          "name": "招牌奶茶 - 瓶",
+          "listedPrice": 160,
+          "category": "門市飲品"
+        },
+        {
+          "name": "香綠奶茶 - 瓶",
+          "listedPrice": 160,
+          "category": "門市飲品"
+        },
+        {
+          "name": "烏龍奶茶 - 瓶",
+          "listedPrice": 160,
+          "category": "門市飲品"
+        },
+        {
+          "name": "熬煮冬瓜茶 - 瓶",
+          "listedPrice": 115,
+          "category": "門市飲品"
+        },
+        {
+          "name": "玄米穀麥茶 - 瓶",
+          "listedPrice": 130,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬檸穀麥 - 瓶",
+          "listedPrice": 175,
+          "category": "門市飲品"
+        },
+        {
+          "name": "穀麥豆香 - 瓶",
+          "listedPrice": 175,
+          "category": "門市飲品"
+        },
+        {
+          "name": "穀麥奶茶 - 瓶",
+          "listedPrice": 175,
+          "category": "門市飲品"
+        },
+        {
+          "name": "穀麥太后牛乳 - 瓶",
+          "listedPrice": 205,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬瓜紅茶 - 瓶",
+          "listedPrice": 115,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬瓜香綠 - 瓶",
+          "listedPrice": 115,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬瓜冷香青 - 瓶",
+          "listedPrice": 115,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬瓜烏龍 - 瓶",
+          "listedPrice": 115,
+          "category": "門市飲品"
+        },
+        {
+          "name": "鮮檸紅茶 - 瓶",
+          "listedPrice": 160,
+          "category": "門市飲品"
+        },
+        {
+          "name": "鮮檸香綠 - 瓶",
+          "listedPrice": 160,
+          "category": "門市飲品"
+        },
+        {
+          "name": "鮮檸冷香青 - 瓶",
+          "listedPrice": 160,
+          "category": "門市飲品"
+        },
+        {
+          "name": "鮮檸烏龍 - 瓶",
+          "listedPrice": 160,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬瓜太后牛乳 - 瓶",
+          "listedPrice": 190,
+          "category": "門市飲品"
+        },
+        {
+          "name": "香綠太后牛乳 - 瓶",
+          "listedPrice": 190,
+          "category": "門市飲品"
+        },
+        {
+          "name": "烏龍太后牛乳 - 瓶",
+          "listedPrice": 190,
+          "category": "門市飲品"
+        }
+      ],
       "checks": [
         {
           "url": "https://www.liketeashop.com/tw/store",
@@ -2158,7 +2809,34 @@
         ],
         "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
       },
-      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+      "evidence": "由老賴官方網站連結至 Ocard，選虎尾中正店；文化路53號及05-632-2152均相符。擷取公開逐店飲品含瓶裝，排除提袋與人氣重複列。僅證明菜單列有，不代表即時庫存。SipSpot 只作品牌參考。",
+      "recheckedAt": "2026-10-20T21:10:11+08:00",
+      "recheck": {
+        "checkedAt": "2026-10-20T21:10:11+08:00",
+        "checks": [
+          {
+            "url": "https://sipspot.wisplu.com.tw/brands/%E8%80%81%E8%B3%B4%E8%8C%B6%E6%A3%A7/menu/",
+            "httpStatus": "200",
+            "sha256": "0f4f1876fa30b85920d86bdd4780f9fdfd8794e948bf19b5ff4a24f85e56f6b8",
+            "bytes": 78318,
+            "curlCode": 0
+          },
+          {
+            "url": "https://www.liketeashop.com/tw/store",
+            "httpStatus": "200",
+            "sha256": "3c87b67138d28ae5dea7c08b8dfa088b8bfa7f34d4bd0a2991175d3cd94d10af",
+            "bytes": 172614,
+            "curlCode": 0
+          }
+        ],
+        "result": "由老賴官方網站連結至 Ocard，選虎尾中正店；文化路53號及05-632-2152均相符。擷取公開逐店飲品含瓶裝，排除提袋與人氣重複列。僅證明菜單列有，不代表即時庫存。SipSpot 只作品牌參考。",
+        "browserEvidence": {
+          "url": "https://order.ocard.co/liketeashop/mqyLGm",
+          "address": "雲林縣虎尾鎮西安里文化路53號",
+          "phone": "05-632-2152",
+          "menuSnapshotSha256": "be6cf3f42de9171b8fc25ddfd3d08a894570ddabebe432a777a2cb91b883a32e"
+        }
+      }
     },
     {
       "brand": "龜記",
@@ -2250,7 +2928,35 @@
         ],
         "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
       },
-      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+      "evidence": "官方雲林門市頁可核對虎尾光復店；官方連結 doteat 於本次瀏覽只顯示空白 welcome 頁，未取得逐店菜單。SipSpot 為品牌通用資料。",
+      "recheckedAt": "2026-10-20T21:10:11+08:00",
+      "recheck": {
+        "checkedAt": "2026-10-20T21:10:11+08:00",
+        "checks": [
+          {
+            "url": "https://guiji-group.com/drinks",
+            "httpStatus": "200",
+            "sha256": "162c1bea3d254c5fd99a014e5e609c4c0e31d8b307dad2d39466c26bde1b34c3",
+            "bytes": 109783,
+            "curlCode": 0
+          },
+          {
+            "url": "https://guiji-group.com/location/%E9%9B%B2%E6%9E%97%E7%B8%A3",
+            "httpStatus": "200",
+            "sha256": "4a3406192445372a1634c00c0e77ad060f5e87270c52b7ee2ff9a3848f13de24",
+            "bytes": 60990,
+            "curlCode": 0
+          },
+          {
+            "url": "https://sipspot.wisplu.com.tw/brands/%E9%BE%9C%E8%A8%98%E8%8C%97%E5%93%81/menu/",
+            "httpStatus": "200",
+            "sha256": "3b2dbf09233dca30ad366f6a985f057d281e7de0475746bfab5fb443cc9188de",
+            "bytes": 78382,
+            "curlCode": 0
+          }
+        ],
+        "result": "官方雲林門市頁可核對虎尾光復店；官方連結 doteat 於本次瀏覽只顯示空白 welcome 頁，未取得逐店菜單。SipSpot 為品牌通用資料。"
+      }
     },
     {
       "brand": "茶湯會",
@@ -2258,11 +2964,382 @@
       "address": "雲林縣虎尾鎮中正路104號",
       "phone": "05-6320128",
       "sourceUrl": "https://tw.tp-tea.com/store/?index_m_id=1&city=%E9%9B%B2%E6%9E%97%E7%B8%A3",
-      "menuSourceUrl": "https://tw.tp-tea.com/menu/",
-      "checkedAt": "2026-10-20T20:20:31+08:00",
-      "status": "pending",
-      "menuScope": "pending",
-      "menuItems": [],
+      "menuSourceUrl": "https://order.nidin.shop/menu/24277",
+      "checkedAt": "2026-10-20T14:10:50+08:00",
+      "status": "listed",
+      "menuScope": "branch",
+      "menuItems": [
+        {
+          "name": "蜜柑鐵觀音",
+          "listedPrice": 65,
+          "category": "蜜柑系列(含茶)"
+        },
+        {
+          "name": "蜜柑愛玉鐵觀音",
+          "listedPrice": 75,
+          "category": "蜜柑系列(含茶)"
+        },
+        {
+          "name": "蜜柑寒天鐵觀音",
+          "listedPrice": 75,
+          "category": "蜜柑系列(含茶)"
+        },
+        {
+          "name": "蜜柑咖啡凍鐵觀音",
+          "listedPrice": 75,
+          "category": "蜜柑系列(含茶)"
+        },
+        {
+          "name": "四季春玫瑰醋",
+          "listedPrice": 80,
+          "category": "季節限定(含茶)"
+        },
+        {
+          "name": "荔枝翡翠玫瑰醋",
+          "listedPrice": 80,
+          "category": "季節限定(含茶)"
+        },
+        {
+          "name": "布丁奶茶",
+          "listedPrice": 60,
+          "category": "季節限定(含茶)"
+        },
+        {
+          "name": "養樂多綠茶",
+          "listedPrice": 60,
+          "category": "季節限定(含茶)"
+        },
+        {
+          "name": "愛文芒果綠",
+          "listedPrice": 70,
+          "category": "季節限定(含茶)"
+        },
+        {
+          "name": "愛文芒果椰果綠茶",
+          "listedPrice": 75,
+          "category": "季節限定(含茶)"
+        },
+        {
+          "name": "愛文芒果愛玉綠茶",
+          "listedPrice": 75,
+          "category": "季節限定(含茶)"
+        },
+        {
+          "name": "果果四季春",
+          "listedPrice": 75,
+          "category": "季節限定(含茶)"
+        },
+        {
+          "name": "蔗香紅茶（錫蘭）",
+          "listedPrice": 35,
+          "category": "香醇紅茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "珍珠紅茶",
+          "listedPrice": 40,
+          "category": "香醇紅茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "功夫紅茶",
+          "listedPrice": 40,
+          "category": "香醇紅茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "蜜香紅茶",
+          "listedPrice": 45,
+          "category": "香醇紅茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "蜜香珍珠紅茶",
+          "listedPrice": 45,
+          "category": "香醇紅茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "豆漿紅茶",
+          "listedPrice": 45,
+          "category": "香醇紅茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "蔗香奶茶（錫蘭）",
+          "listedPrice": 55,
+          "category": "香醇紅茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "珍珠奶茶",
+          "listedPrice": 55,
+          "category": "香醇紅茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "豆漿奶茶",
+          "listedPrice": 55,
+          "category": "香醇紅茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "蜜香奶茶",
+          "listedPrice": 60,
+          "category": "香醇紅茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "蜜香珍珠奶茶",
+          "listedPrice": 60,
+          "category": "香醇紅茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "錫蘭烏瓦檸檬紅茶",
+          "listedPrice": 65,
+          "category": "香醇紅茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "紅茶拿鐵",
+          "listedPrice": 70,
+          "category": "香醇紅茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "紅茶珍珠拿鐵",
+          "listedPrice": 70,
+          "category": "香醇紅茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "功夫茶拿鐵",
+          "listedPrice": 70,
+          "category": "香醇紅茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "功夫珍珠拿鐵",
+          "listedPrice": 70,
+          "category": "香醇紅茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "紅豆拿鐵",
+          "listedPrice": 75,
+          "category": "香醇紅茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "珍珠紅豆拿鐵",
+          "listedPrice": 75,
+          "category": "香醇紅茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "碳燒鐵觀音",
+          "listedPrice": 40,
+          "category": "雅韻烏龍(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "四季春",
+          "listedPrice": 40,
+          "category": "雅韻烏龍(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "四季春珍珠",
+          "listedPrice": 40,
+          "category": "雅韻烏龍(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "冬瓜鐵觀音",
+          "listedPrice": 50,
+          "category": "雅韻烏龍(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "珍珠冬瓜觀音",
+          "listedPrice": 55,
+          "category": "雅韻烏龍(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "冬瓜檸檬鐵觀音",
+          "listedPrice": 60,
+          "category": "雅韻烏龍(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "金桂觀音",
+          "listedPrice": 55,
+          "category": "雅韻烏龍(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "H-金桂觀音",
+          "listedPrice": 55,
+          "category": "雅韻烏龍(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "鐵觀音奶茶",
+          "listedPrice": 60,
+          "category": "雅韻烏龍(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "鐵觀音珍珠奶茶",
+          "listedPrice": 60,
+          "category": "雅韻烏龍(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "觀音拿鐵",
+          "listedPrice": 70,
+          "category": "雅韻烏龍(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "觀音珍珠拿鐵",
+          "listedPrice": 70,
+          "category": "雅韻烏龍(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "冬瓜觀音拿鐵",
+          "listedPrice": 70,
+          "category": "雅韻烏龍(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "珍珠冬瓜觀音拿鐵",
+          "listedPrice": 70,
+          "category": "雅韻烏龍(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "QQ檸檬四季春",
+          "listedPrice": 70,
+          "category": "雅韻烏龍(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "四季春蜂蜜拿鐵",
+          "listedPrice": 75,
+          "category": "雅韻烏龍(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "四季春珍珠蜂蜜拿鐵",
+          "listedPrice": 75,
+          "category": "雅韻烏龍(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "金桂觀音拿鐵",
+          "listedPrice": 75,
+          "category": "雅韻烏龍(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "H-金桂觀音拿鐵",
+          "listedPrice": 75,
+          "category": "雅韻烏龍(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "金桂觀音珍珠拿鐵",
+          "listedPrice": 75,
+          "category": "雅韻烏龍(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "H-金桂觀音珍珠拿鐵",
+          "listedPrice": 75,
+          "category": "雅韻烏龍(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "觀音雙Q拿鐵",
+          "listedPrice": 75,
+          "category": "雅韻烏龍(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "特級翡翠綠",
+          "listedPrice": 40,
+          "category": "清爽綠茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "珍珠綠茶",
+          "listedPrice": 45,
+          "category": "清爽綠茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "特級茉莉奶綠",
+          "listedPrice": 55,
+          "category": "清爽綠茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "珍珠特級茉莉奶綠",
+          "listedPrice": 55,
+          "category": "清爽綠茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "蜂蜜綠茶",
+          "listedPrice": 55,
+          "category": "清爽綠茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "金桂茉莉",
+          "listedPrice": 55,
+          "category": "清爽綠茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "H-金桂茉莉",
+          "listedPrice": 55,
+          "category": "清爽綠茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "百香綠茶",
+          "listedPrice": 60,
+          "category": "清爽綠茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "翡翠檸檬",
+          "listedPrice": 65,
+          "category": "清爽綠茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "水果茶",
+          "listedPrice": 65,
+          "category": "清爽綠茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "H-水果茶",
+          "listedPrice": 65,
+          "category": "清爽綠茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "翡翠拿鐵",
+          "listedPrice": 70,
+          "category": "清爽綠茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "翡翠珍珠拿鐵",
+          "listedPrice": 70,
+          "category": "清爽綠茶(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "焙茶拿鐵",
+          "listedPrice": 85,
+          "category": "焙茶系列(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "焙茶珍珠拿鐵",
+          "listedPrice": 85,
+          "category": "焙茶系列(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "焙茶觀音雙Q奶茶",
+          "listedPrice": 85,
+          "category": "焙茶系列(含茶)冷飲為22盎司;熱飲為16盎司"
+        },
+        {
+          "name": "檸檬冬瓜",
+          "listedPrice": 60,
+          "category": "無茶也歡"
+        },
+        {
+          "name": "檸檬蜜",
+          "listedPrice": 65,
+          "category": "無茶也歡"
+        },
+        {
+          "name": "拿鐵冬瓜",
+          "listedPrice": 70,
+          "category": "無茶也歡"
+        },
+        {
+          "name": "素妍紅",
+          "listedPrice": 30,
+          "category": "輕飲系列(含茶)"
+        },
+        {
+          "name": "小茉莉",
+          "listedPrice": 30,
+          "category": "輕飲系列(含茶)"
+        },
+        {
+          "name": "觀音韻",
+          "listedPrice": 30,
+          "category": "輕飲系列(含茶)"
+        }
+      ],
       "checks": [
         {
           "url": "https://tw.tp-tea.com/store/?index_m_id=1&city=%E9%9B%B2%E6%9E%97%E7%B8%A3",
@@ -2349,7 +3426,29 @@
         ],
         "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
       },
-      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+      "evidence": "官方雲林門市頁列雲林虎尾店(輕食限定店)，與既有你訂24277虎尾店地址中正路104號及05-6320128完全相符；接回當日公開逐店菜單快照，僅飲品，排除餐食。SipSpot 通用菜單僅供參考；不代表即時庫存。",
+      "recheckedAt": "2026-10-20T21:10:11+08:00",
+      "recheck": {
+        "checkedAt": "2026-10-20T21:10:11+08:00",
+        "checks": [
+          {
+            "url": "https://sipspot.wisplu.com.tw/brands/%E8%8C%B6%E6%B9%AF%E6%9C%83/menu/",
+            "httpStatus": "200",
+            "sha256": "8d94b08a8e756fcc55fe9c66fefce2239ce1280692898a6032b1c3119250795f",
+            "bytes": 79555,
+            "curlCode": 0
+          },
+          {
+            "url": "https://tw.tp-tea.com/store/?index_m_id=1&city=%E9%9B%B2%E6%9E%97%E7%B8%A3",
+            "httpStatus": "200",
+            "sha256": "50cba07a710623ab1e32c674372415eab401229194bdf13675cbd3d4bd11f8a3",
+            "bytes": 36672,
+            "curlCode": 0
+          }
+        ],
+        "result": "官方雲林門市頁列雲林虎尾店(輕食限定店)，與既有你訂24277虎尾店地址中正路104號及05-6320128完全相符；接回當日公開逐店菜單快照，僅飲品，排除餐食。SipSpot 通用菜單僅供參考；不代表即時庫存。",
+        "matchedExistingStoreId": 24277
+      }
     },
     {
       "brand": "茶之魔手",
@@ -2382,7 +3481,7 @@
           "sha256": "72046bf94fd50e0c4c67647ed9f93153b712c53b6de4082d17ab268d13638b99"
         }
       ],
-      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。",
+      "evidence": "官方門市及飲品頁已重查；未取得虎尾兩店逐店菜單，SipSpot 為品牌通用資料。",
       "reference": {
         "source": "SipSpot",
         "url": "https://sipspot.wisplu.com.tw/brands/%E8%8C%B6%E4%B9%8B%E9%AD%94%E6%89%8B/menu/",
@@ -2418,6 +3517,34 @@
           "阿華田生乳拿鐵"
         ],
         "note": "品牌參考菜單，不是逐店菜單；不據此證明虎尾門市販售，不移植價格或成分。"
+      },
+      "recheckedAt": "2026-10-20T21:10:11+08:00",
+      "recheck": {
+        "checkedAt": "2026-10-20T21:10:11+08:00",
+        "checks": [
+          {
+            "url": "https://sipspot.wisplu.com.tw/brands/%E8%8C%B6%E4%B9%8B%E9%AD%94%E6%89%8B/menu/",
+            "httpStatus": "200",
+            "sha256": "72046bf94fd50e0c4c67647ed9f93153b712c53b6de4082d17ab268d13638b99",
+            "bytes": 70957,
+            "curlCode": 0
+          },
+          {
+            "url": "https://www.teamagichand.com.tw/product/",
+            "httpStatus": "200",
+            "sha256": "5f18caae3cb7672e761a2d0640ede183f0e2891f0c837e864e8ae2090dbaa869",
+            "bytes": 38407,
+            "curlCode": 0
+          },
+          {
+            "url": "https://www.teamagichand.com.tw/store/?index_m_id=1&city=%E9%9B%B2%E6%9E%97%E7%B8%A3",
+            "httpStatus": "200",
+            "sha256": "78632f60c94accba496101b64a318c8e3f6485603f8b967d4855bc007eb00e32",
+            "bytes": 47118,
+            "curlCode": 0
+          }
+        ],
+        "result": "官方門市及飲品頁已重查；未取得虎尾兩店逐店菜單，SipSpot 為品牌通用資料。"
       }
     },
     {
@@ -2451,7 +3578,7 @@
           "sha256": "72046bf94fd50e0c4c67647ed9f93153b712c53b6de4082d17ab268d13638b99"
         }
       ],
-      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。",
+      "evidence": "官方門市及飲品頁已重查；未取得虎尾兩店逐店菜單，SipSpot 為品牌通用資料。",
       "reference": {
         "source": "SipSpot",
         "url": "https://sipspot.wisplu.com.tw/brands/%E8%8C%B6%E4%B9%8B%E9%AD%94%E6%89%8B/menu/",
@@ -2487,6 +3614,34 @@
           "阿華田生乳拿鐵"
         ],
         "note": "品牌參考菜單，不是逐店菜單；不據此證明虎尾門市販售，不移植價格或成分。"
+      },
+      "recheckedAt": "2026-10-20T21:10:11+08:00",
+      "recheck": {
+        "checkedAt": "2026-10-20T21:10:11+08:00",
+        "checks": [
+          {
+            "url": "https://sipspot.wisplu.com.tw/brands/%E8%8C%B6%E4%B9%8B%E9%AD%94%E6%89%8B/menu/",
+            "httpStatus": "200",
+            "sha256": "72046bf94fd50e0c4c67647ed9f93153b712c53b6de4082d17ab268d13638b99",
+            "bytes": 70957,
+            "curlCode": 0
+          },
+          {
+            "url": "https://www.teamagichand.com.tw/product/",
+            "httpStatus": "200",
+            "sha256": "5f18caae3cb7672e761a2d0640ede183f0e2891f0c837e864e8ae2090dbaa869",
+            "bytes": 38407,
+            "curlCode": 0
+          },
+          {
+            "url": "https://www.teamagichand.com.tw/store/?index_m_id=1&city=%E9%9B%B2%E6%9E%97%E7%B8%A3",
+            "httpStatus": "200",
+            "sha256": "78632f60c94accba496101b64a318c8e3f6485603f8b967d4855bc007eb00e32",
+            "bytes": 47118,
+            "curlCode": 0
+          }
+        ],
+        "result": "官方門市及飲品頁已重查；未取得虎尾兩店逐店菜單，SipSpot 為品牌通用資料。"
       }
     },
     {
@@ -3190,7 +4345,35 @@
         ],
         "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
       },
-      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+      "evidence": "官方門市查詢與飲品介紹已重查；未取得四店逐店飲品清單，SipSpot 為品牌通用資料。",
+      "recheckedAt": "2026-10-20T21:10:11+08:00",
+      "recheck": {
+        "checkedAt": "2026-10-20T21:10:11+08:00",
+        "checks": [
+          {
+            "url": "https://sipspot.wisplu.com.tw/brands/%E6%B8%85%E5%BF%83%E7%A6%8F%E5%85%A8/menu/",
+            "httpStatus": "200",
+            "sha256": "4a69e0f5c60fd435492ada9869063c1aab9affe14bacdeb19b1a2baf5a44bd7d",
+            "bytes": 104084,
+            "curlCode": 0
+          },
+          {
+            "url": "https://www.chingshin.tw/product/Brown-Sugar-Milk-Tea",
+            "httpStatus": "200",
+            "sha256": "592c9045b23ab3a687c99aba52730acced8135406423346e4617dfe31efca08d",
+            "bytes": 36691,
+            "curlCode": 0
+          },
+          {
+            "url": "https://www.chingshin.tw/store.php",
+            "httpStatus": "200",
+            "sha256": "9d41106a1b5493f8076fcf1148f4821e55672ca8b33db1e8ae125a6cc077edef",
+            "bytes": 45009,
+            "curlCode": 0
+          }
+        ],
+        "result": "官方門市查詢與飲品介紹已重查；未取得四店逐店飲品清單，SipSpot 為品牌通用資料。"
+      }
     },
     {
       "brand": "清心福全",
@@ -3322,7 +4505,35 @@
         ],
         "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
       },
-      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+      "evidence": "官方門市查詢與飲品介紹已重查；未取得四店逐店飲品清單，SipSpot 為品牌通用資料。",
+      "recheckedAt": "2026-10-20T21:10:11+08:00",
+      "recheck": {
+        "checkedAt": "2026-10-20T21:10:11+08:00",
+        "checks": [
+          {
+            "url": "https://sipspot.wisplu.com.tw/brands/%E6%B8%85%E5%BF%83%E7%A6%8F%E5%85%A8/menu/",
+            "httpStatus": "200",
+            "sha256": "4a69e0f5c60fd435492ada9869063c1aab9affe14bacdeb19b1a2baf5a44bd7d",
+            "bytes": 104084,
+            "curlCode": 0
+          },
+          {
+            "url": "https://www.chingshin.tw/product/Brown-Sugar-Milk-Tea",
+            "httpStatus": "200",
+            "sha256": "592c9045b23ab3a687c99aba52730acced8135406423346e4617dfe31efca08d",
+            "bytes": 36691,
+            "curlCode": 0
+          },
+          {
+            "url": "https://www.chingshin.tw/store.php",
+            "httpStatus": "200",
+            "sha256": "9d41106a1b5493f8076fcf1148f4821e55672ca8b33db1e8ae125a6cc077edef",
+            "bytes": 45009,
+            "curlCode": 0
+          }
+        ],
+        "result": "官方門市查詢與飲品介紹已重查；未取得四店逐店飲品清單，SipSpot 為品牌通用資料。"
+      }
     },
     {
       "brand": "清心福全",
@@ -3454,7 +4665,35 @@
         ],
         "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
       },
-      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+      "evidence": "官方門市查詢與飲品介紹已重查；未取得四店逐店飲品清單，SipSpot 為品牌通用資料。",
+      "recheckedAt": "2026-10-20T21:10:11+08:00",
+      "recheck": {
+        "checkedAt": "2026-10-20T21:10:11+08:00",
+        "checks": [
+          {
+            "url": "https://sipspot.wisplu.com.tw/brands/%E6%B8%85%E5%BF%83%E7%A6%8F%E5%85%A8/menu/",
+            "httpStatus": "200",
+            "sha256": "4a69e0f5c60fd435492ada9869063c1aab9affe14bacdeb19b1a2baf5a44bd7d",
+            "bytes": 104084,
+            "curlCode": 0
+          },
+          {
+            "url": "https://www.chingshin.tw/product/Brown-Sugar-Milk-Tea",
+            "httpStatus": "200",
+            "sha256": "592c9045b23ab3a687c99aba52730acced8135406423346e4617dfe31efca08d",
+            "bytes": 36691,
+            "curlCode": 0
+          },
+          {
+            "url": "https://www.chingshin.tw/store.php",
+            "httpStatus": "200",
+            "sha256": "9d41106a1b5493f8076fcf1148f4821e55672ca8b33db1e8ae125a6cc077edef",
+            "bytes": 45009,
+            "curlCode": 0
+          }
+        ],
+        "result": "官方門市查詢與飲品介紹已重查；未取得四店逐店飲品清單，SipSpot 為品牌通用資料。"
+      }
     },
     {
       "brand": "清心福全",
@@ -3586,7 +4825,35 @@
         ],
         "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
       },
-      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+      "evidence": "官方門市查詢與飲品介紹已重查；未取得四店逐店飲品清單，SipSpot 為品牌通用資料。",
+      "recheckedAt": "2026-10-20T21:10:11+08:00",
+      "recheck": {
+        "checkedAt": "2026-10-20T21:10:11+08:00",
+        "checks": [
+          {
+            "url": "https://sipspot.wisplu.com.tw/brands/%E6%B8%85%E5%BF%83%E7%A6%8F%E5%85%A8/menu/",
+            "httpStatus": "200",
+            "sha256": "4a69e0f5c60fd435492ada9869063c1aab9affe14bacdeb19b1a2baf5a44bd7d",
+            "bytes": 104084,
+            "curlCode": 0
+          },
+          {
+            "url": "https://www.chingshin.tw/product/Brown-Sugar-Milk-Tea",
+            "httpStatus": "200",
+            "sha256": "592c9045b23ab3a687c99aba52730acced8135406423346e4617dfe31efca08d",
+            "bytes": 36691,
+            "curlCode": 0
+          },
+          {
+            "url": "https://www.chingshin.tw/store.php",
+            "httpStatus": "200",
+            "sha256": "9d41106a1b5493f8076fcf1148f4821e55672ca8b33db1e8ae125a6cc077edef",
+            "bytes": 45009,
+            "curlCode": 0
+          }
+        ],
+        "result": "官方門市查詢與飲品介紹已重查；未取得四店逐店飲品清單，SipSpot 為品牌通用資料。"
+      }
     },
     {
       "brand": "星巴克",
@@ -3613,7 +4880,28 @@
           "sha256": "8b3881ba9b0ef3bdb9180686b92b904327ea3bf3e489bddb8f1746bd343d50f8"
         }
       ],
-      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+      "evidence": "官方門市查詢與飲品頁已重查，未取得三店逐店供應清單；SipSpot 原品牌索引未找到星巴克，維持待確認。",
+      "recheckedAt": "2026-10-20T21:10:11+08:00",
+      "recheck": {
+        "checkedAt": "2026-10-20T21:10:11+08:00",
+        "checks": [
+          {
+            "url": "https://www.starbucks.com.tw/products/drinks/product.jspx?id=1048&catId=117",
+            "httpStatus": "200",
+            "sha256": "43f6f4bcce691c4bde9797141c1682e822edcd95b466e2c84340492cbdf233a3",
+            "bytes": 16882,
+            "curlCode": 0
+          },
+          {
+            "url": "https://www.starbucks.com.tw/stores/storesearch.jspx",
+            "httpStatus": "200",
+            "sha256": "9dffa9af71beca392bf4695107c2d5c176972313920e44c2497d483d812d9aed",
+            "bytes": 26532,
+            "curlCode": 0
+          }
+        ],
+        "result": "官方門市查詢與飲品頁已重查，未取得三店逐店供應清單；SipSpot 原品牌索引未找到星巴克，維持待確認。"
+      }
     },
     {
       "brand": "星巴克",
@@ -3640,7 +4928,28 @@
           "sha256": "8b3881ba9b0ef3bdb9180686b92b904327ea3bf3e489bddb8f1746bd343d50f8"
         }
       ],
-      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+      "evidence": "官方門市查詢與飲品頁已重查，未取得三店逐店供應清單；SipSpot 原品牌索引未找到星巴克，維持待確認。",
+      "recheckedAt": "2026-10-20T21:10:11+08:00",
+      "recheck": {
+        "checkedAt": "2026-10-20T21:10:11+08:00",
+        "checks": [
+          {
+            "url": "https://www.starbucks.com.tw/products/drinks/product.jspx?id=1048&catId=117",
+            "httpStatus": "200",
+            "sha256": "43f6f4bcce691c4bde9797141c1682e822edcd95b466e2c84340492cbdf233a3",
+            "bytes": 16882,
+            "curlCode": 0
+          },
+          {
+            "url": "https://www.starbucks.com.tw/stores/storesearch.jspx",
+            "httpStatus": "200",
+            "sha256": "9dffa9af71beca392bf4695107c2d5c176972313920e44c2497d483d812d9aed",
+            "bytes": 26532,
+            "curlCode": 0
+          }
+        ],
+        "result": "官方門市查詢與飲品頁已重查，未取得三店逐店供應清單；SipSpot 原品牌索引未找到星巴克，維持待確認。"
+      }
     },
     {
       "brand": "星巴克",
@@ -3667,7 +4976,28 @@
           "sha256": "8b3881ba9b0ef3bdb9180686b92b904327ea3bf3e489bddb8f1746bd343d50f8"
         }
       ],
-      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+      "evidence": "官方門市查詢與飲品頁已重查，未取得三店逐店供應清單；SipSpot 原品牌索引未找到星巴克，維持待確認。",
+      "recheckedAt": "2026-10-20T21:10:11+08:00",
+      "recheck": {
+        "checkedAt": "2026-10-20T21:10:11+08:00",
+        "checks": [
+          {
+            "url": "https://www.starbucks.com.tw/products/drinks/product.jspx?id=1048&catId=117",
+            "httpStatus": "200",
+            "sha256": "43f6f4bcce691c4bde9797141c1682e822edcd95b466e2c84340492cbdf233a3",
+            "bytes": 16882,
+            "curlCode": 0
+          },
+          {
+            "url": "https://www.starbucks.com.tw/stores/storesearch.jspx",
+            "httpStatus": "200",
+            "sha256": "9dffa9af71beca392bf4695107c2d5c176972313920e44c2497d483d812d9aed",
+            "bytes": 26532,
+            "curlCode": 0
+          }
+        ],
+        "result": "官方門市查詢與飲品頁已重查，未取得三店逐店供應清單；SipSpot 原品牌索引未找到星巴克，維持待確認。"
+      }
     },
     {
       "brand": "白巷子",

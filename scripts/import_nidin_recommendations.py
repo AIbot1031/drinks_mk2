@@ -114,6 +114,14 @@ def main():
                 raise ValueError('Supplement cannot introduce a new brand')
             if store['status']!='listed' or store['menuScope']!='branch':
                 continue
+            # Auditing an alias of an existing Nidin branch repairs directory
+            # evidence; its products were already imported above.
+            matched_id=store.get('recheck',{}).get('matchedExistingStoreId')
+            if matched_id is not None:
+                expected='https://order.nidin.shop/menu/'+str(matched_id)
+                if store['menuSourceUrl']!=expected:
+                    raise ValueError('Audited Nidin source does not match branch ID')
+                continue
             identity=json.dumps([norm(store[k]) for k in ['brand','name','address']],ensure_ascii=False,separators=(',',':'))
             store_id='s_'+hashlib.sha256(identity.encode()).hexdigest()[:32]
             place=region(store['address'])
