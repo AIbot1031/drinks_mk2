@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import {gzipSync} from 'node:zlib';
+import {createHash} from 'node:crypto';
+import {prepareLexicalIndex} from '../worker/lexical';
+const raw=fs.readFileSync('data/catalog.json');
+const catalog=JSON.parse(raw.toString('utf8'));
+const index={catalogVersion:createHash('sha256').update(raw).digest('hex'),...prepareLexicalIndex(catalog.drinks)};
+const encoded=JSON.stringify(index);
+fs.writeFileSync('data/lexical-runtime.json',encoded+'\n');
+fs.writeFileSync('data/lexical-runtime.bin',gzipSync(encoded));
+console.log(`Static text index verified: ${index.vectors.length} rows; ${index.terms.length} public text terms; no training`);

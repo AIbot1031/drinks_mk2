@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import {isDeepStrictEqual} from 'node:util';
 import {gzipSync} from 'node:zlib';
+import {execFileSync} from 'node:child_process';
 // Share constant pending fields instead of repeating them in every menu row.
 // The public/auditable catalog stays intact; runtime expansion is lossless.
 const catalog=JSON.parse(await fs.readFile('data/catalog.json','utf8'));
@@ -46,3 +47,4 @@ if(!isDeepStrictEqual({...directoryMeta,stores:rebuiltStores},directory))throw E
 await fs.writeFile('data/directory-runtime.json',JSON.stringify(directoryPacked)+'\n');
 await fs.writeFile('data/directory-runtime.bin',gzipSync(JSON.stringify(directoryPacked)));
 console.log(`Runtime directory verified: ${stores.length} stores, ${names.length} shared menu names`);
+execFileSync(process.execPath,['--import','tsx','scripts/build_lexical_index.ts'],{stdio:'inherit'});

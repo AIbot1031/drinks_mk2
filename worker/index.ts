@@ -8,6 +8,7 @@ import {validateTrainingSummary} from './training-summary';
 import {appVersion} from './app-version';
 import {catalogFeatures,featureSchemaVersion,preferenceProfile,chatHistory} from './catalog-features';
 import catalog from './catalog';
+import textIndex from './text-index';
 import {groupProducts,favoriteProducts,createProductPreferences} from './products';
 import { makeEngine } from './recommend';
 import {conversationTurn} from './conversation';
@@ -32,7 +33,7 @@ const drinks: Drink[] = catalog.drinks;
 let cachedPreferences:ReturnType<typeof createProductPreferences>|undefined;
 const getPreferences=()=>cachedPreferences??=createProductPreferences(drinks);
 let cachedEngine:ReturnType<typeof makeEngine>|undefined;
-const getEngine=()=>cachedEngine??=makeEngine(drinks,getPreferences());
+const getEngine=()=>cachedEngine??=makeEngine(drinks,getPreferences(),textIndex);
 const totalProducts=catalog.totalProducts;
 const json = (body: unknown, status = 200) => Response.json(body, {status, headers: {'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff'}});
 

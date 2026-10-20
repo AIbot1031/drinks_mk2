@@ -1,3 +1,5 @@
+import {concepts,searchable,tokenize,prepareLexicalIndex,type LexicalIndex} from './lexical';
+export {searchable} from './lexical';
 import {storeEligible,supplyStatus} from './stores';
 import {regionEligible} from './regions';
 import type { Drink, Filters, RecommendInput, Scored } from './types';
@@ -29,37 +31,15 @@ export function eligible(d: Drink, f: Filters): boolean {
     && !(f.excludedToppings??[]).some(t=>{const names=['珍珠','波霸'].includes(t)?['珍珠','波霸']:[t];return names.some(n=>d.toppings.includes(n)||d.name.includes(n));});
 }
 
-const concepts: Record<string, string[]> = {
-  清爽: ['清爽', '淡雅', '清香', '清新', '輕盈'], 濃郁: ['濃郁', '香濃', '厚重', '濃厚'],
-  果香: ['果香', '水果', '柚', '檸檬', '芒果', '蜜桃', '荔枝', '葡萄', '柳橙', '百香'],
-  酸甜: ['酸甜', '酸香', '檸檬', '柚', '百香', '莓'], 奶香: ['奶香', '鮮奶', '拿鐵', '奶茶', '乳'],
-  嚼勁: ['嚼勁', '珍珠', '波霸', '椰果', '布丁', '粉粿', '燕麥'], 回甘: ['回甘', '茶香', '烏龍', '青茶'],
-  花香: ['花香', '茉莉', '桂花', '玫瑰'], 提神: ['提神', '咖啡', '紅茶', '抹茶'],
-};
-export function searchable(d: Drink): string { return d.sourceKind==='nidin'?`${d.name} ${d.brand} ${d.sourceMenuCategory||''}`:`${d.name} ${d.brand} ${d.taste} ${d.category} ${d.tea.join(' ')} ${d.milk.join(' ')} ${d.toppings.join(' ')}`; }
-function tokenize(text: string): string[] {
-  const s = text.toLowerCase().replace(/[^\p{L}\p{N}]/gu, '');
-  const tokens = new Set<string>();
-  for (let i = 0; i < s.length - 1; i++) tokens.add(s.slice(i, i + 2));
-  for (const [key, terms] of Object.entries(concepts)) if (terms.some(t => text.includes(t))) tokens.add(`concept:${key}`);
-  return [...tokens];
-}
-export function makeEngine(drinks: Drink[],preferences=createProductPreferences(drinks)) {
+export function makeEngine(drinks: Drink[],preferences=createProductPreferences(drinks),prepared?:LexicalIndex) {
   const byId = new Map(drinks.map(d => [d.id, d]));
-  const dictionary=new Map<string,number>(),df:number[]=[];
-  const tokens = new Map(drinks.map(d => {
-    const t = tokenize(searchable(d)).map(token=>{
-      let id=dictionary.get(token);
-      if(id===undefined){id=df.length;dictionary.set(token,id);df.push(0);}
-      df[id]++;return id;
-    });
-    return [d.id, t];
-  }));
-  const idf = (id:number) => 1 + Math.log((1 + drinks.length) / (1 + (df[id] ?? 0)));
-  const weights = df.map((_,id)=>idf(id)**2);
-  // Compute norms in the original token order, retaining floating-point scores.
-  const norms = new Map([...tokens].map(([id, ts]) => [id, Math.sqrt(ts.reduce((sum,t) => sum + weights[t], 0))]));
-  for(const vector of tokens.values())vector.sort((a,b)=>a-b);
+  const index=prepared??prepareLexicalIndex(drinks);
+  if(index.vectors.length!==drinks.length||index.norms.length!==drinks.length)throw Error('文字索引與目錄筆數不符');
+  const dictionary=new Map(index.terms.map((term,i)=>[term,i])),df=index.frequency;
+  const tokens=new Map(drinks.map((d,i)=>[d.id,index.vectors[i]]));
+  const idf=(id:number)=>1+Math.log((1+drinks.length)/(1+(df[id]??0)));
+  const weights=df.map((_,id)=>idf(id)**2);
+  const norms=new Map(drinks.map((d,i)=>[d.id,index.norms[i]]));
   const contains=(vector:number[],id:number)=>{
     if(id<0)return false;let left=0,right=vector.length-1;
     while(left<=right){const middle=(left+right)>>>1,value=vector[middle];if(value===id)return true;if(value<id)left=middle+1;else right=middle-1;}
@@ -120,8 +100,8 @@ export function makeEngine(drinks: Drink[],preferences=createProductPreferences(
     const seenProducts=new Set(input.excludedIds.flatMap(id=>byId.has(id)?[productKey(byId.get(id)!)]:[]));
     const dislikedProducts=new Set(input.dislikedIds.flatMap(id=>byId.has(id)?[productKey(byId.get(id)!)]:[]));
     const hardPool = parsed.blocked ? [] : drinks.filter(d => eligible(d, parsed.filters)&&regionEligible(d,input.region)&&storeEligible(d,input.supply));
-    const likedPool = hardPool.filter(d => !dislikedProducts.has(productKey(d)));
-    const pool = likedPool.filter(d => !excluded.has(d.id)&&!seenProducts.has(productKey(d)));
+    const likedPool = dislikedProducts.size?hardPool.filter(d => !dislikedProducts.has(productKey(d))):hardPool;
+    const pool = excluded.size||seenProducts.size?likedPool.filter(d => !excluded.has(d.id)&&!seenProducts.has(productKey(d))):likedPool;
     const productGroups=groupProducts(pool);
     const poolIds=new Set(pool.map(d=>d.id));
     const neural=semantic&&!semantic.fallbackReason;
@@ -129,8 +109,10 @@ export function makeEngine(drinks: Drink[],preferences=createProductPreferences(
     const encoderLabel=encoder==='roberta-wwm'?'RoBERTa-WWM':'MacBERT';
     const lexicalA = neural ? semantic.scores.filter(s=>poolIds.has(s.id)&&Number.isFinite(s.score)).map(s=>({drink:byId.get(s.id)!,score:s.score})).sort((a,b)=>b.score-a.score||a.drink.id.localeCompare(b.drink.id)) : lexical(input.query, pool);
     const liked = input.likedIds.filter(id => byId.has(id) && !disliked.has(id) && !parsed.filters.excludedBrands?.includes(byId.get(id)!.brand));
-    const available=(d:Drink)=>supplyStatus(d,input.supply).status==='available'?1:0;
-    const byTopping=(x:Scored,y:Scored)=>available(y.drink)-available(x.drink)||toppingMatches(y.drink,parsed.filters)-toppingMatches(x.drink,parsed.filters)||y.score-x.score||x.drink.id.localeCompare(y.drink.id);
+    const priorities=new Map(pool.map(d=>[d.id,(supplyStatus(d,input.supply).status==='available'?100:0)+toppingMatches(d,parsed.filters)]));
+    const available=(d:Drink)=>(priorities.get(d.id)??0)>=100?1:0;
+    const priority=(d:Drink)=>priorities.get(d.id)??0;
+    const byTopping=(x:Scored,y:Scored)=>priority(y.drink)-priority(x.drink)||y.score-x.score||x.drink.id.localeCompare(y.drink.id);
     lexicalA.sort(byTopping);
     const a = liked.length && !input.query.trim() ? [] : lexicalA;
     const seeds = liked.length ? liked : lexicalA.filter(d => d.score > 0).slice(0, 5).map(d => d.drink.id);
@@ -147,7 +129,7 @@ export function makeEngine(drinks: Drink[],preferences=createProductPreferences(
     // The inference service returns only its top 100. Preserve selected-topping
     // candidates omitted there so a better topping match cannot disappear.
     if(requiredToppings(parsed.filters).length)for(const drink of pool)if(!fused.has(drink.id))fused.set(drink.id,{drink,score:0,aRank:null,bRank:null});
-    const live=livePreferenceScorer(drinks,liked,input.dislikedIds.filter(id=>byId.has(id)&&!parsed.filters.excludedBrands?.includes(byId.get(id)!.brand)));
+    const live=livePreferenceScorer(drinks,liked,input.dislikedIds.filter(id=>byId.has(id)&&!parsed.filters.excludedBrands?.includes(byId.get(id)!.brand)),byId);
     // RRF has a fixed upper bound. Normalize against it, never compare raw model logits.
     const baseScale=1/(RANKING_CONFIG.rrfK+1);
     const supplements=new Map<string,{path:'a'|'b';rank:number;score:number}>();
@@ -172,7 +154,7 @@ export function makeEngine(drinks: Drink[],preferences=createProductPreferences(
     const seen = new Set<string>();
     const selectionDecisions: Array<{id: string; name: string; pass: string; decision: string; priorBrandCount: number}> = [];
     // First pass encourages brand diversity; second fills remaining slots without relaxing filters.
-    const selectionTier=(d:Drink)=>available(d)*100+toppingMatches(d,parsed.filters);
+    const selectionTier=priority;
     const tiers=[...new Set(ranked.map(r=>selectionTier(r.drink)))].sort((a,b)=>b-a);
     for (const tier of tiers) for (const diverse of [true, false]) for (const row of ranked.filter(r=>selectionTier(r.drink)===tier)) {
       if (selected.length >= input.limit) break;
