@@ -1,0 +1,108 @@
+{
+  "checkedAt": "2026-10-20T16:02:51+08:00",
+  "sourceCommit": "90f113868c6d4270d77c8f841bf56d04b4dc3f34",
+  "baseUrl": "https://drinks-mk2.rtx941031.workers.dev",
+  "checks": {
+    "storeUiRemainsRemoved": true,
+    "huweiCocoUsesLocalMenuAndNoTaoyuanVariants": {
+      "count": 6,
+      "sourceUrl": "https://order.nidin.shop/menu/23257"
+    },
+    "screenshotRequestFailsClosedWithoutForeignCupOrNutrition": true,
+    "preferenceRefreshKeepsStrictApplicability": true,
+    "chatKeepsStrictApplicability": true,
+    "unknownFullPriceDoesNotPassBudget": true,
+    "countyOnlyIsValidAndStillHardBounded": true,
+    "newBrandsRecommendAndGeneralClearsStaleScope": true,
+    "pendingBrandDoesNotSubstituteAnotherBrand": true,
+    "newMenuDislikeAndUndoReflectImmediatelyWithoutTraining": true,
+    "generalFullCatalogAndTasteRequestsDoNotExceedResources": true
+  },
+  "workerVersionId": "12b6df5d-194a-40c1-aad5-28a0c76f33e8",
+  "health": {
+    "ok": true,
+    "total": 32165,
+    "version": "3.1.19"
+  },
+  "assetHashes": {
+    "/": "32916db6d3ee0818a8d9c8f7799d1cb92272772a5f03ca9f97e49a51e30fb1bb",
+    "/app.js": "0aa581bb1f79d909e5b4bfac81d36c910e4bd9658b14b668c29acc59753cf99c",
+    "/chat.js": "e30c09ec8eeb5ef46310f8a5c6d6d486e95b4b8ee081e4b92ae9b4f864adead7",
+    "/region-controls.js": "d87c3e04ce0053a1521347b011553e6bdb4d397fe61dbe642c4e79fa49c10f10",
+    "/brew-loading.js": "42e8347f724fff1721b6bb1d47cad7c289b9a0917700e6e0a9362a763fdc297e",
+    "/brew-loading.css": "8919edb280cf8d41cea8038a5b09a0f021fb09790792b4936c0bf08b9c8ecf7b",
+    "/internal.html": "71315bb4501b196c9c0eca62abbd9922b250a1ef28956e8d620d5a3546b1790d",
+    "/nidin-research.json": "cd1f7209cea0763b6b2771e41098ab28109a8791bc8d39c932fc50cc3b088882"
+  },
+  "catalog": {
+    "variants": 32165,
+    "products": 25866,
+    "brands": 404,
+    "pendingBrands": 7
+  },
+  "mode": {
+    "routeA": "tf-idf",
+    "routeAModel": null,
+    "routeAFallback": "Mac unavailable, timeout, or index mismatch",
+    "routeB": "feature-graph",
+    "routeBModel": null,
+    "routeBFallback": "guest",
+    "personalized": false,
+    "livePreferences": false
+  },
+  "fullCatalogRequestCoverage": [
+    {
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 32165,
+      "elapsedSeconds": 1.32
+    },
+    {
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 32165,
+      "elapsedSeconds": 8.14
+    },
+    {
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 1253,
+      "elapsedSeconds": 0.98
+    }
+  ],
+  "ci": {
+    "id": 39390197315,
+    "conclusion": "success",
+    "url": "https://github.com/AIbot1031/drinks_mk2/actions/runs/39390197315"
+  },
+  "localValidation": {
+    "nodeTests": 159,
+    "nodePassed": 153,
+    "nodeSkipped": 6,
+    "nodeFailed": 0,
+    "pythonTests": 44,
+    "pythonSkipped": 7,
+    "intentTests": 5,
+    "typeCheck": "passed",
+    "dryRun": "passed"
+  },
+  "screenshots": [
+    "3.1.19正式製杯動畫.jpg",
+    "3.1.19虎尾CoCo正式畫面.jpg",
+    "3.1.19虎尾CoCo結果.jpg"
+  ],
+  "browser": {
+    "version": "3.1.19",
+    "query": "3Q奶茶",
+    "brand": "CoCo都可",
+    "region": "雲林縣虎尾鎮",
+    "toppings": [
+      "芋圓"
+    ],
+    "resultCount": 0,
+    "loadingVisibleWhileWaiting": true,
+    "loadingHiddenAfterCompletion": true,
+    "storeSelectorCount": 0
+  },
+  "releaseStatus": "production_verified_release_pending"
+}

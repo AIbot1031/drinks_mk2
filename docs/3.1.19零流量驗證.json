@@ -1,0 +1,108 @@
+{
+  "checkedAt": "2026-10-20T16:01:02+08:00",
+  "sourceCommit": "90f113868c6d4270d77c8f841bf56d04b4dc3f34",
+  "workerVersionId": "12b6df5d-194a-40c1-aad5-28a0c76f33e8",
+  "normalTrafficPercent": 0,
+  "requests": [
+    {
+      "path": "/api/recommend",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 32165,
+      "seconds": 3.12
+    },
+    {
+      "path": "/api/recommend",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 32165,
+      "seconds": 8.24
+    },
+    {
+      "path": "/api/recommend",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 1253,
+      "seconds": 1.55
+    },
+    {
+      "path": "/api/recommend",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 82,
+      "seconds": 1.23
+    },
+    {
+      "path": "/api/recommend",
+      "status": 200,
+      "resultCount": 0,
+      "eligibleCount": 0,
+      "seconds": 8.52
+    },
+    {
+      "path": "/api/chat/recommend",
+      "status": 200,
+      "resultCount": 0,
+      "eligibleCount": 0,
+      "seconds": 8.76
+    },
+    {
+      "path": "/api/recommend",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 82,
+      "seconds": 1.19
+    },
+    {
+      "path": "/api/recommend",
+      "status": 200,
+      "resultCount": 0,
+      "eligibleCount": 0,
+      "seconds": 1.23
+    },
+    {
+      "path": "/api/preference-refresh",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 81,
+      "seconds": 1.17
+    },
+    {
+      "path": "/api/preference-refresh",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 82,
+      "seconds": 1.17
+    },
+    {
+      "path": "/api/recommend",
+      "status": 200,
+      "resultCount": 0,
+      "eligibleCount": 0,
+      "seconds": 1.23
+    },
+    {
+      "path": "/api/recommend",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 28,
+      "seconds": 1.12
+    }
+  ],
+  "checks": {
+    "fullCatalogBlankTasteAndNumericRequests": true,
+    "huweiCocoHasOnlyLocalMenuProvenance": true,
+    "screenshotRequestDoesNotBorrowTaoyuan": true,
+    "chatDoesNotBorrowTaoyuan": true,
+    "countyWithoutDistrictIsAllowed": true,
+    "unknownFullPriceDoesNotPassCap": true,
+    "dislikeAndUndoApplyImmediately": true,
+    "pendingBrandKeepsPendingAndNoSubstitution": true,
+    "newBrandAndGeneralScope": true
+  },
+  "normalTrafficHealth": {
+    "ok": true,
+    "total": 5781,
+    "version": "3.1.16"
+  }
+}
