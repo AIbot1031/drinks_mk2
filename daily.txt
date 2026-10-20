@@ -1562,3 +1562,9 @@ Git／Release：已驗證來源及annotated tag v3.1.22推送；Release418422357
 部署：Worker 5f72da94-017a-4639-b5e3-af8617694ccc先0%後100%，無新增費用。
 Git／Release：來源提交99e94d96b64ba196d433ed6189f1dab4e7fa4377已推送，GitHub CI39434314860成功。Annotated tag v3.1.23已推送，peeled commit與正式來源一致；GitHub Release RE_kwDOVAiOrM4Y9BHX已發布、非草稿／非預發且Latest，target_commitish一致。部署commit及Release均核對完成；本工作紀錄與驗證證據另以文件提交補齊，不改動tag指向。Release：https://github.com/AIbot1031/drinks_mk2/releases/tag/v3.1.23。
 限制與後續：停賣及菜單是公開快照，不保證即時庫存；15家菜單仍待逐店確認。模型比較不是人工偏好評分。完整證據見`docs/3.1.23全庫品項與門市停賣修正.md`及兩份部署驗證JSON。
+
+[2026-10-21 01:13:10 Asia/Taipei] 3.1.24 品項目錄整併與門市明細（發布前）
+規劃：延續同品項合併工作，將維護資料整為主品項與多個杯型／價格／來源版本，保留版本細節；地區推薦卡列出該版本適用門市。
+實作：新增 data/catalog-products.json，9,088 個版本歸為3,814個品牌／品名主項目；舊 data/catalog.json 改為安裝／建置時產生的相容產物。資料匯入流程同步更新主目錄；地區模式的版本選單顯示店數，來源備註可展開門市名稱與地址。所有版本欄位、ID與順序往返一致，目錄SHA-256仍為d789342b95dbfe4feb5bdd5996298a97698a24216af441dc121b3d765fb545a5，模型索引無需重建，未訓練或修改權重。
+測試：型別檢查、171項Node測試（142通過、29條件略過、0失敗）、Python測試（5+51通過、8選用依賴略過）、Worker建置／Wrangler dry-run通過；部署、CI及Release待完成。
+限制／後續：公開菜單不是即時庫存；門市只依版本來源ID精確對應，不猜測供應。尚未部署；Git同步與Release待完成。詳見docs/3.1.24品項目錄整併與門市明細.md。

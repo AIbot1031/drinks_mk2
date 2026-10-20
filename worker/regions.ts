@@ -49,9 +49,12 @@ export const regionEligible=(d:Drink,region?:RegionScope)=>!region||(region.bran
 export function regionalDrink(d:Drink,scope?:RegionScope):Drink{
  if(!scope||!isMenuDrink(d))return d;
  const ids=new Set(d.sourceStoreIds);
+ const sourceStores=directory.stores.filter(s=>s.brand===d.brand&&s.city===scope.city&&(!scope.district||s.district===scope.district)&&s.menuScope==='branch'
+  &&(ids.has(s.id)||ids.has((s.menuSourceUrl||s.sourceUrl).split('/').at(-1)??''))
+ ).map(({id,name,address,city,district})=>({id,name,address,city,district}));
  const source=directory.stores.find(s=>s.brand===d.brand&&s.city===scope.city&&(!scope.district||s.district===scope.district)&&(ids.has(s.id)||ids.has((s.menuSourceUrl||s.sourceUrl).split('/').at(-1)??'')));
  // Never send the first national sample's branch link as the local source.
- return {...d,region:scope.city+scope.district,sourceUrl:source?.menuSourceUrl||undefined,sourceCheckedAt:source?.checkedAt};
+ return {...d,region:scope.city+scope.district,sourceStores,sourceUrl:source?.menuSourceUrl||undefined,sourceCheckedAt:source?.checkedAt};
 }
 export function assertStoreRegion(store:{brand:string;name:string;address:string}|undefined,region?:RegionScope){
  if(!store||!region)return;

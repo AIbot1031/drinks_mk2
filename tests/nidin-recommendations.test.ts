@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import catalog from '../data/catalog.json';
 import {eligible,makeEngine} from '../worker/recommend';
-import {readRegion,regionEligible} from '../worker/regions';
+import {readRegion,regionalDrink,regionEligible} from '../worker/regions';
 import {validateInput} from '../worker/understand';
 import {groupProducts} from '../worker/products';
 import type {Drink} from '../worker/types';
@@ -32,6 +32,15 @@ test('new beverages are recommendable with county-only scope and cannot leak acr
  assert.ok(result.results.every(r=>regionEligible(r.drink,county)));
  const hidden=engine.recommend({...input,dislikedIds:result.results.map(r=>r.id)});
  assert.ok(hidden.results.every(r=>!result.results.some(previous=>previous.name===r.name)));
+});
+
+test('regional menu variants expose only verified store names and addresses for that exact variant',()=>{
+ const scope=readRegion({city:'雲林縣',district:'虎尾鎮'})!;
+ const source=added.find(d=>d.regionKeys?.includes('雲林縣|虎尾鎮')&&regionEligible(d,scope))!;
+ const local=regionalDrink(source,scope);
+ assert.ok(local.sourceStores?.length);
+ assert.ok(local.sourceStores?.every(s=>s.city==='雲林縣'&&s.district==='虎尾鎮'));
+ assert.ok(local.sourceStores?.every(s=>s.address.startsWith('雲林縣虎尾鎮')));
 });
 
 test('duplicate menu names share one card while original variants and different store evidence remain',()=>{

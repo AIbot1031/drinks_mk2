@@ -30,3 +30,6 @@ data/*-runtime.bin
 
 # Rebuildable deterministic text-search cache; never backup model/cache weights
 data/lexical-runtime.json
+
+# Deterministic expanded compatibility catalog, rebuilt from catalog-products.json
+data/catalog.json

@@ -142,7 +142,7 @@ function card(d, index, rec, variants = d.variants || rec?.variants || []) {
   const content = el('div', '', 'card-content'), top = el('div', '', 'card-top');
   if (variants.length > 1) {
     const select=el('select');select.setAttribute('aria-label',`${d.name}的杯型`);
-    for(const variant of variants){const option=el('option',`${variant.cupSize || variant.category} · NT$ ${variant.priceText || variant.price || '待確認'}${variant.priceEstimated ? '（估算）' : ''}`);option.value=variant.id;select.append(option);}select.value=d.id;
+    for(const variant of variants){const storeCount=variant.sourceStores?.length;const option=el('option',`${variant.cupSize || variant.category} · NT$ ${variant.priceText || variant.price || '待確認'}${variant.priceEstimated ? '（估算）' : ''}${storeCount?` · ${storeCount} 間門市`:''}`);option.value=variant.id;select.append(option);}select.value=d.id;
     select.onchange=()=>{const variant=variants.find(v=>v.id===select.value);article.replaceWith(card(variant,index,rec,variants));refreshFeedbackButtons();};
     content.append(select,el('p',d.sourceKind==='nidin'?`共 ${variants.length} 個菜單價格版本；完整售價與杯型待確認，喜歡／不喜歡共用。`:`共 ${variants.length} 個可查看的版本，預設最低價；杯型價格與營養分開，喜歡／不喜歡共用。`,'field-help'));
   }
@@ -164,7 +164,8 @@ function card(d, index, rec, variants = d.variants || rec?.variants || []) {
   const details = el('details', '', 'card-details'); details.append(el('summary', '查看資料來源與備註'));
   details.append(el('p',d.sourceKind==='nidin'?`來源：你訂公開菜單快照。${d.status}；不是即時庫存。`:`資料表「${d.sourceSheet || "飲料品項"}」第 ${d.sourceRow} 列。${d.status || ''}`));
   if(d.sourceKind==='nidin'&&d.sourceUrl?.startsWith('https://')){const source=el('a','查看公開菜單來源');source.href=d.sourceUrl;source.target='_blank';source.rel='noopener noreferrer';details.append(source);}
-  if (d.region) details.append(el('p', `適用地區／門市：${d.region}；容量：${d.volumeMl ?? '未知'} ml。`));
+  if (d.region) details.append(el('p', `適用地區：${d.region}；容量：${d.volumeMl ?? '未知'} ml。`));
+  if(d.sourceStores?.length){const stores=el('details','','branch-list');stores.append(el('summary',`此版本已核對門市（${d.sourceStores.length} 家）`));for(const store of d.sourceStores){const line=el('p',`${store.city}${store.district}・${store.name}｜${store.address}`);stores.append(line);}details.append(stores);}
   if(d.milkConflict)details.append(el('p','來源無奶標籤與奶類線索矛盾，已排除於無奶篩選；配方待確認。','card-warning'));
   if (d.fillMethod) details.append(el('p', `填值方式：${d.fillMethod}；${d.reviewStatus || ''}`));
   details.append(el('p', d.notes || '未提供備註。'));

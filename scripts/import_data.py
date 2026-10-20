@@ -103,7 +103,9 @@ def main():
                        'caffeineUpperBound':sum(d['caffeineMax'] is None for d in drinks)},
             'estimates':{k:sum(d[k+'Estimated'] for d in drinks) for k in ['price','calories','caffeine']},
             'drinks':drinks}
-    (ROOT/'data/catalog.json').write_text(json.dumps(result,ensure_ascii=False,separators=(',',':'))+'\n')
+    from catalog_products import write_grouped, write_flat
+    write_grouped(result)
+    write_flat(result)
     version=hashlib.sha256((ROOT/'data/catalog.json').read_bytes()).hexdigest()
     compatible=[]
     manifest=ROOT/'data/catalog-update.json'

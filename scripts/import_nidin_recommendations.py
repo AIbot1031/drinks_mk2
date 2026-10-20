@@ -162,7 +162,9 @@ def main():
                          'caffeineUpperBound':sum(d['caffeineMax'] is None for d in drinks)},
               'brandStatus':brand_state,'drinks':drinks}
     encoded=(json.dumps(result,ensure_ascii=False,separators=(',',':'))+'\n').encode()
-    path.write_bytes(encoded)
+    from catalog_products import write_grouped, write_flat
+    write_grouped(result)
+    write_flat(result)
     version=hashlib.sha256(encoded).hexdigest()
     old_manifest=json.loads((ROOT/'data/catalog-update.json').read_text())
     old_version=hashlib.sha256(previous_bytes).hexdigest()
