@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-10-20T14:36:24+08:00",
+  "sourceCommit": "ad430c5609866a1a4ba1284e8c67ced88f47961c",
+  "baseUrl": "https://drinks-mk2.rtx941031.workers.dev",
+  "checks": {
+    "storeUiRemoved": true,
+    "regionCount": 253,
+    "huweiBudgetAndRegion": {
+      "count": 6,
+      "brands": [
+        "可不可熟成茶行",
+        "特好喝",
+        "茶之魔手",
+        "茶湯會"
+      ]
+    },
+    "preferenceRefreshRespectsRegionAndDislike": true,
+    "absentLocalBrandIsEmpty": true,
+    "generalIgnoresOldAreaAndStore": true,
+    "chatRespectsRegion": true,
+    "invalidOrIncompleteAreaRejected": true,
+    "manualResolverRemoved": true,
+    "areaWithoutCatalogBrandsIsEmpty": {
+      "city": "南投縣",
+      "district": "集集鎮"
+    }
+  },
+  "workerVersionId": "4ac64c2d-8f0a-4f39-862e-6813c10d691f",
+  "health": {
+    "ok": true,
+    "total": 5781,
+    "version": "3.1.15"
+  },
+  "assetHashes": {
+    "/": "7692285d4c63dbe464b9d8be6a7ed3ecd1ce867024073919f270807d8312608b",
+    "/app.js": "5e20a85c96913d746079243ba8e52991df6894d53c973aa7e3205d7e24870356",
+    "/chat.js": "e30c09ec8eeb5ef46310f8a5c6d6d486e95b4b8ee081e4b92ae9b4f864adead7",
+    "/styles.css": "74a86498ff0c68d3cbfab478641808389dab6b7feebedd04fbfc96e8c946cf9a",
+    "/region-controls.js": "a43f654d52eb0d8ace5e784014198dfd08eac6c7e689f47beeb8598348c09c5e",
+    "/internal.html": "b79e4bd91535fa91b72cadfdb39d0c3de3f0ba037c6ff7c9f26f9bb21304d49e",
+    "/nidin-research.json": "3531e160fb3364f79a8f73fe9034474f9d049e67e7e0f5c2ffbc45c459837ab7"
+  },
+  "research": {
+    "beverageBrandCount": 393,
+    "storeCount": 4304,
+    "menuCount": 4302,
+    "pendingCount": 2,
+    "pendingBrandCount": 6,
+    "recommendationStoreCount": 2092,
+    "regionCount": 253
+  }
+}

@@ -19,7 +19,7 @@ export function initRegionControls({api,isBusy,onChanged}){
    // and the old region's cards are removed so they cannot be mistaken for this area.
    document.querySelector('#results')?.replaceChildren();
    document.querySelectorAll('#chat-log .chat-cards,#chat-log .nearby-section').forEach(node=>node.remove());
-   if(mode.value==='general'||city.value&&district.value)await onChanged();
+   if(mode.value==='general'||city.value&&district.value){document.querySelector('#result-status').textContent='';await onChanged();}
    else document.querySelector('#result-status').textContent='請先完成地區選擇，再取得推薦。';
   }catch(error){status.textContent=error.message;}finally{changing=false;}
  }

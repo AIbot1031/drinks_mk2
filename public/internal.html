@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>團隊監督台｜喝點剛好的</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/internal.css"><script type="module" src="/internal.js"></script></head>
-<body class="review-app"><a class="skip" href="#review-main">跳到監督內容</a><header class="header"><a href="/" class="logo">◒ 喝點剛好的 <span class="console-label">團隊監督台</span></a><span class="release-label">3.1.15</span></header>
+<body class="review-app"><a class="skip" href="#review-main">跳到監督內容</a><header class="header"><a href="/" class="logo">◒ 喝點剛好的 <span class="console-label">團隊監督台</span></a><span class="release-label">3.1.16</span></header>
 <main id="review-main"><div class="review-heading"><div><p class="eyebrow">TEAM OBSERVATORY</p><h1>看見每一次<span>推薦的依據。</span></h1><p>從條件解析到最後一杯，追查模型、篩選與排序的實際紀錄。</p></div><a class="secondary" href="/">前往消費者網站 ↗</a></div>
 <form id="login-form" class="panel login-panel"><p class="eyebrow">TEAM ACCESS</p><h2>登入團隊工作區</h2><p class="field-help">登入後可查看推薦紀錄與模型狀態。</p><label for="review-id">團隊 ID</label><input id="review-id" type="text" autocomplete="username" required minlength="3" maxlength="200" pattern="[A-Za-z0-9]{3,200}" autocapitalize="none" spellcheck="false"><label for="review-password">密碼</label><input id="review-password" type="password" autocomplete="current-password" required minlength="6" maxlength="200" pattern="[A-Za-z0-9]{6,200}"><button type="submit" class="primary">進入監督台 →</button><p class="field-help">登入保留 8 小時。ID 至少 3 個、密碼至少 6 個英文字母或數字，區分大小寫。請向專案負責人取得。</p></form>
 <p id="internal-status" class="status" role="status" aria-live="polite"></p>
@@ -15,4 +15,4 @@
 <div class="review-layout"><aside class="panel trace-list-panel"><div class="section-heading"><h2>最近紀錄</h2><span id="trace-count" class="count-label"></span></div><div id="trace-list"></div></aside><section id="trace-content" class="panel trace-content" aria-label="推薦流程詳情"><div class="review-empty"><span>◎</span><h2>從一筆推薦開始</h2><p>選擇左側紀錄，查看條件、路徑與實際結果。</p></div></section></div>
 </section></section>
 <details class="panel formula-guide"><summary>如何判讀推薦流程？</summary><p>A 路徑可能使用 RoBERTa-WWM 或 TF-IDF 備援；B 依帳號歷史使用 RelGT 或特徵圖。以單筆紀錄的實際模型為準，目前連線狀態不代表過去使用的模型。</p><code>融合分數 = 0.65 / (60 + A 名次) + 0.35 / (60 + B 名次)</code><p>配料複選任一符合即可，符合更多種優先；同層再依融合與品牌多樣性。未回傳的模型名次貢獻為 0。歷史版本可能使用不同規則，請核對紀錄版本與設定。</p><p>連線就緒只表示服務可用，不代表模型品質已改善。此頁不提供訓練啟動、權重切換或部署操作。</p></details>
-</main><footer><p>團隊工作區 · 版本 3.1.15</p><p>紀錄可能包含原始需求，請依團隊權限使用。登出會清除本頁已載入內容。</p></footer></body></html>
+</main><footer><p>團隊工作區 · 版本 3.1.16</p><p>紀錄可能包含原始需求，請依團隊權限使用。登出會清除本頁已載入內容。</p></footer></body></html>
