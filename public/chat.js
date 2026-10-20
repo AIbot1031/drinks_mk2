@@ -82,12 +82,12 @@ export function initChat({api,card,feedback,isBusy,setBusy,refresh,ready}) {
   $('#chat-form').onsubmit=e=>{e.preventDefault();const message=$('#chat-message').value.trim();if(message)send(message);};
   $('#chat-message').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();$('#chat-form').requestSubmit();}};
   document.querySelectorAll('[data-chat]').forEach(n=>n.onclick=()=>send(n.dataset.chat));
-  async function refreshPreferences(){
+  async function refreshPreferences(reuse=true){
     if(!lastReply||pending)return;
     const previous=lastReply;lock(true);$('#chat-status').textContent='正在依最新偏好更新推薦…';
     try{
       const prefs=feedback();
-      const value=await api('/api/preference-refresh',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({rankingContext:previous.value.rankingContext,likedIds:Object.keys(prefs.liked),dislikedIds:prefs.disliked})});
+      const value=await api(reuse?'/api/preference-refresh':'/api/recommend',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...(reuse?{rankingContext:previous.value.rankingContext}:previous.value.rankingContext.input),likedIds:Object.keys(prefs.liked),dislikedIds:prefs.disliked})});
       previous.reply.querySelector('p').textContent=value.manualMessage;
       previous.reply.querySelectorAll('.chat-cards,.nearby-section,.preference-update').forEach(n=>n.remove());
       const cards=document.createElement('div');cards.className='chat-cards';value.results.forEach((r,i)=>cards.append(card(r.drink,i,r)));previous.reply.append(cards);appendAlternatives(previous.reply,value,card);

@@ -1,4 +1,5 @@
 import {supplyStatus} from './stores';
+import {regionEligible} from './regions';
 import {eligible,isMilkTea,makeEngine,toppingMatches} from './recommend';
 import {groupProducts,productKey} from './products';
 import {requiredToppings} from './drink-language';
@@ -27,7 +28,7 @@ export function nearbyChoices(engine:ReturnType<typeof makeEngine>,drinks:Drink[
  if(!needed||response.blocked||needsClarification)return {alternatives:[] as Alternative[],alternativeNotice:''};
  const f=response.filters,hard=without(f,['brand','tea','toppings',...(f.milkTea===true?['milkTea' as const]:[])]);
  const keys=new Set([...input.dislikedIds,...input.excludedIds,...response.results.map(r=>r.id)].flatMap(id=>engine.byId.has(id)?[productKey(engine.byId.get(id)!)]:[]));
- const pool=drinks.filter(d=>eligible(d,hard)&&!keys.has(productKey(d))&&deviations(d,f).length>0);
+ const pool=drinks.filter(d=>eligible(d,hard)&&regionEligible(d,input.region)&&!keys.has(productKey(d))&&deviations(d,f).length>0);
  const lexical=new Map(engine.lexical(input.query,pool).map(r=>[r.drink.id,r.score]));
  const penalty=(d:Drink)=>deviations(d,f).reduce((n,x)=>n+(x.field==='brand'?3:1),0);
  const candidates=[...groupProducts(pool).values()].map(variants=>{

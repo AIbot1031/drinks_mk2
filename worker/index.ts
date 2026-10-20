@@ -1,4 +1,5 @@
-import {listedStores,loadStoreSupply,submitStoreReport,storeIdentity} from './stores';
+import {listedStores,loadStoreSupply,submitStoreReport,storeResearch} from './stores';
+import {regionDirectory,readRegion,assertStoreRegion,regionEligible} from './regions';
 import {readRankingContext,type RankingContext,type RankScores} from './ranking-context';
 import {nearbyChoices} from './alternatives';
 import {refreshTrends,publicTrends} from './trends';
@@ -52,8 +53,8 @@ export default {
     const url = new URL(request.url);
     if (!url.pathname.startsWith('/api/')) return env.ASSETS.fetch(request);
     try {
-      if(url.pathname==='/api/stores'&&request.method==='GET')return json({results:await listedStores(env.TRACE_DB,Object.keys(catalog.brands),(url.searchParams.get('q')??'').slice(0,100))});
-      if(url.pathname==='/api/stores/resolve'&&request.method==='POST')return json(await storeIdentity(await readBody(request),Object.keys(catalog.brands)));
+      if(url.pathname==='/api/stores/research'&&request.method==='GET')return json(storeResearch());
+      if(url.pathname==='/api/stores'&&request.method==='GET')return json({results:await listedStores(env.TRACE_DB,Object.keys(catalog.brands),(url.searchParams.get('q')??'').slice(0,100),url.searchParams.has('city')?readRegion({city:url.searchParams.get('city'),district:url.searchParams.get('district')}):undefined)});
       if(url.pathname==='/api/stores/reports'&&request.method==='POST'){
         const origin=request.headers.get('origin');if(origin&&origin!==url.origin)return json({error:'請從本站回報'},403);
         return json(await submitStoreReport(env.TRACE_DB,await readBody(request),drinks));
@@ -93,6 +94,7 @@ export default {
       if(url.pathname.startsWith('/api/account/'))return await accountApi(request,env,readBody,drinks,productPreferences);
       if(url.pathname.startsWith('/api/internal/'))return await internalApi(request,env,readBody);
       if (url.pathname === '/api/health' && request.method === 'GET') return json({ok: true, total: catalog.total, version: appVersion});
+      if(url.pathname==='/api/regions'&&request.method==='GET')return json(regionDirectory());
       if (url.pathname === '/api/meta' && request.method === 'GET') return json({total: catalog.total, brands: catalog.brands, missing: catalog.missing, tea: [...new Set(drinks.flatMap(d=>d.tea))].sort(), toppings: [...new Set(drinks.flatMap(d=>d.toppings))].sort()});
       if (url.pathname === '/api/catalog/favorites' && request.method === 'POST') {
         const origin=request.headers.get('origin');
@@ -152,7 +154,12 @@ export default {
         const manualFollowUp=manual?.turn.followUp;
         const needsClarification=!!conversation?.followUp||!!manualFollowUp||!!llm?.clarify;
         if(needsClarification)input.query='等待對話釐清：';
-        input.supply=await loadStoreSupply(env.TRACE_DB,(body as Record<string,unknown>).store,(body as Record<string,unknown>).storeReports,drinks);
+        const scopeBody=body as Record<string,unknown>,searchMode=scopeBody.searchMode;
+        if(searchMode!==undefined&&!['general','region'].includes(searchMode as string))throw Error('請選擇一般推薦或依地區推薦。');
+        input.region=readRegion(searchMode==='general'?null:scopeBody.region);
+        if(searchMode==='region'&&!input.region)throw Error('請先選擇縣市及鄉鎮市區；地區不會自動放寬。');
+        input.supply=await loadStoreSupply(env.TRACE_DB,searchMode==='general'?null:scopeBody.store,scopeBody.storeReports,drinks);
+        assertStoreRegion(input.supply?.store,input.region);
         const pool=engine.candidatePool(input);
         let semantic:RankScores|undefined=refreshContext?.semantic;
         if(pool.length&&!refreshContext){
@@ -187,7 +194,9 @@ export default {
         const rankingContext:RankingContext|null=needsClarification||response.blocked?null:refreshContext??{version:1,appVersion,catalogVersion,input:{query:input.query,filters:input.filters},semantic,relgt,wellbeingGoals:response.wellbeing.applied};
         if(needsClarification){response.results=[];response.blocked=false;response.warnings=[];}
         if(!consumerContractMatches(input.filters,response.filters,response.results)){console.error(JSON.stringify({event:'recommendation_contract_failed'}));return json({error:'這次結果與篩選條件不一致，已停止顯示，請重試。'},503);}
-        const nearby=nearbyChoices(engine,drinks,input,response,needsClarification||!!input.supply);
+        if(input.region)response.warnings.push(`地區硬限制：${input.region.city}${input.region.district}。僅推薦此地區已收錄的品牌，不自動跨區。`);
+        if(response.results.some(r=>!regionEligible(r.drink,input.region)))throw Error('推薦地區驗證失敗，請重試。');
+        const nearby=nearbyChoices(engine,drinks,input,response,needsClarification||!!input.supply||!!input.region);
         Object.assign(response,nearby);
         if(conversation){conversation.state.filters=response.filters;if(!needsClarification&&!response.blocked)conversation.state.query=response.query;}
         if(conversation){response.warnings=[...new Set([...response.warnings,...conversation.warnings])];}
@@ -209,7 +218,7 @@ export default {
           return json({error:'推薦紀錄暫時無法儲存，請稍後重試'},503);
         }
         console.log(JSON.stringify({event:'recommendation_saved',traceId,resultCount:response.results.length}));
-        return json({...response,store:input.supply?.store??null,traceId,rankingContext,rankingReused:!!refreshContext,...(!conversation?{understandingMode:llm?(llm.modelVersion.startsWith('qwen3.5-9b-')?'qwen3.5-9b':'qwen3-8b'):manualModelAttempted?'rules-fallback':'rules',understandingModel:llm?.modelVersion??null,needsClarification,manualMessage:assistantMessage}:{}),...(conversation?{
+        return json({...response,region:input.region?{city:input.region.city,district:input.region.district}:null,store:input.supply?.store??null,traceId,rankingContext,rankingReused:!!refreshContext,...(!conversation?{understandingMode:llm?(llm.modelVersion.startsWith('qwen3.5-9b-')?'qwen3.5-9b':'qwen3-8b'):manualModelAttempted?'rules-fallback':'rules',understandingModel:llm?.modelVersion??null,needsClarification,manualMessage:assistantMessage}:{}),...(conversation?{
           state:conversation.state,next:conversation.next,
           chatMode:llm?(llm.modelVersion.startsWith('qwen3.5-9b-')?'qwen3.5-9b':'qwen3-8b'):conversation.followUp?'clarification':conversation.constraintOnly||conversation.next||conversation.reset?'quick-command':conversation.state.guard?'clarification':'rules-fallback',
           chatModel:llm?.modelVersion??null,needsClarification,assistantMessage,choices:conversation.followUp?.choices??[]

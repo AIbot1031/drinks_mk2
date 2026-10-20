@@ -1,23 +1,39 @@
 import type {Drink} from './types';
 import {productKey} from './products';
 import huwei from '../data/coco-huwei-store.json';
-export type Store={id:string;brand:string;name:string;address:string;verified:number;source_url:string;checked_at:number;phone?:string;menu_note?:string};
+import research from '../data/huwei-brand-research.json';
+import directory from '../data/nidin-directory.json';
+export type Store={id:string;brand:string;name:string;address:string;verified:number;source_url:string;checked_at:number;phone?:string;menu_note?:string;menu_source_url?:string};
 export type SupplyStatus={status:'unknown'|'available'|'sold_out'|'not_sold';checkedAt:number|null;expiresAt:number|null;sourceUrl:string;evidence:string;menuListed?:boolean};
 export type StoreSupply={store:Store;statuses:Map<string,SupplyStatus>;excluded:Set<string>};
 export const sourceUrl='https://shopping.hccg.gov.tw/brands/coco';
-const seeds=[
+type DirectorySeed={brand:string;name:string;address:string;sourceUrl:string;checkedAt:string;phone?:string;menuNote?:string;menuScope?:string;menuSourceUrl?:string;menuNames?:string[];soldOutNames?:string[];unconfirmedNames?:string[];unconfirmedReason?:string;id?:string};
+const seeds:DirectorySeed[]=[
  {brand:'CoCo都可',name:'新竹中正店',address:'新竹市北區中正路276號',sourceUrl,checkedAt:'2026-10-20T00:00:00+08:00'},
  {brand:'CoCo都可',name:'新竹清大店',address:'新竹市東區建功路16號',sourceUrl,checkedAt:'2026-10-20T00:00:00+08:00'},
- huwei,
+ {...huwei,menuScope:'branch',menuSourceUrl:huwei.sourceUrl,menuNote:`3Q奶茶、3Q鮮奶茶：供應待確認。${huwei.unconfirmedReason}`},
+ ...research.stores,
+ ...directory.stores.filter(s=>!research.stores.some(r=>r.brand===s.brand&&r.address===s.address)&&!(s.brand===huwei.brand&&s.address===huwei.address)),
 ];
-const seedStore=async(seed:typeof seeds[number],brands:string[]):Promise<Store>=>({...await storeIdentity(seed,brands),verified:1,source_url:seed.sourceUrl,checked_at:Date.parse(seed.checkedAt),...('menuNames' in seed?{phone:seed.phone,menu_note:`3Q奶茶、3Q鮮奶茶：供應待確認。${seed.unconfirmedReason}（查核日期 ${seed.checkedAt.slice(0,10)}；非即時庫存）`}:{})});
+const seedStore=async(seed:DirectorySeed,brands:string[]):Promise<Store>=>({...(seed.id?{id:seed.id,brand:seed.brand,name:seed.name,address:seed.address}:await storeIdentity(seed,brands)),verified:1,source_url:seed.sourceUrl,checked_at:Date.parse(seed.checkedAt),...(seed.phone?{phone:seed.phone}:{}),...(seed.menuNote?{menu_note:`${seed.menuNote}（查核日期 ${seed.checkedAt.slice(0,10)}；非即時庫存）`}:{}),...(seed.menuSourceUrl?{menu_source_url:seed.menuSourceUrl}:{})});
+let cachedSeeds:Promise<Store[]>|undefined;
+const seededStores=(brands:string[])=>cachedSeeds??=Promise.all(seeds.map(s=>seedStore(s,brands)));
+export const storeResearch=()=>({checkedAt:research.checkedAt,coverage:research.coverage,brands:research.brands});
+async function knownStore(db:D1Database,value:unknown,brands:string[]){
+ const identity=await storeIdentity(value,brands);
+ const registered=await db.prepare('SELECT * FROM drink_stores WHERE id=?').bind(identity.id).first<Store>();
+ const all=await seededStores(brands),index=all.findIndex(s=>s.id===identity.id);
+ if(index>=0){const metadata=all[index];return {store:registered?.verified?{...metadata,...registered}:metadata,seed:seeds[index]};}
+ if(registered?.verified)return {store:registered,seed:undefined};
+ throw Error('請從已收錄門市清單選擇門市。');
+}
 const text=(v:unknown,max:number)=>{
  if(typeof v!=='string'||!v.trim()||v.length>max||/[\u0000-\u001f\u007f]/.test(v))throw Error('門市資料格式有誤，請填入品牌、店名及完整地址。');
  return v.normalize('NFKC').trim();
 };
 export const taipeiDayEnd=(at:number)=>Math.floor((at+8*3600000)/86400000)*86400000+86400000-8*3600000;
 export async function storeIdentity(value:unknown,brands:string[]):Promise<Store>{
- if(!value||typeof value!=='object'||Array.isArray(value))throw Error('請選擇或填入門市。');
+ if(!value||typeof value!=='object'||Array.isArray(value))throw Error('請從已收錄門市清單選擇門市。');
  const v=value as Record<string,unknown>,brand=text(v.brand,60),name=text(v.name,80),address=text(v.address,160);
  if(!brands.includes(brand)||address.length<6)throw Error('請選擇有效品牌並填入可辨識的完整門市地址。');
  const key=JSON.stringify([brand,name,address].map(s=>s.replace(/\s/g,'').replaceAll('臺','台').toLowerCase()));
@@ -25,13 +41,14 @@ export async function storeIdentity(value:unknown,brands:string[]):Promise<Store
  const id='s_'+Array.from(new Uint8Array(hash),v=>v.toString(16).padStart(2,'0')).join('').slice(0,32);
  return {id,brand,name,address,verified:0,source_url:'',checked_at:0};
 }
-export async function listedStores(db:D1Database,brands:string[],query:string){
- const seeded=await Promise.all(seeds.map(s=>seedStore(s,brands)));
+export async function listedStores(db:D1Database,brands:string[],query:string,region?:{city:string;district:string}){
+ const seeded=await seededStores(brands);
  const rows=await db.prepare('SELECT * FROM drink_stores WHERE verified=1 ORDER BY brand,name LIMIT 500').all<Store>();
  const byId=new Map(seeded.map(s=>[s.id,s]));
  for(const row of rows.results)byId.set(row.id,{...byId.get(row.id),...row});
  const list=[...byId.values()];
- return list.filter(s=>`${s.brand}${s.name}${s.address}`.toLowerCase().includes(query.toLowerCase())).slice(0,50);
+ const local=region?new Set(directory.stores.filter(s=>s.city===region.city&&s.district===region.district).map(s=>JSON.stringify([s.brand,s.name,s.address]))):null;
+ return list.filter(s=>(!local||local.has(JSON.stringify([s.brand,s.name,s.address])))&&`${s.brand}${s.name}${s.address}`.toLowerCase().includes(query.toLowerCase())).slice(0,50);
 }
 export function localExclusions(value:unknown,store:Store,drinks:Drink[],now=Date.now()){
  if(value===undefined)return new Set<string>();
@@ -47,22 +64,19 @@ export function localExclusions(value:unknown,store:Store,drinks:Drink[],now=Dat
 }
 export async function loadStoreSupply(db:D1Database,value:unknown,reports:unknown,drinks:Drink[],now=Date.now()):Promise<StoreSupply|undefined>{
  if(value===undefined||value===null)return;
- let store=await storeIdentity(value,[...new Set(drinks.map(d=>d.brand))]);
- const registered=await db.prepare('SELECT * FROM drink_stores WHERE id=?').bind(store.id).first<Store>();
- if(registered)store=registered;
- const brands=[...new Set(drinks.map(d=>d.brand))];
- if(!store.verified)for(const seed of seeds){const known=await seedStore(seed,brands);if(known.id===store.id)store=known;}
+ const {store,seed}=await knownStore(db,value,[...new Set(drinks.map(d=>d.brand))]);
  const rows=await db.prepare('SELECT product_key,status,checked_at,expires_at,evidence,source_url FROM store_availability WHERE store_id=? AND expires_at>?').bind(store.id,now).all<{product_key:string;status:SupplyStatus['status'];checked_at:number;expires_at:number;evidence:string;source_url:string}>();
  const statuses=new Map<string,SupplyStatus>();
  // Reviewed static snapshot: no paid API or upstream request on the recommendation path.
  // A menu listing confirms a product, not today's inventory, cup size or custom options.
- if(store.id===(await storeIdentity(huwei,brands)).id){
-  const metadata=await seedStore(huwei,brands);store={...store,phone:metadata.phone,menu_note:metadata.menu_note};
-  const checkedAt=Date.parse(huwei.checkedAt),expiresAt=checkedAt+7*86400000,listed=new Set(huwei.menuNames);
+ if(seed?.menuScope){
+  const checkedAt=Date.parse(seed.checkedAt),expiresAt=checkedAt+7*86400000,listed=new Set(seed.menuNames??[]),sold=new Set(seed.soldOutNames??[]);
   for(const d of drinks.filter(d=>d.brand===store.brand)){
-   const present=listed.has(d.name),fresh=now>=checkedAt&&now<expiresAt;
-   const evidence=present?(fresh?'此店官方訂餐菜單列有此品項；非即時庫存，杯型與客製選項請以門市為準。':'官方菜單查核已超過7天或尚未生效，供應須重新確認。'):huwei.unconfirmedNames.includes(d.name)?huwei.unconfirmedReason:'此品項未在本次門市菜單查核中確認，實際供應待門市確認。';
-   statuses.set(productKey(d),{status:present&&fresh?'available':'unknown',checkedAt,expiresAt:present?expiresAt:null,sourceUrl:huwei.sourceUrl,evidence,menuListed:present&&fresh});
+   const present=seed.menuScope==='branch'&&listed.has(d.name),fresh=now>=checkedAt&&now<expiresAt;
+   const soldOut=present&&sold.has(d.name),saleExpiry=taipeiDayEnd(checkedAt);
+   const status:SupplyStatus['status']=soldOut?(fresh&&now<saleExpiry?'sold_out':'unknown'):present&&fresh?'available':'unknown';
+   const evidence=soldOut?(status==='sold_out'?'查核時此店官方訂餐頁標示售完；非即時庫存，當日結束後回待確認。':'此品項曾於查核時標示售完，最新供應待重新確認。'):present?(fresh?'此店官方菜單列有此品項；非即時庫存，價格、杯型與客製選項請以門市為準。':'官方菜單查核已超過7天或尚未生效，供應須重新確認。'):seed.unconfirmedNames?.includes(d.name)?seed.unconfirmedReason!:(seed.menuScope==='brand'?'僅有品牌共用菜單，不能證明此店販售；供應待確認。':'此品項未在本次門市菜單查核中確認，實際供應待門市確認。');
+   statuses.set(productKey(d),{status,checkedAt,expiresAt:soldOut?saleExpiry:present?expiresAt:null,sourceUrl:seed.menuSourceUrl||seed.sourceUrl,evidence,menuListed:status==='available'});
   }
  }
  // Active human review takes precedence, especially confirmed missing/sold-out items.
@@ -75,7 +89,7 @@ export const storeEligible=(d:Drink,s?:StoreSupply)=>!s||(d.brand===s.store.bran
 export const supplyStatus=(d:Drink,s?:StoreSupply):SupplyStatus=>s?.statuses.get(productKey(d))??{status:'unknown',checkedAt:null,expiresAt:null,sourceUrl:'',evidence:''};
 export async function submitStoreReport(db:D1Database,body:unknown,drinks:Drink[]){
  if(!body||typeof body!=='object')throw Error('回報格式有誤。');
- const v=body as Record<string,unknown>,store=await storeIdentity(v.store,[...new Set(drinks.map(d=>d.brand))]);
+ const v=body as Record<string,unknown>,{store}=await knownStore(db,v.store,[...new Set(drinks.map(d=>d.brand))]);
  if(typeof v.id!=='string'||! /^[a-f0-9-]{36}$/.test(v.id)||typeof v.reporterId!=='string'||! /^[a-f0-9-]{36}$/.test(v.reporterId)||!['sold_out','not_sold'].includes(v.kind as string))throw Error('請選擇今天售完或菜單沒有。');
  const d=drinks.find(d=>d.id===v.drinkId);if(!d||d.brand!==store.brand)throw Error('此品項不屬於選擇的門市品牌。');
  const hash=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(v.reporterId));

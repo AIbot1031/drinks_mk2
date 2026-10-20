@@ -1,4 +1,4 @@
-import {initStoreControls} from './store-controls.js';
+import {initRegionControls} from './region-controls.js';
 import {appendAlternatives} from './alternatives.js';
 import {initTrends} from './trends.js';
 import {initAtmosphere} from './drink-atmosphere.js';
@@ -7,7 +7,7 @@ import {manualToppings} from './topping-selection.js';
 import {initChat} from './chat.js';
 import {productKey,likedProducts as likedProductKeys,dislikedProducts,toggleProductPreference} from './preferences.js';
 initAtmosphere();
-let chatController,storeController;
+let chatController,regionController;
 const trendsController=initTrends();
 const $ = selector => document.querySelector(selector);
 const el = (tag, text = '', cls = '') => {const n = document.createElement(tag); n.textContent = text; if (cls) n.className = cls; return n;};
@@ -104,28 +104,26 @@ function removeDislikedRecommendations(){
     }
   }
 }
-async function refreshRecommendations(){
+async function refreshRecommendations(reuse=true){
   if(preferenceRefreshRunning)return;
-  preferenceRefreshRunning=true;storeController?.lock(true);refreshFeedbackButtons();updateAccountButtons();
+  preferenceRefreshRunning=true;refreshFeedbackButtons();updateAccountButtons();
   try{
-    if(lastRankingContext)await recommend(lastSettings,false,lastRankingContext);
-    await chatController?.refreshPreferences();
-  }finally{preferenceRefreshRunning=false;storeController?.lock(false);refreshFeedbackButtons();updateAccountButtons();}
+    if(lastSettings&&lastRankingContext)await recommend(lastSettings,false,reuse?lastRankingContext:null,!reuse);
+    await chatController?.refreshPreferences(reuse);
+  }finally{preferenceRefreshRunning=false;refreshFeedbackButtons();updateAccountButtons();}
 }
 function refreshFeedbackButtons() {
-  storeController?.lock(busy||accountBusy||preferenceBusy||preferenceRefreshRunning);
   const products=likedProducts(),dislikes=dislikedProducts(feedback);
   document.querySelectorAll('[data-like]').forEach(n => {n.disabled=preferenceBusy||accountBusy||busy||preferenceRefreshRunning;const liked = products.has(n.dataset.product); n.setAttribute('aria-pressed', String(liked)); n.textContent = liked ? '♥ 已收藏' : '♡ 喜歡這杯';});
   document.querySelectorAll('[data-dislike]').forEach(n => {n.disabled=preferenceBusy||accountBusy||busy||preferenceRefreshRunning;const disliked = dislikes.has(n.dataset.product)||feedback.disliked.includes(n.dataset.dislike); n.setAttribute('aria-pressed', String(disliked));n.setAttribute('aria-label',`${disliked?'取消不喜歡':'標記不喜歡'}這款飲料`); n.textContent = disliked ? '取消不喜歡' : '不太喜歡';});
 }
 async function api(path, options) {
-  if(storeController&&['/api/recommend','/api/chat/recommend','/api/preference-refresh'].includes(path)&&options?.body){
-    options={...options,body:JSON.stringify({...JSON.parse(options.body),...storeController.body()})};
+  if(regionController&&['/api/recommend','/api/chat/recommend','/api/preference-refresh'].includes(path)&&options?.body){
+    options={...options,body:JSON.stringify({...JSON.parse(options.body),...regionController?.body()})};
   }
   const response = await fetch(path, options);
   const value = await response.json();
   if (!response.ok) throw new Error(value.error || '暫時無法完成，請稍後重試。');
-  if(['/api/recommend','/api/chat/recommend','/api/preference-refresh'].includes(path))storeController?.accept(value.store);
   return value;
 }
 
@@ -163,12 +161,11 @@ function card(d, index, rec, variants = d.variants || rec?.variants || []) {
   if(rec?.rankSourceId && rec.rankSourceId!==d.id)details.append(el('p','此卡片按品項的匹配版本排序，預設顯示該品項符合條件的最低價版本。'));
   if (rec) details.append(el('p', `排序依據：路徑 A ${rec.ranks.a === null ? '未列入' : `第 ${rec.ranks.a} 名`}，路徑 B ${rec.ranks.b === null ? '未列入' : `第 ${rec.ranks.b} 名`}。排序分數並非正確率。`));
   details.append(el('p', rec?.warning || '價格可能為起價；過敏原未核對，成分請向店家確認。', 'card-warning'));
-  storeController?.decorate(content,d,rec);
   content.append(details); article.append(content); return article;
 }
 
 function setBusy(value) {
-  busy = value;storeController?.lock(value);updateAccountButtons();refreshFeedbackButtons();
+  busy = value;updateAccountButtons();refreshFeedbackButtons();
   $('#recommend-form').querySelectorAll('input,select,textarea,button').forEach(n => n.disabled = value);
   $('#submit-button').textContent = value ? '正在幫你挑選…' : '幫我找一杯 ↗';
   $('#next-batch').disabled = value || exhausted;
@@ -183,8 +180,8 @@ function tags(filters) {
   const labels = {milkTea:v=>v===false?'不喝奶茶':v?'奶茶':null,brand: v => v, excludedBrands:v=>v?.length?`不推薦：${v.join('、')}`:null, maxPrice: v => `價格 ≤ ${v} 元`, maxCalories: v => `熱量 ≤ ${v} kcal`, maxCaffeine: v => `咖啡因上界 ≤ ${v} mg`, milk: v => ({none:'無奶標記', fresh:'鮮奶', plant:'植物奶'})[v], tea: v => v, topping: v => v,toppings:v=>v.length?`配料任一：${v.join('、')}`:null};
   for (const [key, value] of Object.entries(filters)) {const label = labels[key]?.(value); if (label) $('#active-filters').append(el('span', label));}
 }
-async function recommend(settings, next = false, rankingContext = null) {
-  if (busy||accountBusy||preferenceRefreshRunning&&!rankingContext) return;
+async function recommend(settings, next = false, rankingContext = null, scopeRefresh=false) {
+  if (busy||accountBusy||preferenceRefreshRunning&&!rankingContext&&!scopeRefresh) return;
   await preferenceSync;
   if(busy||accountBusy)return;
   if (!next) exhausted = false;
@@ -325,7 +322,7 @@ async function loadGraph() {
 }
 $('#graph-scope').onchange=()=>loadGraph();
 $('#graph-form').onsubmit = event => {event.preventDefault(); loadGraph();};
-storeController=initStoreControls({api,isBusy:()=>busy||accountBusy||preferenceBusy||preferenceRefreshRunning,setBusy,onChanged:refreshRecommendations});
+regionController=initRegionControls({api,isBusy:()=>busy||accountBusy||preferenceBusy||preferenceRefreshRunning,onChanged:()=>refreshRecommendations(false)});
 chatController=initChat({api,card,feedback:()=>feedback,isBusy:()=>busy||accountBusy||preferenceBusy||preferenceRefreshRunning,setBusy,refresh:refreshFeedbackButtons,ready:()=>preferenceSync});
 function showView() {
   const requested = location.hash.slice(1) || 'recommend';
@@ -340,7 +337,7 @@ function showView() {
 window.addEventListener('hashchange', showView);
 $('#favorite-count').textContent = likedProducts().size;
 try {
-  meta = await api('/api/meta');storeController.setBrands(Object.keys(meta.brands));
+  meta = await api('/api/meta');
   $('#catalog-summary').textContent = `${meta.total.toLocaleString()} 款飲料 · ${Object.keys(meta.brands).length} 個品牌`;
   for (const brand of Object.keys(meta.brands)) for (const selector of ['#brand','#catalog-brand','#graph-brand']) {const option=el('option',brand); option.value=brand; $(selector).append(option);}
   for (const brand of Object.keys(meta.brands)){const label=el('label'),checkbox=el('input');checkbox.type='checkbox';checkbox.value=brand;checkbox.name='excludedBrand';label.append(checkbox,el('span',brand));$('#excluded-brands').append(label);}

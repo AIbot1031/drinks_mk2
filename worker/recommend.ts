@@ -1,4 +1,5 @@
 import {storeEligible,supplyStatus} from './stores';
+import {regionEligible} from './regions';
 import type { Drink, Filters, RecommendInput, Scored } from './types';
 import {wellbeingAdvice} from './wellbeing';
 import {appVersion} from './app-version';
@@ -99,7 +100,7 @@ export function makeEngine(drinks: Drink[]) {
     const excluded=new Set(input.excludedIds),disliked=new Set(input.dislikedIds);
     const seen=new Set(input.excludedIds.flatMap(id=>byId.has(id)?[productKey(byId.get(id)!)]:[]));
     const dislikedProducts=new Set(input.dislikedIds.flatMap(id=>byId.has(id)?[productKey(byId.get(id)!)]:[]));
-    return parsed.blocked?[]:drinks.filter(d=>eligible(d,parsed.filters)&&storeEligible(d,input.supply)&&!excluded.has(d.id)&&!disliked.has(d.id)&&!dislikedProducts.has(productKey(d))&&!seen.has(productKey(d)));
+    return parsed.blocked?[]:drinks.filter(d=>eligible(d,parsed.filters)&&regionEligible(d,input.region)&&storeEligible(d,input.supply)&&!excluded.has(d.id)&&!disliked.has(d.id)&&!dislikedProducts.has(productKey(d))&&!seen.has(productKey(d)));
   }
   function recommendWithTrace(input: RecommendInput, semantic?:{scores:Array<{id:string;score:number}>;modelVersion:string;durationMs:number;fallbackReason?:string},relgt?:{scores:Array<{id:string;score:number}>;modelVersion:string;durationMs:number;historyCount?:number;fallbackReason?:string},reuseRanks=false) {
     const parsed = understand(input, [...new Set(drinks.map(d => d.brand))]);
@@ -109,7 +110,7 @@ export function makeEngine(drinks: Drink[]) {
     const excluded = new Set(input.excludedIds);
     const seenProducts=new Set(input.excludedIds.flatMap(id=>byId.has(id)?[productKey(byId.get(id)!)]:[]));
     const dislikedProducts=new Set(input.dislikedIds.flatMap(id=>byId.has(id)?[productKey(byId.get(id)!)]:[]));
-    const hardPool = parsed.blocked ? [] : drinks.filter(d => eligible(d, parsed.filters)&&storeEligible(d,input.supply));
+    const hardPool = parsed.blocked ? [] : drinks.filter(d => eligible(d, parsed.filters)&&regionEligible(d,input.region)&&storeEligible(d,input.supply));
     const likedPool = hardPool.filter(d => !dislikedProducts.has(productKey(d)));
     const pool = likedPool.filter(d => !excluded.has(d.id)&&!seenProducts.has(productKey(d)));
     const productGroups=groupProducts(pool);

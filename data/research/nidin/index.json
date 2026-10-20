@@ -1,0 +1,7922 @@
+{
+  "checkedAt": "2026-10-20T14:04:11+08:00",
+  "sourceUrl": "https://order.nidin.shop/brands/",
+  "platformBrandCount": 610,
+  "beverageBrandCount": 393,
+  "scope": "你訂公開品牌專區標記飲料或咖啡的全台門市，另含逐店菜單確認為茶飲的未標記品牌敘方；包含複合餐飲。不代表全台所有實體品牌或門市。其他分類品牌保留名稱待後續核對，不推測其是否有兼售飲料。",
+  "classificationEvidence": [
+    {
+      "code": "syufang",
+      "classification": "飲料",
+      "sourceUrl": "https://order.nidin.shop/menu/27610",
+      "evidence": "基本茶、鮮奶、奶蓋及奶茶系列分類"
+    }
+  ],
+  "unclassifiedBrands": [
+    {
+      "code": "okoksweetballs",
+      "name": "可以可以地瓜球",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "xiaohejia",
+      "name": "小禾家雞蛋糕甜點工作室",
+      "tags": [
+        "甜點",
+        "下午茶"
+      ]
+    },
+    {
+      "code": "xiaoxinfanshi",
+      "name": "小新飯食",
+      "tags": [
+        "日式料理"
+      ]
+    },
+    {
+      "code": "mrcrispy",
+      "name": "脆大爺脆皮甜甜圈",
+      "tags": [
+        "甜點",
+        "下午茶"
+      ]
+    },
+    {
+      "code": "mrchuscrabrangoon",
+      "name": "Mr. Chus Crab Rangoon朱先生的炸乳酪餛飩",
+      "tags": [
+        "甜點",
+        "下午茶"
+      ]
+    },
+    {
+      "code": "yuanshuhecanjie",
+      "name": "原蔬盒餐節",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "qiaoyu",
+      "name": "巧遇早餐店（原小琴美食厨房)",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "guanshanboxlunch",
+      "name": "關山便當店",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "xumutea",
+      "name": "旭暮",
+      "tags": [
+        "健康餐"
+      ]
+    },
+    {
+      "code": "jjkbrand",
+      "name": "京簡康",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "beatabrand",
+      "name": "陽明交大BEATA餐廳",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "thefirstmeatballshop",
+      "name": "新竹城隍廟第一家肉圓",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "jiangma",
+      "name": "蔣媽刈包",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "alpaca",
+      "name": "草泥馬雞排",
+      "tags": [
+        "中式料理"
+      ]
+    },
+    {
+      "code": "bentolab",
+      "name": "便當研究所",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "homekong",
+      "name": "家港飯堂",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "shihesweets",
+      "name": "拾和甜室",
+      "tags": [
+        "甜點",
+        "下午茶"
+      ]
+    },
+    {
+      "code": "gurangrang",
+      "name": "谷孃孃川味小麵",
+      "tags": [
+        "麵食"
+      ]
+    },
+    {
+      "code": "yiranbrand",
+      "name": "一燃丼飯專賣店",
+      "tags": [
+        "便當",
+        "日式料理"
+      ]
+    },
+    {
+      "code": "impasta",
+      "name": "I’m Pasta",
+      "tags": [
+        "麵食",
+        "其他"
+      ]
+    },
+    {
+      "code": "guruguru",
+      "name": "Guru-Guru Pocket Chicken",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "twotree",
+      "name": "二木食堂",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "cyxsbrand",
+      "name": "澄御餐品｜享蒔甜點",
+      "tags": [
+        "甜點",
+        "便當"
+      ]
+    },
+    {
+      "code": "lovedaymeals",
+      "name": "良食集日",
+      "tags": [
+        "便當",
+        "健康餐"
+      ]
+    },
+    {
+      "code": "hashikitaya",
+      "name": "橋北屋 日本家庭料理",
+      "tags": [
+        "日式料理"
+      ]
+    },
+    {
+      "code": "flowerheart",
+      "name": "花心廚房",
+      "tags": [
+        "健康餐"
+      ]
+    },
+    {
+      "code": "soymate",
+      "name": "桃喜糖水舖",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "yilemiandian",
+      "name": "一樂麵店",
+      "tags": [
+        "麵食"
+      ]
+    },
+    {
+      "code": "roryupepperbun",
+      "name": "老劉胡椒餅",
+      "tags": [
+        "中式料理"
+      ]
+    },
+    {
+      "code": "formebento",
+      "name": "豐米便當",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "housekitchen",
+      "name": "好事廚房",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "eggfriendsclub",
+      "name": "蛋餅俱樂部",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "curryyang",
+      "name": "咖哩木易",
+      "tags": [
+        "麵食"
+      ]
+    },
+    {
+      "code": "yayaducksoup",
+      "name": "鴨鴨與羹",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "trytrydanb",
+      "name": "吃吃等手工蛋餅",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "zenday",
+      "name": "森空優格 Zenday",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "thaihotpot",
+      "name": "泰鍋古藝",
+      "tags": [
+        "火鍋"
+      ]
+    },
+    {
+      "code": "huoyantang",
+      "name": "火岩堂",
+      "tags": [
+        "下午茶",
+        "其他"
+      ]
+    },
+    {
+      "code": "noodlestea",
+      "name": "龍口涼麵茶飲",
+      "tags": [
+        "麵食"
+      ]
+    },
+    {
+      "code": "tingting",
+      "name": "庭庭排骨酥",
+      "tags": [
+        "中式料理"
+      ]
+    },
+    {
+      "code": "doremi",
+      "name": "豆戀迷DoReMi豆湯品專門店",
+      "tags": [
+        "甜點",
+        "下午茶"
+      ]
+    },
+    {
+      "code": "wokbox",
+      "name": "沃客盒",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "yangsheng",
+      "name": "養生粥品",
+      "tags": [
+        "中式料理"
+      ]
+    },
+    {
+      "code": "rainbowchicken",
+      "name": "鼎味寶藍菠雞",
+      "tags": [
+        "健康餐",
+        "其他"
+      ]
+    },
+    {
+      "code": "weiyijpfood",
+      "name": "威益食堂",
+      "tags": [
+        "日式料理"
+      ]
+    },
+    {
+      "code": "jinlonglurou",
+      "name": "金龍魯肉",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "weixiao",
+      "name": "微宵",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "sanrenshitang",
+      "name": "三仁食堂",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "laidiancake",
+      "name": "來點狀元糕",
+      "tags": [
+        "甜點",
+        "其他"
+      ]
+    },
+    {
+      "code": "blackjack",
+      "name": "黑傑克手感烘焙",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "hanfengshitang",
+      "name": "韓峯食堂",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "dongjia",
+      "name": "懂呷舒芙蕾",
+      "tags": [
+        "甜點",
+        "下午茶"
+      ]
+    },
+    {
+      "code": "leyuhaoshi",
+      "name": "樂羽好食",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "heshun",
+      "name": "禾旬日式餐盒",
+      "tags": [
+        "便當",
+        "日式料理"
+      ]
+    },
+    {
+      "code": "juzibao",
+      "name": "囍堡早午餐",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "justsweetdonuts",
+      "name": "圈圈人脆皮甜甜圈",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "breakfast",
+      "name": "暮光之晨",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "hangbao",
+      "name": "夯飽-炭燒排骨飯",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "mocimoci",
+      "name": "喜歡丼飯.哞食",
+      "tags": [
+        "日式料理"
+      ]
+    },
+    {
+      "code": "uuuhoo",
+      "name": "悠呼豆花",
+      "tags": [
+        "甜點",
+        "其他"
+      ]
+    },
+    {
+      "code": "chuanweilaomian",
+      "name": "川味撈麵",
+      "tags": [
+        "麵食"
+      ]
+    },
+    {
+      "code": "sushiro",
+      "name": "台灣壽司郎",
+      "tags": [
+        "日式料理"
+      ]
+    },
+    {
+      "code": "gangkou",
+      "name": "港口豆花",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "meatclips",
+      "name": "金山肉夾饃",
+      "tags": [
+        "下午茶"
+      ]
+    },
+    {
+      "code": "imissyou",
+      "name": "阿米秀廚房港式燒臘",
+      "tags": [
+        "便當",
+        "其他"
+      ]
+    },
+    {
+      "code": "shaopang",
+      "name": "燒胖",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "limabrand",
+      "name": "麗媽四季鍋",
+      "tags": [
+        "火鍋"
+      ]
+    },
+    {
+      "code": "onegood",
+      "name": "ONE GOOD烤肉飯",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "xiaochunrihe",
+      "name": "小椿日和",
+      "tags": [
+        "甜點",
+        "其他"
+      ]
+    },
+    {
+      "code": "oysterman",
+      "name": "蚵男 生蠔 海物 燒烤",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "findhoney",
+      "name": "尋蜜可頌鯛",
+      "tags": [
+        "甜點",
+        "其他"
+      ]
+    },
+    {
+      "code": "lumoranoodleshop",
+      "name": "光野麵館",
+      "tags": [
+        "麵食"
+      ]
+    },
+    {
+      "code": "sanheyuandouhua",
+      "name": "三合苑手工豆花",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "1955ayi",
+      "name": "1955阿義",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "tangtangbingpin",
+      "name": "糖糖冰品",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "92inbenz",
+      "name": "吃一口健康",
+      "tags": [
+        "健康餐"
+      ]
+    },
+    {
+      "code": "wujidouhua",
+      "name": "伍吉豆花",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "dungding",
+      "name": "東鼎牛肉麵館",
+      "tags": [
+        "麵食"
+      ]
+    },
+    {
+      "code": "gomodasusushi",
+      "name": "狗魔大叔壽司",
+      "tags": [
+        "日式料理"
+      ]
+    },
+    {
+      "code": "jidubento",
+      "name": "極度飯桶",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "tieguoshaonian",
+      "name": "鐵鍋少年丨現炒鐵鍋料理丨蓋飯丨炒麵",
+      "tags": [
+        "麵食",
+        "其他"
+      ]
+    },
+    {
+      "code": "taiyakikun",
+      "name": "我是鯛燒君",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "ipasta",
+      "name": "義麵私廚",
+      "tags": [
+        "麵食",
+        "其他"
+      ]
+    },
+    {
+      "code": "huoshisuo",
+      "name": "伙食所",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "longtanji",
+      "name": "隆探吉早午餐",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "taokebrand",
+      "name": "饕客-巷子口炒飯炒麵",
+      "tags": [
+        "麵食"
+      ]
+    },
+    {
+      "code": "poyixia",
+      "name": "菠一下",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "msgbrunch",
+      "name": "漫時光早午餐",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "umamabrand",
+      "name": "Umama選煮食",
+      "tags": [
+        "便當",
+        "健康餐"
+      ]
+    },
+    {
+      "code": "joyfulkitchen",
+      "name": "桔樂小廚早午餐",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "yoyobakery",
+      "name": "yo 坊個人烘焙⼯作室",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "hilltown",
+      "name": "山城樓 雞肉飯/麵線專賣店",
+      "tags": [
+        "麵食",
+        "其他"
+      ]
+    },
+    {
+      "code": "oldshanghai",
+      "name": "爆汁老上海生煎",
+      "tags": [
+        "中式料理"
+      ]
+    },
+    {
+      "code": "oneplusone",
+      "name": "1+1燒臘（原東門鴨莊）",
+      "tags": [
+        "中式料理"
+      ]
+    },
+    {
+      "code": "jixiangluyi",
+      "name": "極享滷意",
+      "tags": [
+        "中式料理",
+        "其他"
+      ]
+    },
+    {
+      "code": "chaoxiang",
+      "name": "巢向炸雞",
+      "tags": [
+        "下午茶"
+      ]
+    },
+    {
+      "code": "shanli",
+      "name": "早安！珊麗",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "locofood",
+      "name": "樂口福",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "jingzan",
+      "name": "京讚烤鴨三吃",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "huoyanyan",
+      "name": "火炎焱炭火專門",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "zhefaleleguo",
+      "name": "喆發樂樂鍋",
+      "tags": [
+        "火鍋"
+      ]
+    },
+    {
+      "code": "dalaisanxian",
+      "name": "大萊三鮮蒸餃",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "douyun",
+      "name": "豆韻",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "jiupinzaocan",
+      "name": "九品早餐",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "lemonlaozhai",
+      "name": "檸檬老宅拌拌麵",
+      "tags": [
+        "麵食"
+      ]
+    },
+    {
+      "code": "chickenfriedchicken",
+      "name": "趣肯炸雞",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "snowice",
+      "name": "零下21度c綿綿冰",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "mindervege",
+      "name": "明德素食園",
+      "tags": [
+        "健康餐",
+        "其他"
+      ]
+    },
+    {
+      "code": "letaotao",
+      "name": "樂陶淘",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "briankitchen",
+      "name": "布萊恩小廚房",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "pashabrand",
+      "name": "帕薩義式坊",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "vegetablesandleanmeat",
+      "name": "蔬菜與瘦肉",
+      "tags": [
+        "健康餐"
+      ]
+    },
+    {
+      "code": "houyejipai",
+      "name": "厚野雞排",
+      "tags": [
+        "下午茶"
+      ]
+    },
+    {
+      "code": "woochichill",
+      "name": "伍柒玖專業牛肉麵",
+      "tags": [
+        "麵食"
+      ]
+    },
+    {
+      "code": "havenoidea",
+      "name": "冇計 X 芫圓麵食館",
+      "tags": [
+        "麵食",
+        "其他"
+      ]
+    },
+    {
+      "code": "3brosbrand",
+      "name": "三兄弟烤肉飯",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "gritdiner",
+      "name": "雞泰炒mini",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "villagebrand",
+      "name": "村長弁当",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "jyfruit",
+      "name": "菁漾嚴選",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "villager",
+      "name": "村民餐盒",
+      "tags": [
+        "健康餐"
+      ]
+    },
+    {
+      "code": "missshell",
+      "name": "貝殼小姐雞蛋糕專賣店",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "hkstyledimsum",
+      "name": "港味絕-港式燒臘餐盒",
+      "tags": [
+        "便當",
+        "早午餐"
+      ]
+    },
+    {
+      "code": "yjgbakery",
+      "name": "歪嘴雞烘焙",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "qingzou",
+      "name": "輕作嫩仙草",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "johncookkitchen",
+      "name": "約翰煮的",
+      "tags": [
+        "健康餐"
+      ]
+    },
+    {
+      "code": "reliableoven",
+      "name": "透明烤箱",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "eyuanpaigu",
+      "name": "e園排骨",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "fatdaddy",
+      "name": "胖老爹",
+      "tags": []
+    },
+    {
+      "code": "justbakery",
+      "name": "將滋",
+      "tags": [
+        "甜點",
+        "下午茶"
+      ]
+    },
+    {
+      "code": "smailjuicyman",
+      "name": "小汁MAN",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "havelunch51015",
+      "name": "午時食午51015家常餐盒",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "waflavor",
+      "name": "WA風味創造",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "muzili",
+      "name": "木子李早午餐",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "youzuspicydryhotpot",
+      "name": "游族麻辣乾鍋鹹酥雞",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "handuolucanteen",
+      "name": "韓多嚕食堂",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "dafangbrand",
+      "name": "大方冰品",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "zaokalunchbox",
+      "name": "灶腳午餐飯盒",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "sanheyuan",
+      "name": "三合苑炒飯炒麵",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "cturamen",
+      "name": "九湯屋日本拉麵",
+      "tags": [
+        "日式料理"
+      ]
+    },
+    {
+      "code": "gentletangerine",
+      "name": "紳橙甜品坊",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "zalibrand",
+      "name": "早日早點",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "curffybox",
+      "name": "鮮番咖哩輕食餐盒",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "tianli",
+      "name": "天利食堂",
+      "tags": [
+        "中式料理"
+      ]
+    },
+    {
+      "code": "foodiebento",
+      "name": "福弟便當",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "handiantang",
+      "name": "韓點糖 釜山糖餅專賣",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "hazukido",
+      "name": "八月堂",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "1985pizza",
+      "name": "1985窯烤披薩",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "liangjin",
+      "name": "兩津蛋塔",
+      "tags": [
+        "甜點",
+        "下午茶"
+      ]
+    },
+    {
+      "code": "fromfarm",
+      "name": "元榆牧場",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "gminibrand",
+      "name": "G Mini 海南雞飯",
+      "tags": [
+        "中式料理"
+      ]
+    },
+    {
+      "code": "zhengshufu",
+      "name": "蒸蔬福水煮健康餐盒",
+      "tags": [
+        "健康餐"
+      ]
+    },
+    {
+      "code": "pokehere",
+      "name": "波奇這裏",
+      "tags": [
+        "健康餐"
+      ]
+    },
+    {
+      "code": "qiaqiachicken",
+      "name": "雞武門炸物職人",
+      "tags": [
+        "下午茶",
+        "其他"
+      ]
+    },
+    {
+      "code": "hekecurry",
+      "name": "和可咖哩",
+      "tags": [
+        "日式料理"
+      ]
+    },
+    {
+      "code": "mazuvillage",
+      "name": "馬祖新村",
+      "tags": [
+        "下午茶"
+      ]
+    },
+    {
+      "code": "yuanjuewei",
+      "name": "元爵味黃燜雞米飯",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "haofengwei",
+      "name": "豪峰味小吃",
+      "tags": [
+        "便當",
+        "其他"
+      ]
+    },
+    {
+      "code": "ichenghe",
+      "name": "【飴盛禾】烤定食領導品牌",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "ajtaco",
+      "name": "AJ TACO",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "daonegong",
+      "name": "大碗公冰•甜品",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "daputiebanshao",
+      "name": "大埔鐵板燒",
+      "tags": [
+        "中式料理"
+      ]
+    },
+    {
+      "code": "sengribrunch",
+      "name": "森日早午餐",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "bentoya",
+      "name": "弁當屋",
+      "tags": [
+        "中式料理"
+      ]
+    },
+    {
+      "code": "gardenv",
+      "name": "菜園上海餐廳",
+      "tags": [
+        "中式料理"
+      ]
+    },
+    {
+      "code": "blackball",
+      "name": "黑丸嫩仙草",
+      "tags": [
+        "甜點",
+        "下午茶"
+      ]
+    },
+    {
+      "code": "27mltbrand",
+      "name": "愛呷麻辣燙",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "onosesc",
+      "name": "手壹閣",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "zhumenri",
+      "name": "食甜三成 甜點製所",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "hanqiang",
+      "name": "漢強麵館",
+      "tags": [
+        "麵食",
+        "中式料理"
+      ]
+    },
+    {
+      "code": "laidian",
+      "name": "徠佃冰宮",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "ministone",
+      "name": "歐媽職人鍋燒",
+      "tags": [
+        "火鍋"
+      ]
+    },
+    {
+      "code": "agenbrand",
+      "name": "阿根早餐店",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "mingdon",
+      "name": "明洞海苔飯捲",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "foodman",
+      "name": "豐滿早午餐",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "forestpath",
+      "name": "森林小徑",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "kotispasta",
+      "name": "Koti’s Pasta",
+      "tags": [
+        "麵食"
+      ]
+    },
+    {
+      "code": "nupasta",
+      "name": "NU PASTA",
+      "tags": [
+        "麵食"
+      ]
+    },
+    {
+      "code": "wananzaocan",
+      "name": "晚安早餐",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "datiebrand",
+      "name": "打鐵豆花",
+      "tags": [
+        "下午茶"
+      ]
+    },
+    {
+      "code": "labanhznout",
+      "name": "越迷Viet Bites",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "shisi34",
+      "name": "食肆34",
+      "tags": [
+        "日式料理"
+      ]
+    },
+    {
+      "code": "fullgeestinkytofu",
+      "name": "福菊臭臭鍋",
+      "tags": [
+        "火鍋"
+      ]
+    },
+    {
+      "code": "taroboba",
+      "name": "清原芋圓",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "devilchicken",
+      "name": "惡魔雞排",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "threebrothersbbq",
+      "name": "三兄弟燒烤",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "bachubrand",
+      "name": "八廚職人弁当",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "firebanana",
+      "name": "樂樂魚香蕉燒",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "kitchenchurc",
+      "name": "教堂小廚",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "shinemood",
+      "name": "小木屋鬆餅",
+      "tags": [
+        "下午茶"
+      ]
+    },
+    {
+      "code": "yisanling",
+      "name": "130番餐坊",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "xingnan",
+      "name": "型男現烤甜甜圈",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "chinchihyuan",
+      "name": "范記金之園草袋飯",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "omeletjay",
+      "name": "阿杰手工蛋餅",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "subway",
+      "name": "SUBWAY",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "meimei",
+      "name": "瑞麟美而美",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "mitang",
+      "name": "覓糖",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "hulkburger",
+      "name": "莫克漢堡",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "madesiaosinl",
+      "name": "麻的小辛辣｜麻辣干鍋",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "twfirst",
+      "name": "台灣第一家鹽酥雞",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "smoothie",
+      "name": "思慕昔",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "xindading",
+      "name": "新大鼎腿庫",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "mozhuting",
+      "name": "墨竹亭",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "ollielite",
+      "name": "Ollie lite奧利早午餐",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "sunfodbrunch",
+      "name": "三富便當 Sun Food Bendon",
+      "tags": [
+        "便當",
+        "中式料理"
+      ]
+    },
+    {
+      "code": "sixstar",
+      "name": "六星便當",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "bonbox",
+      "name": "楽坡BONBOX",
+      "tags": [
+        "便當",
+        "健康餐"
+      ]
+    },
+    {
+      "code": "bianyuanren",
+      "name": "邊緣人餐盒",
+      "tags": [
+        "健康餐"
+      ]
+    },
+    {
+      "code": "meetfresh",
+      "name": "鮮芋仙",
+      "tags": [
+        "甜點"
+      ]
+    },
+    {
+      "code": "zhimingyicun",
+      "name": "志明一村鐵路便當",
+      "tags": [
+        "便當"
+      ]
+    },
+    {
+      "code": "maccbf",
+      "name": "早安美芝城",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "magicchicken",
+      "name": "魔法炸雞",
+      "tags": [
+        "下午茶"
+      ]
+    },
+    {
+      "code": "idealboxed",
+      "name": "裏享餐盒",
+      "tags": [
+        "健康餐"
+      ]
+    },
+    {
+      "code": "fancypoke",
+      "name": "FancyPoke",
+      "tags": [
+        "健康餐"
+      ]
+    },
+    {
+      "code": "fengsushi",
+      "name": "鳳壽司",
+      "tags": [
+        "日式料理"
+      ]
+    },
+    {
+      "code": "hitosandwich",
+      "name": "喜得炭火燒三明治",
+      "tags": [
+        "早午餐"
+      ]
+    },
+    {
+      "code": "pizzarock",
+      "name": "搖滾披薩",
+      "tags": [
+        "其他"
+      ]
+    },
+    {
+      "code": "bighamburger",
+      "name": "四分之一手工蛋餅",
+      "tags": [
+        "早午餐"
+      ]
+    }
+  ],
+  "brands": [
+    {
+      "id": 4315,
+      "code": "sunsui",
+      "name": "杉水茶飲",
+      "aliases": [
+        "杉水茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/sunsui",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:11+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4304,
+      "code": "daymeday",
+      "name": "Day me Day",
+      "aliases": [
+        "Day me Day"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/daymeday",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:11+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4301,
+      "code": "huangmeijin",
+      "name": "黃美金",
+      "aliases": [
+        "黃美金"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/huangmeijin",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:11+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4280,
+      "code": "bigbigblacktea",
+      "name": "紅茶洋行",
+      "aliases": [
+        "紅茶洋行"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/bigbigblacktea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:12+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4277,
+      "code": "wuhoutea",
+      "name": "五后茶飲炸物專賣店",
+      "aliases": [
+        "五后茶飲炸物專賣店"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/wuhoutea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:12+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4274,
+      "code": "lianghuaxuan",
+      "name": "涼花軒",
+      "aliases": [
+        "涼花軒"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/lianghuaxuan",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:12+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4271,
+      "code": "june6teahouse",
+      "name": "JUNE六 茶飲",
+      "aliases": [
+        "JUNE六 茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/june6teahouse",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:12+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4262,
+      "code": "syucheng",
+      "name": "序呈",
+      "aliases": [
+        "序呈"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/syucheng",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:12+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4256,
+      "code": "inchabrand",
+      "name": "隱山茶道",
+      "aliases": [
+        "隱山茶道"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/inchabrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:12+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4250,
+      "code": "yipinbrand",
+      "name": "一品現泡茶",
+      "aliases": [
+        "一品現泡茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/yipinbrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:13+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4244,
+      "code": "pinatshiu",
+      "name": "坪林手",
+      "aliases": [
+        "坪林手"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/pinatshiu",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:13+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 4241,
+      "code": "easterntea",
+      "name": "東方製茶",
+      "aliases": [
+        "東方製茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/easterntea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:13+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4223,
+      "code": "drinkdate",
+      "name": "飲約 豆沙茶飲專賣",
+      "aliases": [
+        "飲約 豆沙茶飲專賣"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/drinkdate",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:14+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4220,
+      "code": "beubrand",
+      "name": "beU精品時尚茶飲",
+      "aliases": [
+        "beU精品時尚茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/beubrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:14+08:00",
+      "expectedStoreCount": 3
+    },
+    {
+      "id": 4217,
+      "code": "goldenspring5",
+      "name": "金五春",
+      "aliases": [
+        "金五春"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/goldenspring5",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:14+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4211,
+      "code": "moveon",
+      "name": "木昂手作",
+      "aliases": [
+        "木昂手作"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/moveon",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:15+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4208,
+      "code": "polifreshtea",
+      "name": "破立鮮作茶",
+      "aliases": [
+        "破立鮮作茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/polifreshtea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:15+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4202,
+      "code": "xiaozhizuocha",
+      "name": "小制作茶",
+      "aliases": [
+        "小制作茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/xiaozhizuocha",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:15+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4199,
+      "code": "chinghsu",
+      "name": "青旭",
+      "aliases": [
+        "青旭"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chinghsu",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:16+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4196,
+      "code": "easyway",
+      "name": "EASYWAY休閒小站",
+      "aliases": [
+        "EASYWAY休閒小站"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/easyway",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:16+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4190,
+      "code": "shuangshuang",
+      "name": "雙雙手作茶飲",
+      "aliases": [
+        "雙雙手作茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/shuangshuang",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:16+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4187,
+      "code": "chaxubrand",
+      "name": "茶序",
+      "aliases": [
+        "茶序"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chaxubrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:16+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4184,
+      "code": "caguday",
+      "name": "卡古茶&卡咕咕雞蛋糕",
+      "aliases": [
+        "卡古茶&卡咕咕雞蛋糕"
+      ],
+      "tags": [
+        "飲料",
+        "甜點"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/caguday",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:17+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4181,
+      "code": "chakeduole",
+      "name": "茶可多樂",
+      "aliases": [
+        "茶可多樂"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chakeduole",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:17+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4163,
+      "code": "hahatea",
+      "name": "趁樂喝",
+      "aliases": [
+        "趁樂喝"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/hahatea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:17+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4153,
+      "code": "dozzobrand",
+      "name": "豆所",
+      "aliases": [
+        "豆所"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/dozzobrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:17+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4147,
+      "code": "quodisarcana",
+      "name": "秘境職人茶飲",
+      "aliases": [
+        "秘境職人茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/quodisarcana",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:18+08:00",
+      "expectedStoreCount": 3
+    },
+    {
+      "id": 4144,
+      "code": "sweetnchill",
+      "name": "蔗室",
+      "aliases": [
+        "蔗室"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/sweetnchill",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:18+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4132,
+      "code": "chunchaitea",
+      "name": "春宅",
+      "aliases": [
+        "春宅"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chunchaitea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:18+08:00",
+      "expectedStoreCount": 4
+    },
+    {
+      "id": 4126,
+      "code": "heibeihandcrafted",
+      "name": "平米手作",
+      "aliases": [
+        "平米手作"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/heibeihandcrafted",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:19+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4117,
+      "code": "nodecoffee",
+      "name": "NODE COFFEE ROASTERS",
+      "aliases": [
+        "NODE COFFEE ROASTERS"
+      ],
+      "tags": [
+        "咖啡"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/nodecoffee",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:19+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4114,
+      "code": "bricktearoom",
+      "name": "磚茶室",
+      "aliases": [
+        "磚茶室"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/bricktearoom",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:20+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4111,
+      "code": "yanchatea",
+      "name": "巖茶",
+      "aliases": [
+        "巖茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/yanchatea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:20+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4105,
+      "code": "bearhoney",
+      "name": "蜜蜜熊",
+      "aliases": [
+        "蜜蜜熊"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/bearhoney",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:20+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4099,
+      "code": "verycold",
+      "name": "非常冰",
+      "aliases": [
+        "非常冰"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/verycold",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:21+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4084,
+      "code": "youfubrand",
+      "name": "悠芙",
+      "aliases": [
+        "悠芙"
+      ],
+      "tags": [
+        "飲料",
+        "下午茶"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/youfubrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:21+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4078,
+      "code": "drinksupply",
+      "name": "嗜時候製茶所",
+      "aliases": [
+        "嗜時候製茶所"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/drinksupply",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:21+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4075,
+      "code": "yuchitea",
+      "name": "魚池新語",
+      "aliases": [
+        "魚池新語"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/yuchitea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:21+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4072,
+      "code": "taihochill",
+      "name": "泰厚CHILL-泰式奶茶專賣",
+      "aliases": [
+        "泰厚CHILL-泰式奶茶專賣"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/taihochill",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:22+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4063,
+      "code": "mountmystery",
+      "name": "茶山謎路",
+      "aliases": [
+        "茶山謎路"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/mountmystery",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:22+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4057,
+      "code": "goldendream",
+      "name": "GD",
+      "aliases": [
+        "GD"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/goldendream",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:22+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4051,
+      "code": "tianquanzhuang",
+      "name": "天泉莊現泡茶",
+      "aliases": [
+        "天泉莊現泡茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/tianquanzhuang",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:22+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4048,
+      "code": "daoyuxiguazhi",
+      "name": "島語西瓜汁",
+      "aliases": [
+        "島語西瓜汁"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/daoyuxiguazhi",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:23+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4045,
+      "code": "chillbo",
+      "name": "chillbo起寶",
+      "aliases": [
+        "chillbo起寶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chillbo",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:23+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4042,
+      "code": "kzblackteashop",
+      "name": "巧苓紅茶專賣店",
+      "aliases": [
+        "巧苓紅茶專賣店"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/kzblackteashop",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:23+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 4027,
+      "code": "obabrand",
+      "name": "O吧養生茶飲·咖啡·果茶",
+      "aliases": [
+        "O吧養生茶飲·咖啡·果茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/obabrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:23+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4024,
+      "code": "mingcui",
+      "name": "茗萃極緻鮮萃茶",
+      "aliases": [
+        "茗萃極緻鮮萃茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/mingcui",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:24+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4021,
+      "code": "kangdouzi",
+      "name": "扛豆子綠豆沙",
+      "aliases": [
+        "扛豆子綠豆沙"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/kangdouzi",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:24+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4018,
+      "code": "coffeeandsoul",
+      "name": "咖啡深藏",
+      "aliases": [
+        "咖啡深藏"
+      ],
+      "tags": [
+        "咖啡"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/coffeeandsoul",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:24+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4012,
+      "code": "isangomi",
+      "name": "伊35未 舞茶專賣店",
+      "aliases": [
+        "伊35未 舞茶專賣店"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/isangomi",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:24+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4006,
+      "code": "snowballcafe",
+      "name": "雪球咖啡",
+      "aliases": [
+        "雪球咖啡"
+      ],
+      "tags": [
+        "咖啡"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/snowballcafe",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:25+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4003,
+      "code": "lazurbrand",
+      "name": "藍寓L’AZUR",
+      "aliases": [
+        "藍寓L’AZUR"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/lazurbrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:25+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 4000,
+      "code": "iloveluna",
+      "name": "芳水根茶飲",
+      "aliases": [
+        "芳水根茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/iloveluna",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:25+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3982,
+      "code": "muchatetea",
+      "name": "莯茶",
+      "aliases": [
+        "莯茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/muchatetea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:26+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 3979,
+      "code": "littlemonkey",
+      "name": "小猴子飲品專賣店",
+      "aliases": [
+        "小猴子飲品專賣店"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/littlemonkey",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:26+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3973,
+      "code": "ramblecafe",
+      "name": "Ramble Cafe 漫步藍咖啡",
+      "aliases": [
+        "Ramble Cafe 漫步藍咖啡"
+      ],
+      "tags": [
+        "飲料",
+        "咖啡",
+        "甜點",
+        "早午餐"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/ramblecafe",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:26+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3967,
+      "code": "chateaublanc",
+      "name": "泊飲茶館",
+      "aliases": [
+        "泊飲茶館"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chateaublanc",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:26+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3964,
+      "code": "ninetytea",
+      "name": "玖零春藏",
+      "aliases": [
+        "玖零春藏"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/ninetytea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:27+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3961,
+      "code": "friendscoffee",
+      "name": "丰客霖",
+      "aliases": [
+        "丰客霖"
+      ],
+      "tags": [
+        "飲料",
+        "咖啡",
+        "甜點"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/friendscoffee",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:27+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3958,
+      "code": "shanmei",
+      "name": "善美手作茶",
+      "aliases": [
+        "善美手作茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/shanmei",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:27+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3952,
+      "code": "snowfamily",
+      "name": "來點薯薯起司馬鈴薯",
+      "aliases": [
+        "來點薯薯起司馬鈴薯"
+      ],
+      "tags": [
+        "飲料",
+        "其他"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/snowfamily",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:28+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3943,
+      "code": "1314freshdrinks",
+      "name": "1314好處飲",
+      "aliases": [
+        "1314好處飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/1314freshdrinks",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:28+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3940,
+      "code": "gammolounge",
+      "name": "甘沐茶食間",
+      "aliases": [
+        "甘沐茶食間"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/gammolounge",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:28+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3934,
+      "code": "fruitstudio",
+      "name": "Fruit Studio纖果薈｜水果茶｜冰沙｜鮮果",
+      "aliases": [
+        "Fruit Studio纖果薈｜水果茶｜冰沙｜鮮果"
+      ],
+      "tags": [
+        "飲料",
+        "其他"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/fruitstudio",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:28+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3919,
+      "code": "jingliang",
+      "name": "靜涼茶坊",
+      "aliases": [
+        "靜涼茶坊"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/jingliang",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:28+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3916,
+      "code": "shilichaxiang",
+      "name": "十里茶香",
+      "aliases": [
+        "十里茶香"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/shilichaxiang",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:29+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3910,
+      "code": "marchmuse",
+      "name": "三月沐現泡茶飲",
+      "aliases": [
+        "三月沐現泡茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/marchmuse",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:29+08:00",
+      "expectedStoreCount": 3
+    },
+    {
+      "id": 3892,
+      "code": "coytea",
+      "name": "嗑以茶",
+      "aliases": [
+        "嗑以茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/coytea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:29+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 3886,
+      "code": "huhucha",
+      "name": "壺壺茶",
+      "aliases": [
+        "壺壺茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/huhucha",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:30+08:00",
+      "expectedStoreCount": 8
+    },
+    {
+      "id": 3883,
+      "code": "dthouse",
+      "name": "D.T House",
+      "aliases": [
+        "D.T House"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/dthouse",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:31+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3880,
+      "code": "gabicoffee",
+      "name": "嘎逼GABI COFFEE",
+      "aliases": [
+        "嘎逼GABI COFFEE"
+      ],
+      "tags": [
+        "咖啡"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/gabicoffee",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:31+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 3877,
+      "code": "besttodrink",
+      "name": "巴司克茶飲",
+      "aliases": [
+        "巴司克茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/besttodrink",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:31+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3865,
+      "code": "xuteabrand",
+      "name": "旭茶-奶茶專賣店",
+      "aliases": [
+        "旭茶-奶茶專賣店"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/xuteabrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:32+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3859,
+      "code": "muteahouse",
+      "name": "慕和茶屋",
+      "aliases": [
+        "慕和茶屋"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/muteahouse",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:32+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3850,
+      "code": "kenangancoffee",
+      "name": "凱娜克咖啡",
+      "aliases": [
+        "凱娜克咖啡"
+      ],
+      "tags": [
+        "咖啡"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/kenangancoffee",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:33+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3835,
+      "code": "yuyuan",
+      "name": "鈺原茶飲店",
+      "aliases": [
+        "鈺原茶飲店"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/yuyuan",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:33+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3823,
+      "code": "chaoya",
+      "name": "茶緒屋",
+      "aliases": [
+        "茶緒屋"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chaoya",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:33+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3817,
+      "code": "pinyuan",
+      "name": "品源",
+      "aliases": [
+        "品源"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/pinyuan",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:34+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3805,
+      "code": "leejitea",
+      "name": "李記紅茶冰",
+      "aliases": [
+        "李記紅茶冰"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/leejitea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:34+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 3802,
+      "code": "alingbrand",
+      "name": "阿檸 a.ling",
+      "aliases": [
+        "阿檸 a.ling"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/alingbrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:34+08:00",
+      "expectedStoreCount": 3
+    },
+    {
+      "id": 3793,
+      "code": "lincha",
+      "name": "拎茶LinCha",
+      "aliases": [
+        "拎茶LinCha"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/lincha",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:35+08:00",
+      "expectedStoreCount": 7
+    },
+    {
+      "id": 3790,
+      "code": "umuubrand",
+      "name": "悠畝Umuu",
+      "aliases": [
+        "悠畝Umuu"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/umuubrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:35+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3787,
+      "code": "fufucafe",
+      "name": "FUFU TEA & 鍋燒專門",
+      "aliases": [
+        "FUFU TEA & 鍋燒專門"
+      ],
+      "tags": [
+        "麵食",
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/fufucafe",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:36+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3778,
+      "code": "islandertea",
+      "name": "島茗茶作",
+      "aliases": [
+        "島茗茶作"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/islandertea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:36+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3769,
+      "code": "hashtagcoffee",
+      "name": "莫記茶室 X 馬來西亞海南雞飯",
+      "aliases": [
+        "莫記茶室 X 馬來西亞海南雞飯"
+      ],
+      "tags": [
+        "飲料",
+        "便當",
+        "其他"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/hashtagcoffee",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:36+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3766,
+      "code": "xiteabrand",
+      "name": "XI-TEA 囍茶",
+      "aliases": [
+        "XI-TEA 囍茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/xiteabrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:37+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3757,
+      "code": "yogurtmaster",
+      "name": "酸奶大獅",
+      "aliases": [
+        "酸奶大獅"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/yogurtmaster",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:37+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3754,
+      "code": "2663space",
+      "name": "貳陸陸杉Space",
+      "aliases": [
+        "貳陸陸杉Space"
+      ],
+      "tags": [
+        "咖啡"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/2663space",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:37+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3751,
+      "code": "buyehou",
+      "name": "不夜侯製茶所",
+      "aliases": [
+        "不夜侯製茶所"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/buyehou",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:38+08:00",
+      "expectedStoreCount": 5
+    },
+    {
+      "id": 3733,
+      "code": "mingyutang",
+      "name": "茗雨棠",
+      "aliases": [
+        "茗雨棠"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/mingyutang",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:38+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3730,
+      "code": "chunfunhow",
+      "name": "春芳號",
+      "aliases": [
+        "春芳號"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chunfunhow",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:38+08:00",
+      "expectedStoreCount": 6
+    },
+    {
+      "id": 3727,
+      "code": "blikebrand",
+      "name": "BLIKE",
+      "aliases": [
+        "BLIKE"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/blikebrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:39+08:00",
+      "expectedStoreCount": 4
+    },
+    {
+      "id": 3721,
+      "code": "31ctainxia",
+      "name": "31C天下茶鋪",
+      "aliases": [
+        "31C天下茶鋪"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/31ctainxia",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:40+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3715,
+      "code": "qutehoma",
+      "name": "QUTEHOMA咬咬河馬",
+      "aliases": [
+        "QUTEHOMA咬咬河馬"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/qutehoma",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:40+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 3700,
+      "code": "t4qingchadaren",
+      "name": "T4 清茶達人",
+      "aliases": [
+        "T4 清茶達人"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/t4qingchadaren",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:41+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 3697,
+      "code": "syufang",
+      "name": "敘方",
+      "aliases": [
+        "敘方"
+      ],
+      "tags": [],
+      "sourceUrl": "https://order.nidin.shop/brand/syufang",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:19:05+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3688,
+      "code": "3chashiyi",
+      "name": "參茶拾憶",
+      "aliases": [
+        "參茶拾憶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/3chashiyi",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:41+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3676,
+      "code": "moratea",
+      "name": "沐韻茗品Moratea",
+      "aliases": [
+        "沐韻茗品Moratea"
+      ],
+      "tags": [
+        "飲料",
+        "便當",
+        "其他"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/moratea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:42+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3667,
+      "code": "goingmiketea",
+      "name": "古意奶茶",
+      "aliases": [
+        "古意奶茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/goingmiketea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:42+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 3664,
+      "code": "chenyuanbau",
+      "name": "晨圓飽飲料店",
+      "aliases": [
+        "晨圓飽飲料店"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chenyuanbau",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:42+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3661,
+      "code": "kitchennow",
+      "name": "KitchenNow 美食基地",
+      "aliases": [
+        "KitchenNow 美食基地"
+      ],
+      "tags": [
+        "飲料",
+        "便當",
+        "中式料理",
+        "日式料理",
+        "健康餐"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/kitchennow",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:42+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3658,
+      "code": "timeonday",
+      "name": "蒔光紅茶",
+      "aliases": [
+        "蒔光紅茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/timeonday",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:43+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3646,
+      "code": "zhichuantea",
+      "name": "織川造茶｜日式生乳奶霜｜原茶",
+      "aliases": [
+        "織川造茶｜日式生乳奶霜｜原茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/zhichuantea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:43+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 3637,
+      "code": "yuantian66",
+      "name": "園田66",
+      "aliases": [
+        "園田66"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/yuantian66",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:43+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3628,
+      "code": "taichiblacktea",
+      "name": "太極紅茶專賣店",
+      "aliases": [
+        "太極紅茶專賣店"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/taichiblacktea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:44+08:00",
+      "expectedStoreCount": 3
+    },
+    {
+      "id": 3610,
+      "code": "fangzui",
+      "name": "方最茗品",
+      "aliases": [
+        "方最茗品"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/fangzui",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:44+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3607,
+      "code": "bucheetea",
+      "name": "不遲",
+      "aliases": [
+        "不遲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/bucheetea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:44+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3604,
+      "code": "drinkstore",
+      "name": "水雲朵",
+      "aliases": [
+        "水雲朵"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/drinkstore",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:45+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3598,
+      "code": "hodiancha",
+      "name": "喝典茶",
+      "aliases": [
+        "喝典茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/hodiancha",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:45+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3592,
+      "code": "chiayi",
+      "name": "嘉義紅茶",
+      "aliases": [
+        "嘉義紅茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chiayi",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:46+08:00",
+      "expectedStoreCount": 3
+    },
+    {
+      "id": 3583,
+      "code": "matchtea",
+      "name": "麻吉茶飲",
+      "aliases": [
+        "麻吉茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/matchtea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:46+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3574,
+      "code": "gubeibei",
+      "name": "咕杯杯",
+      "aliases": [
+        "咕杯杯"
+      ],
+      "tags": [
+        "飲料",
+        "甜點"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/gubeibei",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:46+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3571,
+      "code": "chunheteastalls",
+      "name": "春和茶水攤",
+      "aliases": [
+        "春和茶水攤"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chunheteastalls",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:47+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3556,
+      "code": "mambatea",
+      "name": "Mam.Ba茶飲",
+      "aliases": [
+        "Mam.Ba茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/mambatea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:47+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3550,
+      "code": "everteasalon",
+      "name": "澄金茶行",
+      "aliases": [
+        "澄金茶行"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/everteasalon",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:47+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3532,
+      "code": "weekdays",
+      "name": "周間",
+      "aliases": [
+        "周間"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/weekdays",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:47+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3526,
+      "code": "marumaru",
+      "name": "MARUMARU是圈圈",
+      "aliases": [
+        "MARUMARU是圈圈"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/marumaru",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:48+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3508,
+      "code": "zhenxin",
+      "name": "甄馨",
+      "aliases": [
+        "甄馨"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/zhenxin",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:48+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3493,
+      "code": "foredver",
+      "name": "久紅",
+      "aliases": [
+        "久紅"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/foredver",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:48+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3487,
+      "code": "yamaguchi",
+      "name": "山口禾本",
+      "aliases": [
+        "山口禾本"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/yamaguchi",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:48+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3481,
+      "code": "no154mastertea",
+      "name": "茶匠154號",
+      "aliases": [
+        "茶匠154號"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/no154mastertea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:49+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3478,
+      "code": "lordethe",
+      "name": "漉滴滴LOR DE THÉ",
+      "aliases": [
+        "漉滴滴LOR DE THÉ"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/lordethe",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:49+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3475,
+      "code": "chatrade",
+      "name": "茶萃",
+      "aliases": [
+        "茶萃"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chatrade",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:49+08:00",
+      "expectedStoreCount": 4
+    },
+    {
+      "id": 3472,
+      "code": "teamagichand",
+      "name": "茶之魔手",
+      "aliases": [
+        "茶之魔手"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/teamagichand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:49+08:00",
+      "expectedStoreCount": 5
+    },
+    {
+      "id": 3469,
+      "code": "youzhufang",
+      "name": "悠竹坊 甜點與茶",
+      "aliases": [
+        "悠竹坊 甜點與茶"
+      ],
+      "tags": [
+        "飲料",
+        "甜點"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/youzhufang",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:50+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3445,
+      "code": "sanencha",
+      "name": "山妍涼語",
+      "aliases": [
+        "山妍涼語"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/sanencha",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:50+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 3442,
+      "code": "jihoteaworks",
+      "name": "吉合製茶",
+      "aliases": [
+        "吉合製茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/jihoteaworks",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:51+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 3430,
+      "code": "showsentokampotea",
+      "name": "小仙島 仙味茶專門",
+      "aliases": [
+        "小仙島 仙味茶專門"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/showsentokampotea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:52+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 3427,
+      "code": "montoontoon",
+      "name": "漫豚豚冰坊",
+      "aliases": [
+        "漫豚豚冰坊"
+      ],
+      "tags": [
+        "飲料",
+        "甜點",
+        "下午茶"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/montoontoon",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:52+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3418,
+      "code": "xuanze",
+      "name": "喧澤茗茶",
+      "aliases": [
+        "喧澤茗茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/xuanze",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:52+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3409,
+      "code": "chupenway",
+      "name": "茶本味",
+      "aliases": [
+        "茶本味"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chupenway",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:53+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3406,
+      "code": "woohehyin",
+      "name": "梧禾飲 茶飲專売",
+      "aliases": [
+        "梧禾飲 茶飲專売"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/woohehyin",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:53+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 3394,
+      "code": "comebuydream",
+      "name": "COMEBUY DREAM",
+      "aliases": [
+        "COMEBUY DREAM"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/comebuydream",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:53+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3379,
+      "code": "kangcheng",
+      "name": "康城傳統滷肉飯",
+      "aliases": [
+        "康城傳統滷肉飯"
+      ],
+      "tags": [
+        "飲料",
+        "便當",
+        "早午餐",
+        "中式料理"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/kangcheng",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:53+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3376,
+      "code": "kangzhuang",
+      "name": "康庄傳統滷肉飯",
+      "aliases": [
+        "康庄傳統滷肉飯"
+      ],
+      "tags": [
+        "飲料",
+        "便當",
+        "早午餐",
+        "中式料理"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/kangzhuang",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:54+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3370,
+      "code": "longxu",
+      "name": "瀧序 • LONG SIP",
+      "aliases": [
+        "瀧序 • LONG SIP"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/longxu",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:54+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3361,
+      "code": "chenji",
+      "name": "陳記九龍城香港茶",
+      "aliases": [
+        "陳記九龍城香港茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chenji",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:54+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3343,
+      "code": "fengkafei",
+      "name": "蜂咖啡",
+      "aliases": [
+        "蜂咖啡"
+      ],
+      "tags": [
+        "咖啡"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/fengkafei",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:55+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3340,
+      "code": "weisquaretea",
+      "name": "微平方",
+      "aliases": [
+        "微平方"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/weisquaretea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:55+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3328,
+      "code": "chabaibai",
+      "name": "茶杯杯冷飲",
+      "aliases": [
+        "茶杯杯冷飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chabaibai",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:55+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3325,
+      "code": "springtea",
+      "name": "三月春",
+      "aliases": [
+        "三月春"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/springtea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:55+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3319,
+      "code": "cinnamontree",
+      "name": "肉桂樹 The Cinnamon Tree",
+      "aliases": [
+        "肉桂樹 The Cinnamon Tree"
+      ],
+      "tags": [
+        "飲料",
+        "咖啡",
+        "甜點",
+        "下午茶",
+        "健康餐"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/cinnamontree",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:56+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3313,
+      "code": "thirstysun",
+      "name": "三拾叁 精品茶飲",
+      "aliases": [
+        "三拾叁 精品茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/thirstysun",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:56+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3304,
+      "code": "timegarden",
+      "name": "時苑茶飲",
+      "aliases": [
+        "時苑茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/timegarden",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:56+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3301,
+      "code": "richtea",
+      "name": "厚味茶理",
+      "aliases": [
+        "厚味茶理"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/richtea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:56+08:00",
+      "expectedStoreCount": 4
+    },
+    {
+      "id": 3298,
+      "code": "yaoyouying",
+      "name": "曜右縈飲品",
+      "aliases": [
+        "曜右縈飲品"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/yaoyouying",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:57+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3292,
+      "code": "mrblack",
+      "name": "紅茶老爹",
+      "aliases": [
+        "紅茶老爹"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/mrblack",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:57+08:00",
+      "expectedStoreCount": 16
+    },
+    {
+      "id": 3286,
+      "code": "okboom",
+      "name": "OK蹦",
+      "aliases": [
+        "OK蹦"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/okboom",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:57+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3274,
+      "code": "localbrand",
+      "name": "Local飲料&冰品",
+      "aliases": [
+        "Local飲料&冰品"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/localbrand",
+      "status": "pending",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:58+08:00",
+      "expectedStoreCount": 0
+    },
+    {
+      "id": 3271,
+      "code": "treeda",
+      "name": "Tree噠 養樂兜調飲專賣",
+      "aliases": [
+        "Tree噠 養樂兜調飲專賣"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/treeda",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:58+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3268,
+      "code": "yoocntea",
+      "name": "有幸YOOCN TEA compose",
+      "aliases": [
+        "有幸YOOCN TEA compose"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/yoocntea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:59+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3250,
+      "code": "cozytealoft",
+      "name": "御私藏",
+      "aliases": [
+        "御私藏"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/cozytealoft",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:04:59+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3220,
+      "code": "frogcoming",
+      "name": "青蛙來了",
+      "aliases": [
+        "青蛙來了"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/frogcoming",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:00+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3214,
+      "code": "thedreamtea",
+      "name": "萌想茶",
+      "aliases": [
+        "萌想茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/thedreamtea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:00+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3211,
+      "code": "kasgobrand",
+      "name": "咖司果經典紅茶",
+      "aliases": [
+        "咖司果經典紅茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/kasgobrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:01+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3208,
+      "code": "yuxianzhenwei",
+      "name": "芋仙珍味",
+      "aliases": [
+        "芋仙珍味"
+      ],
+      "tags": [
+        "飲料",
+        "甜點"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/yuxianzhenwei",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:01+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3205,
+      "code": "morethantea",
+      "name": "盛好概念手窈飲",
+      "aliases": [
+        "盛好概念手窈飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/morethantea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:01+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3196,
+      "code": "chaduoerteashop",
+      "name": "茶朵ㄦ",
+      "aliases": [
+        "茶朵ㄦ"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chaduoerteashop",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:01+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 3193,
+      "code": "eternarisetea",
+      "name": "恆樂飲",
+      "aliases": [
+        "恆樂飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/eternarisetea",
+      "status": "pending",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:02+08:00",
+      "expectedStoreCount": 0
+    },
+    {
+      "id": 3181,
+      "code": "suchill",
+      "name": "三砌茶",
+      "aliases": [
+        "三砌茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/suchill",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:02+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 3172,
+      "code": "aiplant",
+      "name": "植享生活",
+      "aliases": [
+        "植享生活"
+      ],
+      "tags": [
+        "飲料",
+        "甜點"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/aiplant",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:03+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3169,
+      "code": "oroverandover",
+      "name": "OR over and over",
+      "aliases": [
+        "OR over and over"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/oroverandover",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:03+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3163,
+      "code": "fullup",
+      "name": "滿上仙草茶飲專賣店",
+      "aliases": [
+        "滿上仙草茶飲專賣店"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/fullup",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:04+08:00",
+      "expectedStoreCount": 9
+    },
+    {
+      "id": 3154,
+      "code": "checkin",
+      "name": "陳飲 checkin 鮮果氣泡專門",
+      "aliases": [
+        "陳飲 checkin 鮮果氣泡專門"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/checkin",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:04+08:00",
+      "expectedStoreCount": 3
+    },
+    {
+      "id": 3148,
+      "code": "theteday",
+      "name": "那年那杯",
+      "aliases": [
+        "那年那杯"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/theteday",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:05+08:00",
+      "expectedStoreCount": 3
+    },
+    {
+      "id": 3145,
+      "code": "ilingtea",
+      "name": "愛伶茶隨便喝",
+      "aliases": [
+        "愛伶茶隨便喝"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/ilingtea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:06+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3142,
+      "code": "coffeemoon",
+      "name": "咖啡月",
+      "aliases": [
+        "咖啡月"
+      ],
+      "tags": [
+        "飲料",
+        "咖啡",
+        "甜點"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/coffeemoon",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:07+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3139,
+      "code": "sunbay",
+      "name": "山焙",
+      "aliases": [
+        "山焙"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/sunbay",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:07+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3130,
+      "code": "fortune",
+      "name": "富富",
+      "aliases": [
+        "富富"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/fortune",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:08+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 3127,
+      "code": "yifancha",
+      "name": "一番茶",
+      "aliases": [
+        "一番茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/yifancha",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:08+08:00",
+      "expectedStoreCount": 7
+    },
+    {
+      "id": 3118,
+      "code": "sixrhymetea",
+      "name": "六韻茶",
+      "aliases": [
+        "六韻茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/sixrhymetea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:08+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 3112,
+      "code": "drinkteacha",
+      "name": "吉林提茶",
+      "aliases": [
+        "吉林提茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/drinkteacha",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:09+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 3097,
+      "code": "cgteabrand",
+      "name": "柯基茶飲",
+      "aliases": [
+        "柯基茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/cgteabrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:09+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3091,
+      "code": "blackteabus",
+      "name": "紅茶巴士",
+      "aliases": [
+        "紅茶巴士"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/blackteabus",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:10+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3085,
+      "code": "kingblacktea",
+      "name": "紅茶帝國",
+      "aliases": [
+        "紅茶帝國"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/kingblacktea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:10+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3064,
+      "code": "freshq",
+      "name": "鮮Q茶飲",
+      "aliases": [
+        "鮮Q茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/freshq",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:11+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 3061,
+      "code": "nicedrink",
+      "name": "奶絲/絲滑系奶茶專賣店",
+      "aliases": [
+        "奶絲/絲滑系奶茶專賣店"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/nicedrink",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:11+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3049,
+      "code": "wudotea",
+      "name": "伍度",
+      "aliases": [
+        "伍度"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/wudotea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:11+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 3040,
+      "code": "islandtea",
+      "name": "小島嶼茶",
+      "aliases": [
+        "小島嶼茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/islandtea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:12+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3022,
+      "code": "teayes",
+      "name": "堤亞斯",
+      "aliases": [
+        "堤亞斯"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/teayes",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:12+08:00",
+      "expectedStoreCount": 4
+    },
+    {
+      "id": 3013,
+      "code": "greenagaintea",
+      "name": "陳又青",
+      "aliases": [
+        "陳又青"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/greenagaintea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:12+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 3007,
+      "code": "hsienlantea",
+      "name": "鮮嵐茶",
+      "aliases": [
+        "鮮嵐茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/hsienlantea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:13+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 3001,
+      "code": "nanafru",
+      "name": "nanafru 娜娜福",
+      "aliases": [
+        "nanafru 娜娜福"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/nanafru",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:14+08:00",
+      "expectedStoreCount": 30
+    },
+    {
+      "id": 2944,
+      "code": "godtea",
+      "name": "尬癮茶",
+      "aliases": [
+        "尬癮茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/godtea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:14+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2932,
+      "code": "hsingtsui",
+      "name": "享萃",
+      "aliases": [
+        "享萃"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/hsingtsui",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:14+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2914,
+      "code": "skyline",
+      "name": "嵐天",
+      "aliases": [
+        "嵐天"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/skyline",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:14+08:00",
+      "expectedStoreCount": 3
+    },
+    {
+      "id": 2907,
+      "code": "toptiertea",
+      "name": "特好喝",
+      "aliases": [
+        "特好喝"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/toptiertea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:16+08:00",
+      "expectedStoreCount": 23
+    },
+    {
+      "id": 2883,
+      "code": "bebeebrand",
+      "name": "Be.bee【蜂蜜飲品專門】",
+      "aliases": [
+        "Be.bee【蜂蜜飲品專門】"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/bebeebrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:16+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2880,
+      "code": "teaandtea",
+      "name": "圓御茶",
+      "aliases": [
+        "圓御茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/teaandtea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:17+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2871,
+      "code": "chatime",
+      "name": "日出茶太",
+      "aliases": [
+        "日出茶太"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chatime",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:18+08:00",
+      "expectedStoreCount": 18
+    },
+    {
+      "id": 2868,
+      "code": "cuidatea",
+      "name": "萃Da手搖飲",
+      "aliases": [
+        "萃Da手搖飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/cuidatea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:25+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2865,
+      "code": "binjuane",
+      "name": "冰饌",
+      "aliases": [
+        "冰饌"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/binjuane",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:26+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 2862,
+      "code": "guystea",
+      "name": "蓋斯茶",
+      "aliases": [
+        "蓋斯茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/guystea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:26+08:00",
+      "expectedStoreCount": 4
+    },
+    {
+      "id": 2853,
+      "code": "bignoah",
+      "name": "大諾亞飲品",
+      "aliases": [
+        "大諾亞飲品"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/bignoah",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:27+08:00",
+      "expectedStoreCount": 3
+    },
+    {
+      "id": 2847,
+      "code": "havecoffee",
+      "name": "昆陽有COFFEE",
+      "aliases": [
+        "昆陽有COFFEE"
+      ],
+      "tags": [
+        "咖啡"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/havecoffee",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:28+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2844,
+      "code": "teamelody",
+      "name": "十二韻",
+      "aliases": [
+        "十二韻"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/teamelody",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:29+08:00",
+      "expectedStoreCount": 21
+    },
+    {
+      "id": 2838,
+      "code": "ishuhuo",
+      "name": "i蔬活",
+      "aliases": [
+        "i蔬活"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/ishuhuo",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:28+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2835,
+      "code": "xiangyun",
+      "name": "翔允制茶",
+      "aliases": [
+        "翔允制茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/xiangyun",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:28+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2829,
+      "code": "mumingtea",
+      "name": "暮茗手作",
+      "aliases": [
+        "暮茗手作"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/mumingtea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:29+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2826,
+      "code": "cozysunday",
+      "name": "COZY SUN DAY CAFÉ 日向咖啡",
+      "aliases": [
+        "COZY SUN DAY CAFÉ 日向咖啡"
+      ],
+      "tags": [
+        "咖啡"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/cozysunday",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:29+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 2811,
+      "code": "waterfun",
+      "name": "水療系",
+      "aliases": [
+        "水療系"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/waterfun",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:30+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2805,
+      "code": "purplelab",
+      "name": "豐車號",
+      "aliases": [
+        "豐車號"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/purplelab",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:30+08:00",
+      "expectedStoreCount": 3
+    },
+    {
+      "id": 2799,
+      "code": "lutientaiwan",
+      "name": "鹿沺台灣茶",
+      "aliases": [
+        "鹿沺台灣茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/lutientaiwan",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:31+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2778,
+      "code": "pangpang",
+      "name": "滂滂",
+      "aliases": [
+        "滂滂"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/pangpang",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:32+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2775,
+      "code": "dfhbrand",
+      "name": "東方匯",
+      "aliases": [
+        "東方匯"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/dfhbrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:32+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2772,
+      "code": "spiceup",
+      "name": "茶裡不然",
+      "aliases": [
+        "茶裡不然"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/spiceup",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:32+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 2745,
+      "code": "fairychew",
+      "name": "仙嚼",
+      "aliases": [
+        "仙嚼"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/fairychew",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:33+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2742,
+      "code": "hohodrinks",
+      "name": "河河飲品",
+      "aliases": [
+        "河河飲品"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/hohodrinks",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:34+08:00",
+      "expectedStoreCount": 3
+    },
+    {
+      "id": 2733,
+      "code": "foxtail",
+      "name": "狐狸尾巴",
+      "aliases": [
+        "狐狸尾巴"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/foxtail",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:34+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 2730,
+      "code": "wooyobrand",
+      "name": "吾悠茶所",
+      "aliases": [
+        "吾悠茶所"
+      ],
+      "tags": [
+        "飲料",
+        "早午餐"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/wooyobrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:35+08:00",
+      "expectedStoreCount": 3
+    },
+    {
+      "id": 2697,
+      "code": "ningxia",
+      "name": "檸夏",
+      "aliases": [
+        "檸夏"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/ningxia",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:35+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2691,
+      "code": "mateas",
+      "name": "Mateas",
+      "aliases": [
+        "Mateas"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/mateas",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:36+08:00",
+      "expectedStoreCount": 13
+    },
+    {
+      "id": 2688,
+      "code": "chagebrand",
+      "name": "茶聚",
+      "aliases": [
+        "茶聚"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chagebrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:37+08:00",
+      "expectedStoreCount": 15
+    },
+    {
+      "id": 2679,
+      "code": "chaffee",
+      "name": "天仁CHAFFEE",
+      "aliases": [
+        "天仁CHAFFEE"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chaffee",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:40+08:00",
+      "expectedStoreCount": 15
+    },
+    {
+      "id": 2646,
+      "code": "araicha",
+      "name": "新井茶",
+      "aliases": [
+        "新井茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/araicha",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:42+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2640,
+      "code": "chazhan",
+      "name": "茶棧",
+      "aliases": [
+        "茶棧"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chazhan",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:43+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 2637,
+      "code": "gobasweet",
+      "name": "自然湉",
+      "aliases": [
+        "自然湉"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/gobasweet",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:43+08:00",
+      "expectedStoreCount": 8
+    },
+    {
+      "id": 2625,
+      "code": "chaforteatogo",
+      "name": "天仁釀茶所",
+      "aliases": [
+        "天仁釀茶所"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chaforteatogo",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:46+08:00",
+      "expectedStoreCount": 70
+    },
+    {
+      "id": 2622,
+      "code": "peaktea",
+      "name": "青山",
+      "aliases": [
+        "青山"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/peaktea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:50+08:00",
+      "expectedStoreCount": 88
+    },
+    {
+      "id": 2613,
+      "code": "mometeashop",
+      "name": "沫茗手作茶專賣",
+      "aliases": [
+        "沫茗手作茶專賣"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/mometeashop",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:47+08:00",
+      "expectedStoreCount": 4
+    },
+    {
+      "id": 2610,
+      "code": "bluedeer",
+      "name": "Bluedeer",
+      "aliases": [
+        "Bluedeer"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/bluedeer",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:49+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2598,
+      "code": "imhere",
+      "name": "茋加職人茶",
+      "aliases": [
+        "茋加職人茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/imhere",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:50+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2589,
+      "code": "jiuxiongteaalley",
+      "name": "玖熊茶巷",
+      "aliases": [
+        "玖熊茶巷"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/jiuxiongteaalley",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:51+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2577,
+      "code": "chappii",
+      "name": "開心茶事",
+      "aliases": [
+        "開心茶事"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chappii",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:52+08:00",
+      "expectedStoreCount": 7
+    },
+    {
+      "id": 2556,
+      "code": "fruitpigtea",
+      "name": "來杯果豬。茶研所 Fruitpig Tea Lab",
+      "aliases": [
+        "來杯果豬。茶研所 Fruitpig Tea Lab"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/fruitpigtea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:55+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2547,
+      "code": "golden",
+      "name": "蔗家店",
+      "aliases": [
+        "蔗家店"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/golden",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:55+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2541,
+      "code": "morehills",
+      "name": "沫丘小山遊茶記",
+      "aliases": [
+        "沫丘小山遊茶記"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/morehills",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:56+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2529,
+      "code": "moocha",
+      "name": "牧夏現萃茶",
+      "aliases": [
+        "牧夏現萃茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/moocha",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:57+08:00",
+      "expectedStoreCount": 3
+    },
+    {
+      "id": 2499,
+      "code": "wonderbar",
+      "name": "旺月捌",
+      "aliases": [
+        "旺月捌"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/wonderbar",
+      "status": "pending",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:59+08:00",
+      "expectedStoreCount": 0
+    },
+    {
+      "id": 2484,
+      "code": "kure8brand",
+      "name": "KURE8 Kombucha | 8酵茶",
+      "aliases": [
+        "KURE8 Kombucha | 8酵茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/kure8brand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:05:59+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 2481,
+      "code": "cellartea",
+      "name": "窖藏",
+      "aliases": [
+        "窖藏"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/cellartea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:00+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 2472,
+      "code": "somilk",
+      "name": "壽奶茶",
+      "aliases": [
+        "壽奶茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/somilk",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:02+08:00",
+      "expectedStoreCount": 7
+    },
+    {
+      "id": 2460,
+      "code": "penenbrand",
+      "name": "潘恩茶飲",
+      "aliases": [
+        "潘恩茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/penenbrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:05+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2445,
+      "code": "wuchadao",
+      "name": "舞茶道",
+      "aliases": [
+        "舞茶道"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/wuchadao",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:06+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 2442,
+      "code": "hongchamama",
+      "name": "紅茶媽媽",
+      "aliases": [
+        "紅茶媽媽"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/hongchamama",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:07+08:00",
+      "expectedStoreCount": 3
+    },
+    {
+      "id": 2436,
+      "code": "mutucha",
+      "name": "沐荼寺-臺灣精品茶飲專門",
+      "aliases": [
+        "沐荼寺-臺灣精品茶飲專門"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/mutucha",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:09+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 2433,
+      "code": "chanung",
+      "name": "水巷茶弄",
+      "aliases": [
+        "水巷茶弄"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chanung",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:10+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2406,
+      "code": "yuxincha",
+      "name": "御心茶",
+      "aliases": [
+        "御心茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/yuxincha",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:10+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2394,
+      "code": "zuotea",
+      "name": "小佐お茶作",
+      "aliases": [
+        "小佐お茶作"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/zuotea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:12+08:00",
+      "expectedStoreCount": 11
+    },
+    {
+      "id": 2391,
+      "code": "kungfutea",
+      "name": "功夫茶 KUNGFU TEA",
+      "aliases": [
+        "功夫茶 KUNGFU TEA"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/kungfutea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:17+08:00",
+      "expectedStoreCount": 31
+    },
+    {
+      "id": 2388,
+      "code": "neighbortea",
+      "name": "鄰居茶",
+      "aliases": [
+        "鄰居茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/neighbortea",
+      "status": "pending",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:17+08:00",
+      "expectedStoreCount": 0
+    },
+    {
+      "id": 2385,
+      "code": "shoulddo",
+      "name": "十渡",
+      "aliases": [
+        "十渡"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/shoulddo",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:17+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2379,
+      "code": "chillday",
+      "name": "鶖茶",
+      "aliases": [
+        "鶖茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chillday",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:18+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 2361,
+      "code": "sprinotea",
+      "name": "三分春色",
+      "aliases": [
+        "三分春色"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/sprinotea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:19+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 2343,
+      "code": "cacifano46kitchen",
+      "name": "卡西法NO.46廚房",
+      "aliases": [
+        "卡西法NO.46廚房"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/cacifano46kitchen",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:20+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2313,
+      "code": "threepercent",
+      "name": "3%THREE PERCENT 金萱茶手搖專賣店",
+      "aliases": [
+        "3%THREE PERCENT 金萱茶手搖專賣店"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/threepercent",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:22+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2307,
+      "code": "teachickencutlet",
+      "name": "錢糖潮",
+      "aliases": [
+        "錢糖潮"
+      ],
+      "tags": [
+        "飲料",
+        "早午餐",
+        "下午茶"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/teachickencutlet",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:22+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2302,
+      "code": "brunocoffee",
+      "name": "不二弄咖啡",
+      "aliases": [
+        "不二弄咖啡"
+      ],
+      "tags": [
+        "飲料",
+        "咖啡",
+        "早午餐",
+        "下午茶"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/brunocoffee",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:23+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2296,
+      "code": "dongfongcha",
+      "name": "冬風",
+      "aliases": [
+        "冬風"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/dongfongcha",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:24+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 2254,
+      "code": "roojibrand",
+      "name": "儒記",
+      "aliases": [
+        "儒記"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/roojibrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:25+08:00",
+      "expectedStoreCount": 3
+    },
+    {
+      "id": 2242,
+      "code": "springraintea",
+      "name": "春雨制茶",
+      "aliases": [
+        "春雨制茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/springraintea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:27+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2233,
+      "code": "morein",
+      "name": "沫飲",
+      "aliases": [
+        "沫飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/morein",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:28+08:00",
+      "expectedStoreCount": 9
+    },
+    {
+      "id": 2224,
+      "code": "chanaiyichuan",
+      "name": "茶奈伊川",
+      "aliases": [
+        "茶奈伊川"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chanaiyichuan",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:31+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 2221,
+      "code": "reaallchildhood",
+      "name": "回憶小時候&厚野雞排",
+      "aliases": [
+        "回憶小時候&厚野雞排"
+      ],
+      "tags": [
+        "飲料",
+        "下午茶"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/reaallchildhood",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:31+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2197,
+      "code": "teaplay",
+      "name": "茶不雷",
+      "aliases": [
+        "茶不雷"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/teaplay",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:32+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2191,
+      "code": "goodomen",
+      "name": "好芋造",
+      "aliases": [
+        "好芋造"
+      ],
+      "tags": [
+        "飲料",
+        "甜點"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/goodomen",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:33+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2182,
+      "code": "mitshop",
+      "name": "MIT米亞緹時尚創意飲品",
+      "aliases": [
+        "MIT米亞緹時尚創意飲品"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/mitshop",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:33+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2176,
+      "code": "bamincha",
+      "name": "八茗茶",
+      "aliases": [
+        "八茗茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/bamincha",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:33+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2161,
+      "code": "azhedrinks",
+      "name": "阿蔗甘蔗冰茶",
+      "aliases": [
+        "阿蔗甘蔗冰茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/azhedrinks",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:34+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2149,
+      "code": "odaeoolongteashop",
+      "name": "O’DAE oolong tea shop",
+      "aliases": [
+        "O’DAE oolong tea shop"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/odaeoolongteashop",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:34+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2141,
+      "code": "dootea",
+      "name": "兜喜茶",
+      "aliases": [
+        "兜喜茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/dootea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:34+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2138,
+      "code": "chosentea",
+      "name": "丘森茶室",
+      "aliases": [
+        "丘森茶室"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chosentea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:35+08:00",
+      "expectedStoreCount": 9
+    },
+    {
+      "id": 2117,
+      "code": "shandahe",
+      "name": "山大和茶舖",
+      "aliases": [
+        "山大和茶舖"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/shandahe",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:35+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2114,
+      "code": "europatea",
+      "name": "木衛二",
+      "aliases": [
+        "木衛二"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/europatea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:36+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2105,
+      "code": "60plusteashop",
+      "name": "60+ Tea Shop",
+      "aliases": [
+        "60+ Tea Shop"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/60plusteashop",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:37+08:00",
+      "expectedStoreCount": 5
+    },
+    {
+      "id": 2096,
+      "code": "forallcoffee",
+      "name": "For All Coffee",
+      "aliases": [
+        "For All Coffee"
+      ],
+      "tags": [
+        "咖啡"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/forallcoffee",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:39+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2081,
+      "code": "akinobrand",
+      "name": "秋の茗茶",
+      "aliases": [
+        "秋の茗茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/akinobrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:39+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 2075,
+      "code": "shianming",
+      "name": "閑茗樓",
+      "aliases": [
+        "閑茗樓"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/shianming",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:40+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 2069,
+      "code": "19teahouse",
+      "name": "拾汣茶屋",
+      "aliases": [
+        "拾汣茶屋"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/19teahouse",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:41+08:00",
+      "expectedStoreCount": 29
+    },
+    {
+      "id": 2063,
+      "code": "lanshan",
+      "name": "藍衫茶所",
+      "aliases": [
+        "藍衫茶所"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/lanshan",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:41+08:00",
+      "expectedStoreCount": 5
+    },
+    {
+      "id": 2024,
+      "code": "supermilktea",
+      "name": "顏太煮奶茶",
+      "aliases": [
+        "顏太煮奶茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/supermilktea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:45+08:00",
+      "expectedStoreCount": 12
+    },
+    {
+      "id": 2018,
+      "code": "mesonewiseman",
+      "name": "仙草達人",
+      "aliases": [
+        "仙草達人"
+      ],
+      "tags": [
+        "飲料",
+        "甜點"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/mesonewiseman",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:51+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1978,
+      "code": "plante",
+      "name": "植蘊 Planté",
+      "aliases": [
+        "植蘊 Planté"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/plante",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:51+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 1963,
+      "code": "afterus",
+      "name": "厚奶的我們",
+      "aliases": [
+        "厚奶的我們"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/afterus",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:53+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1894,
+      "code": "teaanddeer",
+      "name": "茶宇鹿",
+      "aliases": [
+        "茶宇鹿"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/teaanddeer",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:53+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1879,
+      "code": "dejeng",
+      "name": "得正",
+      "aliases": [
+        "得正"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/dejeng",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:02+08:00",
+      "expectedStoreCount": 203
+    },
+    {
+      "id": 1873,
+      "code": "muchun",
+      "name": "慕春職人茶飲",
+      "aliases": [
+        "慕春職人茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/muchun",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:56+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1855,
+      "code": "xiaolian",
+      "name": "孝廉的茶店",
+      "aliases": [
+        "孝廉的茶店"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/xiaolian",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:57+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1852,
+      "code": "wuwinbrand",
+      "name": "無飲",
+      "aliases": [
+        "無飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/wuwinbrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:58+08:00",
+      "expectedStoreCount": 21
+    },
+    {
+      "id": 1828,
+      "code": "holdin",
+      "name": "垕飲",
+      "aliases": [
+        "垕飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/holdin",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:06:58+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1822,
+      "code": "huangjue",
+      "name": "皇爵",
+      "aliases": [
+        "皇爵"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/huangjue",
+      "status": "listed",
+      "errors": [
+        {
+          "stage": "menu",
+          "storeId": 15634,
+          "error": "HTTPError"
+        }
+      ],
+      "checkedAt": "2026-10-20T14:06:59+08:00",
+      "expectedStoreCount": 3
+    },
+    {
+      "id": 1804,
+      "code": "btsbbrand",
+      "name": "半糖少冰",
+      "aliases": [
+        "半糖少冰"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/btsbbrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:01+08:00",
+      "expectedStoreCount": 3
+    },
+    {
+      "id": 1801,
+      "code": "comebuytea2",
+      "name": "COMEBUYTEA",
+      "aliases": [
+        "COMEBUYTEA"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/comebuytea2",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:02+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1792,
+      "code": "wulintea",
+      "name": "武林茶",
+      "aliases": [
+        "武林茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/wulintea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:03+08:00",
+      "expectedStoreCount": 5
+    },
+    {
+      "id": 1768,
+      "code": "threecups",
+      "name": "參杯",
+      "aliases": [
+        "參杯"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/threecups",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:06+08:00",
+      "expectedStoreCount": 6
+    },
+    {
+      "id": 1756,
+      "code": "yunzhi",
+      "name": "允治茶研所",
+      "aliases": [
+        "允治茶研所"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/yunzhi",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:07+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1747,
+      "code": "liketea",
+      "name": "老賴茶棧",
+      "aliases": [
+        "老賴茶棧"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/liketea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:08+08:00",
+      "expectedStoreCount": 3
+    },
+    {
+      "id": 1744,
+      "code": "shisantea",
+      "name": "蒔三",
+      "aliases": [
+        "蒔三"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/shisantea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:09+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1720,
+      "code": "nuttea",
+      "name": "NUTTEA堅果奶茶",
+      "aliases": [
+        "NUTTEA堅果奶茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/nuttea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:10+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1708,
+      "code": "murmur",
+      "name": "念念泡沫紅茶店",
+      "aliases": [
+        "念念泡沫紅茶店"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/murmur",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:10+08:00",
+      "expectedStoreCount": 5
+    },
+    {
+      "id": 1705,
+      "code": "chinlan",
+      "name": "青嵐茶飲",
+      "aliases": [
+        "青嵐茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chinlan",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:10+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 1702,
+      "code": "linsontea",
+      "name": "林三茶研所",
+      "aliases": [
+        "林三茶研所"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/linsontea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:12+08:00",
+      "expectedStoreCount": 27
+    },
+    {
+      "id": 1699,
+      "code": "perfectlife",
+      "name": "花好月圓茶飲專賣",
+      "aliases": [
+        "花好月圓茶飲專賣"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/perfectlife",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:12+08:00",
+      "expectedStoreCount": 4
+    },
+    {
+      "id": 1681,
+      "code": "taotaotea",
+      "name": "先喝道｜TAOTAOTEA",
+      "aliases": [
+        "先喝到",
+        "先喝道｜TAOTAOTEA"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/taotaotea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:17+08:00",
+      "expectedStoreCount": 76
+    },
+    {
+      "id": 1663,
+      "code": "rickfarm",
+      "name": "喵圈圈現烤甜甜圈",
+      "aliases": [
+        "喵圈圈現烤甜甜圈"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/rickfarm",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:25+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1660,
+      "code": "kingkongtea",
+      "name": "金剛咖啡茶飲",
+      "aliases": [
+        "金剛咖啡茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/kingkongtea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:26+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1648,
+      "code": "bubbletea",
+      "name": "壩波茶",
+      "aliases": [
+        "壩波茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/bubbletea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:27+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1645,
+      "code": "tainanese",
+      "name": "台南幫",
+      "aliases": [
+        "台南幫"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/tainanese",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:27+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1636,
+      "code": "milkthai",
+      "name": "艿泰多",
+      "aliases": [
+        "艿泰多"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/milkthai",
+      "status": "pending",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:28+08:00",
+      "expectedStoreCount": 0
+    },
+    {
+      "id": 1633,
+      "code": "idealtea",
+      "name": "禮想紅茶烏龍專販所",
+      "aliases": [
+        "禮想紅茶烏龍專販所"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/idealtea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:29+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1630,
+      "code": "dawowbrand",
+      "name": "大王茶迷",
+      "aliases": [
+        "大王茶迷"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/dawowbrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:29+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1624,
+      "code": "charmblue",
+      "name": "韻藍",
+      "aliases": [
+        "韻藍"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/charmblue",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:30+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1600,
+      "code": "eryaobrand",
+      "name": "二搖",
+      "aliases": [
+        "二搖"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/eryaobrand",
+      "status": "pending",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:31+08:00",
+      "expectedStoreCount": 0
+    },
+    {
+      "id": 1594,
+      "code": "happytea",
+      "name": "樂台羽茶",
+      "aliases": [
+        "樂台羽茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/happytea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:32+08:00",
+      "expectedStoreCount": 16
+    },
+    {
+      "id": 1591,
+      "code": "wincha",
+      "name": "穩飲茶府",
+      "aliases": [
+        "穩飲茶府"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/wincha",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:39+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 1585,
+      "code": "teasommelier",
+      "name": "侍茶匠",
+      "aliases": [
+        "侍茶匠"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/teasommelier",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:41+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 1564,
+      "code": "dufangzi",
+      "name": "杜芳子古味茶鋪",
+      "aliases": [
+        "杜芳子古味茶鋪"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/dufangzi",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:42+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1561,
+      "code": "topupbrand",
+      "name": "序序茶",
+      "aliases": [
+        "序序茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/topupbrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:43+08:00",
+      "expectedStoreCount": 3
+    },
+    {
+      "id": 1537,
+      "code": "sunriseinn",
+      "name": "日出客棧茶飲",
+      "aliases": [
+        "日出客棧茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/sunriseinn",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:44+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1503,
+      "code": "mayibrand",
+      "name": "滿溢",
+      "aliases": [
+        "滿溢"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/mayibrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:45+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 1494,
+      "code": "lohagandan",
+      "name": "甘丹",
+      "aliases": [
+        "甘丹"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/lohagandan",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:47+08:00",
+      "expectedStoreCount": 5
+    },
+    {
+      "id": 1488,
+      "code": "arcticwhite",
+      "name": "醇白",
+      "aliases": [
+        "醇白"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/arcticwhite",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:49+08:00",
+      "expectedStoreCount": 11
+    },
+    {
+      "id": 1467,
+      "code": "double18tea",
+      "name": "双十八木",
+      "aliases": [
+        "双十八木"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/double18tea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:49+08:00",
+      "expectedStoreCount": 15
+    },
+    {
+      "id": 1449,
+      "code": "heinetea",
+      "name": "喜力茶飲",
+      "aliases": [
+        "喜力茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/heinetea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:54+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1434,
+      "code": "daming",
+      "name": "大茗本位製茶堂",
+      "aliases": [
+        "大茗本位製茶堂"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/daming",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:58+08:00",
+      "expectedStoreCount": 84
+    },
+    {
+      "id": 1422,
+      "code": "azhenbrand",
+      "name": "阿鎮現榨果汁",
+      "aliases": [
+        "阿鎮現榨果汁"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/azhenbrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:56+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1392,
+      "code": "whitealley",
+      "name": "白巷子",
+      "aliases": [
+        "白巷子"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/whitealley",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:57+08:00",
+      "expectedStoreCount": 3
+    },
+    {
+      "id": 1389,
+      "code": "xiaochazhai",
+      "name": "小茶齋",
+      "aliases": [
+        "小茶齋"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/xiaochazhai",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:07:59+08:00",
+      "expectedStoreCount": 7
+    },
+    {
+      "id": 1383,
+      "code": "milubrand",
+      "name": "Milu義調柴飲料/早午餐店",
+      "aliases": [
+        "Milu義調柴飲料/早午餐店"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/milubrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:08:03+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1380,
+      "code": "matsubrand",
+      "name": "馬祖奶茶",
+      "aliases": [
+        "馬祖奶茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/matsubrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:08:04+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1377,
+      "code": "gotcha",
+      "name": "鮮饗茶",
+      "aliases": [
+        "鮮饗茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/gotcha",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:08:04+08:00",
+      "expectedStoreCount": 5
+    },
+    {
+      "id": 1323,
+      "code": "welldone",
+      "name": "微堂well done",
+      "aliases": [
+        "微堂well done"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/welldone",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:08:07+08:00",
+      "expectedStoreCount": 7
+    },
+    {
+      "id": 1260,
+      "code": "hwcroasters",
+      "name": "黑沃咖啡",
+      "aliases": [
+        "黑沃咖啡"
+      ],
+      "tags": [
+        "咖啡"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/hwcroasters",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:08:12+08:00",
+      "expectedStoreCount": 34
+    },
+    {
+      "id": 1254,
+      "code": "muchaxiang",
+      "name": "沐茶巷手作茶",
+      "aliases": [
+        "沐茶巷手作茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/muchaxiang",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:08:30+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1248,
+      "code": "metrocoffee",
+      "name": "Metrocoffee",
+      "aliases": [
+        "Metrocoffee"
+      ],
+      "tags": [
+        "咖啡"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/metrocoffee",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:08:31+08:00",
+      "expectedStoreCount": 4
+    },
+    {
+      "id": 1224,
+      "code": "lephare",
+      "name": "樂法",
+      "aliases": [
+        "樂法"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/lephare",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:08:32+08:00",
+      "expectedStoreCount": 23
+    },
+    {
+      "id": 1212,
+      "code": "wootea",
+      "name": "五桐號",
+      "aliases": [
+        "五同號",
+        "五桐號",
+        "梧桐號"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/wootea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:08:36+08:00",
+      "expectedStoreCount": 85
+    },
+    {
+      "id": 1209,
+      "code": "ciaobrand",
+      "name": "俏Ciao",
+      "aliases": [
+        "俏Ciao"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/ciaobrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:08:33+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 1203,
+      "code": "dailydae",
+      "name": "黛黛茶",
+      "aliases": [
+        "黛黛茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/dailydae",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:08:34+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 1183,
+      "code": "youinbrand",
+      "name": "有飲",
+      "aliases": [
+        "有飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/youinbrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:08:36+08:00",
+      "expectedStoreCount": 29
+    },
+    {
+      "id": 1171,
+      "code": "hushnoneedtosay",
+      "name": "默沫手作飲品",
+      "aliases": [
+        "默沫手作飲品"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/hushnoneedtosay",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:08:43+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1156,
+      "code": "mumuteatrip",
+      "name": "沐沐茶旅",
+      "aliases": [
+        "沐沐茶旅"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/mumuteatrip",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:08:43+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 1150,
+      "code": "woocha",
+      "name": "金茶伍",
+      "aliases": [
+        "金茶伍"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/woocha",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:08:45+08:00",
+      "expectedStoreCount": 29
+    },
+    {
+      "id": 1144,
+      "code": "hechalou",
+      "name": "鶴茶樓",
+      "aliases": [
+        "鶴茶樓"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/hechalou",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:08:51+08:00",
+      "expectedStoreCount": 70
+    },
+    {
+      "id": 1138,
+      "code": "applegoodtea",
+      "name": "春涼好茶 果茶專賣店",
+      "aliases": [
+        "春涼好茶 果茶專賣店"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/applegoodtea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:08:58+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1105,
+      "code": "citeabrand",
+      "name": "小澄市鮮果茶飲",
+      "aliases": [
+        "小澄市鮮果茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/citeabrand",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:08:59+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 1102,
+      "code": "uniquecap",
+      "name": "蓋不同",
+      "aliases": [
+        "蓋不同"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/uniquecap",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:01+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 1048,
+      "code": "unocha",
+      "name": "UNOCHA 烏弄原茶",
+      "aliases": [
+        "UNOCHA 烏弄原茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/unocha",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:03+08:00",
+      "expectedStoreCount": 24
+    },
+    {
+      "id": 1018,
+      "code": "haoduobi",
+      "name": "好多必",
+      "aliases": [
+        "好多必"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/haoduobi",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:11+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 1000,
+      "code": "hantangcafe",
+      "name": "瀚漟茶坊 HAN TANG Café",
+      "aliases": [
+        "瀚漟茶坊 HAN TANG Café"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/hantangcafe",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:12+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 997,
+      "code": "sweetyluer",
+      "name": "甘鹿兒",
+      "aliases": [
+        "甘鹿兒"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/sweetyluer",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:13+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 985,
+      "code": "ourlandourte",
+      "name": "茶詠春",
+      "aliases": [
+        "茶詠春"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/ourlandourte",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:13+08:00",
+      "expectedStoreCount": 11
+    },
+    {
+      "id": 970,
+      "code": "orangetea",
+      "name": "橘子工坊",
+      "aliases": [
+        "橘子工坊"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/orangetea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:14+08:00",
+      "expectedStoreCount": 4
+    },
+    {
+      "id": 940,
+      "code": "waitplump",
+      "name": "微胖手作茶飲",
+      "aliases": [
+        "微胖手作茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/waitplump",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:16+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 901,
+      "code": "sugarcanemam",
+      "name": "甘蔗の媽媽",
+      "aliases": [
+        "甘蔗の媽媽"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/sugarcanemam",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:17+08:00",
+      "expectedStoreCount": 26
+    },
+    {
+      "id": 892,
+      "code": "yjcoffee",
+      "name": "玉津咖啡",
+      "aliases": [
+        "玉津咖啡"
+      ],
+      "tags": [
+        "咖啡"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/yjcoffee",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:19+08:00",
+      "expectedStoreCount": 17
+    },
+    {
+      "id": 883,
+      "code": "dinggo",
+      "name": "叮哥茶飲",
+      "aliases": [
+        "叮哥茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/dinggo",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:20+08:00",
+      "expectedStoreCount": 4
+    },
+    {
+      "id": 832,
+      "code": "tshingtsui",
+      "name": "清水茶香",
+      "aliases": [
+        "清水茶香"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/tshingtsui",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:22+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 793,
+      "code": "niaoni",
+      "name": "鳥泥飲室",
+      "aliases": [
+        "鳥泥飲室"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/niaoni",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:23+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 772,
+      "code": "presotea",
+      "name": "鮮茶道",
+      "aliases": [
+        "鮮茶到",
+        "鮮茶道"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/presotea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:33+08:00",
+      "expectedStoreCount": 248
+    },
+    {
+      "id": 715,
+      "code": "farfarfarm",
+      "name": "發發",
+      "aliases": [
+        "發發"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/farfarfarm",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:27+08:00",
+      "expectedStoreCount": 8
+    },
+    {
+      "id": 668,
+      "code": "maocha",
+      "name": "錨起來喝",
+      "aliases": [
+        "錨起來喝"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/maocha",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:30+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 653,
+      "code": "chumumilk",
+      "name": "初牧乳飲製造所",
+      "aliases": [
+        "初牧乳飲製造所"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chumumilk",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:31+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 626,
+      "code": "johntea",
+      "name": "約翰紅茶公司",
+      "aliases": [
+        "約翰紅茶公司"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/johntea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:31+08:00",
+      "expectedStoreCount": 4
+    },
+    {
+      "id": 599,
+      "code": "houmeiguo",
+      "name": "兩良紅茶",
+      "aliases": [
+        "兩良紅茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/houmeiguo",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:32+08:00",
+      "expectedStoreCount": 5
+    },
+    {
+      "id": 584,
+      "code": "guijigroup",
+      "name": "龜記茗品",
+      "aliases": [
+        "龜記茗品"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/guijigroup",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:35+08:00",
+      "expectedStoreCount": 56
+    },
+    {
+      "id": 581,
+      "code": "kqltea",
+      "name": "康青龍",
+      "aliases": [
+        "康青龍"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/kqltea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:34+08:00",
+      "expectedStoreCount": 3
+    },
+    {
+      "id": 575,
+      "code": "whostea",
+      "name": "鬍子茶Whos Tea",
+      "aliases": [
+        "鬍子茶Whos Tea"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/whostea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:36+08:00",
+      "expectedStoreCount": 4
+    },
+    {
+      "id": 535,
+      "code": "wanpoteashop",
+      "name": "萬波島嶼紅茶Wanpo Tea Shop",
+      "aliases": [
+        "萬波島嶼紅茶Wanpo Tea Shop"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/wanpoteashop",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:40+08:00",
+      "expectedStoreCount": 66
+    },
+    {
+      "id": 525,
+      "code": "wanttodrink",
+      "name": "果五瑿Guowinyi",
+      "aliases": [
+        "果五瑿Guowinyi"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/wanttodrink",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:09:58+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 517,
+      "code": "chingshin",
+      "name": "清心福全",
+      "aliases": [
+        "清心福全"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/chingshin",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:10:00+08:00",
+      "expectedStoreCount": 23
+    },
+    {
+      "id": 503,
+      "code": "freedomwings",
+      "name": "霏等茶",
+      "aliases": [
+        "霏等茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/freedomwings",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:10:11+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 501,
+      "code": "zizaixuan",
+      "name": "自在軒",
+      "aliases": [
+        "自在軒"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/zizaixuan",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:10:11+08:00",
+      "expectedStoreCount": 28
+    },
+    {
+      "id": 489,
+      "code": "oklatea",
+      "name": "好了啦紅茶冰",
+      "aliases": [
+        "好了啦紅茶冰"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/oklatea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:10:11+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 487,
+      "code": "dayungs",
+      "name": "大苑子",
+      "aliases": [
+        "大苑子"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/dayungs",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:10:12+08:00",
+      "expectedStoreCount": 4
+    },
+    {
+      "id": 473,
+      "code": "xiangsg",
+      "name": "享時光果茶飲",
+      "aliases": [
+        "享時光果茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/xiangsg",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:10:14+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 469,
+      "code": "degugu",
+      "name": "果果迪",
+      "aliases": [
+        "果果迪"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/degugu",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:10:15+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 453,
+      "code": "jiuyang",
+      "name": "玖仰茶食文化",
+      "aliases": [
+        "玖仰茶食文化"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/jiuyang",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:10:16+08:00",
+      "expectedStoreCount": 4
+    },
+    {
+      "id": 449,
+      "code": "mmjiushi",
+      "name": "茗茗究市",
+      "aliases": [
+        "茗茗究市"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/mmjiushi",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:10:18+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 421,
+      "code": "teashop",
+      "name": "喫茶小舖",
+      "aliases": [
+        "喫茶小舖"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/teashop",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:10:18+08:00",
+      "expectedStoreCount": 5
+    },
+    {
+      "id": 397,
+      "code": "50lantea",
+      "name": "50嵐",
+      "aliases": [
+        "50嵐"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/50lantea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:16:46+08:00",
+      "expectedStoreCount": 284
+    },
+    {
+      "id": 395,
+      "code": "teasoriginal",
+      "name": "TEA’S 原味",
+      "aliases": [
+        "TEA’S 原味"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/teasoriginal",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:10:21+08:00",
+      "expectedStoreCount": 6
+    },
+    {
+      "id": 375,
+      "code": "movefortea",
+      "name": "沐慕茶飲",
+      "aliases": [
+        "沐慕茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/movefortea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:10:25+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 349,
+      "code": "mrwish",
+      "name": "Mr.WISH 希望好茶",
+      "aliases": [
+        "Mr.WISH 希望好茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/mrwish",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:10:28+08:00",
+      "expectedStoreCount": 84
+    },
+    {
+      "id": 343,
+      "code": "teafect1",
+      "name": "台茶1号",
+      "aliases": [
+        "台茶1号"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/teafect1",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:10:26+08:00",
+      "expectedStoreCount": 5
+    },
+    {
+      "id": 329,
+      "code": "tptea2005",
+      "name": "茶湯會",
+      "aliases": [
+        "茶湯會"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/tptea2005",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:10:32+08:00",
+      "expectedStoreCount": 101
+    },
+    {
+      "id": 321,
+      "code": "itsotea",
+      "name": "一手私藏世界紅茶",
+      "aliases": [
+        "一手私藏世界紅茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/itsotea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:11:16+08:00",
+      "expectedStoreCount": 32
+    },
+    {
+      "id": 317,
+      "code": "gaihoitea",
+      "name": "蓋厚茶",
+      "aliases": [
+        "蓋厚茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/gaihoitea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:11:24+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 293,
+      "code": "hugdayday",
+      "name": "Hugdayday 好爹爹烈奶茶",
+      "aliases": [
+        "Hugdayday 好爹爹烈奶茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/hugdayday",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:11:25+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 187,
+      "code": "shangyulin",
+      "name": "上宇林",
+      "aliases": [
+        "上宇林"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/shangyulin",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:11:26+08:00",
+      "expectedStoreCount": 8
+    },
+    {
+      "id": 145,
+      "code": "hisugar",
+      "name": "HiSugar：嗨糖",
+      "aliases": [
+        "HiSugar：嗨糖"
+      ],
+      "tags": [
+        "飲料",
+        "甜點"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/hisugar",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:11:30+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 138,
+      "code": "openyourdoor",
+      "name": "出櫃茶飲",
+      "aliases": [
+        "出櫃茶飲"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/openyourdoor",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:11:30+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 126,
+      "code": "timecoffee",
+      "name": "太卡啡",
+      "aliases": [
+        "太卡啡"
+      ],
+      "tags": [
+        "咖啡"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/timecoffee",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:11:30+08:00",
+      "expectedStoreCount": 2
+    },
+    {
+      "id": 103,
+      "code": "shihhaocha",
+      "name": "識好茶",
+      "aliases": [
+        "識好茶"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/shihhaocha",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:11:31+08:00",
+      "expectedStoreCount": 17
+    },
+    {
+      "id": 95,
+      "code": "teatop",
+      "name": "TEATOP第一味",
+      "aliases": [
+        "TEATOP第一味"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/teatop",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:11:38+08:00",
+      "expectedStoreCount": 175
+    },
+    {
+      "id": 93,
+      "code": "comebuytea",
+      "name": "COMEBUY",
+      "aliases": [
+        "COMEBUY",
+        "combuy"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/comebuytea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:11:42+08:00",
+      "expectedStoreCount": 182
+    },
+    {
+      "id": 83,
+      "code": "bobatea",
+      "name": "丸作食茶ONEZO",
+      "aliases": [
+        "丸作食茶ONEZO"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/bobatea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:11:39+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 79,
+      "code": "truewintea",
+      "name": "初韻",
+      "aliases": [
+        "初韻"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/truewintea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:11:40+08:00",
+      "expectedStoreCount": 6
+    },
+    {
+      "id": 59,
+      "code": "cocotea",
+      "name": "CoCo都可",
+      "aliases": [
+        "CoCo都可"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/cocotea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:11:55+08:00",
+      "expectedStoreCount": 351
+    },
+    {
+      "id": 33,
+      "code": "louisacoffee",
+      "name": "路易莎咖啡",
+      "aliases": [
+        "路易沙",
+        "路易莎咖啡",
+        "露易莎"
+      ],
+      "tags": [
+        "咖啡"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/louisacoffee",
+      "status": "listed",
+      "errors": [
+        {
+          "stage": "menu",
+          "storeId": 30934,
+          "error": "HTTPError"
+        }
+      ],
+      "checkedAt": "2026-10-20T14:13:19+08:00",
+      "expectedStoreCount": 495
+    },
+    {
+      "id": 17,
+      "code": "monmonday",
+      "name": "漫漫點",
+      "aliases": [
+        "漫漫點"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/monmonday",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:13:03+08:00",
+      "expectedStoreCount": 1
+    },
+    {
+      "id": 6,
+      "code": "missingtea",
+      "name": "思茶 手作飲品",
+      "aliases": [
+        "思茶 手作飲品"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/missingtea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:13:04+08:00",
+      "expectedStoreCount": 20
+    },
+    {
+      "id": 2,
+      "code": "milkshoptea",
+      "name": "迷客夏",
+      "aliases": [
+        "迷克夏",
+        "迷客夏"
+      ],
+      "tags": [
+        "飲料"
+      ],
+      "sourceUrl": "https://order.nidin.shop/brand/milkshoptea",
+      "status": "listed",
+      "errors": [],
+      "checkedAt": "2026-10-20T14:13:26+08:00",
+      "expectedStoreCount": 316
+    }
+  ]
+}
