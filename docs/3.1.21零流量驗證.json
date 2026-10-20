@@ -1,7 +1,7 @@
 {
-  "checkedAt": "2026-10-20T20:35:24+08:00",
-  "sourceCommit": "a837409b768fd4706e946e8af0d4e0c07e126174",
-  "workerVersionId": "9455e8a7-995f-4957-9419-6beb13532690",
+  "checkedAt": "2026-10-20T20:38:51+08:00",
+  "sourceCommit": "c4f361c29113261a439381656fade8eccd159a13",
+  "workerVersionId": "f6db0392-7afe-41ed-8aa4-baa218e5ce64",
   "normalTrafficPercent": 0,
   "requests": [
     {
@@ -9,49 +9,91 @@
       "status": 200,
       "resultCount": 6,
       "eligibleCount": 9180,
-      "seconds": 2.03
+      "seconds": 1.77
     },
     {
       "path": "/api/recommend",
       "status": 200,
       "resultCount": 6,
       "eligibleCount": 9180,
-      "seconds": 7.31
+      "seconds": 6.87
     },
     {
       "path": "/api/recommend",
       "status": 200,
       "resultCount": 6,
       "eligibleCount": 1253,
-      "seconds": 1.21
+      "seconds": 1.24
     },
     {
       "path": "/api/recommend",
       "status": 200,
       "resultCount": 6,
       "eligibleCount": 82,
-      "seconds": 1.29
+      "seconds": 1.63
     },
     {
       "path": "/api/recommend",
       "status": 200,
       "resultCount": 0,
       "eligibleCount": 0,
-      "seconds": 7.61
+      "seconds": 6.94
     },
     {
       "path": "/api/chat/recommend",
       "status": 200,
       "resultCount": 0,
       "eligibleCount": 0,
-      "seconds": 7.0
+      "seconds": 7.33
     },
     {
       "path": "/api/recommend",
       "status": 200,
       "resultCount": 6,
       "eligibleCount": 82,
-      "seconds": 2.37
+      "seconds": 1.72
+    },
+    {
+      "path": "/api/recommend",
+      "status": 200,
+      "resultCount": 0,
+      "eligibleCount": 0,
+      "seconds": 0.64
+    },
+    {
+      "path": "/api/preference-refresh",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 82,
+      "seconds": 1.26
+    },
+    {
+      "path": "/api/preference-refresh",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 82,
+      "seconds": 1.15
+    },
+    {
+      "path": "/api/preference-refresh",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 81,
+      "seconds": 1.53
+    },
+    {
+      "path": "/api/preference-refresh",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 82,
+      "seconds": 1.18
+    },
+    {
+      "path": "/api/recommend",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 79,
+      "seconds": 1.11
     },
     {
       "path": "/api/recommend",
@@ -63,58 +105,16 @@
     {
       "path": "/api/preference-refresh",
       "status": 200,
-      "resultCount": 6,
-      "eligibleCount": 82,
-      "seconds": 1.88
-    },
-    {
-      "path": "/api/preference-refresh",
-      "status": 200,
-      "resultCount": 6,
-      "eligibleCount": 82,
-      "seconds": 0.99
-    },
-    {
-      "path": "/api/preference-refresh",
-      "status": 200,
-      "resultCount": 6,
-      "eligibleCount": 81,
-      "seconds": 1.22
-    },
-    {
-      "path": "/api/preference-refresh",
-      "status": 200,
-      "resultCount": 6,
-      "eligibleCount": 82,
-      "seconds": 1.67
-    },
-    {
-      "path": "/api/recommend",
-      "status": 200,
-      "resultCount": 6,
-      "eligibleCount": 79,
-      "seconds": 1.39
-    },
-    {
-      "path": "/api/recommend",
-      "status": 200,
       "resultCount": 0,
       "eligibleCount": 0,
-      "seconds": 0.67
-    },
-    {
-      "path": "/api/preference-refresh",
-      "status": 200,
-      "resultCount": 0,
-      "eligibleCount": 0,
-      "seconds": 0.67
+      "seconds": 0.64
     },
     {
       "path": "/api/preference-refresh",
       "status": 200,
       "resultCount": 6,
       "eligibleCount": 79,
-      "seconds": 0.88
+      "seconds": 0.81
     }
   ],
   "checks": {
