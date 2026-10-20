@@ -27,7 +27,7 @@ def main():
     # Trusted historical validation sample is used in memory only, never exported.
     job={'userCode':sample['user_code'],'at':sample['at'],
          'history':[{'drinkId':before.products[e['product']]['id'],'action':e['action'],'occurredAt':e['occurred_at']} for e in sample['history']],
-         'candidateIds':sorted(before.lookup)[:128],'topK':100}
+         'candidateIds':sorted(set(before.lookup)&set(after.lookup))[:128],'topK':100}
     a=before.rank({**job,'catalogVersion':before.catalog_version})
     b=after.rank({**job,'catalogVersion':after.catalog_version})
     assert a['scores']==b['scores'],'Old-product inference changed'

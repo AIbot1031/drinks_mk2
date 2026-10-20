@@ -1,12 +1,12 @@
 {
   "sourceCheckedAt": "2026-10-20T14:04:11+08:00",
   "baseRowsPreserved": 5781,
-  "importedVariants": 3151,
-  "importedProducts": 2587,
+  "importedVariants": 2957,
+  "importedProducts": 2426,
   "brandCount": 41,
   "recommendableBrandCount": 41,
-  "totalProducts": 3907,
-  "overlappingOriginalProducts": 1317,
+  "totalProducts": 3814,
+  "overlappingOriginalProducts": 1249,
   "brands": {
     "紅茶洋行": {
       "sourceCode": "bigbigblacktea",
@@ -36,7 +36,7 @@
       "sourceCode": "chatime",
       "sourceUrl": "https://order.nidin.shop/brand/chatime",
       "status": "listed",
-      "importedVariants": 64,
+      "importedVariants": 54,
       "pendingItems": 10,
       "menuReadFailures": 0
     },
@@ -44,7 +44,7 @@
       "sourceCode": "chanung",
       "sourceUrl": "https://order.nidin.shop/brand/chanung",
       "status": "listed",
-      "importedVariants": 63,
+      "importedVariants": 61,
       "pendingItems": 7,
       "menuReadFailures": 0
     },
@@ -52,8 +52,8 @@
       "sourceCode": "19teahouse",
       "sourceUrl": "https://order.nidin.shop/brand/19teahouse",
       "status": "listed",
-      "importedVariants": 131,
-      "pendingItems": 14,
+      "importedVariants": 112,
+      "pendingItems": 10,
       "menuReadFailures": 0
     },
     "藍衫茶所": {
@@ -68,7 +68,7 @@
       "sourceCode": "dejeng",
       "sourceUrl": "https://order.nidin.shop/brand/dejeng",
       "status": "listed",
-      "importedVariants": 48,
+      "importedVariants": 43,
       "pendingItems": 10,
       "menuReadFailures": 0
     },
@@ -76,7 +76,7 @@
       "sourceCode": "liketea",
       "sourceUrl": "https://order.nidin.shop/brand/liketea",
       "status": "listed",
-      "importedVariants": 78,
+      "importedVariants": 74,
       "pendingItems": 10,
       "menuReadFailures": 0
     },
@@ -92,7 +92,7 @@
       "sourceCode": "whitealley",
       "sourceUrl": "https://order.nidin.shop/brand/whitealley",
       "status": "listed",
-      "importedVariants": 183,
+      "importedVariants": 168,
       "pendingItems": 15,
       "menuReadFailures": 0
     },
@@ -108,7 +108,7 @@
       "sourceCode": "hechalou",
       "sourceUrl": "https://order.nidin.shop/brand/hechalou",
       "status": "listed",
-      "importedVariants": 38,
+      "importedVariants": 37,
       "pendingItems": 1,
       "menuReadFailures": 0
     },
@@ -116,7 +116,7 @@
       "sourceCode": "unocha",
       "sourceUrl": "https://order.nidin.shop/brand/unocha",
       "status": "listed",
-      "importedVariants": 44,
+      "importedVariants": 42,
       "pendingItems": 9,
       "menuReadFailures": 0
     },
@@ -124,7 +124,7 @@
       "sourceCode": "dinggo",
       "sourceUrl": "https://order.nidin.shop/brand/dinggo",
       "status": "listed",
-      "importedVariants": 161,
+      "importedVariants": 159,
       "pendingItems": 20,
       "menuReadFailures": 0
     },
@@ -148,7 +148,7 @@
       "sourceCode": "chingshin",
       "sourceUrl": "https://order.nidin.shop/brand/chingshin",
       "status": "listed",
-      "importedVariants": 136,
+      "importedVariants": 134,
       "pendingItems": 61,
       "menuReadFailures": 0
     },
@@ -156,7 +156,7 @@
       "sourceCode": "oklatea",
       "sourceUrl": "https://order.nidin.shop/brand/oklatea",
       "status": "listed",
-      "importedVariants": 75,
+      "importedVariants": 31,
       "pendingItems": 9,
       "menuReadFailures": 0
     },
@@ -164,7 +164,7 @@
       "sourceCode": "dayungs",
       "sourceUrl": "https://order.nidin.shop/brand/dayungs",
       "status": "listed",
-      "importedVariants": 153,
+      "importedVariants": 110,
       "pendingItems": 58,
       "menuReadFailures": 0
     },
@@ -172,7 +172,7 @@
       "sourceCode": "50lantea",
       "sourceUrl": "https://order.nidin.shop/brand/50lantea",
       "status": "listed",
-      "importedVariants": 247,
+      "importedVariants": 245,
       "pendingItems": 63,
       "menuReadFailures": 0
     },
@@ -180,7 +180,7 @@
       "sourceCode": "teasoriginal",
       "sourceUrl": "https://order.nidin.shop/brand/teasoriginal",
       "status": "listed",
-      "importedVariants": 216,
+      "importedVariants": 210,
       "pendingItems": 30,
       "menuReadFailures": 0
     },
@@ -196,7 +196,7 @@
       "sourceCode": "teafect1",
       "sourceUrl": "https://order.nidin.shop/brand/teafect1",
       "status": "listed",
-      "importedVariants": 265,
+      "importedVariants": 250,
       "pendingItems": 83,
       "menuReadFailures": 0
     },
@@ -220,7 +220,7 @@
       "sourceCode": "shangyulin",
       "sourceUrl": "https://order.nidin.shop/brand/shangyulin",
       "status": "listed",
-      "importedVariants": 146,
+      "importedVariants": 143,
       "pendingItems": 4,
       "menuReadFailures": 0
     },
@@ -236,7 +236,7 @@
       "sourceCode": "cocotea",
       "sourceUrl": "https://order.nidin.shop/brand/cocotea",
       "status": "listed",
-      "importedVariants": 84,
+      "importedVariants": 68,
       "pendingItems": 11,
       "menuReadFailures": 0
     },
@@ -244,16 +244,19 @@
       "sourceCode": "milkshoptea",
       "sourceUrl": "https://order.nidin.shop/brand/milkshoptea",
       "status": "listed",
-      "importedVariants": 194,
+      "importedVariants": 191,
       "pendingItems": 17,
       "menuReadFailures": 0
     }
   },
   "excludedOccurrences": {
     "brand_outside_original_catalog": 363,
-    "classification_pending": 24370,
-    "non_beverage": 13676,
-    "bundle_or_nonstandard": 4563
+    "classification_pending": 24366,
+    "branch_unavailable_or_unverified": 21445,
+    "non_beverage_or_bundle": 2714,
+    "non_beverage": 11363,
+    "information_not_orderable": 482,
+    "bundle_or_nonstandard": 4212
   },
   "classificationPending": [
     {
@@ -764,34 +767,6 @@
       "brand": "拾汣茶屋",
       "name": "梔茉馥綠",
       "category": "經典茗品",
-      "status": "飲料分類待確認",
-      "sourceUrl": "https://order.nidin.shop/menu/28579"
-    },
-    {
-      "brand": "拾汣茶屋",
-      "name": "一杯袋",
-      "category": "其他",
-      "status": "飲料分類待確認",
-      "sourceUrl": "https://order.nidin.shop/menu/28579"
-    },
-    {
-      "brand": "拾汣茶屋",
-      "name": "二杯袋",
-      "category": "其他",
-      "status": "飲料分類待確認",
-      "sourceUrl": "https://order.nidin.shop/menu/28579"
-    },
-    {
-      "brand": "拾汣茶屋",
-      "name": "四杯袋",
-      "category": "其他",
-      "status": "飲料分類待確認",
-      "sourceUrl": "https://order.nidin.shop/menu/28579"
-    },
-    {
-      "brand": "拾汣茶屋",
-      "name": "六杯袋",
-      "category": "其他",
       "status": "飲料分類待確認",
       "sourceUrl": "https://order.nidin.shop/menu/28579"
     },

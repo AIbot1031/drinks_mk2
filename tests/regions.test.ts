@@ -31,7 +31,9 @@ test('region is validated against collected city/district pairs; missing and fab
  assert.throws(()=>assertStoreRegion({...stores[0],address:'其他縣其他區其他路100號'},scope));
 });
 test('region filters candidates before all ranks and reranking, while general recommendations ignore it',()=>{
- const input=validateInput({query:'',filters:{maxPrice:70}}),local={city:'臺北市',district:'中正區',brands:new Set(['50嵐'])};
+ const input=validateInput({query:''}),local={city:'雲林縣',district:'虎尾鎮',brands:new Set(['50嵐'])};
+ // Unpriced local items cannot inherit an unrelated numeric price sheet.
+ assert.equal(engine.candidatePool({...validateInput({query:'',filters:{maxPrice:70}}),region:{city:'臺北市',district:'中正區',brands:new Set(['50嵐'])}}).length,0);
  const pool=engine.candidatePool({...input,region:local});assert.ok(pool.length);assert.ok(pool.every(d=>d.brand==='50嵐'));
  const foreign=catalog.drinks.find(d=>d.brand!=='50嵐')!;
  const response=engine.recommendWithTrace({...input,region:local},{scores:[{id:foreign.id,score:999},{id:pool[0].id,score:1}],modelVersion:'test',durationMs:0},undefined,true).response;

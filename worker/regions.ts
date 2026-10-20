@@ -33,7 +33,17 @@ export function originalRegionEligible(d:Drink,scope:RegionScope){
  if(cities.size)return cities.has(city);
  return /全台|全國|台灣一般門市|台灣門市|官網台灣菜單|官網台灣飲品/.test(text);
 }
-export const regionEligible=(d:Drink,region?:RegionScope)=>!region||(region.brands.has(d.brand)&&(isMenuDrink(d)
+// Region labels and a brand's local presence alone cannot establish that a
+// drink appears on a local menu. Intersect every version with menu evidence.
+const branchMenuCache=new Map<string,Set<string>>();
+function localMenuNames(region:RegionScope){
+ const key=region.city+'|'+region.district;
+ let names=branchMenuCache.get(key);
+ if(!names){names=new Set(directory.stores.filter(s=>s.city===region.city&&(!region.district||s.district===region.district)&&s.menuScope==='branch').flatMap(s=>(s.menuNames??[]).map(name=>s.brand+'|'+normal(name).toLowerCase())));branchMenuCache.set(key,names);}
+ return names;
+}
+export const regionEligible=(d:Drink,region?:RegionScope)=>!region||(region.brands.has(d.brand)
+ &&localMenuNames(region).has(d.brand+'|'+normal(d.name).toLowerCase())&&(isMenuDrink(d)
  ?!!d.regionKeys?.some(key=>key===region.city+'|'+region.district||!region.district&&key.startsWith(region.city+'|'))
  :originalRegionEligible(d,region)));
 export function regionalDrink(d:Drink,scope?:RegionScope):Drink{

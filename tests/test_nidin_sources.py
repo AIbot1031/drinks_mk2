@@ -15,11 +15,15 @@ class NidinSourceTests(unittest.TestCase):
         self.assertIsNone(region('不存在縣虎尾鎮100號'))
 
     def test_hidden_disabled_and_addon_items_cannot_confirm_menu_drinks(self):
-        menu = {'categories': [{'is_enable':True,'is_visible':True,'product_list':[1,2]},
-                               {'is_enable':True,'is_visible':False,'product_list':[3]}],
-                'products':[{'product_id':i,'name':name,'is_enable':enabled,'is_visible':True}
+        menu = {'categories': [{'product_id':10,'name':'茶飲','is_enable':True,'is_visible':True,'product_list':[1,2]},
+                               {'product_id':20,'name':'茶飲','is_enable':True,'is_visible':False,'product_list':[3]}],
+                'products':[{'product_id':i,'name':name,'type':1,'is_enable':enabled,'is_visible':True}
                             for i,name,enabled in [(1,'奶茶',True),(2,'停售茶',False),(3,'隱藏茶',True),(4,'珍珠加料',True)]]}
+        self.assertEqual(BUILD['listed_names'](menu), set())
+        menu['availability']={'status':'verified','excludedCategoryIds':[],'excludedProductIdsByCategory':{}}
         self.assertEqual(BUILD['listed_names'](menu), {'奶茶'})
+        menu['availability']['excludedProductIdsByCategory']={'10':['1']}
+        self.assertEqual(BUILD['listed_names'](menu), set())
 
     def test_brand_mapping_keeps_different_comebuy_brands_separate(self):
         aliases = BUILD['ALIASES']

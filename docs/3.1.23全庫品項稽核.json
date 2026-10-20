@@ -1,0 +1,1385 @@
+{
+  "checkedAt": "2026-10-20T21:49:36+08:00",
+  "scope": "逐筆檢查原本41品牌全目錄的品名與分類；不把優惠分類中的真正飲料一併刪除。",
+  "beforeRows": 9282,
+  "afterRows": 9088,
+  "originalRowsScannedAndPreserved": 5781,
+  "brandCount": 41,
+  "scannedBySource": {
+    "original": 5781,
+    "nidin": 3151,
+    "official-menu": 350
+  },
+  "excludedRows": 194,
+  "excludedByReason": {
+    "no_remaining_verified_branch_availability": 183,
+    "information_not_orderable": 8,
+    "non_beverage_or_bundle": 3
+  },
+  "remainingNonBeverageMatches": [],
+  "excludedItems": [
+    {
+      "id": "n_defd1dccad7367d2f91188ce",
+      "brand": "50嵐",
+      "name": "大●可可芭蕾",
+      "category": "找奶茶",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_ef730522242a1cf8fbc7858b",
+      "brand": "50嵐",
+      "name": "大●可可芭蕾拿鐵",
+      "category": "紅茶拿鐵",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_de33a7b55887c328ff363a4a",
+      "brand": "CoCo都可",
+      "name": "28茉粉角輕乳茶",
+      "category": "熱門新品",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_fc1b2a29e835a3cef46b46ad",
+      "brand": "CoCo都可",
+      "name": "28茉輕乳茶",
+      "category": "熱門新品",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_23bb7da0b19139a80d1c8310",
+      "brand": "CoCo都可",
+      "name": "3Q奶茶",
+      "category": "就愛喝奶茶",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_cfb1e17fa0c87b2365eed388",
+      "brand": "CoCo都可",
+      "name": "3Q鮮奶茶",
+      "category": "濃純鮮奶",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_a063a59fbce1582288acf917",
+      "brand": "CoCo都可",
+      "name": "QQ奶茶",
+      "category": "就愛喝奶茶",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_d03b429729af2d0a63eb957f",
+      "brand": "CoCo都可",
+      "name": "QQ鮮奶茶",
+      "category": "濃純鮮奶",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_e47d5425b0c3d71f0d97f722",
+      "brand": "CoCo都可",
+      "name": "小湯圓奶茶",
+      "category": "熱門新品",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_f7b9ff1ceb117548d82ea13e",
+      "brand": "CoCo都可",
+      "name": "拿鐵咖啡(16oz)",
+      "category": "醇品咖啡香",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_6fc6283d1b3282bd2fa83aa0",
+      "brand": "CoCo都可",
+      "name": "濃芋冰沙",
+      "category": "熱門新品",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_df143b2cfedfc602ca82caee",
+      "brand": "CoCo都可",
+      "name": "美式咖啡(16oz)",
+      "category": "醇品咖啡香",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_a209ce9cc3a9828acd956599",
+      "brand": "CoCo都可",
+      "name": "芋頭QQ牛奶",
+      "category": "濃純鮮奶",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_1ea4a44bd11eb1bc5ee46401",
+      "brand": "CoCo都可",
+      "name": "芋頭牛乳",
+      "category": "濃純鮮奶",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_4708f0996d695793a15cbc4e",
+      "brand": "CoCo都可",
+      "name": "芋頭西谷米牛乳",
+      "category": "濃純鮮奶",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_01c5772717f69060f9ad19ca",
+      "brand": "CoCo都可",
+      "name": "莓好雙果茶",
+      "category": "莓果系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_11fd87d40bf5dbaf8b7f53d2",
+      "brand": "CoCo都可",
+      "name": "雙倍濃芋奶綠",
+      "category": "熱門新品",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_2ddddf4b4fdc48437626877e",
+      "brand": "CoCo都可",
+      "name": "飲品產地資訊一覽",
+      "category": "原料產地資訊 (請勿下單 )",
+      "reason": "information_not_orderable"
+    },
+    {
+      "id": "n_d92769c1c91053b3463d80c5",
+      "brand": "Tea’s原味",
+      "name": "楊枝甘露",
+      "category": "冰沙系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_7262577ab05940d8a30ac0a7",
+      "brand": "Tea’s原味",
+      "name": "芝士奶蓋綠",
+      "category": "鮮奶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_4759f0bdda4b96605ec0b438",
+      "brand": "Tea’s原味",
+      "name": "芝士奶蓋茶",
+      "category": "鮮奶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_69e3f7324620b4c116612ce1",
+      "brand": "Tea’s原味",
+      "name": "芝士芒果",
+      "category": "冰沙系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_34a8e4548b8aee0240076b91",
+      "brand": "Tea’s原味",
+      "name": "芝士草莓",
+      "category": "冰沙系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_7715f622a2ff5dd221f9652f",
+      "brand": "Tea’s原味",
+      "name": "西瓜汁",
+      "category": "鮮榨系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_ac759fd51bda7f0faf962caf",
+      "brand": "上宇林",
+      "name": "精鐉雨林",
+      "category": "高山冷泡茶(限量供應)",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_99a2f151b30c4f5dd98165ed",
+      "brand": "上宇林",
+      "name": "紅豆鮮奶茶",
+      "category": "純天然鮮乳系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_b069ea7d0e67e28070806c69",
+      "brand": "上宇林",
+      "name": "紅豆麻吉牛奶",
+      "category": "口感鮮茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_9ae6df1b990c23f733519ff5",
+      "brand": "叮哥茶飲",
+      "name": "柳橙寒天",
+      "category": "鮮果茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_0f353e38cc9c77ceb47125ca",
+      "brand": "叮哥茶飲",
+      "name": "柳橙檸檬",
+      "category": "鮮果茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_4fa7764bfcf0c05c573f2913",
+      "brand": "台茶一號",
+      "name": "拿鐵焙焙 L",
+      "category": "醇濃拿鐵",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_addfadf82f38a1c6b7625a42",
+      "brand": "台茶一號",
+      "name": "拿鐵焙焙 M",
+      "category": "醇濃拿鐵",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_97340244082db1062b6684cd",
+      "brand": "台茶一號",
+      "name": "暖暖芋Q(芋圓+薑母茶)",
+      "category": "冬季限定",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_d03c0df57fb3fb138d9f28ed",
+      "brand": "台茶一號",
+      "name": "芋頭焙焙 L",
+      "category": "奶香特調",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_7ec8fdac92f81aa383885603",
+      "brand": "台茶一號",
+      "name": "芋頭焙焙 M",
+      "category": "奶香特調",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_b92818e247b64fdc181a8afb",
+      "brand": "台茶一號",
+      "name": "薑母拿鐵",
+      "category": "慢熬老薑(熱飲限定)",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_7c18da400f32905e33044b29",
+      "brand": "台茶一號",
+      "name": "薑母茶",
+      "category": "慢熬老薑(熱飲限定)",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_e336977ce6d7fdfb3a3704a0",
+      "brand": "台茶一號",
+      "name": "薑汁奶茶",
+      "category": "慢熬老薑(熱飲限定)",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_ec69d49f4f12c70b8e02bb3e",
+      "brand": "台茶一號",
+      "name": "靜岡濃抹茶拿鐵",
+      "category": "醇濃拿鐵",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_dcfd4f8f1dea1334df396cd1",
+      "brand": "台茶一號",
+      "name": "靜岡濃抹茶拿鐵 L",
+      "category": "醇濃拿鐵",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_1630ced9524f582f8983425f",
+      "brand": "台茶一號",
+      "name": "靜岡濃抹茶拿鐵 M",
+      "category": "醇濃拿鐵",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_d37f34bd8859693a73d05105",
+      "brand": "台茶一號",
+      "name": "黑森焙焙 L",
+      "category": "奶香特調",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_584abfbde727513ce1bac9f3",
+      "brand": "台茶一號",
+      "name": "黑森焙焙 M",
+      "category": "奶香特調",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_4b50cf650be2920c4e73ee99",
+      "brand": "台茶一號",
+      "name": "黑森焙焙拿鐵 L",
+      "category": "醇濃拿鐵",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_02a2da1fae05373dd058e0f8",
+      "brand": "台茶一號",
+      "name": "黑森焙焙拿鐵 M",
+      "category": "醇濃拿鐵",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_a6e2da897c79c00f7592b42a",
+      "brand": "大苑子",
+      "name": "仲夏鮮奶酪(杯)",
+      "category": "鮮奶酪\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_eaaf088003485afa510ed8a8",
+      "brand": "大苑子",
+      "name": "厚厚芋泥鮮奶酪(杯)",
+      "category": "鮮奶酪\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_b8f0ede18afca6d2b0959333",
+      "brand": "大苑子",
+      "name": "四季春烏龍茶(罐)",
+      "category": "罐裝飲品\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_500f93ecce20888973cda54c",
+      "brand": "大苑子",
+      "name": "四季春烏龍茶850ml(罐)",
+      "category": "罐裝飲品\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_1af914f6568db651136ffcc4",
+      "brand": "大苑子",
+      "name": "愛文芒果冰沙",
+      "category": "著時必喝\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_aa1f1b1b3dab0b57b8164ad9",
+      "brand": "大苑子",
+      "name": "旺來芭樂在一起850ml(罐)",
+      "category": "罐裝飲品\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_e85fd4deebfbefa85d38d1c3",
+      "brand": "大苑子",
+      "name": "桂圓紅棗茶(L杯)",
+      "category": "暖冬系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_6126a4ee3bdf349341ee5fb8",
+      "brand": "大苑子",
+      "name": "百年仙草甘茶(罐)",
+      "category": "罐裝飲品\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_350567813d8db50df4c5a47b",
+      "brand": "大苑子",
+      "name": "百變火龍冰沙",
+      "category": "著時必喝\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_30554d13218b333f67af756f",
+      "brand": "大苑子",
+      "name": "祇作茶_梨山紅烏龍1050ml(罐)",
+      "category": "罐裝飲品\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_540dc27a490068c50bccb21a",
+      "brand": "大苑子",
+      "name": "窯燒桂圓紅棗茶",
+      "category": "暖冬推薦\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_a8ba3c8c1188f4adcba0a447",
+      "brand": "大苑子",
+      "name": "繽紛水果茶",
+      "category": "水果系列\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_366f9a157a2469a93c2a174a",
+      "brand": "大苑子",
+      "name": "芋頭奶綠",
+      "category": "暖冬推薦\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_b18e116a3052031ece502e14",
+      "brand": "大苑子",
+      "name": "芋頭奶綠(有糖、無糖)",
+      "category": "暖冬系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_a3f4013da6b02c39887a441c",
+      "brand": "大苑子",
+      "name": "芒果柳丁在一起850ml(罐)",
+      "category": "罐裝飲品\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_24108dde17c7d9cb258125a6",
+      "brand": "大苑子",
+      "name": "芒果鮮奶酪(杯)",
+      "category": "鮮奶酪\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_c06877c45576539140382785",
+      "brand": "大苑子",
+      "name": "芭樂檸檬在一起850ml(罐)",
+      "category": "罐裝飲品\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_fde4e58ad43ddc22f9ea9547",
+      "brand": "大苑子",
+      "name": "苺好鮮奶酪(杯)",
+      "category": "鮮奶酪\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_40860ae0e973b6821abff9f9",
+      "brand": "大苑子",
+      "name": "茉莉花不知春氣泡茶500ml(罐)",
+      "category": "罐裝飲品\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_a3bad646ef8a6c7bb63f7d5c",
+      "brand": "大苑子",
+      "name": "荔枝冰茶",
+      "category": "著時必喝\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_93714cec21aed662bdfedcc8",
+      "brand": "大苑子",
+      "name": "莓好戀奶酪",
+      "category": "著時必喝\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_634f5368e39957fd05f418bf",
+      "brand": "大苑子",
+      "name": "著時鮮果奶酪(杯)",
+      "category": "鮮奶酪\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_4b652e45ab5bbdfd3594399f",
+      "brand": "大苑子",
+      "name": "蘋果蜜桃在一起250ml(罐)",
+      "category": "罐裝飲品\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_a75bc56f228be506d7f5e5d1",
+      "brand": "大苑子",
+      "name": "蜜香花蓮紅茶氣泡茶500ml(罐)",
+      "category": "罐裝飲品\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_0427a1883c17bbfacaafbc2d",
+      "brand": "大苑子",
+      "name": "西瓜椰子在一起850ml(罐)",
+      "category": "罐裝飲品\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_89dff661b50d8d2aff8defd6",
+      "brand": "大苑子",
+      "name": "許慶良奶酪鮮奶茶",
+      "category": "許慶良鮮乳\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_523acef031470b86b4df8b7a",
+      "brand": "大苑子",
+      "name": "許慶良桂圓鮮奶茶(L杯)",
+      "category": "暖冬系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_7d65e1df1843f530ce5b85ab",
+      "brand": "大苑子",
+      "name": "許慶良窯燒桂圓鮮奶茶",
+      "category": "暖冬推薦\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_921888410d45a36b0eae0ca9",
+      "brand": "大苑子",
+      "name": "許慶良紫米紅豆鮮奶",
+      "category": "暖冬推薦\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_417dc1e8b0a92bd34ff84353",
+      "brand": "大苑子",
+      "name": "許慶良芋頭鮮奶",
+      "category": "暖冬推薦\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_84c12ed967d79a9b075fa8a6",
+      "brand": "大苑子",
+      "name": "許慶良芋頭鮮奶(有糖、無糖)",
+      "category": "暖冬系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_80a75435bd87e21ce1d4b475",
+      "brand": "大苑子",
+      "name": "許慶良芋頭鮮奶綠",
+      "category": "暖冬推薦\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_f1f4e47606a2f5b520324b0f",
+      "brand": "大苑子",
+      "name": "許慶良芋頭鮮奶綠(有糖、無糖)",
+      "category": "暖冬系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_5fda03e1b24e9294d434a696",
+      "brand": "大苑子",
+      "name": "許慶良酪梨鮮奶(M，冰度固定)",
+      "category": "許慶良鮮乳",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_df8f47992f64761d68b838dc",
+      "brand": "大苑子",
+      "name": "許慶良鮮奶酪(杯)",
+      "category": "鮮奶酪\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_29cc5218ebd0b287af38cd17",
+      "brand": "大苑子",
+      "name": "超級綠100%綜合果蔬汁250ml(罐)",
+      "category": "罐裝飲品\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_4a376d4cf909e4c2f7b74021",
+      "brand": "大苑子",
+      "name": "酪梨布丁鮮奶",
+      "category": "著時必喝\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_c3d4689a352c2ea7f5398493",
+      "brand": "大苑子",
+      "name": "酪梨布丁鮮奶(M，冰度固定)",
+      "category": "許慶良鮮乳",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_fba823dc41a58456e8b16624",
+      "brand": "大苑子",
+      "name": "酪梨鮮奶",
+      "category": "著時必喝\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_6d8e0f4db32a8102ef4f06cb",
+      "brand": "大苑子",
+      "name": "金桔檸檬",
+      "category": "水果系列\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_35f8075eae510f7af45f8825",
+      "brand": "大苑子",
+      "name": "阿里山高山茶850ml(罐)",
+      "category": "罐裝飲品\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_daeee54bffcc94dffe30e2bf",
+      "brand": "大苑子",
+      "name": "青森蘋果冰茶",
+      "category": "著時必喝\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_97ec7f9c41902e630c131186",
+      "brand": "大苑子",
+      "name": "鳳梨冰茶",
+      "category": "著時必喝\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_c8c03bef674cb5d6eb1ceff0",
+      "brand": "好了啦紅茶冰",
+      "name": "仙渣洛神茶",
+      "category": "古早味系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_24590e4d081f17c1235a4dec",
+      "brand": "好了啦紅茶冰",
+      "name": "仙草鮮奶茶",
+      "category": "鮮奶茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_a16245ba30e8b13118b66705",
+      "brand": "好了啦紅茶冰",
+      "name": "冬瓜洛神",
+      "category": "冬瓜茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_8574a7aa40648322f80bb18b",
+      "brand": "好了啦紅茶冰",
+      "name": "冬瓜鮮奶茶",
+      "category": "鮮奶茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_40686ab8357620aade79268c",
+      "brand": "好了啦紅茶冰",
+      "name": "古味杏仁茶",
+      "category": "暢銷熱飲系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_4a0c476a1b1105ca9d956224",
+      "brand": "好了啦紅茶冰",
+      "name": "可可豆漿",
+      "category": "暢銷熱飲系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_dc8ea4e738b9b33d63c9c43b",
+      "brand": "好了啦紅茶冰",
+      "name": "可可鮮奶",
+      "category": "暢銷熱飲系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_c63125a11917af262387bb56",
+      "brand": "好了啦紅茶冰",
+      "name": "杏仁可可",
+      "category": "暢銷熱飲系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_dea5772e433e46963f92968d",
+      "brand": "好了啦紅茶冰",
+      "name": "杏仁醇豆漿",
+      "category": "暢銷熱飲系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_911c9582bbef8f6681f7c2af",
+      "brand": "好了啦紅茶冰",
+      "name": "杏仁鳳梨鮮奶茶",
+      "category": "暢銷熱飲系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_5cc6e11e718b9b5a4cc2a821",
+      "brand": "好了啦紅茶冰",
+      "name": "桂圓紅茶",
+      "category": "暢銷熱飲系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_fb95a04faab7646943a17c40",
+      "brand": "好了啦紅茶冰",
+      "name": "桂圓綠茶",
+      "category": "暢銷熱飲系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_c264c7d842a0c5726994d733",
+      "brand": "好了啦紅茶冰",
+      "name": "桂圓茶",
+      "category": "暢銷熱飲系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_176ecabfe3a8b37646bb38df",
+      "brand": "好了啦紅茶冰",
+      "name": "桂圓薑母茶",
+      "category": "暢銷熱飲系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_362d5caecdf834ba3e1fe5c7",
+      "brand": "好了啦紅茶冰",
+      "name": "桂圓豆漿",
+      "category": "暢銷熱飲系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_17943cd7dce7c56a8e623a71",
+      "brand": "好了啦紅茶冰",
+      "name": "桂圓鮮奶茶",
+      "category": "暢銷熱飲系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_7045a0b08fedad8e15979f90",
+      "brand": "好了啦紅茶冰",
+      "name": "檸檬風味洛神",
+      "category": "檸檬風味系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_149602fffbd2f374589b2c07",
+      "brand": "好了啦紅茶冰",
+      "name": "深培黑豆奶",
+      "category": "黑豆奶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_1319b2fc79513c384ab6a8de",
+      "brand": "好了啦紅茶冰",
+      "name": "熱可可",
+      "category": "暢銷熱飲系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_a55c78d407b373c41c6f11e0",
+      "brand": "好了啦紅茶冰",
+      "name": "薑母可可",
+      "category": "暢銷熱飲系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_a59bce5c06e80314875c4b9d",
+      "brand": "好了啦紅茶冰",
+      "name": "薑母豆漿",
+      "category": "暢銷熱飲系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_859134bdad7589b7b9aa47c0",
+      "brand": "好了啦紅茶冰",
+      "name": "薑母鮮奶茶",
+      "category": "暢銷熱飲系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_cab8cf89f2fab86f8feaa698",
+      "brand": "好了啦紅茶冰",
+      "name": "豆漿仙草",
+      "category": "豆漿系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_931690451440d72bb1f9c1a3",
+      "brand": "好了啦紅茶冰",
+      "name": "豆漿冬瓜",
+      "category": "豆漿系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_8bbf3422fac57deb4eda6572",
+      "brand": "好了啦紅茶冰",
+      "name": "豆漿紅茶",
+      "category": "豆漿系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_58a821a022241613ab309230",
+      "brand": "好了啦紅茶冰",
+      "name": "鮮奶綠",
+      "category": "鮮奶茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_3ebd22e5c9e205e28c7ab131",
+      "brand": "好了啦紅茶冰",
+      "name": "鮮奶茶",
+      "category": "鮮奶茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_1bd3e4a8e9cef50176cadd45",
+      "brand": "好了啦紅茶冰",
+      "name": "鳳梨風味茶",
+      "category": "暢銷熱飲系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_21396244f41a6118a7091d3b",
+      "brand": "好了啦紅茶冰",
+      "name": "鳳梨風味鮮奶茶",
+      "category": "暢銷熱飲系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_77cf29c25f4fa4828589ba86",
+      "brand": "好了啦紅茶冰",
+      "name": "麥茶",
+      "category": "麥茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_75a1edbd627ff53d68d7851a",
+      "brand": "好了啦紅茶冰",
+      "name": "麥香冬瓜",
+      "category": "麥茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_f438f3c254ff2183110a480a",
+      "brand": "好了啦紅茶冰",
+      "name": "麥香奶茶",
+      "category": "麥茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_bc11ec50b33e45166e3b73a7",
+      "brand": "好了啦紅茶冰",
+      "name": "麥香桑葚",
+      "category": "麥茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_8ea23ba69f4772f09d3d7a48",
+      "brand": "好了啦紅茶冰",
+      "name": "麥香百香",
+      "category": "麥茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_487a2813252fe95bf9a8505e",
+      "brand": "好了啦紅茶冰",
+      "name": "麥香紅茶",
+      "category": "麥茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_4d321315165f2dcdff9b0cbd",
+      "brand": "好了啦紅茶冰",
+      "name": "麥香綠茶",
+      "category": "麥茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_ec3dc8126f27f495107210b1",
+      "brand": "好了啦紅茶冰",
+      "name": "麥香荔枝",
+      "category": "麥茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_65f21cec0e9399fdf56661b0",
+      "brand": "好了啦紅茶冰",
+      "name": "麥香豆漿",
+      "category": "麥茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_0c8cc9f444d69cb8a531a9ab",
+      "brand": "好了啦紅茶冰",
+      "name": "麥香鳳梨",
+      "category": "麥茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_0ec126545c9f78c405b67a48",
+      "brand": "好了啦紅茶冰",
+      "name": "黑糖薑母茶",
+      "category": "暢銷熱飲系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_3b98ba866d5d2e530617fbde",
+      "brand": "好了啦紅茶冰",
+      "name": "黑豆奶紅茶",
+      "category": "黑豆奶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_a46af4302f1383926f747454",
+      "brand": "好了啦紅茶冰",
+      "name": "黑豆奶綠茶",
+      "category": "黑豆奶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_9e68c34d635b799bce9d1579",
+      "brand": "好了啦紅茶冰",
+      "name": "黑豆奶豆漿",
+      "category": "黑豆奶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_26204ec7b72ebe17ffb4acac",
+      "brand": "好了啦紅茶冰",
+      "name": "黑豆奶鮮奶",
+      "category": "黑豆奶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_f28d2ab2f5cde10922797078",
+      "brand": "得正",
+      "name": "奶蓋春烏龍+黃金珍珠Ｌ",
+      "category": "秋季之選",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_5104425ff3bb51aa60f1787c",
+      "brand": "得正",
+      "name": "緋烏龍鮮奶+珍珠Ｌ",
+      "category": "秋季之選",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_bcc246ce32d8c46b55b512b8",
+      "brand": "得正",
+      "name": "蜜蘋苦瓜奶綠",
+      "category": "新品上市-蜜蘋苦瓜綠系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_ecec18f0eb59321e04d47414",
+      "brand": "得正",
+      "name": "蜜蘋苦瓜綠茶鮮奶",
+      "category": "新品上市-蜜蘋苦瓜綠系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_2e3c89f62767286f655e16d9",
+      "brand": "得正",
+      "name": "雙柚金烏龍+茶凍Ｌ",
+      "category": "秋季之選",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_189cf1ce921bfff6005595f6",
+      "brand": "拾汣茶屋",
+      "name": "烤地瓜芋圓厚奶茶",
+      "category": "私房臻選",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_6dc1f09e9b0c62760f606936",
+      "brand": "拾汣茶屋",
+      "name": "烤地瓜芋圓鮮奶茶",
+      "category": "私房臻選",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_27ecb2887446ffe839ce1302",
+      "brand": "拾汣茶屋",
+      "name": "粉角厚奶烏",
+      "category": "本家厚奶",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_fa948c7d9ae863cf366c9bee",
+      "brand": "拾汣茶屋",
+      "name": "粉角厚奶綠",
+      "category": "本家厚奶",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_5e719289cc283fa872ff213d",
+      "brand": "拾汣茶屋",
+      "name": "粉角厚奶茶",
+      "category": "本家厚奶",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_958ccc7d828e3b79b575c749",
+      "brand": "拾汣茶屋",
+      "name": "粉角厚奶蕎麥",
+      "category": "本家厚奶",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_2f7dd67bcfbca531f8ef0181",
+      "brand": "拾汣茶屋",
+      "name": "粉角厚奶青",
+      "category": "本家厚奶",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_210ded811a3d5df70e7716a0",
+      "brand": "拾汣茶屋",
+      "name": "粉角鮮奶蕎麥",
+      "category": "鮮奶醇味",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_876b8c9031e77c5b0a3efb3d",
+      "brand": "拾汣茶屋",
+      "name": "芝芝奶蓋多米霸飽",
+      "category": "私房臻選",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_8359b697b85c163e1d268d59",
+      "brand": "拾汣茶屋",
+      "name": "金蜜珍珠厚奶烏",
+      "category": "本家厚奶",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_d5f7794057a5f7e9da6a0b47",
+      "brand": "拾汣茶屋",
+      "name": "金蜜珍珠厚奶綠",
+      "category": "本家厚奶",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_aeb6bd73332a1ac9d1d335f4",
+      "brand": "拾汣茶屋",
+      "name": "金蜜珍珠厚奶蕎麥",
+      "category": "本家厚奶",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_deca8478ed8853e06fb53cec",
+      "brand": "拾汣茶屋",
+      "name": "金蜜珍珠厚奶青",
+      "category": "本家厚奶",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_c6d6ac1e409ce2b2009cc210",
+      "brand": "拾汣茶屋",
+      "name": "金蜜珍珠鮮奶烏",
+      "category": "鮮奶醇味",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_8d1341533324423612e0e4fc",
+      "brand": "拾汣茶屋",
+      "name": "金蜜珍珠鮮奶綠",
+      "category": "鮮奶醇味",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_52526545a643e98673573e9b",
+      "brand": "拾汣茶屋",
+      "name": "金蜜珍珠鮮奶茶",
+      "category": "鮮奶醇味",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_74c93d38a2d8107750b9e5fc",
+      "brand": "拾汣茶屋",
+      "name": "金蜜珍珠鮮奶蕎麥",
+      "category": "鮮奶醇味",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_41821da3552811577d3050e7",
+      "brand": "拾汣茶屋",
+      "name": "金蜜珍珠鮮奶青",
+      "category": "鮮奶醇味",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_80992567f6bc69c5bfa28c4c",
+      "brand": "拾汣茶屋",
+      "name": "黑糖QQ撞奶",
+      "category": "鮮奶醇味",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_aadebe494b267c0b36fa7f54",
+      "brand": "日出茶太",
+      "name": "CT21-(盲盒)茶太娃娃2.0",
+      "category": "【勿下單】(盲盒)茶太娃娃2.0_圖片僅為角色示意",
+      "reason": "information_not_orderable"
+    },
+    {
+      "id": "n_56330b694fe6ce627eb36632",
+      "brand": "日出茶太",
+      "name": "【1+1】紫玫瑰荔枝凍飲+(盲盒)茶太娃娃2.0",
+      "category": "茶太娃娃新品套餐",
+      "reason": "non_beverage_or_bundle"
+    },
+    {
+      "id": "n_2b8c243409eb7d90ef3fc83e",
+      "brand": "日出茶太",
+      "name": "【1+1】莓果芙緹沐+(盲盒)茶太娃娃2.0",
+      "category": "茶太娃娃新品套餐",
+      "reason": "non_beverage_or_bundle"
+    },
+    {
+      "id": "n_94e42589ffcb66b84d20566b",
+      "brand": "日出茶太",
+      "name": "【1+1】香檸芙緹沐+(盲盒)茶太娃娃2.0",
+      "category": "茶太娃娃新品套餐",
+      "reason": "non_beverage_or_bundle"
+    },
+    {
+      "id": "n_0626c54e4f2ed2439982a4eb",
+      "brand": "日出茶太",
+      "name": "愛荔Sasa-(盲盒)茶太娃娃2.0",
+      "category": "【勿下單】(盲盒)茶太娃娃2.0_圖片僅為角色示意",
+      "reason": "information_not_orderable"
+    },
+    {
+      "id": "n_d371e87b1eac7dcaef0087e1",
+      "brand": "日出茶太",
+      "name": "抹呆呆-(盲盒)茶太娃娃2.0",
+      "category": "【勿下單】(盲盒)茶太娃娃2.0_圖片僅為角色示意",
+      "reason": "information_not_orderable"
+    },
+    {
+      "id": "n_35159e2254676f701436d768",
+      "brand": "日出茶太",
+      "name": "消極Boba-(盲盒)茶太娃娃2.0",
+      "category": "【勿下單】(盲盒)茶太娃娃2.0_圖片僅為角色示意",
+      "reason": "information_not_orderable"
+    },
+    {
+      "id": "n_b7107462084d8c085884b506",
+      "brand": "日出茶太",
+      "name": "爆肌芒-(盲盒)茶太娃娃2.0",
+      "category": "【勿下單】(盲盒)茶太娃娃2.0_圖片僅為角色示意",
+      "reason": "information_not_orderable"
+    },
+    {
+      "id": "n_bcd9d99fb38d1c9cf34d1ad6",
+      "brand": "日出茶太",
+      "name": "芋尼尼-(盲盒)茶太娃娃2.0",
+      "category": "【勿下單】(盲盒)茶太娃娃2.0_圖片僅為角色示意",
+      "reason": "information_not_orderable"
+    },
+    {
+      "id": "n_6d913050e76634a2d943979d",
+      "brand": "日出茶太",
+      "name": "茶吧手-(盲盒)茶太娃娃2.0",
+      "category": "【勿下單】(盲盒)茶太娃娃2.0_圖片僅為角色示意",
+      "reason": "information_not_orderable"
+    },
+    {
+      "id": "n_20932c1432feca7d11cdca45",
+      "brand": "水巷茶弄",
+      "name": "桂圓紅棗 Longan and red dates",
+      "category": "無咖啡因 Coffeine Free Drinks",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_9f99c432a038857bc0359cbd",
+      "brand": "水巷茶弄",
+      "name": "桂圓紅棗拿鐵 Longan Red Dates Latte",
+      "category": "鮮奶拿鐵 Fresh Milk",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_e8162afe64191c774f2559ed",
+      "brand": "清心福全",
+      "name": "紅豆香草艾思",
+      "category": "夏日冰沙系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_38721943962715e2b0ffb74b",
+      "brand": "清心福全",
+      "name": "芋泥艾思",
+      "category": "夏日冰沙系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_bee93d890622ba4667c183e9",
+      "brand": "烏弄原茶",
+      "name": "手採金萱芒果莉莉",
+      "category": "期間限定",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_9a62adc1e55ac487330ab8e4",
+      "brand": "烏弄原茶",
+      "name": "芒果可可朵朵",
+      "category": "期間限定",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_02d1a7725d91ee88943eeb99",
+      "brand": "白巷子",
+      "name": "OOHA桃樂多公主",
+      "category": "養樂多多系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_6361109088f24cd4fee2765a",
+      "brand": "白巷子",
+      "name": "OOHA紅烏龍王子",
+      "category": "好茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_0b1ed23fcc7418a2cd32e2c2",
+      "brand": "白巷子",
+      "name": "桂圓紅棗茶",
+      "category": "熱飲熬煮系列(冬季限定12-2月)",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_e3f5a71fef57d1ba1733cdf1",
+      "brand": "白巷子",
+      "name": "熟成麥茶",
+      "category": "好茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_555af878f308e0acbb135fdb",
+      "brand": "白巷子",
+      "name": "粉條奶茶",
+      "category": "奶茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_b7044a359da0625ba9c0e925",
+      "brand": "白巷子",
+      "name": "芝士芒果",
+      "category": "芝士奶蓋系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_f688fbef8c91327d82c3c39b",
+      "brand": "白巷子",
+      "name": "芝士芒果(季節限定)",
+      "category": "芝士奶蓋系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_9b711a4e79d0b2d7ef33b39d",
+      "brand": "白巷子",
+      "name": "芝士草莓(季節限定)",
+      "category": "芝士奶蓋系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_76bf174568c6ee75a3c43f6e",
+      "brand": "白巷子",
+      "name": "芝麻鮮奶",
+      "category": "熱飲熬煮系列(冬季限定12-2月)",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_7b3d06870c99ab0f27d17d9e",
+      "brand": "白巷子",
+      "name": "花生鮮奶",
+      "category": "熱飲熬煮系列(冬季限定12-2月)",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_80c5719bf808f6b665385a40",
+      "brand": "白巷子",
+      "name": "花生鮮奶",
+      "category": "熱飲熬煮系列(冬季限定12-2月)",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_1fcfb11915394b9bd999b4e9",
+      "brand": "白巷子",
+      "name": "薑汁撞奶",
+      "category": "熱飲熬煮系列(冬季限定12-2月)",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_88615203e19239d0ffa467b3",
+      "brand": "白巷子",
+      "name": "薑汁撞奶",
+      "category": "熱飲熬煮系列(冬季限定12-2月)",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_5dfd3d72d5e637eb7cb959a0",
+      "brand": "白巷子",
+      "name": "黑糖薑茶",
+      "category": "熱飲熬煮系列(冬季限定12-2月)",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_601921743ae4f0dd057ddf4d",
+      "brand": "白巷子",
+      "name": "黑糖薑茶",
+      "category": "熱飲熬煮系列(冬季限定12-2月)",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_156a342c8db8d3476d2d0a4c",
+      "brand": "老賴茶棧",
+      "name": "手工豆漿",
+      "category": "豆漿系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_24ec4e90639c5e98c1529f22",
+      "brand": "老賴茶棧",
+      "name": "熬煮青草茶",
+      "category": "青草茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_24e781b0eedf89cdaeb50b62",
+      "brand": "老賴茶棧",
+      "name": "研磨豆漿",
+      "category": "豆漿系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_c9dbccf8c26f0126d28e0ebc",
+      "brand": "老賴茶棧",
+      "name": "青草紅茶",
+      "category": "紅茶系列",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_7340ffdb20c59ed42cab4c34",
+      "brand": "迷客夏",
+      "name": "娜杯糖燻奶霜",
+      "category": "熱銷商品",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_e7569dde39894f7ed6e81da4",
+      "brand": "迷客夏",
+      "name": "水之森玄米抹茶",
+      "category": "愛茶的牛",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_054e4d5fb4a141c5b63dcdf2",
+      "brand": "迷客夏",
+      "name": "荔多鮮奶果昔",
+      "category": "熱銷新品",
+      "reason": "no_remaining_verified_branch_availability"
+    },
+    {
+      "id": "n_3130c91a508aacf487f36514",
+      "brand": "鶴茶樓",
+      "name": "烏龍茶葉蛋",
+      "category": "茶葉蛋",
+      "reason": "no_remaining_verified_branch_availability"
+    }
+  ],
+  "availabilityStores": 2069,
+  "availabilityVerified": 2069,
+  "versionVerified": 2069,
+  "versionRefreshed": 1,
+  "limits": "公開菜單及停賣快照，不保證即時庫存；排程無法確認時間時保守排除。研究原始資料保留作稽核，推薦目錄不含被排除項目。"
+}

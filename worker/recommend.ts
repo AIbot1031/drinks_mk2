@@ -11,6 +11,7 @@ import {groupProducts,productKey,createProductPreferences} from './products';
 import {milkTeaRetrievalQuery,requiredToppings,sameTopping} from './drink-language';
 import {flavorQuery} from './numeric-language';
 import {livePreferenceScorer,LIVE_PREFERENCE_CONFIG} from './live-preferences';
+import {isCatalogBeverage} from './catalog-policy';
 
 export const RANKING_CONFIG = {weightA: 0.65, weightB: 0.35, rrfK: 60, candidatesPerPath: 100, graphRounds: 3, graphRestart: 0.3, brandLimitFirstPass: 2} as const;
 export const isMilkTea=(d:Drink)=>/奶茶|奶綠|奶青|奶烏龍/.test(d.name)||(d.milk.length>0&&d.tea.length>0);
@@ -20,7 +21,7 @@ export function toppingMatches(d:Drink,f:Filters):number {
 }
 
 export function eligible(d: Drink, f: Filters): boolean {
-  return (!f.brand || d.brand === f.brand)
+  return isCatalogBeverage(d)&&(!f.brand || d.brand === f.brand)
     && !(isMenuDrink(d)&&(f.milkTea===false||!!f.excludedToppings?.length))
     && !f.excludedBrands?.includes(d.brand)
     && (f.maxPrice === undefined || (d.price !== null && !d.priceEstimated && (f.priceExclusive?d.price < f.maxPrice:d.price <= f.maxPrice)))

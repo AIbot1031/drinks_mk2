@@ -65,7 +65,15 @@ def menu(store_id):
     # Names/prices/structure only: omit prose, images and vendor identifiers.
     categories = rows('category_list_json', ['product_id', 'name', 'is_enable', 'is_visible', 'category_list', 'product_list'])
     products = rows('product_list_json', ['product_id', 'name', 'price', 'price_type', 'type', 'sub_type', 'is_enable', 'is_visible', 'product_list'])
-    return {'status': 'listed' if categories else 'pending', 'checkedAt': record['checkedAt'],
+    from nidin_menu_policy import availability_snapshot
+    availability_url=BASE+'/store/'+str(store_id)+'/disableItemsRelationNew'
+    try:
+        state=get('/store/'+str(store_id)+'/disableItemsRelationNew')
+        availability=availability_snapshot(state['data'],state['checkedAt'],availability_url,
+          hashlib.sha256(json.dumps(state['data'],sort_keys=True,separators=(',',':')).encode()).hexdigest())
+    except (OSError,ValueError,KeyError,RuntimeError):
+        availability={'status':'pending','sourceUrl':availability_url,'reason':'門市停賣資料未確認，不推測可供應。'}
+    return {'status': 'listed' if categories else 'pending', 'checkedAt': record['checkedAt'],'availability':availability,
             'sourceUrl': 'https://order.nidin.shop/menu/' + str(store_id),
             'version': raw.get('meta', {}), 'categories': categories, 'products': products,
             'note': '平台公開菜單快照；價格可能是起價或選項價格，不代表即時庫存。'}

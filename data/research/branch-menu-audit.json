@@ -1692,7 +1692,20 @@
           }
         ],
         "result": "官方飲品介紹與 SipSpot 為品牌通用資料；未取得虎尾兩店逐店菜單，官方門市網址本次 TLS 驗證失敗，維持待確認。"
-      }
+      },
+      "menuSearchAttempts": [
+        {
+          "checkedAt": "2026-10-20T21:48:42+08:00",
+          "result": "本輪仍未取得可確認適用該門市的公開菜單；既有官方與SipSpot品牌參考不升格為門市供應證據。",
+          "officialReferences": [],
+          "sipSpot": {
+            "url": "https://sipspot.wisplu.com.tw/brands/TEA%27S%E5%8E%9F%E5%91%B3/menu/",
+            "checkedAt": "2026-10-20T21:48:42+08:00",
+            "success": true,
+            "sha256": "cf2617bb08ae16b7f7d9d3f5054c7951cedf94ce5d61d4e9efc6eef0287d06d1"
+          }
+        }
+      ]
     },
     {
       "brand": "Tea’s原味",
@@ -1859,7 +1872,20 @@
           }
         ],
         "result": "官方飲品介紹與 SipSpot 為品牌通用資料；未取得虎尾兩店逐店菜單，官方門市網址本次 TLS 驗證失敗，維持待確認。"
-      }
+      },
+      "menuSearchAttempts": [
+        {
+          "checkedAt": "2026-10-20T21:48:42+08:00",
+          "result": "本輪仍未取得可確認適用該門市的公開菜單；既有官方與SipSpot品牌參考不升格為門市供應證據。",
+          "officialReferences": [],
+          "sipSpot": {
+            "url": "https://sipspot.wisplu.com.tw/brands/TEA%27S%E5%8E%9F%E5%91%B3/menu/",
+            "checkedAt": "2026-10-20T21:48:42+08:00",
+            "success": true,
+            "sha256": "cf2617bb08ae16b7f7d9d3f5054c7951cedf94ce5d61d4e9efc6eef0287d06d1"
+          }
+        }
+      ]
     },
     {
       "brand": "可不可熟成茶行",
@@ -1949,7 +1975,20 @@
           }
         ],
         "result": "官方逐店資料可讀；官方公告線上菜單需登入會員，公開單品頁與 SipSpot 通用菜單不能證明虎尾店供應。"
-      }
+      },
+      "menuSearchAttempts": [
+        {
+          "checkedAt": "2026-10-20T21:48:42+08:00",
+          "result": "本輪仍未取得可確認適用該門市的公開菜單；既有官方與SipSpot品牌參考不升格為門市供應證據。",
+          "officialReferences": [],
+          "sipSpot": {
+            "url": "https://sipspot.wisplu.com.tw/brands/%E5%8F%AF%E4%B8%8D%E5%8F%AF%E7%86%9F%E6%88%90%E7%B4%85%E8%8C%B6/menu/",
+            "checkedAt": "2026-10-20T21:48:42+08:00",
+            "success": true,
+            "sha256": "5eee2b2c04e3c7a19bc275108249e67bb0a2697ef6fb47b82fd67fcc73bdb860"
+          }
+        }
+      ]
     },
     {
       "brand": "麻古茶坊",
@@ -2078,7 +2117,31 @@
           }
         ],
         "result": "官方門市名址可核對；飲品介紹與 SipSpot 均為品牌通用資料，未取得兩店逐店菜單。"
-      }
+      },
+      "menuSearchAttempts": [
+        {
+          "checkedAt": "2026-10-20T21:48:42+08:00",
+          "result": "找到官方中部與南部菜單圖片，已讀圖核對品名與季節標記；官方區域門市頁本次未找到虎尾兩店，無法確認該套區域菜單適用哪一家，維持待確認。",
+          "officialReferences": [
+            {
+              "url": "https://www.macutea.com.tw/upload_image/carte/menu_M.jpg",
+              "sha256": "2a0c63b5f0423fd82c8be6fb3cded0e3aa71fb21bd4032d9e10e27185134ea03",
+              "scope": "官方區域圖片，逐店適用待確認"
+            },
+            {
+              "url": "https://www.macutea.com.tw/upload_image/carte/menu_S.jpg",
+              "sha256": "f8d90d7a4ff777c0b7dd860256f0b10f6a7553f60eab34beaf31c99254cc4c3f",
+              "scope": "官方區域圖片，逐店適用待確認"
+            }
+          ],
+          "sipSpot": {
+            "url": "https://sipspot.wisplu.com.tw/brands/%E9%BA%BB%E5%8F%A4%E8%8C%B6%E5%9D%8A/menu/",
+            "checkedAt": "2026-10-20T21:48:42+08:00",
+            "success": true,
+            "sha256": "57c786eb2b541bfa119cd2b5af66ac03bfad9630c8b9743d0e38b2d2d5a951f9"
+          }
+        }
+      ]
     },
     {
       "brand": "麻古茶坊",
@@ -2207,7 +2270,31 @@
           }
         ],
         "result": "官方門市名址可核對；飲品介紹與 SipSpot 均為品牌通用資料，未取得兩店逐店菜單。"
-      }
+      },
+      "menuSearchAttempts": [
+        {
+          "checkedAt": "2026-10-20T21:48:42+08:00",
+          "result": "找到官方中部與南部菜單圖片，已讀圖核對品名與季節標記；官方區域門市頁本次未找到虎尾兩店，無法確認該套區域菜單適用哪一家，維持待確認。",
+          "officialReferences": [
+            {
+              "url": "https://www.macutea.com.tw/upload_image/carte/menu_M.jpg",
+              "sha256": "2a0c63b5f0423fd82c8be6fb3cded0e3aa71fb21bd4032d9e10e27185134ea03",
+              "scope": "官方區域圖片，逐店適用待確認"
+            },
+            {
+              "url": "https://www.macutea.com.tw/upload_image/carte/menu_S.jpg",
+              "sha256": "f8d90d7a4ff777c0b7dd860256f0b10f6a7553f60eab34beaf31c99254cc4c3f",
+              "scope": "官方區域圖片，逐店適用待確認"
+            }
+          ],
+          "sipSpot": {
+            "url": "https://sipspot.wisplu.com.tw/brands/%E9%BA%BB%E5%8F%A4%E8%8C%B6%E5%9D%8A/menu/",
+            "checkedAt": "2026-10-20T21:48:42+08:00",
+            "success": true,
+            "sha256": "57c786eb2b541bfa119cd2b5af66ac03bfad9630c8b9743d0e38b2d2d5a951f9"
+          }
+        }
+      ]
     },
     {
       "brand": "老賴茶棧",
@@ -2956,7 +3043,20 @@
           }
         ],
         "result": "官方雲林門市頁可核對虎尾光復店；官方連結 doteat 於本次瀏覽只顯示空白 welcome 頁，未取得逐店菜單。SipSpot 為品牌通用資料。"
-      }
+      },
+      "menuSearchAttempts": [
+        {
+          "checkedAt": "2026-10-20T21:48:42+08:00",
+          "result": "本輪仍未取得可確認適用該門市的公開菜單；既有官方與SipSpot品牌參考不升格為門市供應證據。",
+          "officialReferences": [],
+          "sipSpot": {
+            "url": "https://sipspot.wisplu.com.tw/brands/%E9%BE%9C%E8%A8%98%E8%8C%97%E5%93%81/menu/",
+            "checkedAt": "2026-10-20T21:48:42+08:00",
+            "success": true,
+            "sha256": "3b2dbf09233dca30ad366f6a985f057d281e7de0475746bfab5fb443cc9188de"
+          }
+        }
+      ]
     },
     {
       "brand": "茶湯會",
@@ -3545,7 +3645,26 @@
           }
         ],
         "result": "官方門市及飲品頁已重查；未取得虎尾兩店逐店菜單，SipSpot 為品牌通用資料。"
-      }
+      },
+      "menuSearchAttempts": [
+        {
+          "checkedAt": "2026-10-20T21:48:42+08:00",
+          "result": "找到官方price價目表及圖示，明示中南部適用、PLUS等例外；與官方虎尾兩店名址及SipSpot核對，但未確認個別分店完整供應及例外適用，先保留區域參考，不作逐店庫存證據。",
+          "officialReferences": [
+            {
+              "url": "https://www.teamagichand.com.tw/price/",
+              "sha256": "255755b9c30e8bdec87b461c294bba70812b6ef5f909a8487c131d6ece7856eb",
+              "scope": "官方中南部價目表，非門市庫存"
+            }
+          ],
+          "sipSpot": {
+            "url": "https://sipspot.wisplu.com.tw/brands/%E8%8C%B6%E4%B9%8B%E9%AD%94%E6%89%8B/menu/",
+            "checkedAt": "2026-10-20T21:48:42+08:00",
+            "success": true,
+            "sha256": "72046bf94fd50e0c4c67647ed9f93153b712c53b6de4082d17ab268d13638b99"
+          }
+        }
+      ]
     },
     {
       "brand": "茶之魔手",
@@ -3642,7 +3761,26 @@
           }
         ],
         "result": "官方門市及飲品頁已重查；未取得虎尾兩店逐店菜單，SipSpot 為品牌通用資料。"
-      }
+      },
+      "menuSearchAttempts": [
+        {
+          "checkedAt": "2026-10-20T21:48:42+08:00",
+          "result": "找到官方price價目表及圖示，明示中南部適用、PLUS等例外；與官方虎尾兩店名址及SipSpot核對，但未確認個別分店完整供應及例外適用，先保留區域參考，不作逐店庫存證據。",
+          "officialReferences": [
+            {
+              "url": "https://www.teamagichand.com.tw/price/",
+              "sha256": "255755b9c30e8bdec87b461c294bba70812b6ef5f909a8487c131d6ece7856eb",
+              "scope": "官方中南部價目表，非門市庫存"
+            }
+          ],
+          "sipSpot": {
+            "url": "https://sipspot.wisplu.com.tw/brands/%E8%8C%B6%E4%B9%8B%E9%AD%94%E6%89%8B/menu/",
+            "checkedAt": "2026-10-20T21:48:42+08:00",
+            "success": true,
+            "sha256": "72046bf94fd50e0c4c67647ed9f93153b712c53b6de4082d17ab268d13638b99"
+          }
+        }
+      ]
     },
     {
       "brand": "拾汣茶屋",
@@ -4373,7 +4511,20 @@
           }
         ],
         "result": "官方門市查詢與飲品介紹已重查；未取得四店逐店飲品清單，SipSpot 為品牌通用資料。"
-      }
+      },
+      "menuSearchAttempts": [
+        {
+          "checkedAt": "2026-10-20T21:48:42+08:00",
+          "result": "本輪仍未取得可確認適用該門市的公開菜單；既有官方與SipSpot品牌參考不升格為門市供應證據。",
+          "officialReferences": [],
+          "sipSpot": {
+            "url": "https://sipspot.wisplu.com.tw/brands/%E6%B8%85%E5%BF%83%E7%A6%8F%E5%85%A8/menu/",
+            "checkedAt": "2026-10-20T21:48:42+08:00",
+            "success": true,
+            "sha256": "4a69e0f5c60fd435492ada9869063c1aab9affe14bacdeb19b1a2baf5a44bd7d"
+          }
+        }
+      ]
     },
     {
       "brand": "清心福全",
@@ -4533,7 +4684,20 @@
           }
         ],
         "result": "官方門市查詢與飲品介紹已重查；未取得四店逐店飲品清單，SipSpot 為品牌通用資料。"
-      }
+      },
+      "menuSearchAttempts": [
+        {
+          "checkedAt": "2026-10-20T21:48:42+08:00",
+          "result": "本輪仍未取得可確認適用該門市的公開菜單；既有官方與SipSpot品牌參考不升格為門市供應證據。",
+          "officialReferences": [],
+          "sipSpot": {
+            "url": "https://sipspot.wisplu.com.tw/brands/%E6%B8%85%E5%BF%83%E7%A6%8F%E5%85%A8/menu/",
+            "checkedAt": "2026-10-20T21:48:42+08:00",
+            "success": true,
+            "sha256": "4a69e0f5c60fd435492ada9869063c1aab9affe14bacdeb19b1a2baf5a44bd7d"
+          }
+        }
+      ]
     },
     {
       "brand": "清心福全",
@@ -4693,7 +4857,20 @@
           }
         ],
         "result": "官方門市查詢與飲品介紹已重查；未取得四店逐店飲品清單，SipSpot 為品牌通用資料。"
-      }
+      },
+      "menuSearchAttempts": [
+        {
+          "checkedAt": "2026-10-20T21:48:42+08:00",
+          "result": "本輪仍未取得可確認適用該門市的公開菜單；既有官方與SipSpot品牌參考不升格為門市供應證據。",
+          "officialReferences": [],
+          "sipSpot": {
+            "url": "https://sipspot.wisplu.com.tw/brands/%E6%B8%85%E5%BF%83%E7%A6%8F%E5%85%A8/menu/",
+            "checkedAt": "2026-10-20T21:48:42+08:00",
+            "success": true,
+            "sha256": "4a69e0f5c60fd435492ada9869063c1aab9affe14bacdeb19b1a2baf5a44bd7d"
+          }
+        }
+      ]
     },
     {
       "brand": "清心福全",
@@ -4853,7 +5030,20 @@
           }
         ],
         "result": "官方門市查詢與飲品介紹已重查；未取得四店逐店飲品清單，SipSpot 為品牌通用資料。"
-      }
+      },
+      "menuSearchAttempts": [
+        {
+          "checkedAt": "2026-10-20T21:48:42+08:00",
+          "result": "本輪仍未取得可確認適用該門市的公開菜單；既有官方與SipSpot品牌參考不升格為門市供應證據。",
+          "officialReferences": [],
+          "sipSpot": {
+            "url": "https://sipspot.wisplu.com.tw/brands/%E6%B8%85%E5%BF%83%E7%A6%8F%E5%85%A8/menu/",
+            "checkedAt": "2026-10-20T21:48:42+08:00",
+            "success": true,
+            "sha256": "4a69e0f5c60fd435492ada9869063c1aab9affe14bacdeb19b1a2baf5a44bd7d"
+          }
+        }
+      ]
     },
     {
       "brand": "星巴克",
@@ -4901,7 +5091,17 @@
           }
         ],
         "result": "官方門市查詢與飲品頁已重查，未取得三店逐店供應清單；SipSpot 原品牌索引未找到星巴克，維持待確認。"
-      }
+      },
+      "menuSearchAttempts": [
+        {
+          "checkedAt": "2026-10-20T21:48:42+08:00",
+          "result": "官方門市與商品資料可公開查詢，但預先點餐透過會員App；未取得三家門市公開逐店供應菜單，SipSpot原品牌索引未找到星巴克，維持待確認。",
+          "officialReferences": [],
+          "sipSpot": {
+            "status": "原SipSpot品牌索引未找到"
+          }
+        }
+      ]
     },
     {
       "brand": "星巴克",
@@ -4949,7 +5149,17 @@
           }
         ],
         "result": "官方門市查詢與飲品頁已重查，未取得三店逐店供應清單；SipSpot 原品牌索引未找到星巴克，維持待確認。"
-      }
+      },
+      "menuSearchAttempts": [
+        {
+          "checkedAt": "2026-10-20T21:48:42+08:00",
+          "result": "官方門市與商品資料可公開查詢，但預先點餐透過會員App；未取得三家門市公開逐店供應菜單，SipSpot原品牌索引未找到星巴克，維持待確認。",
+          "officialReferences": [],
+          "sipSpot": {
+            "status": "原SipSpot品牌索引未找到"
+          }
+        }
+      ]
     },
     {
       "brand": "星巴克",
@@ -4997,7 +5207,17 @@
           }
         ],
         "result": "官方門市查詢與飲品頁已重查，未取得三店逐店供應清單；SipSpot 原品牌索引未找到星巴克，維持待確認。"
-      }
+      },
+      "menuSearchAttempts": [
+        {
+          "checkedAt": "2026-10-20T21:48:42+08:00",
+          "result": "官方門市與商品資料可公開查詢，但預先點餐透過會員App；未取得三家門市公開逐店供應菜單，SipSpot原品牌索引未找到星巴克，維持待確認。",
+          "officialReferences": [],
+          "sipSpot": {
+            "status": "原SipSpot品牌索引未找到"
+          }
+        }
+      ]
     },
     {
       "brand": "白巷子",

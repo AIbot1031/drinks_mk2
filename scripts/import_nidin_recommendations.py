@@ -10,6 +10,7 @@ import math
 import pathlib
 import re
 from build_nidin_directory import ALIASES, norm, region
+from nidin_menu_policy import INFORMATION, MERCHANDISE, product_available
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'data/research/nidin'
@@ -19,6 +20,10 @@ NON_DRINK_NAME = re.compile(r'塑膠袋|購物袋|環保袋|紙袋|吸管|保溫
 
 
 def classification(category, product):
+    if INFORMATION.search(norm(category)) or INFORMATION.search(norm(product['name'])):
+        return 'information_not_orderable'
+    if MERCHANDISE.search(norm(category)) or MERCHANDISE.search(norm(product['name'])) or re.search(r'套餐|組合|自由配',category):
+        return 'non_beverage_or_bundle'
     if product.get('type') != 1:
         return 'bundle_or_nonstandard'
     if NON_DRINK_CATEGORY.search(category) or NON_DRINK_NAME.search(product['name']):
@@ -65,6 +70,9 @@ def main():
                         excluded[kind] += 1
                         if kind == 'classification_pending':
                             pending[(brand, name)] = {'brand':brand,'name':name,'category':category['name'],'status':'飲料分類待確認','sourceUrl':store['sourceUrl']}
+                        continue
+                    if not product_available(menu,category,p):
+                        excluded['branch_unavailable_or_unverified'] += 1
                         continue
                     # Match existing names without discarding store-specific evidence.
                     name = original_names.get((brand,norm(name)),name)

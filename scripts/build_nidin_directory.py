@@ -43,10 +43,18 @@ def region(address):
 
 
 def listed_names(menu):
+    from nidin_menu_policy import product_available
+    from import_nidin_recommendations import classification
     # Top-level references in visible categories only. Hidden legal text,
     # add-ons and disabled products cannot create evidence of a sold drink.
-    ids = {str(pid) for cat in menu.get('categories', []) if cat.get('is_enable') and cat.get('is_visible') for pid in cat.get('product_list', [])}
-    return {norm(p['name']) for p in menu.get('products', []) if str(p.get('product_id')) in ids and p.get('is_enable') and p.get('is_visible')}
+    products={str(p.get('product_id')):p for p in menu.get('products',[])}
+    names=set()
+    for cat in menu.get('categories',[]):
+        if not cat.get('is_enable') or not cat.get('is_visible'):continue
+        for pid in cat.get('product_list',[]):
+            p=products.get(str(pid))
+            if p and p.get('is_enable') and p.get('is_visible') and product_available(menu,cat,p) and classification(cat['name'],p)=='beverage':names.add(norm(p['name']))
+    return names
 
 
 def main():
@@ -102,11 +110,12 @@ def main():
                 continue
             menu = s.get('menu', {})
             matched = listed_names(menu)
+            menu_names=sorted(n for n in names if norm(n) in matched)
             add({'brand':mapped,'name':s['name'],'address':s['address'],'phone':s.get('tel') or '',
                  'sourceUrl':s['sourceUrl'],'checkedAt':menu.get('checkedAt',s['checkedAt']),
-                 'menuSourceUrl':s['sourceUrl'],'menuScope':'branch' if menu.get('status')=='listed' else 'pending',
-                 'menuNames':sorted(n for n in names if norm(n) in matched),
-                 'menuNote':'你訂平台公開門市與菜單快照；未逐一交叉核對品牌官網，價格、杯型與即時供應仍以門市為準。'})
+                 'menuSourceUrl':s['sourceUrl'],'menuScope':'branch' if menu.get('status')=='listed' and menu_names else 'pending',
+                 'menuNames':menu_names,
+                 'menuNote':'你訂公開菜單與門市停賣快照已交叉篩選；排除停賣、限制排程及非飲料項目；價格、杯型與即時供應仍以門市為準。' if menu_names else '本次沒有可核對且通過停賣篩選的飲料，不推測可供應；維持待確認。'})
     regions = sorted(all_regions | {(s['city'],s['district']) for s in stores})
     output = {'checkedAt':datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8))).isoformat(timespec='seconds'),
       'sourceUrl':source_index['sourceUrl'],'regions':[{'city':c,'district':d} for c,d in regions],
