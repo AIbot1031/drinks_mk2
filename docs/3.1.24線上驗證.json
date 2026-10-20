@@ -1,0 +1,51 @@
+{
+  "checkedAt": "2026-10-21T01:18:37+08:00",
+  "sourceCommit": "0878784626ec89a8d37f2dbe8d6cfc10c0134008",
+  "workerVersionId": "8f3204b5-a4fa-4b77-8c94-0aabb6445aa5",
+  "trafficPercent": 100,
+  "health": {
+    "status": 200,
+    "ok": true,
+    "version": "3.1.24",
+    "catalogVariants": 9088
+  },
+  "groupedCatalog": {
+    "status": 200,
+    "brand": "CoCo都可",
+    "query": "珍珠奶茶",
+    "matchedProducts": 2,
+    "matchedVariants": 6,
+    "firstProductVariantCount": 3
+  },
+  "regionalRecommendation": {
+    "status": 200,
+    "city": "雲林縣",
+    "district": "虎尾鎮",
+    "brand": "CoCo都可",
+    "resultCount": 6,
+    "eligibleCount": 53,
+    "sampleProduct": "蕎麥四季春",
+    "sampleVerifiedStoreCount": 1,
+    "sampleStore": "雲林虎尾店",
+    "sampleAddress": "雲林縣虎尾鎮中正路125號"
+  },
+  "semanticService": {
+    "connected": true,
+    "ready": true,
+    "modelVersion": "macbert-5754da458c249ff9",
+    "catalogVersion": "d789342b95dbfe4feb5bdd5996298a97698a24216af441dc121b3d765fb545a5",
+    "device": "mps"
+  },
+  "relgtService": {
+    "connected": true,
+    "ready": true,
+    "modelVersion": "relgt-temporal-05757994850db8f6",
+    "catalogVersion": "d789342b95dbfe4feb5bdd5996298a97698a24216af441dc121b3d765fb545a5",
+    "device": "cpu"
+  },
+  "notes": [
+    "GitHub CI run 39464320562 completed successfully.",
+    "Original traffic remained on 3.1.23 during the 0% canary; new version was then set to 100%.",
+    "No model training or weight changes; catalog hash is unchanged."
+  ]
+}

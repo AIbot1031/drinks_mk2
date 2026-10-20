@@ -1566,5 +1566,11 @@ Git／Release：來源提交99e94d96b64ba196d433ed6189f1dab4e7fa4377已推送，
 [2026-10-21 01:13:10 Asia/Taipei] 3.1.24 品項目錄整併與門市明細（發布前）
 規劃：延續同品項合併工作，將維護資料整為主品項與多個杯型／價格／來源版本，保留版本細節；地區推薦卡列出該版本適用門市。
 實作：新增 data/catalog-products.json，9,088 個版本歸為3,814個品牌／品名主項目；舊 data/catalog.json 改為安裝／建置時產生的相容產物。資料匯入流程同步更新主目錄；地區模式的版本選單顯示店數，來源備註可展開門市名稱與地址。所有版本欄位、ID與順序往返一致，目錄SHA-256仍為d789342b95dbfe4feb5bdd5996298a97698a24216af441dc121b3d765fb545a5，模型索引無需重建，未訓練或修改權重。
-測試：型別檢查、171項Node測試（142通過、29條件略過、0失敗）、Python測試（5+51通過、8選用依賴略過）、Worker建置／Wrangler dry-run通過；部署、CI及Release待完成。
-限制／後續：公開菜單不是即時庫存；門市只依版本來源ID精確對應，不猜測供應。尚未部署；Git同步與Release待完成。詳見docs/3.1.24品項目錄整併與門市明細.md。
+測試：型別檢查、171項Node測試（142通過、29條件略過、0失敗）、Python測試（5+51通過、8選用依賴略過）、Worker建置／Wrangler dry-run通過；GitHub CI39464320562成功。
+部署／Git／Release：Worker 8f3204b5-a4fa-4b77-8c94-0aabb6445aa5以0%驗證後切100%；正式健康3.1.24／9088筆，虎尾CoCo分組目錄及已核對門市明細通過。MacBERT及RelGT均ready、索引雜湊一致。來源提交0878784626ec89a8d37f2dbe8d6cfc10c0134008、annotated tag v3.1.24及GitHub Release已建立，Release為Latest；部署、tag、Release分別核對。首次單獨指定新版0%因流量合計不滿100%被Cloudflare拒絕，未改變流量，改用舊100%＋新版0%成功canary。發布驗證與Release核對後續文件提交補齊。
+限制：公開菜單不是即時庫存；門市只依版本來源ID精確對應，不猜測供應。詳見docs/3.1.24品項目錄整併與門市明細.md及零流量／正式驗證JSON。
+
+[2026-10-21 01:18:37 Asia/Taipei] 3.1.24 正式版本、Release 與遠端狀態核對
+正式站：Worker 8f3204b5-a4fa-4b77-8c94-0aabb6445aa5，100%流量；health 3.1.24／9088。MacBERT `macbert-5754da458c249ff9`（MPS）與RelGT `relgt-temporal-05757994850db8f6`（CPU）ready，目錄雜湊均為d789342b…；沒有訓練或改權重。
+GitHub：CI39464320562成功；annotated tag v3.1.24與Release指向已驗證程式來源0878784626ec89a8d37f2dbe8d6cfc10c0134008，Release Latest。每日紀錄與零流量／正式驗證證據將另行提交同步，不移動tag。
+限制：地區詳列只依該菜單版本門市來源ID；公開菜單不代表即時庫存。完整細節見docs/3.1.24品項目錄整併與門市明細.md。

@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-10-21T01:18:37+08:00",
+  "sourceCommit": "0878784626ec89a8d37f2dbe8d6cfc10c0134008",
+  "workerVersionId": "8f3204b5-a4fa-4b77-8c94-0aabb6445aa5",
+  "normalTrafficPercent": 0,
+  "overrideHeader": "Cloudflare-Workers-Version-Overrides: drinks-mk2=\"8f3204b5-a4fa-4b77-8c94-0aabb6445aa5\"",
+  "checks": [
+    {
+      "endpoint": "GET /api/health",
+      "status": 200,
+      "version": "3.1.24",
+      "catalogVariants": 9088
+    },
+    {
+      "endpoint": "GET /api/catalog?brand=CoCo都可&q=珍珠奶茶",
+      "status": 200,
+      "productCount": 2,
+      "variantCount": 6,
+      "sampleProductVariantCount": 3
+    },
+    {
+      "endpoint": "POST /api/recommend, 雲林縣虎尾鎮, CoCo都可",
+      "status": 200,
+      "resultCount": 6,
+      "eligibleCount": 53,
+      "sample": {
+        "name": "蕎麥四季春",
+        "variantId": "n_01e4905091e118981b221a88",
+        "verifiedStoreCount": 1,
+        "storeName": "雲林虎尾店",
+        "address": "雲林縣虎尾鎮中正路125號"
+      }
+    }
+  ],
+  "previousVersionRemainedAt100PercentDuringCanary": "5f72da94-017a-4639-b5e3-af8617694ccc",
+  "catalogVersion": "d789342b95dbfe4feb5bdd5996298a97698a24216af441dc121b3d765fb545a5"
+}
