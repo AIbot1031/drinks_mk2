@@ -86,14 +86,16 @@ test('all original workbook brands have a truthful Huwei research state, and onl
  assert.deepEqual(research.brands.map(b=>b.brand).sort(),[...new Set(drinks.filter(d=>!d.sourceKind).map(d=>d.brand))].filter(b=>b!=='CoCo都可').sort());
  assert.equal(new Set(research.stores.map(s=>JSON.stringify([s.brand,s.name,s.address]))).size,research.stores.length);
  const {db,sql}=await database();
- for(const seed of research.stores){
+ const {default:directory}=await import('../data/nidin-directory.json');
+ for(const original of research.stores){
+  const seed={...original,...directory.stores.find(s=>s.brand===original.brand&&s.name===original.name&&s.address===original.address)};
   assert.ok(brands.includes(seed.brand));assert.match(seed.address,/雲林縣虎尾鎭|雲林縣虎尾鎮/);assert.ok(/^https?:\/\//.test(seed.sourceUrl));
   const at=Date.parse(seed.checkedAt),supply=(await loadStoreSupply(db,seed,[],drinks,at+1))!;
   assert.equal(supply.store.verified,1);assert.equal(supply.store.menu_source_url,seed.menuSourceUrl);
   for(const [key,status]of supply.statuses){
    const [brand,name]=JSON.parse(key);assert.equal(brand,seed.brand);
    if(seed.menuScope!=='branch'||!new Set<string>(seed.menuNames).has(name))assert.equal(status.status,'unknown');
-   else if(new Set<string>(seed.soldOutNames).has(name))assert.equal(status.status,'sold_out');
+   else if(new Set<string>(seed.soldOutNames).has(name))assert.equal(status.status,at+1<taipeiDayEnd(Date.parse(original.checkedAt))?'sold_out':'unknown');
    else assert.equal(status.status,'available');
   }
   const expired=(await loadStoreSupply(db,seed,[],drinks,at+7*86400000))!;assert.ok([...expired.statuses.values()].every(s=>s.status==='unknown'));

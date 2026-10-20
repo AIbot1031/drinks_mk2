@@ -7,12 +7,12 @@ export type Store={id:string;brand:string;name:string;address:string;verified:nu
 export type SupplyStatus={status:'unknown'|'available'|'sold_out'|'not_sold';checkedAt:number|null;expiresAt:number|null;sourceUrl:string;evidence:string;menuListed?:boolean};
 export type StoreSupply={store:Store;statuses:Map<string,SupplyStatus>;excluded:Set<string>};
 export const sourceUrl='https://shopping.hccg.gov.tw/brands/coco';
-type DirectorySeed={brand:string;name:string;address:string;sourceUrl:string;checkedAt:string;phone?:string;menuNote?:string;menuScope?:string;menuSourceUrl?:string;menuNames?:string[];soldOutNames?:string[];unconfirmedNames?:string[];unconfirmedReason?:string;id?:string};
+type DirectorySeed={brand:string;name:string;address:string;sourceUrl:string;checkedAt:string;soldOutCheckedAt?:string;phone?:string;menuNote?:string;menuScope?:string;menuSourceUrl?:string;menuNames?:string[];soldOutNames?:string[];unconfirmedNames?:string[];unconfirmedReason?:string;id?:string};
 const seeds:DirectorySeed[]=[
  {brand:'CoCo都可',name:'新竹中正店',address:'新竹市北區中正路276號',sourceUrl,checkedAt:'2026-10-20T00:00:00+08:00'},
  {brand:'CoCo都可',name:'新竹清大店',address:'新竹市東區建功路16號',sourceUrl,checkedAt:'2026-10-20T00:00:00+08:00'},
  {...huwei,menuScope:'branch',menuSourceUrl:huwei.sourceUrl,menuNote:`3Q奶茶、3Q鮮奶茶：供應待確認。${huwei.unconfirmedReason}`},
- ...research.stores.map(s=>({...s,...directory.stores.find(d=>d.brand===s.brand&&d.name===s.name&&d.address===s.address)})),
+ ...research.stores.map(s=>({...s,...directory.stores.find(d=>d.brand===s.brand&&d.name===s.name&&d.address===s.address),soldOutCheckedAt:s.checkedAt})),
  ...directory.stores.filter(s=>!research.stores.some(r=>r.brand===s.brand&&r.address===s.address)&&!(s.brand===huwei.brand&&s.address===huwei.address)),
 ];
 const seedStore=async(seed:DirectorySeed,brands:string[]):Promise<Store>=>({...(seed.id?{id:seed.id,brand:seed.brand,name:seed.name,address:seed.address}:await storeIdentity(seed,brands)),verified:1,source_url:seed.sourceUrl,checked_at:Date.parse(seed.checkedAt),...(seed.phone?{phone:seed.phone}:{}),...(seed.menuNote?{menu_note:`${seed.menuNote}（查核日期 ${seed.checkedAt.slice(0,10)}；非即時庫存）`}:{}),...(seed.menuSourceUrl?{menu_source_url:seed.menuSourceUrl}:{})});
@@ -73,10 +73,11 @@ export async function loadStoreSupply(db:D1Database,value:unknown,reports:unknow
   const checkedAt=Date.parse(seed.checkedAt),expiresAt=checkedAt+7*86400000,listed=new Set(seed.menuNames??[]),sold=new Set(seed.soldOutNames??[]);
   for(const d of drinks.filter(d=>d.brand===store.brand)){
    const present=seed.menuScope==='branch'&&listed.has(d.name),fresh=now>=checkedAt&&now<expiresAt;
-   const soldOut=present&&sold.has(d.name),saleExpiry=taipeiDayEnd(checkedAt);
-   const status:SupplyStatus['status']=soldOut?(fresh&&now<saleExpiry?'sold_out':'unknown'):present&&fresh?'available':'unknown';
+   const stockCheckedAt=Date.parse(seed.soldOutCheckedAt??seed.checkedAt);
+   const soldOut=present&&sold.has(d.name),saleExpiry=taipeiDayEnd(stockCheckedAt);
+   const status:SupplyStatus['status']=soldOut?(now>=stockCheckedAt&&now<saleExpiry?'sold_out':'unknown'):present&&fresh?'available':'unknown';
    const evidence=soldOut?(status==='sold_out'?'查核時此店官方訂餐頁標示售完；非即時庫存，當日結束後回待確認。':'此品項曾於查核時標示售完，最新供應待重新確認。'):present?(fresh?'此店官方菜單列有此品項；非即時庫存，價格、杯型與客製選項請以門市為準。':'官方菜單查核已超過7天或尚未生效，供應須重新確認。'):seed.unconfirmedNames?.includes(d.name)?seed.unconfirmedReason!:(seed.menuScope==='brand'?'僅有品牌共用菜單，不能證明此店販售；供應待確認。':'此品項未在本次門市菜單查核中確認，實際供應待門市確認。');
-   statuses.set(productKey(d),{status,checkedAt,expiresAt:soldOut?saleExpiry:present?expiresAt:null,sourceUrl:seed.menuSourceUrl||seed.sourceUrl,evidence,menuListed:status==='available'});
+   statuses.set(productKey(d),{status,checkedAt:soldOut?stockCheckedAt:checkedAt,expiresAt:soldOut?saleExpiry:present?expiresAt:null,sourceUrl:seed.menuSourceUrl||seed.sourceUrl,evidence,menuListed:status==='available'});
   }
  }
  // Active human review takes precedence, especially confirmed missing/sold-out items.
