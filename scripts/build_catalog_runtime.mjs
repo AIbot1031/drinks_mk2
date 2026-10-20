@@ -12,7 +12,7 @@ for(const key of Object.keys(added[0])){
  else columns[key]=added.map(d=>d[key]);
 }
 const {drinks,...meta}=catalog;
-const packed={meta,base,template,columns};
+const packed={meta:{...meta,totalProducts:new Set(drinks.map(d=>JSON.stringify([d.brand,d.name]))).size},base,template,columns};
 const expanded=columns.id.map((_,i)=>({...template,...Object.fromEntries(Object.entries(columns).map(([key,values])=>[key,values[i]]))}));
 if(!isDeepStrictEqual([...base,...expanded],drinks))throw Error('Packed catalog must preserve every source fact');
 await fs.writeFile('data/catalog-runtime.json',JSON.stringify(packed)+'\n');

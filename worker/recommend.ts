@@ -44,9 +44,8 @@ function tokenize(text: string): string[] {
   for (const [key, terms] of Object.entries(concepts)) if (terms.some(t => text.includes(t))) tokens.add(`concept:${key}`);
   return [...tokens];
 }
-export function makeEngine(drinks: Drink[]) {
+export function makeEngine(drinks: Drink[],preferences=createProductPreferences(drinks)) {
   const byId = new Map(drinks.map(d => [d.id, d]));
-  const preferences=createProductPreferences(drinks);
   const df = new Map<string, number>();
   const tokens = new Map(drinks.map(d => {
     const t = tokenize(searchable(d));

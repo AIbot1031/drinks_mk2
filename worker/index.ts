@@ -27,9 +27,13 @@ import {wellbeingAdvice} from './wellbeing';
 export {SemanticBridge} from './semantic-bridge';
 
 const drinks: Drink[] = catalog.drinks;
-const engine = makeEngine(drinks);
-const productPreferences=createProductPreferences(drinks);
-const totalProducts=groupProducts(drinks).size;
+// Cache only immutable catalogue indexes. Build them on the first API that
+// needs them, avoiding Worker startup limits and work on health/static requests.
+let cachedPreferences:ReturnType<typeof createProductPreferences>|undefined;
+const getPreferences=()=>cachedPreferences??=createProductPreferences(drinks);
+let cachedEngine:ReturnType<typeof makeEngine>|undefined;
+const getEngine=()=>cachedEngine??=makeEngine(drinks,getPreferences());
+const totalProducts=catalog.totalProducts;
 const json = (body: unknown, status = 200) => Response.json(body, {status, headers: {'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff'}});
 
 async function readBody(request: Request): Promise<unknown> {
@@ -92,7 +96,7 @@ export default {
         return env.SEMANTIC_BRIDGE.getByName('inference-v2').fetch(request);
       }
       if(url.pathname==='/api/semantic/status'&&request.method==='GET')return json(await env.SEMANTIC_BRIDGE.getByName('inference-v2').status());
-      if(url.pathname.startsWith('/api/account/'))return await accountApi(request,env,readBody,drinks,productPreferences);
+      if(url.pathname.startsWith('/api/account/'))return await accountApi(request,env,readBody,drinks,getPreferences());
       if(url.pathname.startsWith('/api/internal/'))return await internalApi(request,env,readBody);
       if (url.pathname === '/api/health' && request.method === 'GET') return json({ok: true, total: catalog.total, version: appVersion});
       if(url.pathname==='/api/regions'&&request.method==='GET')return json(regionDirectory());
@@ -110,7 +114,7 @@ export default {
         const body=await readBody(request);
         if(!body||typeof body!=='object'||Array.isArray(body))throw new Error('請提供偏好 JSON 物件');
         const prefs=validateInput({...body,query:''});
-        return json(productPreferences.feedback(prefs));
+        return json(getPreferences().feedback(prefs));
       }
       if (url.pathname === '/api/catalog' && request.method === 'GET') {
         const query = (url.searchParams.get('q') ?? '').slice(0, 100).toLowerCase();
@@ -133,7 +137,7 @@ export default {
         let manualParsed:ReturnType<typeof applyManualUnderstanding>=null;
         let manualModelAttempted=false;
         const user=await currentUser(request,env.TRACE_DB);
-        const userPrefs=productPreferences.normalize(user?storedPreferences(user.preferences):validateInput({query:'',likedIds:(body as Record<string,unknown>).likedIds,dislikedIds:(body as Record<string,unknown>).dislikedIds}));
+        const userPrefs=getPreferences().normalize(user?storedPreferences(user.preferences):validateInput({query:'',likedIds:(body as Record<string,unknown>).likedIds,dislikedIds:(body as Record<string,unknown>).dislikedIds}));
         const history=conversation?chatHistory((body as Record<string,unknown>).history):[];
         let llm:{modelVersion:string;durationMs:number;ack:string;clarify:boolean}|null=null;
         if(understandingTurn&&(manual||(!understandingTurn.reset&&!understandingTurn.next&&!understandingTurn.followUp&&!understandingTurn.constraintOnly))&&!(/過敏|花生|堅果|乳糖不耐|麩質/.test(understandingTurn.state.guard)||(/忌口/.test(understandingTurn.state.guard)&&!understandingTurn.state.guard.startsWith('忌口：')))){
@@ -161,6 +165,7 @@ export default {
         if(searchMode==='region'&&!input.region)throw Error('請先選擇縣市；鄉鎮市區可略過，地區不會自動放寬。');
         input.supply=await loadStoreSupply(env.TRACE_DB,searchMode==='general'?null:scopeBody.store,scopeBody.storeReports,drinks);
         assertStoreRegion(input.supply?.store,input.region);
+        const engine=getEngine();
         const pool=engine.candidatePool(input);
         let semantic:RankScores|undefined=refreshContext?.semantic;
         if(pool.length&&!refreshContext){
