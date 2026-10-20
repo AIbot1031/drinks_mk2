@@ -104,5 +104,20 @@
     "loadingHiddenAfterCompletion": true,
     "storeSelectorCount": 0
   },
-  "releaseStatus": "production_verified_release_pending"
+  "releaseStatus": "verified_and_latest",
+  "release": {
+    "tag": "v3.1.19",
+    "url": "https://github.com/AIbot1031/drinks_mk2/releases/tag/v3.1.19",
+    "tagCommit": "90f113868c6d4270d77c8f841bf56d04b4dc3f34",
+    "targetCommitish": "90f113868c6d4270d77c8f841bf56d04b4dc3f34",
+    "draft": false,
+    "prerelease": false,
+    "latest": true,
+    "checkedAt": "2026-10-20 16:10:02 Asia/Taipei"
+  },
+  "githubBeforeFinalEvidenceCommit": {
+    "localHead": "d12685fed3e03c335c7cd779cfc200c3dee77444",
+    "remoteMain": "d12685fed3e03c335c7cd779cfc200c3dee77444",
+    "equal": true
+  }
 }
