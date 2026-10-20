@@ -12,7 +12,7 @@ const seeds:DirectorySeed[]=[
  {brand:'CoCo都可',name:'新竹中正店',address:'新竹市北區中正路276號',sourceUrl,checkedAt:'2026-10-20T00:00:00+08:00'},
  {brand:'CoCo都可',name:'新竹清大店',address:'新竹市東區建功路16號',sourceUrl,checkedAt:'2026-10-20T00:00:00+08:00'},
  {...huwei,menuScope:'branch',menuSourceUrl:huwei.sourceUrl,menuNote:`3Q奶茶、3Q鮮奶茶：供應待確認。${huwei.unconfirmedReason}`},
- ...research.stores,
+ ...research.stores.map(s=>({...s,...directory.stores.find(d=>d.brand===s.brand&&d.name===s.name&&d.address===s.address)})),
  ...directory.stores.filter(s=>!research.stores.some(r=>r.brand===s.brand&&r.address===s.address)&&!(s.brand===huwei.brand&&s.address===huwei.address)),
 ];
 const seedStore=async(seed:DirectorySeed,brands:string[]):Promise<Store>=>({...(seed.id?{id:seed.id,brand:seed.brand,name:seed.name,address:seed.address}:await storeIdentity(seed,brands)),verified:1,source_url:seed.sourceUrl,checked_at:Date.parse(seed.checkedAt),...(seed.phone?{phone:seed.phone}:{}),...(seed.menuNote?{menu_note:`${seed.menuNote}（查核日期 ${seed.checkedAt.slice(0,10)}；非即時庫存）`}:{}),...(seed.menuSourceUrl?{menu_source_url:seed.menuSourceUrl}:{})});

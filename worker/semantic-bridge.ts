@@ -36,10 +36,12 @@ export class SemanticBridge extends DurableObject<Env> {
     if(!socket||socket.deserializeAttachment().catalogVersion!==job.catalogVersion||this.pending.size>=8)return null;
     return await this.request(socket,'relgt-rank',job,8000) as RelgtReply|null;
   }
-  async rank(job:SemanticJob):Promise<SemanticReply|null>{
+  async rank(job:SemanticJob):Promise<SemanticReply|import('./semantic-protocol').SemanticFailure>{
     const socket=this.ctx.getWebSockets('mac').find(s=>s.readyState===1&&s.deserializeAttachment()?.ready);
-    if(!socket||socket.deserializeAttachment().catalogVersion!==job.catalogVersion||this.pending.size>=8)return null;
-    return await this.request(socket,'rank',job,5000) as SemanticReply|null;
+    if(!socket)return {failureReason:'model_not_ready'};
+    if(socket.deserializeAttachment().catalogVersion!==job.catalogVersion)return {failureReason:'catalog_mismatch'};
+    if(this.pending.size>=8)return {failureReason:'model_busy'};
+    return await this.request(socket,'rank',job,5000) as SemanticReply??{failureReason:'no_valid_response'};
   }
   async conversation(job:unknown):Promise<unknown>{
     const socket=this.ctx.getWebSockets('llm').find(s=>s.readyState===1&&s.deserializeAttachment()?.ready);

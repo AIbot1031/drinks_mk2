@@ -23,7 +23,7 @@ class CorpusTests(unittest.TestCase):
         raw = (ROOT / 'data/catalog.json').read_bytes()
         # The saved baseline trained on original workbook rows. New public
         # menu records are not retroactively part of that historical run.
-        rows=[d for d in json.loads(raw)['drinks'] if d.get('sourceKind') != 'nidin']
+        rows=[d for d in json.loads(raw)['drinks'] if not d.get('sourceKind')]
         self.assertEqual(len(rows), 5781)
         self.assertIn(old['data']['catalog_sha256'], json.loads((ROOT/'data/catalog-update.json').read_text())['compatibleCatalogVersions'])
         splits, _ = corpus(rows, old['parameters']['seed'])

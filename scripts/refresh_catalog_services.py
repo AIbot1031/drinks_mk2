@@ -12,7 +12,7 @@ import time
 from pathlib import Path
 from prepare_roberta_release import ROOT, sha
 
-STATE=ROOT/'.wrangler/catalog-service-refresh.json'
+STATE=ROOT/('.wrangler/catalog-service-refresh-'+sha(ROOT/'data/catalog.json')[:12]+'.json')
 SLOTS={'macbert':('DrinksMk2',['scripts/prepare_roberta_release.py','scripts/macbert_agent.py','scripts/inference_audit.py']),
        'relgt':('DrinksMk2RelGT',['scripts/relgt_inference.py','scripts/relgt_agent.py','scripts/inference_audit.py'])}
 

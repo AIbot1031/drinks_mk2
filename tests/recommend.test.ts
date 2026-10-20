@@ -25,7 +25,7 @@ test('a favorite from any cup size expands every catalogue variant without dupli
 });
 
 test('new workbook keeps all cup variants, stable unique IDs and source estimates', () => {
-  const original=drinks.filter(d=>d.sourceKind!=='nidin');
+  const original=drinks.filter(d=>!d.sourceKind);
   assert.equal(original.length, 5781);
   assert.equal(new Set(drinks.map(d => d.id)).size, catalog.total);
   assert.equal(new Set(original.map(d=>d.brand)).size,41);
@@ -39,7 +39,7 @@ test('new workbook keeps all cup variants, stable unique IDs and source estimate
   assert.ok(drinks.some(d=>d.tea.includes('抹茶')));
 });
 test('updated Numbers pearl topping excludes the corrected product from no-pearl candidates',()=>{
-  const corrected=drinks.filter(d=>d.brand==='一沐日'&&d.name==='逮丸奶茶');
+  const corrected=drinks.filter(d=>!d.sourceKind&&d.brand==='一沐日'&&d.name==='逮丸奶茶');
   assert.ok(corrected.length);assert.ok(corrected.every(d=>d.toppings.includes('珍珠')&&d.taste.includes('草仔粿')));
   const pool=engine.candidatePool(input('奶茶',{brand:'一沐日',excludedToppings:['珍珠']}));
   assert.ok(pool.every(d=>d.name!=='逮丸奶茶'));

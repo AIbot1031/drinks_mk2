@@ -26,6 +26,7 @@ export function initBrewLoading(){
   live.textContent=ingredients.length?'靈感配料：'+ingredients.join('、'):'讓茶香慢慢展開';particles.replaceChildren();
   ingredients.forEach((name,index)=>{for(let piece=0;piece<3;piece++){
    const node=document.createElement('i');node.className='brew-piece brew-'+kind(name);node.dataset.ingredient=name;
+   if(name==='芋圓'&&piece%2)node.classList.add('brew-taro-orange');
    node.style.setProperty('--x',`${37+(index*7+piece*9)%29}%`);node.style.setProperty('--delay',`${-(index*.38+piece*.74)}s`);node.style.setProperty('--land',`${174+(index+piece)%4*8}px`);particles.append(node);
   }});
  }

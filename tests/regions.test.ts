@@ -8,7 +8,7 @@ import {nearbyChoices} from '../worker/alternatives';
 const engine=makeEngine(catalog.drinks);
 test('Huwei CoCo never borrows Taoyuan store prices, nutrients or cup variants',()=>{
  const huwei=readRegion({city:'雲林縣',district:'虎尾鎮'})!;
- const coco=catalog.drinks.filter(d=>d.brand==='CoCo都可'&&d.sourceKind!=='nidin');
+ const coco=catalog.drinks.filter(d=>d.brand==='CoCo都可'&&!d.sourceKind);
  assert.ok(coco.some(d=>d.region?.includes('桃園')));
  assert.ok(coco.every(d=>!regionEligible(d,huwei)));
  const input={...validateInput({query:'3Q奶茶',filters:{brand:'CoCo都可',toppings:['芋圓']}}),region:huwei};

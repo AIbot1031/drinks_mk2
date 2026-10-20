@@ -1,5 +1,5 @@
 import directory from 'drinks-directory';
-import type {Drink} from './types';
+import {isMenuDrink,type Drink} from './types';
 export type RegionScope={city:string;district:string;brands:Set<string>};
 export const regionDirectory=()=>({regions:directory.regions,checkedAt:directory.checkedAt,coverage:'地區來自公開門市地址；榜單僅含本網站已有飲料資料的品牌。無符合資料時不自動跨區；不是全台完整門市清單。'});
 export function readRegion(value:unknown):RegionScope|undefined{
@@ -33,13 +33,13 @@ export function originalRegionEligible(d:Drink,scope:RegionScope){
  if(cities.size)return cities.has(city);
  return /全台|全國|台灣一般門市|台灣門市|官網台灣菜單|官網台灣飲品/.test(text);
 }
-export const regionEligible=(d:Drink,region?:RegionScope)=>!region||(region.brands.has(d.brand)&&(d.sourceKind==='nidin'
+export const regionEligible=(d:Drink,region?:RegionScope)=>!region||(region.brands.has(d.brand)&&(isMenuDrink(d)
  ?!!d.regionKeys?.some(key=>key===region.city+'|'+region.district||!region.district&&key.startsWith(region.city+'|'))
  :originalRegionEligible(d,region)));
 export function regionalDrink(d:Drink,scope?:RegionScope):Drink{
- if(!scope||d.sourceKind!=='nidin')return d;
+ if(!scope||!isMenuDrink(d))return d;
  const ids=new Set(d.sourceStoreIds);
- const source=directory.stores.find(s=>s.brand===d.brand&&s.city===scope.city&&(!scope.district||s.district===scope.district)&&ids.has((s.menuSourceUrl||s.sourceUrl).split('/').at(-1)??''));
+ const source=directory.stores.find(s=>s.brand===d.brand&&s.city===scope.city&&(!scope.district||s.district===scope.district)&&(ids.has(s.id)||ids.has((s.menuSourceUrl||s.sourceUrl).split('/').at(-1)??'')));
  // Never send the first national sample's branch link as the local source.
  return {...d,region:scope.city+scope.district,sourceUrl:source?.menuSourceUrl||undefined,sourceCheckedAt:source?.checkedAt};
 }

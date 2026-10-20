@@ -1,13 +1,15 @@
 {
-  "catalogVersion": "beb1bb301ed378da875d6cc39c345ecca8fa16b3098ab1f54238c8a58dac54f1",
+  "catalogVersion": "f66c236c9852cf4d32c4d3fe9fc8d77e499d0a93790b13a2b8ad9a516f958721",
   "compatibleCatalogVersions": [
     "4d63f86e58c35681f0b0ac3ac26e5cb0883cf677181dcf613655811178fd0b52",
     "6aa67407a66b04c496e2cfa80800a66857a74d13f842f8b8c03b04ae61205bab",
+    "beb1bb301ed378da875d6cc39c345ecca8fa16b3098ab1f54238c8a58dac54f1",
     "ef2503d4ae5fe0324cd9d8e988719ca62800e5a24084971b8a0c2d00609ad97a"
   ],
-  "source": "原飲料目錄＋你訂公開菜單快照",
+  "source": "原飲料目錄＋你訂與官方逐店菜單快照",
   "baseRows": 5781,
-  "rows": 8932,
+  "rows": 9180,
   "brands": 41,
-  "nidinRows": 3151
+  "nidinRows": 3151,
+  "officialMenuRows": 248
 }

@@ -11,7 +11,7 @@ const added=drinks.filter(d=>d.sourceKind==='nidin');
 test('catalog keeps exactly the original 41 brands and IDs, and unknown facts remain null',()=>{
  assert.equal(drinks.filter(d=>d.id.startsWith('d_')).length,5781);
  assert.equal(new Set(drinks.map(d=>d.id)).size,drinks.length);
- const originals=new Set(drinks.filter(d=>d.sourceKind!=='nidin').map(d=>d.brand));
+ const originals=new Set(drinks.filter(d=>!d.sourceKind).map(d=>d.brand));
  assert.equal(originals.size,41);assert.deepEqual(new Set(Object.keys(catalog.brands)),originals);
  assert.ok(added.length>0);assert.ok(added.every(d=>originals.has(d.brand)));
  for(const d of added){
@@ -36,7 +36,7 @@ test('new beverages are recommendable with county-only scope and cannot leak acr
 
 test('duplicate menu names share one card while original variants and different store evidence remain',()=>{
  const groups=groupProducts(drinks);
- const mixed=[...groups.values()].filter(rows=>rows.some(d=>d.sourceKind==='nidin')&&rows.some(d=>d.sourceKind!=='nidin'));
+ const mixed=[...groups.values()].filter(rows=>rows.some(d=>d.sourceKind==='nidin')&&rows.some(d=>!d.sourceKind));
  assert.ok(mixed.length>0);
  for(const rows of mixed){
   assert.ok(rows.some(d=>d.id.startsWith('d_')));

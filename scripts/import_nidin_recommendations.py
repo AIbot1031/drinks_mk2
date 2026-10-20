@@ -33,7 +33,7 @@ def main():
     previous_bytes = path.read_bytes()
     previous = json.loads(previous_bytes)
     # Idempotent: a rerun starts from the unchanged original records.
-    base = [d for d in previous['drinks'] if d.get('sourceKind') != 'nidin']
+    base = [d for d in previous['drinks'] if d.get('sourceKind') not in {'nidin','official-menu'}]
     allowed_brands = {d['brand'] for d in base}
     original_names = {(d['brand'], norm(d['name'])):d['name'] for d in base}
     source_index = json.loads((SOURCE / 'index.json').read_text())
@@ -105,10 +105,42 @@ def main():
     for brand, state in brand_state.items():
         state['pendingItems'] = sum(b==brand for b,_ in pending)
         state['status'] = 'listed' if state['importedVariants'] or any(d['brand']==brand for d in base) else 'pending'
-    drinks = base + imported
+    official = []
+    audit_path = ROOT/'data/research/branch-menu-audit.json'
+    if audit_path.exists():
+        official_groups = {}
+        for store in json.loads(audit_path.read_text())['entries']:
+            if store['brand'] not in allowed_brands:
+                raise ValueError('Supplement cannot introduce a new brand')
+            if store['status']!='listed' or store['menuScope']!='branch':
+                continue
+            identity=json.dumps([norm(store[k]) for k in ['brand','name','address']],ensure_ascii=False,separators=(',',':'))
+            store_id='s_'+hashlib.sha256(identity.encode()).hexdigest()[:32]
+            place=region(store['address'])
+            if not place:raise ValueError('Verified menu requires a known region')
+            for item in store['menuItems']:
+                name=original_names.get((store['brand'],norm(item['name'])),item['name'])
+                if NON_DRINK_NAME.search(name):continue
+                price=item.get('listedPrice')
+                key=(store['brand'],norm(name),price)
+                if key not in official_groups:
+                    template=next(iter(groups.values()))
+                    signature=json.dumps(key,ensure_ascii=False,separators=(',',':'))
+                    official_groups[key]={**template,'id':'o_'+hashlib.sha256(signature.encode()).hexdigest()[:24],
+                        'sourceKind':'official-menu','sourceSheet':'官方逐店菜單','brand':store['brand'],'name':name,
+                        'listedPrice':price,'priceText':f'{price:g} 元起（完整售價待確認）' if price is not None else '待確認',
+                        'sourceUrl':store['menuSourceUrl'],'sourceBrandUrl':store['sourceUrl'],
+                        'sourceMenuCategory':item.get('category','門市飲品'),'sourceCheckedAt':store['checkedAt'],
+                        'regionKeys':set(),'sourceStoreIds':set()}
+                official_groups[key]['regionKeys'].add('|'.join(place))
+                official_groups[key]['sourceStoreIds'].add(store_id)
+        for row in official_groups.values():
+            row['regionKeys']=sorted(row['regionKeys']);row['sourceStoreIds']=sorted(row['sourceStoreIds']);official.append(row)
+        official.sort(key=lambda d:(d['brand'],d['name'],d['id']))
+    drinks = base + imported + official
     brands = {brand:0 for brand in sorted(set(brand_state)|{d['brand'] for d in base})}
     brands.update(collections.Counter(d['brand'] for d in drinks))
-    result = {**previous,'source':'原飲料目錄＋你訂公開菜單快照','total':len(drinks),'brands':brands,
+    result = {**previous,'source':'原飲料目錄＋你訂與官方逐店菜單快照','total':len(drinks),'brands':brands,
               'missing':{'calories':sum(d['calories'] is None or d.get('caloriesEstimated',False) for d in drinks),
                          'caffeine':sum(not d['caffeineText'] or d.get('caffeineEstimated',False) for d in drinks),
                          'caffeineUpperBound':sum(d['caffeineMax'] is None for d in drinks)},
@@ -122,7 +154,7 @@ def main():
     # interactions remain valid; model indexes are separately version-checked.
     compatible=sorted(set([old_version,*old_manifest.get('compatibleCatalogVersions',[])])-{version})
     manifest={'catalogVersion':version,'compatibleCatalogVersions':compatible,'source':result['source'],
-              'baseRows':len(base),'rows':len(drinks),'brands':len(brands),'nidinRows':len(imported)}
+              'baseRows':len(base),'rows':len(drinks),'brands':len(brands),'nidinRows':len(imported),'officialMenuRows':len(official)}
     (ROOT/'data/catalog-update.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
     (ROOT/'worker/catalog-version.ts').write_text('// Generated catalog identity; previous interactions retain unchanged drink IDs.\n'+f'export const catalogVersion={json.dumps(version)};\nexport const compatibleCatalogVersions={json.dumps(compatible)};\n')
     report={'sourceCheckedAt':source_index['checkedAt'],'baseRowsPreserved':len(base),'importedVariants':len(imported),

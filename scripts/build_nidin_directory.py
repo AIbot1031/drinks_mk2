@@ -53,6 +53,8 @@ def main():
     catalog = json.loads((ROOT / 'data/catalog.json').read_text())
     originals = json.loads((ROOT / 'data/huwei-brand-research.json').read_text())['stores'] + [json.loads((ROOT / 'data/coco-huwei-store.json').read_text())]
     source_index = json.loads((SOURCE / 'index.json').read_text())
+    audit_path=ROOT/'data/research/branch-menu-audit.json'
+    audit=json.loads(audit_path.read_text())['entries'] if audit_path.exists() else []
     stores, seen, pending, all_regions = [], set(), [], set()
     def add(store):
         place = region(store['address'])
@@ -71,7 +73,13 @@ def main():
         seen.add(key)
         stores.append({**store,'id':'s_'+hashlib.sha256(key.encode()).hexdigest()[:32],'city':place[0],'district':place[1]})
     for s in originals:
-        add({k:s[k] for k in ['brand','name','address','sourceUrl','checkedAt','phone'] if k in s})
+        refresh=next((r for r in audit if all(norm(r[k])==norm(s[k]) for k in ['brand','name','address'])),None)
+        if refresh:
+            s={**s,'menuNote':refresh['evidence'],'menuScope':refresh['menuScope']}
+            if refresh['status']=='listed':
+                known={norm(d['name']):d['name'] for d in catalog['drinks'] if d['brand']==s['brand']}
+                s.update(menuNames=sorted({known[norm(i['name'])] for i in refresh['menuItems'] if norm(i['name']) in known}),menuSourceUrl=refresh['menuSourceUrl'],checkedAt=refresh['checkedAt'])
+        add({k:s[k] for k in ['brand','name','address','sourceUrl','checkedAt','phone','menuScope','menuSourceUrl','menuNames','menuNote','soldOutNames','unconfirmedNames','unconfirmedReason'] if k in s})
     brand_summary = []
     for b in source_index['brands']:
         raw = json.loads((SOURCE / (b['code'] + '.json')).read_text())

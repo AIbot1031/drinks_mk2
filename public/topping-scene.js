@@ -1,5 +1,5 @@
 // Draw distinct, outlined ingredients behind the opaque reading panels.
-export function drawTopping(context, topping, x, y, radius, angle = 0, opacity = 0.82) {
+export function drawTopping(context, topping, x, y, radius, angle = 0, opacity = 0.82, variant = 0) {
   context.save();
   context.translate(x, y);context.rotate(angle);context.globalAlpha = opacity;
   const jelly = /椰果|仙草|茶凍|粉粿|果肉/.test(topping);
@@ -8,7 +8,8 @@ export function drawTopping(context, topping, x, y, radius, angle = 0, opacity =
   const oat = topping === '燕麥';
   const colors = topping === '椰果' ? ['#fffdf0', '#dac8a3', '#9c825d']
     : topping === '仙草' ? ['#655052', '#2a1f26', '#22171c']
-    : /芋/.test(topping) ? ['#cda9dd', '#9a69b0', '#744982']
+    : topping === '芋圓' && variant % 2 ? ['#ffe2a3', '#e5a14a', '#b17634']
+    : /芋/.test(topping) ? ['#d7b8e4', '#aa7cbd', '#81568f']
     : /布丁|粉粿|茶凍/.test(topping) ? ['#ffe59b', '#e3aa37', '#a66d1d']
     : topping === '果肉' ? ['#ffd898', '#f49b56', '#b86730']
     : cream ? ['#fffdf1', '#eadab7', '#b29a70']
@@ -30,7 +31,8 @@ export function drawTopping(context, topping, x, y, radius, angle = 0, opacity =
   } else if (oat) context.ellipse(0, 0, radius * 0.5, radius, 0.35, 0, Math.PI * 2);
   else if (/芋/.test(topping)) context.roundRect(-radius, -radius * 0.7, radius * 2, radius * 1.4, radius * 0.6);
   else context.arc(0, 0, radius, 0, Math.PI * 2);
-  context.fill();context.stroke();
+  if(topping==='芋圓'){context.shadowColor='#5d3c3828';context.shadowBlur=radius*.35;context.shadowOffsetY=radius*.13;}
+  context.fill();context.stroke();context.shadowBlur=0;context.shadowOffsetY=0;
   if (pudding) {
     context.beginPath();context.ellipse(0, -radius * 0.62, radius * 0.66, radius * 0.2, 0, 0, Math.PI * 2);
     context.fillStyle = '#ab622c';context.fill();

@@ -15,6 +15,7 @@ export type Filters = {
   priceExclusive?:boolean; caloriesExclusive?:boolean; caffeineExclusive?:boolean;
   milk?: 'any' | 'none' | 'fresh' | 'plant'; tea?: string; topping?: string; toppings?: string[];
 };
+export const isMenuDrink=(d:Drink)=>d.sourceKind==='nidin'||d.sourceKind==='official-menu';
 export type RecommendInput = { region?:import('./regions').RegionScope; supply?:import('./stores').StoreSupply; query: string; filters: Filters; likedIds: string[]; dislikedIds: string[]; excludedIds: string[]; limit: number };
 export type Understanding = { filters: Filters; warnings: string[]; blocked: boolean; preferences: string[] };
 export type Scored = { drink: Drink; score: number };

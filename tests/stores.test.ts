@@ -83,7 +83,7 @@ test('official Huwei snapshot separates verified address, listed products and un
 });
 test('all original workbook brands have a truthful Huwei research state, and only branch evidence grants listed status',async()=>{
  const {default:research}=await import('../data/huwei-brand-research.json');
- assert.deepEqual(research.brands.map(b=>b.brand).sort(),[...new Set(drinks.filter(d=>d.sourceKind!=='nidin').map(d=>d.brand))].filter(b=>b!=='CoCo都可').sort());
+ assert.deepEqual(research.brands.map(b=>b.brand).sort(),[...new Set(drinks.filter(d=>!d.sourceKind).map(d=>d.brand))].filter(b=>b!=='CoCo都可').sort());
  assert.equal(new Set(research.stores.map(s=>JSON.stringify([s.brand,s.name,s.address]))).size,research.stores.length);
  const {db,sql}=await database();
  for(const seed of research.stores){

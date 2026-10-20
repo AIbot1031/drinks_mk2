@@ -1,0 +1,4119 @@
+{
+  "checkedAt": "2026-10-20T20:20:31+08:00",
+  "scope": "僅既有41品牌中原本缺菜單的23門市，不新增品牌或門市",
+  "entries": [
+    {
+      "brand": "50嵐",
+      "name": "虎尾中正店",
+      "address": "雲林縣虎尾鎮中正路222號",
+      "phone": "",
+      "sourceUrl": "https://order.quickclick.cc/tw/portals/50lan_central/",
+      "menuSourceUrl": "https://order.quickclick.cc/tw/food/P_yy3074dwD/?p=50lan_central",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "listed",
+      "menuScope": "branch",
+      "menuItems": [
+        {
+          "name": "8冰茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冰淇淋奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冰淇淋紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冰淇淋紅茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "四季春青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "布丁奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "布丁紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "布丁綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "布丁青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "微檸檬紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "微檸檬青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "情人茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "柚子茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "椰果奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "椰果紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "椰果紅茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "椰果綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "檸檬多多",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "檸檬梅汁",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "檸檬汁",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "檸檬綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "檸檬蜜",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "檸檬青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "波霸奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "波霸紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "波霸紅茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "波霸綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "波霸青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "烏龍瑪奇朵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "燕麥奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "燕麥紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "燕麥紅茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "燕麥綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "燕麥青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "珍珠奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "珍珠紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "珍珠紅茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "珍珠綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "珍珠青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "紅茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "紅茶瑪奇朵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "綠茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "芒果青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "茉莉綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "荔枝烏龍",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "蜂蜜奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "蜂蜜紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "蜂蜜綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "重焙烏龍拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "金桔檸檬",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "金桔檸檬蜜",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "阿華田",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "阿華田拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "阿薩姆紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "黃金烏龍",
+          "listedPrice": null,
+          "category": "門市飲品"
+        }
+      ],
+      "checks": [
+        {
+          "url": "https://order.quickclick.cc/tw/portals/50lan_central/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "d4edbef72efe8eba2afcc3a79913e4c7141568791229c5304fe9404b4def33d5"
+        },
+        {
+          "url": "https://order.quickclick.cc/tw/food/P_yy3074dwD/?p=50lan_central",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "3b974899a4d287445c8c3f947141340166ddc7f5fedbe3253ad104d37853a941"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/50%E5%B5%90/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "3e93e66ff38cd1ed5d50e8ff5ad668f5bcd472f959fb7472ec928aac7af63078"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/50%E5%B5%90/menu/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "00ab2b7eacda504783221ba201754e920319299c1d439d1bf09feee66f262436"
+        }
+      ],
+      "evidence": "保留先前已核對之逐店菜單名稱；本次另核對來源連線，連線失敗不宣稱即時供應。",
+      "reference": {
+        "source": "SipSpot",
+        "url": "https://sipspot.wisplu.com.tw/brands/50%E5%B5%90/menu/",
+        "scope": "brand",
+        "names": [
+          "奶綠",
+          "奶茶",
+          "烏龍奶",
+          "阿華田",
+          "可可芭蕾",
+          "布丁奶茶",
+          "椰果奶茶",
+          "波霸奶茶",
+          "珍珠奶茶",
+          "冰淇淋奶茶",
+          "燕麥烏龍奶",
+          "燕麥阿華田",
+          "紅茶瑪奇朵",
+          "青茶瑪奇朵",
+          "燕麥奶茶/奶青",
+          "梅の綠",
+          "黃金烏龍",
+          "多多綠/紅",
+          "旺來紅/青",
+          "椰果紅/綠",
+          "檸檬綠/青",
+          "波霸紅/綠",
+          "冰淇淋紅茶",
+          "四季春青茶",
+          "多多檸檬綠",
+          "微檸檬紅/青",
+          "8冰綠/情人茶",
+          "燕麥紅/綠/青",
+          "柚子紅/綠/青/烏",
+          "茉莉綠茶/阿薩姆紅茶",
+          "烏龍拿鐵",
+          "紅茶拿鐵",
+          "綠茶拿鐵",
+          "阿華田拿鐵",
+          "可可芭蕾拿鐵",
+          "布丁紅茶拿鐵",
+          "波霸紅茶拿鐵",
+          "燕麥紅茶拿鐵",
+          "珍珠紅茶拿鐵",
+          "冰淇淋紅茶拿鐵",
+          "燕麥阿華田拿鐵",
+          "8冰茶",
+          "柚子茶",
+          "檸檬汁",
+          "檸檬多多",
+          "檸檬梅汁",
+          "金桔檸檬",
+          "檸檬蜜",
+          "葡萄柚蜜",
+          "蜂蜜奶茶",
+          "蜂蜜紅/綠",
+          "葡萄柚多多",
+          "金桔檸檬蜜",
+          "鮮柚綠/葡萄柚汁"
+        ],
+        "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
+      }
+    },
+    {
+      "brand": "50嵐",
+      "name": "虎尾林森店",
+      "address": "雲林縣虎尾鎮林森路一段398號",
+      "phone": "",
+      "sourceUrl": "https://order.quickclick.cc/tw/portals/50lan_central/",
+      "menuSourceUrl": "https://order.quickclick.cc/tw/food/P_NvYpjeWWJ/?p=50lan_central",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "listed",
+      "menuScope": "branch",
+      "menuItems": [
+        {
+          "name": "8冰茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冰淇淋奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冰淇淋紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冰淇淋紅茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "四季春青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "布丁奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "布丁紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "布丁綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "布丁青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "微檸檬紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "微檸檬青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "情人茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "柚子茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "椰果奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "椰果紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "椰果紅茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "椰果綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "檸檬多多",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "檸檬梅汁",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "檸檬汁",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "檸檬綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "檸檬蜜",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "檸檬青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "波霸奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "波霸紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "波霸紅茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "波霸綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "波霸青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "烏龍瑪奇朵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "燕麥奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "燕麥紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "燕麥紅茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "燕麥綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "燕麥青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "珍珠奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "珍珠紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "珍珠紅茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "珍珠綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "珍珠青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "紅茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "紅茶瑪奇朵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "綠茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "芒果青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "茉莉綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "荔枝烏龍",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "蜂蜜奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "蜂蜜紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "蜂蜜綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "重焙烏龍拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "金桔檸檬",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "金桔檸檬蜜",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "阿華田",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "阿華田拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "阿薩姆紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "黃金烏龍",
+          "listedPrice": null,
+          "category": "門市飲品"
+        }
+      ],
+      "checks": [
+        {
+          "url": "https://order.quickclick.cc/tw/portals/50lan_central/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "d4edbef72efe8eba2afcc3a79913e4c7141568791229c5304fe9404b4def33d5"
+        },
+        {
+          "url": "https://order.quickclick.cc/tw/food/P_NvYpjeWWJ/?p=50lan_central",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "270a7df63d21bc0642c8de1d55e91a9e888ee27c8abca494606d098314cb339e"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/50%E5%B5%90/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "3e93e66ff38cd1ed5d50e8ff5ad668f5bcd472f959fb7472ec928aac7af63078"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/50%E5%B5%90/menu/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "00ab2b7eacda504783221ba201754e920319299c1d439d1bf09feee66f262436"
+        }
+      ],
+      "evidence": "保留先前已核對之逐店菜單名稱；本次另核對來源連線，連線失敗不宣稱即時供應。",
+      "reference": {
+        "source": "SipSpot",
+        "url": "https://sipspot.wisplu.com.tw/brands/50%E5%B5%90/menu/",
+        "scope": "brand",
+        "names": [
+          "奶綠",
+          "奶茶",
+          "烏龍奶",
+          "阿華田",
+          "可可芭蕾",
+          "布丁奶茶",
+          "椰果奶茶",
+          "波霸奶茶",
+          "珍珠奶茶",
+          "冰淇淋奶茶",
+          "燕麥烏龍奶",
+          "燕麥阿華田",
+          "紅茶瑪奇朵",
+          "青茶瑪奇朵",
+          "燕麥奶茶/奶青",
+          "梅の綠",
+          "黃金烏龍",
+          "多多綠/紅",
+          "旺來紅/青",
+          "椰果紅/綠",
+          "檸檬綠/青",
+          "波霸紅/綠",
+          "冰淇淋紅茶",
+          "四季春青茶",
+          "多多檸檬綠",
+          "微檸檬紅/青",
+          "8冰綠/情人茶",
+          "燕麥紅/綠/青",
+          "柚子紅/綠/青/烏",
+          "茉莉綠茶/阿薩姆紅茶",
+          "烏龍拿鐵",
+          "紅茶拿鐵",
+          "綠茶拿鐵",
+          "阿華田拿鐵",
+          "可可芭蕾拿鐵",
+          "布丁紅茶拿鐵",
+          "波霸紅茶拿鐵",
+          "燕麥紅茶拿鐵",
+          "珍珠紅茶拿鐵",
+          "冰淇淋紅茶拿鐵",
+          "燕麥阿華田拿鐵",
+          "8冰茶",
+          "柚子茶",
+          "檸檬汁",
+          "檸檬多多",
+          "檸檬梅汁",
+          "金桔檸檬",
+          "檸檬蜜",
+          "葡萄柚蜜",
+          "蜂蜜奶茶",
+          "蜂蜜紅/綠",
+          "葡萄柚多多",
+          "金桔檸檬蜜",
+          "鮮柚綠/葡萄柚汁"
+        ],
+        "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
+      }
+    },
+    {
+      "brand": "50嵐",
+      "name": "虎尾光復店",
+      "address": "雲林縣虎尾鎮光復路345號",
+      "phone": "",
+      "sourceUrl": "https://order.quickclick.cc/tw/portals/50lan_central/",
+      "menuSourceUrl": "https://order.quickclick.cc/tw/food/P_yy3076WD5/?p=50lan_central",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "listed",
+      "menuScope": "branch",
+      "menuItems": [
+        {
+          "name": "8冰茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冰淇淋奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冰淇淋紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冰淇淋紅茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "四季春青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "布丁奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "布丁紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "布丁綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "布丁青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "微檸檬紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "微檸檬青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "情人茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "柚子茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "椰果奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "椰果紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "椰果紅茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "椰果綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "檸檬多多",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "檸檬梅汁",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "檸檬汁",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "檸檬綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "檸檬蜜",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "檸檬青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "波霸奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "波霸紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "波霸紅茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "波霸綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "波霸青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "烏龍瑪奇朵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "燕麥奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "燕麥紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "燕麥紅茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "燕麥綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "燕麥青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "珍珠奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "珍珠紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "珍珠紅茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "珍珠綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "珍珠青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "紅茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "紅茶瑪奇朵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "綠茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "芒果青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "茉莉綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "荔枝烏龍",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "蜂蜜奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "蜂蜜紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "蜂蜜綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "重焙烏龍拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "金桔檸檬",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "金桔檸檬蜜",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "阿華田",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "阿華田拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "阿薩姆紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "黃金烏龍",
+          "listedPrice": null,
+          "category": "門市飲品"
+        }
+      ],
+      "checks": [
+        {
+          "url": "https://order.quickclick.cc/tw/portals/50lan_central/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "d4edbef72efe8eba2afcc3a79913e4c7141568791229c5304fe9404b4def33d5"
+        },
+        {
+          "url": "https://order.quickclick.cc/tw/food/P_yy3076WD5/?p=50lan_central",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "2a32b7b3ecf37104b3161ce051695c4f08f4b53aa7134576de21ca059007ca4c"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/50%E5%B5%90/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "3e93e66ff38cd1ed5d50e8ff5ad668f5bcd472f959fb7472ec928aac7af63078"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/50%E5%B5%90/menu/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "00ab2b7eacda504783221ba201754e920319299c1d439d1bf09feee66f262436"
+        }
+      ],
+      "evidence": "保留先前已核對之逐店菜單名稱；本次另核對來源連線，連線失敗不宣稱即時供應。",
+      "reference": {
+        "source": "SipSpot",
+        "url": "https://sipspot.wisplu.com.tw/brands/50%E5%B5%90/menu/",
+        "scope": "brand",
+        "names": [
+          "奶綠",
+          "奶茶",
+          "烏龍奶",
+          "阿華田",
+          "可可芭蕾",
+          "布丁奶茶",
+          "椰果奶茶",
+          "波霸奶茶",
+          "珍珠奶茶",
+          "冰淇淋奶茶",
+          "燕麥烏龍奶",
+          "燕麥阿華田",
+          "紅茶瑪奇朵",
+          "青茶瑪奇朵",
+          "燕麥奶茶/奶青",
+          "梅の綠",
+          "黃金烏龍",
+          "多多綠/紅",
+          "旺來紅/青",
+          "椰果紅/綠",
+          "檸檬綠/青",
+          "波霸紅/綠",
+          "冰淇淋紅茶",
+          "四季春青茶",
+          "多多檸檬綠",
+          "微檸檬紅/青",
+          "8冰綠/情人茶",
+          "燕麥紅/綠/青",
+          "柚子紅/綠/青/烏",
+          "茉莉綠茶/阿薩姆紅茶",
+          "烏龍拿鐵",
+          "紅茶拿鐵",
+          "綠茶拿鐵",
+          "阿華田拿鐵",
+          "可可芭蕾拿鐵",
+          "布丁紅茶拿鐵",
+          "波霸紅茶拿鐵",
+          "燕麥紅茶拿鐵",
+          "珍珠紅茶拿鐵",
+          "冰淇淋紅茶拿鐵",
+          "燕麥阿華田拿鐵",
+          "8冰茶",
+          "柚子茶",
+          "檸檬汁",
+          "檸檬多多",
+          "檸檬梅汁",
+          "金桔檸檬",
+          "檸檬蜜",
+          "葡萄柚蜜",
+          "蜂蜜奶茶",
+          "蜂蜜紅/綠",
+          "葡萄柚多多",
+          "金桔檸檬蜜",
+          "鮮柚綠/葡萄柚汁"
+        ],
+        "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
+      }
+    },
+    {
+      "brand": "一沐日",
+      "name": "虎尾中正店",
+      "address": "雲林縣虎尾鎮西安里中正路215號",
+      "phone": "05-6360660",
+      "sourceUrl": "https://www.aniceholiday.com.tw/store?country=1&district=1&page=3",
+      "menuSourceUrl": "https://www.aniceholiday.com.tw/beverages/store/75",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "listed",
+      "menuScope": "branch",
+      "menuItems": [
+        {
+          "name": "冬瓜仙草蜜（冰量固定）",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬瓜檸檬  ( 無咖啡因 )",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬瓜烏龍茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬瓜紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬瓜蕎麥茶 ( 無咖啡因 )",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬瓜青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "奶蓋島韻紅",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "奶蓋烏龍綠",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "奶蓋烏龍茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "奶蓋糯香茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "奶蓋蕎麥茶 （無咖啡因）",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "奶蓋蕎麥茶（無咖啡因）",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "奶蓋高山青",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "嫩仙草奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "島韻紅奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "島韻紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "島韻紅鮮奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "手採高山青",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "桂花蕎麥茶（僅供正常與半糖兩種選擇，推薦半糖）（無咖啡因）",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "極黑芝麻奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "極黑芝麻鮮奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "檸檬紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "檸檬高山青",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "油切蕎麥茶（無咖啡因）",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "炭培烏龍",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "烏龍奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "烏龍綠奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "烏龍綠鮮奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "烏龍鮮奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "牡丹紅柚（固定糖度）",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "牡丹蕎麥茶（僅供正常與半糖兩種選擇）（無咖啡因）",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "牡丹高山青（僅供正常與半糖兩種選擇）",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "粉粿桂花檸檬 ( 僅供正常或半糖兩種選擇 )",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "粉粿牡丹檸檬（僅供正常與半糖兩種選擇）",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "粉粿牡丹紅柚（固定糖度）",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "粉粿黑糖奶茶 ( 僅供正常或半糖兩種選擇 )",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "粉粿黑糖奶茶（僅供正常或半糖兩種選擇）",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "粉粿黑糖檸檬 ( 僅供正常或半糖兩種選擇 )",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "粉粿黑糖鮮奶茶 ( 僅供正常或半糖兩種選擇 )",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "粉粿黑糖鮮奶茶 (僅供正常或半糖兩種選擇)",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "糯米香茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "糯香奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "糯香檸檬茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "糯香鮮奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "荔枝烏龍",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "荔枝蘆薈（甜度冰量固定）",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "蕎麥鮮奶茶（無咖啡因）",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "虎米Q桃",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "虎蜜荔枝",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "輕檸烏龍綠",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "輕香烏龍綠",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "逮丸奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "酸梅湯烏龍綠（甜度冰量固定）",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "高山青奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "高山青鮮奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "黃金蕎麥奶茶（無咖啡因）",
+          "listedPrice": null,
+          "category": "門市飲品"
+        }
+      ],
+      "checks": [
+        {
+          "url": "https://www.aniceholiday.com.tw/store?country=1&district=1&page=3",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "a0cda0069981081687481d1354ca16c77d09c45903686eccfb679141c53b9bf6"
+        },
+        {
+          "url": "https://www.aniceholiday.com.tw/beverages/store/75",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "6c430f31ef2c6c196c1938bff3e6313b56a38a1eade17ee36de4affff88d0ebb"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E4%B8%80%E6%B2%90%E6%97%A5/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "b5e0c09e07c90f0745f9ebee3dd6fc817332c8e077d04a43e78646baf8820232"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E4%B8%80%E6%B2%90%E6%97%A5/menu/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "2d9a707ab433f5613cddfe58e3c395ae73d20fd1812a529c00d3513f9782e5ac"
+        }
+      ],
+      "evidence": "保留先前已核對之逐店菜單名稱；本次另核對來源連線，連線失敗不宣稱即時供應。",
+      "reference": {
+        "source": "SipSpot",
+        "url": "https://sipspot.wisplu.com.tw/brands/%E4%B8%80%E6%B2%90%E6%97%A5/menu/",
+        "scope": "brand",
+        "names": [
+          "輕香烏龍綠",
+          "糯米香茶",
+          "島韻紅茶",
+          "炭培烏龍",
+          "油切蕎麥茶（無咖啡因）",
+          "手採高山青",
+          "牡丹紅柚",
+          "粉粿牡丹紅柚",
+          "牡丹高山青",
+          "牡丹蕎麥茶",
+          "粉粿牡丹檸檬",
+          "酸梅湯烏龍綠",
+          "輕檸烏龍綠",
+          "糯香檸檬茶",
+          "粉粿桂花檸檬",
+          "粉粿黑糖檸檬 ",
+          "荔枝烏龍",
+          "荔枝蘆薈",
+          "檸檬紅茶",
+          "檸檬高山青",
+          "桂花蕎麥茶",
+          "烏龍綠奶茶",
+          "糯香奶茶",
+          "粉粿黑糖奶茶",
+          "黃金蕎麥奶茶",
+          "逮丸奶茶",
+          "極黑芝麻奶茶",
+          "島韻紅奶茶",
+          "烏龍奶茶",
+          "高山青奶茶",
+          "嫩仙草奶茶",
+          "奶蓋烏龍綠",
+          "奶蓋糯香茶",
+          "奶蓋島韻紅",
+          "奶蓋烏龍茶",
+          "奶蓋蕎麥茶（無咖啡因）",
+          "奶蓋高山青",
+          "烏龍綠鮮奶茶",
+          "糯香鮮奶茶",
+          "蕎麥鮮奶茶（無咖啡因）",
+          "烏龍鮮奶茶",
+          "島韻紅鮮奶茶",
+          "極黑芝麻鮮奶茶",
+          "粉粿黑糖鮮奶茶",
+          "高山青鮮奶茶",
+          "冬瓜紅茶",
+          "冬瓜青茶",
+          "冬瓜檸檬 ( 無咖啡因 )",
+          "冬瓜仙草蜜",
+          "冬瓜蕎麥茶 ( 無咖啡因 )",
+          "冬瓜烏龍茶"
+        ],
+        "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
+      }
+    },
+    {
+      "brand": "Tea’s原味",
+      "name": "虎尾虎中店",
+      "address": "雲林縣虎尾鎮林森路一段411號",
+      "phone": "05-633-3522",
+      "sourceUrl": "https://www.teas.com.tw/store.php?county=%E9%9B%B2%E6%9E%97%E7%B8%A3&district=%E8%99%8E%E5%B0%BE%E9%8E%AE&zipcode=632",
+      "menuSourceUrl": "http://www.teas.com.tw/products.php?class_id=10",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "pending",
+      "menuScope": "pending",
+      "menuItems": [],
+      "checks": [
+        {
+          "url": "https://www.teas.com.tw/store.php?county=%E9%9B%B2%E6%9E%97%E7%B8%A3&district=%E8%99%8E%E5%B0%BE%E9%8E%AE&zipcode=632",
+          "status": "pending",
+          "error": "connection_failed"
+        },
+        {
+          "url": "https://www.teas.com.tw/products.php?class_id=10",
+          "status": "pending",
+          "error": "connection_failed"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/TEA%27S%E5%8E%9F%E5%91%B3/menu/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "cf2617bb08ae16b7f7d9d3f5054c7951cedf94ce5d61d4e9efc6eef0287d06d1"
+        }
+      ],
+      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。",
+      "reference": {
+        "source": "SipSpot",
+        "url": "https://sipspot.wisplu.com.tw/brands/TEA%27S%E5%8E%9F%E5%91%B3/menu/",
+        "scope": "brand",
+        "names": [
+          "古早味紅茶",
+          "炭焙麥茶",
+          "阿里山香片",
+          "伯爵紅茶",
+          "高纖綠茶",
+          "文山青茶",
+          "烏龍青茶",
+          "鐵觀音烏龍茶",
+          "冬瓜青茶",
+          "古早味冬瓜",
+          "仙草干茶",
+          "洛神花茶",
+          "回憶仙草蜜",
+          "山楂烏龍",
+          "文山青雙Q",
+          "冬瓜仙草凍",
+          "冬瓜愛玉",
+          "愛玉冰茶",
+          "珍波椰文山青",
+          "紅茶三號",
+          "奶茶",
+          "奶綠",
+          "烏龍奶茶",
+          "古早味奶茶",
+          "芋香奶茶",
+          "黑糖奶茶",
+          "金牌冰咖啡",
+          "巧克力可可",
+          "阿華田",
+          "焦糖奶茶",
+          "波霸奶茶",
+          "波霸奶綠",
+          "小珍珠奶茶",
+          "小珍珠奶綠",
+          "波霸小珍珠奶茶",
+          "雙Q奶茶",
+          "椰果奶茶",
+          "黑糖小Q奶茶",
+          "仙草凍奶茶",
+          "冰淇淋紅茶",
+          "布丁奶茶",
+          "珍波椰奶茶",
+          "波霸阿華田",
+          "奶茶三號",
+          "焦糖布蕾珍奶",
+          "奶蓋茶",
+          "奶蓋綠",
+          "古早味鮮奶茶",
+          "綠茶拿鐵",
+          "紅茶拿鐵",
+          "鐵觀音拿鐵",
+          "冬瓜鮮奶",
+          "鮮奶仙草凍",
+          "黑糖鮮奶茶",
+          "波霸紅茶拿鐵",
+          "雙Q紅茶拿鐵",
+          "阿華田拿鐵",
+          "可可鮮奶",
+          "魔爪能量芒果烏龍凍飲",
+          "魔爪能量阿里山香片",
+          "魔爪能量香醇麥茶",
+          "抹茶拿鐵",
+          "抹茶波霸冰淇淋",
+          "微檸檬冬瓜",
+          "重檸檬冬瓜",
+          "蜂蜜檸檬",
+          "港式凍檸茶",
+          "金桔檸檬",
+          "檸檬愛玉",
+          "鮮葡萄柚綠茶",
+          "鮮柳橙綠茶",
+          "芭樂梅",
+          "芭樂檸檬",
+          "青梅青茶",
+          "青梅綠茶",
+          "青梅青綠茶凍",
+          "8冰綠",
+          "梅子綠",
+          "蜂蜜綠",
+          "綠茶多多",
+          "番茄梅",
+          "番茄多多",
+          "百香綠茶",
+          "橙檸爽百香",
+          "百香雙Q",
+          "百香綠茶凍",
+          "甘蔗青茶",
+          "甘蔗檸檬",
+          "熱桔茶",
+          "黑糖薑茶",
+          "桂圓薑母",
+          "桂圓紅棗",
+          "熱黑糖奶茶",
+          "薑汁熱鮮奶",
+          "熱巧克力可可",
+          "熱阿華田",
+          "金牌熱咖啡",
+          "店名",
+          "菜單版本",
+          "備註"
+        ],
+        "note": "品牌參考菜單，不是逐店菜單；不據此證明虎尾門市販售，不移植價格或成分。"
+      }
+    },
+    {
+      "brand": "Tea’s原味",
+      "name": "虎尾工專店",
+      "address": "雲林縣虎尾鎮工專路128號",
+      "phone": "05-636-4010",
+      "sourceUrl": "https://www.teas.com.tw/store.php?county=%E9%9B%B2%E6%9E%97%E7%B8%A3&district=%E8%99%8E%E5%B0%BE%E9%8E%AE&zipcode=632",
+      "menuSourceUrl": "http://www.teas.com.tw/products.php?class_id=10",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "pending",
+      "menuScope": "pending",
+      "menuItems": [],
+      "checks": [
+        {
+          "url": "https://www.teas.com.tw/store.php?county=%E9%9B%B2%E6%9E%97%E7%B8%A3&district=%E8%99%8E%E5%B0%BE%E9%8E%AE&zipcode=632",
+          "status": "pending",
+          "error": "connection_failed"
+        },
+        {
+          "url": "https://www.teas.com.tw/products.php?class_id=10",
+          "status": "pending",
+          "error": "connection_failed"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/TEA%27S%E5%8E%9F%E5%91%B3/menu/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "cf2617bb08ae16b7f7d9d3f5054c7951cedf94ce5d61d4e9efc6eef0287d06d1"
+        }
+      ],
+      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。",
+      "reference": {
+        "source": "SipSpot",
+        "url": "https://sipspot.wisplu.com.tw/brands/TEA%27S%E5%8E%9F%E5%91%B3/menu/",
+        "scope": "brand",
+        "names": [
+          "古早味紅茶",
+          "炭焙麥茶",
+          "阿里山香片",
+          "伯爵紅茶",
+          "高纖綠茶",
+          "文山青茶",
+          "烏龍青茶",
+          "鐵觀音烏龍茶",
+          "冬瓜青茶",
+          "古早味冬瓜",
+          "仙草干茶",
+          "洛神花茶",
+          "回憶仙草蜜",
+          "山楂烏龍",
+          "文山青雙Q",
+          "冬瓜仙草凍",
+          "冬瓜愛玉",
+          "愛玉冰茶",
+          "珍波椰文山青",
+          "紅茶三號",
+          "奶茶",
+          "奶綠",
+          "烏龍奶茶",
+          "古早味奶茶",
+          "芋香奶茶",
+          "黑糖奶茶",
+          "金牌冰咖啡",
+          "巧克力可可",
+          "阿華田",
+          "焦糖奶茶",
+          "波霸奶茶",
+          "波霸奶綠",
+          "小珍珠奶茶",
+          "小珍珠奶綠",
+          "波霸小珍珠奶茶",
+          "雙Q奶茶",
+          "椰果奶茶",
+          "黑糖小Q奶茶",
+          "仙草凍奶茶",
+          "冰淇淋紅茶",
+          "布丁奶茶",
+          "珍波椰奶茶",
+          "波霸阿華田",
+          "奶茶三號",
+          "焦糖布蕾珍奶",
+          "奶蓋茶",
+          "奶蓋綠",
+          "古早味鮮奶茶",
+          "綠茶拿鐵",
+          "紅茶拿鐵",
+          "鐵觀音拿鐵",
+          "冬瓜鮮奶",
+          "鮮奶仙草凍",
+          "黑糖鮮奶茶",
+          "波霸紅茶拿鐵",
+          "雙Q紅茶拿鐵",
+          "阿華田拿鐵",
+          "可可鮮奶",
+          "魔爪能量芒果烏龍凍飲",
+          "魔爪能量阿里山香片",
+          "魔爪能量香醇麥茶",
+          "抹茶拿鐵",
+          "抹茶波霸冰淇淋",
+          "微檸檬冬瓜",
+          "重檸檬冬瓜",
+          "蜂蜜檸檬",
+          "港式凍檸茶",
+          "金桔檸檬",
+          "檸檬愛玉",
+          "鮮葡萄柚綠茶",
+          "鮮柳橙綠茶",
+          "芭樂梅",
+          "芭樂檸檬",
+          "青梅青茶",
+          "青梅綠茶",
+          "青梅青綠茶凍",
+          "8冰綠",
+          "梅子綠",
+          "蜂蜜綠",
+          "綠茶多多",
+          "番茄梅",
+          "番茄多多",
+          "百香綠茶",
+          "橙檸爽百香",
+          "百香雙Q",
+          "百香綠茶凍",
+          "甘蔗青茶",
+          "甘蔗檸檬",
+          "熱桔茶",
+          "黑糖薑茶",
+          "桂圓薑母",
+          "桂圓紅棗",
+          "熱黑糖奶茶",
+          "薑汁熱鮮奶",
+          "熱巧克力可可",
+          "熱阿華田",
+          "金牌熱咖啡",
+          "店名",
+          "菜單版本",
+          "備註"
+        ],
+        "note": "品牌參考菜單，不是逐店菜單；不據此證明虎尾門市販售，不移植價格或成分。"
+      }
+    },
+    {
+      "brand": "可不可熟成茶行",
+      "name": "雲林虎尾店",
+      "address": "雲林縣虎尾鎮林森路二段299號",
+      "phone": "05-636-6161",
+      "sourceUrl": "https://kebuke.com/wp-json/api/v1/town/41",
+      "menuSourceUrl": "https://kebuke.com/product/%e9%85%92%e5%90%a7%e7%9b%a3%e8%a3%bd%e7%b3%bb%e5%88%97-%e7%99%bd%e6%9f%9a%e6%b0%b4%e7%8e%89%e7%b4%85%e7%83%8f%e9%be%8d/",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "pending",
+      "menuScope": "pending",
+      "menuItems": [],
+      "checks": [
+        {
+          "url": "https://kebuke.com/wp-json/api/v1/town/41",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "7c8725713335d01765538b9892489e4e2794bdc84da119cfffd2411f8ad892ab"
+        },
+        {
+          "url": "https://kebuke.com/product/%e9%85%92%e5%90%a7%e7%9b%a3%e8%a3%bd%e7%b3%bb%e5%88%97-%e7%99%bd%e6%9f%9a%e6%b0%b4%e7%8e%89%e7%b4%85%e7%83%8f%e9%be%8d/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "0d876624f2a7a53dc405bf85d3d3419284eae336d84ca954817f168dec129750"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E5%8F%AF%E4%B8%8D%E5%8F%AF%E7%86%9F%E6%88%90%E7%B4%85%E8%8C%B6/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "06927f82ed4e846f387c24f7e8c5aaf429aef297df08b945b248bdeba45cefa5"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E5%8F%AF%E4%B8%8D%E5%8F%AF%E7%86%9F%E6%88%90%E7%B4%85%E8%8C%B6/menu/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "5eee2b2c04e3c7a19bc275108249e67bb0a2697ef6fb47b82fd67fcc73bdb860"
+        }
+      ],
+      "reference": {
+        "source": "SipSpot",
+        "url": "https://sipspot.wisplu.com.tw/brands/%E5%8F%AF%E4%B8%8D%E5%8F%AF%E7%86%9F%E6%88%90%E7%B4%85%E8%8C%B6/menu/",
+        "scope": "brand",
+        "names": [
+          "冷露歐蕾",
+          "太妃紅茶",
+          "春梅冰茶",
+          "春芽冷露",
+          "春芽綠茶",
+          "熟成冷露",
+          "熟成檸果",
+          "熟成歐蕾",
+          "熟成紅茶",
+          "白玉歐蕾",
+          "胭脂多多",
+          "胭脂紅茶",
+          "雪花冷露",
+          "雪藏紅茶",
+          "麗春紅茶"
+        ],
+        "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
+      },
+      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+    },
+    {
+      "brand": "麻古茶坊",
+      "name": "虎尾林森店",
+      "address": "雲林縣虎尾鎮林森路一段382號1樓",
+      "phone": "05-6364088",
+      "sourceUrl": "https://www.macutea.com.tw/shop.php",
+      "menuSourceUrl": "https://www.macutea.com.tw/drink.php",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "pending",
+      "menuScope": "pending",
+      "menuItems": [],
+      "checks": [
+        {
+          "url": "https://www.macutea.com.tw/shop.php",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "d1cff9c70fd1f2156695442278774be51efcc7c3b92af6da96bf2162ca3f689b"
+        },
+        {
+          "url": "https://www.macutea.com.tw/drink.php",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "69980dc55cd78dc0a6c190dff8efc8888ba41df439632d88015d8c4dd460cd7b"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E9%BA%BB%E5%8F%A4%E8%8C%B6%E5%9D%8A/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "f2cf586dd71e3af1ca6bd8cd768cfad991b2136c551c6881d2903c0c93c3d49b"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E9%BA%BB%E5%8F%A4%E8%8C%B6%E5%9D%8A/menu/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "57c786eb2b541bfa119cd2b5af66ac03bfad9630c8b9743d0e38b2d2d5a951f9"
+        }
+      ],
+      "reference": {
+        "source": "SipSpot",
+        "url": "https://sipspot.wisplu.com.tw/brands/%E9%BA%BB%E5%8F%A4%E8%8C%B6%E5%9D%8A/menu/",
+        "scope": "brand",
+        "names": [
+          "金萱三Q",
+          "金萱雙Q",
+          "翡翠綠茶",
+          "蜜桃紅茶",
+          "錫蘭紅茶",
+          "高山金萱茶",
+          "阿華田",
+          "波霸奶茶",
+          "玫瑰奶茶",
+          "蜜桃奶茶",
+          "錫蘭奶茶",
+          "仙草凍奶茶",
+          "多多綠茶",
+          "梅子冰茶",
+          "梅子綠茶",
+          "芝芝阿華田",
+          "芝芝金萱三Q",
+          "芝芝金萱雙Q",
+          "芝芝翡翠綠茶",
+          "芝芝蜜桃紅茶",
+          "芝芝錫蘭奶茶",
+          "芝芝金萱/錫蘭紅茶",
+          "抹茶拿鐵",
+          "紅茶拿鐵",
+          "阿華田拿鐵",
+          "波霸紅茶拿鐵",
+          "玫瑰紅茶拿鐵",
+          "檸檬多多",
+          "檸檬梅子",
+          "百香多多",
+          "百香綠茶",
+          "翡翠柳橙",
+          "蜂蜜檸檬",
+          "百香雙Q果",
+          "冰萃檸檬雙Q",
+          "檸檬綠茶/紅茶",
+          "柳橙果粒茶",
+          "香橙果粒茶",
+          "奇異果果粒茶",
+          "葡萄柚果粒茶",
+          "葡萄柚果粒蜜茶",
+          "芝芝可可",
+          "提拉米酥2.0",
+          "濃厚芋泥鮮奶",
+          "抹茶提拉米酥2.0",
+          "芋泥波波鮮奶2.0",
+          "楊枝甘露2.0 (5-9月)",
+          "芒果果粒波波 (5-9月)",
+          "芝芝芒果果粒 (5-9月)",
+          "芝芝草莓果粒 (2-3月)",
+          "芝芝葡萄果粒 (9-3月)",
+          "草莓果粒波波 (2-3月)",
+          "葡萄果粒波波 (9-3月)",
+          "草莓提拉米蘇2.0 (2-3月)"
+        ],
+        "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
+      },
+      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+    },
+    {
+      "brand": "麻古茶坊",
+      "name": "虎尾科大店",
+      "address": "雲林縣虎尾鎮林森路二段261號",
+      "phone": "05-6323688",
+      "sourceUrl": "https://www.macutea.com.tw/shop.php",
+      "menuSourceUrl": "https://www.macutea.com.tw/drink.php",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "pending",
+      "menuScope": "pending",
+      "menuItems": [],
+      "checks": [
+        {
+          "url": "https://www.macutea.com.tw/shop.php",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "d1cff9c70fd1f2156695442278774be51efcc7c3b92af6da96bf2162ca3f689b"
+        },
+        {
+          "url": "https://www.macutea.com.tw/drink.php",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "69980dc55cd78dc0a6c190dff8efc8888ba41df439632d88015d8c4dd460cd7b"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E9%BA%BB%E5%8F%A4%E8%8C%B6%E5%9D%8A/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "f2cf586dd71e3af1ca6bd8cd768cfad991b2136c551c6881d2903c0c93c3d49b"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E9%BA%BB%E5%8F%A4%E8%8C%B6%E5%9D%8A/menu/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "57c786eb2b541bfa119cd2b5af66ac03bfad9630c8b9743d0e38b2d2d5a951f9"
+        }
+      ],
+      "reference": {
+        "source": "SipSpot",
+        "url": "https://sipspot.wisplu.com.tw/brands/%E9%BA%BB%E5%8F%A4%E8%8C%B6%E5%9D%8A/menu/",
+        "scope": "brand",
+        "names": [
+          "金萱三Q",
+          "金萱雙Q",
+          "翡翠綠茶",
+          "蜜桃紅茶",
+          "錫蘭紅茶",
+          "高山金萱茶",
+          "阿華田",
+          "波霸奶茶",
+          "玫瑰奶茶",
+          "蜜桃奶茶",
+          "錫蘭奶茶",
+          "仙草凍奶茶",
+          "多多綠茶",
+          "梅子冰茶",
+          "梅子綠茶",
+          "芝芝阿華田",
+          "芝芝金萱三Q",
+          "芝芝金萱雙Q",
+          "芝芝翡翠綠茶",
+          "芝芝蜜桃紅茶",
+          "芝芝錫蘭奶茶",
+          "芝芝金萱/錫蘭紅茶",
+          "抹茶拿鐵",
+          "紅茶拿鐵",
+          "阿華田拿鐵",
+          "波霸紅茶拿鐵",
+          "玫瑰紅茶拿鐵",
+          "檸檬多多",
+          "檸檬梅子",
+          "百香多多",
+          "百香綠茶",
+          "翡翠柳橙",
+          "蜂蜜檸檬",
+          "百香雙Q果",
+          "冰萃檸檬雙Q",
+          "檸檬綠茶/紅茶",
+          "柳橙果粒茶",
+          "香橙果粒茶",
+          "奇異果果粒茶",
+          "葡萄柚果粒茶",
+          "葡萄柚果粒蜜茶",
+          "芝芝可可",
+          "提拉米酥2.0",
+          "濃厚芋泥鮮奶",
+          "抹茶提拉米酥2.0",
+          "芋泥波波鮮奶2.0",
+          "楊枝甘露2.0 (5-9月)",
+          "芒果果粒波波 (5-9月)",
+          "芝芝芒果果粒 (5-9月)",
+          "芝芝草莓果粒 (2-3月)",
+          "芝芝葡萄果粒 (9-3月)",
+          "草莓果粒波波 (2-3月)",
+          "葡萄果粒波波 (9-3月)",
+          "草莓提拉米蘇2.0 (2-3月)"
+        ],
+        "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
+      },
+      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+    },
+    {
+      "brand": "老賴茶棧",
+      "name": "虎尾中正店",
+      "address": "雲林縣虎尾鎮西安里文化路53號",
+      "phone": "05-632-2152",
+      "sourceUrl": "https://www.liketeashop.com/tw/store",
+      "menuSourceUrl": "https://www.liketeashop.com/tw/drink",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "pending",
+      "menuScope": "pending",
+      "menuItems": [],
+      "checks": [
+        {
+          "url": "https://www.liketeashop.com/tw/store",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "2542ed0d13db95ab09219b25ac5d9018599c9069f06ff31023558c263645bd6f"
+        },
+        {
+          "url": "https://www.liketeashop.com/tw/drink",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "a815be128efb46f827fe39e31e8dd0edaf75fd10db5f44ab5f41faccb8a686df"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E8%80%81%E8%B3%B4%E8%8C%B6%E6%A3%A7/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "fbf402f7e34d889d5b8b17c044703c6db87521d849f134f533f626472b98fc18"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E8%80%81%E8%B3%B4%E8%8C%B6%E6%A3%A7/menu/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "0f4f1876fa30b85920d86bdd4780f9fdfd8794e948bf19b5ff4a24f85e56f6b8"
+        }
+      ],
+      "reference": {
+        "source": "SipSpot",
+        "url": "https://sipspot.wisplu.com.tw/brands/%E8%80%81%E8%B3%B4%E8%8C%B6%E6%A3%A7/menu/",
+        "scope": "brand",
+        "names": [
+          "冬瓜紅茶",
+          "冬瓜青霧",
+          "冬瓜香綠",
+          "冬瓜香青",
+          "熬煮冬瓜茶",
+          "愛玉冬瓜檸檬",
+          "四季青茶",
+          "茉翠香綠",
+          "青霧綠茶",
+          "手工豆漿",
+          "熬煮青草茶",
+          "太后冬瓜奶",
+          "太后香綠奶",
+          "布丁太后牛乳",
+          "珍珠太后牛乳",
+          "布丁奶茶",
+          "布丁綠奶",
+          "招牌奶茶",
+          "椰果奶茶",
+          "珍珠綠奶",
+          "胚芽奶茶",
+          "香綠奶茶",
+          "珍珠布丁奶茶",
+          "珍珠胚芽奶茶",
+          "黑芝麻奶茶",
+          "黑芝麻豆漿",
+          "黑芝麻太后牛乳",
+          "黑芝麻珍珠奶茶",
+          "黑芝麻胚芽奶茶",
+          "黑芝麻珍珠太后牛乳",
+          "台灣茶后茶包",
+          "冬瓜檸檬",
+          "太后牛乳",
+          "烏梅紅茶",
+          "珍珠奶茶",
+          "珍珠紅茶",
+          "老賴紅茶",
+          "豆香紅茶",
+          "青草紅茶",
+          "玉檸香綠",
+          "韓柚綠/青",
+          "樂多香綠/青",
+          "青檸香綠/青",
+          "青檸紅茶/青霧綠"
+        ],
+        "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
+      },
+      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+    },
+    {
+      "brand": "龜記",
+      "name": "虎尾光復店",
+      "address": "雲林縣虎尾鎮光復路316號",
+      "phone": "05-6366336",
+      "sourceUrl": "https://guiji-group.com/location/%E9%9B%B2%E6%9E%97%E7%B8%A3",
+      "menuSourceUrl": "https://guiji-group.com/drinks",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "pending",
+      "menuScope": "pending",
+      "menuItems": [],
+      "checks": [
+        {
+          "url": "https://guiji-group.com/location/%E9%9B%B2%E6%9E%97%E7%B8%A3",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "4a3406192445372a1634c00c0e77ad060f5e87270c52b7ee2ff9a3848f13de24"
+        },
+        {
+          "url": "https://guiji-group.com/drinks",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "162c1bea3d254c5fd99a014e5e609c4c0e31d8b307dad2d39466c26bde1b34c3"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E9%BE%9C%E8%A8%98%E8%8C%97%E5%93%81/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "bea52f3c46d5d7425758f4980c21cb73893c064670de538917b46a139f7d8660"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E9%BE%9C%E8%A8%98%E8%8C%97%E5%93%81/menu/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "3b2dbf09233dca30ad366f6a985f057d281e7de0475746bfab5fb443cc9188de"
+        }
+      ],
+      "reference": {
+        "source": "SipSpot",
+        "url": "https://sipspot.wisplu.com.tw/brands/%E9%BE%9C%E8%A8%98%E8%8C%97%E5%93%81/menu/",
+        "scope": "brand",
+        "names": [
+          "極品紅茶",
+          "翡翠綠茶",
+          "青四季春",
+          "三韻紅萱",
+          "三十三茶王",
+          "碎銀普洱茶",
+          "花沫烏龍",
+          "極品奶茶",
+          "翡翠奶茶",
+          "茶王奶茶",
+          "碎銀普洱奶茶",
+          "珍珠奶茶",
+          "蜂蜜奶茶",
+          "豆漿紅茶",
+          "冬瓜茶王",
+          "阿源楊桃紅茶",
+          "阿源楊桃綠茶",
+          "冬瓜雷夢",
+          "楊桃雷夢",
+          "甘蔗四季春",
+          "梅好翡翠綠",
+          "梅好百香綠",
+          "梅好三韻紅凍飲",
+          "極品鮮乳茶",
+          "翡翠鮮乳茶",
+          "龜記濃乳茶",
+          "冬瓜鮮乳",
+          "茶王鮮乳茶",
+          "巧克鮮乳茶",
+          "碎銀普洱鮮乳",
+          "蜂蜜綠茶",
+          "蜂蜜四季春",
+          "蜂蜜花沫烏龍",
+          "蜂蜜雷夢",
+          "雷夢蘆薈蜜",
+          "百香紅茶",
+          "百香綠茶",
+          "翡翠雷夢",
+          "柳丁翡翠",
+          "蘋果紅萱",
+          "紫葡三韻紅",
+          "蜜桃烏龍",
+          "紅柚翡翠",
+          "紫葡蘆薈春",
+          "紅柚紫葡凍飲"
+        ],
+        "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
+      },
+      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+    },
+    {
+      "brand": "茶湯會",
+      "name": "雲林虎尾店(輕食限定店)",
+      "address": "雲林縣虎尾鎮中正路104號",
+      "phone": "05-6320128",
+      "sourceUrl": "https://tw.tp-tea.com/store/?index_m_id=1&city=%E9%9B%B2%E6%9E%97%E7%B8%A3",
+      "menuSourceUrl": "https://tw.tp-tea.com/menu/",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "pending",
+      "menuScope": "pending",
+      "menuItems": [],
+      "checks": [
+        {
+          "url": "https://tw.tp-tea.com/store/?index_m_id=1&city=%E9%9B%B2%E6%9E%97%E7%B8%A3",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "50cba07a710623ab1e32c674372415eab401229194bdf13675cbd3d4bd11f8a3"
+        },
+        {
+          "url": "https://tw.tp-tea.com/menu/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "172776f604c8fe909a418986f9f2bfb94269818f237f0860b6afb640c33bef90"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E8%8C%B6%E6%B9%AF%E6%9C%83/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "b385728cf33b69fa6bffb86b4d231f72c825a5278c776d48b9d8214ba9963f79"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E8%8C%B6%E6%B9%AF%E6%9C%83/menu/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "8d94b08a8e756fcc55fe9c66fefce2239ce1280692898a6032b1c3119250795f"
+        }
+      ],
+      "reference": {
+        "source": "SipSpot",
+        "url": "https://sipspot.wisplu.com.tw/brands/%E8%8C%B6%E6%B9%AF%E6%9C%83/menu/",
+        "scope": "brand",
+        "names": [
+          "蜜香紅茶/珍珠",
+          "粉粿蕎麥四季春",
+          "翡翠檸檬",
+          "蜜柑鐵觀音",
+          "觀音拿鐵/珍珠",
+          "紅豆拿鐵/珍珠",
+          "蜜柑愛玉鐵觀音",
+          "蜜柑寒天鐵觀音",
+          "蜜柑咖啡凍鐵觀音",
+          "焙茶拿鐵/珍珠",
+          "焙茶觀音雙Q奶茶",
+          "養樂多綠茶",
+          "布丁奶茶",
+          "愛文芒果綠茶",
+          "果果四季春",
+          "愛文芒果椰果綠茶",
+          "愛文芒果愛玉綠茶",
+          "黃金蕎麥",
+          "蕎麥四季春",
+          "金桂蕎麥",
+          "四季春/珍珠",
+          "碳燒鐵觀音",
+          "冬瓜鐵觀音",
+          "金桂觀音",
+          "鐵觀音奶茶/珍珠",
+          "冬瓜檸檬鐵觀音",
+          "QQ檸檬四季春",
+          "冬瓜觀音拿鐵/珍珠",
+          "四季春蜂蜜拿鐵/珍珠",
+          "金桂觀音拿鐵/珍珠",
+          "觀音雙Q拿鐵",
+          "檸檬冬瓜",
+          "檸檬蜜",
+          "拿鐵冬瓜",
+          "蔗香紅茶",
+          "功夫紅茶",
+          "豆漿紅茶",
+          "蔗香奶茶",
+          "豆漿奶茶",
+          "珍珠奶茶",
+          "蜜香奶茶/珍珠",
+          "錫蘭烏瓦檸檬紅茶",
+          "功夫茶拿鐵/珍珠",
+          "紅茶拿鐵/珍珠",
+          "特級翡翠綠",
+          "金桂茉莉",
+          "蜂蜜綠茶",
+          "特級茉莉奶綠",
+          "珍珠特級茉莉奶綠",
+          "百香綠茶",
+          "水果茶",
+          "翡翠拿鐵/珍珠"
+        ],
+        "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
+      },
+      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+    },
+    {
+      "brand": "茶之魔手",
+      "name": "虎尾鑫向南店",
+      "address": "雲林縣虎尾鎮中正路92號",
+      "phone": "05-6323377",
+      "sourceUrl": "https://www.teamagichand.com.tw/store/?index_m_id=1&city=%E9%9B%B2%E6%9E%97%E7%B8%A3",
+      "menuSourceUrl": "https://www.teamagichand.com.tw/product/",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "pending",
+      "menuScope": "pending",
+      "menuItems": [],
+      "checks": [
+        {
+          "url": "https://www.teamagichand.com.tw/store/?index_m_id=1&city=%E9%9B%B2%E6%9E%97%E7%B8%A3",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "78632f60c94accba496101b64a318c8e3f6485603f8b967d4855bc007eb00e32"
+        },
+        {
+          "url": "https://www.teamagichand.com.tw/product/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "5f18caae3cb7672e761a2d0640ede183f0e2891f0c837e864e8ae2090dbaa869"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E8%8C%B6%E4%B9%8B%E9%AD%94%E6%89%8B/menu/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "72046bf94fd50e0c4c67647ed9f93153b712c53b6de4082d17ab268d13638b99"
+        }
+      ],
+      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。",
+      "reference": {
+        "source": "SipSpot",
+        "url": "https://sipspot.wisplu.com.tw/brands/%E8%8C%B6%E4%B9%8B%E9%AD%94%E6%89%8B/menu/",
+        "scope": "brand",
+        "names": [
+          "冰咖啡",
+          "香蕉咖啡",
+          "黑手調製咖啡",
+          "伯爵多多",
+          "伯爵紅茶",
+          "檸檬伯爵",
+          "檸檬多多伯爵",
+          "燒仙草",
+          "香草仙草凍",
+          "台灣烏龍",
+          "台灣紅茶",
+          "台灣純紅",
+          "台灣青茶",
+          "超級青茶",
+          "台灣高山青",
+          "台灣黑龍綠",
+          "梅子紅茶",
+          "蜂蜜紅茶",
+          "單筒",
+          "奶油",
+          "奶酥",
+          "榛蓮",
+          "花生",
+          "香蒜",
+          "巧克力",
+          "咖啡生乳拿鐵",
+          "阿華田生乳專賣",
+          "阿華田生乳拿鐵"
+        ],
+        "note": "品牌參考菜單，不是逐店菜單；不據此證明虎尾門市販售，不移植價格或成分。"
+      }
+    },
+    {
+      "brand": "茶之魔手",
+      "name": "虎尾鑫向北店",
+      "address": "雲林縣虎尾鎮中正路377號",
+      "phone": "05-6313378",
+      "sourceUrl": "https://www.teamagichand.com.tw/store/?index_m_id=1&city=%E9%9B%B2%E6%9E%97%E7%B8%A3",
+      "menuSourceUrl": "https://www.teamagichand.com.tw/product/",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "pending",
+      "menuScope": "pending",
+      "menuItems": [],
+      "checks": [
+        {
+          "url": "https://www.teamagichand.com.tw/store/?index_m_id=1&city=%E9%9B%B2%E6%9E%97%E7%B8%A3",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "78632f60c94accba496101b64a318c8e3f6485603f8b967d4855bc007eb00e32"
+        },
+        {
+          "url": "https://www.teamagichand.com.tw/product/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "5f18caae3cb7672e761a2d0640ede183f0e2891f0c837e864e8ae2090dbaa869"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E8%8C%B6%E4%B9%8B%E9%AD%94%E6%89%8B/menu/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "72046bf94fd50e0c4c67647ed9f93153b712c53b6de4082d17ab268d13638b99"
+        }
+      ],
+      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。",
+      "reference": {
+        "source": "SipSpot",
+        "url": "https://sipspot.wisplu.com.tw/brands/%E8%8C%B6%E4%B9%8B%E9%AD%94%E6%89%8B/menu/",
+        "scope": "brand",
+        "names": [
+          "冰咖啡",
+          "香蕉咖啡",
+          "黑手調製咖啡",
+          "伯爵多多",
+          "伯爵紅茶",
+          "檸檬伯爵",
+          "檸檬多多伯爵",
+          "燒仙草",
+          "香草仙草凍",
+          "台灣烏龍",
+          "台灣紅茶",
+          "台灣純紅",
+          "台灣青茶",
+          "超級青茶",
+          "台灣高山青",
+          "台灣黑龍綠",
+          "梅子紅茶",
+          "蜂蜜紅茶",
+          "單筒",
+          "奶油",
+          "奶酥",
+          "榛蓮",
+          "花生",
+          "香蒜",
+          "巧克力",
+          "咖啡生乳拿鐵",
+          "阿華田生乳專賣",
+          "阿華田生乳拿鐵"
+        ],
+        "note": "品牌參考菜單，不是逐店菜單；不據此證明虎尾門市販售，不移植價格或成分。"
+      }
+    },
+    {
+      "brand": "拾汣茶屋",
+      "name": "雲林虎尾店",
+      "address": "雲林縣虎尾鎭中正路137號",
+      "phone": "05-632-7900",
+      "sourceUrl": "https://www.19teahouse.com/locations?category=Yunlin",
+      "menuSourceUrl": "https://store.dudooeat.com/order/store/f35db32f48734b868b7662391529bae7",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "listed",
+      "menuScope": "branch",
+      "menuItems": [
+        {
+          "category": "門市飲品",
+          "listedPrice": 69,
+          "name": "芝芝奶蓋多米霸飽",
+          "sourceId": "divMealItem3726717"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 69,
+          "name": "JOE愛檸橙柳肉蜜",
+          "sourceId": "divMealItem3670828"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 65,
+          "name": "梔茉青葡凍飲",
+          "sourceId": "divMealItem3529892"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 69,
+          "name": "梔茉青葡厚奶綠",
+          "sourceId": "divMealItem3529930"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 69,
+          "name": "梔茉青葡鮮奶綠",
+          "sourceId": "divMealItem3530013"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 50,
+          "name": "清茶珍淑薈",
+          "sourceId": "divMealItem2741702"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 65,
+          "name": "中焙生乳紅茶",
+          "sourceId": "divMealItem2162997"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "張家檸檬綠茶",
+          "sourceId": "divMealItem2328934"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 65,
+          "name": "小王秘蜜粿果綠",
+          "sourceId": "divMealItem3145267"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 69,
+          "name": "烤地瓜芋圓厚奶茶",
+          "sourceId": "divMealItem3168768"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 60,
+          "name": "烤地瓜厚奶茶",
+          "sourceId": "divMealItem3206708"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 69,
+          "name": "烤地瓜芋圓鮮奶茶",
+          "sourceId": "divMealItem3168892"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 60,
+          "name": "烤地瓜鮮奶茶",
+          "sourceId": "divMealItem3206709"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "靜岡一番抹茶",
+          "sourceId": "divMealItem2463524"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 65,
+          "name": "靜岡抹茶厚奶",
+          "sourceId": "divMealItem2463528"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 75,
+          "name": "抹茶玄米蕎麥拿鐵",
+          "sourceId": "divMealItem2463532"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 70,
+          "name": "靜岡抹茶香檸",
+          "sourceId": "divMealItem2463535"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 70,
+          "name": "靜岡抹茶生乳",
+          "sourceId": "divMealItem2669449"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 25,
+          "name": "拾汣紅茶",
+          "sourceId": "divMealItem2162908"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 25,
+          "name": "純翠綠茶",
+          "sourceId": "divMealItem2162909"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 25,
+          "name": "冬片青茶",
+          "sourceId": "divMealItem2162907"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 25,
+          "name": "焰香烏龍",
+          "sourceId": "divMealItem2162912"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 30,
+          "name": "黃金玄米蕎麥",
+          "sourceId": "divMealItem2162911"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 25,
+          "name": "烏龍翠綠",
+          "sourceId": "divMealItem2177666"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 35,
+          "name": "迎二十．蘭影",
+          "sourceId": "divMealItem3087250"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 30,
+          "name": "梔茉馥綠",
+          "sourceId": "divMealItem3530243"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 65,
+          "name": "蜜桃桂花烏",
+          "sourceId": "divMealItem2769991"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "檸檬紅茶",
+          "sourceId": "divMealItem2328933"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 60,
+          "name": "檸檬黑糖粉粿",
+          "sourceId": "divMealItem2162898"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 65,
+          "name": "檸檬養樂多",
+          "sourceId": "divMealItem2328919"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 60,
+          "name": "覓蜜檸檬蘆薈",
+          "sourceId": "divMealItem2162897"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 50,
+          "name": "覓蜜檸檬",
+          "sourceId": "divMealItem2549876"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 60,
+          "name": "甘蔗青茶",
+          "sourceId": "divMealItem2162896"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 45,
+          "name": "百香翠綠",
+          "sourceId": "divMealItem2328922"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 65,
+          "name": "迎二十．橙光",
+          "sourceId": "divMealItem3169035"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 60,
+          "name": "百香QQ椰果",
+          "sourceId": "divMealItem3648657"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 50,
+          "name": "本家厚奶茶",
+          "sourceId": "divMealItem2158076"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 50,
+          "name": "本家厚奶綠",
+          "sourceId": "divMealItem2158077"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 50,
+          "name": "本家厚奶青",
+          "sourceId": "divMealItem2770332"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 50,
+          "name": "本家厚奶烏",
+          "sourceId": "divMealItem2770331"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "玄米蕎麥厚奶茶",
+          "sourceId": "divMealItem2158079"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "金蜜珍珠厚奶茶",
+          "sourceId": "divMealItem2158036"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "金蜜珍珠厚奶綠",
+          "sourceId": "divMealItem2158038"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "金蜜珍珠厚奶青",
+          "sourceId": "divMealItem2770335"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "金蜜珍珠厚奶烏",
+          "sourceId": "divMealItem2770334"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 65,
+          "name": "金蜜珍珠厚奶蕎麥",
+          "sourceId": "divMealItem2158040"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "粉粿厚奶茶",
+          "sourceId": "divMealItem2157163"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "粉粿厚奶綠",
+          "sourceId": "divMealItem2158034"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "粉粿厚奶青",
+          "sourceId": "divMealItem2770338"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "粉粿厚奶烏",
+          "sourceId": "divMealItem2770337"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 70,
+          "name": "港式奶茶",
+          "sourceId": "divMealItem2224385"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "粉角厚奶茶",
+          "sourceId": "divMealItem3122681"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "粉角厚奶綠",
+          "sourceId": "divMealItem3122718"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "粉角厚奶青",
+          "sourceId": "divMealItem3122720"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "粉角厚奶烏",
+          "sourceId": "divMealItem3122793"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 65,
+          "name": "粉粿厚奶蕎麥",
+          "sourceId": "divMealItem2158035"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 50,
+          "name": "醇味鮮奶茶",
+          "sourceId": "divMealItem2162915"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 50,
+          "name": "醇味鮮奶綠",
+          "sourceId": "divMealItem2162916"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 50,
+          "name": "醇味鮮奶青",
+          "sourceId": "divMealItem2162917"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 50,
+          "name": "醇味鮮奶烏",
+          "sourceId": "divMealItem2162919"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "玄米蕎麥鮮奶茶",
+          "sourceId": "divMealItem2162920"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "金蜜珍珠鮮奶茶",
+          "sourceId": "divMealItem2162921"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "金蜜珍珠鮮奶綠",
+          "sourceId": "divMealItem2162922"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "金蜜珍珠鮮奶青",
+          "sourceId": "divMealItem2162926"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "金蜜珍珠鮮奶烏",
+          "sourceId": "divMealItem2162927"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 65,
+          "name": "金蜜珍珠鮮奶蕎麥",
+          "sourceId": "divMealItem2162931"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "起司奶蓋紅",
+          "sourceId": "divMealItem2162932"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "起司奶蓋綠",
+          "sourceId": "divMealItem2162933"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "起司奶蓋青",
+          "sourceId": "divMealItem2162934"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 55,
+          "name": "起司奶蓋烏龍",
+          "sourceId": "divMealItem2162935"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 60,
+          "name": "起司奶蓋蕎麥",
+          "sourceId": "divMealItem2770027"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 75,
+          "name": "黑糖QQ撞奶",
+          "sourceId": "divMealItem3648631"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 60,
+          "name": "蜂蜜蕎麥鮮奶",
+          "sourceId": "divMealItem3648653"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 45,
+          "name": "覓蜜紅茶",
+          "sourceId": "divMealItem2162887"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 45,
+          "name": "覓蜜綠茶",
+          "sourceId": "divMealItem2162888"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 45,
+          "name": "青梅翠綠",
+          "sourceId": "divMealItem2329303"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 45,
+          "name": "梅露青",
+          "sourceId": "divMealItem2328921"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 50,
+          "name": "綠茶凍梅露",
+          "sourceId": "divMealItem2162894"
+        },
+        {
+          "category": "門市飲品",
+          "listedPrice": 50,
+          "name": "養樂多綠茶",
+          "sourceId": "divMealItem2328918"
+        }
+      ],
+      "checks": [
+        {
+          "url": "https://www.19teahouse.com/locations?category=Yunlin",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "c16e0c78ee16395a66ed029fd7b28c70f5057094afd700ec71ecc00a9c59aafd"
+        },
+        {
+          "url": "https://www.19teahouse.com/products",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "152afe6c4d519fffab9df2371b933d525eace602cba919c8f5a9aa856aa866bd"
+        },
+        {
+          "url": "https://www.19teahouse.com/works/detail/Store20",
+          "status": "official_store_links_to_menu"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E6%8B%BE%E6%B1%A3%E8%8C%B6%E5%B1%8B/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "32f7b694552659c410d58f81f206ad8bc7b96adfb289a44ea1ef0055cb14741b"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E6%8B%BE%E6%B1%A3%E8%8C%B6%E5%B1%8B/menu/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "24ebf3bde55e5d7cf4ae81f8da37ae5d18b4b34173f8a462405a1ed97e177f7f"
+        }
+      ],
+      "evidence": "品牌官網虎尾門市頁直接連至此肚肚頁；店名、電話與中正路137號相符，僅收錄飲料，排除杯袋。",
+      "reference": {
+        "source": "SipSpot",
+        "url": "https://sipspot.wisplu.com.tw/brands/%E6%8B%BE%E6%B1%A3%E8%8C%B6%E5%B1%8B/menu/",
+        "scope": "brand",
+        "names": [
+          "梔茉青葡凍飲",
+          "梔茉青葡厚奶綠",
+          "梔茉青葡鮮奶綠",
+          "清茶珍淑薈",
+          "中焙生乳紅茶",
+          "張家檸檬綠茶",
+          "烤地瓜芋圓厚奶茶",
+          "烤地瓜芋圓鮮奶茶",
+          "小王秘蜜粿果綠",
+          "迎二十•蘭影",
+          "黃金玄米蕎麥",
+          "梔茉馥綠",
+          "冬片青茶",
+          "拾汣紅茶",
+          "純翠綠茶",
+          "焰香烏龍",
+          "烏龍翠綠",
+          "覓蜜紅茶",
+          "覓蜜綠茶",
+          "梅露青",
+          "綠茶凍梅露",
+          "養樂多綠茶",
+          "醇味鮮奶茶",
+          "金蜜珍珠鮮奶茶",
+          "起司奶蓋茶",
+          "玄米蕎麥鮮奶茶",
+          "蜜桃桂花烏",
+          "迎二十•橙光",
+          "檸檬紅茶",
+          "檸檬黑糖粉粿",
+          "檸檬養樂多",
+          "覓蜜檸檬蘆薈",
+          "甘蔗青茶",
+          "百香翠綠",
+          "本家厚奶茶",
+          "金蜜珍珠厚奶茶",
+          "粉粿厚奶茶",
+          "粉角厚奶茶",
+          "港式奶茶",
+          "玄米蕎麥厚奶茶",
+          "靜岡抹茶香檸",
+          "抹茶玄米蕎麥拿鐵",
+          "靜岡抹茶厚奶",
+          "靜岡一番抹茶",
+          "靜岡抹茶生乳"
+        ],
+        "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
+      }
+    },
+    {
+      "brand": "清心福全",
+      "name": "虎尾光復店",
+      "address": "雲林縣虎尾鎮光復路379號",
+      "phone": "05-6332728",
+      "sourceUrl": "https://www.chingshin.tw/store.php",
+      "menuSourceUrl": "https://www.chingshin.tw/product/Brown-Sugar-Milk-Tea",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "pending",
+      "menuScope": "pending",
+      "menuItems": [],
+      "checks": [
+        {
+          "url": "https://www.chingshin.tw/store.php",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "458109ea19ecd0a512e6e9af0a8e88ad14a53e5c35fa64c49746c6cf04690758"
+        },
+        {
+          "url": "https://www.chingshin.tw/product/Brown-Sugar-Milk-Tea",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "68d4370f6bbbf91fb07079c8065e84d2e6bfb04a627e1e6e7338e6cb1e191892"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E6%B8%85%E5%BF%83%E7%A6%8F%E5%85%A8/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "4a5e31fcf384581fb871b4ccabe8d77881cccf5244cfd4d56542a342d74ad8cf"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E6%B8%85%E5%BF%83%E7%A6%8F%E5%85%A8/menu/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "4a69e0f5c60fd435492ada9869063c1aab9affe14bacdeb19b1a2baf5a44bd7d"
+        }
+      ],
+      "reference": {
+        "source": "SipSpot",
+        "url": "https://sipspot.wisplu.com.tw/brands/%E6%B8%85%E5%BF%83%E7%A6%8F%E5%85%A8/menu/",
+        "scope": "brand",
+        "names": [
+          "優多柳橙",
+          "優多檸檬",
+          "優多緑茶",
+          "優多莓莓",
+          "紅心芭樂優",
+          "蘆薈優多綠茶",
+          "優多百香果綠茶",
+          "布丁奶茶",
+          "椰果奶茶",
+          "烏龍奶茶",
+          "特級奶線",
+          "芝麻奶茶",
+          "茶凍奶線",
+          "蜂蜜奶茶",
+          "錫蘭奶紅",
+          "仙草凍奶茶",
+          "咖啡凍奶茶",
+          "琥珀黒糖奶茶",
+          "珍珠/粉圓奶茶",
+          "藍莓醋",
+          "蘋果醋",
+          "蘆薈藍莓醋",
+          "蘋果醋紅茶",
+          "蜂蜜藍莓醋",
+          "蜂蜜蘋果醋",
+          "蜜茶",
+          "梅子緑茶",
+          "頂級可可",
+          "濃情巧克力",
+          "蜂蜜烏龍/綠茶",
+          "Red Bull紅牛能量優多",
+          "Red Bull紅牛能量多多",
+          "Red Bull紅牛能量果醋",
+          "Red Bull紅牛能量紅茶",
+          "Red Bull紅牛能量藍莓蜜",
+          "原鄉四季",
+          "極品青茶",
+          "烏龍綠茶",
+          "特級綠茶",
+          "特選普洱",
+          "錫蘭紅茶",
+          "冰淇淋奶茶",
+          "冰淇淋紅茶",
+          "【紅茶三兄弟】",
+          "厚芋頭鮮奶",
+          "仙草厚芋頭鮮奶",
+          "桂圓茶",
+          "薑薑奶茶",
+          "薑薑好茶",
+          "桂圓鮮奶茶",
+          "桔茶",
+          "柳橙綠",
+          "檸檬汁",
+          "甘蔗金桔",
+          "蜂蜜檸檬",
+          "金桔檸檬",
+          "鳳梨紅茶",
+          "蜜桃凍紅茶",
+          "紅心芭樂檸檬",
+          "蘆薈蜂蜜檸檬",
+          "檸檬紅茶/綠茶",
+          "甘蔗四季/菁茶",
+          "鮮奶茶",
+          "甘蔗鮮奶",
+          "粉戀莓莓",
+          "雙凍拿鐵",
+          "鮮奶冬瓜",
+          "【陰藏版】",
+          "珍珠鮮奶茶",
+          "粉圓鮮奶茶",
+          "珍珠芝麻拿鐵",
+          "茉綠茶凍拿鐵",
+          "頂級可可拿鐵",
+          "珍珠琥珀黒糖鮮奶",
+          "冬瓜茶",
+          "冬瓜檸檬",
+          "冬瓜菁茶",
+          "百香果綠茶",
+          "雙Q百香果綠茶",
+          "珍珠巧克力艾思",
+          "芭樂白香果艾思",
+          "鳳梨百香椰果艾思",
+          "黑糖珍珠仙草艾思",
+          "益生菌纖維奶茶",
+          "益生菌鐵維綠茶/紅茶"
+        ],
+        "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
+      },
+      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+    },
+    {
+      "brand": "清心福全",
+      "name": "虎尾仁愛店",
+      "address": "雲林縣虎尾鎮中正路91號",
+      "phone": "05-6337565",
+      "sourceUrl": "https://www.chingshin.tw/store.php",
+      "menuSourceUrl": "https://www.chingshin.tw/product/Brown-Sugar-Milk-Tea",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "pending",
+      "menuScope": "pending",
+      "menuItems": [],
+      "checks": [
+        {
+          "url": "https://www.chingshin.tw/store.php",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "458109ea19ecd0a512e6e9af0a8e88ad14a53e5c35fa64c49746c6cf04690758"
+        },
+        {
+          "url": "https://www.chingshin.tw/product/Brown-Sugar-Milk-Tea",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "68d4370f6bbbf91fb07079c8065e84d2e6bfb04a627e1e6e7338e6cb1e191892"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E6%B8%85%E5%BF%83%E7%A6%8F%E5%85%A8/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "4a5e31fcf384581fb871b4ccabe8d77881cccf5244cfd4d56542a342d74ad8cf"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E6%B8%85%E5%BF%83%E7%A6%8F%E5%85%A8/menu/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "4a69e0f5c60fd435492ada9869063c1aab9affe14bacdeb19b1a2baf5a44bd7d"
+        }
+      ],
+      "reference": {
+        "source": "SipSpot",
+        "url": "https://sipspot.wisplu.com.tw/brands/%E6%B8%85%E5%BF%83%E7%A6%8F%E5%85%A8/menu/",
+        "scope": "brand",
+        "names": [
+          "優多柳橙",
+          "優多檸檬",
+          "優多緑茶",
+          "優多莓莓",
+          "紅心芭樂優",
+          "蘆薈優多綠茶",
+          "優多百香果綠茶",
+          "布丁奶茶",
+          "椰果奶茶",
+          "烏龍奶茶",
+          "特級奶線",
+          "芝麻奶茶",
+          "茶凍奶線",
+          "蜂蜜奶茶",
+          "錫蘭奶紅",
+          "仙草凍奶茶",
+          "咖啡凍奶茶",
+          "琥珀黒糖奶茶",
+          "珍珠/粉圓奶茶",
+          "藍莓醋",
+          "蘋果醋",
+          "蘆薈藍莓醋",
+          "蘋果醋紅茶",
+          "蜂蜜藍莓醋",
+          "蜂蜜蘋果醋",
+          "蜜茶",
+          "梅子緑茶",
+          "頂級可可",
+          "濃情巧克力",
+          "蜂蜜烏龍/綠茶",
+          "Red Bull紅牛能量優多",
+          "Red Bull紅牛能量多多",
+          "Red Bull紅牛能量果醋",
+          "Red Bull紅牛能量紅茶",
+          "Red Bull紅牛能量藍莓蜜",
+          "原鄉四季",
+          "極品青茶",
+          "烏龍綠茶",
+          "特級綠茶",
+          "特選普洱",
+          "錫蘭紅茶",
+          "冰淇淋奶茶",
+          "冰淇淋紅茶",
+          "【紅茶三兄弟】",
+          "厚芋頭鮮奶",
+          "仙草厚芋頭鮮奶",
+          "桂圓茶",
+          "薑薑奶茶",
+          "薑薑好茶",
+          "桂圓鮮奶茶",
+          "桔茶",
+          "柳橙綠",
+          "檸檬汁",
+          "甘蔗金桔",
+          "蜂蜜檸檬",
+          "金桔檸檬",
+          "鳳梨紅茶",
+          "蜜桃凍紅茶",
+          "紅心芭樂檸檬",
+          "蘆薈蜂蜜檸檬",
+          "檸檬紅茶/綠茶",
+          "甘蔗四季/菁茶",
+          "鮮奶茶",
+          "甘蔗鮮奶",
+          "粉戀莓莓",
+          "雙凍拿鐵",
+          "鮮奶冬瓜",
+          "【陰藏版】",
+          "珍珠鮮奶茶",
+          "粉圓鮮奶茶",
+          "珍珠芝麻拿鐵",
+          "茉綠茶凍拿鐵",
+          "頂級可可拿鐵",
+          "珍珠琥珀黒糖鮮奶",
+          "冬瓜茶",
+          "冬瓜檸檬",
+          "冬瓜菁茶",
+          "百香果綠茶",
+          "雙Q百香果綠茶",
+          "珍珠巧克力艾思",
+          "芭樂白香果艾思",
+          "鳳梨百香椰果艾思",
+          "黑糖珍珠仙草艾思",
+          "益生菌纖維奶茶",
+          "益生菌鐵維綠茶/紅茶"
+        ],
+        "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
+      },
+      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+    },
+    {
+      "brand": "清心福全",
+      "name": "虎尾中正店",
+      "address": "雲林縣虎尾鎮中正路294號",
+      "phone": "05-6362366",
+      "sourceUrl": "https://www.chingshin.tw/store.php",
+      "menuSourceUrl": "https://www.chingshin.tw/product/Brown-Sugar-Milk-Tea",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "pending",
+      "menuScope": "pending",
+      "menuItems": [],
+      "checks": [
+        {
+          "url": "https://www.chingshin.tw/store.php",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "458109ea19ecd0a512e6e9af0a8e88ad14a53e5c35fa64c49746c6cf04690758"
+        },
+        {
+          "url": "https://www.chingshin.tw/product/Brown-Sugar-Milk-Tea",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "68d4370f6bbbf91fb07079c8065e84d2e6bfb04a627e1e6e7338e6cb1e191892"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E6%B8%85%E5%BF%83%E7%A6%8F%E5%85%A8/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "4a5e31fcf384581fb871b4ccabe8d77881cccf5244cfd4d56542a342d74ad8cf"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E6%B8%85%E5%BF%83%E7%A6%8F%E5%85%A8/menu/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "4a69e0f5c60fd435492ada9869063c1aab9affe14bacdeb19b1a2baf5a44bd7d"
+        }
+      ],
+      "reference": {
+        "source": "SipSpot",
+        "url": "https://sipspot.wisplu.com.tw/brands/%E6%B8%85%E5%BF%83%E7%A6%8F%E5%85%A8/menu/",
+        "scope": "brand",
+        "names": [
+          "優多柳橙",
+          "優多檸檬",
+          "優多緑茶",
+          "優多莓莓",
+          "紅心芭樂優",
+          "蘆薈優多綠茶",
+          "優多百香果綠茶",
+          "布丁奶茶",
+          "椰果奶茶",
+          "烏龍奶茶",
+          "特級奶線",
+          "芝麻奶茶",
+          "茶凍奶線",
+          "蜂蜜奶茶",
+          "錫蘭奶紅",
+          "仙草凍奶茶",
+          "咖啡凍奶茶",
+          "琥珀黒糖奶茶",
+          "珍珠/粉圓奶茶",
+          "藍莓醋",
+          "蘋果醋",
+          "蘆薈藍莓醋",
+          "蘋果醋紅茶",
+          "蜂蜜藍莓醋",
+          "蜂蜜蘋果醋",
+          "蜜茶",
+          "梅子緑茶",
+          "頂級可可",
+          "濃情巧克力",
+          "蜂蜜烏龍/綠茶",
+          "Red Bull紅牛能量優多",
+          "Red Bull紅牛能量多多",
+          "Red Bull紅牛能量果醋",
+          "Red Bull紅牛能量紅茶",
+          "Red Bull紅牛能量藍莓蜜",
+          "原鄉四季",
+          "極品青茶",
+          "烏龍綠茶",
+          "特級綠茶",
+          "特選普洱",
+          "錫蘭紅茶",
+          "冰淇淋奶茶",
+          "冰淇淋紅茶",
+          "【紅茶三兄弟】",
+          "厚芋頭鮮奶",
+          "仙草厚芋頭鮮奶",
+          "桂圓茶",
+          "薑薑奶茶",
+          "薑薑好茶",
+          "桂圓鮮奶茶",
+          "桔茶",
+          "柳橙綠",
+          "檸檬汁",
+          "甘蔗金桔",
+          "蜂蜜檸檬",
+          "金桔檸檬",
+          "鳳梨紅茶",
+          "蜜桃凍紅茶",
+          "紅心芭樂檸檬",
+          "蘆薈蜂蜜檸檬",
+          "檸檬紅茶/綠茶",
+          "甘蔗四季/菁茶",
+          "鮮奶茶",
+          "甘蔗鮮奶",
+          "粉戀莓莓",
+          "雙凍拿鐵",
+          "鮮奶冬瓜",
+          "【陰藏版】",
+          "珍珠鮮奶茶",
+          "粉圓鮮奶茶",
+          "珍珠芝麻拿鐵",
+          "茉綠茶凍拿鐵",
+          "頂級可可拿鐵",
+          "珍珠琥珀黒糖鮮奶",
+          "冬瓜茶",
+          "冬瓜檸檬",
+          "冬瓜菁茶",
+          "百香果綠茶",
+          "雙Q百香果綠茶",
+          "珍珠巧克力艾思",
+          "芭樂白香果艾思",
+          "鳳梨百香椰果艾思",
+          "黑糖珍珠仙草艾思",
+          "益生菌纖維奶茶",
+          "益生菌鐵維綠茶/紅茶"
+        ],
+        "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
+      },
+      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+    },
+    {
+      "brand": "清心福全",
+      "name": "虎尾工專店",
+      "address": "雲林縣虎尾鎮工專路92號",
+      "phone": "05-6327575",
+      "sourceUrl": "https://www.chingshin.tw/store.php",
+      "menuSourceUrl": "https://www.chingshin.tw/product/Brown-Sugar-Milk-Tea",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "pending",
+      "menuScope": "pending",
+      "menuItems": [],
+      "checks": [
+        {
+          "url": "https://www.chingshin.tw/store.php",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "458109ea19ecd0a512e6e9af0a8e88ad14a53e5c35fa64c49746c6cf04690758"
+        },
+        {
+          "url": "https://www.chingshin.tw/product/Brown-Sugar-Milk-Tea",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "68d4370f6bbbf91fb07079c8065e84d2e6bfb04a627e1e6e7338e6cb1e191892"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E6%B8%85%E5%BF%83%E7%A6%8F%E5%85%A8/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "4a5e31fcf384581fb871b4ccabe8d77881cccf5244cfd4d56542a342d74ad8cf"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E6%B8%85%E5%BF%83%E7%A6%8F%E5%85%A8/menu/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "4a69e0f5c60fd435492ada9869063c1aab9affe14bacdeb19b1a2baf5a44bd7d"
+        }
+      ],
+      "reference": {
+        "source": "SipSpot",
+        "url": "https://sipspot.wisplu.com.tw/brands/%E6%B8%85%E5%BF%83%E7%A6%8F%E5%85%A8/menu/",
+        "scope": "brand",
+        "names": [
+          "優多柳橙",
+          "優多檸檬",
+          "優多緑茶",
+          "優多莓莓",
+          "紅心芭樂優",
+          "蘆薈優多綠茶",
+          "優多百香果綠茶",
+          "布丁奶茶",
+          "椰果奶茶",
+          "烏龍奶茶",
+          "特級奶線",
+          "芝麻奶茶",
+          "茶凍奶線",
+          "蜂蜜奶茶",
+          "錫蘭奶紅",
+          "仙草凍奶茶",
+          "咖啡凍奶茶",
+          "琥珀黒糖奶茶",
+          "珍珠/粉圓奶茶",
+          "藍莓醋",
+          "蘋果醋",
+          "蘆薈藍莓醋",
+          "蘋果醋紅茶",
+          "蜂蜜藍莓醋",
+          "蜂蜜蘋果醋",
+          "蜜茶",
+          "梅子緑茶",
+          "頂級可可",
+          "濃情巧克力",
+          "蜂蜜烏龍/綠茶",
+          "Red Bull紅牛能量優多",
+          "Red Bull紅牛能量多多",
+          "Red Bull紅牛能量果醋",
+          "Red Bull紅牛能量紅茶",
+          "Red Bull紅牛能量藍莓蜜",
+          "原鄉四季",
+          "極品青茶",
+          "烏龍綠茶",
+          "特級綠茶",
+          "特選普洱",
+          "錫蘭紅茶",
+          "冰淇淋奶茶",
+          "冰淇淋紅茶",
+          "【紅茶三兄弟】",
+          "厚芋頭鮮奶",
+          "仙草厚芋頭鮮奶",
+          "桂圓茶",
+          "薑薑奶茶",
+          "薑薑好茶",
+          "桂圓鮮奶茶",
+          "桔茶",
+          "柳橙綠",
+          "檸檬汁",
+          "甘蔗金桔",
+          "蜂蜜檸檬",
+          "金桔檸檬",
+          "鳳梨紅茶",
+          "蜜桃凍紅茶",
+          "紅心芭樂檸檬",
+          "蘆薈蜂蜜檸檬",
+          "檸檬紅茶/綠茶",
+          "甘蔗四季/菁茶",
+          "鮮奶茶",
+          "甘蔗鮮奶",
+          "粉戀莓莓",
+          "雙凍拿鐵",
+          "鮮奶冬瓜",
+          "【陰藏版】",
+          "珍珠鮮奶茶",
+          "粉圓鮮奶茶",
+          "珍珠芝麻拿鐵",
+          "茉綠茶凍拿鐵",
+          "頂級可可拿鐵",
+          "珍珠琥珀黒糖鮮奶",
+          "冬瓜茶",
+          "冬瓜檸檬",
+          "冬瓜菁茶",
+          "百香果綠茶",
+          "雙Q百香果綠茶",
+          "珍珠巧克力艾思",
+          "芭樂白香果艾思",
+          "鳳梨百香椰果艾思",
+          "黑糖珍珠仙草艾思",
+          "益生菌纖維奶茶",
+          "益生菌鐵維綠茶/紅茶"
+        ],
+        "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
+      },
+      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+    },
+    {
+      "brand": "星巴克",
+      "name": "虎尾清雲門市",
+      "address": "雲林縣虎尾鎮清雲路685號",
+      "phone": "05-6323761",
+      "sourceUrl": "https://www.starbucks.com.tw/stores/storesearch.jspx",
+      "menuSourceUrl": "https://www.starbucks.com.tw/products/drinks/product.jspx?id=1048&catId=117",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "pending",
+      "menuScope": "pending",
+      "menuItems": [],
+      "checks": [
+        {
+          "url": "https://www.starbucks.com.tw/stores/storesearch.jspx",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "12d28c0af422323f3d73e98bacb194f86ff29d3f729c7e249edee470e8798601"
+        },
+        {
+          "url": "https://www.starbucks.com.tw/products/drinks/product.jspx?id=1048&catId=117",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "8b3881ba9b0ef3bdb9180686b92b904327ea3bf3e489bddb8f1746bd343d50f8"
+        }
+      ],
+      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+    },
+    {
+      "brand": "星巴克",
+      "name": "虎尾門市",
+      "address": "雲林縣虎尾鎮林森路一段491號",
+      "phone": "05-633-8035",
+      "sourceUrl": "https://www.starbucks.com.tw/stores/storesearch.jspx",
+      "menuSourceUrl": "https://www.starbucks.com.tw/products/drinks/product.jspx?id=1048&catId=117",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "pending",
+      "menuScope": "pending",
+      "menuItems": [],
+      "checks": [
+        {
+          "url": "https://www.starbucks.com.tw/stores/storesearch.jspx",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "12d28c0af422323f3d73e98bacb194f86ff29d3f729c7e249edee470e8798601"
+        },
+        {
+          "url": "https://www.starbucks.com.tw/products/drinks/product.jspx?id=1048&catId=117",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "8b3881ba9b0ef3bdb9180686b92b904327ea3bf3e489bddb8f1746bd343d50f8"
+        }
+      ],
+      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+    },
+    {
+      "brand": "星巴克",
+      "name": "雲林高鐵門市",
+      "address": "雲林縣虎尾鎮站前東路301號",
+      "phone": "05-7005317",
+      "sourceUrl": "https://www.starbucks.com.tw/stores/storesearch.jspx",
+      "menuSourceUrl": "https://www.starbucks.com.tw/products/drinks/product.jspx?id=1048&catId=117",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "pending",
+      "menuScope": "pending",
+      "menuItems": [],
+      "checks": [
+        {
+          "url": "https://www.starbucks.com.tw/stores/storesearch.jspx",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "12d28c0af422323f3d73e98bacb194f86ff29d3f729c7e249edee470e8798601"
+        },
+        {
+          "url": "https://www.starbucks.com.tw/products/drinks/product.jspx?id=1048&catId=117",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "8b3881ba9b0ef3bdb9180686b92b904327ea3bf3e489bddb8f1746bd343d50f8"
+        }
+      ],
+      "evidence": "已查原官方來源及使用者指定 SipSpot；尚無可精確確認此門市販售的逐店菜單，維持待確認。"
+    },
+    {
+      "brand": "白巷子",
+      "name": "虎尾中正店",
+      "address": "雲林縣虎尾鎮中正路188號(鐵支路旁)",
+      "phone": "05-633-3678",
+      "sourceUrl": "http://www.whitealley.com.tw/store.php?Keyword=&area=0&city=0&page=54",
+      "menuSourceUrl": "http://www.whitealley.com.tw/upload/store_catalog/2605111010390000001.jpg",
+      "checkedAt": "2026-10-20T20:20:31+08:00",
+      "status": "listed",
+      "menuScope": "branch",
+      "menuItems": [
+        {
+          "name": "一顆檸檬吧",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "仙草凍奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬瓜仙草凍",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬瓜青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冬瓜鮮奶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "冰淇淋紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "古早味冬瓜茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "古早味紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "可可鮮奶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "四季春青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "奶綠",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "奶蓋紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "奶蓋綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "奶蓋蕎麥茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "小珍珠奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "山楂紅烏龍",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "巧克力可可",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "布丁奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "微檸檬冬瓜",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "抹茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "春芽紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "梅之綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "椰果奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "檸檬四季春",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "檸檬梅子",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "水蜜桃紅烏龍",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "波霸奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "港式凍檸茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "滿杯橙子",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "滿杯紅柚",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "珍波椰四季春",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "甘蔗檸檬",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "甘蔗青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "白巷子水果茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "百香綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "紅烏龍茶王",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "紅茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "紅豆奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "紅豆抹茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "紅豆鮮奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "綠茶拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "綠茶養樂多",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "芝士奶蓋紅茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "芝士奶蓋綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "茉香綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "蕎麥冬瓜茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "蕎麥奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "蕎麥鮮奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "蜂蜜檸檬",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "蜂蜜綠茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "金桔檸檬",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "關西仙草茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "阿華田",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "阿華田拿鐵",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "香蘋玉露",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "鮮桔青茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "黃金蕎麥茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "黑糖奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        },
+        {
+          "name": "黑糖鮮奶茶",
+          "listedPrice": null,
+          "category": "門市飲品"
+        }
+      ],
+      "checks": [
+        {
+          "url": "https://www.whitealley.com.tw/store.php?Keyword=&area=0&city=0&page=54",
+          "status": "pending",
+          "error": "connection_failed"
+        },
+        {
+          "url": "https://www.whitealley.com.tw/upload/store_catalog/2605111010390000001.jpg",
+          "status": "pending",
+          "error": "connection_failed"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E7%99%BD%E5%B7%B7%E5%AD%90/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "238dd3e39d3cd315c8d91c43db8a3441d0b4fd9d52e620a97adf97b11ca5dc12"
+        },
+        {
+          "url": "https://sipspot.wisplu.com.tw/brands/%E7%99%BD%E5%B7%B7%E5%AD%90/menu/",
+          "httpStatus": 200,
+          "status": "read",
+          "sha256": "c0dbdbfac54c827dacd26580edcd0d30f0f8e7936db41cc6df96271b0b4b3649"
+        }
+      ],
+      "evidence": "保留先前已核對之逐店菜單名稱；本次另核對來源連線，連線失敗不宣稱即時供應。",
+      "reference": {
+        "source": "SipSpot",
+        "url": "https://sipspot.wisplu.com.tw/brands/%E7%99%BD%E5%B7%B7%E5%AD%90/menu/",
+        "scope": "brand",
+        "names": [
+          "熟成麥茶",
+          "紅烏龍茶王",
+          "松柏嶺冬片",
+          "古早味紅茶",
+          "茉香綠茶",
+          "春芽紅茶",
+          "烏龍綠茶",
+          "四季春青茶",
+          "古早味冬瓜茶",
+          "關西仙草茶",
+          "冬瓜青茶",
+          "梅之綠茶",
+          "蜂蜜綠茶",
+          "四季春雙Q果",
+          "冬瓜仙草凍",
+          "山楂紅烏龍",
+          "珍波椰四季春",
+          "冰淇淋紅茶",
+          "紅茶3號",
+          "綠茶養樂多",
+          "百香養樂多",
+          "火龍果養樂多",
+          "紅柚養樂多",
+          "橙子養樂多",
+          "黑糖珍珠鮮奶",
+          "芋見黑糖珍珠鮮奶",
+          "微檸檬冬瓜",
+          "百香綠茶",
+          "百香雙Q果",
+          "滿杯水果茶",
+          "滿杯橙子",
+          "滿杯紅柚",
+          "楊枝甘露",
+          "一顆檸檬吧",
+          "檸檬四季春",
+          "港式凍檸茶",
+          "檸檬梅子",
+          "金桔檸檬",
+          "蜂蜜檸檬",
+          "甘蔗青茶",
+          "甘蔗檸檬",
+          "微檸檬紅茶",
+          "重檸檬冬瓜",
+          "香蘋玉露",
+          "金桔梅子",
+          "水蜜桃紅烏龍",
+          "芝士奶蓋紅茶",
+          "芝士奶蓋綠茶",
+          "芝士草莓",
+          "芝士芒果",
+          "芝士火龍果",
+          "波霸/小珍珠紅茶拿鐵",
+          "雙Q果紅茶拿鐵",
+          "混珠紅茶拿鐵",
+          "靜岡抹茶拿鐵",
+          "紅豆抹茶拿鐵",
+          "紅茶拿鐵",
+          "復刻拿鐵",
+          "綠茶拿鐵",
+          "阿華田拿鐵",
+          "可可鮮奶",
+          "紅豆鮮奶茶",
+          "黑糖鮮奶茶",
+          "冬瓜鮮奶",
+          "芋頭鮮奶",
+          "紅豆鮮奶",
+          "仙草凍鮮奶",
+          "芋頭西米露",
+          "芋頭椰香西米露",
+          "啵啵黑糖奶蓋紅",
+          "奶蓋紅茶",
+          "奶蓋綠茶",
+          "奶蓋阿華田",
+          "美式咖啡",
+          "經典拿鐵",
+          "奶蓋冰美式",
+          "奶蓋冰拿鐵",
+          "蜜桃冰美式",
+          "奶茶",
+          "奶綠",
+          "奶青",
+          "奶烏",
+          "黑糖奶茶",
+          "紅豆奶茶",
+          "粉條奶茶",
+          "波霸奶茶",
+          "小珍珠奶茶",
+          "波霸小珍珠奶茶",
+          "椰果奶茶",
+          "雙Q果奶茶",
+          "仙草凍奶茶",
+          "阿華田",
+          "巧克力可可",
+          "布丁奶茶",
+          "芝麻鮮奶",
+          "花生鮮奶",
+          "黑糖薑茶",
+          "桂圓紅棗茶",
+          "薑汁桂圓",
+          "薑汁撞奶"
+        ],
+        "note": "品牌參考菜單，不是虎尾逐店菜單；不據此建立已販售證據，亦不移植價格或成分。"
+      }
+    }
+  ]
+}

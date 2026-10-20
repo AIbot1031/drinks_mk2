@@ -11,7 +11,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 
 def features(d):
-    if d.get('sourceKind') == 'nidin':
+    if d.get('sourceKind') in {'nidin','official-menu'}:
         # Missing menu facts use the frozen encoders' missing-value handling.
         # Do not teach the model that an unverified recipe has no milk/toppings.
         return {'product':json.dumps([d['brand'],d['name']],ensure_ascii=False),'brand':d['brand'],

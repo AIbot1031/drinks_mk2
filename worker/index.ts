@@ -17,7 +17,7 @@ import { validateInput,understand } from './understand';
 import type { Drink } from './types';
 import { internalApi } from './internal';
 import { accountApi, currentUser, storedPreferences } from './accounts';
-import {validateSemanticReply} from './semantic-protocol';
+import {validateSemanticReply,semanticFailureReason} from './semantic-protocol';
 import {applyLlmUnderstanding} from './llm-conversation';
 import {anonymousRelgtUser,validateRelgtReply} from './relgt-protocol';
 import type {RelgtHistory,RelgtReply} from './relgt-protocol';
@@ -180,8 +180,9 @@ export default {
         if(pool.length&&!refreshContext){
           const job={query:input.query,candidateIds:pool.map(d=>d.id),catalogVersion,topK:100};
           try{
-            const reply=validateSemanticReply(await env.SEMANTIC_BRIDGE.getByName('inference-v2').rank(job),job);
-            semantic=reply?{...reply}:{scores:[],modelVersion:'',durationMs:0,fallbackReason:'Mac unavailable, timeout, or index mismatch'};
+            const raw=await env.SEMANTIC_BRIDGE.getByName('inference-v2').rank(job);
+            const reply=validateSemanticReply(raw,job);
+            semantic=reply?{...reply}:{scores:[],modelVersion:'',durationMs:0,fallbackReason:semanticFailureReason(raw)};
           }catch{semantic={scores:[],modelVersion:'',durationMs:0,fallbackReason:'Mac inference bridge error'};}
         }
         let relgt:RelgtReply={scores:[],modelVersion:'',catalogVersion,durationMs:0,historyCount:0,fallbackReason:user?'no_history':'guest'};

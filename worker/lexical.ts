@@ -1,3 +1,4 @@
+import {isMenuDrink} from './types';
 import type {Drink} from './types';
 export const concepts: Record<string, string[]> = {
   清爽: ['清爽', '淡雅', '清香', '清新', '輕盈'], 濃郁: ['濃郁', '香濃', '厚重', '濃厚'],
@@ -6,7 +7,7 @@ export const concepts: Record<string, string[]> = {
   嚼勁: ['嚼勁', '珍珠', '波霸', '椰果', '布丁', '粉粿', '燕麥'], 回甘: ['回甘', '茶香', '烏龍', '青茶'],
   花香: ['花香', '茉莉', '桂花', '玫瑰'], 提神: ['提神', '咖啡', '紅茶', '抹茶'],
 };
-export function searchable(d: Drink): string { return d.sourceKind==='nidin'?`${d.name} ${d.brand} ${d.sourceMenuCategory||''}`:`${d.name} ${d.brand} ${d.taste} ${d.category} ${d.tea.join(' ')} ${d.milk.join(' ')} ${d.toppings.join(' ')}`; }
+export function searchable(d: Drink): string { return isMenuDrink(d)?`${d.name} ${d.brand} ${d.sourceMenuCategory||''}`:`${d.name} ${d.brand} ${d.taste} ${d.category} ${d.tea.join(' ')} ${d.milk.join(' ')} ${d.toppings.join(' ')}`; }
 export function tokenize(text: string): string[] {
   const s = text.toLowerCase().replace(/[^\p{L}\p{N}]/gu, '');
   const tokens = new Set<string>();

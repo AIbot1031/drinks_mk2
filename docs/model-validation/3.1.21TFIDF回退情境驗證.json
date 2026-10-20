@@ -1,0 +1,60 @@
+{
+  "checkedAt": "2026-10-20T12:28:16.808Z",
+  "scope": "localhost only; mocked bridge protocol, not model accuracy or real inference",
+  "checks": [
+    {
+      "name": "offline",
+      "routeA": "tf-idf",
+      "reason": "model_not_ready"
+    },
+    {
+      "name": "connected but not ready",
+      "routeA": "tf-idf",
+      "reason": "model_not_ready"
+    },
+    {
+      "name": "stale index",
+      "routeA": "tf-idf",
+      "reason": "catalog_mismatch"
+    },
+    {
+      "name": "foreign candidate reply",
+      "routeA": "tf-idf",
+      "reason": "invalid_reply"
+    },
+    {
+      "name": "model explicit error",
+      "routeA": "tf-idf",
+      "reason": "no_valid_response"
+    },
+    {
+      "name": "disconnect during request",
+      "routeA": "tf-idf",
+      "reason": "no_valid_response"
+    },
+    {
+      "name": "actual five second timeout",
+      "routeA": "tf-idf",
+      "reason": "no_valid_response"
+    },
+    {
+      "name": "concurrency cap",
+      "reason": "model_busy",
+      "requests": 9
+    },
+    {
+      "name": "cached fallback stays honest during immediate preference refresh",
+      "routeA": "tf-idf",
+      "reason": "model_not_ready"
+    },
+    {
+      "name": "new recommendation retries recovered model",
+      "routeA": "roberta-wwm"
+    },
+    {
+      "name": "empty candidates",
+      "routeA": "not-run",
+      "routeB": "not-run"
+    }
+  ]
+}

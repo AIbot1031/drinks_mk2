@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-10-20T20:27:29+08:00",
+  "operation": "existing-weight catalog reindex and inference; no training",
+  "catalogVersion": "f66c236c9852cf4d32c4d3fe9fc8d77e499d0a93790b13a2b8ad9a516f958721",
+  "catalogRows": 9180,
+  "productCount": 3875,
+  "optimizerSteps": 0,
+  "weightsChanged": false,
+  "accuracyImprovementClaimed": false,
+  "relgt": {
+    "modelVersion": "relgt-temporal-05757994850db8f6",
+    "weightsSha256": "05757994850db8f691bccc134834b5fd1fdd898c1ef3be1090667257646dd241",
+    "originalCandidateComparisonCount": 128,
+    "originalScoresIdentical": true,
+    "newProductCount": 1272,
+    "newCandidatesAndNewHistoryScored": 32,
+    "repeatable": true,
+    "fullCatalogOutputs": 100,
+    "fullCatalogDurationMs": 351.241,
+    "missingRecipePolicy": "frozen categorical missing/OOV and numerical missing-value encoders",
+    "coldStartPolicy": "new users/no history retain feature graph and instant preference overlay"
+  },
+  "roberta": {
+    "modelVersion": "roberta-wwm-2d7aecfdae2f3374",
+    "weightsSha256": "2d7aecfdae2f33744782b0a2d7cbeb868368d883391f877d97ebfa3d22200169",
+    "indexShape": [
+      9180,
+      768
+    ],
+    "indexSha256": "e9873ff1394b40649d8dbc273a81a5fb3e061db68a74480dcdc60c8dbae323a9",
+    "originalVectorMaxAbsoluteDifference": 0.0,
+    "newCandidatesScored": 10,
+    "catalogAndWeightsChecksumValidated": true
+  }
+}

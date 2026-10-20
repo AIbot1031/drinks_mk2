@@ -1,5 +1,10 @@
 export type SemanticJob={query:string;candidateIds:string[];catalogVersion:string;topK:number};
 export type SemanticReply={scores:Array<{id:string;score:number}>;modelVersion:string;catalogVersion:string;durationMs:number};
+export type SemanticFailure={failureReason:'model_not_ready'|'catalog_mismatch'|'model_busy'|'no_valid_response'};
+export function semanticFailureReason(value:unknown){
+ const reason=(value as SemanticFailure|null)?.failureReason;
+ return ['model_not_ready','catalog_mismatch','model_busy','no_valid_response'].includes(reason??'')?reason!:'invalid_reply';
+}
 
 export function validateSemanticReply(value:unknown,job:SemanticJob):SemanticReply|null{
   const r=value as SemanticReply|null;

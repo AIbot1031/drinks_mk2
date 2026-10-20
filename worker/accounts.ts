@@ -1,4 +1,4 @@
-import {defaultShortcuts,validateShortcuts} from './chat-shortcuts';
+import {defaultShortcuts,defaultManualShortcuts,validateShortcuts} from './chat-shortcuts';
 import type { Drink } from './types';
 import {savePreferencesWithEvents} from './interactions';
 import type {createProductPreferences} from './products';
@@ -77,16 +77,18 @@ export async function accountApi(request:Request,env:Env,readBody:(r:Request)=>P
   const user=await currentUser(request,env.TRACE_DB);
   if(path==='/api/account/me'&&request.method==='GET')return json({user:user?{id:user.id}:null});
   if(!user)return json({error:'請先登入你的帳號'},401);
-  if(path==='/api/account/shortcuts'){
+  if(path==='/api/account/shortcuts'||path==='/api/account/manual-shortcuts'){
+    const column=path.endsWith('/manual-shortcuts')?'manual_shortcuts':'chat_shortcuts';
+    const defaults=column==='manual_shortcuts'?defaultManualShortcuts:defaultShortcuts;
     if(request.method==='PUT'){
       const body=await readBody(request) as {shortcuts?:unknown}|null;
       let shortcuts;try{shortcuts=validateShortcuts(body?.shortcuts);}catch(error){return json({error:(error as Error).message},400);}
-      await env.TRACE_DB.prepare('UPDATE consumer_users SET chat_shortcuts=? WHERE id=?').bind(JSON.stringify(shortcuts),user.id).run();
+      await env.TRACE_DB.prepare(`UPDATE consumer_users SET ${column}=? WHERE id=?`).bind(JSON.stringify(shortcuts),user.id).run();
       return json({shortcuts});
     }
     if(request.method!=='GET')return json({error:'請求方法不支援'},405);
-    const row=await env.TRACE_DB.prepare('SELECT chat_shortcuts FROM consumer_users WHERE id=?').bind(user.id).first<{chat_shortcuts:string|null}>();
-    return json({shortcuts:row?.chat_shortcuts===null||!row?defaultShortcuts:validateShortcuts(JSON.parse(row.chat_shortcuts))});
+    const row=await env.TRACE_DB.prepare(`SELECT ${column} AS chat_shortcuts FROM consumer_users WHERE id=?`).bind(user.id).first<{chat_shortcuts:string|null}>();
+    return json({shortcuts:row?.chat_shortcuts===null||!row?defaults:validateShortcuts(JSON.parse(row.chat_shortcuts))});
   }
   if(path==='/api/account/preferences'){
     if(request.method==='PUT'){

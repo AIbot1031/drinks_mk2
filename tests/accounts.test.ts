@@ -34,6 +34,17 @@ test('consumer registration, login and private preferences are isolated from oth
   assert.equal((await saveShortcuts({shortcuts:[{label:' ',message:'奶茶'}]},cookie)).status,400);
   assert.deepEqual(await saveShortcuts({...custom,userId:otherId},cookie).then(r=>r.json()),custom);
   assert.deepEqual(await getShortcuts(cookie),custom);assert.deepEqual(await getShortcuts(otherCookie),defaults);
+  const manualPath=`${base}/api/account/manual-shortcuts`;
+  assert.equal((await fetch(manualPath)).status,401);
+  const manual=await fetch(manualPath,{headers:{Cookie:cookie}}).then(r=>r.json()) as {shortcuts:Array<{label:string;message:string}>};assert.equal(manual.shortcuts.length,4);
+  const manualCustom={shortcuts:[{label:'芋圓時刻',message:'想喝芋圓奶茶，預算70元'}]};
+  const manualSave=(body:unknown)=>fetch(manualPath,{method:'PUT',headers:{'Content-Type':'application/json',Cookie:cookie},body:JSON.stringify(body)});
+  assert.equal((await manualSave({shortcuts:Array(9).fill({label:'a',message:'b'})})).status,400);
+  assert.equal((await manualSave(manualCustom)).status,200);
+  assert.deepEqual(await fetch(manualPath,{headers:{Cookie:cookie}}).then(r=>r.json()),manualCustom);
+  assert.deepEqual(await fetch(manualPath,{headers:{Cookie:otherCookie}}).then(r=>r.json()),manual);
+  assert.deepEqual(await getShortcuts(cookie),custom);
+
   assert.deepEqual(await fetch(`${base}/api/account/preferences`,{headers:{Cookie:cookie}}).then(r=>r.json()),saved);
   assert.equal((await fetch(`${base}/api/account/preferences`,{headers:{Cookie:cookie+'bad'}})).status,401);
   const recommendation=await fetch(`${base}/api/recommend`,{method:'POST',headers:{'Content-Type':'application/json',Cookie:cookie},body:JSON.stringify({query:'清爽',likedIds:[],dislikedIds:[]})}).then(r=>r.json()) as {mode:{personalized:boolean};results:Array<{id:string}>};

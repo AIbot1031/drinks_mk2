@@ -1,3 +1,5 @@
+import {initManualShortcuts} from './manual-shortcuts.js';
+import {rankingStatus} from './ranking-status.js';
 import {initRegionControls} from './region-controls.js';
 import {initQuickFeedback} from './quick-feedback.js';
 import {initBrewLoading} from './brew-loading.js';
@@ -10,7 +12,7 @@ import {initChat} from './chat.js';
 import {productKey,likedProducts as likedProductKeys,dislikedProducts,toggleProductPreference} from './preferences.js';
 initAtmosphere();
 const brewLoading=initBrewLoading();
-let chatController,regionController;
+let chatController,regionController,manualShortcutsController;
 const trendsController=initTrends();
 const $ = selector => document.querySelector(selector);
 const el = (tag, text = '', cls = '') => {const n = document.createElement(tag); n.textContent = text; if (cls) n.className = cls; return n;};
@@ -77,6 +79,7 @@ async function switchAccount(user){
   chatController?.reset();
   accountUser=user;if(user&&$('#account-dialog').open)$('#account-dialog').close();feedback=validateFeedback(prefs);confirmedFeedback=structuredClone(feedback);
   await chatController?.setAccount(user);
+  await manualShortcutsController?.setAccount(user);
   lastSettings=null;lastRankingContext=null;seen=[];$('#batch-actions').hidden=true;
   // A previous user's recommendations must not remain visible after switching accounts.
   $('#results').className='empty-state';$('#results').replaceChildren(...welcomeNodes);$('#result-count').textContent='等你說說偏好';$('#result-status').textContent='';$('#result-warnings').hidden=true;$('#active-filters').replaceChildren();
@@ -216,7 +219,7 @@ async function recommend(settings, next = false, rankingContext = null, scopeRef
     appendAlternatives($('#results'),value,card);
     $('#result-count').textContent+=value.alternatives?.length?` / ${value.alternatives.length} 款接近選擇`:'';
     $('#batch-actions').hidden = !value.results.length&&!value.alternatives?.length;
-    $('#result-status').textContent = `${value.understandingMode==='qwen3.5-9b'?'條件理解：Qwen3.5-9B。 ':value.understandingMode==='qwen3-8b'?'條件理解：Qwen3-8B。 ':value.understandingMode==='rules-fallback'?'Qwen 暫時無法解析，使用規則備援。 ':''}${value.mode.routeA==='roberta-wwm'?'語意搜尋：RoBERTa-WWM。 ':value.mode.routeA==='macbert'?'語意搜尋：MacBERT。':value.mode.routeAFallback?'語意排序暫不可用，改用文字與偏好排序。':'文字搜尋：TF-IDF。'} ${value.mode.routeB==='relgt'?'個人化排序：RelGT，已參考你的歷史互動。':value.mode.personalized?'已套用最新收藏與不喜歡偏好。':'收藏喜歡的飲料，讓下次更貼近你的口味。'} ${value.rankingReused?'已依最新收藏與不喜歡更新推薦。 ':''}${next ? `已看過 ${seen.length} 杯。` : ''}`;
+    $('#result-status').textContent = `${value.understandingMode==='qwen3.5-9b'?'條件理解：Qwen3.5-9B。 ':value.understandingMode==='qwen3-8b'?'條件理解：Qwen3-8B。 ':value.understandingMode==='rules-fallback'?'Qwen 暫時無法解析，使用規則備援。 ':''}${rankingStatus(value)} ${next ? `已看過 ${seen.length} 杯。` : ''}`;
     refreshFeedbackButtons();
   } catch (error) {$('#result-status').textContent = `${rankingContext?'偏好已保存，但推薦更新失敗：':''}${error.message} ${$('#results .drink-card') ? '已保留上一份結果。' : ''}`;}
   finally {setBusy(false);}
@@ -340,6 +343,7 @@ function updateScopedBrands(brands=scopedBrands){
  updateExcludedBrandCount();
  $('#region-brand-note').textContent=brands===null?'':allowed.length?`此地區已收錄 ${allowed.length} 個品牌；門市、菜單及供應仍以實際情況為準。`:'此地區尚無已收錄品牌，歡迎快速回報協助補齊。';
 }
+manualShortcutsController=initManualShortcuts({api,isBusy:()=>busy||accountBusy||preferenceBusy||preferenceRefreshRunning});
 regionController=initRegionControls({api,isBusy:()=>busy||accountBusy||preferenceBusy||preferenceRefreshRunning,onChanged:()=>refreshRecommendations(false),onBrandsChanged:updateScopedBrands});
 initQuickFeedback({api,scope:()=>regionController.body()});
 chatController=initChat({api,card,feedback:()=>feedback,isBusy:()=>busy||accountBusy||preferenceBusy||preferenceRefreshRunning,setBusy,refresh:refreshFeedbackButtons,ready:()=>preferenceSync});

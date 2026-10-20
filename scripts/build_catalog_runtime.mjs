@@ -5,8 +5,8 @@ import {execFileSync} from 'node:child_process';
 // Share constant pending fields instead of repeating them in every menu row.
 // The public/auditable catalog stays intact; runtime expansion is lossless.
 const catalog=JSON.parse(await fs.readFile('data/catalog.json','utf8'));
-const base=catalog.drinks.filter(d=>d.sourceKind!=='nidin');
-const added=catalog.drinks.filter(d=>d.sourceKind==='nidin');
+const base=catalog.drinks.filter(d=>!d.sourceKind);
+const added=catalog.drinks.filter(d=>!!d.sourceKind);
 const template={},columns={},pools={};
 for(const key of Object.keys(added[0])){
  if(added.every(d=>isDeepStrictEqual(d[key],added[0][key])))template[key]=added[0][key];

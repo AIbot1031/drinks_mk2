@@ -80,7 +80,7 @@ export function initAtmosphere() {
       const y = solid ? particle.y * (height + 60) - 30 : height - particle.y * (height + 60);
       const radius = particle.radius * (width < 700 ? 0.9 : 1);
       if (topping) {
-        drawTopping(context, topping, x, y, radius, /珍珠|波霸/.test(topping) ? 0 : Math.sin(elapsed * 0.3 + particle.phase) * 0.3, ingredientOpacity(x, y, radius));
+        drawTopping(context, topping, x, y, radius, /珍珠|波霸/.test(topping) ? 0 : Math.sin(elapsed * 0.3 + particle.phase) * 0.3, ingredientOpacity(x, y, radius),Math.floor(index/current.toppings.length)%2);
       } else {
         context.beginPath();context.arc(x, y, radius * 0.5, 0, Math.PI * 2);
         context.strokeStyle = palette.bubble; context.lineWidth = 1.2; context.stroke();
@@ -91,7 +91,7 @@ export function initAtmosphere() {
     if (settled.length) {
       for (let i = 0; i < Math.ceil(width / 39); i++) {
         const x=i*39+15,y=height-7-(i%3)*9,radius=13+(i%4);
-        drawTopping(context, settled[i % settled.length], x, y, radius, (i % 3 - 1) * 0.15, ingredientOpacity(x,y,radius));
+        drawTopping(context, settled[i % settled.length], x, y, radius, (i % 3 - 1) * 0.15, ingredientOpacity(x,y,radius),Math.floor(i/settled.length)%2);
       }
     }
   }

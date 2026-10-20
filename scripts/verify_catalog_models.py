@@ -31,7 +31,7 @@ def main():
     a=before.rank({**job,'catalogVersion':before.catalog_version})
     b=after.rank({**job,'catalogVersion':after.catalog_version})
     assert a['scores']==b['scores'],'Old-product inference changed'
-    novel=[d['id'] for d in after.products if d.get('sourceKind')=='nidin']
+    novel=[d['id'] for d in after.products if d.get('sourceKind') in {'nidin','official-menu'}]
     assert novel
     state={k:v.clone() for k,v in after.model.state_dict().items()}
     full=after.rank({**job,'candidateIds':list(after.lookup),'catalogVersion':after.catalog_version})
