@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-10-20T05:28:27.021Z",
+  "version": "3.1.14",
+  "workerVersion": "4203b839-fc08-4b15-9f04-308544942155",
+  "sourceCommit": "7a54db5a99b0318a242af676f4810f56d5b52d2c",
+  "store": {
+    "name": "雲林虎尾店",
+    "address": "雲林縣虎尾鎮中正路125號",
+    "phone": "05-632-6083",
+    "source": "https://coco-tea.nidin.shop/menu/23257"
+  },
+  "checks": {
+    "directory": true,
+    "threeQUnknownNote": true,
+    "officialMenuListedRecommendations": true,
+    "maxPrice70AllVariants": true,
+    "rankingRefresh": true,
+    "zeroBudgetStaysEmpty": true,
+    "assets": [
+      {
+        "path": "index.html",
+        "sha256": "3a0377c7ef7ebecc194fd0eda38ba218fdd3b1e2d25410ad33830166da3b2145"
+      },
+      {
+        "path": "internal.html",
+        "sha256": "d8243ae823be578a6faea497706fbe092ac0858c1ba9cfd4d576e1ce9154f77a"
+      },
+      {
+        "path": "store-controls.js",
+        "sha256": "7311f2ecb4a8dc8f5180713df48a0dd24af486a45f06ae7565edcd7bb152a12d"
+      }
+    ]
+  },
+  "limitations": [
+    "官方訂餐平台搜尋範圍，不保證涵蓋所有實體店",
+    "未確認任何虎尾店販售3Q奶茶",
+    "非即時庫存；不在正式真實門市提交合成缺品回報"
+  ]
+}
