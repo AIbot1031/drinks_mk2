@@ -1583,3 +1583,8 @@ GitHub：CI39464320562成功；annotated tag v3.1.24與Release指向已驗證程
 Git同步：本記錄時間尚待commit／push／tag／GitHub Release核對，完成後追加實際結果；不預先宣稱同步完成。
 限制／後續：維持新舊正式模型同方法比較、指標無退步及硬篩選／重載契約等門檻；本次程式檢查不代表推薦品質提升。
 報告：docs/3.1.25MacBERT排程與後台相容.md；docs/MacBERT每日訓練.md。
+
+[2026-10-23T03:29:50+08:00 Asia/Taipei｜3.1.25 GitHub同步核對]
+- 正式部署已確認後，發布提交311129dfffde7bad403c875a7cc2181baecb29e3推送main、tag v3.1.25指向同一提交；GitHub Release已建立且Latest與正式站3.1.25一致。
+- GitHub Actions此時執行中，本機檢查通過不冒充CI結果；同步後追加安全工作紀錄，未含原始互動、金鑰、模型權重。
+- 每日排程仍ACTIVE／台灣02:00，編碼器MacBERT；本次沒有新訓練。

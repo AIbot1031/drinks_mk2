@@ -41,5 +41,9 @@
     "isolated_tool": true,
     "global_node_unchanged": true
   },
-  "git_release_status": "Deployment verified; GitHub commit/tag/Release synchronization pending at this record timestamp."
+  "git_release_status": "completed; remote main and v3.1.25 peeled tag matched verified release commit; GitHub Latest v3.1.25 confirmed",
+  "release_commit": "311129dfffde7bad403c875a7cc2181baecb29e3",
+  "release_url": "https://github.com/AIbot1031/drinks_mk2/releases/tag/v3.1.25",
+  "github_verified_at": "2026-10-23T03:29:50+08:00",
+  "github_actions_status_at_verification": "in_progress; local required checks passed"
 }
