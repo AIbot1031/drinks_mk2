@@ -1,6 +1,10 @@
 import unittest
 from scripts.build_training_summaries import summarize
 class SummaryTests(unittest.TestCase):
+ def test_macbert_reports_keep_encoder_identity_and_proxy_evaluation(self):
+  for suffix,model in [('macbert-contrastive','MacBERT'),('roberta-wwm-contrastive','RoBERTa')]:
+   s=summarize({'run_id':'20261023T020000-'+suffix,'started_at':'2026-10-23T02:00:00+08:00','status':'trained_proxy_evaluated_not_published','retrieval_evaluation':{'protocol':{'queries':24},'regressions':['synthetic fixture']}})
+   self.assertEqual(s['model'],model);self.assertEqual(s['scope'],'catalog-proxy');self.assertEqual(s['regressionCount'],1)
  def test_raw_content_never_copied_and_failure_not_filled(self):
   r={'run_id':'20261016T020051-qwen-intent-qlora','started_at':'2026-10-16T02:00:51+08:00','status':'failed','optimizer_steps':0,'cookie':'secret','history':['private'],'reason':'sensitive traceback','before_after_comparison':{'metrics':[{'name':'all_intent_exact_rate','before':.9,'after':None,'better_direction':'higher'}]}}
   s=summarize(r)

@@ -1,0 +1,45 @@
+{
+  "recorded_at": "2026-10-23T03:27:54+08:00",
+  "version": "3.1.25",
+  "worker_version_id": "a3e13722-fe83-4141-b807-c6f6e4f4b2e2",
+  "automation": {
+    "id": "relgt",
+    "name": "飲料網站 RelGT／MacBERT／Qwen 每日訓練",
+    "status": "ACTIVE",
+    "schedule": "每日02:00 Asia/Taipei",
+    "encoder": "hfl/chinese-macbert-base",
+    "epochs": 1,
+    "device": "mps",
+    "retrieval_eval": true,
+    "other_model_settings_changed": false
+  },
+  "validation": {
+    "entrypoint_check": "passed; no training",
+    "python_targeted_tests": 10,
+    "javascript_tests": 172,
+    "javascript_pass": 143,
+    "javascript_skipped": 29,
+    "javascript_fail": 0,
+    "typecheck": "passed",
+    "deploy_dry_run": "passed",
+    "live_health": "3.1.25",
+    "live_macbert_filter": true,
+    "live_roberta_history_filter": true,
+    "summary_sync": 46,
+    "actual_macbert_history_reports": 6
+  },
+  "optimizer_steps_this_change": 0,
+  "model_weights_changed": false,
+  "model_versions": {
+    "encoder": "macbert-5754da458c249ff9",
+    "qwen": "qwen3.5-9b-4bit-8b2b98c00a6b-intent-v7",
+    "relgt": "relgt-temporal-05757994850db8f6"
+  },
+  "build_runtime": {
+    "node": "26.12.1",
+    "official_archive_sha256_verified": true,
+    "isolated_tool": true,
+    "global_node_unchanged": true
+  },
+  "git_release_status": "Deployment verified; GitHub commit/tag/Release synchronization pending at this record timestamp."
+}

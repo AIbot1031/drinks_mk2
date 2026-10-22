@@ -11,3 +11,11 @@ test('dashboard rejects raw payloads, fabricated deltas and model/run mismatches
  assert.throws(()=>validateTrainingSummary({...r,metrics:[{name:'all_intent_exact_rate',before:.9,after:.5,delta:.4,direction:'higher'}]}));
  assert.throws(()=>validateTrainingSummary({...r,metrics:[{name:'raw_user_message',before:0,after:1,delta:1,direction:'higher'}]}));
 });
+
+test('MacBERT summaries retain their model identity and historical RoBERTa stays valid',()=>{
+ const historical=rows.find((r:{model:string})=>r.model==='RoBERTa');assert.ok(historical);
+ assert.deepEqual(validateTrainingSummary(historical),historical);
+ const macbert={...historical,runId:historical.runId.replace('roberta-wwm-contrastive','macbert-contrastive'),model:'MacBERT'};
+ assert.deepEqual(validateTrainingSummary(macbert),macbert);
+ assert.throws(()=>validateTrainingSummary({...macbert,model:'RoBERTa'}));
+});

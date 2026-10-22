@@ -6,9 +6,9 @@ METRICS=set('json_rate schema_rate intent_rate action_filters_rate query_rate am
 def finite(v):return v if type(v) in (int,float) and math.isfinite(v) else None
 def digest(v):return v if isinstance(v,str) and re.fullmatch('[a-f0-9]{40,64}',v) else None
 def summarize(r):
- run=r.get('run_id','');match=re.fullmatch(r'20\d{6}T\d{6}-(relgt-long-intent|roberta-wwm-contrastive|qwen-intent-qlora)',run)
+ run=r.get('run_id','');match=re.fullmatch(r'20\d{6}T\d{6}-(relgt-long-intent|macbert-contrastive|roberta-wwm-contrastive|qwen-intent-qlora)',run)
  if not match:return None
- model={'relgt-long-intent':'RelGT','roberta-wwm-contrastive':'RoBERTa','qwen-intent-qlora':'Qwen'}[match[1]]
+ model={'relgt-long-intent':'RelGT','macbert-contrastive':'MacBERT','roberta-wwm-contrastive':'RoBERTa','qwen-intent-qlora':'Qwen'}[match[1]]
  comparison=r.get('before_after_comparison') or {};metrics=[]
  for m in comparison.get('metrics',[]):
   if m.get('name') not in METRICS:continue
@@ -20,7 +20,7 @@ def summarize(r):
  status=r.get('status','unknown')
  if not re.fullmatch('[a-z_]{1,100}',status):status='unknown'
  regressions=(r.get('retrieval_evaluation') or {}).get('regressions')
- return dict(runId=run,model=model,startedAt=r['started_at'],endedAt=r.get('ended_at'),status=status,steps=r.get('optimizer_steps'),published=r.get('published') is True,weightsChanged=r.get('weights_changed') if type(r.get('weights_changed')) is bool else None,reloadError=finite(r.get('checkpoint_reload_max_error')),baseVersion=base,candidateHash=digest(r.get('checkpoint_sha256')),catalogHash=digest(r.get('catalog_sha256') or data.get('catalog_sha256')),dataHash=digest(r.get('snapshot_sha256') or comparison.get('data_snapshot_sha256')),queryHash=digest(protocol.get('fixture_sha256')),labelHash=digest(protocol.get('label_rule_sha256')),scope=('temporal-holdout' if (r.get('split_rows') or {}).get('validation',0)>0 else 'training-only') if model=='RelGT' else 'catalog-proxy' if model=='RoBERTa' and protocol else 'synthetic-intent' if model=='Qwen' else 'not-evaluated',regressionCount=len(regressions) if isinstance(regressions,list) else None,metrics=metrics)
+ return dict(runId=run,model=model,startedAt=r['started_at'],endedAt=r.get('ended_at'),status=status,steps=r.get('optimizer_steps'),published=r.get('published') is True,weightsChanged=r.get('weights_changed') if type(r.get('weights_changed')) is bool else None,reloadError=finite(r.get('checkpoint_reload_max_error')),baseVersion=base,candidateHash=digest(r.get('checkpoint_sha256')),catalogHash=digest(r.get('catalog_sha256') or data.get('catalog_sha256')),dataHash=digest(r.get('snapshot_sha256') or comparison.get('data_snapshot_sha256')),queryHash=digest(protocol.get('fixture_sha256')),labelHash=digest(protocol.get('label_rule_sha256')),scope=('temporal-holdout' if (r.get('split_rows') or {}).get('validation',0)>0 else 'training-only') if model=='RelGT' else 'catalog-proxy' if model in ('MacBERT','RoBERTa') and protocol else 'synthetic-intent' if model=='Qwen' else 'not-evaluated',regressionCount=len(regressions) if isinstance(regressions,list) else None,metrics=metrics)
 def main():
  rows=[]
  for p in sorted((ROOT/'docs/training-runs').glob('*.json'),reverse=True):

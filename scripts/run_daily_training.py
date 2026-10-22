@@ -32,7 +32,7 @@ def commands():
     if not node:raise RuntimeError('Node unavailable')
     return node, {
         'RelGT':[str(ROOT/'.venv-training/bin/python'),str(ROOT/'scripts/train_long_intent.py')],
-        'RoBERTa':[str(ROOT/'.venv-training/bin/python'),str(ROOT/'scripts/train_macbert.py'),'--model','hfl/chinese-roberta-wwm-ext','--device','mps','--epochs','1','--retrieval-eval'],
+        'MacBERT':[str(ROOT/'.venv-training/bin/python'),str(ROOT/'scripts/train_macbert.py'),'--model','hfl/chinese-macbert-base','--device','mps','--epochs','1','--retrieval-eval'],
         'Qwen':[str(ROOT/'.venv-llm/bin/python'),str(ROOT/'scripts/train_qwen.py'),'--iters','10'],
     }
 
@@ -50,7 +50,7 @@ def main():
             if not (ROOT/entry).is_file():raise RuntimeError('Missing training dashboard sync entrypoint')
         if not (ROOT/'scripts/benchmark_encoders.py').is_file():raise RuntimeError('Missing retrieval evaluation entrypoint')
         qwen_version=model_version(default_model_path(ROOT))
-        print('CHECK_OK: RelGT / RoBERTa / Qwen entrypoints available; Qwen='+qwen_version+'; no training run')
+        print('CHECK_OK: RelGT / MacBERT / Qwen entrypoints available; Qwen='+qwen_version+'; no training run')
         return 0
     directory=ROOT/'internal_exports';directory.mkdir(mode=0o700,exist_ok=True)
     lock=(directory/'.daily-training.lock').open('a')
@@ -85,7 +85,7 @@ def main():
                 report['models']['RelGT']={'status':'failed_export_snapshot','optimizer_steps':0,'weights_changed':False,'published':False,
                     'reason':'Export snapshot missing or outside protected directory'}
             else:cmds['RelGT']+=['--snapshot',str(candidate),'--trigger',args.trigger]
-        cmds['RoBERTa']+=['--trigger',args.trigger]
+        cmds['MacBERT']+=['--trigger',args.trigger]
         for name,cmd in cmds.items():
             if name in report['models']:continue
             before=set((ROOT/'docs/training-runs').glob('*.json'))
@@ -98,7 +98,7 @@ def main():
                     report['models'][name]={'status':'failed_start','optimizer_steps':0,'published':False,'weights_changed':False,'error_type':type(exc).__name__}
                     continue
             new=set((ROOT/'docs/training-runs').glob('*.json'))-before
-            suffix={'RelGT':'relgt-long-intent','RoBERTa':'roberta-wwm-contrastive','Qwen':'qwen-intent-qlora'}[name]
+            suffix={'RelGT':'relgt-long-intent','MacBERT':'macbert-contrastive','Qwen':'qwen-intent-qlora'}[name]
             matches=[path for path in new if path.stem.endswith(suffix)]
             if len(matches)!=1:
                 report['models'][name]={'status':'failed_missing_report','optimizer_steps':None,'published':False,

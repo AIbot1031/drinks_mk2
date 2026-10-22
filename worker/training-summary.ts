@@ -5,8 +5,8 @@ export function validateTrainingSummary(raw:unknown):TrainingSummary {
  if(!raw||typeof raw!=='object'||Array.isArray(raw))throw new Error('訓練摘要格式有誤');
  const r=raw as TrainingSummary;
  if(Object.keys(r).some(k=>!keys.includes(k))||keys.some(k=>!(k in r)))throw new Error('訓練摘要欄位有誤');
- if(!/^20\d{6}T\d{6}-(relgt-long-intent|roberta-wwm-contrastive|qwen-intent-qlora)$/.test(r.runId)||!['RelGT','RoBERTa','Qwen'].includes(r.model))throw new Error('模型或執行編號有誤');
- const suffix={RelGT:'relgt-long-intent',RoBERTa:'roberta-wwm-contrastive',Qwen:'qwen-intent-qlora'}[r.model];if(!r.runId.endsWith('-'+suffix))throw new Error('模型與執行編號不一致');
+ if(!/^20\d{6}T\d{6}-(relgt-long-intent|macbert-contrastive|roberta-wwm-contrastive|qwen-intent-qlora)$/.test(r.runId)||!['RelGT','MacBERT','RoBERTa','Qwen'].includes(r.model))throw new Error('模型或執行編號有誤');
+ const suffix={RelGT:'relgt-long-intent',MacBERT:'macbert-contrastive',RoBERTa:'roberta-wwm-contrastive',Qwen:'qwen-intent-qlora'}[r.model];if(!r.runId.endsWith('-'+suffix))throw new Error('模型與執行編號不一致');
  const date=(v:unknown)=>typeof v==='string'&&v.length<=40&&/^\d{4}-\d\d-\d\dT/.test(v)&&Number.isFinite(Date.parse(v));
  const num=(v:unknown)=>v===null||(typeof v==='number'&&Number.isFinite(v));
  if(!date(r.startedAt)||(r.endedAt!==null&&!date(r.endedAt))||!/^([a-z_]{1,100})$/.test(r.status))throw new Error('訓練狀態或時間有誤');

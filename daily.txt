@@ -1574,3 +1574,12 @@ Git／Release：來源提交99e94d96b64ba196d433ed6189f1dab4e7fa4377已推送，
 正式站：Worker 8f3204b5-a4fa-4b77-8c94-0aabb6445aa5，100%流量；health 3.1.24／9088。MacBERT `macbert-5754da458c249ff9`（MPS）與RelGT `relgt-temporal-05757994850db8f6`（CPU）ready，目錄雜湊均為d789342b…；沒有訓練或改權重。
 GitHub：CI39464320562成功；annotated tag v3.1.24與Release指向已驗證程式來源0878784626ec89a8d37f2dbe8d6cfc10c0134008，Release Latest。每日紀錄與零流量／正式驗證證據將另行提交同步，不移動tag。
 限制：地區詳列只依該菜單版本門市來源ID；公開菜單不代表即時庫存。完整細節見docs/3.1.24品項目錄整併與門市明細.md。
+
+[2026-10-23T03:27:54+08:00 Asia/Taipei｜3.1.25 MacBERT每日排程修正]
+規劃：依使用者要求改掉每日RoBERTa工作，核對正式站已用MacBERT，同時修補會拒收MacBERT新摘要的後台契約。
+實作：automation relgt名稱與指示、訓練入口模型旗標／批次名稱／報告尾碼改MacBERT；hfl/chinese-macbert-base、MPS、1 epoch、retrieval-eval。保持每日02:00 ACTIVE、原聊天、RelGT／Qwen其他設定、防重疊與發布門檻。安全摘要與API白名單、後台篩選支援MacBERT，RoBERTa歷史保留。新增操作文件。
+驗證：入口--check、Python相關10項、型別檢查、JS172項（143通過29條件略過0失敗）及dry-run通過。0 optimizer步，未訓練或更換權重。正式MacBERT／歷史篩選、未登入401、46筆安全摘要同步驗證通過（6筆真實歷史MacBERT報告）。
+部署：正式3.1.25，Worker a3e13722-fe83-4141-b807-c6f6e4f4b2e2，9088筆目錄不變、三模型ready且版本未變；隔離官方校驗Node26.12.1與專案Wrangler4.148.0部署，原全域Node未改。舊工作目錄其他修改保留，從乾淨發布工作樹驗證及部署，沒有DB遷移。
+Git同步：本記錄時間尚待commit／push／tag／GitHub Release核對，完成後追加實際結果；不預先宣稱同步完成。
+限制／後續：維持新舊正式模型同方法比較、指標無退步及硬篩選／重載契約等門檻；本次程式檢查不代表推薦品質提升。
+報告：docs/3.1.25MacBERT排程與後台相容.md；docs/MacBERT每日訓練.md。
