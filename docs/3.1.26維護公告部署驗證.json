@@ -1,0 +1,43 @@
+{
+  "verifiedAt": "2026-10-25T03:20:02.556677+08:00",
+  "version": "3.1.26",
+  "workerVersionId": "2a03162c-edba-4f22-9da0-1cfb93485a19",
+  "health": {
+    "ok": true,
+    "total": 9088,
+    "version": "3.1.26"
+  },
+  "models": {
+    "connected": false,
+    "ready": false,
+    "llm": {
+      "connected": false,
+      "ready": false
+    },
+    "relgt": {
+      "connected": false,
+      "ready": false
+    }
+  },
+  "staticAssetsMatch": [
+    "index.html at /",
+    "styles.css"
+  ],
+  "recommendation": {
+    "routeA": "tf-idf",
+    "routeB": "feature-graph",
+    "results": 3
+  },
+  "checks": [
+    "5 Python scheduler tests passed",
+    "TypeScript passed",
+    "deploy dry-run passed",
+    "production browser announcement visible"
+  ],
+  "limitations": [
+    "08:00 start branch verified with mocks, not an actual 08:00 run",
+    "wake/login/network/model loading may delay readiness"
+  ],
+  "trainingAutomation": "relgt PAUSED",
+  "verificationRetry": "urllib returned HTTP 403; curl -L verified canonical homepage /"
+}

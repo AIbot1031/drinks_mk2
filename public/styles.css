@@ -141,3 +141,5 @@ body{background:radial-gradient(ellipse at 12% 18%,var(--mood-glow),transparent 
 .quick-review-panel{padding:24px;margin:20px 0}.quick-review-panel h3{margin:8px 0}
 .quick-review-card p{white-space:pre-wrap}.quick-review-card button{margin:0 8px 8px 0}
 @media(max-width:600px){.quick-report-open{right:12px;bottom:12px;font-size:.85rem;padding:10px 14px}.quick-report-dialog{padding:20px}}
+
+.maintenance-notice{max-width:1180px;margin:16px auto;padding:16px 20px;border:1px solid #b9cbb7;border-radius:14px;background:#f0f5e9;color:#214c3e;line-height:1.65}.maintenance-notice p{margin:6px 0}.maintenance-notice small{display:block}@media(max-width:1220px){.maintenance-notice{margin:16px 20px}}
