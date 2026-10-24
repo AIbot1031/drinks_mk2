@@ -1599,3 +1599,6 @@ Git同步：本記錄時間尚待commit／push／tag／GitHub Release核對，�
 [2026-10-25 03:20:02 Asia/Taipei] 3.1.26 部署驗證完成
 部署：正式Worker 2a03162c-edba-4f22-9da0-1cfb93485a19 已上線；health=3.1.26，正式首頁/與CSS逐字吻合，瀏覽器公告可見。模型連線均false；紅茶推薦回傳3杯，A=tf-idf、B=feature-graph。urllib請求曾403，改curl並跟隨首頁轉址核對通過。詳見docs/3.1.26維護公告部署驗證.json。
 Git同步：接續提交、推送及建立v3.1.26 tag／Release，本段尚未宣稱同步完成。
+
+[2026-10-25 03:20:30 Asia/Taipei] 3.1.26 GitHub同步結果
+發布程式提交56de019aff0acbae509e95eb800443834c7ab8af已推送origin/main，遠端SHA一致。v3.1.26 annotated tag解析至相同已驗證提交；GitHub Release已建立，gh release view（未指定tag）確認Latest=v3.1.26，與正式站health一致。Release：https://github.com/AIbot1031/drinks_mk2/releases/tag/v3.1.26 。本筆為部署與同步後的文件補記，另行提交推送；不視為新功能發布、不提高版本。
