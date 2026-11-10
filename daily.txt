@@ -1602,3 +1602,25 @@ Git同步：接續提交、推送及建立v3.1.26 tag／Release，本段尚未�
 
 [2026-10-25 03:20:30 Asia/Taipei] 3.1.26 GitHub同步結果
 發布程式提交56de019aff0acbae509e95eb800443834c7ab8af已推送origin/main，遠端SHA一致。v3.1.26 annotated tag解析至相同已驗證提交；GitHub Release已建立，gh release view（未指定tag）確認Latest=v3.1.26，與正式站health一致。Release：https://github.com/AIbot1031/drinks_mk2/releases/tag/v3.1.26 。本筆為部署與同步後的文件補記，另行提交推送；不視為新功能發布、不提高版本。
+
+[2026-10-25 03:27:37 Asia/Taipei] 登入與對話推薦備援複查
+規劃：驗證模型停用下登入後與對話推薦，而非只測訪客手動推薦。
+驗證：建立testauth前綴的獨立合成測試帳號，實際登出再登入並核對session。六情境HTTP200且各回傳6杯：登入無偏好、登入有收藏／歷史、登入對話首輪、預算60改50、換一批、訪客對話首輪。全程A=tf-idf、B=feature-graph，Qwen解析回rules-fallback或quick-command且model=null；有歷史時RelGT不可用確實走備援，personalized=true，排除不喜歡品項仍成立，換批排除上一批。測試前後三模型connected=false／ready=false。耗時約1.31至3.50秒，僅本次樣本非效能保證。
+實作：首輪測試工具中文編碼有誤，修正工具後重跑通過，未修改網站。已清理本次測試帳號、session／互動及精確trace；未操作真實用戶資料。安全報告位於docs/3.1.26登入與對話備援複查.json。
+部署／Git同步：未部署、未改版本或權重、未訓練。本次為驗證及文件紀錄；限制為新帳號與合成偏好，未涵蓋所有既有帳號或任意自然語言。
+
+[2026-10-26 08:11:48 Asia/Taipei] 08:10一次性早晨模型恢復檢查
+規劃：依使用者要求確認08:00恢復後網站是否真正切回模型，包含登入及對話，不以ready冒充模型已使用。
+實測：08:10開始、08:11完成請求核對；維護排程08:00:08已記錄daytime enabled，Qwen／relay／MacBERT／RelGT皆running，正式三模型connected=true／ready=true。7情境皆HTTP200且各6杯：訪客手動、登入無偏好、有收藏與互動、登入對話、預算60改50、換一批、訪客對話。全部A=macbert，版本macbert-5754da458c249ff9；一般手動／對話首輪實際使用Qwen3.5-9B intent-v7，改預算／換批走quick-command屬既有快捷設計。排除不喜歡、預算及換批斷言通過。
+限制：RelGT已ready但新建測試帳號回new_user，B使用feature-graph屬checkpoint外新帳號的既有規則；未讀取真實帳號或驗證既有合格帳號routeB=relgt，因此不能宣稱所有帳號B皆已切回。
+實作與安全：已登出並清理本次精確測試帳號／級聯session與互動／trace，不留憑證或真實用戶資料。報告位於docs/3.1.26早晨模型恢復驗證-20261026.json。訓練automation relgt仍PAUSED。
+部署／Git同步：未改程式、權重或排程，未訓練、未部署、未提交或推送；僅追加安全驗證紀錄，版本不變。
+
+[2026-11-10 15:51:26 Asia/Taipei] 3.1.27 新版網站連結與舊版關閉預告
+規劃：使用者提供新版tea-sense網址，要求說明這是新版網站，並表示之後關閉舊站。
+實作：舊站首頁導覽下新增「新版網站已上線」公告及「舊版網站之後將關閉」提示，首頁與頁尾各新增前往新版網站連結，另開分頁並設定noopener noreferrer；未指定關閉日期。套件／lockfile／頁尾同步3.1.27。只修改既有已發布副本，不帶入主目錄其他未提交改動。
+驗證：新版網址curl取得HTTP200；部署預檢結果另補。
+部署／Git同步：本段記錄時尚未部署推送；未實際關閉舊站、不更動模型或訓練排程。
+
+[2026-11-10 15:52:03 Asia/Taipei] 3.1.27部署核對
+部署：Worker 4a43c861-a07c-4438-8ed9-b58d9732a273成功上線，health=3.1.27，正式首頁與來源逐字相符；2個新版連結及另開分頁屬性通過檢查。build／部署dry-run通過。驗證見docs/3.1.27新版網站連結部署驗證.json。Git提交／tag／Release接續同步；沒有實際關閉舊站。

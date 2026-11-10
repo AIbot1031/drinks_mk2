@@ -1,0 +1,20 @@
+{
+  "verifiedAt": "2026-11-10T15:52:03.687989+08:00",
+  "health": {
+    "ok": true,
+    "total": 9088,
+    "version": "3.1.27"
+  },
+  "workerVersionId": "4a43c861-a07c-4438-8ed9-b58d9732a273",
+  "homeMatchesSource": true,
+  "newSite": "https://drinks-mk4.rtx941031.workers.dev/tea-sense/",
+  "newSiteHTTP": 200,
+  "links": 2,
+  "announcement": "新版網站已上線；舊版網站之後將關閉，歡迎前往新版網站繼續使用。",
+  "checks": [
+    "build and deployment dry-run passed",
+    "link attributes verified",
+    "production homepage bytes match source"
+  ],
+  "closureDate": null
+}
