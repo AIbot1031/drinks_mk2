@@ -1624,3 +1624,6 @@ Git同步：接續提交、推送及建立v3.1.26 tag／Release，本段尚未�
 
 [2026-11-10 15:52:03 Asia/Taipei] 3.1.27部署核對
 部署：Worker 4a43c861-a07c-4438-8ed9-b58d9732a273成功上線，health=3.1.27，正式首頁與來源逐字相符；2個新版連結及另開分頁屬性通過檢查。build／部署dry-run通過。驗證見docs/3.1.27新版網站連結部署驗證.json。Git提交／tag／Release接續同步；沒有實際關閉舊站。
+
+[2026-11-10 15:52:20 Asia/Taipei] 3.1.27 GitHub同步完成
+發布提交bcbf2356ce3913d349e0960df3b1f4d4a2b841e9已推送origin/main，遠端SHA核對相符；v3.1.27 tag指向同一已驗證發布提交。GitHub Release已建立，Latest=v3.1.27與正式health一致：https://github.com/AIbot1031/drinks_mk2/releases/tag/v3.1.27 。本筆為同步後文件補記，不是新發布。
