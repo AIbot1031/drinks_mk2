@@ -2,7 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "drinks-mk2",
   "account_id": "08704241cb5ae85e6c85ea2be589f221",
-  "main": "worker/index.ts",
+  "main": "worker/retired.ts",
   "compatibility_date": "2026-10-08",
   "compatibility_flags": [
     "nodejs_compat"
@@ -21,14 +21,7 @@
       "RELGT_USER_KEY"
     ]
   },
-  "assets": {
-    "directory": "./public",
-    "binding": "ASSETS",
-    "run_worker_first": [
-      "/api/*"
-    ]
-  },
-  "triggers": {"crons": ["0 18 * * SUN"]},
+  "triggers": {"crons": []},
   "observability": {
     "enabled": true,
     "logs": {

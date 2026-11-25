@@ -1627,3 +1627,9 @@ Git同步：接續提交、推送及建立v3.1.26 tag／Release，本段尚未�
 
 [2026-11-10 15:52:20 Asia/Taipei] 3.1.27 GitHub同步完成
 發布提交bcbf2356ce3913d349e0960df3b1f4d4a2b841e9已推送origin/main，遠端SHA核對相符；v3.1.27 tag指向同一已驗證發布提交。GitHub Release已建立，Latest=v3.1.27與正式health一致：https://github.com/AIbot1031/drinks_mk2/releases/tag/v3.1.27 。本筆為同步後文件補記，不是新發布。
+
+[2026-11-25 16:58 Asia/Taipei] 3.1.28 舊站退役轉址
+規劃：使用者要求舊站全部導向新版手搖牌桌。
+實作：drinks-mk2 改由 retired.ts 統一回覆303至 https://drinks-mk4.rtx941031.workers.dev/card-table/#；不轉送查詢、表單內容或舊fragment。取消舊靜態資產入口及雲端cron，保留D1與Durable Object資料及既有類別。版本同步3.1.28，未更動新版站。
+驗證：Wrangler types、TypeScript、deploy dry-run通過。Node直接載入初次檢查受cloudflare:workers模組限制未通過，改以正式Workers實測。初次部署發現靜態首頁仍優先送出，移除assets後重新部署。正式根路徑、index、internal、health、任意含query路徑及POST API均303；跟隨轉址最終新版牌桌200。
+部署：最終Worker版本d331b54a-3e3e-443d-b85d-897bda247eb9。Git同步接續執行，尚未在此筆宣稱完成。資料與權重未刪除。

@@ -1,3 +1,4 @@
+import retired from './retired';
 import {listedStores,loadStoreSupply,submitStoreReport,storeResearch} from './stores';
 import {regionDirectory,readRegion,assertStoreRegion,regionEligible,regionalDrink} from './regions';
 import {submitQuickFeedback} from './quick-feedback';
@@ -58,7 +59,7 @@ async function readBody(request: Request): Promise<unknown> {
 export default {
   async fetch(request, env): Promise<Response> {
     const url = new URL(request.url);
-    if (!url.pathname.startsWith('/api/')) return env.ASSETS.fetch(request);
+    if (!url.pathname.startsWith('/api/')) return retired.fetch();
     try {
       if(url.pathname==='/api/reports/quick'&&request.method==='POST'){
         const origin=request.headers.get('origin');if(origin&&origin!==url.origin)return json({error:'請從本站回報'},403);
